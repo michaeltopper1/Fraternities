@@ -1,0 +1,100 @@
+---
+title: "emp_res"
+output: pdf_document
+---
+# Empirical Results
+
+*BL-TVP* is now compared to the leading synthetic control model, @abadie_synthetic_2010 (*SC*), and @brodersen_inferring_2015 original model (*CI*). The models are compared in two classic synthetic control scenarios: West Germany reunification [@abadie_comparative_2015] and California Tobacco Tax [@abadie_synthetic_2010].
+
+## West Germany Reunification
+
+@abadie_comparative_2015 studied the economic effects of the reunification of East and West Germany in 1990. The effect is measured using Purchasing Power Parity adjusted GDP per capita set to 2002 U.S. Dollars. The analysis focuses on the time period 1960-2003 with 16 OECD countries. This equates to $T=1990-1960=30$, $T_0=2003-1990=13$, and $J=16$.
+
+```{r g1, out.width = "75%", fig.cap = "West Germany vs Synthetic Control  West Germany obtained from BL-TVP (left), Synthetic Control (center) and Causal Impact (right) with 95\\% credibility intervals (when applicable).", fig.show="hold", fig.ncol=2, fig.align="center"}
+knitr::include_graphics("../04-sim/pictures_tables/germ_g1.pdf")
+```
+All three methods match West Germany's pre-treatment period closely and produce similar effects. In the case of CI and BL-TVP, the significance is at the 95% credibility interval.
+
+To further demonstrate, I compare the treatment effects BL-TVP to SC and CI. I rescale the graphs such that 0 is equal to the observed data:
+
+```{r g2, out.width = "75%", fig.cap = "Synthetic Control West Germany vs West Germany Treatment Effects obtained from BL-TVP (left), Synthetic Control (center) and Causal Impact (right) with 95\\% credibility intervals (when applicable).", fig.show="hold", fig.ncol=2, fig.align="center"}
+knitr::include_graphics("../04-sim/pictures_tables/germ_g2.pdf")
+```
+
+Notice BL-TVP closely fits the pretreatment period similarly to SC and CI. In addition, the post-treatment effect closely mirrors the two models, with overlap in the confidence intervals for all post-treatment periods between CI and BL-TVP. When compared to SC, BL-TVP suggests slightly stronger negative effects in the outcome immediately following reunification. However, the long term effects are similar between the two models. 
+
+The pre-treatment fit, measured in Mean Squared Error, is significantly tighter than CI and SC. When performing synthetic control analysis, the increased tightness in the pre-period serves as assurance of accurate inference.
+
+```{r}
+a<-as_tibble(read.csv("../04-sim/pictures_tables/pretreat_mse_germ.csv"))
+```
+
+```{r, results=F, include=F}
+kable(a[,-1], col.names = c("Model","Pre-Treat MSE"), caption = "West Germany Illustration", format="latex", booktabs=TRUE, escape = FALSE)%>% 
+   kable_styling(latex_options = "hold_position", font_size = 12)
+```
+
+Notice all three models produce similar average treatment effects. This demonstrates that the non-centered parameterization can perform as well as pre-existing models in the event that the parameters are not time varying.
+
+```{r}
+germ_eff<-as_tibble(read.csv("../04-sim/pictures_tables/germ_ate.csv"))
+```
+
+```{r}
+kable(germ_eff[,-1],
+      col.names = c("Model","Average Decrease","2.5th Percentile Decrease","97.5th Percentile Decrease"),
+      caption = "Average Reduction in West Germany's Annual Per Capita GDP (1990-2003)",
+      format="latex", booktabs=TRUE, escape = FALSE
+      )%>% 
+   kable_styling(latex_options = "hold_position", font_size = 12, position = "center") %>% 
+  footnote(symbol=c("CI: Causal Impact",
+                    "SC: Synthetic Control",
+                    "BL-TVP: Bayesian Lasso with Time Varying Parameters"))
+```
+
+
+## California Tobacco Tax
+
+@abadie_synthetic_2010 studied the impacts of a major tobacco tax implemented only in California. The outcome variable was per capita cigarette sales (in packs).
+The analysis focuses on the time period 1970-2000 with California the single treated unit.The policy was passed in January 1989 leading to 19 years of pre-treatment. 38 other states were used as control units. This equates to $T_0=1989-1970=19$, $T=2000-1970=30$, and $J=32$.
+
+```{r c1, out.width = "75%", fig.cap = "California vs Synthetic Control California obtained from BL-TVP (left), Synthetic Control (center) and Causal Impact (right) with 95\\% credibility intervals (when applicable).", fig.show="hold", fig.ncol=2, fig.align="center"}
+knitr::include_graphics("../04-sim/pictures_tables/ca_g1.pdf")
+```
+
+BL-TVP and SC follow comparable paths while CI diverges immediately following the treatment. This divergence could be indicative of overfitting in the pretreatment. The credibility intervals for BL-TVP are significantly tighter than CI.
+
+The benefits of BL-TVP can be seen even clearer when focusing solely on the treatment effect. The graphs are normalized such that 0 is the observed California. BL-TVP produces tighter intervals in the pre-treatment than CI. However, BL-TVP  closely follows SC in the post treatment, something CI fails to do. This demonstrates BL-TVP is able to perform similarly to SC in situations in which there are no time varying coefficients. 
+
+```{r c2, out.width = "75%", fig.cap = "Synthetic Control California vs California obtained from BL-TVP (left), Synthetic Control (center) and Causal Impact (right) with 95\\% credibility intervals (when applicable).", fig.show="hold", fig.ncol=2, fig.align="center"}
+knitr::include_graphics("../04-sim/pictures_tables/ca_g2.pdf")
+```
+
+Similar to West Germany, BL-TVP produces tighter pre-treatment estimates. In both cases, the difference between BL-TVP and SC were a matter of magnitudes.
+
+However, inference differs between the proposed model and the existing models. Both *CI* and *SC* suggest statistically significant benefits from the intervention while *BL-TVP* does not. 
+
+```{r}
+b<-as_tibble(read.csv("../04-sim/pictures_tables/pretreat_mse_ca.csv"))
+```
+
+```{r, include=F, results=F}
+kable(b[,-1], col.names = c("Model","Pre-Treat MSE"), caption = "California Tobacco Illustration", format="latex", booktabs=TRUE, escape = FALSE)%>% 
+   kable_styling(latex_options = "hold_position", font_size = 12)
+```
+
+```{r}
+ca_eff<-as_tibble(read.csv("../04-sim/pictures_tables/ca_ate.csv"))
+```
+
+```{r}
+kable(ca_eff[,-1],
+      col.names = c("Model","Average Decrease","2.5th Percentile Decrease","97.5th Percentile Decrease"),
+      caption = "Average Reduction in California's Per Capita Cigarette Sales (Post Intervention)",
+      format="latex", booktabs=TRUE, escape = FALSE
+      )%>% 
+   kable_styling(latex_options = "hold_position", font_size = 12, position = "center") %>% 
+  footnote(symbol=c("CI: Causal Impact",
+                    "SC: Synthetic Control",
+                    "BL-TVP: Bayesian Lasso with Time Varying Parameters"))
+```

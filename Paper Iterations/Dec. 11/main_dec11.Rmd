@@ -1,0 +1,250 @@
+---
+title: "Fraternities and Sexual Assault"
+subtitle: ""
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+    # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \theoremstyle{definition}
+- \newtheorem{definition}{Definition}[section]
+- \newtheorem{assumption}{Assumption}
+- \newtheorem{theorem}{Theorem}[section]
+- \newtheorem{corollary}{Corollary}[theorem]
+- \newtheorem{lemma}[theorem]{Lemma}
+- \newtheorem*{remark}{Remark}
+- \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+- \newcommand{\indep}{\perp \!\!\! \perp}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+abstract: Fraternities are a ubiquitious, and longstanding tradition at many four-year universities in the United States. In this study, I estimate the effects of campus-wide fraternity moratoria on reports of rape at local universities by exploiting the variation in implementation dates over a six year period (2013-2018). Using the Uniform Crime Reporting data system, I find no preliminary evidence that these implmentations significantly decrease (or increase) reports of rapes at campus universities.
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(kableExtra)
+library(bookdown)
+library(readr)
+library(tidyverse)
+library(dplyr)
+library(modelsummary)
+campus_moratorium_number <- 43
+unique_universities <- 38
+```
+
+\section{Introduction}
+
+Rape remains prevalent on all university campuses. According to the Campus Climate Survey on Sexual Assault and Sexual Misconduct conducted by the Association of American Universities, the overall rate of nonconsensual sexual contact since a student enrolled at their respective college was 13% in 2019.[^1] Additionally, this percentage has increased since 2015[^2] with the largest increases stemming from undergraduate women. Academics have pointed to multiple sources of this heinous behavior including college partying with alcohol [@lindo_college_2018], liquor violations [@wiersma-mosley_empirical_2017], and most pertinent, fraternities [@foubert_behavior_2008]. In the book *Sexual Assault on Campus: The Problem and the Solution*, the authors Carol Bohmer and Andrea Parrot claim that "the men who are most likely to rape in college are fraternity pledges."[^3] Furthermore, academic studies using survey data have found that fraternity men were more likely to commit sexual assault than men who did not join a fraternity [@foubert_behavior_2008], university males rated sexual assault perpetrators as less guilty when the perpetrator was a fraternity member [@seabrook_bros_2019], and sorority women (who interact with fraternity men frequently) were sexually assaulted at four times the rate of non-sorority women [@minow_sorority_2009]. Universities have responded to fraternity-related misconduct with a range of policy initiatives, and in particular, placing moratoriums on fraternity social-life. Each of these moratoriums occurs campus-wide, thereby affecting all fraternities simultaneously. And while the moratorium guidelines vary by university, each of them prohibits fraternity social gatherings with alcohol. This paper exploits the variation in timing of `r campus_moratorium_number` fraternity moratoriums at `r unique_universities` four-year universities across the US to estimate a causal effect of fraternity moratoria on cases of rape.
+
+[^1]: This number comes from the 33 large universities that participated in the survey.
+
+[^2]: Of the 21 schools that participated in both the 2015 and the 2019 surveys, results showed a 3% increase for undergraduate women, 2.4% increase for graduate and professional women.
+
+[^3]: A fraternity pledge is another name for a first-year member of a fraternity.
+
+\section{Background: Fraternities in the US}
+
+In the context of universities, a fraternity is a group of men who gather for social, academic, or demographic interests. Fraternities are a ubiquitous presence at many four-year universities.[^4] In 2015, the North American Interfraternity Conference (NIC) noted that there were over 5500 chapters^[A chapter is a unique fraternity.] located on over 800 campuses in the US and Canada. According to the US News Reports, some universities have fraternity membership as high as 85%. The overall composition of fraternity members tend to have family income and education higher than non-members [@routon_impact_2014], while economic studies have linked fraternity membership to higher academic performance [@cheng_greek_2018], alcohol consumption [@routon_impact_2014], and future income [@mara_social_2018]. However, this study, to my knowledge, is the first to estimate the effect of fraternity moratoria in any context.
+
+[^4]: To my knowledge, IFC fraternities do not exist officially at any community colleges or trade schools.
+
+This analysis focuses on a subset of fraternities known as the Interfraternity Council (IFC). IFC fraternities are composed of individual chapters that are "social fraternities,"^[Other types of fraternities also exist. Most noteworthy are "professional fraternities" which are more related to academic clubs, and are not part of the IFC.] although their values are far more outreaching than this. According to their website, the IFC "exist to promote the shared interests and values of our member fraternities: leadership service, brotherhood, and scholarship."
+
+To become a member of an IFC fraternity, prospective members must apply ("pledge") during recruitment events that take place at least once a year. Once a chapter and prospective member jointly accept membership, the new member must abide by the chapter's guidelines. Figure \ref{fig:sigmaalpha} shows an example of the overarching rules within the chapter, Sigma Alpha Epsilon--one of the oldest fraternity chapters across the US. Each member must maintain a GPA over a certain threshold, pay an initiation and semesterly fee, attend chapter ritual events and meetings, be involved in one additional campus or community organization, and complete service hours. Upon membership, pledges are invited to live within the fraternity house[^5], although national statistics for what percentage of pledges take this offer are not available.
+
+[^5]: Not all fraternities have houses where their members live. While I certainly need to verify this, I am confident that all schools in the sample have fraternity houses on, or near, campus.
+
+Each chapter house has its unique set of rules and atmosphere. In one field study, students at universities were surveyed about their opinions at each chapter house on campus. In the perceived "high risk" houses (e.g. houses that have a higher risk of dangerous or unwanted behavior), social behavior differed dramatically from "low risk" houses---high risk house parties had skewed gender ratios, more segregation between men and women, and men engaged in more jokes and conversations that degraded women than low risk houses [@boswell_fraternities_1996]. However, all fraternities interact with sorority chapters frequently, whose members have been found to consume alcohol with greater frequency, delay assessments of threat, and have significantly higher rates of drugging victimization than non-sorority members ([@franklin_sorority_2016],[@lasky_binge_2017]). Moreover, each chapter is overseen by three sources of jurisdiction: the IFC, the university[^6], and the chapter's national headquarters. Each of these entities has the power to restrict fraternity behavior, although only the IFC and university can implement a campus-wide moratorium. While this study only focuses on campus-wide moratoriums, it is important to note that individual chapter moratoriums occur frequently each year. However, since these cases affect only individual chapters, I focus primarily on campus-wide moratoriums to isolate the effects of fraternity life.
+
+[^6]: A chapter must be recognized by the university to be under its jurisdiction. This involves following the guidelines administered by the university on social activities and behavior.
+
+\section{Data}
+
+The main analysis uses data from the Uniform Crime Reporting (UCR) Program from the FBI. The UCR systematically collects crime data from local police departments and aggregates them to the agency-month level. In particular, it contains information on the total number of rape incidences reported by university-specific police departments, and local municipalities that concurrently serve the university area. For instance, a university's student body may be served by multiple police departments: a designated police department to the university, and one or more local municipalities that serve both the university and the local residents unaffiliated with the university. Each local police department and university-specific police agency was connected to a corresponding university area using the most recent Law Enforcement Agency Identifiers Crosswalk[^7] (LEAIC). As a criterion for the sample, each school that experienced a fraternity moratorium was only included in the sample if the school had a university-designated police department.[^8] Since the crosswalk is not updated yearly, I only observe the population that the local police department serves for one year. Table \ref{tab:orischools} shows the universities and their corresponding local municipalities that serve them. On average, there are approximately two law enforcement agencies that serve each university area: a dedicated university police and a more encompassing local municipality. However, I delineate between where each rape is reported in my main specification (see Section 5). 
+
+[^7]: To match law enforcement agencies with schools, the data was filtered by local police agencies and four-year university police departments. Each university police department has a "place code" which is an area that that particular police department covers. However, there are other police departments in these areas that also serve universities, and each of these was attached to the school, although some that were obviously not serving the university (e.g. nearby community college police) were withdrawn.
+
+[^8]: There were 3 schools that experienced fraternity moratoriums that did not fit the criteria: Johns Hopkins University, Baruch University, and Emory University.
+
+The sample, which consists of 38 unique 4-year degree-granting universities, begins in 2013 to correspond with the year the UCR changed its definition of rape to include non-consenting acts from both males and females in addition to acts of oral or anal penetration. Due to this change, I limit my sample to all media-known,[^9] campus-wide moratoriums of IFC fraternity life from the years 2013-2018.[^10] Each campus-wide moratorium was collected through three methods: a time-specific Google search using key phrases,[^11] a private Facebook group for fraternity and sorority life directors/affiliates to post related articles, and discussions with board members of the Association of Fraternity/Sorority Advisers (AFA) and university Fraternity and Sorority Life staff. Each moratorium's date has been verified by either a news article or an email/phone conversation with the corresponding university staff.
+
+[^9]: The schools that I observe in my sample all had some form of media article or press release from a school /local newspaper. While these may not be the universe of campus-wide moratoriums, they are, to my knowledge, the only events that received media attention.
+
+[^10]: My preferred sample will include 2019 when the UCR is updated.
+
+[^11]: Some (although certainly not all) of the searches I used include "fraternity moratorium", "all fraternity closed", "all fraternity suspended", "all fraternities suspended", and "Greek life closure".
+
+Table \ref{tab:summarystats} shows summary statistics of university characteristics[^12] and incidences of reported rape. On average, the universities are large at approximately twenty-two thousand undergraduates and majority white (62%). There is a wide range of college selectivity with average SAT 75th percentiles ranging from nearly perfect scores (790/800) to relatively average scores (528/800). Additionally, graduation rates vary significantly across schools, as the maximum graduation rate reaches over ninety percent, while the minimum is approximately forty-two percent. Notably, reports of rape^[Henceforward, "reports of rape" are reports of rape per one-hundred-thousand people unless otherwise specified.] are lower for university-specific police departments (\~2) than local police departments (\~4). Figure \ref{boxplot} illustrates this discrepancy by plotting the distribution of reports of rape of university-police and local municipalities. The population data is derived from two sources: the total university population and the population the local municipality serves. For example, if the police department is university specific, I consider the population to be the total enrollment population at the university. On the other hand, if a police department serves a local community/city, I use the population number provided in the LEAIC.
+
+[^12]: University characteristic information was taken from the Integrated Postsecondary Education Data System (IPEDS)
+
+*It is important to note that at this time, the data is not entirely complete. I am currently in the process of collecting semester-level hazing reports, chapter numbers, IFC population, fraternity and sorority life population, pledge population, and by-day campus crime reports through Freedom of Information Act (FOIA) requests to enrich the data.*
+
+\section{Fraternity Moratoriums}
+
+The sample consists of 43 campus-wide moratoriums occurring across the US (Figure \ref{map}). Table \ref{tab:closuretable} shows the universities in the sample and their corresponding moratorium dates and lengths. The average length of the moratoriums was 70 days and the majority of universities (88%) only experienced one moratorium in the sample period. Importantly, each moratorium differs substantially across universities in terms of triggering event (i.e. the event that resulted in the moratorium), restrictions, and governing body that oversaw the moratorium. Figure \ref{triggerevent} shows the distribution of triggering events by the governing body that enacted it. Sexual assault reports and hazing allegations account for 20% of campus moratoriums, while deaths and racist activity account for 15 and 5 percent respectively. Alcohol violations, re-evaluation due to national trends, and unspecified rule violations are grouped into their own category ("Other") with consisting of the remaining 41%. University and IFC implemented moratoriums are evenly balanced on their triggering events outside of deaths and racist activity where universities possess the entire density.
+
+\section{Empirical Strategy}
+
+I estimate the effects of campus-wide fraternity moratoriums on reports of rape using the variation in the timing of the implementation dates. In particular, I estimate the following model: \begin{equation}\label{model}
+    Rape_{u,t,a} =  \rho_u  + \phi_t + \beta_{fe} Moratorium_{u,t,a} +  \mathbb{X}_{u,t,a} + \epsilon_{u,t,a}
+    \end{equation} \noindent where $Rape_{u,t}$ is the count of reported rapes per one-hundred-thousand persons in police agency $a$, at university $u$, in time $t$. Since treatment lengths vary in time across months, $Moratorium_{u,t,a}$ is a continuous variable between 0 and 1 that represents the proportion of moratorium days in each month. For instance, Texas State University experienced a moratorium on 11/14/2017 that ended on 2/26/2018. In this case, $Moratorium_{u,t,a}$ would be equal to `r round(16/30,2)` in the month of November ((30-14)/30), 1 in the months of December and January (31/31), and `r round(26/28,2)` in February (26/28). This allows for a measure of treatment intensity, as a month with a small proportion of days that are treated differs from a month that is completely treated. $\mathbb{X}_{u,t,a}$ is a vector of covariates including graduation rate, full-time enrollment, and undergraduate population/demographics corresponding to each university $u$ or agency $a$ at time $t$. However, the critical covariates of fraternity membership and pledge populations by semester are still incomplete and will be added in future iterations. The inclusion of university ($\rho_u$) and month-by-year fixed effects ($\phi_t$) controls for any time-invariant differences between universities, and time of year. This is crucial, as universities differ in social cultures, and reports of sexual assault change seasonally [@mclean_climatic_2007].
+
+Additionally, I estimate a model similar to Equation \ref{model}, but interchange the outcome variable to $Log(Rape_{u,t,a} + (Rape_{i,t}^2 + 1)^{\frac{1}{2}})$. This outcome variable is the inverse-hyperbolic-sine (IHS) transformation of the number of reported rapes at university $u$ at agency $a$ in time period $t$. This transformation is preferred to the natural-log transformation as it is defined at 0 (57% of my rape data is recorded as 0) and it reduces the influence of extreme values in the outcome variable [@burbidge_alternative_1988].
+
+The model's identifying assumption is that universities that have or will experience a moratorium are a good counterfactual for universities undergoing a moratorium conditional on the covariates mentioned above. Additionally, there are several other assumptions needed to estimate causal effects: no anticipation, common trends, and no change in reporting of rapes.
+
+\subsection{No Anticipation}
+
+To obtain causal estimates, fraternity moratoriums must not be anticipated. If university students anticipated a fraternity moratorium and subsequently changed their behavior to reduce (or increase) their rape activity, the true effect of a moratorium would be unidentified. As Figure \ref{triggerevent} shows, 15% were due to a fraternity death and 5% were because of racist activity. These events are plausibly unexpected, although they only account for 20% of the moratoriums. However, the other 80% (hazing, sexual assault, alcohol violations, rule violations) are consequences that could lead chapters to anticipate their own house being suspended, but these events are unlikely to lead fraternity members to believe that their entire community will face a moratorium.
+
+\subsection{Common Trends}
+
+The common trends assumption specifies that if universities had never experienced a fraternity moratorium, their average reports of rape would have been the same as that of their control units. To support the common trends assumption, I estimate an event study model with the following specification: \begin{equation}\label{eventstudymodel}
+Y_{u,t,a} = \rho_u  + \phi_t + \sum_{t=-8, t\neq -1}^{t = 2}\beta_{t}\mathbb{I}(Moratorium_{u,t,a})  + \epsilon_{u,t,a}
+\end{equation} \noindent where $Y_{u,t,a}$ is either a count of rape per 100k or IHS transformation of reports of rape conditional on being reported at a university-designated police department. I include all universities with completed moratorium begin and end dates (41/43). The end points are binned so the dummy for the final lag and lead are equal to 1 for times $(-\infty, -8]$ and $[2,\infty)$ respectively. I omit the month before the beginning of a moratorium for my reference period, and hence, all coefficients are relative to the month-before moratorium. I show only 2 months following a fraternity moratorium so that the entire sample could be included to have 2 months of post trends.
+
+In the ideal experiment, the trends proceeding the moratorium should have no systematic trend upwards or downwards. For instance, a systematic trend upwards would imply that universities are implementing moratoriums to combat increases in reports of rape, while a systematic trend downwards would imply that moratoriums are following changes of student behavior. Figure \ref{eventstudy} shows the event study trends of rape reports before and after the moratoriums, and subsequently justifies that there is no systematic trend upwards or downwards before a moratorium is realized. In the months leading to a moratorium, the means oscillate around zero in a non-systematic fashion with the confidence intervals containing zero.
+
+\subsection{Changes in Reporting of Rape}
+
+The sample only observes reported rapes which has been estimated to be 12% of the true occurrences for students (Kilpatrick 2007). Therefore, it is imperative to test that the likelihood of reporting a rape is not changing because of a campus-wide moratorium on fraternities. If reports of rape are systematically underreporting during of a fraternity moratorium (e.g. fear of blame) then the model would be underestimating the true effect. On the other hand, if reports of rape are systematically overreporting concurrently with a moratorium period (e.g. more victims come forward because fraternities are under more pressure), than the model would be overestimating the results. As an indirect test of whether reports of rape are changing due to moratoriums, I estimate Equation \ref{model} on the number of rapes cleared. A cleared offense, as defined by the UCR, is an offense that has ended in arrest or "by exceptional means". The latter refers to whether the police agency was able to identify the offender, gather enough evidence to support an arrest, identify the offender's exact location, or encountered a circumstance outside the control of law enforcement that prohibits the agency from arresting, charging, or prosecuting the offender. While this is an imperfect test, it can indirectly test whether the *types* of reports are changing during fraternity moratorium. Table \ref{tab:cleared} shows that moratoriums have no significant effect on a report of rape being cleared. Column 1 shows the estimation with no controls and Column 2 shows my preferred specification including university controls. In each of these specifications, there is no significant effect on the types of rapes being cleared, thus providing evidence that the types of reported rapes are not changing.
+
+\section{Preliminary Results}
+
+Preliminary results are shown in Tables \ref{tab:main_model_university} and \ref{tab:main_model_all}. First, I consider the effect of moratorium on reports of rape at only university police departments (Table \ref{tab:main_model_university}). By doing so, this isolates the changes in reporting due to factors inside of the university jurisdiction. Since a large fraction of fraternity houses reside on campus, this is the primary sample of interest. Columns (1) and (2) show the the point estimates from Equation \ref{model}, differing only by the vector of covariates. I group the table based on two outcome variables: the reports of rape per one-hundred-thousand persons, and the IHS of reports of rape. In each specification, the point estimates show modest changes of a 0.2 increase and  a 2% decrease in reported rapes, yet none are significant at the 5 or 10 percent level. However, it is important to note that the model lacks power due to the small sample size. An approximate MDD calculation with 0.8 power and 0.05 size shows that the richest model can only detect differences of `r 0.662 * (1.96 + 0.84)` in rapes and differences of `r (0.071 *(1.96 + 0.84)) * 100` percent for IHS rapes. Considering these are large effects, it is plausible that fraternity moratorium do cause significant increases or decreases in rape, but the sample lacks the power to detect these effects. Table \ref{tab:main_model_all} slightly mitigates this problem by including local police municipalities that jointly serve each university. The specifications remain the same, but the sample size nearly doubles to 5175. In each of these estimations, the point estimates remain small and insignificant with decreases of 0.413 and 8% for each outcome of reports of rape per-100k and the IHS transformation of rape respectively.
+
+\section{Next Steps}
+
+This project is not yet complete, and this is only the groundwork. In future iterations I plan on using the National Incidence Based Reporting System (NIBRS) that provides hourly-level reports of rape by police departments. Additionally, the reports of rape are far more detailed, and information on demographics such as age are included. I intend to use observations at the daily-level, thus greatly improving the sample size and shrinking the minimum detectable effect. However, the trade-off is that the NIBRS does not cover every state, and my unique universities will be trimmed to 18 rather than `r unique_universities`. Since the number of schools greatly decreases, the NIBRS will act as a robustness check to my preliminary null result.
+
+Moreover, the demographics in NIBRS will be used for another indirect test of whether there are changes in the reports of rape due to fraternity moratorium. To do this, I will test whether the demographics of victims who report rape change during fraternity moratoriums.
+
+Outside of the NIBRS, I am still collecting information through the Freedom of Information Act (FOIA). I have requested data on hazing violations by day, instances of crime by-day, IFC population, and fraternity pledge information from each university. These are crucial covariates that could possibly change the effects found in the preliminary results.
+
+Lastly, I need to answer the question *what is it that fraternity members are doing during these moratoriums rather than hosting parties?* To answer this, I propose a few options: investigate other crimes that occur on campus or around campus, and observe Google trends for search data. To address the first point, it is plausible that fraternity members substitute away from their on-campus house parties to engage in other forms of crime. Potential crimes to observe would be motor vehicle theft, robbery, burglary, larceny, and arson. Each of these crimes appears in the UCR, and I can easily substitute them as an outcome. However, testing multiple outcomes leads to a multiple-hypothesis problem, where some outcomes may be falsely rejecting the null hypothesis simply by chance of the sample. Second, fraternity members under a moratorium may engage in behaviors that cannot be easily detected through outcomes available in the UCR data. Google Trends provides "search interest" measures that can detect when a particular search term is being Googled more frequently. One particularly interesting search query would be "Fake ID". Restricting in-house parties may induce them to find other off-campus places (such as bars/clubs) to party, and since most fraternity members are likely to be underage, it is plausible that fake IDs will be in higher demand.  
+
+
+\newpage
+
+```{r tables, include = F}
+## Table-orischools table
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Tables/orischools_table.R")
+## Table - summary statistics
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Tables/summary_stats.R")
+## Triggering event table
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Tables/trigger_table.R")
+## CLosure table
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Tables/table_1_closure_times.R")
+```
+
+```{r figures, include = F}
+## map
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/map.R")
+## event study
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/event_study_1.R")
+## boxplot
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/boxplot_police_departments.R")
+```
+
+```{r cleared, include = F}
+## rapes cleared
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/rapes_cleared_regressions.R")
+```
+
+```{r main_model_university, include = F}
+## both university and municipalities
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/regressions_mainmodel_university.R")
+```
+
+```{r main_model_all, include= F}
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/regressions_mainmodel_all.R")
+```
+
+```{r orischools, echo = F}
+kable(orischools_table, caption = "Universities and their corresponding police municipalities", booktabs = T) %>% 
+  kable_styling(latex_options = "scale_down") 
+```
+
+```{r summarystats, echo = F}
+
+kable(summary_stats, caption = "Summary Statistics of the 38 universities from 2013-2018", booktabs = T, escape = F) %>% 
+  pack_rows("University Police Only", 1, 2) %>% 
+  pack_rows("University and Local Police", 3, 4) %>% 
+  pack_rows("University Characteristics", 5, 14) %>%
+  footnote(number = c("Reported Rape is per 100k persons", "IHS is the inverse-hyperbolic-sine transformation of total reported rapes."))
+```
+
+```{r closuretable, echo = F}
+kable(closure_table, caption = "Fraternity Moratorium Closure and Reinstated Dates", booktabs = T) %>%
+  kable_styling(latex_options = "scale_down") %>% 
+  kableExtra::landscape()
+
+```
+
+```{r clearancetest, echo = F}
+indirect_test
+```
+
+```{r model1, echo = F}
+models_uni %>% 
+  kable_styling(latex_options = "scale_down") 
+```
+
+```{r, echo = F}
+models_all %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+\newpage
+
+```{=tex}
+\begin{figure}
+    \centering
+     \includegraphics[width = \linewidth]{SigmaAlpha.png}
+     \caption{The fraternity chapter, Sigma Alpha Episilon, guidelines for members.}
+     \label{fig:sigmaalpha}
+\end{figure}
+```
+```{r, fig.cap = "\\label{boxplot}Distribution ofreports of rape per one-hundred-thousand persons by type of police municipality."}
+boxplot_department
+```
+
+```{r, fig.cap = "\\label{map}Distribution of fraternity moratoriums in the sample from years 2013-2018. Each dot represents the average of yearly reports of rape (per one-hundred-thousand) by the jurisdictions serving the universities.", fig.pos="H", echo = F}
+per_capita_map
+```
+
+```{r, fig.cap = "\\label{triggerevent}Distribution of triggering events for university moratoriums. The *Other* category represents triggering events such as alcohol violations, re-evaluation due to national trends, and unspecified rule violations.", fig.pos="H", echo = F}
+trigger_figure
+```
+
+```{r, fig.cap = "\\label{eventstudy}Event study showing 8 months prior and 2 months post moratorium.", out.width='.49\\linewidth', fig.ncol = 2, fig.subcap =  c("Rape (Per One-hundred-thousand)", "IHS Rape"), fig.pos="H", echo = F }
+coefs_percap_plot
+coefs_inverse_plot
+```
+
+# References

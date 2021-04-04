@@ -1,0 +1,317 @@
+@charset "utf-8";
+/* CSS Document */ /* Updated on 2.27.2017 */
+/* Version:     1.0.12-2 */
+/* Mittun Creative */
+
+
+/* =========== SHORT FORM STYLES - INLINE ====  NEW FOR V1.0.12 =========== */
+.classy-donation-form.short input[type="radio"] {display:none;}
+.classy-donation-form.short label {display:inline-block; width:48%;}
+.classy-donation-form.short .recurring-label_short_donation_form {float:right;}
+
+/* =========== SHORT FORM STYLES - POPUP =======  NEW FOR V1.0.12 =========== */
+.mittun-classy-popup .classy-donation-form.short input[type="text"],  
+.mittun-classy-popup .classy-donation-form.short input[type="email"],
+.mittun-classy-popup .classy-donation-form.short input[type="url"],
+.mittun-classy-popup .classy-donation-form.short input[type="tel"],
+.mittun-classy-popup .classy-donation-form.short textarea {
+padding-left:20px!important;
+font-size:18px; line-height:28px;
+}
+
+/* =========== LONG FORM STYLES - INLINE =========== */
+.classy-donation-form .recurring_long_donation_form label {display:inline-block}
+
+/* =========== STYLE 1 START =========== */ 
+.style_1 .mittun-thermometer {
+	border-left:1px solid #28aded; 
+	border-right:1px solid #28aded; 
+	background:#000; 
+	height:10px; /*CHANGES HEIGHT OF BACKGROUND OF THERMOMETER*/ 
+	position:relative; 
+	margin:15px 0px;
+	}
+.style_1 .mittun-thermometer-progress { 
+	background:#28aded; 
+	height:10px; 
+	float:left;
+	max-width:100%;
+	}
+.style_1 .mittun-thermometer-progress-marker-container { 
+	float:left; 
+	width:20px; 
+	overflow:visible; 
+	position:relative; 
+	top:-30px; 
+	}
+.style_1 .mittun-thermometer-progress-marker { 
+	float:right;
+	width:25px;
+	border-radius:100%; 
+	height:25px; 
+	overflow:visible; 
+	background:#28aded; 
+	position:relative; 
+	left:2px; 
+	top:-8px;
+	}
+.style_1 .mittun-thermometer-progress-marker-text { 
+	position:relative;
+	float: right; 
+	top:-65px; 
+	left:9px; 
+	color:#000; 
+	font-weight:bold; 
+	font-style:italic; 
+	}
+/*STYLE 1 END*/ 
+
+/* =========== STYLE 2 START =========== */ 
+
+.style_2 .mittun-thermometer-goal span{
+	background: white;
+	padding: 5px;
+	font-weight: 900;
+	border-bottom: 1px dashed #ccc;
+}
+
+.style_2 .mittun-thermometer {
+	border-left: 1px solid #28aded;
+	border-right: 1px solid #28aded;
+	background: #ccc;
+	height: 60px;
+	position: relative;
+	margin: 15px 0px;
+	float: none;
+	display: block;
+}
+
+.style_2 .mittun-thermometer-progress {
+	background: #28aded;
+	height: 60px;
+	float: left;
+	max-width:100%;
+	min-width:10%; /* prevents text going off the left side of progress bar */
+}
+
+.style_2 .mittun-thermometer-progress-marker-text {
+	position: relative;
+	left: -4px;
+	/*margin-right: 43%;*/
+	color: white;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 30px;
+	float:right;
+	top: -56px;
+    margin: 0 auto;
+    /*width: 100%;*/
+    text-align: center;
+}
+
+.style_2 .mittun-thermometer-progress-marker {
+	float: right;
+	width: 3px;
+	border-radius: 10px;
+	height: 60px;
+	overflow: visible;
+	background: whitesmoke;
+	left: 39px;
+}
+
+
+/* =========== STYLE 2 END ===========*/ 
+
+/* =========== STYLE GENERAL =========== */ 
+.mittun-thermometer-value {font-size:25px; line-height:50px; color:#000; position:relative; margin:20px auto 5px; position:relative; text-align:center; font-style:italic; letter-spacing:-1px; font-weight:bold;}
+.mittun-thermometer-value span {color:#28aded; font-size:75px; padding-top:10px; letter-spacing:2px; font-style:normal; font-weight:100; display:block; }
+.mittun-thermometer-goal {font-size:14px; line-height:40px; color:#4c4c4c; position:relative; text-align:center; margin:10px auto 30px; position:relative;}
+.mittun-thermometer-goal span {color:#4c4c4c; }
+/* ===========  NEW DEFAULT INLINE STYLES */
+.classy-donation-form .classy-amount input[type="button"], .classy-donation-form input[type="submit"],.classy-donation-form label{
+    min-width: 50px;
+    font-size: 18px;
+    padding: 10px 25px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom:7px;
+	}
+.classy-donation-form input[type="radio"] {
+    visibility:hidden;
+}
+.classy-donation-form label{
+	cursor: pointer;
+	text-align:center;
+}
+.classy-donation-form input[type="radio"]:checked + label {
+    background-color: #28aded;
+}
+    
+.classy-donation-form p {font-size:1.2em;}
+.classy-donation-form input[type="radio"] {font-size:1.3em;} 
+.classy-donation-form input[type="radio" i]:last-child {margin-left:20px}
+
+.classy-donation-form input[type="radio"]:checked + label:after, 
+.classy-donation-form input[type="radio"]:checked + label:before, 
+.classy-donation-form input[type="radio"]:not(:checked) + label:before, 
+.classy-donation-form input[type="radio"]:not(:checked) + label:after {visibility:hidden}
+
+.classy-donation-form input[type="text"],
+.classy-donation-form input[type="email"],
+.classy-donation-form input[type="url"],
+.classy-donation-form input[type="tel"],
+.classy-donation-form textarea {padding-left:20px}
+
+/* =========== SKIN 2 FORM ELEMENT LOOK =========== */
+
+/* === SKIN 2 — MAVERICK — FULL WIDTH LAYOUT AND CENTERED === */
+.classypress-master.campaign-container-masterskin_2 { 
+	width:100%; 
+	margin:0 auto;
+	padding:0;
+}
+.campaign-container-masterskin_2 .campaign-container-inner {
+	max-width:540px; 
+	margin:0 auto; 
+	padding:20px; 
+	display:block; 
+	position:relative;
+}
+
+.mdl-textfield__input[type=number]::-webkit-inner-spin-button,.mdl-textfield__input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.mdl-textfield.is-focused .mdl-textfield__input{outline:none}.mdl-textfield.is-invalid .mdl-textfield__input{border-color:#d50000;box-shadow:none}.mdl-textfield.is-disabled .mdl-textfield__input,fieldset[disabled] .mdl-textfield .mdl-textfield__input{background-color:transparent;border-bottom:1px dotted rgba(0,0,0,.12);color:rgba(0,0,0,.26)}.mdl-textfield textarea.mdl-textfield__input{display:block}.mdl-textfield__label{bottom:0;font-size:16px;left:0;right:0;pointer-events:none;position:absolute;display:block;top:24px;width:100%;overflow:hidden;white-space:nowrap;text-align:left}.mdl-textfield.is-dirty .mdl-textfield__label{visibility:hidden}.mdl-textfield--floating-label .mdl-textfield__label{transition-duration:.2s;transition-timing-function:cubic-bezier(.4,0,.2,1)}
+
+
+.classy-donation-form .classy-amount input[type="button"], .classy-donation-form input[type="submit"],.classy-donation-form label{
+    min-width: 50px;
+    font-size: 18px;
+    padding: 10px 25px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom:7px;
+	}
+.classy-donation-form input[type="radio"] {
+    visibility:hidden;
+}
+.classy-donation-form label{
+	cursor: pointer;
+	text-align:center;
+}
+.classy-donation-form input[type="radio"]:checked + label {
+    background-color: #28aded;
+}
+    
+.classy-donation-form p {font-size:1.2em;}
+.classy-donation-form input[type="radio"] {font-size:1.3em;} 
+.classy-donation-form input[type="radio" i]:last-child {margin-left:20px}
+
+.classy-donation-form input[type="radio"]:checked + label:after, 
+.classy-donation-form input[type="radio"]:checked + label:before, 
+.classy-donation-form input[type="radio"]:not(:checked) + label:before, 
+.classy-donation-form input[type="radio"]:not(:checked) + label:after {visibility:hidden}
+
+
+
+.classy-donation-form textarea {padding-left:20px}
+
+.classy-donation-form.short input[type="radio"] {display:none;}
+ 
+ .classy-donation-form.short label {display:inline-block; width:48%;}
+
+/* ===========  NEW DEFAULT INLINE STYLES =========== */
+
+/* =========== STYLE GENERAL ===========*/
+
+/* ===========  DATA IN LIST AND TABLE FORMAT =========== */
+ul.mittun-campaign-list li {display:block; line-height:30px; border-top:1px #ccc solid; padding:20px 0px; min-height:70px; display:block;}
+ul.mittun-campaign-list {margin:20px 0; padding:0; position:relative; clear:both;}
+.mittun-clear-fix {width:100%; display:block; clear:both; height:10px;}
+/* DATA IN LIST AND TABLE FORMAT */
+
+
+
+
+/* ================================================= GENERAL CONTAINERS AND STYLES THAT WILL CHANGE PER ACCOUNT  ================================================= */
+	.mittun-campaign-master-container { width:80%; margin:10px auto; }
+	.mittun-campaign-master-container-left {float:left; width:55%; margin-top:10px; padding-top:20px; margin-right:7%; padding-right:7%; border-right:1px solid #ccc }
+	.mittun-campaign-master-container-right {float: left; width: 30%; margin-top: 10px; padding-top: 20px; }
+	
+	.mittun-campaign-intro-text {text-align:center; width:100%; clear:both; margin:20px auto; display:block;}
+	.mittun-thermometer-container { height:auto; position:relative; padding:10px; margin-bottom:30px;}
+	.mittun-thermometer-container:empty {display:none;}
+	.mittun-thermometer-container h3{text-align:center; font-size:40px;}
+	.mittun-campaign-master-container-left .mittun-campaign-thumbnail {float:left; display:inline-block; position:relative; width:20%;}
+	.mittun-campaign-master-container-left .mittun-campaign-title-and-date-container {float:left; display:inline-block; position:relative; width:55%;}
+	.mittun-campaign-master-container-left .mittun-campaign-link {float:left; display:inline-block; position:relative; width:25%;}
+	.mittun-campaign-master-container-right .mittun-campaign-title-and-date-container {float:left; display:none; position:relative; width:100%;}
+	.mittun-campaign-master-container-right .mittun-campaign-link {float:left; display:inline-block; position:relative; width:100%; clear:both;}
+	.mittun-campaign-master-container-right .mittun-campaign-thumbnail {display:none;}
+	.mittun-campaign-master-container-right .mittun-campaign-date {display:none;}
+	
+	
+	.mittun-campaign-thumbnail img {width:60px; height:60px; }
+	.mittun-campaign-thumbnail {float:left; display:inline-block; position:relative; width:10%; min-width:70px;}
+	.mittun-campaign-title {float:left; text-transform: uppercase; color: #333; font-size: 20px;}
+	.mittun-campaign-date {float:left; clear:left; position:relative; font-size:15px; letter-spacing:1px;}
+	.mittun-campaign-title-and-date-container {float:left; display:inline-block; position:relative; width:45%; min-width:230px; padding-right:10px;}
+	.page-template-page-stay-classy-api-template-php .columns {padding-bottom:0px; margin-bottom:0px;}
+	
+	.mittun-campaign-amount-raised {display:none;}
+	.mittun-campaign-link { display:block; position:relative; width:100%; max-width:350px; margin:30px auto; }
+	.mittun-campaign-link a {display:block; padding:20px 15px; background:#06C; text-align:center; font-size:20px; color:#fff; text-transform:uppercase;letter-spacing: normal; line-height: 1;}
+	.mittun-campaign-link a:hover {opacity:.7; color:#fff;}
+	
+	h1.mittun-campaign-h1-title { margin-top:20px; margin-bottom:10px;}
+	.white-popup input, .white-popup p{color:#000!important;}
+	.classy-currency{position: relative; top: 35px; left: 5px; color: #999; font-size: 20px; opacity: .6; -webkit-opacity: .6; -moz-opacity: .6;}
+
+
+/* ================================================= GENERAL CONTAINERS AND STYLES THAT WILL CHANGE PER ACCOUNT  ================================================= */
+.mittun-fundDon-link { display:block; position:relative; width:48%; max-width:350px; margin:30px auto; }
+	.mittun-fundDon-link a {display:block; padding:20px 15px; background:#06C; text-align:center; font-size:20px; color:#fff; text-transform:uppercase;letter-spacing: normal; line-height: 1;}
+	.mittun-fundDon-link a:hover {opacity:.7; color:#fff;}
+
+/* =============== Default Responsive CSS Formatting*/
+
+@media only screen and (min-width: 769px) {	
+   
+
+}
+
+@media only screen and (max-width: 768px) {	
+.mittun-thermometer-container .mittun-thermometer-value span {font-size: 50px;}
+.mittun-thermometer-container h3{line-height: 110%;}
+.mittun-thermometer-value{line-height:28px;}
+.mittun-classy input[type="button"]{margin-bottom:10px;}
+
+.skin_2 .mittun-classy-popup .modal-dialog {
+    max-width: 560px!important;
+    margin: 30px auto!important;
+}
+.skin_2 .mittun-classy-popup .modal-content {
+    background-color: #fff!important;
+}
+
+/* .skin_2 .classy-donation-form input[type="text"],
+.skin_2 .classy-donation-form input[type="email"],
+.skin_2 .classy-donation-form input[type="url"],
+.skin_2 .classy-donation-form input[type="tel"],
+.skin_2 .classy-donation-form textarea{
+	border:none!important;
+	border-bottom:1px solid rgba(0,0,0,.12)!important;
+	display:block!important;
+	font-size:16px!important;
+	font-family:"Helvetica","Arial",sans-serif!important;
+	margin:0!important;
+	padding:4px 0!important;
+	width:100%!important;
+	background:0 0!important;
+	text-align:left!important;
+	color:inherit!important;
+} */
+/* :focus{outline: none;} */
+.skin_2 .classy-donation-form input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+.skin_2 .classy-donation-form .effect-1, 
+.skin_2 .classy-donation-form .effect-2, 
+.skin_2 .classy-donation-form .effect-3{border: 0; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,.12);}
+.skin_2 .classy-donation-form .effect-2~ .focus-border{position: absolute; bottom: 0; left: 50%; width: 0; height: 5px; background-color: #3399FF; /* transition: 0.4s; */}
+.skin_2 .classy-donation-form .effect-2:focus ~ .focus-border{width: 100%; transition: 0.4s; left: 0;}

@@ -1,0 +1,31 @@
+.adredux {
+	margin: 20px;
+}
+
+.adredux.before-content {
+	margin-top: 0;
+}
+
+.adredux.alignleft {
+	margin-left: 0;
+}
+
+.adredux.alignleft {
+	margin-left: 0;
+}
+
+.adredux.alignright {
+	margin-right: 0;
+}
+
+.adredux.aligncenter {
+	float: none;
+	clear: both;
+	width: 100%;
+	margin: 20px 0;
+}
+
+.adredux.aligncenter .adbox {
+	width: 100%;
+	margin: auto;
+}

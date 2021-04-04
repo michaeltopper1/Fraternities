@@ -1,0 +1,196 @@
+---
+title: "Update on Fraternity Project"
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+editor_options: 
+  chunk_output_type: inline
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+header-includes:
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+  - \usepackage{amsfonts}
+  - \usepackage{amsthm}
+  - \usepackage{amsmath}
+  - \usepackage[english]{babel}
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+library(tidyverse)
+library(tidyverse)
+library(sandwich)
+library(fixest)
+library(lfe)
+library(modelsummary)
+library(fwildclusterboot)
+```
+
+*Please note that this is not a paper draft. While I tried to organize some of my thoughts, this is not formally written up. I wanted to show my progress and hear everyone's thoughts on directions/angles to take on this given some of the exploratory work/preliminary results I have.*
+
+\section{Some Background}
+My previous iteration of the paper featured Uniform Crime Reporting System (UCR) data. After trying to add an additional year of data, I learned more about the data and discovered it is an extremely poor data set for my purposes. First, many university police departments voluntarily submit their data, however, they are unreliable with respect to their consistency. For instance, each university based in Florida had their police departments send data every 6 months rather than every month as I had originally thought. Moreover, when police departments decided not to report, they were entered into the system as 0 rather than NA. To make matters worse, there was no clear identifier on whether or not the police department actually submitted data in a month that featured 0 rapes. Since rapes are so rare and underreported, I could not identify whether a 0 was a true 0 or just an unreported month. Hence, I decided to completely drop my main source of data for analysis. While this was a large blow, it came with its benefits: I now know that my strangely low reports of rape and large standard errors were likely due to issues with the data rather than my model. Main lesson to be learned here: **read your codebooks meticulously, browse your data for your main outcomes thoroughly, and never put too much faith in a data set.**
+
+# New Data
+The main analysis now uses data from each individual university police department. Using the Jeanne Clery Act^[The Jeanne Clery Act is a law that states that any university that receives federal funding must hold Daily Crime Logs from their campus security department and send yearly aggregated statistics of certain crimes to the US Department of Education], the Freedom of Information Act, webscraping, and pdf-extracting, I gathered Daily Crime Log data from 37 of the 44 schools in the sample^[I am still waiting for 3 university's data. I am hopeful that I will get to 40 schools by March 16th.]. The Daily Crime Log is a daily-level data set that features all reports and offenses logged by the university police department, provided the university has its own security department. Hence, this data is far richer than the UCR, as it contains records of all criminal incidents and alleged criminal incidents that are reported to the campus police or security department. Each entry must contain specific information about each crime including the date/time the crime was reported and occurred, a small description on the nature of the crime, the general location, and the disposition of the complaint. Additionally, these logs are more comprehensive than Clery Act statistics as they are reported at a daily level rather than yearly level, and include more categories of crime that may not fall under the Clery jurisdiction. However, these logs will **not necessarily** match Clery Act statistics when aggregated to the yearly level. This is mainly because the Daily Crime Logs contain only information **reported to the police**. For instance, if the Student Health Center has a rape victim confide in them, it is possible that Student Health will report the rape to the school's Clery Act compliance officer, but it may not be recorded within the university police's Daily Crime Log. Moreover, universities are only required to hold records for the past 7 years, and therefore I restrict my analysis from 2014-2019. Despite this shortcoming, the Daily Crime Log is the most detailed information on crime at each university that exists. 
+
+## Harmonizing the Daily Crime Logs
+Each Daily Crime Log contains a small description the crime reported by the university police. However, since each of these incidents are being written by different police officers and departments, there is a vast amount of variation in how crimes are described. To harmonize these descriptions, I pattern-matched using regular expressions on each small description written in the Daily Crime Log. This was achieved by arranging all incidents at each university in descending order of frequency, and choosing the main words that describe the incident. Table \ref{tab:matching_outcomes} shows the key words and phrases used to match on the outcomes of sexual assault, alcohol offenses, drug offenses, theft, burglary, and noise violations. However, simply pattern matching causes some small, but noteworthy mistakes. For instance, pattern matching on "possession by a minor" for an alcohol offense could result in a match of "possession by a minor with marijuana". To mitigate this issue, I removed matches that contain words that frequently occur in *other* categories. For example, "possession by a minor" matches "possession by a minor with marijuana" for an alcohol offense, but is removed after the match since it contains the word "marijuana"- a word typically associated with a drug offense. Table \ref{tab:top_categories} shows the 15 most frequently incidents matched through the algorithm. Note that each of these matches are within reason.
+
+## The Sample
+The sample (for this update) consists of 34 unique universities, each of which experienced a fraternity moratorium at some point in the six-year time period of 2014-2019. This time period is preferred for two reasons. First, 2014 is the earliest time in which universities are required to have kept Daily Crime Logs^[Three schools fell out of compliance (despite their arguments that they did not) and did not have 2015 data. Thus, three schools are missing 2014 data in the sample.]. Second, 2020 is omitted due to the COVID-19 pandemic where students are less unlikely to be on campus and have more atypical restrictions on socializing than in previous years. Table \ref{tab:summarystats} shows summary statistics of the outcomes of interest and characteristics of the universities. On average, there are  0.05, 0.54, 0.4, 0.7, 0.13, and 0.06 daily reports of sexual assaults, alcohol offenses, drug offenses, theft offenses, robberies, and noise violations at each of these relatively large (~28k students) universities. The universities are primarily white, although there is substantial variation in the demographic makeup across schools.
+
+
+
+## Raw Data Evidence
+Figure \ref{by_day_graph} shows the average reports of different offenses by day-of-week in the sample. Notably, both  sexual assaults and alcohol violations decrease substantially within Thursday-Sunday during fraternity moratoria. These are offenses that are typically associated with fraternity behavior. On the other hand thefts, robbery, and drug offenses are more noisy, and these offenses are less typically associated with fraternity behavior. This leads me to believe that there should indeed be an effect, however, I am struggling to find statistically significant decreases that I would expect to find given the raw data.
+
+
+# Model
+
+I estimate the following model:
+\begin{equation}
+Y_{ut} =  \beta_{fe} Moratorium_{u,t} +  \mathbb{X}_{u,d} + \phi_u + \mathbb{Z}_{t} + \epsilon_{u,t}
+\end{equation}
+where $Y_{u,t}$ represents the daily reports of sexual assault, alcohol offenses, drug offenses, thefts, noise violations, and burglaries reported at university $u$ in time $t$, $Moratorium_{u,t}$ is an indicator equal to 1 if a university $u$ is experiencing a moratorium at time $t$, $X_{u,t}$ is a vector of the covariates shown in Table \ref{tab:summarystats}, $\phi_u$ are university fixed effects, and $\mathbb{Z}_t$ is a set of time-varying controls--these include day-of-week, year-by-month, and other time fixed effects (see regression tables for more details)^[Note that this specification changes moderately in my tables. Sometimes, I choose not to use a university fixed effect.]. I omit all summer months by school semester/quarter system as students are less likely to be on-campus during summer months. For instance, if a school is on the quarter system, July and August are removed, while if a school is on the semester system, June and July are removed.
+
+## Parallel Trends
+To address the parallel trends assumption, I estimate an event-study model under the following specification:
+\begin{equation}\label{eventstudymodel}
+Y_{u,t} = \rho_u  + \phi_t + \sum_{t=-6, t\neq -1}^{t = 6}\beta_{t}\mathbb{I}(Moratorium_{u,t})  + \epsilon_{u,t}
+\end{equation}
+where $Y_{u,t}$ is the outcome of interest, $\rho_u$ is a university fixed effect, $\phi_t$ is a month-by-year fixed effect, and $Moratorium_{u,t}$ is an indicator function equal to 1 if a university experiences any day of fraternity moratorium. 
+
+Figure \ref{eventstudy} shows the event studies for each outcome.
+
+# Results
+*I'd like to note that my primary outcomes of interest are sexual assault and alcohol offenses. I am only analyzing the other offenses because I expect there to be null results for those other offenses (e.g. burglaries should not decline/rise during fraternity moratorium days)*
+
+My preliminary results are shown in Tables \ref{tab:regression_alc_sex}, \ref{tab:regression_drug_theft}, and \ref{tab:regression_robbery_noise}. Table \ref{tab:regression_alc_sex} shows the estimates for reports of sexual assault and alcohol offenses. Reports of sexual assault decrease by 0.007, 0.011, and .006 during days experiencing fraternity moratoria within each specification which is a `r round((0.007/0.05) * 100,2)`, `r round((0.011/0.05) * 100,2)`, and `r round((0.006/0.05) * 100,2)`  percent reduction from the mean respectively. On the other hand, alcohol offenses have larger and more significant reductions depending on the fixed effects included. The largest, and most significant decreases come from including university, weekday, and year fixed effects which results in a significant `r round((.163/.54)*100,2)` percent decrease from the mean. Note that the largest effects for each of these outcomes occurs with the following fixed effects: university, weekday, and year.
+
+Each of the other outcomes do not show any signs of being affected by fraternity moratoria which--outside of noise complaints--should be expected. For instance, it is reasonable to assume that reports of theft and burglary are unlikely to be affected by a temporary ban on fraternity social activities unless fraternity members substitute over to these crimes. Since there is no prior literature on this, I do not believe this is the case. It *is* rather interesting how there are no significant reductions in noise complaints. Upon looking further into the data, this is because very few university police departments report noise complaints, and nearly 99% of noise complaints come from one unique university (Tufts University). 
+
+## Interpreting Fixed Effects
+I have come to the conclusion that I do not think I understand fixed effects when they get more complicated (e.g. university by month by year). Hence, I wanted to have some discussion on this. Here are my timid understandings (please correct me if I am wrong!!!!):
+
+* **University-by-month fixed effects**: Including these would mean my model is comparing within universities within months. Intuitively, this means that I am comparing days within months within a university that have a fraternity moratorium to days within months within the same university that do not have a fraternity moratorium.
+
+* **University fixed effect and a month fixed effect**: Including these would lead to the interpretation that I am comparing **across** universities in the same month. In my context this would be comparing days with fraternity moratoria within a month in one university to  days within universities not experiencing a fraternity moratorium in that same month. 
+
+* **University fixed effect and a year-by-month-by-weekday fixed effect**: Including these would mean I am comparing **across** universities within the same year, month, and on the same day.
+
+In essence, I *think* (again, I really want to be corrected if I am wrong!) that any fixed effect containing "university-by" will be comparing the university to itself, whereas leaving the university fixed effect by itself (e.g. no "university-by") will be comparing across universities. If someone (or everyone!) could put their interpretation in writing, this would be really really helpful!
+
+# Feedback Wanted/Next Steps
+
+* Which fixed effects to use/try? My intuition is that comparing within universities seems like a better counterfactual than comparing across universities, but I could see an argument either way.
+
+* Should I include a measure of university exclusivity? By this, I could include average SAT scores. School selectivity definitely varies by year, although I'm not sure my time frame is long enough for this to matter much. Are there any other controls that may be helpful that aren't picked up by a fixed effect?
+
+* Right now, I am unsure what my story is given these results seem to be consistent (e.g. decreases in sexual assault/alcohol), but vary across significance. Do these fraternity moratoria actually "do" anything? I believe they do given what I can see, but maybe they don't do enough. I am really unsure how I should start selling the paper. 
+
+* Should I try separating out different types of sexual assault? I could probably separate out reports of rape pretty cleanly as it's incredibly easy to pattern match on. I'm worried I'll have so few observations that my results will get a little too sensitive to outliers-maybe try inverse-log-hyperbolic sine/log(rape + 1)?
+
+
+* I need to find a way to show that reporting of sexual assaults are not changing during these fraternity moratoria. As an indirect test, I can use the difference between date/time reported and date/time occurred to see if there is any significant different during a fraternity moratorium. While this is not perfect, it would hint at a difference in reporting if there is a large influx of sexual assault being reported quicker or slower. However, there is a small issue with this: a large fraction of my sample is missing date/time reported. If there are other ideas on how to address this reporting issue, I would be very happy to try them!
+
+* My event studies are at the monthly level, whereas I think I would see the most effects at the daily level when comparing across certain days of the week. I was thinking to restrict my sample to weekend days only (e.g. Friday/Saturday/Sunday) and then aggregate to the monthly level and estimate the event studies again. While I do not think this would change my estimations much, it might make the estimation a little more precise as the middle of the week is rather noisy for any incident. 
+
+* Given my results, I need some robustness checks. My first idea is to use the yearly-level official Clery Act statistics from the US Department of Education. The crimes included here include rape, alcohol offenses, drug offenses, and theft. As a bonus, they are also separated between on-campus, residence halls, and non-campus and the records date from 2009-2018 (2019 to be added very soon). However, I am not sure that the length of my fraternity moratoria will be able to pick up any effects. The average length of fraternity moratoria is 65 days and many of them bleed into other years. Maybe I could split the sample by median length and run the analysis using a non-binary variable (e.g. a school treated for 65 days would get 65/365 as when it's treatment "turns on")? 
+
+* There are 2 schools that have offered to give me scanned copies of PDFs of their crime logs. To get this data in, I'd have to use one of two methods: either get lucky and have Adobe image processing succesfully put these images into a nice spreadsheet (probably will be a lot of errors,), or go onto UpWork and pay someone to manually enter them. Both are costly (probably around 300-500 dollars), but they could tighten my standard errors-or even push those borderline results to a pvalue under 0.05. 
+
+\newpage 
+```{r, include = F, cache = F}
+## word tables
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Tables/matching_word_table.R")
+## summary stats
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Tables/summary_stats.R")
+```
+
+```{r matching_outcomes, echo = F}
+kable(matching_table, booktabs = T, caption = "Words/phrases used to pattern match on outcomes of interest.") %>% 
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, color = "blue") %>%
+  column_spec(2, width = "30em") 
+```
+```{r top_categories, echo = F, fig.pos="H"}
+kable(top_categories, booktabs = T, caption = "The top 15 most frequent reported incidents after pattern matching into each category. Numbers in parenthesis denote the frequency of offense in the data.") %>% 
+  column_spec(1, "10em") %>% 
+  column_spec(2, "10em") %>% 
+  column_spec(3, "10em") %>% 
+  column_spec(4, "10em") %>% 
+  column_spec(5, "10em") %>% 
+  column_spec(6, "10em") %>% 
+  kable_styling(latex_options = "scale_down")
+```
+```{r summarystats, echo = F}
+kable(summary_stats, booktabs = T, caption = "University Summary Statistics", escape = F) %>% 
+  pack_rows("Daily Reports", 1, 6) %>% 
+  pack_rows("Characteristics by Year", 7, 10) %>% 
+  pack_rows("Undergraduate Yearly Fraction", 11, 16) 
+```
+```{r, include = F, cache = T}
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/barplot_byday.R")
+```
+
+```{r, fig.cap = "\\label{by_day_graph}Average by-day reports of offenses", out.width='.49\\linewidth', fig.ncol = 2, fig.subcap= c("Sexual Assault", "Alcohol Offense", "Drug Offense", "Robbery/Burglary", "Theft/Larceny", "Noise"), echo = F}
+by_day_sexual_assault
+by_day_alcohol
+by_day_drug_offense
+by_day_robbery
+by_day_theft
+by_day_noise
+```
+
+```{r regression_alc_sex, include = F}
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/regressions_alc_sex.R")
+```
+
+```{r, echo = F}
+models_sex_alc %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r regression_drug_theft, include = F}
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/regressions_drug_theft.R")
+```
+
+```{r, echo = F}
+models_drug_theft %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r regression_robbery_noise, include = F}
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/regressions_robbery_noise.R")
+```
+
+```{r, echo = F}
+models_robbery_noise %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r, include = F}
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Figures/event_studies_pretrends.R")
+```
+
+```{r, fig.cap = "\\label{eventstudy}Event study of outcomes by-month. Zero denotes months in which there is a fraternity moratorium.", out.width='.49\\linewidth', fig.ncol = 2, fig.subcap= c("Sexual Assault", "Alcohol Offense", "Drug Offense", "Robbery/Burglary", "Theft/Larceny", "Noise Violation"), echo = F}
+event_study_sex
+event_study_alc
+event_study_drug
+event_study_robbery
+event_study_theft
+event_study_noise
+```
+

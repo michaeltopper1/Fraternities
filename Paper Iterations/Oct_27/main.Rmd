@@ -1,0 +1,119 @@
+---
+title: "Fraternities and Sexual Assault"
+subtitle: ""
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfigure}
+- \theoremstyle{definition}
+- \newtheorem{definition}{Definition}[section]
+- \newtheorem{assumption}{Assumption}
+- \newtheorem{theorem}{Theorem}[section]
+- \newtheorem{corollary}{Corollary}[theorem]
+- \newtheorem{lemma}[theorem]{Lemma}
+- \newtheorem*{remark}{Remark}
+- \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+- \newcommand{\indep}{\perp \!\!\! \perp}
+- \floatplacement{figure}{H}
+- \bibliographystyle{plainnat}
+bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+abstract: This is to be completed later when I have estimated the model and have preliminary results.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(kableExtra)
+library(bookdown)
+library(readr)
+library(tidyverse)
+library(dplyr)
+```
+
+
+
+\section{Introduction}
+  Rape remains prevalent on all university campuses. According to the Campus Climate Survey on Sexual Assault and Sexual Misconduct conducted by the Association of American Universities, the overall rate of nonconsensual sexual contact since a student enrolled at their respective college was 13% in 2019.^[This number comes from the 33 large universities that participated in the survey.] Additionally, this percentage has increased since 2015^[Of the 21 schools that participated in both the 2015 and the 2019 surveys, results showed a 3% increase for undergraduate women, 2.4% increase for graduate and professional women.] with the largest increases stemming from undergraduate women. Academics have pointed to multiple sources of this heinous behavior including college partying with alcohol [@lindo_college_2018], liquor violations [@wiersma-mosley_empirical_2017], and most pertinent, fraternities [@foubert_behavior_2008]. In the book *Sexual Assault on Campus: The Problem and the Solution*, the authors Carol Bohmer and Andrea Parrot claim that “the men who are most likely to rape in college are fraternity pledges.”^[A fraternity pledge is another name for a first-year member of a fraternity.] Furthermore, academic studies using survey data have found that fraternity men were more likely to commit sexual assault than men who did not join a fraternity [@foubert_behavior_2008], university males rated sexual assault perpetrators as less guilty when the perpetrator was a fraternity member [@seabrook_bros_2019], and sorority women (who interact with fraternity men frequently) were sexually assaulted at four times the rate of non-sorority women [@minow_sorority_2009]. Universities have responded to fraternity-related misconduct with a range of policy initiatives, and in particular, placing moratoriums on fraternity social-life. Each of these moratoriums occurs campus-wide, thereby affecting all fraternities simultaneously. And while the moratorium guidelines vary by university, each of them prohibits fraternity social gatherings with alcohol. This paper exploits the random timing of fraternity moratoriums at 35 four-year universities across the US to estimate a causal effect of fraternity moratoriums on cases of rape. 
+
+\subsection{Background: Fraternities in the US}
+In the context of American universities, a fraternity is a unit of (traditionally) men who gather for social, academic, or demographic interests.^[A more crude and colloquial definition is provided by the website, Urban Dictionary’s, top definition as “a group of pretentious college boys who pay a ton of money to relive their high school glory days by date-raping girls, childishly excluding others who are different, and bullying their new members in the name of ‘brotherhood’.” ] Fraternities are typically a ubiquitous presence at four-year universities. According to the US News Reports, some universities have fraternity membership as high as 85%. In addition, family income and education of fraternity members tends to be higher than non-members [@routon_impact_2014], and economic studies have linked fraternity membership to higher academic performance [@cheng_greek_2018], alcohol consumption [@routon_impact_2014], and future income [@mara_social_2018]. However, the most notoriously misbehaving fraternities are the Interfraternity Council (IFC) fraternities. These fraternities are the most commonly represented type in popular culture, typically shown performing hazing rituals or participating in extravagantly themed parties. More importantly, IFC fraternities are always (and sometimes exclusively) included in every moratorium in the sample. Furthermore, IFC fraternities are colloquially called "social fraternities" rather than "professional fraternities". The difference stems from the overall purpose of the group- social fraternities emphasize socializing while professional fraternities emphasize networking for future employment. In the context of this paper, IFC fraternities are the most relevant.
+
+To become a member of an IFC fraternity, prospective members generally have to apply (“pledge”) by participating in various activities which include social gatherings and parties with alcohol (“rush week”). Once a fraternity decides to accept a new member, the new member is then responsible for a yearly membership fee and has the decision to live in the fraternity house. The fraternity house is typically geographically close to, or within a university campus, yet they are not under direct supervision of a university employee.^[Unlike university residences that have employees to monitor tenants, fraternity houses are not inspected by the university.] The house structure is a hierarchy, with senior members having authority over younger members. Furthermore, each newly accepted member must endure a year of hazing from their senior brotherhood. Anecdotally, hazing involves senior members forcing the new members to perform house chores, act as a personal assistant, or drink extremely dangerous amounts of alcohol to prove their loyalty.^[One particularly shocking hazing ritual was provided by a San Diego State University employee. The “vomit omelet” was a hazing ritual in which a new member had to eat an omelet mixed with emesis from other members.] However, if a new member endures this process, they benefit from activities with campus sororities (the female counterpart of fraternities) and access to exclusive IFC parties. 
+
+\subsection{Fraternity Moratoriums}
+Fraternity moratoriums can be implemented by either the university or the overarching IFC^[While IFC is a specific type of fraternity, it is also synonymous to a somewhat governing entity that overlooks IFC fraternities.]. While a university or IFC can individually suspend or halt activities by individual fraternities, this paper analyzes the effect of a moratorium on all IFC fraternities at the university-level. Each campus-wide moratorium varies slightly in the guidelines, but all of them temporarily suspend IFC fraternity parties with alcohol. These parties are presumptuously integral to large volumes of rape since they are densely populated and are held at the private fraternity houses. Additionally, each party must be registered with the university and the IFC. Therefore, when a moratorium is implemented, fraternities can no longer officially host these parties. Interestingly, there has been debate among school officials about whether these moratoriums actually produce counterproductive results: it may be the case that a moratorium leads fraternities to disregard any type of rules or regulations.^[The benefit of adhering to a school or IFC guidelines is to be recognized by the university as a legitimate organization. Official recognition provides funding for fraternities from the IFC headquarters.] 
+
+\section{Data}
+The main analysis uses data from the Uniform Crime Reporting (UCR) Program from the FBI. The UCR systematically collects crime data from local police departments and aggregates them to the agency-month level. In particular, it contains information on the total number of rape incidences reported by each department. Police departments that serve the 35 universities and surrounding areas were merged using the Law Enforcement Agency Identifiers Crosswalk.^[To match law enforcement agencies with schools, the data was filtered by local police agencies and four-year university police departments. Each university police department has a “place code” which is an area that that particular police department covers. However, there are other police departments in these areas that also serve universities, and each of these was attached to the school. On average, only 1 other local police agency was added to each school.]
+
+Each fraternity moratorium was found by searching newspaper articles in addition to discussions with Fraternity and Sorority Life directors at their respective schools. The dates shown in Table \ref{tab:table_1} were either confirmed by a school director or verified in a related news story. Missing dates are in progress of verification.  
+
+To further enrich the comparison groups, detailed school covariates are merged to the UCR by university name with the Integrated Postsecondary Education Data System (IPEDS).
+
+\section{Identification}
+This study utilizes the random variation from the implementation of fraternity moratoriums across universities. The identifying assumption is that universities are not temporarily suspending their fraternities because of an increase in rape cases and would have continued on a similar trend excluding the moratorium. Based on discussions with fraternity and sorority directors, each of these moratoriums were implemented based on a variety of reasons: a fraternity member death, a report of a sexual assault, or less frequently, misbehavior from racist writing. A fraternity death, while tragic, is a random event originating from the typical behavior demonstrated in fraternities. Senior fraternity members consistently haze new members (“pledges”) by instructing their subordinates to perform chores, or more frequently, drink dangerously high volumes of alcohol. Since this behavior is so persistent, regardless of the university policies prohibiting it, a death in a fraternity is an instance where the behavior was “taken too far”. Likewise, while it is true that a report of sexual assault preceding a moratorium would threaten identification, universities (or the IFC council) resort to suspensions typically following a particularly public case of a sexual assault. Considering that rape is largely under reported, a sudden unique case gaining public traction provides evidence for satisfying the identifying assumption. 
+
+Given the staggered adoption design of this quasi-experiment, I use a two-way fixed effects model as shown in equation \ref{model} where $Rape_{s,t}$ is the number of rapes at school $s$ in month $t$, $Moratorium_{s,t}$ is an indicator variable equal to one if school $s$ has a moratorium at time $t$, and $\alpha_s$ and $gamma_t$ are school and time fixed effects respectively.
+	\begin{equation}\label{model}
+	Rape_{s,t} = \alpha_s + \gamma_t + \beta_{fe}Moratorium_{s,t} + \epsilon_{s,t}
+	\end{equation}
+
+\section{Next Steps}
+
+The following is a list of tasks that I intend to take:
+
+* Estimate the two-way fixed effects model.
+* Given that each fraternity moratorium has different specifications, use the Clement DD estimator which corrects for heterogeneous treatment effects.
+* As a robustness check, use the National Incidence Based Reporting System (NIBRS) to look at a subset of the sample. The NIBRS has more micro-level data, with crimes at the daily level and information on the age of the victim. While my sample size will decrease from 35 universities to 16, this check is imperative to actually showing that it is women between ages 17-24 that are accounting for the increase/decrease/no effect.
+* Gather information on total fraternity population at each school. This information is available, but hard to access The Piazza Center at UPenn collects such information, but their director is difficult to work with. However, this information is vital, as we expect a fraternity moratorium would have larger effects if the proportion of students involved in a fraternity is larger. 
+* Collect data for which schools are the biggest party schools. There are likely heterogeneous effects based on the type of personnel at each of these schools. Some schools have “party school” reputations, and individuals at these schools may behave substantially different. [@lindo_college_2018] uses data g from the Princeton Review Top Party School Rankings to address school reputations. 
+* Other ideas/suggestions?
+
+
+\newpage
+\section*{References} 
+\parindent0pt <div id="refs"></div>
+
+
+\newpage
+
+```{r, include = F}
+## Table 1
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Tables/table_1_closure_times.R")
+##Table 2
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Tables/table_2_summary_stats_schools.R")
+```
+
+```{r table_1, echo = F}
+kable(closure_table, caption = "Suspensions of Fraternities", booktabs = T) %>% 
+  kable_styling(latex_options = "scale_down") %>% 
+  kableExtra::landscape()
+```
+
+```{r}
+kable(table_2, caption = "Averages Over 2012-2018", booktabs = T) %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+
+

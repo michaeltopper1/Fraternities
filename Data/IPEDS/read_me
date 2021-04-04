@@ -1,0 +1,6 @@
+read_me
+
+This folder contains the raw IPEDS data that I continually update. I split the data into parts: ipeds_1, ipeds_2
+
+ipeds_1: race/ethnicity, graduation rates, Gender/attendancestatus/levelofstudent
+ipeds_2: fallenrollment, institutions, admissionstestscores, longlat

@@ -1,0 +1,30 @@
+---
+title: "Updates and Ideas"
+output: pdf_document
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+number_sections: true
+citation_package: natbib
+editor_options: 
+  chunk_output_type: console
+header-includes:
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+#bibliography: "references.bib"
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+library(tidyverse)
+theme_set(theme_light())
+```
+
+
+
+

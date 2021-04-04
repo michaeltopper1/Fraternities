@@ -1,0 +1,258 @@
+---
+title: "Updates and Ideas"
+output: pdf_document
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+number_sections: true
+citation_package: natbib
+editor_options: 
+  chunk_output_type: console
+header-includes:
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+bibliography: "references.bib"
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+library(tidyverse)
+```
+
+```{r, include = F, cache=T}
+## sourcing the data for the cleaned clery act stuff - the dataframe to use is clery_act_data_collapsed
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Code/cleaning_clery_act/clean_append_cleryact.R")
+## sourcing data for my cleaned crime logs
+source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
+
+
+daily_crime_collapsed <- collapsed_data %>% 
+  mutate(year = year(date_reported)) %>% 
+  group_by(university, year) %>% 
+  summarize(total_liquor_crimelog = sum(alcohol_offense, na.rm = T),
+            total_drug_crimelog = sum(drug_offense, na.rm = T)) %>% 
+  filter(year >= 2013 & year <= 2018) 
+
+clery_act_data_collapsed <- clery_act_data_collapsed_campus %>% 
+  filter(university %in% daily_crime_collapsed$university) %>% 
+  mutate(year = as.double(year))
+```
+
+# Update on Fraternities and Sexual Assault Project
+
+Since my last update, I have been trying to find the answer to what happens when a fraternity moratorium is implemented. While my estimates from my last update showed that I had null results on reports of rape, I am curious as to whether these moratoria actually "do nothing" overall. In particular, I decided to search for new data sources on measures of alcohol violations including DUIs, public drunkenness, underage liquor violations etc. The only place I could get this information was through each university police's Daily Crime Logs. The Daily Crime Logs are a by-hour log of every incident that a police offer responds to. This means that I have data on every instance reported by the university-specific police (well, 28 of my 38 schools). These crime logs were obtained using the Freedom of Information Act and parsing through thousands of pages of PDFs into dataframes. While this sounds promising, I am running into some potential issues after setting up much of the data. Specifically, the Daily Crime Logs come from each university police department and are therefore not standardized. Hence, I have 300k incidents with 15k unique definitions. For instance, an alcohol offense from university police A may code an alcohol offense as "alcohol offense" or "underage drinking", while university police B may code an alcohol offense as "public intoxication" or "excessive liquor violation". This causes a rather difficult problem: I have to bin these descriptions into a broader category. 
+
+My first pass at doing this uses the following keywords to match on alcohol offenses and drug offenses- two other outcomes I am convinced may be affected by fraternity moratoria. However, given the uniqueness of my data, I also feel like I should bin these into finer groups: public drunkenness, DUIs etc., yet I am unsure whether these groups exist within each of these police departments and figuring out how to bin each of these incidents is very time consuming. 
+
+```{r, include = F}
+match_words <- c("drug, narcotic, marijuana, heroin, overdose, cocaine","alcohol, dwi, intox, drink, dui, drunk, liquor, driving under the influence, dip")
+categories <- c("Alcohol Violation", "Drug Violation")
+
+word_match_table <- tibble("Outcome of Interest" =  categories,"Words to Pattern Match" =match_words)
+```
+
+```{r, echo = F}
+kable(word_match_table, booktabs = T, caption = "Matching Outcomes Table") %>% 
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, color = "blue") %>%
+  column_spec(2, width = "30em") 
+```
+
+## Verification
+
+My pattern matching process is not perfect. To give myself a check, I decided to compare my data with official Clery Act data. The Clery Act data is **yearly** data that reports on all violations within certain subcategories including liquor violations, sexual assault, drug violations, and weapon violations from universities. My guess is that my data should roughly match the Clery Act data if I aggregate to the yearly level. 
+
+Figures \ref{alcohol_graph} and \ref{drug_graph} show how my data matches up to official statistics using the matching words I described above. On inspection, it looks like my alcohol data is roughly similar, although the way I define drug offenses is rather inaccurate. 
+
+```{r, include = F}
+
+liquor_graph <- clery_act_data_collapsed %>% 
+  left_join(daily_crime_collapsed) %>% 
+  ggplot() + 
+  geom_path(aes(x = year, y = total_liquor, group = 1, color = "Clery Act Data")) +
+  geom_path(aes(x = year, y = total_liquor_crimelog, group = 1, color = "My Crime Logs"), linetype = "dashed") +
+  facet_wrap(~university) +
+  labs(x = "", y = "Liquor Violations", color = "Data Source") +
+  theme_light() +
+  theme(legend.position = "bottom")
+
+drug_graph <- clery_act_data_collapsed %>% 
+  left_join(daily_crime_collapsed) %>% 
+  ggplot() + 
+  geom_path(aes(x = year, y = total_drug, group = 1, color = "Clery Act Data")) +
+  geom_path(aes(x = year, y = total_drug_crimelog, group = 1, color = "My Crime Logs"), linetype = "dashed") +
+  facet_wrap(~university) +
+  labs(x = "", y = "Drug Violations", color = "Data Source") +
+  theme_light() +
+  theme(legend.position = "bottom")
+
+```
+
+
+
+```{r, echo = F, fig.width=15,fig.height=11, fig.cap= "\\label{alcohol_graph}Alcohol offenses of my data compared to official Clery Act data."}
+liquor_graph
+```
+
+```{r, echo = F, fig.width=15,fig.height=11, fig.cap= "\\label{drug_graph}Drug offenses of my data compared to official Clery Act data."}
+drug_graph
+```
+
+
+## Some other graphs 
+
+Figure \ref{count_graph} shows the time of occurrence for the crimes. Note that I don't have a time of occurrence for *every* report, so this is not all inclusive. However, I believe these histograms give my data credibility as the patterns definitely match intuition: most alcohol and drug violations tend to happen in the late hours of the night. 
+
+```{r, include = F}
+sex_hour_graph <- appended_crime_logs %>% 
+  filter(!is.na(hour_occurred)) %>% 
+  filter(sexual_assault == 1) %>% 
+  count(hour_occurred, sort = T) %>% 
+  # mutate(hour_occurred = fct_reorder(as.factor(hour_occurred), n)) %>% 
+  ggplot(aes(x = hour_occurred, y = n)) +
+  geom_col(fill = "blue", alpha = 0.5) +
+  labs(x = "", y = "") +
+  theme_light()
+
+alcohol_hour_graph <- appended_crime_logs %>% 
+  filter(!is.na(hour_occurred)) %>% 
+  filter(alcohol_offense == 1) %>% 
+  count(hour_occurred, sort = T) %>% 
+  # mutate(hour_occurred = fct_reorder(as.factor(hour_occurred), n)) %>% 
+  ggplot(aes(x = hour_occurred, y = n)) +
+  geom_col(fill = "blue", alpha = 0.5) +
+  labs(x = "", y = "") +
+  theme_light()
+
+drug_hour_graph <- appended_crime_logs %>% 
+  filter(!is.na(hour_occurred)) %>% 
+  filter(drug_offense == 1) %>% 
+  count(hour_occurred, sort = T) %>% 
+  # mutate(hour_occurred = fct_reorder(as.factor(hour_occurred), n)) %>% 
+  ggplot(aes(x = hour_occurred, y = n)) +
+  geom_col(fill = "blue", alpha = 0.5) +
+  labs(x = "", y = "") +
+  theme_light()
+```
+
+```{r, echo = F,  fig.cap = "\\label{count_graph} Offenses by hour occurred", out.width='.49\\linewidth', fig.ncol = 2, fig.subcap =  c("Sexual Assaults", "Drug Offenses"), fig.pos="H"}
+sex_hour_graph
+drug_hour_graph
+```
+
+
+## Feedback Wanted
+
+My question is whether it is worth going through all 15k unique written descriptions of my crimes to correctly identify each one. It would probably take a long time, but it would be accurate. However, this strategy is not robust to changes in my data (e.g. adding new schools). The benefit of this is that I can hopefully get more accurate readings of these measures since it looks like some of my schools have zeros across for alcohol offenses, or I am grossly underestimating how many there are (see West Virginia in Figure 1). 
+
+Other feedback I am interested in:
+
+**Sampling**
+
+* While I now have alcohol outcomes in my data, I need to restrict my sample further to get a full balanced panel. For the schools I have with alcohol offenses, most of them start in 2014 and go to 2019, which differs from my original sample of 2013-2014. This new timeline only excludes 1 of the 43 moratoria. Hence, I think it is reasonable to restrict my entire analysis to the 2014-2019 period and delete the 1 school in 2013. 
+
+* Some university police departments refused to give me their alcohol offense data based on Freedom of Information Laws in their restrictive states. I think I will end up with ~35 of my original 40 schools. Is it worth keeping my full sample of 40 schools and then run the alcohol offense analysis for the 35?
+
+**Other Outcomes?**
+
+* Are there other outcomes that you think may be important to look at? Recall my question is how fraternity moratoria affect reports of rape, but I want to try and cover all other outcomes that may be plausibly affected. Some other outcomes I wanted to look at include: first year college retention rate (IPEDS data), mental health (are there any panel sources of universities for this?), and new fraternity membership numbers (this is currently in the works of gathering the data).
+
+# New Idea I: How Gentrification Affects Recidivism
+
+## Motivation
+
+Gentrification has occurred in most of America's largest cities in the past decades [@juday_changing_nodate]. However, no study has yet looked at how gentrification affects recidivism. The mechanism and "direction" of this effect is intuitively ambiguous as well; first, it could be that being released from prison into a gentrified neighborhood gives the former offender a better environment with less overall crime [@autor_gentrification_2017], or second, this new gentrified environment could have less job opportunities that help former offenders avoid crime. For instance, the number of construction and manufacturing job opportunities have been shown to lower recidivism rates, while other types of low-wage opportunities have no effect [@schnepel_good_2018]. 
+
+
+## Data Sources
+
+There are two potential data sources that I can use, one of them I already have access to (but has limitations), and another one that may be readily accessible in the very near future. 
+
+**Data That I Have**:
+
+The first is adults sentenced in Mecklenburg County, NC who are released from prison or jail between between 2005 and 2014 combined with detailed arrest registry data. The arrest registry data provides individual names, demographic information, details on the nature of arrest charges, time and date, and information on the location of residence at the time of arrest. The residential address information gives me the ability to geocode each of these offenders to their location in their city of residence. In particular, I would be looking at Charlotte, NC, which is the largest city in Mecklenburg county and has been subject to gentrification over the past couple decades. One of the shortcomings of this data set is that I do not have residential address information on where these offenders were *released*. Hence, I need to rely on the assumption that most offenders are released to where they originally lived. Previous literature that has used this data has cited that over 50% of people who recidivate within on year report a post-incarceration residential address that is within one kilometer from the pre-incarceration residential address recorded [@billings_hanging_2020]. 
+
+**Data That May be Accessible**:
+
+The second possibility for this project comes from the Criminal Justice Administrative Records Systems (CJARS). This is a new data set that is about to be released to all researchers (conditional on applying). An information meeting on acquiring this data is being held on March 5, 2021. While the fine details of this data is unknown, it looks very promising. The data follows each person that enters the criminal justice system from time of arrest, charges filed, and the beginning of terms of probation, prison, and parole. Additionally, this data is linked to the US Census Bureau to give demographic information such as income and education to each of these individuals. As of right now, the data spans over many states, but only about 8 are entirely complete. There are a few states that could be of interest here: Texas, Pennsylvania, North Carolina, Colorado, Minnesota, and Michigan. While this data sounds like a perfect match for my study, I am unsure how easily accessible this data will be and whether residential address information will be required. Moreover, the opportunity to use a data set like this increases the probability of another crime researcher "scooping" the idea - someone with far more resources and experience than me.
+
+## Identification
+
+Finding a good natural experiment in this context is challenging since gentrification is a non-random process. I have a couple of ideas for identifying this effect. The first would be utilizing the CJARS data set. I could argue that prisoner release dates are exogenous to variations in the amount of gentrification that occurs over a given neighborhood since they are relatively pre-determined. For instance, suppose I have two groups offenders each sentenced to 5 years in prison for the same crime and are relatively similar conditional on observables (e.g. list in the same place, have similar education etc.). However, one group was sentenced in year 2005 while another was sentenced in year 2010. Hence, each group experiences a different percentage change of gentrification upon release. I can then compare the recidivism rates of these groups. 
+
+Another option is to look at a higher level of aggregation and bin former offenders together at the census-block level and look at rates of recidivism in one area compared to another. Since this is not an individual-level analysis, I cannot rely on the predetermined dates of release for each prisoner. Instead, I would need to find an instrument for gentrification. For the North Carolina data, I may be able to use a expansion of the Charlotte Area Transit System (CATS) which was established in 1999 and began expanding to fast-growing southern areas of Charlotte in the early 2000s. Moreover, the CATS system expanded aggressively with the opening of the Lynx Blue Line light rail in November of 2007. 
+
+## Measuring Gentrification
+
+There appears to be two main measurements of gentrification: the percent change in the college-educated share of the population in areas that were initially low-income, central city neighborhoods ([@dragan_does_2019],[@schreiner_does_nodate]) and change in average family income [@mckinnish_who_2010].
+
+## Feedback Wanted
+
+**Where to Begin?**
+
+* This project is extremely large and its difficult to figure out where exactly I should start. Do I wait to see if I can get the CJARS data? Do I look more into the Charlotte railroad/bus system and start cleaning out the data that I have for Mecklenburg county?
+* Comments on how to identify this effect would be particularly helpful. Does an instrument such as the railroad/bus line work conditional on there being a strong first stage? 
+
+**Other Paths?**
+
+* Are there other paths that seem interesting that are related to this topic?
+
+
+# New Idea II (Super Preliminary): Police Shifts and Use-of-force
+
+## Question
+
+How does switching from 8-hour shifts to 12-hour shifts affect use-of-force?
+
+Could also look at the proportion of officers that are working overtime on likelihood that a use-of-force incident occurs on any given day. 
+
+Could this also be a good recruiting mechanism? Do we get better talent into the field or different types of officiers?
+
+## Possible Mechanism
+
+There are a couple of possible mechanisms at play. First, a 12-hour workday gives police more days off in a month, but with more hours condensed into a short amount of time. From the small amount of news articles I've read, most police departments that switch from 8 hours to 12 hours have police working 3 days in a row for 12 hours each day. Hence, police could be more tired and irritable at the tail end of their longer shifts than they normally would, and more inclined to use use-of-force. On the other hand, police could be too fatigued to bother using use-of-force unless otherwise completely necessary. Furthermore, small studies of police workday hours have shown that police generally have better mental and physical health after switching to 12-hour workdays. A more mentally healthy police officer could practice better police tactics. 
+
+
+## Setting
+
+I have found that the following police departments have switched shifts (not an exhaustive list):
+
+* Louisville Metro Police Department - switched to 12-hour shifts from 8-hour shifts in May 2016 (CITE)
+
+* The Verona Police Department - switched to 12 hour shifts from 8 hour shifts in start of the year 2020. 
+
+* Farrell Police Department - switched to 12 hour shifts from 8 hour shifts in April 2019
+
+* Hinesville Police Department - switched to 12 hour shifts from 8 hour shifts in April 2018.
+
+* Valdosta Polie Department - switched in Nov 2013.
+
+* Detroit Police Department - switched to 12 hour shifts in September 2012. 
+
+* Frankfort Police Department - Sep 2012. 
+
+* Little Rock Police Department - switched to 12 hour shifts from 8 hour shifts in January 2018.
+
+* It looks like all  MN police departments started changing to this after Richmond MN did 25 years ago. Getting data this far back is probably ridiculously difficult. 
+
+
+
+## Data
+
+All police department data is subject to the Freedom of Information Act (FOIA). However, FOIA requests do not always work, as some police departments may destroy records after a certain amount of years if their state's laws permit it. Using a FOIA to gather all of this information would probably take a few months, but it is certainly something I can send out and work on something else in the interim. 
+
+## Feedback Wanted
+
+* The list above is not exhaustive - I just Googled around for a few minutes to try and find if this was a widespread practice. Moving forward, I feel like using large police departments would be better than some of the smaller ones I found. For instance, I could check all police departments that serve over a certain population, and find which ones implemented this 12-hour workday. Thoughts on this path?
+
+* Any other comments or ideas relating to this would be great!
+
+
+\newpage 
+
+# References

@@ -1,0 +1,78 @@
+---
+title: "Fraternities and Sexual Assault"
+author: 
+  - Michael Topper
+editor_options: 
+  chunk_output_type: inline
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+header-includes:
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage[fontsize=12pt]{scrextend}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+  - \usepackage{amsfonts}
+  - \usepackage{amsthm}
+  - \usepackage{amsmath}
+  - \usepackage[english]{babel}
+bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+library(tidyverse)
+library(tidyverse)
+library(sandwich)
+library(fixest)
+library(lfe)
+library(modelsummary)
+library(fwildclusterboot)
+```
+
+# Research Question/Specific Objectives
+
+  Sexual assault remains prevalent on all university campuses. According to the Campus Climate Survey on Sexual Assault and Sexual Misconduct conducted by the Association of American Universities, the overall rate of nonconsensual sexual contact since a student enrolled at their respective college was 13% in 2019.^[This number comes from the 33 large universities that participated in the survey.] Additionally, this percentage has increased since 2015^[Of the 21 schools that participated in both the 2015 and the 2019 surveys, results showed a 3% increase for undergraduate women, 2.4% increase for graduate and professional women] with the largest increases stemming from undergraduate women. Academics have pointed to multiple sources of this heinous behavior including college partying with alcohol [@lindo_college_2018], liquor violations [@wiersma-mosley_empirical_2017], and most pertinent, fraternities [@foubert_behavior_2008]. In the book *Sexual Assault on Campus: The Problem and the Solution*, the authors Carol Bohmer and Andrea Parrot claim that "the men who are most likely to rape in college are fraternity pledges."^[A fraternity pledge is another name for a first-year member of a fraternity] Furthermore, academic studies using survey data have found that fraternity men were more likely to commit sexual assault than men who did not join a fraternity [@foubert_behavior_2008], university males rated sexual assault perpetrators as less guilty when the perpetrator was a fraternity member [@seabrook_bros_2019], and sorority women (who interact with fraternity men frequently) were sexually assaulted at four times the rate of non-sorority women [@minow_sorority_2009]. Universities have responded to fraternity-related misconduct with a range of policy initiatives, and in particular, placing moratoriums on fraternity social-life. Each of these moratoriums occurs campus-wide, thereby affecting all fraternities simultaneously. And while the moratorium guidelines vary by university, each of them prohibits fraternity social gatherings with alcohol. 
+
+This study is the first to estimate the effect of campus-wide fraternity moratoria^[A moratorium in this context is a temporary ban on all fraternity social activities with alcohol.] on reports of sexual assault at universities by exploiting the variation in the date-of-occurrence over a six year period (2014-2019). I use detailed crime logs from each university police department obtained through Clery Act requests to observe offenses reported at the daily level. Preliminary results show that fraternity moratoria do not significantly affect reports of sexual assault, but have a strong, significant effect on alcohol offenses. Finalized results will provide university policy-makers rigorous research to guide their decision making when dealing with misbehavingfraternities. Moreover, this research is intended to be a chapter in my dissertation which is focused on the economics of crime. 
+
+# Methodology
+
+I estimate the effects of campus-wide fraternity moratoriums on reports of rape using the variation in the timing of the date of implementation. In particular, I estimate the following model:
+\begin{equation}
+Y_{ut} =  \beta_{fe} Moratorium_{u,t} +  \mathbb{X}_{u,d} + \phi_u + \mathbb{Z}_{t} + \epsilon_{u,t}
+\end{equation}
+where $Y_{u,t}$ represents the daily reports of sexual assault, alcohol offenses, drug offenses, thefts, noise violations, and burglaries reported at university $u$ in time $t$, $Moratorium_{u,t}$ is an indicator equal to 1 if a university $u$ is experiencing a moratorium at time $t$, $X_{u,t}$ is a vector of the covariates, $\phi_u$ are university fixed effects, and $\mathbb{Z}_t$ is a set of time-varying controls^[Note that this specification changes moderately in my tables. Sometimes, I choose not to use a university fixed effect.]. I omit all summer months by school semester/quarter system as students are less likely to be on-campus during summer months. For instance, if a school is on the quarter system, July and August are removed, while if a school is on the semester system, June and July are removed. Furthermore, I identify heterogeneous effects between schools that have longer moratoria and had their moratorium imposed by a university rather than the fraternity council itself. 
+
+# Schedule of the Project
+
+This project is currently in the data collection/analysis stage. Here is a proposed schedule of the papers next steps:
+
+1. Finalize data collection (tentative end date: March 31, 2021).
+2. Finalize analysis with additional data (tentative end date: April 7th, 2021).
+3. Complete working draft of paper (tentative end date: April 21, 2021).
+4. Finalize working draft and send to journals (tentative end date: July, 2021).
+
+Please note that these are tentative dates and are subject to change. 
+
+\newpage
+
+# Detailed Budget Breakdown
+
+The main purpose of applying for funds is to gather additional data needed in analysis, and to pay for manual data entry of certain universities that have given me data in formats that are unreadable by any software program. In particular, I am requesting the following funds:
+
+* $350 - Cost of crime log data dating from January 1, 2014 to December 31, 2019, scanned from University of Texas Arlington Police Department^[This is an exact estimate given by the university police department.].
+* $200 - Cost of hiring manual data entry through UpWork for Ohio State University daily crime logs (approximately 1000 pages with 13 entries per page)^[This is an estimate assuming approximately 15 dollars an hour for 13 hours].
+* $200 - Cost of hiring manual data entry through Upwork for University of Texas Arlington daily crime logs (approximately 1400 pages)^[This is an estimate assuming approximately 15 dollars an hour for 13 hours]. 
+
+**Total Budget:** $750
+
+
+\newpage
+# References

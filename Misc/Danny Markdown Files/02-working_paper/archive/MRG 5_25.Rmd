@@ -1,0 +1,178 @@
+---
+title: "Bayesian Shrinkage Among Time Varying Coefficients in Counterfactual Analysis"
+output: beamer_presentation
+bibliography: "Constant Weights SC.bib"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(kableExtra)
+# output_mean <- read.csv("~/OneDrive/Documents/School Stuff/UCSB/Year 2/Winter/Time Series/SC Proposal/Simulations/Varying Weights/Initial Simulations/Another one/output_mean.csv")
+# output_median <- read.csv("~/OneDrive/Documents/School Stuff/UCSB/Year 2/Winter/Time Series/SC Proposal/Simulations/Varying Weights/Initial Simulations/Another one/output_median.csv")
+# output_mean_stab <- read.csv("~/OneDrive/Documents/School Stuff/UCSB/Year 2/Winter/Time Series/SC Proposal/Simulations/Varying Weights/Initial Simulations/Another one/output_mean_stab.csv")
+# output_median_stab <- read.csv("~/OneDrive/Documents/School Stuff/UCSB/Year 2/Winter/Time Series/SC Proposal/Simulations/Varying Weights/Initial Simulations/Another one/output_median_stab.csv")
+```
+
+## Motivation
+
+- Synthetic Control methods have become a major empirical tool (ADH approach)
+
+  - Most development been on the frequentist side 
+  
+  - @abadie_economic_2003, @abadie_synthetic_2010 initially
+  
+  - Developments include: @athey_matrix_2018, @xu_generalized_2017,
+  @powell_imperfect_2018, @kaul_synthetic_2018 to name a very very limited few
+  
+- Other approaches to the synthetic control framework
+  - @brodersen_inferring_2015
+  - Uses Bayesian variable selection and state space models (Kalman Filter)
+  - Based off of @scott_bayesian_2013
+  - This paper builds off of this literature
+
+## Basic Setup
+
+- There is a unit $Y_{0,t}$ (aka country GDP)
+
+- An endogenous intervention, d, occurs at $t=T_0$ (aka policy change) to $Y_{0,t}$ and stays forever
+  - $Y_{0,t}(1)$: unit 0 when a treatment has occurred
+  - $Y_{0,t}(0)$: unit 0 when a treatment has not occurred
+  - Observe $Y_{0,t}=d Y_{0,t}(1)+ (1-d) Y_{0,t}(0)$
+  
+- Want to estimate $Y_{0,t}(0)$ when $d=1$ using untreated units (aka other countries)
+  
+  - $Y_{0,t}= f(Y_{1,t},...,Y_{J,t})$
+
+## Benefits of a Time Series Bayesian Approach
+
+- Allows modeling time series component explicitly
+
+- Allows modeling nonconstant relationships between control and treatment
+  - Time varying coefficients
+
+- Allows stronger structure to use "expert knowledge"
+
+## @brodersen_inferring_2015 Basic Model
+
+
+\begin{align}
+y_t &= \mu_t + X_t \beta + \epsilon_t & \epsilon_t \sim \mathcal{N}(0,\sigma^2)\\
+\mu_{t+1} &= \delta_t + \mu_t +\eta_{1,t} & \eta_{1,t} \sim \mathcal{N}(0,\sigma^2_{\eta_1})\\
+\delta_{t+1} &= \delta_t + \eta_{2,t} & \eta_{2,t} \sim \mathcal{N}(0,\sigma_{\eta_2})
+\end{align}
+
+- Flexible model allows for changes in the linear trend term
+
+- Allows for $\beta$ to be time varying
+
+- Bayesian priors (spike and slab) used on $\beta$ to avoid overfitting
+
+- Problem: Coefficients are either time varying or constant
+
+  - Bayesian priors only apply to $\beta$, but can decompose $\beta$ into time varying and time invariant parts
+  
+## My Initial Simulation
+
+$$
+\begin{aligned}
+y_{0,t}(0)&=\sum_{j=1}^J w_{j,t}\left( c_j t+z_j +\gamma_j sin\left(\frac{\pi t}{\rho_j}\right) \right)+\epsilon'_{1.t}\\
+w_{1,t}&=w_{1,t-1}+\frac{.6}{T}\\
+w_{2,t}&=w_{2,t-1}-\frac{.6}{T}\\
+w_{j,t}&=w_{j,t-1} & j\notin \{1,2\}\\
+\end{aligned}
+$$
+with initial conditions:
+
+$$
+\begin{aligned}
+w_{1,0}&=.2\\
+w_{2,0}&=.8\\
+w_{j,0}&=0 & j\notin \{1,2\}
+\end{aligned}
+$$
+
+## Parameters - Linear Weights
+
+1) $c_{1,t}=.75$, $c_{2,t}=.25$, and $c_{j,t} \sim U[0,1]$ for all $j \notin \{1,2\}$
+
+2) $z_1=25$, $z_2=5$ and $z_j$ is sampled from $\{1,2,3,4,...,50\}$
+
+3) $\epsilon'_{j,t} \sim N(0,1)$
+
+4) T = 35, $T_0=15$
+
+5) J = 15
+
+6) $w_{1,t}=.2+.6\frac{t}{T}$, $w_{2,t}=1-w_{1,t}$, and $w_{j,t}=0$ for all else
+
+7) $\gamma_{j}=0\ \forall j$
+
+## Visual Comparison - Linear Weights
+
+\begin{center}
+\frame{\includegraphics[width=2in]{MRG525.pdf} }
+\end{center}
+
+
+## Simulation Results - Linear Weights
+
+There are `r 2+2`
+
+```{r}
+kable(output_mean[,-1], 
+      caption = "Mean Results of 100 Simulations",col.names = c("Model",colnames(output_mean)[c(-1,-2)])
+        ) %>% 
+    kable_styling(latex_options="scale_down")
+
+```
+
+## Simulation Results - Linear Weights
+
+```{r}
+kable(output_median[,-1], caption = "Median Results of 100 Simulations",col.names = c("Model",colnames(output_mean)[c(-1,-2)])) %>% 
+    kable_styling(latex_options="scale_down")
+
+```
+
+## Parameters - Constant Weights
+
+1) $c_{1,t}=.75$, $c_{2,t}=.25$, and $c_{j,t} \sim U[0,1]$ for all $j \notin \{1,2\}$
+
+2) $z_1=25$, $z_2=5$ and $z_j$ is sampled from $\{1,2,3,4,...,50\}$
+
+3) $\epsilon'_{j,t} \sim N(0,1)$
+
+4) T = 35, $T_0=15$
+
+5) J = 15
+
+6) $w_{1,t}=w_{1,t-1}$, $w_{2,t}=1-w_{1,t}$, and $w_{j,t}=0$ for all else
+
+7) $\gamma_{j}=0\ \forall j$
+
+## Visual Comparison - Constant Weights
+
+\begin{center}
+\frame{\includegraphics[width=2in]{MRG525stab.pdf} }
+\end{center}
+
+
+## Simulation Results - Constant Weights
+
+```{r}
+kable(output_mean_stab[,-1], 
+      caption = "Mean Results of 100 Simulations",col.names = c("Model",colnames(output_mean_stab)[c(-1,-2)])
+        ) %>% 
+    kable_styling(latex_options="scale_down")
+
+```
+
+## Simulation Results - Constant Weights
+
+```{r}
+kable(output_median_stab[,-1], caption = "Median Results of 100 Simulations",col.names = c("Model",colnames(output_mean_stab)[c(-1,-2)])) %>% 
+    kable_styling(latex_options="scale_down")
+
+```
+
+## Work Cited

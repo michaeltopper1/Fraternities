@@ -1,0 +1,227 @@
+---
+title: "Exploratory Analysis"
+output: pdf_document
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+number_sections: true
+citation_package: natbib
+editor_options: 
+  chunk_output_type: console
+header-includes:
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+#bibliography: "references.bib"
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning= F)
+library(kableExtra)
+library(tidyverse)
+library(lubridate)
+library(modelsummary)
+theme_set(theme_light())
+```
+
+# Data
+
+```{r, echo = F, include = F}
+daily_crime <- read_csv("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/xMaster_data_2021/daily_panel.csv", guess_max = 50000)
+```
+
+# Alcohol and Sexual Assault Offenses
+
+During fraternity moratoria, the raw data show us that there is a decrease in alcohol offenses on Friday-Sunday, with the rest of the week being rather noisy. This relationship is shown in Figure \ref{offense_by_week}. The analysis should be able to replicate this effect. On the other hand, sexual assaults look rather noisy, and there appears to be no real trend in when reports of sexual assault occur by day-of-week. 
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{offense_by_week}Offenses by day of the week", fig.ncol = 2, fig.subcap= c("Alcohol", "Sexual Assault")}
+alc_by_day <- daily_crime %>% 
+  mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
+  group_by(weekday, treatment) %>% 
+  summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
+            avg_alcohol = mean(alcohol_offense, na.rm = T), 
+            avg_drug = mean(drug_offense, na.rm = T)) %>% 
+  ggplot(aes(x = weekday, y = avg_alcohol, fill = as.factor(treatment))) +
+  geom_col(position = "dodge") +
+  labs(x = "",y= "Average Alcohol Offenses by Day", fill = "Fraternity Moratorium") 
+sex_by_day <- daily_crime %>% 
+  mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
+  group_by(weekday, treatment) %>% 
+  summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
+            avg_alcohol = mean(alcohol_offense, na.rm = T), 
+            avg_drug = mean(drug_offense, na.rm = T)) %>% 
+  ggplot(aes(x = weekday, y = avg_sexual_assault, fill = as.factor(treatment))) +
+  geom_col(position = "dodge") +
+  labs(x = "",y= "Average Sexual Assault Offenses by Day", fill = "Fraternity Moratorium") 
+
+
+alc_by_day
+sex_by_day
+```
+
+We can facet-wrap this evidence by university. We can see that there is some interesting variation here: lots of schools have big declines, but there are a couple of schools that look like fraternity moratoria actually **increase** the average number of alcohol offenses. 
+## Regression Evidence
+
+Comparing a difference in means with/without robust standard errors (and filtering out the summer months of June, July, and August), I get extremely significant results at the 1% level as shown in Table \ref{tab:means_ols}.
+
+```{r means_ols}
+means_ols_alc <- lm(alcohol_offense ~treatment, data = daily_crime %>% filter(month != 6 & month != 7 & month != 8))
+means_ols_sex <- lm(sexual_assault ~treatment, data = daily_crime %>% filter(month != 6 & month != 7 & month != 8))
+list_ols <- list("Classical" = means_ols_alc , "HC3 Robust"  = means_ols_alc, "Classical" = means_ols_sex , "HC3 Robust"  = means_ols_sex)
+
+regression_table <- modelsummary(list_ols, output = "kableExtra", stars = T, vcov = c("classical", "HC3", "classical", "HC3"),gof_omit = 'DF|Deviance|AIC|BIC|Log') %>% 
+  add_header_above(c(" " = 1, "Alcohol Offense" = 2, "Sexual Assault" = 2))
+```
+
+
+```{r, echo = F, fig.height=4, fig.width=4, fig.cap = "Alcohol offenses by university by day"}
+facet_alc_by_day <- daily_crime %>% 
+  mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
+  group_by(weekday, treatment, university) %>% 
+  summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
+            avg_alcohol = mean(alcohol_offense, na.rm = T), 
+            avg_drug = mean(drug_offense, na.rm = T)) %>% 
+  ggplot(aes(x = weekday, y = avg_alcohol, fill = as.factor(treatment))) +
+  geom_col(position = "dodge") +
+  labs(x = "",y= "Average alcohol offenses by day", fill = "Fraternity Moratorium") +
+  facet_wrap(~university)
+facet_alc_by_day
+```
+
+```{r, echo = F, message = F, fig.cap = "Sexual assaults by university by day",out.extra='angle=90', fig.width=9, fig.height=4,}
+facet_sex_by_day <- daily_crime %>% 
+  mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
+  group_by(weekday, treatment, university) %>% 
+  summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
+            avg_alcohol = mean(alcohol_offense, na.rm = T), 
+            avg_drug = mean(drug_offense, na.rm = T)) %>% 
+  ggplot(aes(x = weekday, y = avg_sexual_assault, fill = as.factor(treatment))) +
+  geom_col(position = "dodge") +
+  labs(x = "",y= "Average Sexual Assault Offenses by day", fill = "Fraternity Moratorium") +
+  facet_wrap(~university)
+facet_sex_by_day
+```
+
+## Time Trends
+
+Looking at offenses over days of the week. We can see that alcohol offenses spike on Thursday- Sunday, but sexual assaults, and drug offenses do not. 
+
+
+```{r, echo = F, message = F}
+daily_averages <- daily_crime %>% 
+  mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
+  group_by(weekday) %>% 
+  summarize(across(c("sexual_assault", "alcohol_offense", "drug_offense"), ~mean(., na.rm = T))) %>% 
+  pivot_longer(cols = -weekday, names_to = "offense", values_to = "average") %>% 
+  ggplot(aes(weekday, average)) +
+  geom_path(aes(group = offense, color = offense)) +
+  labs(y = "Daily Averages", x = "", color = "Offense Type")
+daily_averages
+```
+
+
+It seems as though all of the universities generally follow the same monthly trend: Large spikes in September-October.
+
+
+```{r, echo = F, message = F}
+monthly_averages_uni <- daily_crime %>% 
+  mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
+  group_by(month, university) %>% 
+  summarize(across(c("sexual_assault", "alcohol_offense", "drug_offense"), ~mean(., na.rm = T))) %>% 
+  pivot_longer(cols = -c(month, university), names_to = "offense", values_to = "average") %>% 
+  ggplot(aes(month, average)) +
+  geom_path(aes(group = offense, color = offense)) +
+  labs(y = "Monthly Averages", x = "", color = "Offense Type") +
+  scale_x_continuous(breaks = c(1:12), labels = month.abb) +
+  facet_wrap(~university)
+
+monthly_averages <- daily_crime %>% 
+  mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
+  group_by(month) %>% 
+  summarize(across(c("sexual_assault", "alcohol_offense", "drug_offense"), ~mean(., na.rm = T))) %>% 
+  pivot_longer(cols = -month, names_to = "offense", values_to = "average") %>% 
+  ggplot(aes(month, average)) +
+  geom_path(aes(group = offense, color = offense)) +
+  labs(y = "Monthly Averages", x = "", color = "Offense Type") +
+  scale_x_continuous(breaks = c(1:12), labels = month.abb)
+monthly_averages
+monthly_averages_uni
+```
+
+
+```{r out.extra='angle=90', fig.width=11, fig.height=9, fig.cap= "Monthly Averages of Offenses"}
+month_by_year_crimes <- daily_crime %>% 
+  group_by(month, year) %>% 
+  summarize(across(c("sexual_assault", "alcohol_offense", "drug_offense"), ~mean(., na.rm = T))) %>%
+  mutate(month_year = mdy(paste(month, "/1/", year))) %>% 
+  ungroup() %>% 
+  select(-month, -year) %>% 
+  pivot_longer(cols = -c(month_year), names_to = "offense", values_to = "average") %>% 
+  arrange(month_year) %>% 
+  ggplot(aes(month_year, average)) +
+  geom_point(aes(group = offense, color = offense)) +
+  geom_path(aes(group = offense, color = offense)) +
+  labs(y = "Monthly Averages", x = "", color = "Offense Type") +
+  scale_x_date(date_breaks = "month", date_labels = "%b-%y") +
+  scale_color_discrete(breaks = c("alcohol_offense", "drug_offense", "sexual_assault"), labels = c("Alcohol", "Drug", "Sexual Assault")) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+month_by_year_crimes
+```
+
+
+# Distribution of Outcomes
+
+## Daily Level
+
+It looks like there is so little variation here. I'm not sure that this is the way to go. Let's look at weekly level variation. 
+
+
+```{r}
+
+daily_crime %>% 
+  mutate(across(c(sexual_assault, alcohol_offense, drug_offense), ~ log(. + (.^2 + 1)^0.5))) %>% 
+  ggplot(aes(alcohol_offense)) +
+  geom_histogram(bins = "100")
+
+daily_crime %>% 
+  mutate(across(c(sexual_assault, alcohol_offense, drug_offense), ~log(. + 1))) %>% 
+  ggplot(aes(alcohol_offense)) +
+  geom_histogram()
+```
+
+## Weekly Level
+
+```{r}
+weekly_crime <- read_csv("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/xMaster_data_2021/weekly_panel.csv", guess_max = 20000)
+```
+
+```{r}
+weekly_crime_ihs <- weekly_crime %>% 
+  mutate(across(c(sexual_assault, 
+                  alcohol_offense,
+                  theft,
+                  robbery_burglary,
+                  noise_offense,
+                  drug_offense), ~log(. + (.^2 + 1)^0.5)))
+
+weekly_crime_log <- weekly_crime %>% 
+  mutate(across(c(sexual_assault, 
+                  alcohol_offense,
+                  theft,
+                  robbery_burglary,
+                  noise_offense,
+                  drug_offense), ~log(. + 1)))
+
+modelsummary::datasummary_skim(weekly_crime %>% 
+  mutate(across(c(sexual_assault, 
+                  alcohol_offense,
+                  theft,
+                  robbery_burglary,
+                  noise_offense,
+                  drug_offense), ~log(. + 1))))
+```
+

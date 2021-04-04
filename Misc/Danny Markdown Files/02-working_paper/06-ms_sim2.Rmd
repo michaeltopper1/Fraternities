@@ -1,0 +1,287 @@
+---
+title: "mc_sim"
+output: pdf_document
+---
+
+```{r setup_mc_sim, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+
+cons_0lift <- read.csv("../04-sim/mcmc_tvp/tables/cons_0lift_med.csv")
+cons_0lift_short_t0 <- read.csv("../04-sim/mcmc_tvp/tables/cons_0lift_med_short_t0.csv")
+cons_0lift_small <- read.csv("../04-sim/mcmc_tvp/tables/cons_0lift_med_small.csv")
+cons_0lift_super_short <- read.csv("../04-sim/mcmc_tvp/tables/cons_0lift_med_super_short.csv")
+tvp_0lift <- read.csv("../04-sim/mcmc_tvp/tables/tvp_0lift_med.csv")
+tvp_0lift_short_t0 <- read.csv("../04-sim/mcmc_tvp/tables/tvp_0lift_med_short_t0.csv")
+tvp_0lift_small <- read.csv("../04-sim/mcmc_tvp/tables/tvp_0lift_med_small.csv")
+tvp_0lift_super_short <- read.csv("../04-sim/mcmc_tvp/tables/tvp_0lift_med_super_short.csv")
+```
+
+
+# Monte Carlo Simulation
+
+The proposed model provides two new approaches to the synthetic control framework: time varying parameters and Bayesian shrinkage. To better understand which addition is contributing and how, I perform Monte Carlo simulations comparing *BL-TVP* to @brodersen_inferring_2015. I compare each model with and without time varying parameters. The four variations are:
+
+1) the original @brodersen_inferring_2015 model (*CI*),
+
+2) @brodersen_inferring_2015 with time varying coefficients (*CI-TVP*),
+
+3) The proposed model without time varying coefficients (*BL*),
+
+4) The proposed model (*BL-TVP*).
+
+*BL* is a simplification of *BL-TVP* in which $\sqrt{\theta_j}=0$ for all j. *CI* and *CI-TVP* are run using the R package `CausalImpact` [@brodersen_inferring_2015]. *BL* is run using the `BayesReg` R package [@makalic_high-dimensional_2016].
+
+The simulation is based off of @kinn_synthetic_2018. Assume the following data generating process:
+
+$$
+\begin{aligned}
+y_{j,t}(0)&=\xi_{j,t} + \psi_{j,t}+ x_{j,t} + \epsilon'_{j,t} & \text{j=1,..,J}\\
+x_{j,t+1}&= x_{j,t} + \eta_{j,t}'\\
+y_{0,t}(0)&=\sum_{j=1}^J w_{j}(\xi_{j,t} + \psi_{j,t}+z_{j,t})+\epsilon'_{1.t}\\
+\end{aligned}
+$$
+for t=1,..,T where $\xi_{jt}$ is the trend component, $\psi_{j,t}$ is a seasonality component, $x_{j,t}$ a random walk component, and $\epsilon'_{j,t}, \eta_{j,t}' \sim N(0,\sigma^2)$. Specifically, $\xi_{jt}=c_j t+z_j$ where $c_j,\ z_j \in \mathbb{R}$. This will allow for each observation to have a unit-specific time varying confounding factor and a time-invariant confounding factor. Seasonality will be represented as $\psi_{j,t}=\gamma_j sin\left(\frac{\pi t}{\rho_j}\right)$. The explicit data generating process is:
+$$
+\begin{aligned}
+y_{j,t}(0)&=c_j t+z_j + \gamma_j sin\left(\frac{\pi t}{\rho_j}\right) + \epsilon'_{j,t} & \text{j=1,..,J}\\
+y_{0,t}(0)&=\sum_{j=1}^J w_{j}\left( c_j t+z_j +\gamma_j sin\left(\frac{\pi t}{\rho_j}\right) +x_{j,t}  \right)+\epsilon'_{1.t}\\
+x_{j,t+1} & = x_{j,t} + \eta_{j,t}'
+\end{aligned}
+$$
+The treatment begins at period $T_0$. The treatment effect is set to 0 for all periods.
+
+This paper proposes testing two scenarios: (i) data generating processes with integrated process and (ii) data generating processes without integrated processes. Within each scenario, the pre-treatment time length and donor pool will be varied. The full time frame will be 34 periods (e.g. $T=34$).
+
+
+The parameters of this simulation are:
+
+1) $c_{1,t}=.75$, $c_{2,t}=.25$, and $c_{j,t} \sim U[0,1]$ for all $j \notin \{1,2\}$.
+
+2) $z_1=25$, $z_2=5$ and $z_j$ is sampled from $\{1,2,3,4,...,50\}$.
+
+3) $\epsilon'_{j,t} \sim N(0,1)$.
+
+4) $T = 34$.
+
+5) $\gamma_j=4$.
+
+6) $\rho_j=20$.
+
+7) 
+$$w_{j}=\begin{cases}
+.2 & j=1\\
+.8 & j=2\\
+0 & else
+\end{cases}$$
+
+## Model Testing and Comparison
+
+I will compare the mean squared  error (MSE) in pre and post treatment. Mean squared error encompasses the paper's main goal of estimation. However, an empirical researcher also may find interest in teh average treatment effect in the post period along with related inference. Since the models are Bayesian, inference derives from the posterior predictive distribution. This is easily calculated from each iteration of the Gibbs sample. I summarize the results using the 95% credibility interval spread in the post period (PI Spread) and the post treatment coverage of the 95% credibility intercal (95% PI). The measurements are defined as:
+
+$$
+\hat{\Delta}_{\tau} \equiv \frac{1}{T-T_0} \sum_{t=T_0}^T \left(y_{0,t} - \hat{y}_{0,t} \right)
+$$
+
+$$
+\text{PI Spread} \equiv \frac{1}{T-T_0} \sum_{t=T_0}^T \left(\hat{\Delta}^{.975}_{\tau} - \hat{\Delta}^{.025}_{\tau} \right)
+$$
+
+$$
+95\% \text{ PI} \equiv \frac{1}{K} \sum_{k=1}^K I\left(\hat{\Delta}_{\tau} \in \left[\hat{\Delta}^{.025}_{\tau},\hat{\Delta}^{.975}_{\tau}\right] \right)
+$$
+
+where $\hat{\Delta}_{\tau}$ is the median average treatment effect in the post period,  $\hat{\Delta}^.025_{\tau}$ and $\hat{\Delta}^.975_{\tau}$ are the $2.5^{th}$ and $97.5^{th}$ quantiles of the posterior estimations. The results for mean squared error are presented in Table \ref{tab:mse}, the average treatment effect in the post period in Table \ref{tab:ate} the credible interval spread is summarized in Table \ref{tab:spread}, and posterior predictive density is summarized in Table \ref{tab:cover}.
+
+## Results
+
+### Mean Squared Error
+
+*CI-TVP* creates a perfect pre-treatment fit in all eight simulation studies. This becomes evident when focusing on the mean squared error in the post treatment. *BL* and *BL-TVP* maintain smaller post-treatment mean squared errors in both time varying parameters and time invariant parameters when $T_0=17$. When parameters are time invariant, *BL* and *BL-TVP* have a post-treatment mean squared error magnitudes smaller than both version of *CI*. With time varying parameters, *BL* performs worse than *CI-TVP* but significantly better than *CI*. *BL-TVP* produces a post-treatment mean squared error `r round(1/(77/428.95))` times smaller than *CI*. When *BL-TVP* ranked first or second smallest for all four simulations in which $T_0=17$.
+
+When $T_0=5$ and $J=17$, *CI*, *BL*, and *BL-TVP* all perform similarly in terms of mean squared error. *CI-TVP* produces an post treatment mean squared error 3-4 times larger than the other models. In the case of dynamic coefficients, no model is able to recreate a good counterfactual. There simply is not enough data to identify the complex data generating process. In the event of $T_0=5$, $J=5$ and constant weights, time invariant models greatly outperform time varying models. This would be a situation in which the assumption of constant parameters is easier to argue. However, no model performs well with dynamic weights in this setting.
+
+```{r mse, warning=F}
+mcmc_1 <- expand_grid(
+  "$T_0$" = c(17,5),
+  "J" = c(17,5),
+  "Coefficient Type" = c("Constant","Dynamic")
+)
+dat <- rbind(c(cons_0lift$pre.treat.mse, cons_0lift$post.treat.mse),
+             c(tvp_0lift$pre.treat.mse, tvp_0lift$post.treat.mse),
+             c(cons_0lift_small$pre.treat.mse, cons_0lift_small$post.treat.mse),
+             c(tvp_0lift_small$pre.treat.mse, tvp_0lift_small$post.treat.mse),
+             c(cons_0lift_short_t0$pre.treat.mse, cons_0lift_short_t0$post.treat.mse),
+             c(tvp_0lift_short_t0$pre.treat.mse, tvp_0lift_short_t0$post.treat.mse),
+             c(cons_0lift_super_short$pre.treat.mse, cons_0lift_super_short$post.treat.mse),
+             c(tvp_0lift_super_short$pre.treat.mse, tvp_0lift_super_short$post.treat.mse)
+             ) %>% 
+  as_tibble() 
+
+
+# Post treatment MSE ratio: model/BL-TVP
+# c(CI, CI-TVP,BL, BL-TVP)/BL-TVP
+dat.mse <- colMeans(dat[,5:8]/rep(dat[,8],4)) 
+
+dat <- dat %>% 
+  mutate_all(as.character)
+
+# Highlighting lowest values 
+
+dat[1,2] <- cell_spec(dat[1,2], "latex", bold = T)
+dat[2,2] <- cell_spec(dat[2,2], "latex", bold = T)
+dat[3,2] <- cell_spec(dat[3,2], "latex", bold = T)
+dat[4,2] <- cell_spec(dat[4,2], "latex", bold = T)
+dat[5,2] <- cell_spec(dat[5,2], "latex", bold = T)
+dat[6,2] <- cell_spec(dat[6,2], "latex", bold = T)
+dat[7,2] <- cell_spec(dat[7,2], "latex", bold = T)
+dat[8,2] <- cell_spec(dat[8,2], "latex", bold = T)
+
+dat[1,7]<- cell_spec(dat[1,7], "latex", bold = T)
+dat[2,8]<- cell_spec(dat[2,8], "latex", bold = T)
+dat[3,7]<- cell_spec(dat[3,7], "latex", bold = T)
+dat[4,8]<- cell_spec(dat[4,8], "latex", bold = T)
+dat[5,7]<- cell_spec(dat[5,5], "latex", bold = T)
+dat[6,6]<- cell_spec(dat[6,6], "latex", bold = T)
+dat[7,7]<- cell_spec(dat[7,7], "latex", bold = T)
+dat[8,6]<- cell_spec(dat[8,6], "latex", bold = T)
+
+cbind(mcmc_1,dat) %>% 
+  as_tibble() %>% 
+kable(., 
+      #format="latex", 
+      booktabs=TRUE, 
+      escape = FALSE,
+      linesep = c("", "", "", "\\addlinespace"),
+      caption = "Simulation Study of Point Estimates",
+      col.names = c("$T_0$","J", "Coefficient Type", "CI","CI-TVP","BL","BL-TVP", "CI ", "CI-TVP ", "BL ", "BL-TVP ")) %>% 
+   column_spec (c(4,8),border_left = T, border_right = F) %>%
+   kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 12) %>% 
+   add_header_above(c(" " = 3, "Pre-Treament MSE" = 4, "Post-Treatment MSE" = 4)) %>%
+  footnote(symbol=c("Median results of 100 monte carlo simulations with T=34.", 
+                    "Each simulation of BL-TVP is run  3000 times with a 1500 burn-in.", 
+                    "All other models are run according to presets." , 
+                    "The preset Causal Impact model was used as described in Brodersen et al. 2015.",
+                    "Cells with lowest MSE per simulation and period are bolded.",
+                    "CI: Causal Impact",
+                    "CI-TVP: Causal Impact with Time Varying Parameters",
+                    "BL: Bayesian Lasso",
+                    "BL-TVP: Bayesian Lasso with Time Varying Parameters")
+           )
+
+```
+
+*BL-TVP* had a lower post treatment mean squared error compared *CI* 6 of the 8 simulations. Similarly, *BL-TVP* had a lower post treatment mean squared error compared *CI-TVP* 6 of the 8 simulations. 
+
+### 95% Credible Interval Spread
+
+*BL-TVP* credibility interval spread is close in magnitudes to *BL* with $T_0=17$. *Bl* and *BL-TVP* maintain tighter credibility intervals than *CI* and *CI-TVP* when $T_0=17$. *Bl-TVP* produces slightly larger credibility intervals to *BL* when the data generating process consists of constant parameters and slightly smaller credibility intervals when the data generating process consists of time varying parameters. However, the differences are miniscule. *BL-TVP* maintains smaller credibility intervals than *CI-TVP* in all cases except $T_0=5$, $J=5$.
+
+
+```{r spread, warning=F}
+
+mcmc_3 <- expand_grid(
+  "$T_0$" = c(17,5),
+  "J" = c(17,5),
+  "Coefficient Type" = c("Constant","Dynamic")
+)
+dat <- rbind(cons_0lift$CI.Spread,
+             tvp_0lift$CI.Spread,
+             cons_0lift_small$CI.Spread,
+             tvp_0lift_small$CI.Spread,
+             cons_0lift_short_t0$CI.Spread,
+             tvp_0lift_short_t0$CI.Spread,
+             cons_0lift_super_short$CI.Spread,
+             tvp_0lift_super_short$CI.Spread
+             ) %>% 
+  as_tibble()
+
+dat <- dat %>% 
+  mutate_all(as.character)
+
+dat[1,3] <- cell_spec(dat[1,3], "latex", bold = T)
+dat[2,4] <- cell_spec(dat[2,4], "latex", bold = T)
+dat[3,3] <- cell_spec(dat[3,3], "latex", bold = T)
+dat[4,4] <- cell_spec(dat[4,4], "latex", bold = T)
+dat[5,1] <- cell_spec(dat[5,1], "latex", bold = T)
+dat[6,3] <- cell_spec(dat[6,3], "latex", bold = T)
+dat[7,1] <- cell_spec(dat[7,1], "latex", bold = T)
+dat[8,3] <- cell_spec(dat[8,3], "latex", bold = T)
+```
+```{r mcmc3}
+cbind(mcmc_3,dat) %>% 
+  as_tibble() %>% 
+kable(., 
+      #format="latex", 
+      booktabs=TRUE, 
+      escape = FALSE,
+      linesep = c("", "", "", "\\addlinespace"),
+      caption = "Simulation Study of Credibility Interval Spread Over Whole Sample",
+      col.names = c("$T_0$","J", "Coefficient Type", "CI","CI-TVP","BL","BL-TVP")) %>%
+   column_spec (c(4),border_left = T, border_right = F) %>%
+   kable_styling(latex_options = c("hold_position","scale down"), font_size = 12) %>% 
+  footnote(symbol=c("Median results of 100 monte carlo simulations with T=34.", 
+                    "Each simulation of BL-TVP is run  3000 times with a 1500 burn-in.", 
+                    "All other models are run according to presets." , 
+                    "The preset Causal Impact model was used as described in Brodersen et al. 2015.",
+                    "Cells with lowest credible interval spread per simulation are bolded",
+                    "CI: Causal Impact",
+                    "CI-TVP: Causal Impact with Time Varying Parameters",
+                    "BL: Bayesian Lasso",
+                    "BL-TVP: Bayesian Lasso with Time Varying Parameters")
+           )
+
+```
+
+To add context to the results, consider the simulation in which $T_0=17$, $J=17$, and the coefficients are constants. A researcher may be interested in the minimal average effect that can be detected in the post period. At the 95% probability level, *BL* identifies an average treatment effect over the post period of 23% or more and *BL-TVP* can identify an effect of 28.8% or more. In contrast, *CI* can identify an effect of 35% or more while *CI-TVP* can identify a 66% of the average treatment effect[^add]. This demonstrates *BL-TVP* ability to perform similarly to time invariant parameter models when the data generating process only includes time invariant parameters.
+
+[^add]: Values calculated from additional simulations not included in paper. Simulations are available upon request.
+
+### 95% Coverage
+
+All models achieve optimal coverage in the post treatment period with constant coefficients. However, only *CI-TVP* consistently covers 100% of the post treatment period. 
+
+```{r cover, warning=F}
+
+mcmc_2 <- expand_grid(
+  "$T_0$" = c(17,5),
+  "J" = c(17,5),
+  "Coefficient Type" = c("Constant","Dynamic")
+)
+dat <- rbind(c(cons_0lift$pre.treat.coverage, cons_0lift$post.treat.coverage),
+             c(tvp_0lift$pre.treat.coverage, tvp_0lift$post.treat.coverage),
+             c(cons_0lift_small$pre.treat.coverage, cons_0lift_small$post.treat.coverage),
+             c(tvp_0lift_small$pre.treat.coverage, tvp_0lift_small$post.treat.coverage),
+             c(cons_0lift_short_t0$pre.treat.coverage, cons_0lift_short_t0$post.treat.coverage),
+             c(tvp_0lift_short_t0$pre.treat.coverage, tvp_0lift_short_t0$post.treat.coverage),
+             c(cons_0lift_super_short$pre.treat.coverage, cons_0lift_super_short$post.treat.coverage),
+             c(tvp_0lift_super_short$pre.treat.coverage, tvp_0lift_super_short$post.treat.coverage)
+             ) %>% 
+  as_tibble()
+
+
+cbind(mcmc_1,dat) %>% 
+  as_tibble() %>% 
+kable(., 
+      #format="latex", 
+      booktabs=TRUE, 
+      escape = FALSE,
+      linesep = c("", "", "", "\\addlinespace"),
+      caption = "Simulation Study of Coverage of Models",
+      col.names = c("$T_0$","J", "Coefficient Type", "CI","CI-TVP","BL","BL-TVP", "CI ", "CI-TVP ", "BL ", "BL-TVP ")) %>%
+   column_spec (c(4,8),border_left = T, border_right = F) %>%
+   kable_styling(latex_options = c("hold_position","scale down"), font_size = 12) %>% 
+   add_header_above(c(" " = 3, "Pre-Treament Coverage" = 4, "Post-Treatment Coverage" = 4)) %>%
+  footnote(symbol=c("Median results of 100 monte carlo simulations with T=34.", 
+                    "Each simulation of BL-TVP is run  3000 times with a 1500 burn-in.", 
+                    "All other models are run according to presets." , 
+                    "The preset Causal Impact model was used as described in Brodersen et al. 2015.",
+                    "Coverage is defined using a 95% credibility interval.",
+                    "CI: Causal Impact",
+                    "CI-TVP: Causal Impact with Time Varying Parameters",
+                    "BL: Bayesian Lasso",
+                    "BL-TVP: Bayesian Lasso with Time Varying Parameters")
+           )
+```
+
+*CI-TVP* maintains full coverage in the post treatment period. This is primarily due to large credibility intervals. *BL-TVP* suffers from low coverage in all dynamic settings. However, *BL-TVP* achieves significantly higher coverage than *CI* and *BL*. This demonstrates *BL-TVP* can serve as an intermediate alternative between *CI* and *CI-TVP*. The model achieves better coverage in a time varying parameter scenario than *CI* but does not suffer from improbably large credibility intervals in time invariant parameter settings like *CI-TVP*. 

@@ -1,0 +1,67 @@
+To do
+
+Exclude from analysis dates between June 1 and August 31 as Lindo et al did because students are less likely to be in town.
+
+Control for holidays in NIBRS
+
+Using NIBRS, should look at how many know the victims (60% in lindo) 
+
+Create Reports of Rape double histogram by month for fraternity closures and for not fraternity closures. Another for college partying schools
+
+Additional IPEDS stuff to get:
+	- SAT writing, math, critical reading
+	- Retntion rate
+	- Fraction private schools
+	- Fraction receiving federal grant- aid
+
+
+Graph comparing the schools in my data set to all schools.
+
+Graph comparing my law enformce
+Recreate Table 2 in Lindo
+
+Princeton party school rankings over time
+
+
+
+
+Heather Oct. 29
+- Getting the fraternity membership and size at each university is worthwhile, but maybe save this task for a later iteration of the paper. Start doing this now, using FOIA requests to campuses using the websites you have saved
+- Likes the idea of substitution effects - can look at campus police reports and see if there is some substitution away from certain types of crime because of the moratoriums
+- Not all shutdowns are the same - interact some of these things with the treatment variable
+- Right now, I have a binary treatment variable. Instead, use a non-binary one. For instance, if some school was treated 11/30 days of the month, do 11/30 * 1 for treatment. This should not change the coefficient estimates
+
+To do for 290 paper:
+- hold off on getting things - but start trying to send emails for FOIA
+- run poisson regressions/log regressions
+- demonstrate a proof of concept - convey that you have a random experiment 
+- do not say you have random variation.
+
+
+
+Oct. 27 remarks:
+
+- Tables and writing need to be self contained. Talk about them each as if they do not appear.
+- list the covariates I'm using with some summary statistics?
+- IFC website for background--focus on the actual facts rather than opinions
+- get pre-trends graph!
+- try regression with levels and log - Poisson as well
+- explain more how the schools were chosen
+- need proportion of undergrads
+- house fixed effects?
+- rape vs. sexual assault. Be explicit between the two
+- UCR changed the definition of a rape at some point in time. Remember to take this into consideration.
+- more explanation on the tables - footnotes
+- do people substitute away from rape and go to over crimes?
+- Clery Act requires colleges to report campus crime policy and statistics
+
+
+Nov. 14
+- Need to look at how each university provides jurisdiction over their fraternities
+
+
+
+
+
+
+

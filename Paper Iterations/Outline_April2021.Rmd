@@ -1,0 +1,82 @@
+---
+title: "Paper Plans"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Discuss why the question is important. What do we know about fraternities?
+
+Background on fraternity moratoria:
+
+-   Why do they happen?
+
+    -   Need the "trigger table"
+
+-   When do they happen?
+
+    -   Histogram of number of shutdowns by the year by month? No. I didn't like this.
+
+## Data
+
+Questions that need to be answered (in figures):
+
+-   How is the data constructed?
+
+    -   Need a picture of a generic crime log.
+
+    -   Table of how you matched (gives reputability): **matching_word_table.R**
+
+    -   Table of how well the matching process worked (validate process): **matching_word_table.R**
+
+-   Who is in the sample?
+
+    -   Need a map of the universities.
+
+        -   this will convey how representative of the US the sample is
+
+        -   the map should have dots that get bigger relative to the size of fraternity presence at the university. the color of the dot should represent how many moratoria have occurred at the school.
+
+    -   Table of the characteristics of the universities.
+
+        -   demographics
+
+        -   retention rate
+
+        -   enrollment
+
+        -   fraternity presence
+
+        -   number of private schools
+
+        -   party school (have they ever appeared in the last few years on Princeton Review?)
+
+        -   average length of moratorium
+
+        -   number of moratoria
+
+-   What do the trends look like?
+
+    -   Trends of all the outcomes:
+
+-   How do you restrict the data?
+
+    -   I am restricting the data the following ways: no months of June, July, and August.
+
+        -   A graph of how the main outcomes trend over time (discuss how this gives evidence of the type of fixed effects to use + why we should omit the summer months of 6,7,8)
+
+        -   barplots of the daily intakes of crime for each day of the week
+
+## Heterogeneity
+
+-   Differences between the following:
+
+    -   IFC shutdown vs. University?
+
+    -   Large fraternity population vs. smaller?
+
+    -   Length of moratorium?

@@ -1,0 +1,8 @@
+---
+title: "conclusion"
+output: pdf_document
+---
+
+# Conclusion
+
+I propose a time varying parameter approach to synthetic control. Building off of recent advances macroeconometric forecasting, BL-TVP allows empirical researchers to incorporate additional flexibility with reduced risk of overfitting in a synthetic control framework. Simulation results suggest the additional flexibility allows for smaller mean squared forecast errors while increasing coverage compared to existing approaches. The proposed model also performs similarly to establish synthetic control approaches in two classic examples. In the event of time varying relationships between treated and control units, BL-TVP is an easy to implement model that captures the relationship.
