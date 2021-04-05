@@ -8,7 +8,7 @@
 
 library(modelsummary)
 library(tidyverse)
-
+library(kableExtra)
 daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
                         guess_max = 50000)
 weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel.csv",
@@ -31,4 +31,7 @@ university_characteristics <- daily_crime %>%
                 (`Fraction Full-time` =ftime_total_undergrad) +
                  (`Graduation Rate` = graduation_rate_total_cohort_) + 
                 (`Fraction Private`=private)~ (Mean + SD + Median + Min + Max), data = .,
-              title = "University Characteristics"))
+              title = "University Characteristics") %>% 
+  add_indent(c(2:6)) %>% 
+  add_indent(c(3:6))
+
