@@ -50,11 +50,13 @@ crime_weekly_table_p100 <- weekly_crime %>%
 
 crime_table_p100 <- bind_rows(crime_daily_table_p100, crime_weekly_table_p100)
 
-kbl(crime_table, booktabs = T, digits = 2) %>% 
+kbl(crime_table, booktabs = T, digits = 2, caption = "Summary Statistics of Offenses",
+    caption.short = "Note that the summer months 6,7, and 8 are ommitted") %>% 
   pack_rows("Daily Reports", 1, 5) %>% 
   pack_rows("Weekly Reports", 6, 10)
 
 
-kbl(crime_table_p100, booktabs = T, digits = 2) %>% 
+kbl(crime_table_p100, booktabs = T, digits = 2, caption = "Summary Statistics of Offenses Per 100k",
+    caption.short = "Note that the summer months 6,7, and 8 are ommitted") %>% 
   pack_rows("Daily Reports Per 100k", 1, 5) %>% 
   pack_rows("Weekly Reports Per 100k", 6, 10)
