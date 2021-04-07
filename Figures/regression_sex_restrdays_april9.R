@@ -57,5 +57,5 @@ sex_ols_restricted <- modelsummary(sex_models_restricted, stars = T, gof_omit = 
                                      "total_undergrad_asian" = "Fraction Undergrad Asian",
                                      "total_undergrad_hispanic" = "Fraction Undergrad Hispanic",
                                      "graduation_rate_total_cohort_" = "Graduation Rate"),
-                        output = "kableExtra") %>% 
+                        output = "kableExtra", title = "Effect of fraternity moratoria on reports of sexual assault") %>% 
   add_header_above(c(" " = 1, "Daily Level (Fri/Sat/Sun)" = 2, "Weekly Level (Fri/Sat/Sun)" = 2))
