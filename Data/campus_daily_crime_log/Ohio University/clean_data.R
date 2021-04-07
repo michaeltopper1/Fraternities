@@ -17,7 +17,7 @@ ohio <- map(files, ~read_csv(.) %>% janitor::clean_names() %>%
       rename(location = address, case_number = cfs_number) %>% 
       extract(date_reported, c("date_reported", "time_reported"), "(\\d{1,2}/\\d{1,2}/\\d{2,4})\\s(\\d{1,2}:\\d{1,2})") %>% 
       extract(date_occurred, c("date_occurred", "time_occurred"), "(\\d{1,2}/\\d{1,2}/\\d{2,4})\\s(\\d{1,2}:\\d{1,2})") %>% 
-      mutate(university = "Ohio University") %>% 
+      mutate(university = "Ohio University-Main Campus") %>% 
       mutate(across(starts_with("date"), ~mdy(.)))) %>% reduce(bind_rows)
 
 ohio <- ohio %>% 
