@@ -106,6 +106,7 @@ daily_panel <- daily_panel %>%
 
 ## Weekly panel: 
 weekly_panel <- daily_panel %>% 
+  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun") %>% ## reducing to only weekdays
   group_by(university, week = cut(date, "week")) %>% 
   summarize(across(c(sexual_assault,
                      alcohol_offense,
@@ -130,6 +131,7 @@ weekly_panel <- weekly_panel %>%
 
 ## monthly panel: 
 monthly_panel <- daily_panel %>% 
+  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun") %>% ## reducing to only weekdays
   group_by(month, year, university) %>% 
   summarize(sexual_assault = sum(sexual_assault),
             alcohol_offense = sum(alcohol_offense),
