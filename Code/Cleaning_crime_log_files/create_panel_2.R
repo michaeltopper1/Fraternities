@@ -104,9 +104,24 @@ daily_panel <- daily_panel %>%
     TRUE ~as.double(0)
   ))
 
-## Weekly panel: 
+## Weekly panel: only weekend
 weekly_panel <- daily_panel %>% 
   filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun") %>% ## reducing to only weekdays
+  group_by(university, week = cut(date, "week")) %>% 
+  summarize(across(c(sexual_assault,
+                     alcohol_offense,
+                     drug_offense,
+                     theft,
+                     robbery_burglary,
+                     alcohol_offense_strict,
+                     noise_offense,
+                     treatment), ~ sum(., na.rm  = T))) %>% 
+  mutate(week = ymd(week)) %>% 
+  mutate(week_id = wday(week, label = T)) %>% 
+  ungroup() 
+
+## Weekly panel: all days 
+weekly_panel_alldays <- daily_panel %>% 
   group_by(university, week = cut(date, "week")) %>% 
   summarize(across(c(sexual_assault,
                      alcohol_offense,
@@ -127,7 +142,11 @@ weekly_panel <- weekly_panel %>%
   mutate(treatment = ifelse(treatment > 0, 1, 0)) %>% 
   mutate(year = year(week))
 
-
+weekly_panel_alldays <- weekly_panel_alldays %>% 
+  left_join(closures, by = c("university" = "university")) %>% 
+  mutate(treatment_percent = treatment/7) %>% 
+  mutate(treatment = ifelse(treatment > 0, 1, 0)) %>% 
+  mutate(year = year(week))
 
 ## monthly panel: 
 monthly_panel <- daily_panel %>% 
@@ -208,6 +227,23 @@ weekly_panel <- weekly_panel %>%
   ungroup() %>% 
   filter(year > 2013)
 
+weekly_panel_alldays <- weekly_panel_alldays %>% 
+  left_join(ipeds, by = c("university" = "institution_name", 'year' = 'year')) %>% 
+  mutate(month = month(week), year = year(week)) %>% 
+  filter(month !=6 & month != 7 & month != 8) %>% 
+  mutate(across(c(sexual_assault, alcohol_offense,
+                  theft, robbery_burglary, drug_offense), list(ihs = ifc::ihs_transform),
+                .names = "{.fn}_{.col}")) %>% 
+  group_by(university, month) %>% 
+  mutate(uni_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  mutate(across(c(sexual_assault, alcohol_offense,
+                  theft, robbery_burglary, drug_offense), ~./total_students_all * 100000,
+                .names = '{.col}_per100')) %>% 
+  group_by(university, year) %>% 
+  mutate(uni_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  filter(year > 2013)
 
 monthly_panel <- monthly_panel %>% 
   left_join(ipeds, by= c("university" = "institution_name", 'year' = "year"))
@@ -220,5 +256,6 @@ write_csv(daily_panel, file = "Created Data/xMaster_data_2021/daily_panel.csv")
 write_csv(weekly_panel, file = "Created Data/xMaster_data_2021/weekly_panel.csv")
 write_csv(daily_panel_full, file = "Created Data/xMaster_data_2021/daily_panel_full.csv")
 write_csv(weekly_panel_full, file = "Created Data/xMaster_data_2021/weekly_panel_full.csv")
+write_csv(weekly_panel_alldays, file= "Created Data/xMaster_data_2021/weekly_panel_alldays.csv")
 write_csv(monthly_panel, file = "Created Data/xMaster_data_2021/monthly_panel.csv")
 write_csv(yearly_panel, file = "Created Data/xMaster_data_2021/yearly_panel.csv")
