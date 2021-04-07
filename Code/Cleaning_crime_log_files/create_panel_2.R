@@ -171,13 +171,42 @@ weekly_panel_full <- weekly_panel %>%
 
 daily_panel <-  daily_panel %>% 
  left_join(ipeds, by = c("university" = "institution_name", 'year' = 'year')) %>% 
-  filter(month !=6 & month != 7 & month != 8)
+  filter(month !=6 & month != 7 & month != 8) %>% 
+  mutate(across(c(sexual_assault, alcohol_offense,
+                  theft, robbery_burglary, drug_offense), list(ihs = ifc::ihs_transform),
+                .names = "{.fn}_{.col}")) %>% 
+  group_by(university, month) %>% 
+  mutate(uni_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  mutate(across(c(sexual_assault, alcohol_offense,
+                  theft, robbery_burglary, drug_offense), ~./total_students_all * 100000,
+                .names = '{.col}_per100')) %>% 
+  group_by(university, year) %>% 
+  mutate(uni_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, weekday) %>% 
+  mutate(uni_weekday = cur_group_id()) %>% 
+  ungroup() %>% 
+  filter(year > 2013)
 
 
 weekly_panel <- weekly_panel %>% 
   left_join(ipeds, by = c("university" = "institution_name", 'year' = 'year')) %>% 
-  mutate(month = week(week)) %>% 
-  filter(month !=6 & month != 7 & month != 8)
+  mutate(month = month(week), year = year(week)) %>% 
+  filter(month !=6 & month != 7 & month != 8) %>% 
+  mutate(across(c(sexual_assault, alcohol_offense,
+                  theft, robbery_burglary, drug_offense), list(ihs = ifc::ihs_transform),
+                .names = "{.fn}_{.col}")) %>% 
+  group_by(university, month) %>% 
+  mutate(uni_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  mutate(across(c(sexual_assault, alcohol_offense,
+                  theft, robbery_burglary, drug_offense), ~./total_students_all * 100000,
+                .names = '{.col}_per100')) %>% 
+  group_by(university, year) %>% 
+  mutate(uni_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  filter(year > 2013)
 
 
 monthly_panel <- monthly_panel %>% 
