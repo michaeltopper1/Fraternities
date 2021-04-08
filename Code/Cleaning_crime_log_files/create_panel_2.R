@@ -252,14 +252,14 @@ yearly_panel <- yearly_panel %>%
   left_join(ipeds, by= c("university" = "institution_name", 'year' = "year"))
 
 ## omits summer months
-write_csv(daily_panel, file = "Created Data/xMaster_data_2021/daily_panel.csv")
+write_csv(daily_panel, file = "Created Data/xMaster_data_2021/daily_panel_nosummer.csv")
 ## omits summer months
-write_csv(weekly_panel, file = "Created Data/xMaster_data_2021/weekly_panel.csv")
+write_csv(weekly_panel, file = "Created Data/xMaster_data_2021/weekly_panel_nosummer.csv")
 ## contains all months and days
 write_csv(daily_panel_full, file = "Created Data/xMaster_data_2021/daily_panel_full.csv")
 ## contains all months and days
 write_csv(weekly_panel_full, file = "Created Data/xMaster_data_2021/weekly_panel_full.csv")
 ## weekly_panel_alldays omits summer months and non-weekend days
-write_csv(weekly_panel_alldays, file= "Created Data/xMaster_data_2021/weekly_panel_alldays.csv")
+write_csv(weekly_panel_alldays, file= "Created Data/xMaster_data_2021/weekly_panel_alldays_nosummer.csv")
 write_csv(monthly_panel, file = "Created Data/xMaster_data_2021/monthly_panel.csv")
 write_csv(yearly_panel, file = "Created Data/xMaster_data_2021/yearly_panel.csv")
