@@ -7,7 +7,7 @@
 
 library(tidyverse)
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
                         guess_max = 50000)
 
 by_day_sexual_assault <- daily_crime %>% 

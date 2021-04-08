@@ -9,7 +9,7 @@ library(tidyverse)
 library(lubridate)
 library(glue)
 
-path <- "Created Data/xMaster_data_2021/daily_panel.csv"
+path <- "Created Data/xMaster_data_2021/daily_panel_nosummer.csv"
 daily_crime <- read_csv(path, guess_max = 50000)
 
 

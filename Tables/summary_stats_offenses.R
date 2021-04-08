@@ -8,9 +8,9 @@ library(tidyverse)
 library(kableExtra)
 
 ## Note that this is omitting the summer months of 6, 7, and 8. 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
                         guess_max = 50000)
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel.csv",
+weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel_nosummer.csv",
                          guess_max = 50000)
 
 ## param x - my exact data frame of weekly/daily crime. DO not change the names
