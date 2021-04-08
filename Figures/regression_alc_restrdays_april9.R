@@ -6,12 +6,11 @@ library(lubridate)
 library(kableExtra)
 
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
-                        guess_max = 50000)
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel.csv",
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
+                        guess_max = 50000) 
+weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel_weekends_nosummer.csv",
                          guess_max = 50000)
-weekly_crime_alldays <- read_csv("Created Data/xMaster_data_2021/weekly_panel_alldays.csv",
-                                 guess_max = 50000)
+
 daily_crime <- daily_crime %>% 
   mutate(across(c(ftime_total_undergrad, total_undergrad_asian,
                   total_undergrad_black, total_undergrad_hispanic),

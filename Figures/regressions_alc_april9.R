@@ -6,12 +6,11 @@ library(lubridate)
 library(kableExtra)
 
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
                         guess_max = 50000)
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel.csv",
+weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel_nosummer.csv",
                          guess_max = 50000)
-weekly_crime_alldays <- read_csv("Created Data/xMaster_data_2021/weekly_panel_alldays.csv",
-                                 guess_max = 50000)
+
 daily_crime <- daily_crime %>% 
   mutate(across(c(ftime_total_undergrad, total_undergrad_asian,
                 total_undergrad_black, total_undergrad_hispanic),
@@ -20,10 +19,7 @@ weekly_crime <- weekly_crime %>%
   mutate(across(c(ftime_total_undergrad, total_undergrad_asian,
                   total_undergrad_black, total_undergrad_hispanic),
                 ~ ./total_students_undergrad)) 
-weekly_crime_alldays <- weekly_crime_alldays %>% 
-  mutate(across(c(ftime_total_undergrad, total_undergrad_asian,
-                  total_undergrad_black, total_undergrad_hispanic),
-                ~ ./total_students_undergrad)) 
+
 per100_d <- daily_crime %>% 
   feols(alcohol_offense_per100 ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
@@ -34,11 +30,11 @@ ihs_d <- daily_crime %>%
           uni_month + year + weekday, cluster = ~university, data = .) 
 
 
-per100_w <- weekly_crime_alldays %>% 
+per100_w <- weekly_crime %>% 
   feols(alcohol_offense_per100 ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           uni_month + year, cluster = ~university, data = .) 
-ihs_w <- weekly_crime_alldays %>% 
+ihs_w <- weekly_crime %>% 
   feols(ihs_alcohol_offense ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           uni_month + year, cluster = ~university, data = .) 

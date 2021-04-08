@@ -72,7 +72,7 @@ theft_identifiers <- "larceny|theft|shoplifting|pocket-picking|steal|shop liftin
 robbery_burglary_identifiers <- "robbery|burglary|unlawful entry|breaking and entering"
 alcohol_identifiers_strict <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|minor in possession|ovi" ## getting rid of possesion
 noise_violation_identifier <- "noise|loud"
-rape_identifer <- "rape"
+rape_identifier <- "rape"
 
 
 ## creating the variables for drug, alcohol, and sex offenses
@@ -115,7 +115,7 @@ appended_crime_logs <- appended_crime_logs %>%
 
 collapsed_data_daily <- appended_crime_logs %>% 
   select(date_reported, university, sexual_assault, alcohol_offense, drug_offense, theft, robbery_burglary, alcohol_offense_strict,
-         noise_offense) %>% 
+         noise_offense, rape) %>% 
   group_by(university, date_reported) %>%
   collapse::fsum()
 

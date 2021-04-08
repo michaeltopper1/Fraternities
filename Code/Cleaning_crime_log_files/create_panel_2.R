@@ -57,17 +57,17 @@ not_missing_2014 <- missing_years %>%
 ## replaces all days with NAs with 0s if i had data for that year
 ## i did this because i can assume there were 0 reports on a date that there was no crime in years i have
 daily_panel <- daily_panel %>% 
-  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense"), 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), 
                 ~ifelse(year== 2014 & is.na(.) & university %in% not_missing_2014,
                         0, .))) %>% 
-  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense"), 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), 
                 ~ifelse(year >= 2015 & is.na(.), 0, .)))## changes all missings from 2015 onwards to 0s- careful of North Florida!
 
 ## North Florida I only have information from July 2015- onwards. Here I am accounting for this
 
 daily_panel <- daily_panel %>% 
   mutate(weekday = wday(date, label = T)) %>%  ## gets the weekday label
-  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense"), ~ifelse(
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
     year == 2015 & month < 7 & university == "University of North Florida",
     NA, .
   ))) 
@@ -110,7 +110,8 @@ weekly_panel_weekends <- daily_panel %>%
                      robbery_burglary,
                      alcohol_offense_strict,
                      noise_offense,
-                     treatment), ~ sum(., na.rm  = T))) %>% 
+                     treatment,
+                     rape), ~ sum(., na.rm  = T))) %>% 
   mutate(week = ymd(week)) %>% 
   mutate(week_id = wday(week, label = T)) %>% 
   ungroup() 
@@ -125,7 +126,8 @@ weekly_panel <- daily_panel %>%
                      robbery_burglary,
                      alcohol_offense_strict,
                      noise_offense,
-                     treatment), ~ sum(., na.rm  = T))) %>% 
+                     treatment,
+                     rape), ~ sum(., na.rm  = T))) %>% 
   mutate(week = ymd(week)) %>% 
   mutate(week_id = wday(week, label = T)) %>% 
   ungroup() 
@@ -153,7 +155,8 @@ monthly_panel <- daily_panel %>%
             robbery_burglary = sum(robbery_burglary),
             alcohol_offense_strict = sum(alcohol_offense_strict),
             noise_offense = sum(noise_offense),
-            treatment = mean(treatment)) %>%
+            treatment = mean(treatment),
+            rape = sum(rape)) %>%
   ungroup() %>% arrange(university, year) %>% 
   left_join(closures)
 
@@ -168,7 +171,8 @@ yearly_panel <- daily_panel %>%
             robbery_burglary = sum(robbery_burglary),
             alcohol_offense_strict = sum(alcohol_offense_strict),
             noise_offense = sum(noise_offense),
-            treatment = mean(treatment)) %>%
+            treatment = mean(treatment),
+            rape = sum(rape)) %>%
   ungroup() %>% arrange(university, year) 
 
 
@@ -190,13 +194,13 @@ create_data_analysis_week <- function(x) {
     left_join(ipeds, by = c("university" = "institution_name", 'year' = 'year')) %>% 
     mutate(month = month(week), year = year(week)) %>% 
     mutate(across(c(sexual_assault, alcohol_offense,
-                    theft, robbery_burglary, drug_offense), list(ihs = ifc::ihs_transform),
+                    theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
                   .names = "{.fn}_{.col}")) %>% 
     group_by(university, month) %>% 
     mutate(uni_month = cur_group_id()) %>% 
     ungroup() %>% 
     mutate(across(c(sexual_assault, alcohol_offense,
-                    theft, robbery_burglary, drug_offense), ~./total_students_all * 100000,
+                    theft, robbery_burglary, drug_offense, rape), ~./total_students_all * 100000,
                   .names = '{.col}_per100')) %>% 
     group_by(university, year) %>% 
     mutate(uni_year = cur_group_id()) %>% 
@@ -210,13 +214,13 @@ create_data_analysis_week <- function(x) {
 daily_panel <-  daily_panel %>% 
  left_join(ipeds, by = c("university" = "institution_name", 'year' = 'year')) %>% 
   mutate(across(c(sexual_assault, alcohol_offense,
-                  theft, robbery_burglary, drug_offense), list(ihs = ifc::ihs_transform),
+                  theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
                 .names = "{.fn}_{.col}")) %>% 
   group_by(university, month) %>% 
   mutate(uni_month = cur_group_id()) %>% 
   ungroup() %>% 
   mutate(across(c(sexual_assault, alcohol_offense,
-                  theft, robbery_burglary, drug_offense), ~./total_students_all * 100000,
+                  theft, robbery_burglary, drug_offense, rape), ~./total_students_all * 100000,
                 .names = '{.col}_per100')) %>% 
   group_by(university, year) %>% 
   mutate(uni_year = cur_group_id()) %>% 
