@@ -1,3 +1,9 @@
+## Purpose of script: Gives the regressions of sexual assault. This is for weekends only. E.g. Daily and Weekly totals are only based on
+## Fri/Sat/Sun
+## Author: Michael Topper
+##
+## Date Last Edited: 2021-04-08
+
 library(tidyverse)
 library(fixest) 
 library(modelsummary)
@@ -6,9 +12,11 @@ library(lubridate)
 library(kableExtra)
 
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
-                        guess_max = 50000)
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel.csv",
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
+                        guess_max = 50000) %>% 
+  filter(weekday == "Sat" | weekday == "Sun" | weekday == "Fri")
+
+weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel_weekends_nosummer.csv",
                          guess_max = 50000)
 
 daily_crime <- daily_crime %>% 
@@ -29,12 +37,9 @@ ihs_d <- daily_crime %>%
   feols(ihs_sexual_assault ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           uni_month + year + weekday, cluster = ~university, data = .) 
-poiper100_d <- daily_crime %>% 
-  fepois(sexual_assault_per100 ~ treatment + ftime_total_undergrad + 
-           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-           uni_month + year + weekday, cluster = ~university, data = .) 
 
-per100_w <- weekly_crime_alldays %>% 
+
+per100_w <- weekly_crime %>% 
   feols(sexual_assault_per100 ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           uni_month + year, cluster = ~university, data = .) 
@@ -42,10 +47,7 @@ ihs_w <- weekly_crime %>%
   feols(ihs_sexual_assault ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           uni_month + year, cluster = ~university, data = .) 
-poiper100_w <- weekly_crime %>% 
-  fepois(sexual_assault_per100 ~ treatment + ftime_total_undergrad + 
-           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-           uni_month + year, cluster = ~university, data = .) 
+
 
 sex_models_restricted <- list("Per 100k Students" = per100_d, "IHS(Sexual Assault Report)" = ihs_d,
                    "Per 100k Students"= per100_w,
