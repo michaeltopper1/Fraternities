@@ -65,14 +65,14 @@ appended_crime_logs <- appended_crime_logs %>%
 
 
 ## got theft from -https://ucr.fbi.gov/nibrs/2012/resources/nibrs-offense-definitions
-alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|disorderly conduct|dwi|underage|container|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## my own
-sexual_assault_identifiers <- "sex|rape|fondling|fondle|touch person intimately|indecent exposure|sodomy|incest" ## sex offenses from NIBRS
-drug_identifiers <- "drug|narcotic|marijuana|heroin|overdose|cocaine|controlled|growing|manufacturing|codeine|synethic|distribution"
+alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## got rid of disorderly conduct.
+sexual_assault_identifiers <- "sex|rape|fondling|fondle|indecent exposure" 
+drug_identifiers <- "drug|narcotic|marijuana|heroin|overdose|cocaine|controlled"
 theft_identifiers <- "larceny|theft|shoplifting|pocket-picking|steal|shop lifting" ##using nibrs
 robbery_burglary_identifiers <- "robbery|burglary|unlawful entry|breaking and entering"
-alcohol_identifiers_strict <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|disorderly conduct|under age|minor in possession" ## getting rid of possesion
+alcohol_identifiers_strict <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|minor in possession|ovi" ## getting rid of possesion
 noise_violation_identifier <- "noise|loud"
-
+rape_identifer <- "rape"
 
 
 ## creating the variables for drug, alcohol, and sex offenses
@@ -96,10 +96,20 @@ appended_crime_logs <- appended_crime_logs %>%
   mutate(alcohol_offense_strict  = 
            ifelse(str_detect(incident, alcohol_identifiers_strict),1, 0)) %>% 
   mutate(noise_offense = 
-           ifelse(str_detect(incident, noise_violation_identifier),1 , 0))
+           ifelse(str_detect(incident, noise_violation_identifier),1 , 0)) %>% 
+  mutate(rape = 
+           ifelse(str_detect(incident, rape_identifier), 1, 0))
 
 appended_crime_logs <- appended_crime_logs %>% 
   mutate(sexual_assault = ifelse(sexual_assault ==1 & str_detect(incident,"orientation"), 0, sexual_assault))
+
+
+
+
+
+
+
+
 
 ### this will collapse the data
 
