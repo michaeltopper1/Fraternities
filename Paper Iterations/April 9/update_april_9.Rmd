@@ -1,0 +1,271 @@
+---
+title: "Fraternity Project Update"
+subtitle: ""
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+    # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
+indent: true
+header-includes:
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+  - \usepackage{amsfonts}
+  - \usepackage{amsthm}
+  - \usepackage{amsmath}
+  - \usepackage[english]{babel}
+#bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning= F)
+knitr::opts_knit$set(root.dir = '/Users/michaeltopper/Desktop/Fraternities and Sexual Assault')
+library(kableExtra)
+library(tidyverse)
+library(lubridate)
+library(modelsummary)
+theme_set(theme_light())
+
+```
+*Please note that this is not a paper draft. While I tried to organize some of my thoughts, this is not formally written up, and in many cases, the writing is rather sloppy. I mostly wanted to give a final update before beginning to write the paper.*
+
+# Updates 
+
+The main updates to this progress report are as follows:
+
+* *Completely re-cleaned my data*. This was due to a few errors I found where some departments were giving me duplicated records (sometimes as many as 30 duplicates) which caused a lot of inprecision. 
+* *Additional schools*. There are now 40 schools in the sample (I had 34 last update).
+* *Redefined alcohol offense and sexual assault matches*. In this update, I decided to get rid of "disorderly conduct" from a match as an alcohol offense. In many of the reports, "disorderly conduct" is common, and some specificy it was a "disorderly conduct-alcohol" and some do not. Hence, I decided to match only on ones that contained the word alcohol (thanks Toshio). In addition, I also narrowed the sexual assault keyword matches as well.
+* *All results and tables are modified*. I tried out new functional forms of the outcomes and started restricting my sample in different ways to see if I could isolate effects better. 
+
+
+## Background on Fraternities
+
+Recall that the study focuses on the group of fraternities called the Interfraternity Council (IFC). These are social fraternities that are uni-sex and male. Also recall that there are a few entities of oversight for IFC fraternities: the IFC council (a group of fraternity representatives from various IFC fraternities), a chapter's national headquarters (unique to each fraternity chapter), and the university. Fraternity moratoria are defined as a temporary halt on fraternity activities. In particular, each university in the sample experiences a temporary ban on social activities involving alcohol, although there is variation in what other restrictions are included (e.g. off-campus events canceled, no social events in general). Figure \ref{trigger_plot} shows the distribution of the triggering event for each of these moratoria. Overall, sexual assault, death, and hazing are the top triggering events, while "Other" encompasses reasons such as racist activity, rule/conduct violations, or otherwise unspecified. On average, a fraternity moratoria lasts 66 days with a median of 27 days. 
+
+# Data
+The main analysis now uses data from each individual university police department. Using the Jeanne Clery Act^[The Jeanne Clery Act is a law that states that any university that receives federal funding must hold Daily Crime Logs from their campus security department and send yearly aggregated statistics of certain crimes to the US Department of Education], the Freedom of Information Act, webscraping, and pdf-extracting, I gathered Daily Crime Log data from 40 of the 44 schools in the sample^[I am still waiting for 1 university's data. I am hopeful that I will get to 41 schools by next week.]. The Daily Crime Log is a daily-level data set that features all reports and offenses logged by the university police department, provided the university has its own security department. Hence, this data is far richer than the UCR, as it contains records of all criminal incidents and alleged criminal incidents that are reported to the campus police or security department. Each entry must contain specific information about each crime including the date/time the crime was reported and occurred, a small description on the nature of the crime, the general location, and the disposition of the complaint. Additionally, these logs are more comprehensive than Clery Act statistics as they are reported at a daily level rather than yearly level, and include more categories of crime that may not fall under the Clery jurisdiction. However, these logs will **not necessarily** match Clery Act statistics when aggregated to the yearly level. This is mainly because the Daily Crime Logs contain only information **reported to the police**. For instance, if the Student Health Center has a rape victim confide in them, it is possible that Student Health will report the rape to the school's Clery Act compliance officer, but it may not be recorded within the university police's Daily Crime Log. Moreover, universities are only required to hold records for the past 7 years, and therefore I restrict my analysis from 2014-2019. Despite this shortcoming, the Daily Crime Log is the most detailed information on crime at each university that exists. 
+
+## Harmonizing the Daily Crime Logs
+Each Daily Crime Log contains a small description the crime reported by the university police. However, since each of these incidents are being written by different police officers and departments, there is a vast amount of variation in how crimes are described. To harmonize these descriptions, I pattern-matched using regular expressions on each small description written in the Daily Crime Log. This was achieved by arranging all incidents at each university in descending order of frequency, and choosing the main words that describe the incident. Table \ref{tab:matching_outcomes} shows the key words and phrases used to match on the outcomes of sexual assault, alcohol offenses, drug offenses, theft, burglary, and noise violations. However, simply pattern matching causes some small, but noteworthy mistakes. For instance, pattern matching on "possession by a minor" for an alcohol offense could result in a match of "possession by a minor with marijuana". To mitigate this issue, I removed matches that contain words that frequently occur in *other* categories. For example, "possession by a minor" matches "possession by a minor with marijuana" for an alcohol offense, but is removed after the match since it contains the word "marijuana"- a word typically associated with a drug offense. Table \ref{tab:top_categories} shows the 15 most frequently incidents matched through the algorithm. Note that each of these matches are within reason.
+
+
+## Cyclical Patterns
+
+As shown in Figure \ref{month_by_year_crimes}, there are cyclical patterns to university reports of crime. Importantly, the summer months of June, July, and August, all have drastic dips in average frequencies. To account for this, the main analysis omits these summer months where students are less likely to be school. Moreover, Figure \ref{barplot_byday} shows the distribution of average reports crimes on each day of the week while omitting the summer months. Crimes tend to occur predominantly on weekends, and overall, alcohol offenses appear to be less common (on average) during fraternity moratoria. 
+
+## Who is in the sample?
+
+The sample consists of 40 US universities. Tables \ref{tab:university_characteristics} and \ref{tab:summary_stats_offenses} show characteristics of these schools and their corresponding crime respectively. On average, the universities are large (~28k students), predominantly white (~62%), vary substantially in graduation rates (standard deviation ~13 percentage points), and are majority public institutions (88%). Moreover, average daily reports of rape are low (~0.06), daily reports of alcohol comparatively higher (~0.48), and daily reports of theft are the most common (~0.68). Note that there is significant variation in these averages, as some university police departments report far more offenses than others.  
+
+
+# Model
+
+I estimate the following model:
+\begin{equation}\label{model}
+Y_{u,t} =  \beta_{fe} Moratorium_{u,t} +  \mathbb{X}_{u,t} + \phi_{u, month} + \alpha_{year} + \epsilon_{u,t}
+\end{equation}
+where $Y_{u,t}$ represents the daily/weekly reports of sexual assault and alcohol offenses at university $u$ in time $t$. $Moratorium_{u,t}$ is an indicator equal to 1 if a university $u$ is experiencing a moratorium at time $t$, $X_{u,t}$ is a vector of the covariates shown in Table \ref{tab:university_characteristics} and week-day controls (if daily-level analysis), $\phi_{u, month}$ are university-by-month fixed effects to account for any time invariant differences within school-months, and $\alpha_{year}$ is a year fixed effect. I omit all summer months of June, July, and August from the sample.
+
+
+
+## Pre trends
+
+To address the parallel trends assumption required by the model, I estimate an event-study  under the following specification:
+\begin{equation}\label{eventstudymodel}
+Y_{u,w} = \rho_{u,month}  + \phi_{year} + \sum_{t=-8, w\neq -1}^{w = 8}\beta_{w}\mathbb{I}(Moratorium_{u,w}) + \epsilon_{u,w}
+\end{equation}
+where $Y_{u,w}$ is the outcome of interest, $\rho_{u, month}$ is a university-by-month fixed effect, $\phi_{year}$ is a year fixed effect, and $Moratorium_{u,w}$ is an indicator function equal to 1 if a university is under a fraternity moratorium in week $w$. The estimated event studies in Figures \ref{event_study_alc} and \ref{event_study_sex} show that most of the coefficients are negative for each outcome. While the confidence intervals are capturing 0 (most of the time), I am worried that the assumption of parallel trends is not satisfied here which could shut-down this project. However, my data set up is unusual, and these coefficients could definitely be due to human error. I wanted to be transparent about how I created this event study, because I am honestly unsure of the correct thing to do in this unique case. Here were my steps to creating the event study:
+
+* Find all schools that have more than 1 moratorium. 
+* (!!!) Create new observations for these schools as if they were a completely new school. For instance, if San Diego State had 2 moratoriums, one in 2015 and one in 2018, then I would have San Diego State in the data as one school that only gets treated in 2015, and San Diego State-2 in the data as another school that only gets treated in 2018. I had to do this for 4 schools. 
+* Create my event window with binary treatment variables, 1 for each month a certain number of weeks before or after the moratorium period. Note that in this case, the moratorium period varies in size for each university, so the treated period is going to have schools inside of it for different amounts of time. 
+* Omit the period before treatment. In my case, I omitted the week before the treatment date. 
+* Bin up the end points. Note that sometimes, since some schools observe moratoria in very late periods, there may be no periods after treatment (e.g. they are treated until the sample ends).
+* Estimate the model, graph the coefficients, but exclude the binned endpoint coefficients. Hence, if my event study had 8 weeks before and 8 weeks after treatment, I would estimate the entire model (e.g. including all 8 weeks before and 8 weeks after), but then only show in the coefficient plot the 7 weeks before and 7 weeks after. 
+
+Since this is a difficult data set to perform the event study, I wanted to know if there is any other way to possibly test the parallel trends assumption (or maybe even a different identification strategy). 
+
+## Results
+
+Results on alcohol offenses are shown in Table \ref{tab:alc_ols}. I split the analysis by both the weekly and monthly level, and used two difference functional forms: the inverse-hyperbolic sine, and reports per 100k total students.  Table \ref{tab:alc_ols} shows significant decreases in alcohol offenses across three of the specifications. In particular, column 1 shows that fraternity moratoria cause a .305 reduction in alcohol offenses which is a 16% reduction in the mean. This result is both expected and unexpected - all fraternity moratoria implement restrictions on events with alcohol for IFC fraternities, yet this attributes a significant portion of alcohol offenses on university campuses to IFC fraternity activity. However, the effects slightly diminish when aggregating to the weekly level. This may be caused by imprecision, as most offenses occur only on Friday/Saturday/Sunday. To demonstrate this, Table \ref{tab:alc_restrict_ols} shows results estimating the model when restricting the sample to only Fridays/Saturdays/Sundays at both the daily and weekly level. In both Table \ref{tab:alc_ols} and Table \ref{tab:alc_restrict_ols}, the inverse hyperbolic sine shows smaller effects of the moratoria on alcohol offenses, and the effects diminish when aggregating to the weekly level, regardless of whether the sample is restricted to weekends. 
+
+Results on reports of sexual assault are shown in Table \ref{tab:sex_ols} and Table \ref{tab:sex_restrict_ols} In each of these specifications, none show a significant decrease, but all show a negative sign. Observing column (1) in Table \ref{tab:sex_ols}, fraternity moratoria decrease reports of sexual assaults per 100k students in the sample by approximately .038 per day. While not significant, the standard error of .023 implies that we can rule out decreases greater than  30% from the mean.  
+
+# Heterogeneous effects
+
+I analyzed two separate forms of heterogeneous effects: differences in lengths of moratoria, and differences in whether the moratoria was student-enforced or university-enforced. Table \ref{tab:hetero_length} shows estimates of equation \ref{model} with an added indicator (interacted with the treatment) for whether the university had, on average, moratoria that lasted longer than the median length of 22 days. There appears to be no significant difference between long and short moratoria, although the sign of the point estimate suggests that longer moratoria are more effective for alcohol offenses. 
+
+Likewise, Table \ref{tab:hetero_ifc} shows the estimates of equation \ref{model} with an added indicator for whether the moratorium was enforced by the IFC (e.g. student-led) or the university. Note that I did not interact this binary variable with the treatment variable, as that would lead to perfect multicollinearity^[The University Enacted indicator only turns on if Moratorium is equal to 1. Therefore, the interpretation should be the average difference between university enacted and IFC enacted moratoria.]. Similar to the differences in effects of lengths of moratoria, there appears to only be suggestive evidence that alcohol offenses are affected more by university-enforced moratoria, although these point estimates are not significant at conventional levels. 
+
+
+# Main Concerns/Feedback Wanted
+* *The event study.* There does not seem to be any papers (that I know of) that have a similar set up as me so I do not have a guide. I looked at the Twitter post Sarah sent to me that had another student asking a similar question. The responses were a couple papers that either 1) only focused on 1 event or 2) did not explain what they did. I would LOVE to see a paper that has a similar experimental design as mine!
+* *Writing down complicated fixed effects in models and subscripting accordingly*. For instance, my main model. The data is a panel of universities at the daily level or 6 years. Hence, there are approximately 40 (schools) times 365 (days) times 6 (years). My outcome variable should then be described as $Y_{u,d}$ (e.g. outcome $Y$ at university $u$ in day $d$). However, my model includes university-by-month and year fixed effects. Therefore, should I subscript my outcome variable to be $Y_{u,d,m,y}$ (e.g. outcome $Y$ at university $u$ in month $m$ in year $y$? Is it ok to write a fixed effect such as $\alpha_{u,month}$ without explicitly putting the $m$ subscript on the outcome $Y$?. These are minor details and they seem to vary across papers. 
+* *Thoughts on the results*. Are these suggestive of true effects? Which functional form seems best? Note that I also ran a Poisson regression on these models (not shown), and the results actually became more significant with similar effect sizes. 
+
+
+# Other Ventures
+
+I wanted to let everyone know that I got access to rather unique data recently, and would like to know if anyone would want to work on a project with it. It's Jail Data Initiative, so I have data spanning from September 2019 - (approx) March 2021 on jail populations across the country with the inmates. Furthermore, I have inmate sex, age, name, race, crime committed, and bail amount. See more information [here](https://publicsafetylab.org/jail-data-initiative) if interested!
+
+
+
+
+
+\newpage
+
+```{r}
+source("Figures/trigger_plot.R")
+```
+
+```{r, fig.cap= "\\label{trigger_plot}Distribution of triggering events for fraternity moratoria."}
+trigger_plot
+```
+
+```{r, include = F, cache = F}
+## word tables
+source("Tables/matching_word_table.R")
+```
+
+```{r matching_outcomes, echo = F}
+kable(matching_table, booktabs = T, caption = "Words/phrases used to pattern match on outcomes of interest.") %>% 
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, color = "blue") %>%
+  column_spec(2, width = "30em") 
+```
+
+```{r top_categories, echo = F, fig.pos="H"}
+kable(top_categories, booktabs = T, caption = "The top 15 most frequent reported incidents after pattern matching into each category. Numbers in parenthesis denote the frequency of offense in the data.") %>% 
+  column_spec(1, "10em") %>% 
+  column_spec(2, "10em") %>% 
+  column_spec(3, "10em") %>% 
+  column_spec(4, "10em") %>% 
+  column_spec(5, "10em") %>% 
+  column_spec(6, "10em") %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r}
+source("Figures/monthly_by_year_crimes.R")
+```
+
+```{r out.extra='angle=90', fig.width=11, fig.height=9, fig.cap="\\label{month_by_year_crimes}Reports of crimes over entire panel."}
+month_by_year_crimes
+```
+
+```{r}
+source("Figures/barplot_byday.R")
+```
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{barplot_byday}Average number of crimes by day-of-week.", fig.ncol = 2, fig.subcap= c("Sexual Assault", "Alcohol Offense")}
+by_day_sexual_assault
+by_day_alcohol
+```
+
+
+```{r university_characteristics}
+source("Tables/summary_stats_university.R")
+```
+
+```{r }
+university_characteristics
+```
+
+```{r summary_stats_offenses}
+source("Tables/summary_stats_offenses.R")
+```
+
+```{r}
+crime_table
+crime_table_p100
+```
+
+
+```{r}
+source("Figures/event_study_april9.R")
+```
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{event_study_alc}Event study of alcohol offenses. Units are in weeks relative to the first moratorium week.", fig.ncol = 2, fig.subcap= c("Alcohol Offenses Per-100k Students", "IHS(Alcohol Offenses)")}
+alcohol_es_100
+alcohol_es_ihs
+```
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{event_study_sex}Event study of reports of sexual assault. Units are in weeks relative to the first moratorium week.", fig.ncol = 2, fig.subcap= c("Reports of Sexual Assault Per-00k Students", "IHS(Reports of Sexual Assault)")}
+sexual_assault_es_100
+sexual_assault_es_ihs
+```
+
+```{r alc_ols}
+source("Figures/regressions_alc_april9.R")
+```
+
+```{r}
+alc_ols %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r alc_restrict_ols}
+source("Figures/regression_alc_restrdays_april9.R")
+```
+
+```{r}
+alc_ols_restricted %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r sex_ols}
+source("Figures/regressions_sex_april9.R")
+```
+
+```{r}
+sex_ols %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+
+```{r sex_restrict_ols}
+source("Figures/regression_sex_restrdays_april9.R")
+```
+
+```{r}
+sex_ols_restricted %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+
+```{r hetero_length}
+source("Figures/heteroeffects_lengthclosure.R")
+```
+
+```{r}
+hetero_closure %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r hetero_ifc}
+source("Figures/heteroeffects_uni_ifc.R")
+```
+
+```{r}
+hetero_uni_enacted %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
