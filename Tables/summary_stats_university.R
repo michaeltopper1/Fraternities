@@ -28,10 +28,10 @@ university_characteristics <- daily_crime %>%
                  (`Fraction Black`= total_undergrad_black) + 
                 (`Fraction Hispanic` = total_undergrad_hispanic) +
                 (`Fraction White` = total_undergrad_white) +
-                (`Fraction Full-time` =ftime_total_undergrad) +
+                (`Total Full-time` =ftime_total_undergrad) +
                  (`Graduation Rate` = graduation_rate_total_cohort_) + 
                 (`Fraction Private`=private)~ (Mean + SD + Median + Min + Max), data = .,
-              title = "University Characteristics") %>% 
+              title = "University summary statistics of the 40 universities") %>% 
   add_indent(c(2:6)) %>% 
   add_indent(c(3:6))
 

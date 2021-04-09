@@ -39,8 +39,6 @@ event_study_func <- function(x, window_size) {
   return(plot)
 }
 
-event_study_func(alcohol_es, 8) +
-  expand_limits(y = c(-.95, .75)) 
 
 es <- clean_es(es)
 

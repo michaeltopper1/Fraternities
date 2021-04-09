@@ -3,7 +3,7 @@ library(lubridate)
 library(glue)
 
 ## using all months including summer 
-path <- "Created Data/xMaster_data_2021/daily_panel_full.csv"
+path <- "Created Data/xMaster_data_2021/daily_panel.csv"
 daily_crime <- read_csv(path, guess_max = 50000)
 
 month_by_year_crimes <- daily_crime %>% 
@@ -23,4 +23,4 @@ month_by_year_crimes <- daily_crime %>%
   theme_light() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), legend.position = "bottom")
 
-month_by_year_crimes
+
