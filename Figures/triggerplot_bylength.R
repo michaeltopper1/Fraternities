@@ -6,7 +6,7 @@
 ##
 
 library(tidyverse)
-
+library(glue)
 daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv", guess_max = 50000)
 
 
@@ -52,6 +52,6 @@ trigger_plot <- length_graph %>%
   ggplot(aes(university, length, fill = factor(university_enacted))) +
   geom_col() + coord_flip() +
   facet_wrap(~reason) + theme_light() +
-  labs(y = "Length of Moratorium in Days", x= "", fill = "") +
+  labs(y = "Length of Moratorium in Days", x= "", fill = "", caption = "Note: Behavior contains conduct violations/racist activity/alcohol violations/hazing") +
   theme(legend.position ="bottom", strip.text.x = element_text(size = 14), strip.text = element_text(colour = 'white'),
         strip.background = element_rect(fill = "gray60"), legend.key.size = unit(.5, "cm"))
