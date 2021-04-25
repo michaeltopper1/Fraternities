@@ -11,26 +11,31 @@ daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv
                         guess_max = 50000)
 
 by_day_sexual_assault <- daily_crime %>% 
+  mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Place", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Place"))) %>% 
   mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
   group_by(weekday, treatment) %>% 
   summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
             avg_alcohol = mean(alcohol_offense, na.rm = T), 
             avg_drug = mean(drug_offense, na.rm = T)) %>% 
   ggplot(aes(x = weekday, y = avg_sexual_assault, fill = as.factor(treatment))) +
-  geom_col(position = "dodge") +
-  labs(x = "",y= "", fill = "Fraternity Moratorium") +
-  theme_light()
+  geom_col(position = "dodge", alpha = 0.8) +
+  labs(x = "",y= "", fill = "") +
+  theme_light() 
 
 by_day_alcohol <- daily_crime %>% 
+  mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Place", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Place"))) %>% 
   mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
   group_by(weekday, treatment) %>% 
   summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
             avg_alcohol = mean(alcohol_offense, na.rm = T), 
             avg_drug = mean(drug_offense, na.rm = T)) %>% 
   ggplot(aes(x = weekday, y = avg_alcohol, fill = as.factor(treatment))) +
-  geom_col(position = "dodge") +
-  labs(x = "",y= "", fill = "Fraternity Moratorium") +
-  theme_light()
+  geom_col(position = "dodge", alpha = 0.8) +
+  labs(x = "",y= "", fill = "") +
+  theme_light() + 
+  theme(legend.position = "bottom", axis.text.x = element_text(color = c('red','black',
+                                                                         'black', 'red', 'red',
+                                                                         'red','red')))
 
 by_day_drug_offense <- daily_crime %>% 
   mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
