@@ -52,8 +52,10 @@ trigger_plot <- length_graph %>%
   mutate(university = reorder_within(university, length, reason)) %>% 
   ggplot(aes(university, length, fill = factor(university_enacted))) +
   geom_col() + coord_flip() +
+  geom_text(aes(label = length), color = "white", size = 5, hjust = 1) +
+  facet_wrap(~reason, scales = "free_y") +
   scale_x_reordered() +
-  facet_wrap(~reason, scales = "free_x") + theme_light() +
+  ggthemes::theme_fivethirtyeight() +
   labs(y = "Length of Moratorium in Days", x= "", fill = "", caption = "Note: Behavior contains conduct violations/racist activity/alcohol violations/hazing") +
   theme(legend.position ="bottom", strip.text.x = element_text(size = 14), strip.text = element_text(colour = 'white'),
         strip.background = element_rect(fill = "gray60"), legend.key.size = unit(.5, "cm"))
