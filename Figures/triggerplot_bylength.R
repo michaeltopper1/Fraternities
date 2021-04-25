@@ -52,7 +52,7 @@ trigger_plot <- length_graph %>%
   mutate(university = reorder_within(university, length, reason)) %>% 
   ggplot(aes(university, length, fill = factor(university_enacted))) +
   geom_col() + coord_flip() +
-  geom_text(aes(label = length), color = "white", size = 5, hjust = 1) +
+  geom_text(aes(label = length), color = "white", size = 5, hjust = 1.1) +
   facet_wrap(~reason, scales = "free_y") +
   scale_x_reordered() +
   ggthemes::theme_fivethirtyeight() +
