@@ -10,11 +10,9 @@ library(tidyverse)
 
 
 ## getting the university names
-source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Code/Cleaning_raw_data_files/clean_excel_closure_dates.R")
+closure_table_round <- readxl::read_xlsx("Data/closure_spreadsheet_final_2019.xlsx") %>% janitor::clean_names()
 
-
-
-path <- "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/IPEDS/graduation_rate_financial_aid/Data_2-19-2021.csv"
+path <- "Data/IPEDS/graduation_rate_financial_aid/Data_2-19-2021.csv"
 
 ## getting only the universities I have in my sample
 ipeds_grad_rate_financial <- read_csv(path) %>% 
@@ -48,4 +46,4 @@ ipeds_grad_rate <- ipeds_grad_rate_financial %>%
 ipeds_grad_financial <- ipeds_grad_rate %>% 
   left_join(ipeds_financial_aid)
 
-write_csv(ipeds_grad_financial, file = "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/IPEDS/unappended/ipeds_grad_financial.csv")
+write_csv(ipeds_grad_financial, file = "Created Data/IPEDS/unappended/ipeds_grad_financial.csv")

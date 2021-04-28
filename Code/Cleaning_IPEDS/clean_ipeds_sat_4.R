@@ -9,9 +9,9 @@ library(tidyverse)
 
 
 ## getting the university names
-source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Code/Cleaning_raw_data_files/clean_excel_closure_dates.R")
+closure_table_round <- readxl::read_xlsx("Data/closure_spreadsheet_final_2019.xlsx") %>% janitor::clean_names()
 
-path <- "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/IPEDS/SAT/Data_2-19-2021.csv"
+path <- "Data/IPEDS/SAT/Data_2-19-2021.csv"
 
 ipeds_sat <- read_csv(path) %>% 
   janitor::clean_names() %>% 
@@ -26,4 +26,4 @@ ipeds_sat_math <- ipeds_sat %>%
   filter(year >= 2013)
   
 
-write_csv(ipeds_sat_math, file = "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/IPEDS/unappended/ipeds_sat_4.csv")
+write_csv(ipeds_sat_math, file = "Created Data/IPEDS/unappended/ipeds_sat_4.csv")

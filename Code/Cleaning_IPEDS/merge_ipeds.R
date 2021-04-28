@@ -8,9 +8,9 @@
 
 library(tidyverse)
 
-directory <- "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/IPEDS/unappended"
-setwd(directory)
-ipeds <- map(list.files(pattern = ".csv$"), ~read_csv(.))
+directory <- "Created Data/IPEDS/unappended"
+files <- map(list.files(directory,pattern = ".csv$"), ~paste0(directory, "/", .))
+ipeds <- map(files, ~read_csv(.))
 
 ipeds_main <- ipeds[[1]]
 
@@ -21,4 +21,4 @@ ipeds_final <- ipeds_main %>%
   left_join(ipeds_merge[[2]]) %>% 
   left_join(ipeds_merge[[3]])
 
-write_csv(ipeds_final, file = "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/IPEDS/ipeds_cleaned_appended.csv")
+write_csv(ipeds_final, file = "Created Data/IPEDS/ipeds_cleaned_appended.csv")

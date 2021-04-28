@@ -8,10 +8,10 @@
 library(tidyverse)
 
 ## gets the names of the universities I need
-source("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Code/Cleaning_raw_data_files/clean_excel_closure_dates.R")
+closure_table_round <- readxl::read_xlsx("Data/closure_spreadsheet_final_2019.xlsx") %>% janitor::clean_names()
 
 
-path <- "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/IPEDS/Fall Enrollment/Data_2-26-2021.csv"
+path <- "Data/IPEDS/Fall Enrollment/Data_2-26-2021.csv"
 ipeds_fall <- read_csv(path) %>% 
   janitor::clean_names() %>% 
   filter(institution_name %in% closure_table_round$university)
@@ -102,7 +102,7 @@ ipeds_race_fall <- total_students %>%
 
 
 ## now grabbing the undergrad totals for full time, part time, and grand totals.
-path_2 <- "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/IPEDS/Fall Enrollment/Undergrad_totals.csv"
+path_2 <- "Data/IPEDS/Fall Enrollment/Undergrad_totals.csv"
 
 ipeds_fall_undergrad_totals <- read_csv(path_2) %>% 
   janitor::clean_names() %>% 
@@ -136,4 +136,4 @@ ipeds_race_fall <- ipeds_race_fall %>%
   left_join(total_undergrad_pop)
 
 
-write_csv(ipeds_race_fall, file = "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/IPEDS/unappended/ipeds_race_1.csv")
+write_csv(ipeds_race_fall, file = "Created Data/IPEDS/unappended/ipeds_race_1.csv")
