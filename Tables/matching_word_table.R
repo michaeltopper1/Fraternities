@@ -2,11 +2,13 @@
 ##
 ## Author: Michael Topper
 ##
-## Date Last Edited: 2021-03-03
+## Date Last Edited: 2021-4-30
 ##
 
 library(tidyverse)
 library(glue)
+library(ifc)
+
 ## getting in the data that I matched with 
 source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
 
@@ -31,6 +33,10 @@ categories <- c("Sexual Assault", "Alcohol Violations", "Drug Offense",
 matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
 
 
+death_universities <- death_universities()
+
+appended_crime_logs <- appended_crime_logs %>% 
+  filter(university %in% death_universities)
 
 top_drug_alcohol <- appended_crime_logs %>% 
   filter(drug_offense == 1 & alcohol_offense == 1) %>% 
