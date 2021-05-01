@@ -6,8 +6,29 @@ library(ifc)
 
 daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
                         guess_max = 50000)
+exo_universites <- c("Arkansas State University-Main Campus",
+                     "California Polytechnic State University-San Luis Obispo",
+                     "Clemson University",
+                     "East Carolina University",
+                     "Emory University",
+                     "Florida State University",
+                     "Louisiana State University and Agricultural & Mechanical College",
+                     "Texas State University",
+                     "University at Buffalo",
+                     "University of Iowa",
+                     "University of Pittsburgh-Pittsburgh Campus",
+                     "University of Vermont",
+                     "University of Virginia-Main Campus",
+                     "Washington State University",
+                     "West Virginia University",
+                     "University of Nebraska-Lincoln",
+                     "University of Nevada-Reno",
+                     "University of Kentucky",
+                     "Hampden-Sydney College",
+                     "Texas Christian University")
 daily_crime <- daily_crime %>% 
   mutate(across(starts_with("closure"), ~as_date(.)))
+
 
 no_closure_uni <- daily_crime %>% 
   filter(is.na(closure_1)) %>% 
@@ -74,12 +95,31 @@ summary <- pseudo_crime %>%
   group_by(across(starts_with("treatment")), pseudo_uni) %>% 
   summarize(mean_alc = mean(alcohol_offense, na.rm = T)) %>% 
   ungroup()
-summary %>% 
-  filter(pseudo_uni == 1) %>% 
-  select(-pseudo_uni) %>% 
-  pivot_wider(mean_alc, names_from = c(-mean_alc), values_from = mean_alc) %>% View()
+
 
 summary %>% 
-  filter(pseudo_uni == 1) %>%
+  mutate(time = case_when(
+    treatment_minus_8== 1 ~-8,
+    treatment_minus_7 == 1 ~-7,
+    treatment_minus_6 ==1~ -6,
+    treatment_minus_5 ==1~ -5,
+    treatment_minus_4 ==1~ -4,
+    treatment_minus_3 ==1~ -3,
+    treatment_minus_2 ==1~ -2,
+    treatment_minus_1 ==1~ -1,
+    treatment ==1 ~ 0,
+    treatment_plus_1 ==1 ~ 1,
+    treatment_plus_2 ==1 ~ 2,
+    treatment_plus_3 ==1 ~ 3,
+    treatment_plus_4 ==1 ~ 4,
+    treatment_plus_5 ==1 ~ 5,
+    treatment_plus_6 ==1 ~ 6,
+    treatment_plus_7 ==1 ~ 7,
+    treatment_plus_8 ==1 ~ 8,
+  )) %>% 
+  arrange(time) %>% 
+  ggplot(aes(time, mean_alc)) +
+  geom_point(aes(color = factor(pseudo_uni))) +
+  geom_path(aes(color = factor(pseudo_uni)))
   
   
