@@ -9,6 +9,9 @@ library(tidyverse)
 
 daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
                         guess_max = 50000)
+death_universities <- ifc::death_universities()
+daily_crime <- daily_crime %>% 
+  filter(university %in% death_universities)
 
 by_day_sexual_assault <- daily_crime %>% 
   mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Place", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Place"))) %>% 
@@ -20,7 +23,8 @@ by_day_sexual_assault <- daily_crime %>%
   ggplot(aes(x = weekday, y = avg_sexual_assault, fill = as.factor(treatment))) +
   geom_col(position = "dodge", alpha = 0.8) +
   labs(x = "",y= "", fill = "") +
-  theme_light() 
+  theme_light() +
+  theme(legend.position = "bottom")
 
 by_day_alcohol <- daily_crime %>% 
   mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Place", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Place"))) %>% 
@@ -33,9 +37,7 @@ by_day_alcohol <- daily_crime %>%
   geom_col(position = "dodge", alpha = 0.8) +
   labs(x = "",y= "", fill = "") +
   theme_light() + 
-  theme(legend.position = "bottom", axis.text.x = element_text(color = c('red','black',
-                                                                         'black', 'red', 'red',
-                                                                         'red','red')))
+  theme(legend.position = "bottom")
 
 by_day_drug_offense <- daily_crime %>% 
   mutate(weekday = factor(weekday, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
