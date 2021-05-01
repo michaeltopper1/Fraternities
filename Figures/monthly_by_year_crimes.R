@@ -1,10 +1,22 @@
+## Purpose of script:
+##
+## Author: Michael Topper
+##
+## Date Last Edited: 2021-04-30
+##
+
 library(tidyverse)
 library(lubridate)
 library(glue)
+library(ifc)
 
 ## using all months including summer 
 path <- "Created Data/xMaster_data_2021/daily_panel.csv"
 daily_crime <- read_csv(path, guess_max = 50000)
+
+death_universities <- ifc::death_universities()
+daily_crime <- daily_crime %>% 
+  filter(university %in% death_universities)
 
 month_by_year_crimes <- daily_crime %>% 
   group_by(month, year) %>% 
