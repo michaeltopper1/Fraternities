@@ -25,7 +25,7 @@ weekly_crime <- weekly_crime %>%
                 ~ ./total_students_undergrad)) 
 
 per1000_d <- daily_crime %>% 
-  feols(alcohol_offense_per1000 ~ treatment + ftime_total_undergrad + 
+  feols(alcohol_offense_per25 ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           university + month + year + weekday, cluster = ~university, data = .) 
 pois_d <- daily_crime %>% 
@@ -33,7 +33,7 @@ pois_d <- daily_crime %>%
            total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
            university + month + year + weekday, cluster = ~university, data = .) 
 per1000_d_unimonth <- daily_crime %>% 
-  feols(alcohol_offense_per1000 ~ treatment + ftime_total_undergrad + 
+  feols(alcohol_offense_per25 ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           uni_month + year + weekday, cluster = ~university, data = .) 
 pois_d_unimonth <- daily_crime %>% 
@@ -44,7 +44,7 @@ pois_d_unimonth <- daily_crime %>%
 
 
 per1000_w <- weekly_crime %>% 
-  feols(alcohol_offense_per1000 ~ treatment + ftime_total_undergrad + 
+  feols(alcohol_offense_per25 ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           university + month + year, cluster = ~university, data = .) 
 pois_w <- weekly_crime %>% 
@@ -52,7 +52,7 @@ pois_w <- weekly_crime %>%
            total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
            university + month + year, cluster = ~university, data = .) 
 per1000_w_unimonth <- weekly_crime %>% 
-  feols(alcohol_offense_per1000 ~ treatment + ftime_total_undergrad + 
+  feols(alcohol_offense_per25 ~ treatment + ftime_total_undergrad + 
           total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
           uni_month + year, cluster = ~university, data = .) 
 pois_w_unimonth <- weekly_crime %>% 
@@ -61,9 +61,9 @@ pois_w_unimonth <- weekly_crime %>%
            uni_month + year, cluster = ~university, data = .) 
 
 
-alc_models_restricted <- list("OLS - Per 1000 Students" = per1000_d, "OLS - Per 1000 Students" = per1000_d_unimonth,
+alc_models_restricted <- list("OLS - Per 25000 Students" = per1000_d, "OLS - Per 25000 Students" = per1000_d_unimonth,
                               "Poisson" = pois_d,"Poisson" = pois_d_unimonth,
-                              "OLS - Per 1000 Students"= per1000_w,"OLS - Per 1000 Students"= per1000_w_unimonth,
+                              "OLS - Per 25000 Students"= per1000_w,"OLS - Per 25000 Students"= per1000_w_unimonth,
                               "Poisson" = pois_w, "Poisson" = pois_w_unimonth)
 alc_ols_death <- modelsummary(alc_models_restricted, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within',
                                    coef_map = c("treatment" = "Moratorium",
@@ -74,6 +74,6 @@ alc_ols_death <- modelsummary(alc_models_restricted, stars = T, gof_omit = 'DF|D
                                                 "graduation_rate_total_cohort_" = "Graduation Rate"),
                                    output = "kableExtra",title = "Effect of fraternity moratoria on alcohol offenses. June, July, August excluded. Death-trigger universities only") %>% 
   add_header_above(c(" " = 1, "Daily Level" = 4, "Weekly Level" = 4)) %>% 
-  add_footnote("Poisson regressions are based on counts and not per-1000-students.") %>% 
+  add_footnote("Poisson regressions are based on counts and not per-25000-students.") %>% 
   add_footnote("Fixed effects of uni_month mean university-by-calendar-month.")
 
