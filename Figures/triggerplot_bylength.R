@@ -49,14 +49,18 @@ length_graph <- length %>%
   mutate(university_enacted = ifelse(university_enacted == 1, "University Enacted", "IFC Enacted")) 
 
 trigger_plot <- length_graph %>% 
+  mutate(university = ifelse(university == "Louisiana State University and Agricultural & Mechanical College", "Louisiana State University", university)) %>% 
+  mutate(university = ifelse(university == "California Polytechnic State University-San Luis Obispo", "Cal Poly San Luis Obispo", university)) %>% 
   mutate(university = reorder_within(university, length, reason)) %>% 
+  filter(!is.na(length)) %>% 
   ggplot(aes(university, length, fill = factor(university_enacted))) +
   geom_col(alpha = 0.8) + coord_flip() +
-  geom_text(aes(label = length), color = "white", size = 5, hjust = 1.1) +
+  geom_text(aes(label = length), color = "black", size = 3, hjust = 0) +
   facet_wrap(~reason, scales = "free_y") +
   scale_x_reordered() +
-  ggthemes::theme_fivethirtyeight() +
+  ggthemes::theme_clean() +
   labs(y = "Length of Moratorium in Days", x= "", fill = "", caption = "Note: Behavior contains conduct violations/racist activity/alcohol violations/hazing") +
-  theme(legend.position ="bottom", strip.text.x = element_text(size = 14), strip.text = element_text(colour = 'white'),
+  theme(legend.position ="bottom", strip.text.x = element_text(size = 10), strip.text = element_text(colour = 'white'),
         strip.background = element_rect(fill = "gray60"), legend.key.size = unit(.5, "cm"))
+
 

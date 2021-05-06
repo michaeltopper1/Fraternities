@@ -9,9 +9,7 @@ library(tidyverse)
 
 daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
                         guess_max = 50000)
-death_universities <- ifc::death_universities()
-daily_crime <- daily_crime %>% 
-  filter(university %in% death_universities)
+
 
 by_day_sexual_assault <- daily_crime %>% 
   mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Place", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Place"))) %>% 

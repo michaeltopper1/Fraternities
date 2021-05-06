@@ -26,12 +26,17 @@ theft_words <- theft_identifiers %>%
 noise_words <- noise_violation_identifier %>% 
   str_replace_all("\\|", ", ")
 words <- list(sexual_assault_words, alcohol_words, drug_offense_words, robbery_burglary_words, theft_words,
-              noise_words)  %>% 
+     noise_words)  %>% 
   unlist()
 categories <- c("Sexual Assault", "Alcohol Violations", "Drug Offense",
                 "Robbery/Burglary", "Theft/Larceny", "Noise Complaints")
 matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
 
+
+death_universities <- death_universities()
+
+appended_crime_logs <- appended_crime_logs %>% 
+  filter(university %in% death_universities)
 
 top_drug_alcohol <- appended_crime_logs %>% 
   filter(drug_offense == 1 & alcohol_offense == 1) %>% 
