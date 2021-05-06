@@ -55,7 +55,7 @@ trigger_plot <- length_graph %>%
   filter(!is.na(length)) %>% 
   ggplot(aes(university, length, fill = factor(university_enacted))) +
   geom_col(alpha = 0.8) + coord_flip() +
-  geom_text(aes(label = length), color = "black", size = 3, hjust = 0) +
+  geom_text(aes(label = length), color = "black", size = 3, hjust = -.1) +
   facet_wrap(~reason, scales = "free_y") +
   scale_x_reordered() +
   ggthemes::theme_clean() +
