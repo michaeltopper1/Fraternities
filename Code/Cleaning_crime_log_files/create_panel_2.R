@@ -200,8 +200,8 @@ create_data_analysis_week <- function(x) {
     mutate(uni_month = cur_group_id()) %>% 
     ungroup() %>% 
     mutate(across(c(sexual_assault, alcohol_offense,
-                    theft, robbery_burglary, drug_offense, rape), ~./total_students_all * 1000,
-                  .names = '{.col}_per1000')) %>% 
+                    theft, robbery_burglary, drug_offense, rape), ~./total_students_all * 25000,
+                  .names = '{.col}_per25')) %>% 
     group_by(university, year) %>% 
     mutate(uni_year = cur_group_id()) %>% 
     ungroup() %>% 
@@ -220,8 +220,8 @@ daily_panel <-  daily_panel %>%
   mutate(uni_month = cur_group_id()) %>% 
   ungroup() %>% 
   mutate(across(c(sexual_assault, alcohol_offense,
-                  theft, robbery_burglary, drug_offense, rape), ~./total_students_all * 1000,
-                .names = '{.col}_per1000')) %>% 
+                  theft, robbery_burglary, drug_offense, rape), ~./total_students_all * 25000,
+                .names = '{.col}_per25')) %>% 
   group_by(university, year) %>% 
   mutate(uni_year = cur_group_id()) %>% 
   ungroup() %>% 
