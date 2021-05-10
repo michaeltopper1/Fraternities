@@ -1,0 +1,89 @@
+colnames,label
+date,date in days
+university,university
+sexual_assault,sexual assault counts
+alcohol_offense,alcohol offense counts
+drug_offense,drug offense counts
+theft,theft counts
+robbery_burglary,robbery counts
+alcohol_offense_strict,alcohol offense counts (stricter definition)
+noise_offense,noise offense counts
+rape,rape counts
+year,year
+month,month
+day,day
+weekday,day of the week
+closure_1,beginning of moratorium (1)
+closure_1_end,end of moratorium (1)
+closure_2,beginning of moratorium (2)
+closure_2_end,end of moratorium (2)
+university_enacted_1,whether moratorium was enacted by university
+university_enacted_2,whether moratorium was enacted by university
+reason1,triggering event of moratorium (1)
+reason2,triggering event of moratorium (2)
+treatment,whether moratorium is in place
+university_enacted,
+unit_id,IPEDS id
+control_of_institution,Public/Private unviersity
+level_of_institution,4-year or 2-year
+total_price_oncampus_oos,total price for on campus for out of state
+total_price_oncampus_is,total price for on campus in state
+total_price_oncampus_id,total price for on campus in district
+total_price_offcampus_id,total price for off campus for in district
+total_price_offcampus_is,total price for off campus in state
+total_price_offcampus_oos,total price for off campus out of state
+total_price_offcampus_id_wfam,"total price for off campus for in district, but living with family"
+total_price_offcampus_is_wfam,"total price for off campus in state, but living with family"
+total_price_offcampus_oos_wfam,total price for off campus out of state but living with family
+frac_admitted_total,fraction of students admitted
+fulltime_retention_rate,full time retention rate
+undergraduate_enrollment,total undergraduate enrollment
+fulltime_undergraduate_enrollment,full time undergraduate enrollment
+frac_total_black,fraction of total students black
+frac_total_hispanic_latino,fraction hispanic/latinx
+frac_total_asian,fraction asian
+frac_total_white,fraction white
+frac_undergrad_asian,fraction undergraduates asian
+frac_undergrad_white,fraction undergraduates white
+frac_undergrad_hispanic_latino,fraction undergraduates latinx
+frac_undergrad_black,fraction undergrad black
+frac_ftime_undergrad_instate,fraction full time undergraduate in state
+frac_ftime_undergrad_outofstate,fraction full time undergradte out of state
+frac_ftime_undergrad_foreign_countries,fraction full time undergrad from a foreign country
+total_enrollment,total enrollment in university
+fulltime_enrollment,total full time enrollment in university
+graduation_rate_total_cohort,graduation rate
+frac_ftime_undergrad_award_any_financial_aid,fraction fulltime undgergraduates receiving any financial aid
+frac_ftime_undergrad_award_student_loans,fraction full time undergraduates awarded student loans
+frac_core_revenues_tuition_fees,fraction of university core revenues that are from tuition and fees
+frac_core_revenues_state_apro,fraction of university core revenues that are from state aproporiations
+frac_core_revenues_local_apro,fraction of university core revenues that are from local apropriations
+frac_core_revenues_gov_contracts,fraction of university core revenues that are from government contracts
+frac_core_revenues_priv_gifts_grants,fraction of university core revenues that are from private gifts/grants
+frac_core_revenues_invest_return,fraction of university core revenues from investment returns
+frac_core_revenues_other,
+endowment_assests,
+state_abbreviation,state abbreviation
+degreegranting_status,
+longitude,
+latitude,
+calendar_system,quarter/semester
+sat_math_25,25th percentile for SAT math
+sat_math_75,75th percent for SAT math
+sat_reading_75,75th percentile for SAT reading
+sat_reading_25,
+student_to_faculty_ratio,
+ihs_sexual_assault,inverse hyperbolic sine of sexual assault
+ihs_alcohol_offense,
+ihs_theft,
+ihs_robbery_burglary,
+ihs_drug_offense,
+ihs_rape,
+uni_month,university by month indicator
+sexual_assault_per25,
+alcohol_offense_per25,
+theft_per25,
+robbery_burglary_per25,
+drug_offense_per25,
+rape_per25,
+uni_year,
