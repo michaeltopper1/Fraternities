@@ -12,14 +12,15 @@ daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv", guess_
 
 
 length_1 <- daily_crime %>% 
-  mutate(length_1 = closure_1_end - closure_1, length_2 = closure_2_end - closure_2) %>% 
-  distinct(length_1, university, university_enacted_1, reason1) %>% 
-  rename("university_enacted" = "university_enacted_1", "length" = "length_1", "reason" = "reason1")
+  group_by(university) %>% 
+  filter(date >= closure_1 & date < closure_1_end) %>% 
+  count(treatment, reason1, university_enacted_1) %>% 
+  rename("university_enacted" = "university_enacted_1", "length" = "n", "reason" = "reason1")
 length_2 <- daily_crime %>% 
-  mutate(length_1 = closure_1_end - closure_1, length_2 = closure_2_end - closure_2) %>% 
-  distinct(length_2, university, university_enacted_2, reason2) %>% 
-  filter(!is.na(university_enacted_2)) %>% 
-  rename("university_enacted" = "university_enacted_2", "length" = "length_2", "reason" = "reason2")
+  group_by(university) %>% 
+  filter(date >= closure_2 & date < closure_2_end) %>% 
+  count(treatment, reason2, university_enacted_2) %>% 
+  rename("university_enacted" = "university_enacted_2", "length" = "n", "reason" = "reason2")
 
 length <- bind_rows(length_1, length_2)
 
@@ -40,8 +41,6 @@ length <- length %>%
   mutate(reason = str_to_title(reason))
 
 length_graph <- length %>% 
-  extract(length, "length", "(\\d{1,})") %>% 
-  mutate(length = as.double(length)) %>% 
   group_by(reason) %>% 
   mutate(avg_length = round(mean(length, na.rm = T), 1)) %>% 
   add_count(reason) %>% 
@@ -50,7 +49,10 @@ length_graph <- length %>%
 
 trigger_plot <- length_graph %>% 
   mutate(university = ifelse(university == "Louisiana State University and Agricultural & Mechanical College", "Louisiana State University", university)) %>% 
-  mutate(university = ifelse(university == "California Polytechnic State University-San Luis Obispo", "Cal Poly San Luis Obispo", university)) %>% 
+  mutate(university = ifelse(university == "California Polytechnic State University-San Luis Obispo", "Cal Poly San Luis Obispo", university)) %>%
+  mutate(university = ifelse(university == "University of Pittsburgh-Pittsburgh Campus", "University of Pittsburgh", university)) %>%
+  mutate(university = gsub("-Main Campus", "", university)) %>% 
+  mutate(university = ifelse(university == "North Carolina State University at Raleigh", "North Carolina State", university)) %>% 
   mutate(university = reorder_within(university, length, reason)) %>% 
   filter(!is.na(length)) %>% 
   ggplot(aes(university, length, fill = factor(university_enacted))) +
@@ -60,7 +62,7 @@ trigger_plot <- length_graph %>%
   scale_x_reordered() +
   ggthemes::theme_clean() +
   labs(y = "Length of Moratorium in Days", x= "", fill = "", caption = "Note: Behavior contains conduct violations/racist activity/alcohol violations/hazing") +
-  theme(legend.position ="bottom", strip.text.x = element_text(size = 10), strip.text = element_text(colour = 'white'),
+  theme(legend.position ="bottom", strip.text = element_text(colour = 'white'),
         strip.background = element_rect(fill = "gray60"), legend.key.size = unit(.5, "cm"))
 
 
