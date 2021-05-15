@@ -43,30 +43,34 @@ es_alc_pois <- es %>%
   fepois(alcohol_offense~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
            treatment_minus_4 + treatment_minus_3 + treatment_minus_2 + treatment_minus_1 + treatment + 
            treatment_plus_1 + treatment_plus_2 + treatment_plus_3 + treatment_plus_4 + treatment_plus_5 + treatment_plus_6 +
-           treatment_plus_7 + treatment_plus_8 +  ftime_total_undergrad + total_undergrad_asian +
-           total_undergrad_hispanic + total_undergrad_black + graduation_rate_total_cohort_| 
+           treatment_plus_7 + treatment_plus_8 +   total_price_oncampus_is + total_price_oncampus_oos + total_price_offcampus_is +
+           frac_admitted_total + fulltime_retention_rate + undergraduate_enrollment + 
+           frac_total_black + frac_total_hispanic_latino + frac_total_asian + total_enrollment + graduation_rate_total_cohort| 
            university + month + year + weekday, cluster = ~university, data = .)
 es_alc_ols <- es %>% 
-  fepois(alcohol_offense_per25~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
+  feols(alcohol_offense_per25~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
            treatment_minus_4 + treatment_minus_3 + treatment_minus_2 + treatment_minus_1 + treatment + 
            treatment_plus_1 + treatment_plus_2 + treatment_plus_3 + treatment_plus_4 + treatment_plus_5 + treatment_plus_6 +
-           treatment_plus_7 + treatment_plus_8 +  ftime_total_undergrad + total_undergrad_asian +
-           total_undergrad_hispanic + total_undergrad_black + graduation_rate_total_cohort_| 
+           treatment_plus_7 + treatment_plus_8 +  total_price_oncampus_is + total_price_oncampus_oos + total_price_offcampus_is +
+           frac_admitted_total + fulltime_retention_rate + undergraduate_enrollment + 
+           frac_total_black + frac_total_hispanic_latino + frac_total_asian + total_enrollment + graduation_rate_total_cohort| 
            university + month + year + weekday, cluster = ~university, data = .)
 
 es_sex_pois <- es %>% 
   fepois(sexual_assault~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
            treatment_minus_4 + treatment_minus_3 + treatment_minus_2 + treatment_minus_1 + treatment + 
            treatment_plus_1 + treatment_plus_2 + treatment_plus_3 + treatment_plus_4 + treatment_plus_5 + treatment_plus_6 +
-           treatment_plus_7 + treatment_plus_8 +  ftime_total_undergrad + total_undergrad_asian +
-           total_undergrad_hispanic + total_undergrad_black + graduation_rate_total_cohort_| 
+           treatment_plus_7 + treatment_plus_8 +  total_price_oncampus_is + total_price_oncampus_oos + total_price_offcampus_is +
+           frac_admitted_total + fulltime_retention_rate + undergraduate_enrollment + 
+           frac_total_black + frac_total_hispanic_latino + frac_total_asian + total_enrollment + graduation_rate_total_cohort| 
            university + month + year + weekday, cluster = ~university, data = .)
 es_sex_ols <- es %>% 
-  fepois(sexual_assault_per25~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
+  feols(sexual_assault_per25~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
            treatment_minus_4 + treatment_minus_3 + treatment_minus_2 + treatment_minus_1 + treatment + 
            treatment_plus_1 + treatment_plus_2 + treatment_plus_3 + treatment_plus_4 + treatment_plus_5 + treatment_plus_6 +
-           treatment_plus_7 + treatment_plus_8 +  ftime_total_undergrad + total_undergrad_asian +
-           total_undergrad_hispanic + total_undergrad_black + graduation_rate_total_cohort_| 
+           treatment_plus_7 + treatment_plus_8 +   total_price_oncampus_is + total_price_oncampus_oos + total_price_offcampus_is +
+           frac_admitted_total + fulltime_retention_rate + undergraduate_enrollment + 
+           frac_total_black + frac_total_hispanic_latino + frac_total_asian + total_enrollment + graduation_rate_total_cohort| 
            university + month + year + weekday, cluster = ~university, data = .)
 
 alcohol_es_pois <- event_study_func(es_alc_pois, 8) 
@@ -79,30 +83,34 @@ es_alc_pois_uni_month <- es %>%
   fepois(alcohol_offense~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
            treatment_minus_4 + treatment_minus_3 + treatment_minus_2 + treatment_minus_1 + treatment + 
            treatment_plus_1 + treatment_plus_2 + treatment_plus_3 + treatment_plus_4 + treatment_plus_5 + treatment_plus_6 +
-           treatment_plus_7 + treatment_plus_8 +  ftime_total_undergrad + total_undergrad_asian +
-           total_undergrad_hispanic + total_undergrad_black + graduation_rate_total_cohort_| 
+           treatment_plus_7 + treatment_plus_8 +   total_price_oncampus_is + total_price_oncampus_oos + total_price_offcampus_is +
+           frac_admitted_total + fulltime_retention_rate + undergraduate_enrollment + 
+           frac_total_black + frac_total_hispanic_latino + frac_total_asian + total_enrollment + graduation_rate_total_cohort| 
            uni_month + year + weekday, cluster = ~university, data = .)
 es_alc_ols_uni_month <- es %>% 
-  fepois(alcohol_offense_per25~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
+  feols(alcohol_offense_per25~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
            treatment_minus_4 + treatment_minus_3 + treatment_minus_2 + treatment_minus_1 + treatment + 
            treatment_plus_1 + treatment_plus_2 + treatment_plus_3 + treatment_plus_4 + treatment_plus_5 + treatment_plus_6 +
-           treatment_plus_7 + treatment_plus_8 +  ftime_total_undergrad + total_undergrad_asian +
-           total_undergrad_hispanic + total_undergrad_black + graduation_rate_total_cohort_| 
+           treatment_plus_7 + treatment_plus_8 +  total_price_oncampus_is + total_price_oncampus_oos + total_price_offcampus_is +
+           frac_admitted_total + fulltime_retention_rate + undergraduate_enrollment + 
+           frac_total_black + frac_total_hispanic_latino + frac_total_asian + total_enrollment + graduation_rate_total_cohort| 
            uni_month + year + weekday, cluster = ~university, data = .)
 
 es_sex_pois_uni_month <- es %>% 
   fepois(sexual_assault~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
            treatment_minus_4 + treatment_minus_3 + treatment_minus_2 + treatment_minus_1 + treatment + 
            treatment_plus_1 + treatment_plus_2 + treatment_plus_3 + treatment_plus_4 + treatment_plus_5 + treatment_plus_6 +
-           treatment_plus_7 + treatment_plus_8 +  ftime_total_undergrad + total_undergrad_asian +
-           total_undergrad_hispanic + total_undergrad_black + graduation_rate_total_cohort_| 
+           treatment_plus_7 + treatment_plus_8 + total_price_oncampus_is + total_price_oncampus_oos + total_price_offcampus_is +
+           frac_admitted_total + fulltime_retention_rate + undergraduate_enrollment + 
+           frac_total_black + frac_total_hispanic_latino + frac_total_asian + total_enrollment + graduation_rate_total_cohort| 
            uni_month + year + weekday, cluster = ~university, data = .)
 es_sex_ols_uni_month <- es %>% 
-  fepois(sexual_assault_per25~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
+  feols(sexual_assault_per25~ treatment_minus_8 + treatment_minus_7 + treatment_minus_6 + treatment_minus_5 + 
            treatment_minus_4 + treatment_minus_3 + treatment_minus_2 + treatment_minus_1 + treatment + 
            treatment_plus_1 + treatment_plus_2 + treatment_plus_3 + treatment_plus_4 + treatment_plus_5 + treatment_plus_6 +
-           treatment_plus_7 + treatment_plus_8 +  ftime_total_undergrad + total_undergrad_asian +
-           total_undergrad_hispanic + total_undergrad_black + graduation_rate_total_cohort_| 
+           treatment_plus_7 + treatment_plus_8 +  total_price_oncampus_is + total_price_oncampus_oos + total_price_offcampus_is +
+           frac_admitted_total + fulltime_retention_rate + undergraduate_enrollment + 
+           frac_total_black + frac_total_hispanic_latino + frac_total_asian + total_enrollment + graduation_rate_total_cohort| 
            uni_month + year + weekday, cluster = ~university, data = .)
 
 alcohol_es_pois_uni_month <- event_study_func(es_alc_pois_uni_month, 8) 
