@@ -1,0 +1,300 @@
+---
+title: "Fraternity Project Update"
+subtitle: ""
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+    # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
+indent: true
+header-includes:
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+  - \usepackage{amsfonts}
+  - \usepackage{amsthm}
+  - \usepackage{amsmath}
+  - \usepackage[english]{babel}
+#bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning= F)
+knitr::opts_knit$set(root.dir = '/Users/michaeltopper/Desktop/Fraternities and Sexual Assault')
+library(kableExtra)
+library(tidyverse)
+library(lubridate)
+library(modelsummary)
+theme_set(theme_light())
+
+```
+
+*Please note that this is not a paper draft. I am hoping to start the draft once I receive this round of feedback.*
+
+# New in this update
+
+Here are the highlights for this week:
+
+-   *Academic Calendars*. I finally condensed my entire sample to academic calendar days only. No more clumsy "omit summer months".
+-   *More Untreated Schools*. There are more untreated schools (and 1 less treated school because I could not full-heartily confirm a reopening date). I am at 48 total, and I anticipate my final sample will be approximately 55 once I finish cleaning the last few.
+-   *Robust Results*. After condensing the panel to academic calendar years, my results got **way** more robust. I can throw basically any combination of fixed effects and still maintain some interesting results.
+-   *Predicting Moratorium*. I tried to understand if fraternity moratoria are predictable based on school characteristics.
+-   *Leave-one-out*. I did a leave-one-out analysis where I ran my model while omitting 1 university. The results are robust.
+
+I have not yet figured out how I am going to set up the event study for pre-trends now that my data is this strange collection of academic calendars. I needed a break from the event studies - I'll get to these next.
+
+# Background on Fraternities
+
+Fraternities are a ubiquitous, and long-standing tradition in the US 4-year university system. 18 US presidents and 85% of all US Supreme Court justices since 1910 were once members of college fraternities. In this study, I focus on the group of majority white "social" fraternities that belong to the Interfraternity Council (IFC). Despite a divided opinion on their overall merit, their membership is growing. According to author John Hechinger in the book *True Gentlemen: The Broken Pledge of America's Fraternities*, he explains, "...universities and Greek organizations often need each other....Fraternity and sorority alumni are more likely to give to their colleges and are larger lifetime donors than other graduates...colleges rely on their housing as quasi-official dorms and would have to come up with an expensive alternative."
+
+# Data
+
+The main analysis uses a novel data set that includes the universe of crimes reported from each individual university police department during a six-year period (2014-2019).[^1] I omit the year 2020 due to the COVID-19 pandemic in which university activity is likely to vary substantially from the 2014-2019. Using the Jeanne Clery Act, the Freedom of Information Act, webscraping, and pdf-extracting, 48 universities' Daily Crime Logs have been harmonized and merged together. The Daily Crime Log is a daily-level data set that features the universe of crimes reported to the university-specific police department. The university police departments generally handle cases that occur on campus, on university-owned property, and nearby locations when students are involved.[^2] Each crime log contains hourly-level information on the incident reported, time reported, time occurred, and general location of the crime.[^3] Hence, this data is far richer than the Uniform Crime Report (UCR) distributed by the FBI, and more comprehensive than the Clery Act data reported to the US Department of Education. Table \ref{tab:summary_stats_offenses} shows summary statistics of the types of crimes that are within the sample.
+
+[^1]: The six-year period is due to the Jeanne Clery Act's law on record keeping. Universities are only required to keep records for a seven-year period.
+
+[^2]: This information was obtained through conversations with the university police departments.
+
+[^3]: Unfortunately, the location data is not fine enough to geocode to a specific area.
+
+## Harmonization of Daily Crime Logs
+
+To achieve a harmonization of incidents across all university police departments, I pattern-matched key-words relating to specific categories of crimes that were taken from the US Department of Education: sexual assault, alcohol offenses, drug offenses, thefts, and robbery. Table \ref{tab:matching_outcomes} shows the key words used to pattern match to offenses. Note that these words are only patterns, and can therefore be matched to words alternative to what is displayed. As an example, the word "intox" is used to match to an alcohol offense. Therefore, if an incident description includes "public intoxication" the incident would be successfully matched to the alcohol offense outcome. Given this imperfect matching process, there is likely measurement error which would attenuate the estimates in the model. However, the matching process is strong. Table \ref{tab:top_categories} shows the top matches within each category. There are no instances in which these crimes seem to match to unrelated outcomes.
+
+# Fraternity moratoria
+
+Campus-wide fraternity moratoria are defined as a temporary probation on fraternity-related activities. While there is variation in each university's guidelines, all of the universities in the sample restrict alcohol-related events. In total, the sample contains 39 universities that experienced a campus-wide moratorium within a six-year time period (2014-2019). Additionally, 9 "untreated" universities were added to the sample. These 9 universities are schools that experienced a fraternity-related death in the six-year period, but failed to impose a moratorium. Table \ref{tab:university_characteristics} shows summary statistics of the pooled treated and untreated universities in the sample. On average, the universities are large (\~28k students enrolled), majority white (\~63&), have a high graduation rate (\~70%), but include a large discrepancy in exclusivity (fraction admitted ranges from .11 to .96).[^4] Moreover, Figures \ref{raw_sex}, \ref{raw_alc}, \ref{raw_drug}, and \ref{raw_robbery} plots the raw data of each university with their corresponding moratoria highlighted. In some rare cases, it appears that moratoria were in response to a large increase in crime, however, the raw data clearly shows large decreases in alcohol offenses during moratoria. 
+
+[^4]: I want to make a balance table of the treated and untreated, but I wanted to fully complete the untreated data first. As of right now, I need to clean about 5 more untreated schools.
+
+A university-wide moratoria can be imposed by two separate jurisdictions: the university itself, and the university's IFC. An IFC-imposed moratorium should be considered student-lead as the IFC is a makeup of representatives from the universities fraternities that are a part of the North American Interfraternity Council- a trade group representing about 70 historically white fraternities. The moratoria are triggered by a variety of different events as shown in Figure \ref{trigger_plot}. The length of each moratoria is defined within academic calendar days. Hence, if a moratorium occurred 6 days before summer break, and the university lifted the moratorium upon the start of the fall semester, the moratorium length would be 6 days. On average, a triggering death causes the longest moratoria, while reports of sexual assault cause the shortest. Behavior violations[^5] are the most frequent causes of moratoria, and there is a wide range of variation between the lengths (min of 6 days max of 132). The majority of fraternity moratoria are imposed by the university rather than the student-led IFC. Moreover, Figure \ref{} shows the distribution of crimes reported by day-of-week with and without a fraternity moratorium. Weekends have the largest incidents of crime, while there appears to be evidence of large decreases in alcohol offenses during a fraternity moratorium. 
+
+
+
+[^5]: Behavior violations can include conduct violations, racist activity, large alcohol violations, or hazing incidents.
+
+The identifying assumption in this paper is that universities that have, or will have a moratorium (or never have a moratorium but have had a fraternity-related death) are a good counterfactual for universities experiencing a moratorium. This assumption requires that university crimes are on similar trends before a moratorium occurs, and would have continued on a similar trend without a moratorium (e.g. common trends). I use an indirect test to show that fraternity moratoria are plausibly exogenous. Table \ref{tab:predict_table} shows the results of a logistic/linear probability regression predicting whether a school will experience a moratorium. The model used for prediction is shown in Equation \ref{prediction_model}.
+
+```{=tex}
+\begin{equation}\label{prediction_model}
+EverMoratorium_u = \gamma \mathbb{X}_{u} + \epsilon_u
+\end{equation}
+```
+$EverMoratorium_u$ is an indicator variable equal to 1 if university $u$ ever experiences a campus-wide fraternity moratorium in the sample period, and $\mathbb{X}_u$ is a vector of averaged covariates over the six-year period including total cost of the university on/off campus, fraction of applicants admitted, fraction of different undergraduate minority groups (asian/black/hispanic), graduation rate, and student-to-faculty ratio. The logic is that if there are university characteristics that predict fraternity moratoria, then they may not be plausibly random. Yet each of these covariates show no significance in contributing to a decision of a fraternity moratorium. **However**, when I add in even more covariates (such as funding from private gifts, sat scores etc.), my logistic regression blows up and I get no estimates. I am wondering what could cause this issue. I have also tried a linear probability model, and while the estimates are similar to the logistic for the covariates included right now, these estimates also blow up when I start including some more covariates.
+
+The common trends assumption will be verified (I hope) after estimating an event study. Right now, I am having trouble thinking of how I want to define this event study, as now the panel is restricted to only academic calendar days. Thoughts on this would be greatly appreciated.
+
+# Empirical Strategy
+
+To identify the causal effects of fraternity moratorium on crime a two-way fixed effects model is used as shown in Equation \ref{model}.
+
+```{=tex}
+\begin{equation}\label{model}
+Y_{u,t} =  \beta_{fe} Moratorium_{u,t} +  \mathbb{X}_{u,t} + \phi_{u, semester} + \alpha_{weekday} + \epsilon_{u,t}
+\end{equation}
+```
+Note that $Y_{u,t}$ is the outcome of interest (sexual assault, drug offense, alcohol offense, robbery/burglary) for university $u$ in time $t$, $\mathbb{X}_{u,t}$ is a vector of covariates (graduation rate, undergraduate race fractions), $\phi_{u, semester}$ is a university-by-semester fixed effect, $\alpha_{weekday}$ is a weekday fixed effect, and $\epsilon_{u,t}$ is the error term. The model is estimated with two separate methods (OLS and Poisson).
+
+To enhance precision in the estimates, the six-year panel is condensed to only academic-calendar days. Specifically, I use the first day of classes through the deadline for final grades (or specific semester ends) for each semester. However, since only 1 academic calendar was gathered,[^6] I added one 7 day period to the beginning of the spring and fall semester to account for slight changes in academic calendars year-to-year. In addition, I included a 7 day period at the tails of the spring and fall semester. If a university is on a quarter system, I code their spring semester as the combination of the winter and spring quarters, while their fall quarter is coded as a fall semester.
+
+[^6]: I only gathered the most readily available academic calendar. In some cases, this was 2020-2021 academic calendar, or 2021-2022.
+
+# Results
+
+The main results are shown in Table \ref{tab:regressions_main}. OLS and poisson regressions show a strong, significant decrease in alcohol offenses during a fraternity moratorium. Alcohol offenses decrease 24% from the mean in OLS estimates, while they decrease 34% in poisson estimates. No other crimes are significantly affected at a significant level. On line with theory, robbery offenses are strong zeros. The standard errors are clustered at the university level, and weekday and university-by-semester fixed effects are included. Note that these results are very robust to other time-fixed effects (not shown). Also note that these results are very insensitive to controls. Including or excluding controls only slightly changes the standard errors while the point estimates remain largely unchanged. One of the main concerns I have in the poisson estimates is that the sample size changes between specifications since different fixed effects are dropped due to singularities. Feedback on this note would be appreciated if anyone has experience with poisson regressions.
+
+As a robustness check, I perform a leave-one-out exercise in which I estimate Equation \ref{model} while omitting one university at a time. This exercise is to be certain that the results are not driven by one large outlier in the data. As sexual assault and alcohol offenses are the two outcomes I am most interested in, I only include the estimates for these outcomes. Figure \ref{loo_poisson} and \ref{loo_ols} show the point estimates with their respective confidence intervals. Note that alcohol offenses are robust to this exercise.
+
+## Where are the effects strongest?
+
+Since university students party and consume more alcohol on the weekends, I test whether the effects of fraternity moratoria are more salient on weekends only. To do this, I restrict the sample to only weekend days: Friday, Saturday and Sunday. Table \ref{tab:regressions_weekends} shows the results. Interestingly, there appears to be evidence that reports of sexual assault and drug offenses also decrease when restricting to weekends. 
+
+On the other hand, there is little reason to suspect that fraternity moratoria affect any of the outcomes during weekdays. To test this theory, I restrict the sample to only weekdays: Monday, Tuesday, Wednesday, and Thursday. Table \ref{tab:regressions_weekdays} shows that there are no effects of fraternity moratoria during weekdays, and hence, weekends drive the overall results. 
+
+# Feedback Wanted
+
+Here are some of the main points I would like feedback on:
+
+-   The logistic regressions blow up and cannot be estimated when I include too many covariates. Not sure why this would happen as I have looked carefully at the data and there is no (obvious) collinearity between my covariates. Additionally, I excluded any covariates that have missing data. I am really unsure why this is happening.
+
+-   The poisson regressions alternate sample sizes due to some of the fixed effects being singularities. I am unsure whether this is a large problem or not. I find it comforting that I get similar results with the OLS and poisson specifications, but I am also worried about poisson dropping \~3000 observations due to the university-by-semester fixed effects.
+
+-   How to define the period for an event study? I know I've beaten this topic to death in this group, but this new panel makes defining a week before or after an event difficult. For example, take a university that has a moratorium on 4/1/17 and ends on 5/1/17. There may be no "post period" if the academic calendar ends on 5/2/17. Maybe I can just number each of my days in order by university? The complexity of this is why I don't have an event study to show.
+
+-   Any questions that are arising? Things you'd like to see for heterogeneity analysis? As you've seen before, I've estimated effects between IFC and university-enacted moratoria (I need to do this again). I want to test the differences in effects between the different triggering events (e.g. does a fraternity death moratorium have a stronger effect than a hazing-triggered moratorium?).
+
+-   Graphs that you'd like to see?
+
+\newpage
+
+```{r}
+## loading in matching word table script
+source("Tables/matching_word_table.R")
+```
+
+```{r matching_outcomes, echo = F}
+kable(matching_table, booktabs = T, caption = "Words/phrases used to pattern match on outcomes of interest.") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, color = "blue") %>%
+  column_spec(2, width = "30em")
+```
+
+```{r top_categories, echo = F, fig.pos="H"}
+kable(top_categories, booktabs = T, caption = "The top 15 most frequent reported incidents after pattern matching into each category. Numbers in parenthesis denote the frequency of offense in the data.") %>%
+  column_spec(1, "10em") %>%
+  column_spec(2, "10em") %>%
+  column_spec(3, "10em") %>%
+  column_spec(4, "10em") %>%
+  column_spec(5, "10em") %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r summary_stats_offenses}
+source("Tables/summary_stats_offenses.R")
+```
+
+```{r}
+crime_table
+```
+
+
+
+```{r university_characteristics}
+source("Tables/summary_stats_university.R")
+```
+
+```{r}
+university_characteristics
+```
+
+```{r}
+source("Figures/raw_count_graphs_by_university.R")
+```
+
+
+```{r, fig.cap="\\label{raw_sex}Raw counts of reports of sexual assault. Shaded areas denote a fraternity moratorium.", fig.width= 12, fig.height=15, out.width= "130%"}
+raw_sex
+```
+
+
+
+```{r, fig.cap="\\label{raw_alc}Raw counts of reports of alcohol offenses. Shaded areas denote a fraternity moratorium.", fig.width= 12, fig.height=15, out.width= "130%"}
+raw_alc
+```
+
+
+
+```{r, fig.cap="\\label{raw_drug}Raw counts of reports of drug offenses. Shaded areas denote a fraternity moratorium.", fig.width= 12, fig.height=15, out.width= "130%"}
+raw_drug
+```
+
+
+
+```{r, fig.cap="\\label{raw_robbery}Raw counts of reports of robbery/burglary. Shaded areas denote a fraternity moratorium.", fig.width= 12, fig.height=15, out.width= "130%"}
+raw_robbery
+```
+
+
+
+
+```{r}
+source("Figures/triggerplot_bylength.R")
+```
+
+\begin{landscape}
+```{r, fig.cap= "\\label{trigger_plot}Average number of academic calendar days under moratorium by reason of moratorium.", fig.width= 44, fig.height= 30, out.width= "120%"}
+trigger_plot
+```
+\end{landscape}
+
+```{r}
+source("Figures/barplot_byday.R")
+```
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{barplot_byday}Average number of crimes by day-of-week.", fig.ncol = 2, fig.subcap= c("Sexual Assault", "Alcohol Offense", "Drug Offense", "Robbery")}
+by_day_sexual_assault
+by_day_alcohol
+by_day_drug_offense
+by_day_robbery
+```
+
+
+
+
+```{r predict_table}
+source("Figures/predict_moratorium.R")
+```
+
+```{r }
+prediction_table
+```
+
+```{r regressions_main}
+source("Figures/regressions_main_5-20.R")
+```
+
+```{r}
+main_regs %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+
+
+```{r}
+source("Figures/leave-one-out.R")
+```
+
+```{r loo_pois, out.width='.49\\linewidth', fig.cap= "\\label{barplot_byday}Leave-one-out point estimates using poisson regressions.", fig.ncol = 2, fig.subcap= c("Sexual Assault", "Alcohol Offense")}
+loo_sex
+loo_alc
+```
+
+```{r}
+source("Figures/leave-one-out-ols.R")
+```
+
+```{r loo_ols, out.width='.49\\linewidth', fig.cap= "\\label{barplot_byday}Leave-one-out point estimates using OLS regressions.", fig.ncol = 2, fig.subcap= c("Sexual Assault", "Alcohol Offense")}
+loo_sex_ols
+loo_alc_ols
+```
+
+
+
+
+
+
+
+```{r regressions_weekends}
+source("Figures/regressions_main_weekends_5-20.R")
+```
+
+
+```{r}
+main_regs_weekend %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+
+
+
+```{r regressions_weekdays}
+source("Figures/regressions_main_weekdays_5-20.R")
+```
+
+```{r}
+main_regs_weekdays %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
