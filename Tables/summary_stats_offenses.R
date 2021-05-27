@@ -8,10 +8,9 @@ library(tidyverse)
 library(kableExtra)
 
 ## Note that this is omitting the summer months of 6, 7, and 8. 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
                         guess_max = 50000)
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel_nosummer.csv",
-                         guess_max = 50000)
+
 
 ## param x - my exact data frame of weekly/daily crime. DO not change the names
 summarystat_crime <- function(x) {
@@ -34,29 +33,19 @@ summarystat_crime <- function(x) {
 }
 
 crime_daily_table <- summarystat_crime(daily_crime)
-crime_weekly_table <- summarystat_crime(weekly_crime)
-crime_table <- bind_rows(crime_daily_table, crime_weekly_table)
-
-## This is per 25k 
 crime_daily_table_p25 <- daily_crime %>% 
   mutate(across(c(sexual_assault, alcohol_offense,
-                  drug_offense, theft, robbery_burglary), ~(./total_students_all) * 25000 )) %>% 
+                  drug_offense, theft, robbery_burglary), ~(./total_enrollment) * 25000 )) %>% 
   summarystat_crime()
 
-crime_weekly_table_p25 <- weekly_crime %>% 
-  mutate(across(c(sexual_assault, alcohol_offense,
-                  drug_offense, theft, robbery_burglary), ~(./total_students_all) * 25000 )) %>% 
-  summarystat_crime()
+crime_table <- bind_rows(crime_daily_table, crime_daily_table_p25)
 
-crime_table_p25 <- bind_rows(crime_daily_table_p25, crime_weekly_table_p25)
 
-crime_table <-  kbl(crime_table, booktabs = T, digits = 2, caption = "Summary Statistics of Offenses (excluding summer)",
+
+crime_table <-  kbl(crime_table, booktabs = T, digits = 2, caption = "Summary statistics for offenses during academic calendar days",
     caption.short = "Note that the summer months 6,7, and 8 are ommitted") %>% 
   pack_rows("Daily Reports", 1, 5) %>% 
-  pack_rows("Weekly Reports", 6, 10)
+  pack_rows("Daily Reports Per 25k Students", 6, 10)
 
 
-crime_table_p25 <- kbl(crime_table_p25, booktabs = T, digits = 2, caption = "Summary Statistics of Offenses Per 25k (exluding summer)",
-    caption.short = "Note that the summer months 6,7, and 8 are ommitted") %>% 
-  pack_rows("Daily Reports Per 25k", 1, 5) %>% 
-  pack_rows("Weekly Reports Per 25k", 6, 10)
+

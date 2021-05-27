@@ -23,13 +23,10 @@ robbery_burglary_words <- robbery_burglary_identifiers %>%
   str_replace_all("\\|", ", ")
 theft_words <- theft_identifiers %>% 
   str_replace_all("\\|", ", ")
-noise_words <- noise_violation_identifier %>% 
-  str_replace_all("\\|", ", ")
-words <- list(sexual_assault_words, alcohol_words, drug_offense_words, robbery_burglary_words, theft_words,
-              noise_words)  %>% 
+words <- list(sexual_assault_words, alcohol_words, drug_offense_words, robbery_burglary_words, theft_words)  %>% 
   unlist()
 categories <- c("Sexual Assault", "Alcohol Violations", "Drug Offense",
-                "Robbery/Burglary", "Theft/Larceny", "Noise Complaints")
+                "Robbery/Burglary", "Theft/Larceny")
 matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
 
 
@@ -59,11 +56,6 @@ top_drug_offense <- appended_crime_logs %>%
   mutate(incident = glue("({n}) {incident}")) %>% 
   head(15) %>%  select(incident) %>% rename("Drug Offense" = incident)
 
-top_noise_offense <- appended_crime_logs %>% 
-  filter(noise_offense == 1) %>% 
-  count(incident, sort = T) %>% 
-  mutate(incident = glue("({n}) {incident}")) %>% 
-  head(15) %>%  select(incident) %>% rename("Noise Offense" = incident)
 
 top_theft <- appended_crime_logs %>% 
   filter(theft == 1) %>% 
@@ -78,5 +70,5 @@ top_burglary <- appended_crime_logs %>%
   head(15) %>%  select(incident) %>% rename("Burglary Offense" = incident)
 
 top_categories <- bind_cols(top_sexual_assault, top_alcohol_offense, 
-                            top_drug_offense, top_theft, top_burglary, top_noise_offense)
+                            top_drug_offense, top_theft, top_burglary)
 

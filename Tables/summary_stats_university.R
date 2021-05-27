@@ -3,35 +3,29 @@
 ##
 ## Author: Michael Topper
 ##
-## Date Last Edited: 2021-03-31
+## Date Last Edited: 2021-05-16
 ##
 
 library(modelsummary)
 library(tidyverse)
 library(kableExtra)
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
-                        guess_max = 50000)
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel_nosummer.csv",
-                         guess_max = 50000)
 
-
-
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
 
 university_characteristics <- daily_crime %>% 
-  mutate(total_undergrad_white = total_undergrad_white_men + total_undergrad_white_women) %>% 
-  mutate(private = ifelse(sector_of_institution == 2, 1, 0)) %>% 
-  mutate(across(c(total_undergrad_black, total_undergrad_asian, total_undergrad_hispanic, total_undergrad_white),
-                ~./total_students_undergrad)) %>% 
-  datasummary((`Total Students` = total_students_all) + 
-                (`Total Undergrad Students`=total_students_undergrad) + 
-                (`Fraction Asian` = total_undergrad_asian) +
-                 (`Fraction Black`= total_undergrad_black) + 
-                (`Fraction Hispanic` = total_undergrad_hispanic) +
-                (`Fraction White` = total_undergrad_white) +
-                (`Total Full-time` =ftime_total_undergrad) +
-                 (`Graduation Rate` = graduation_rate_total_cohort_) + 
+  mutate(private = ifelse(control_of_institution != "Public", 1, 0)) %>% 
+  datasummary((`Total Enrollment` = total_enrollment) + 
+                (`Total Undergrad Enrollment`=undergraduate_enrollment) + 
+                (`Fraction Asian` = frac_undergrad_asian) +
+                 (`Fraction Black`= frac_undergrad_black) + 
+                (`Fraction Hispanic` = frac_undergrad_hispanic_latino) +
+                (`Fraction White` = frac_undergrad_white) +
+                 (`Graduation Rate` = graduation_rate_total_cohort) + 
+                (`SAT Math 75` = sat_math_75) +
+                ( `SAT Reading 75` = sat_reading_75) +
+                (`Fraction Admitted` = frac_admitted_total) +
                 (`Fraction Private`=private)~ (Mean + SD + Median + Min + Max), data = .,
-              title = "University summary statistics of the 40 universities") %>% 
+              title = "University summary statistics of the 48 universities") %>% 
   add_indent(c(2:6)) %>% 
   add_indent(c(3:6))
 
