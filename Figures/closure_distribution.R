@@ -7,7 +7,7 @@
 
 library(tidyverse)
 library(lubridate)
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv", guess_max = 50000)
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
 
 closure_1 <- daily_crime %>% 
   distinct(closure_1, university, university_enacted_1) %>% 
@@ -27,8 +27,8 @@ closure_distribution <- closures %>%
   summarize(reason = sum(reason, na.rm = T), n = sum(n)) %>% 
   mutate(date = mdy(paste0(month, '-1-', year))) %>% 
   ggplot(aes(date, n)) +
-  geom_col(alpha = 0.8) +
-  geom_text(aes(label = n), vjust = 1.3, color = "white", size=5) +
-  scale_x_date(breaks ="1 year", date_labels = "%b/%Y") +
+  geom_col(alpha =1) +
+  scale_x_date(breaks ="6 month", date_labels = "%b/%Y") +
   labs(y = "", x = "") +
   theme_light()
+
