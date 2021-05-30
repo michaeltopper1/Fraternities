@@ -12,6 +12,20 @@ library(modelsummary)
 
 daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
 
+daily_crime <- daily_crime %>% 
+  mutate(closure_1_lead = closure_1 - days(7)) %>% 
+  relocate(closure_1, closure_1_lead) %>% 
+  mutate(lead_1 = ifelse(date >= closure_1_lead & date < closure_1 & !(university %in% ifc::untreated_universities()), 1, 0))
+
+daily_crime <- daily_crime %>% 
+  mutate(closure_2_lead = closure_2 - days(7)) %>% 
+  relocate(closure_2, closure_2_lead) %>% 
+  mutate(lead_2 = ifelse(date >= closure_2_lead & date < closure_2 & !(university %in% ifc::untreated_universities()), 1, 0))
+
+daily_crime <- daily_crime %>% 
+  mutate(lead = ifelse(lead_1 == 1 | lead_2 == 1, 1,0)) %>% 
+  mutate(lead = ifelse(is.na(lead), 0, lead))
+
 sex <- daily_crime %>% 
   feols(sexual_assault_per25 ~ treatment + graduation_rate_total_cohort + 
           frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
