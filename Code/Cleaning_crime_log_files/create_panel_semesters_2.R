@@ -144,6 +144,7 @@ daily_panel <- daily_panel %>%
 ## Ferrum College is missing data. only have september 2015 - 2019
 ## Delaware state only has data from 2017 - onwards
 ## Texas Austin is missing jan/feb 2016
+## irvine missing december 2019
 daily_panel <- daily_panel %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
     year == 2015 & month < 9 & university == "Ferrum College",
@@ -156,8 +157,11 @@ daily_panel <- daily_panel %>%
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
     year== 2016 & (month == 1 | month == 2) & university == "The University of Texas at Austin",
     NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2019 & month == 12 & university == "University of California-Irvine",
+    NA, .
   )))
-
 
 
 
