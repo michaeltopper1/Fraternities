@@ -47,4 +47,17 @@ ipeds_long_2 <- ipeds %>%
   pivot_longer(cols = -c(unit_id, university), names_to = c(".value", "year"), names_pattern = "(.{1,})_(\\d{4})") 
 
 
+ipeds_long_2 <- ipeds_long_2 %>% 
+  mutate(calendar_system = case_when(
+    calendar_system == 1 ~ "Semester",
+    calendar_system == 2 ~ "Quarter",
+    calendar_system == 3 ~ "Trimester",
+    calendar_system == 4 ~ "Four-one-four plan",
+    calendar_system == 5 ~ "Other academic year",
+    calendar_system == 6 ~ "Differs by program",
+    calendar_system == 7 ~ "Continuous",
+    calendar_system == -2 ~ "Not Applicable"
+  ))
+
+
 write_csv(ipeds_long_2, file = "Created Data/IPEDS/ipeds_2_cleaned.csv")
