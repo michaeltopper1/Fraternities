@@ -136,13 +136,27 @@ daily_panel <- daily_panel %>%
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), 
                 ~ifelse(year >= 2015 & is.na(.), 0, .)))## changes all missings from 2015 onwards to 0s- careful of North Florida!
 
-## North Florida I only have information from July 2015- onwards. Here I am accounting for this
+
 daily_panel <- daily_panel %>% 
-  mutate(weekday = wday(date, label = T)) %>%  ## gets the weekday label
+  mutate(weekday = wday(date, label = T)) ## gets the weekday label
+
+
+## Ferrum College is missing data. only have september 2015 - 2019
+## Delaware state only has data from 2017 - onwards
+## Texas Austin is missing jan/feb 2016
+daily_panel <- daily_panel %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
-    year == 2015 & month < 7 & university == "University of North Florida",
+    year == 2015 & month < 9 & university == "Ferrum College",
     NA, .
-  ))) 
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year <= 2016 & university == "Delaware State University",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2016 & (month == 1 | month == 2) & university == "The University of Texas at Austin",
+    NA, .
+  )))
 
 
 
