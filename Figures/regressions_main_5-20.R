@@ -27,44 +27,36 @@ daily_crime <- daily_crime %>%
   mutate(lead = ifelse(is.na(lead), 0, lead))
 
 sex <- daily_crime %>% 
-  feols(sexual_assault_per25 ~ treatment + graduation_rate_total_cohort + 
-          frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
+  feols(sexual_assault_per25 ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 alc <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~ treatment + graduation_rate_total_cohort + 
-          frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
+  feols(alcohol_offense_per25 ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 drug <- daily_crime %>% 
-  feols(drug_offense_per25 ~ treatment + graduation_rate_total_cohort + 
-          frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
+  feols(drug_offense_per25 ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 robbery <- daily_crime %>% 
-  feols(robbery_burglary_per25 ~ treatment + graduation_rate_total_cohort + 
-          frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
+  feols(robbery_burglary_per25 ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
   
 
 sex_p <- daily_crime %>% 
-  fepois(sexual_assault ~ treatment + graduation_rate_total_cohort + 
-          frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
+  fepois(sexual_assault ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 alc_p <- daily_crime %>% 
-  fepois(alcohol_offense ~ treatment + graduation_rate_total_cohort + 
-          frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
+  fepois(alcohol_offense ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 drug_p <- daily_crime %>% 
-  fepois(drug_offense ~ treatment + graduation_rate_total_cohort + 
-          frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
+  fepois(drug_offense ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 robbery_p <- daily_crime %>% 
-  fepois(robbery_burglary ~ treatment + graduation_rate_total_cohort + 
-          frac_undergrad_asian + frac_undergrad_hispanic_latino + frac_undergrad_black|
+  fepois(robbery_burglary ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 main_regs <- list(
