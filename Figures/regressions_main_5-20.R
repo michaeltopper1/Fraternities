@@ -13,12 +13,12 @@ library(modelsummary)
 daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
 
 daily_crime <- daily_crime %>% 
-  mutate(closure_1_lead = closure_1 - days(7)) %>% 
+  mutate(closure_1_lead = closure_1 - days(14)) %>% 
   relocate(closure_1, closure_1_lead) %>% 
   mutate(lead_1 = ifelse(date >= closure_1_lead & date < closure_1 & !(university %in% ifc::untreated_universities()), 1, 0))
 
 daily_crime <- daily_crime %>% 
-  mutate(closure_2_lead = closure_2 - days(7)) %>% 
+  mutate(closure_2_lead = closure_2 - days(14)) %>% 
   relocate(closure_2, closure_2_lead) %>% 
   mutate(lead_2 = ifelse(date >= closure_2_lead & date < closure_2 & !(university %in% ifc::untreated_universities()), 1, 0))
 
@@ -31,7 +31,7 @@ sex <- daily_crime %>%
           uni_semester + weekday, cluster = ~university, data = .)
 
 alc <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~ treatment |
+  feols(alcohol_offense_per25 ~  treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 drug <- daily_crime %>% 
@@ -49,7 +49,7 @@ sex_p <- daily_crime %>%
 
 alc_p <- daily_crime %>% 
   fepois(alcohol_offense ~ treatment |
-          uni_semester + weekday, cluster = ~university, data = .)
+          uni_semester + weekday , cluster = ~university, data = .)
 
 drug_p <- daily_crime %>% 
   fepois(drug_offense ~ treatment |
