@@ -134,7 +134,8 @@ daily_panel <- daily_panel %>%
                 ~ifelse(year== 2014 & is.na(.) & university %in% not_missing_2014,
                         0, .))) %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), 
-                ~ifelse(year >= 2015 & is.na(.), 0, .)))## changes all missings from 2015 onwards to 0s- careful of North Florida!
+                ~ifelse(year >= 2015 & is.na(.), 0, .)))## changes all missings from 2015 onwards to 0s
+
 
 
 daily_panel <- daily_panel %>% 
@@ -144,7 +145,7 @@ daily_panel <- daily_panel %>%
 ## Ferrum College is missing data. only have september 2015 - 2019
 ## Delaware state only has data from 2017 - onwards
 ## Texas Austin is missing jan/feb 2016
-## irvine missing december 2019
+## NC state is missing data from August 2014 and before
 daily_panel <- daily_panel %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
     year == 2015 & month < 9 & university == "Ferrum College",
@@ -157,7 +158,11 @@ daily_panel <- daily_panel %>%
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
     year== 2016 & (month == 1 | month == 2) & university == "The University of Texas at Austin",
     NA, .
-  ))) 
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2014 & (month == 1 | month == 2 | month == 3 | month == 4 | month == 5 | month == 6 | month == 7| month == 8) & university == "North Carolina State University at Raleigh",
+    NA, .
+  )))
 
 
 
