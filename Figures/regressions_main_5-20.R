@@ -6,6 +6,7 @@
 ##
 
 library(tidyverse)
+library(lubridate)
 library(fixest)
 library(kableExtra)
 library(modelsummary)
@@ -70,7 +71,7 @@ main_regs <- list(
   "Robbery" = robbery_p
 )
 
-main_regs <- modelsummary(main_regs, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within',
+main_regs <- modelsummary(main_regs, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
              coef_map = c("treatment" = "Moratorium",
                           "ftime_total_undergrad" = "Fraction Full-time Undergrad",
                           "frac_undergrad_black" = "Fraction Undergrad Black",
@@ -81,3 +82,4 @@ main_regs <- modelsummary(main_regs, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|
              notes = "Poisson regressions are in counts of offenses.
              Fixed effects are university-by-semester and weekday.") %>% 
   add_header_above(c(" " = 1, "OLS" = 4, "Poisson" = 4))
+
