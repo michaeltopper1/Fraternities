@@ -42,11 +42,15 @@ hetero_reasons_sex <- daily_crime %>%
           uni_semester + weekday, cluster = ~university, data = .) 
 names(hetero_reasons_sex) <- c("Sexual Assault", "Death of Student", "Behavior Violation", "Unknown")
 
+mean_sex <- mean(daily_crime$sexual_assault_per25, na.rm = T)
+mean_of_sex <- tribble(~sex, ~new, ~x, ~y, ~z,
+                       "Mean of Sexual Assault Per 25k ",mean_sex, mean_sex, mean_sex, mean_sex)
+attr(mean_of_sex, 'position') <- c(9)
 hetero_reasons_sex %>% 
   modelsummary(stars = T, gof_omit ="^R|^AIC|^BIC|^Log",
                coef_rename = c("treatment:reason_sexual_assault" = "Moratorium x Triggering Sexual Assault",
                                "treatment:reason_death" = "Moratorium x Triggering Death of Student",
                                "treatment:reason_behavior" = "Motatorium x Triggering Behavior Violation",
                                "treatment:reason_unknown" = "Moratorium x Triggering Event Unknown"),
-               title = "Effect of fraternity moratoria on sexual assault by triggering event.") %>% 
+               title = "Effect of fraternity moratoria on sexual assault by triggering event.", add_rows = mean_of_sex) %>% 
   kableExtra::add_header_above(c(" " = 1, "Triggering Event" = 4))
