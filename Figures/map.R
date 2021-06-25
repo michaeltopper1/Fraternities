@@ -1,33 +1,26 @@
-#############################################################################
-##  This file makes the map for the per-capita reports of rape by school.  ##
-#############################################################################
+## Purpose of script:
+##
+## Author: Michael Topper
+##
+## Date Last Edited: 2021-06-24
+##
 
-
-
-load("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/Master_data/master_ucr_ipeds_cross.rda")
 library(tidyverse)
 library(maps)
-usa = data.frame(map("state", plot = FALSE)[c("x",
-                                                "y")])
 
 
-## getting the averages by school
-averages <- ucr_master %>% 
-  group_by(university, year ) %>% 
-  summarize(avg_rape = mean(rape_per_hundredthousand,na.rm = T)) %>% 
-  summarize(avg_rape = mean(avg_rape))
-  
-ucr_new <- ucr_master %>% 
-  inner_join(y = averages)
+daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
 
-per_capita_map <- ucr_new %>% 
-  distinct(university, avg_rape, longitude, latitude) %>% 
-  ggplot() +
-  geom_path(data = usa, aes(x, y)) +
-  coord_map() +
-  geom_point(data = ucr_new, aes(x = longitude, y = latitude, size = avg_rape, alpha = 0.8), shape = 23 ,color = "blue", alpha = 0.8) +
-  labs(x = "", y = "",size = "Average of yearly reports of rape per-100k") +
-  ggthemes::theme_map() +
-  theme(legend.position="top",legend.background = element_rect(fill = alpha('white', 0.1)))+
-  guides(shape = guide_legend(override.aes = list(size = 0.5)))
+us_states <- map_data("state") %>% 
+  as_tibble()
 
+universities <- daily_crime %>% 
+  mutate(ever_treated = ifelse(university %in% ifc::untreated_universities(), "No Moratorium", "Experienced Moratorium")) %>% 
+  distinct(university, ever_treated, longitude, latitude)
+
+map_of_schools <- us_states %>% 
+  ggplot(aes(long, lat, group = group)) +
+  geom_polygon(fill = "white", color = "black", alpha = 0.8) +
+  geom_point(data = universities, aes(longitude, latitude, group = university, color = as_factor(ever_treated)), size = 2.5) +
+  labs(color = "", size = "") +
+  ggthemes::theme_map()
