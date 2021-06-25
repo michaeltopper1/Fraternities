@@ -18,7 +18,7 @@ universities <- daily_crime %>%
   mutate(ever_treated = ifelse(university %in% ifc::untreated_universities(), "No Moratorium", "Experienced Moratorium")) %>% 
   distinct(university, ever_treated, longitude, latitude)
 
- us_states %>% 
+map_of_schools <- us_states %>% 
   ggplot(aes(long, lat, group = group)) +
   geom_polygon(fill = "white") +
   borders("state") +
