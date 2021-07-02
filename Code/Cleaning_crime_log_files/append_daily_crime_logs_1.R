@@ -105,7 +105,7 @@ appended_crime_logs <- appended_crime_logs %>%
 
 
 
-
+write_csv(appended_crime_logs, file = "Created Data/xMaster_data_2021/appended_crime_logs.csv")
 
 
 

@@ -277,6 +277,58 @@ weekly_panel <- weekly_panel %>%
     filter(year > 2013)
 
 
+# cleaning ----------------------------------------------------------------
+
+## changing reasons to only fit behavior, death, sexual assault, unknown.
+
+daily_panel <- daily_panel %>% 
+  mutate(reason1 = ifelse(reason1 == "bad behavior", "behavior", reason1),
+         reason1 = ifelse(reason1 == "conduct violation", "behavior", reason1 ),
+         reason1 = ifelse(reason1 == "not following rules", "behavior", reason1),
+         reason1 = ifelse(reason1 == "racist", "racist activity", reason1),
+         reason1 = ifelse(reason1 == "trends", "national trends", reason1), 
+         reason1 = ifelse(reason1 == "other", "unknown", reason1),
+         reason1 = ifelse(reason1 == "alcohol", "behavior", reason1),
+         reason1 = ifelse(reason1 == "hazing", "behavior", reason1),
+         reason1 = ifelse(reason1 == "national trends", "unknown", reason1),
+         reason1 = ifelse(reason1 == "racist activity", "behavior", reason1)) %>% 
+  mutate(reason2 = ifelse(reason2 == "bad behavior", "behavior", reason2),
+         reason2 = ifelse(reason2 == "conduct violation", "behavior", reason2 ),
+         reason2 = ifelse(reason2 == "not following rules", "behavior", reason2),
+         reason2 = ifelse(reason2 == "racist", "racist activity", reason2),
+         reason2 = ifelse(reason2 == "trends", "national trends", reason2), 
+         reason2 = ifelse(reason2 == "other", "unknown", reason2),
+         reason2 = ifelse(reason2 == "alcohol", "behavior", reason2),
+         reason2 = ifelse(reason2 == "hazing", "behavior", reason2),
+         reason2 = ifelse(reason2 == "national trends", "unknown", reason2),
+         reason2 = ifelse(reason2 == "racist activity", "behavior", reason2))
+
+weekly_panel <- weekly_panel %>% 
+  mutate(reason1 = ifelse(reason1 == "bad behavior", "behavior", reason1),
+         reason1 = ifelse(reason1 == "conduct violation", "behavior", reason1 ),
+         reason1 = ifelse(reason1 == "not following rules", "behavior", reason1),
+         reason1 = ifelse(reason1 == "racist", "racist activity", reason1),
+         reason1 = ifelse(reason1 == "trends", "national trends", reason1), 
+         reason1 = ifelse(reason1 == "other", "unknown", reason1),
+         reason1 = ifelse(reason1 == "alcohol", "behavior", reason1),
+         reason1 = ifelse(reason1 == "hazing", "behavior", reason1),
+         reason1 = ifelse(reason1 == "national trends", "unknown", reason1),
+         reason1 = ifelse(reason1 == "racist activity", "behavior", reason1)) %>% 
+  mutate(reason2 = ifelse(reason2 == "bad behavior", "behavior", reason2),
+         reason2 = ifelse(reason2 == "conduct violation", "behavior", reason2 ),
+         reason2 = ifelse(reason2 == "not following rules", "behavior", reason2),
+         reason2 = ifelse(reason2 == "racist", "racist activity", reason2),
+         reason2 = ifelse(reason2 == "trends", "national trends", reason2), 
+         reason2 = ifelse(reason2 == "other", "unknown", reason2),
+         reason2 = ifelse(reason2 == "alcohol", "behavior", reason2),
+         reason2 = ifelse(reason2 == "hazing", "behavior", reason2),
+         reason2 = ifelse(reason2 == "national trends", "unknown", reason2),
+         reason2 = ifelse(reason2 == "racist activity", "behavior", reason2))
+
+
+
+
+
 
 # Writing to csv ----------------------------------------------------------
 
