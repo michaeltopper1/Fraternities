@@ -1,0 +1,73 @@
+---
+title: "Do Alpha Males impose a cost?"
+subtitle: "How Fraternity Moratorium Affect Alcohol Offenses and Sexual Assault"
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+    # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \theoremstyle{definition}
+- \newtheorem{definition}{Definition}[section]
+- \newtheorem{assumption}{Assumption}
+- \newtheorem{theorem}{Theorem}[section]
+- \newtheorem{corollary}{Corollary}[theorem]
+- \newtheorem{lemma}[theorem]{Lemma}
+- \newtheorem*{remark}{Remark}
+- \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+- \newcommand{\indep}{\perp \!\!\! \perp}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+#bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+abstract: Insert Text
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning= F)
+library(kableExtra)
+library(tidyverse)
+library(lubridate)
+library(modelsummary)
+theme_set(theme_light())
+```
+
+# Examples
+
+## Putting side-by-side figures
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Histograms", fig.ncol = 2, fig.subcap= c("MPG", "Horse Power")}
+plot1 <- mtcars %>% 
+  ggplot(aes(mpg)) +
+  geom_histogram()
+plot2 <- mtcars %>% 
+  ggplot(aes(hp)) +
+  geom_histogram()
+
+plot1
+plot2
+```
+
+
