@@ -101,23 +101,25 @@ appended_crime_logs <- appended_crime_logs %>%
            ifelse(str_detect(incident, rape_identifier), 1, 0))
 
 appended_crime_logs <- appended_crime_logs %>% 
-  mutate(sexual_assault = ifelse(sexual_assault ==1 & str_detect(incident,"orientation"), 0, sexual_assault))
+  mutate(sexual_assault = ifelse(sexual_assault ==1 & str_detect(incident,"orientation"), 0, sexual_assault)) %>% 
+  mutate(year_occurred = lubridate::year(date_occurred), year_reported = lubridate::year(date_reported)) %>% 
+  filter(year_reported > 2013 ) %>% 
+  filter(year_occurred > 2013 | is.na(year_occurred)) %>% 
+  filter(year_reported < 2020) %>% 
+  filter(year_occurred <2020 | is.na(year_occurred))
+  
 
 
 
 write_csv(appended_crime_logs, file = "Created Data/xMaster_data_2021/appended_crime_logs.csv")
 
 
-
-
-
-### this will collapse the data
-
 collapsed_data_daily <- appended_crime_logs %>% 
   select(date_reported, university, sexual_assault, alcohol_offense, drug_offense, theft, robbery_burglary, alcohol_offense_strict,
          noise_offense, rape) %>% 
-  group_by(university, date_reported) %>%
-  collapse::fsum()
+  group_by(university, date_reported) %>% 
+  summarize(across(everything(), ~sum(.,na.rm = T)))
+
 
 
 
