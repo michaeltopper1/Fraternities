@@ -93,15 +93,26 @@ path_2017_2 <- "Data/campus_daily_crime_log/Syracuse/2017 DCL_2.xlsx"
 syracuse_17_2 <- read_xlsx(path_2017_2, skip = 4) %>% 
   janitor::clean_names()
 syracuse_17_2 <- syracuse_17_2 %>% 
-  select(-disposition_1) %>% 
-  rename('date_reported' = disposition_2,
-         'incident' = nature_classification,
-         "location" = general_location) %>% 
-  filter(!is.na(incident)) %>% 
-  filter(!is.na(date_reported)) %>% 
-  select(-date_time_5, -date_time_6) %>% 
-  mutate(time_reported = NA, time_occurred = NA, date_occurred = NA) %>% 
-  mutate(university = "Syracuse University")
+  select(-disposition_1) %>%
+  mutate(across(starts_with("date"), ~mdy(.))) %>% 
+  filter(if_any(everything(), ~!is.na(.))) %>% 
+  mutate(date_time_5_new = date_time_5) %>% 
+  fill(date_time_5_new, .direction = "up") %>% 
+  fill(date_time_5) %>% 
+  mutate(date_time_5 = replace(date_time_5, date_time_5 != date_time_5_new, NA)) %>% 
+  filter(!is.na(case_number)) %>% 
+  mutate(date_time_6_new = date_time_6) %>% 
+  fill(date_time_6_new, .direction = "up") %>% 
+  fill(date_time_6) %>% 
+  mutate(date_time_6 = replace(date_time_6, date_time_6 != date_time_6_new, NA)) %>% 
+  filter(!is.na(date_time_5)) %>% 
+  rename("date_reported" = "date_time_5",
+         "date_occurred" = "date_time_6",
+         "incident" = "nature_classification",
+         "location" = "general_location") %>% 
+  select(-starts_with("date_time"), -disposition_2)  %>% 
+  mutate(university = "Syracuse University", time_occurred = NA, time_reported = NA) %>% 
+  mutate(across(starts_with("date"), ~as.character(.)))
 
 
 ## cleaning 2018
