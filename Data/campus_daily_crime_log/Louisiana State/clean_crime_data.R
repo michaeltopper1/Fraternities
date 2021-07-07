@@ -4,11 +4,11 @@ library(lubridate)
 library(glue)
 
 ## loading in all the data
-load("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_daily_crime_log/Louisiana State/2013.rda")
-load("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_daily_crime_log/Louisiana State/2014.rda")
-load("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_daily_crime_log/Louisiana State/2015.rda")
-load("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_daily_crime_log/Louisiana State/2016.rda")
-load("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_daily_crime_log/Louisiana State/2017_2019.rda")
+load("Data/campus_daily_crime_log/Louisiana State/2013.rda")
+load("Data/campus_daily_crime_log/Louisiana State/2014.rda")
+load("Data/campus_daily_crime_log/Louisiana State/2015.rda")
+load("Data/campus_daily_crime_log/Louisiana State/2016.rda")
+load("Data/campus_daily_crime_log/Louisiana State/2017_2019.rda")
 
 ## binding together the data
 louisiana_state <- bind_rows(

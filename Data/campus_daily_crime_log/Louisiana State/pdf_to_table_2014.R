@@ -7,7 +7,7 @@ library(pdftools)
 library(tabulizer)
 library(tidyverse)
 
-path <- "/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_daily_crime_log/Louisiana State/2014crimelog.pdf"
+path <- "Data/campus_daily_crime_log/Louisiana State/2014crimelog.pdf"
 
 louisiana <- pdf_text(path)
 ## withholding the last page since it ends early and the iteration gets off

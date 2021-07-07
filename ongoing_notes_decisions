@@ -22,6 +22,8 @@ Academic calendars:
 - used the first day of classes minus a 7 day period for start of spring (unless earlier than January 7)
 - for quarter system schools, defined semester 1 as fall quarter, semester 2 as the combination of winter and semester.
 
+Data Cleaning:
+- got rid of any date reported - date occurred observations that were negative.
 
 What makes my study unique:
 - the data is great for alcohol since no one has ever had alcohol data such as this. Previous studies use the outdated College Alcohol Surveys (CAS) conducted by the Harvard School of Public Health in the 1990s
