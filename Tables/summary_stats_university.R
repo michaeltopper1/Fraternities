@@ -25,7 +25,7 @@ university_characteristics <- daily_crime %>%
                 ( `SAT Reading 75` = sat_reading_75) +
                 (`Fraction Admitted` = frac_admitted_total) +
                 (`Fraction Private`=private)~ (Mean + SD + Median + Min + Max), data = .,
-              title = "University summary statistics of the 48 universities") %>% 
+              title = "University summary statistics of the 53 universities") %>% 
   add_indent(c(2:6)) %>% 
   add_indent(c(3:6))
 
