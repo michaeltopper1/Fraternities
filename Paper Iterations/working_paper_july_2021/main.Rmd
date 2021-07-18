@@ -7,7 +7,6 @@ date: "Last Updated: `r Sys.Date()`"
 output: 
   pdf_document:
     number_sections: true
-    citation_package: natbib
     # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
 indent: true
 header-includes:
@@ -25,21 +24,11 @@ header-includes:
 - \usepackage[round,authoryear]{natbib}
 - \usepackage{setspace}\doublespacing
 - \usepackage{subfig}
-- \theoremstyle{definition}
-- \newtheorem{definition}{Definition}[section]
-- \newtheorem{assumption}{Assumption}
-- \newtheorem{theorem}{Theorem}[section]
-- \newtheorem{corollary}{Corollary}[theorem]
-- \newtheorem{lemma}[theorem]{Lemma}
-- \newtheorem*{remark}{Remark}
-- \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
-- \newcommand{\indep}{\perp \!\!\! \perp}
 - \floatplacement{figure}{H}
-- \usepackage{natbib}
-#bibliography: "references.bib"
+bibliography: "references.bib"
 link-citations: yes
 linkcolor: blue
-abstract: Insert Text
+abstract: \singlespacing Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 editor_options: 
   chunk_output_type: console
 ---
@@ -54,20 +43,32 @@ library(modelsummary)
 theme_set(theme_light())
 ```
 
-# Examples
-
-## Putting side-by-side figures
-
-```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Histograms", fig.ncol = 2, fig.subcap= c("MPG", "Horse Power")}
-plot1 <- mtcars %>% 
-  ggplot(aes(mpg)) +
-  geom_histogram()
-plot2 <- mtcars %>% 
-  ggplot(aes(hp)) +
-  geom_histogram()
-
-plot1
-plot2
+```{r, echo = F}
+number_of_universities = 53
 ```
+
+\newpage
+\pagenumbering{arabic}
+
+```{r, child="background.Rmd"}
+
+```
+
+```{r, child="data.Rmd"}
+
+```
+
+```{r, child="fraternity_moratoriums.Rmd"}
+
+```
+
+```{r, child="empirical_strategy.Rmd"}
+
+```
+
+
+\newpage
+# References
+
 
 
