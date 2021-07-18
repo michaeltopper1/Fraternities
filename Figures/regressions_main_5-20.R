@@ -83,3 +83,14 @@ main_regs <- modelsummary(main_regs, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|
              Fixed effects are university-by-semester and weekday.") %>% 
   add_header_above(c(" " = 1, "OLS" = 4, "Poisson" = 4))
 
+
+
+
+daily_crime %>% 
+  group_by(month, year) %>% 
+  mutate(month_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun") %>% 
+  fepois(c(alcohol_offense, drug_offense, sexual_assault) ~ lead_2 + lead_1+ treatment |
+          uni_semester + weekday, cluster = ~university, data = .)
+
