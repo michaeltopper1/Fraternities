@@ -112,12 +112,19 @@ appended_crime_logs <- appended_crime_logs %>%
 
 appended_crime_logs <- appended_crime_logs %>% 
   mutate(report_lag = date_reported - date_occurred) %>% relocate(report_lag) %>% 
-  filter(report_lag >=0 | is.na(report_lag))
+  filter(report_lag >=0 | is.na(report_lag)) %>% 
+  mutate(report_lag_alc = ifelse(report_lag > 3 & alcohol_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_sex = ifelse(report_lag > 3 & sexual_assault == 1, 1, 0)) %>% 
+  mutate(report_lag_drug = ifelse(report_lag > 3 & drug_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_rob = ifelse(report_lag > 3 & robbery_burglary == 1, 1, 0)) %>% 
+  mutate(report_lag_theft = ifelse(report_lag > 3 & theft == 1, 1, 0))
+
+
 write_csv(appended_crime_logs, file = "Created Data/xMaster_data_2021/appended_crime_logs.csv")
 
 collapsed_data_daily <- appended_crime_logs %>% 
   select(date_reported, university, sexual_assault, alcohol_offense, drug_offense, theft, robbery_burglary, alcohol_offense_strict,
-         noise_offense, rape) %>% 
+         noise_offense, rape, starts_with("report_lag_")) %>% 
   group_by(university, date_reported) %>% 
   summarize(across(everything(), ~sum(.,na.rm = T)))
 
