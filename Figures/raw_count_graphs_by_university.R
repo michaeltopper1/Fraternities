@@ -26,11 +26,11 @@ raw_graph_totals <- function(data, offense) {
       TRUE ~as.character(university)
     )) %>% 
     ggplot(aes(date, {{offense}})) +
-    geom_path(aes(group = 1), color = "black") +
-    geom_rect(aes(xmin = as.Date(closure_1), xmax = as.Date(closure_1_end), ymin = 0, ymax = Inf), fill = "lightslategrey", alpha = 0.01) +
-    geom_rect(aes(xmin = as.Date(closure_2), xmax = as.Date(closure_2_end), ymin = 0, ymax = Inf), fill = "lightslategrey", alpha = 0.01) +
-    facet_wrap(~university, ncol = 6) +
-    theme_light() 
+    geom_path(aes(group = 1), color = "black", alpha = 0.7) +
+    geom_rect(aes(xmin = as.Date(closure_1), xmax = as.Date(closure_1_end), ymin = 0, ymax = Inf), fill = "light blue", alpha = 0.01) +
+    geom_rect(aes(xmin = as.Date(closure_2), xmax = as.Date(closure_2_end), ymin = 0, ymax = Inf), fill = "light blue", alpha = 0.01) +
+    facet_wrap(~university, ncol = 6, scales = "free") +
+    theme_minimal() 
   return(plot)
 }
 
