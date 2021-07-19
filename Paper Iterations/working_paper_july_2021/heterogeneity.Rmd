@@ -1,0 +1,16 @@
+---
+title: "Heterogeneity"
+output: pdf_document
+bibliography: references.bib
+linkcolor: blue
+---
+
+# Heterogeneity
+
+## Whose punishment matters more?
+
+Talk about difference between university-enacted vs. IFC enacted.
+
+## Which triggering events matter most?
+
+Go back to each triggering event and make a table describing the differences between all of these.

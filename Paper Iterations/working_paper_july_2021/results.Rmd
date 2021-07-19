@@ -1,0 +1,27 @@
+---
+title: "Results"
+output: pdf_document
+bibliography: references.bib
+linkcolor: blue
+---
+
+# Results
+
+## Main Estimation
+
+Show only results for alcohol and sexual assault offenses. split the results by wholeweek/weekends/weekdays.
+
+## Placebo Checks
+
+Use robbery offenses here.
+
+Maybe randomize treatment?
+
+## Robustness
+
+Leave-one-out regressions here.
+Poisson regressions here. Same offenses and using similar table as above.
+
+
+
+
