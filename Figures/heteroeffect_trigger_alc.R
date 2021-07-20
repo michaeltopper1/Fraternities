@@ -41,11 +41,12 @@ mean_alcohol <- mean(daily_crime$alcohol_offense_per25, na.rm = T)
 mean_alcohol <- tribble(~sex, ~new, ~x, ~y, ~z,
                        "Mean of Alcohol Offense Per 25k ",mean_alcohol, mean_alcohol, mean_alcohol, mean_alcohol)
 attr(mean_alcohol, 'position') <- c(9)
+
 hetero_reasons_death %>% 
   modelsummary(stars = T, gof_omit ="^R|^AIC|^BIC|^Log",
                coef_rename = c("treatment:reason_sexual_assault" = "Moratorium x Triggering Sexual Assault",
                                "treatment:reason_death" = "Moratorium x Triggering Death of Student",
                                "treatment:reason_behavior" = "Motatorium x Triggering Behavior Violation",
                                "treatment:reason_unknown" = "Moratorium x Triggering Event Unknown"),
-               title = "Effect of fraternity moratoria on alcohol offenses by triggering event.", add_rows = mean_alcohol) %>% 
+               title = "Effect of fraternity moratoriums on alcohol offenses by triggering event.", add_rows = mean_alcohol) %>% 
   kableExtra::add_header_above(c(" " = 1, "Triggering Event" = 4))

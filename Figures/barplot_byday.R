@@ -20,7 +20,7 @@ by_day_sexual_assault <- daily_crime %>%
   ggplot(aes(x = weekday, y = avg_sexual_assault, fill = as.factor(treatment))) +
   geom_col(position = "dodge", alpha = 0.8) +
   labs(x = "",y= "", fill = "") +
-  theme_light() +
+  theme_minimal() +
   theme(legend.position = "bottom")
 
 by_day_alcohol <- daily_crime %>% 
@@ -33,7 +33,7 @@ by_day_alcohol <- daily_crime %>%
   ggplot(aes(x = weekday, y = avg_alcohol, fill = as.factor(treatment))) +
   geom_col(position = "dodge", alpha = 0.8) +
   labs(x = "",y= "", fill = "") +
-  theme_light() + 
+  theme_minimal() + 
   theme(legend.position = "bottom")
 
 by_day_drug_offense <- daily_crime %>% 

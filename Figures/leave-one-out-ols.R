@@ -24,9 +24,7 @@ for (uni in distinct_universities) {
   if (count == 1) {
     model <- daily_crime %>% 
       filter(university != uni) %>% 
-      feols(sexual_assault ~ treatment + 
-               frac_total_black + frac_total_asian + frac_total_hispanic_latino +
-               total_enrollment + graduation_rate_total_cohort|
+      feols(sexual_assault_per25 ~ treatment |
                uni_semester + weekday,
              cluster = ~university, data = .)
     final_results_sex <- broom::tidy(model, conf.int = T)[1,]
@@ -34,9 +32,7 @@ for (uni in distinct_universities) {
   else {
     model <- daily_crime %>% 
       filter(university != uni) %>% 
-      feols(sexual_assault ~treatment + 
-               frac_total_black + frac_total_asian + frac_total_hispanic_latino +
-               total_enrollment + graduation_rate_total_cohort|
+      feols(sexual_assault_per25 ~treatment |
                uni_semester + weekday,
              cluster = ~university, data = .)
     final_results_append <- broom::tidy(model, conf.int = T)[1,]
@@ -52,9 +48,7 @@ for (uni in distinct_universities) {
   if (count == 1) {
     model <- daily_crime %>% 
       filter(university != uni) %>% 
-      feols(alcohol_offense ~ treatment + 
-               frac_total_black + frac_total_asian + frac_total_hispanic_latino +
-               total_enrollment + graduation_rate_total_cohort|
+      feols(alcohol_offense_per25 ~ treatment |
                uni_semester + weekday,
              cluster = ~university, data = .)
     final_results_alc <- broom::tidy(model, conf.int = T)[1,]
@@ -62,9 +56,7 @@ for (uni in distinct_universities) {
   else {
     model <- daily_crime %>% 
       filter(university != uni) %>% 
-      feols(alcohol_offense ~ treatment + 
-               frac_total_black + frac_total_asian + frac_total_hispanic_latino +
-               total_enrollment + graduation_rate_total_cohort|
+      feols(alcohol_offense_per25 ~ treatment|
                uni_semester + weekday,
              cluster = ~university, data = .)
     final_results_append <- broom::tidy(model, conf.int = T)[1,]
@@ -81,12 +73,12 @@ leave_one_out_plot <- function(data) {
     ggplot(aes(row_number, estimate)) +
     geom_point() +
     geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
-    theme_light() +
+    theme_minimal() +
     geom_hline(aes(yintercept = 0), color = "red") +
-    theme(axis.title.x = element_blank(), axis.text.x = element_blank())
+    theme(axis.title.x = element_blank(), axis.text.x = element_blank()) +
+    labs(y = "Coefficient Estimate")
   return(plot)
 }
 
 loo_sex_ols <- leave_one_out_plot(final_results_sex) 
-loo_alc_ols <- leave_one_out_plot(final_results_alc)
-
+loo_alc_ols <- leave_one_out_plot(final_results_alc) 

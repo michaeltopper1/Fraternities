@@ -144,7 +144,7 @@ ols_prediction_graph  <- ols_predict_death %>%
     "missing" = "Missing Data"
   )) +
   geom_vline(xintercept = 0, color = "red", linetype = "dashed") +
-  theme_light() +
+  theme_minimal() +
   labs(x = "")
 
 
@@ -168,6 +168,6 @@ logit_predict_graph <- logit_predict_death %>%
     "missing" = "Missing Data"
   )) +
   geom_vline(xintercept = 0, color = "red", linetype = "dashed") +
-  theme_light() +
+  theme_minimal() +
   labs(x = "")
 
