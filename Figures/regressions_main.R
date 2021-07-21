@@ -56,16 +56,16 @@ weekday_means <- daily_crime_weekdays %>%
             sex_mean = mean(sexual_assault_per25, na.rm = T)) %>% 
   mutate(across(everything(), ~round(.,4)))
 
-row_means <- tribble(~term, ~sex, ~alc, ~sex_weeknd, ~alc_weeknd, ~sex_weekday, ~alc_weekday,
-                     'Mean of Outcome',full_means[[2]], full_means[[1]], weekend_means[[2]], weekend_means[[1]], weekday_means[[2]], weekday_means[[1]])
+row_means <- tribble(~term, ~alc, ~alc_weeknd, ~alc_weekday, ~sex, ~sex_weekend, ~sex_weekday,
+                     'Mean of Outcome',full_means[[1]], weekend_means[[1]], weekday_means[[1]], full_means[[2]], weekend_means[[2]], weekday_means[[2]])
 attr(row_means, 'position') <- c(4)
 main_regs <- list(
-  "Sexual Assault" = sex,
-  "Alcohol Offense" = alc,
-  "Sexual Assault" = sex_weekends,
-  "Alcohol Offense" = alc_weekends,
-  "Sexual Assault" = sex_weekdays,
-  "Alcohol Offense" = alc_weekdays)
+  "Full Sample" = alc,
+  "Weekends" = alc_weekends,
+  "Weekdays" = alc_weekdays,
+  "Full Sample" = sex,
+  "Weekends" = sex_weekends,
+  "Weekdays"= sex_weekdays)
 
 main_results_table <- modelsummary(main_regs, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
              coef_map = c("treatment" = "Moratorium",
@@ -76,9 +76,10 @@ main_results_table <- modelsummary(main_regs, stars = T, gof_omit = 'DF|Deviance
                           "graduation_rate_total_cohort" = "Graduation Rate",
                           "uni_semester" = "University by Semester"),
              title = "Effect of Fraternity Moratoriums on Sexual Assault and Alcohol Offenses",
-             notes = "Reports of sexual assault and counts of alcohol offenses are per 25,000 students",
+             notes = "Reports of sexual assault and counts of alcohol offenses are per 25,000 students enrolled. 
+             Full sample includes all days of the week (Mon-Sun), weekends include only Friday-Sunday, and weekdays include only Monday-Thursday.",
              add_rows = row_means) %>% 
-  add_header_above(c(" " = 1, "Full Sample" = 2, "Weekends (Fri/Sat/Sun)" = 2, "Weekdays (Mon-Thurs)"= 2))
+  add_header_above(c(" " = 1, "Alcohol Offense" = 3, "Sexual Assault"= 3))
 
 
 

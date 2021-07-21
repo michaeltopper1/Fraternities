@@ -56,16 +56,17 @@ weekday_means <- daily_crime_weekdays %>%
             sex_mean = mean(sexual_assault_per25, na.rm = T)) %>% 
   mutate(across(everything(), ~round(.,4)))
 
-row_means <- tribble(~term, ~sex, ~alc, ~sex_weeknd, ~alc_weeknd, ~sex_weekday, ~alc_weekday,
-                     'Mean of Outcome',full_means[[2]], full_means[[1]], weekend_means[[2]], weekend_means[[1]], weekday_means[[2]], weekday_means[[1]])
+row_means <- tribble(~term, ~alc, ~alc_weeknd, ~alc_weekday, ~sex, ~sex_weekend, ~sex_weekday,
+                     'Mean of Outcome',full_means[[1]], weekend_means[[1]], weekday_means[[1]], full_means[[2]], weekend_means[[2]], weekday_means[[2]])
+
 attr(row_means, 'position') <- c(4)
 main_regs_p <- list(
-  "Sexual Assault" = sex_p,
-  "Alcohol Offense" = alc_p,
-  "Sexual Assault" = sex_weekends_p,
-  "Alcohol Offense" = alc_weekends_p,
-  "Sexual Assault" = sex_weekdays_p,
-  "Alcohol Offense" = alc_weekdays_p)
+  "Full Sample" = alc_p,
+  "Weekends" = alc_weekends_p,
+  "Weekdays" = alc_weekdays_p,
+  "Full Sample" = sex_p,
+  "Weekends" = sex_weekends_p,
+  "Weekdays"= sex_weekdays_p)
 
 poisson_results_table <- modelsummary(main_regs_p, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
                                    coef_map = c("treatment" = "Moratorium",
@@ -76,9 +77,10 @@ poisson_results_table <- modelsummary(main_regs_p, stars = T, gof_omit = 'DF|Dev
                                                 "graduation_rate_total_cohort" = "Graduation Rate",
                                                 "uni_semester" = "University by Semester"),
                                    title = "Effect of Fraternity Moratoriums on Sexual Assault and Alcohol Offenses: Poisson Estimation",
-                                   notes = "Reports of sexual assault and counts of alcohol offenses are counts.",
+                                   notes = "Reports of sexual assault and alcohol offenses are counts.
+                                   Poisson regression drops some fixed effects (and hence observations) when no variation occurs.",
                                    add_rows = row_means) %>% 
-  add_header_above(c(" " = 1, "Full Sample" = 2, "Weekends (Fri/Sat/Sun)" = 2, "Weekdays (Mon-Thurs)"= 2))
+  add_header_above(c(" " = 1, "Alcohol Offense" = 3, "Sexual Assault"= 3))
 
 
 
