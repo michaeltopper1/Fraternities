@@ -67,6 +67,10 @@ number_of_universities = 53
 
 ```
 
+```{r, child = "results.Rmd"}
+
+```
+
 
 \newpage
 # References
