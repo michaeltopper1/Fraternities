@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.7.19)  20 JUL 2021 23:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.7.19)  22 JUL 2021 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -528,24 +528,47 @@ LaTeX Warning: Reference `main_model' on page 1 undefined on input line 143.
 
 LaTeX Warning: Reference `robbery' on page 1 undefined on input line 143.
 
+
+LaTeX Warning: Reference `trigger_effect_alc' on page 1 undefined on input line
+ 153.
+
+
+LaTeX Warning: Reference `trigger_plot' on page 1 undefined on input line 155.
+
+
+LaTeX Warning: Reference `trigger_effect_alc' on page 1 undefined on input line
+ 164.
+
+
+LaTeX Warning: Reference `main_estimation' on page 1 undefined on input line 16
+5.
+
 [1
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.
-map}] (./results.aux)
+map}]
+
+LaTeX Warning: Reference `trigger_effect_sex' on page 2 undefined on input line
+ 174.
+
+
+LaTeX Warning: Reference `uni_enacted' on page 2 undefined on input line 199.
+
+[2] (./results.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `results.out' has not changed.
-(rerunfilecheck)             Checksum: 0CF8E8C5EEA021B50F17C73EA8BE5E18;396.
+(rerunfilecheck)             Checksum: 18E398E793B6EC2191DE9F2697D09811;949.
  ) 
 Here is how much of TeX's memory you used:
- 10094 strings out of 480502
- 148404 string characters out of 5898248
- 475253 words of memory out of 5000000
- 27592 multiletter control sequences out of 15000+600000
+ 10107 strings out of 480502
+ 148687 string characters out of 5898248
+ 476253 words of memory out of 5000000
+ 27600 multiletter control sequences out of 15000+600000
  457687 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,8n,66p,241b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,8n,66p,360b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
 }{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.
 enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-math
@@ -562,10 +585,10 @@ ype1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/
 type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts
 /type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/font
 s/type1/public/lm/lmsy8.pfb>
-Output written on results.pdf (1 page, 185729 bytes).
+Output written on results.pdf (2 pages, 193584 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 25 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

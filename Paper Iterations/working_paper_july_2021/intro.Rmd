@@ -1,0 +1,28 @@
+---
+title: "Introduction"
+output: pdf_document
+bibliography: references.bib
+linkcolor: blue
+---
+```{r, echo = F}
+number_of_universities = 53
+## things used here
+## main_estimation will be the main estimation table
+## leave_one_out is the leave one out figure - side-by-side 1 figure only. 
+```
+
+
+# Introduction
+
+## Question
+Begin with how there is a new narrative around what we should do with fraternities - they are super racist and historically shitty things. On the other hand, they provide beneficial things like networking, higher income, higher GPA, college life, and status. Should fraternities be closed down? I provide evidence on this question utilizing a natural experiment where fraternities were temporarily put on probation campus wide. This gives me a kind of "suppose fraternities were closed down for a little" situation.
+
+## What is your contribution?
+My contribution is the novel data that I find - I am the first study to ever put together such data by harmonizing daily crime logs. Additionally, I am the first study to ever look at fraternity moratoriums. I am the first to connect fraternity moratoriums to any offense. My study is the first to look at effects of fraternities across many schools using non-survey data. 
+
+## What do you find?
+I find that fraternity moratoriums have a large and robust effect on alcohol offenses. There appears to be evidence of sexual assault decreases in certain triggering events, and on weekends. 
+
+## How it fits in to the litature
+Fits into the alcohol literature, the college partying literature, sexual assault literature and literature on fraternities
+
