@@ -10,9 +10,10 @@ library(lubridate)
 library(glue)
 library(ifc)
 
-## using all months including summer 
-path <- "Created Data/xMaster_data_2021/daily_panel.csv"
-daily_crime <- read_csv(path, guess_max = 50000)
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
+
 
 month_by_year_crimes <- daily_crime %>% 
   group_by(month, year) %>% 
@@ -28,7 +29,7 @@ month_by_year_crimes <- daily_crime %>%
   labs(y = "Monthly Averages", x = "", color = "Offense Type") +
   scale_x_date(date_breaks = "month", date_labels = "%b-%y") +
   scale_color_discrete(breaks = c("alcohol_offense", "drug_offense", "sexual_assault"), labels = c("Alcohol", "Drug", "Sexual Assault")) +
-  theme_light() +
+  theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), legend.position = "bottom")
 
 

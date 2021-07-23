@@ -11,7 +11,9 @@ library(fixest)
 library(kableExtra)
 library(modelsummary)
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
 
 daily_crime_weekdays<- daily_crime %>% 
   filter(weekday != "Fri" & weekday != "Sat" & weekday != "Sun")

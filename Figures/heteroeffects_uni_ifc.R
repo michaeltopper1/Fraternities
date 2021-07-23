@@ -5,79 +5,74 @@ library(ifc)
 library(lubridate)
 library(kableExtra)
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel_nosummer.csv",
-                        guess_max = 50000)
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel_nosummer.csv",
-                         guess_max = 50000)
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
 
 daily_crime <- daily_crime %>% 
-  mutate(across(c(ftime_total_undergrad, total_undergrad_asian,
-                  total_undergrad_black, total_undergrad_hispanic),
-                ~ ./total_students_undergrad)) 
-weekly_crime <- weekly_crime %>% 
-  mutate(across(c(ftime_total_undergrad, total_undergrad_asian,
-                  total_undergrad_black, total_undergrad_hispanic),
-                ~ ./total_students_undergrad))  %>% 
-  mutate(university_enacted = case_when(
-    university_enacted_1 == 1 & treatment == 1 ~ 1,
-    university_enacted_2 == 1 & treatment == 1 ~ 1,
-    TRUE ~as.double(0)
-  ))
+  mutate(ifc_enacted = ifelse(university_enacted == 0 & treatment == 1, 1, 0))
 
-per100_alc_d <- daily_crime %>% 
-  feols(alcohol_offense_per100 ~ university_enacted + treatment + ftime_total_undergrad + 
-          total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-          uni_month + year + weekday, cluster = ~university, data = .) 
-ihs_alc_d <- daily_crime %>% 
-  feols(ihs_alcohol_offense ~ university_enacted + treatment + ftime_total_undergrad + 
-          total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-          uni_month + year + weekday, cluster = ~university, data = .) 
-per100_sex_d <- daily_crime %>% 
-  feols(sexual_assault_per100 ~ university_enacted + treatment + ftime_total_undergrad + 
-          total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-          uni_month + year + weekday, cluster = ~university, data = .) 
-ihs_sex_d <- daily_crime %>% 
-  feols(ihs_sexual_assault ~ university_enacted + treatment + ftime_total_undergrad + 
-          total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-          uni_month + year + weekday, cluster = ~university, data = .) 
+daily_crime_weekdays<- daily_crime %>% 
+  filter(weekday != "Fri" & weekday != "Sat" & weekday != "Sun")
+
+daily_crime_weekends <- daily_crime %>% 
+  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun")
 
 
-per100_alc_w <- weekly_crime %>% 
-  feols(alcohol_offense_per100 ~ university_enacted + treatment + ftime_total_undergrad + 
-          total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-          uni_month + year , cluster = ~university, data = .) 
-ihs_alc_w <- weekly_crime %>% 
-  feols(ihs_alcohol_offense ~ university_enacted  + treatment + ftime_total_undergrad + 
-          total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-          uni_month + year , cluster = ~university, data = .) 
-per100_sex_w <- weekly_crime %>% 
-  feols(sexual_assault_per100 ~ university_enacted + treatment + ftime_total_undergrad + 
-          total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-          uni_month + year , cluster = ~university, data = .) 
-ihs_sex_w <- weekly_crime %>% 
-  feols(ihs_sexual_assault ~ university_enacted + treatment + ftime_total_undergrad + 
-          total_undergrad_black + total_undergrad_asian + total_undergrad_hispanic + graduation_rate_total_cohort_|
-          uni_month + year , cluster = ~university, data = .) 
+uni_enacted_alc <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~treatment:university_enacted + treatment:ifc_enacted| uni_semester + weekday,
+        cluster = ~university, data = .)
+
+uni_enacted_alc_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25~treatment:university_enacted+ treatment:ifc_enacted| uni_semester + weekday,
+        cluster = ~university, data = .)
+
+uni_enacted_alc_weekdays <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~treatment:university_enacted + treatment:ifc_enacted | uni_semester + weekday,
+        cluster = ~university, data = .)
+
+uni_enacted_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~treatment:university_enacted + treatment:ifc_enacted| uni_semester + weekday,
+        cluster = ~university, data = .)
+
+uni_enacted_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25~treatment:university_enacted + treatment:ifc_enacted| uni_semester + weekday,
+        cluster = ~university, data = .)
+
+uni_enacted_sex_weekdays <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~treatment:university_enacted + treatment:ifc_enacted| uni_semester + weekday,
+        cluster = ~university, data = .)
+
+uni_enacted <- list("Full Sample" = uni_enacted_alc,
+                            "Weekends" = uni_enacted_alc_weekend,
+                            "Weekdays" = uni_enacted_alc_weekdays,
+                            "Full Sample" = uni_enacted_sex,
+                            "Weekends" = uni_enacted_sex_weekend,
+                            "Weekdays" = uni_enacted_sex_weekdays)
+
+full_means <- daily_crime %>% 
+  summarize(alcohol_mean = mean(alcohol_offense_per25, na.rm = T),
+            sex_mean = mean(sexual_assault_per25, na.rm = T)) %>% 
+  mutate(across(everything(), ~round(.,4)))
+weekend_means <- daily_crime_weekends %>% 
+  summarize(alcohol_mean = mean(alcohol_offense_per25, na.rm = T),
+            sex_mean = mean(sexual_assault_per25, na.rm = T)) %>% 
+  mutate(across(everything(), ~round(.,4)))
+weekday_means <- daily_crime_weekdays %>% 
+  summarize(alcohol_mean = mean(alcohol_offense_per25, na.rm = T),
+            sex_mean = mean(sexual_assault_per25, na.rm = T)) %>% 
+  mutate(across(everything(), ~round(.,4)))
+
+row_means <- tribble(~term, ~alc, ~alc_weeknd, ~alc_weekday, ~sex, ~sex_weekend, ~sex_weekday,
+                     'Mean of Outcome',full_means[[1]], weekend_means[[1]], weekday_means[[1]], full_means[[2]], weekend_means[[2]], weekday_means[[2]])
+attr(row_means, 'position') <- c(5)
 
 
-hetero_uni_enacted <- list("Per 100k" = per100_alc_d,
-                       "IHS" = ihs_alc_d,
-                       "Per 100k" = per100_sex_d,
-                       "IHS" = ihs_sex_d,
-                       "Per 100k" = per100_alc_w,
-                       "IHS" = ihs_alc_w,
-                       "Per 100k" = per100_sex_w,
-                       "IHS" = ihs_sex_w)
-hetero_uni_enacted <- modelsummary(hetero_uni_enacted, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within|R2 Ps',
-                               coef_map = c("treatment" = "Moratorium",
-                                            "ftime_total_undergrad" = "Fraction Full-time Undergrad",
-                                            "total_undergrad_black" = "Fraction Undergrad Black",
-                                            "total_undergrad_asian" = "Fraction Undergrad Asian",
-                                            "total_undergrad_hispanic" = "Fraction Undergrad Hispanic",
-                                            "graduation_rate_total_cohort_" = "Graduation Rate",
-                                            "university_enacted" = "University Enacted"), title = "Difference in effects between university/IFC enacted moratoria") %>% 
-  add_header_above(c(" " = 1, "Alcohol Offense" = 2, "Sexual Assault" = 2, "Alcohol Offense" = 2, "Sexual Assault" = 2)) %>% 
-  add_header_above(c(" " = 1, "Daily Reports" = 4, "Weekly Reports" = 4)) %>% 
-  row_spec(13:14, bold = T, color = "red")
+uni_eneacted_alc <- uni_enacted %>% modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within|R2 Ps|R2|R2 Adj.',
+                             coef_map = c("treatment:university_enacted" = "Moratorium x University Enacted",
+                                          "treatment:ifc_enacted" = "Moratorium x IFC Enacted"),
+                             add_rows = row_means) %>% 
+  add_header_above(c(" " = 1, "Alcohol Offenses" = 3, "Sexual Assault" = 3))
+
 
 

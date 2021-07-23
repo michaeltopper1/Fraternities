@@ -7,7 +7,10 @@
 
 library(tidyverse)
 library(lubridate)
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
 
 closure_1 <- daily_crime %>% 
   distinct(closure_1, university, university_enacted_1) %>% 

@@ -4,8 +4,10 @@ library(lubridate)
 library(fixest)
 library(ifc)
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv",
-                        guess_max = 50000)
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
+
 exo_universites <- c("Arkansas State University-Main Campus",
                      "California Polytechnic State University-San Luis Obispo",
                      "Clemson University",

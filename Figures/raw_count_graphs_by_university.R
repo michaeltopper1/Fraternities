@@ -7,7 +7,9 @@
 
 library(tidyverse)
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
 
 treated_universities <- daily_crime %>% 
   filter(!(university %in% ifc::untreated_universities())) %>% 

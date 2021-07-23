@@ -16,9 +16,12 @@ library(fixest)
 library(modelsummary)
 library(lubridate)
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
+
 weekends <- c("Fri", "Sat", "Sun")
-daily_crime <- daily_crime %>% 
+daily_crime_het <- daily_crime %>% 
   mutate(across(c(reason1, reason2), ~ifelse(is.na(.), "untreated", .))) %>% 
   mutate(reason_sexual_assault = ifelse((reason1 == 'sexual assault' & (date >= closure_1 & date < closure_1_end)  & treatment == 1) 
                                         | (reason2 == 'sexual assault' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0)) %>% 
@@ -29,12 +32,8 @@ daily_crime <- daily_crime %>%
   mutate(reason_unknown = ifelse((reason1 == 'unknown' & (date >= closure_1 & date < closure_1_end)  & treatment == 1) 
                                  | (reason2 == 'unknown' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0))
 
-daily_crime %>% 
-  feols(c(sexual_assault_per25) ~ treatment *reason_sexual_assault|
-        uni_semester + weekday, cluster = ~university, data = .) 
-                                     
 
-hetero_reasons_sex <- daily_crime %>% 
+hetero_reasons_sex <- daily_crime_het %>% 
   feols(c(sexual_assault_per25) ~ sw(treatment:reason_sexual_assault,
                                       treatment:reason_death,
                                       treatment:reason_behavior,
@@ -46,7 +45,9 @@ mean_sex <- mean(daily_crime$sexual_assault_per25, na.rm = T)
 mean_of_sex <- tribble(~sex, ~new, ~x, ~y, ~z,
                        "Mean of Sexual Assault Per 25k ",mean_sex, mean_sex, mean_sex, mean_sex)
 attr(mean_of_sex, 'position') <- c(9)
-hetero_reasons_sex %>% 
+
+
+heteroeffects_sex <- hetero_reasons_sex %>% 
   modelsummary(stars = T, gof_omit ="^R|^AIC|^BIC|^Log",
                coef_rename = c("treatment:reason_sexual_assault" = "Moratorium x Triggering Sexual Assault",
                                "treatment:reason_death" = "Moratorium x Triggering Death of Student",

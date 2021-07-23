@@ -8,8 +8,10 @@
 library(tidyverse)
 library(glue)
 library(tidytext)
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
 
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
 
 length_1 <- daily_crime %>% 
   group_by(university) %>% 

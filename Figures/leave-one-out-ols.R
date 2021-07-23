@@ -10,7 +10,10 @@ library(modelsummary)
 library(fixest)
 library(kableExtra)
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
+
 
 # daily_crime <- daily_crime %>% 
 #   filter(university != "University of North Florida") ## not sure whether to keep in or not
@@ -20,6 +23,7 @@ distinct_universities <- daily_crime %>%
   pull()
 
 count <- 1
+
 for (uni in distinct_universities) {
   if (count == 1) {
     model <- daily_crime %>% 
