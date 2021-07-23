@@ -10,7 +10,21 @@ library(glue)
 library(ifc)
 
 ## getting in the data that I matched with 
-source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
+# source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
+
+
+# identifier - pull from append_daily_crime_logs_1 ------------------------
+
+appended_crime_logs <-  read_csv("Created Data/xMaster_data_2021/appended_crime_logs.csv")
+
+alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## got rid of disorderly conduct.
+sexual_assault_identifiers <- "sex|rape|fondling|fondle|indecent exposure" 
+drug_identifiers <- "drug|narcotic|marijuana|heroin|overdose|cocaine|controlled"
+theft_identifiers <- "larceny|theft|shoplifting|pocket-picking|steal|shop lifting" ##using nibrs
+robbery_burglary_identifiers <- "robbery|burglary|unlawful entry|breaking and entering"
+alcohol_identifiers_strict <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|minor in possession|ovi" ## getting rid of possesion
+noise_violation_identifier <- "noise|loud"
+rape_identifier <- "rape"
 
 ## table of words to match on
 alcohol_words <- alcohol_identifiers %>% 
@@ -67,8 +81,7 @@ top_burglary <- appended_crime_logs %>%
   filter(robbery_burglary == 1) %>% 
   count(incident, sort = T) %>% 
   mutate(incident = glue("({n}) {incident}")) %>% 
-  head(15) %>%  select(incident) %>% rename("Burglary Offense" = incident)
+  head(15) %>%  select(incident) %>% rename("Robbery/Burglary Offense" = incident)
 
-top_categories <- bind_cols(top_sexual_assault, top_alcohol_offense, 
-                            top_drug_offense, top_theft, top_burglary)
+top_categories <- bind_cols(top_sexual_assault, top_alcohol_offense, top_burglary)
 
