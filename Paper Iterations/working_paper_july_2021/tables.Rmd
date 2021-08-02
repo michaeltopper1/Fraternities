@@ -1,0 +1,166 @@
+---
+title: "Tables"
+output: pdf_document
+bibliography: references.bib
+linkcolor: blue
+editor_options: 
+  chunk_output_type: console
+header-includes:
+- \usepackage{subfig}
+---
+
+
+```{r setup, include=FALSE}
+## get rid of this entire chunk before knitting
+knitr::opts_chunk$set(echo = F, message = F, warning= F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(kableExtra)
+library(tidyverse)
+library(lubridate)
+library(modelsummary)
+theme_set(theme_minimal())
+```
+
+
+
+# Tables
+
+```{r}
+source("Tables/matching_word_table.R")
+```
+
+```{r matching_table}
+kable(matching_table, booktabs = T, caption = "Words/phrases used to pattern match on outcomes of interest.") %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, color = "blue") %>%
+  column_spec(2, width = "20em")
+```
+
+\begin{landscape}
+```{r top_categories}
+kable(top_categories, booktabs = T, caption = "The top 30 most frequent reported incidents after pattern matching into each category. Numbers in parenthesis denote the frequency of offense in the data.") %>%
+  kable_styling(latex_options = "scale_down")
+```
+\end{landscape}
+
+```{r}
+source("Tables/closure_table.R")
+```
+
+```{r closure_table}
+options(knitr.kable.NA = '')
+kbl(closure_table, booktabs = T, caption = "All universities included in the sample and their respective moratorium dates.", col.names = c("University", "Moratorium 1 Start", "Moratorium 1 End",
+                                                                                                                                           "Moratorium 2 Start", "Moratorium 2 End")) %>%
+  kable_styling(latex_options = "scale_down")
+
+
+```
+
+```{r}
+source("Tables/summary_stats_offenses.R")
+```
+
+```{r summary_stats_crime}
+summary_stats_crime
+```
+
+
+
+```{r university_characteristics}
+source("Tables/summary_stats_university.R")
+```
+
+```{r}
+university_characteristics
+```
+
+
+
+
+
+```{r lag_regressions}
+source("Figures/lag_regressions.R")
+```
+
+```{r}
+lag_regresion_table 
+```
+
+
+
+
+
+```{r main_results}
+source("Figures/regressions_main.R")
+```
+
+```{r}
+main_results_table %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r poisson_results}
+source("Figures/robustness_poisson_regression.R")
+```
+
+
+```{r}
+poisson_results_table %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+
+```{r robbery}
+source("Figures/regression_placebo_robbery.R")
+```
+
+```{r}
+robbery_table
+```
+
+
+
+
+
+
+```{r hetero_trigger_alc}
+source("Figures/heteroeffects_trigger_alc.R")
+```
+
+
+```{r}
+heteroeffects_alc %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+
+```{r hetero_trigger_sex}
+source("Figures/heteroeffects_trigger_sex.R")
+```
+
+
+```{r}
+heteroeffects_sex %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+
+
+```{r hetero_uni_ifc}
+source("Figures/heteroeffects_uni_ifc.R")
+```
+
+```{r}
+uni_enacted_alc %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+
+
+
+
