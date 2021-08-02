@@ -10,7 +10,9 @@ library(modelsummary)
 library(tidyverse)
 library(kableExtra)
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+}
 
 university_characteristics <- daily_crime %>% 
   mutate(private = ifelse(control_of_institution != "Public", 1, 0)) %>% 
