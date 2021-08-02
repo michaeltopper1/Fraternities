@@ -241,9 +241,10 @@ lag_regresion_table <-  modelsummary::modelsummary(lag_regression,stars = T,gof_
                                           "frac_undergrad_hispanic_latino" = "Fraction Undergrad Hispanic",
                                           "graduation_rate_total_cohort" = "Graduation Rate",
                                           "uni_semester" = "University by Semester"),
-                             title = "Differences in reporting between moratorium and non-moratorium days",
-                             notes = "The dependent variable is the proportion of offenses that are reported with a lag (e.g. date reported is more than 3 days later than the date occurred).
-                             Observations are based off of a subset of the sample due to data constraints on the date reported.",
+                             title = "Differences in reporting between moratorium and non-moratorium days.",
+                             notes = list("The dependent variable is the proportion of offenses that are reported with a lag.",
+                                          "A lag is defined as when date reported is more than 3 days later than the date occurred.",
+                             "Observations are based off of a subset of the sample due to data constraints on the date reported."),
                              add_rows = row_means) %>% 
   kableExtra::add_header_above(c(" " = 1, "Proportion Reported with a Lag" = 2))
 

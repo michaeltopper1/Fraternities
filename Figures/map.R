@@ -25,7 +25,6 @@ map_of_schools <- us_states %>%
   ggplot(aes(long, lat, group = group)) +
   geom_polygon(fill = "white") +
   borders("state") +
-  geom_point(data = universities, aes(longitude, latitude, group = university, color = as_factor(ever_treated), size = most_recent)) +
+  geom_point(data = universities, aes(longitude, latitude, group = university, color = as_factor(ever_treated)), size = 2.5) +
   labs(color = "", size = "IFC size") +
-  ggthemes::theme_map() +
-  scale_size_binned()
+  ggthemes::theme_map() 

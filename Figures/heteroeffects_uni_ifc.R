@@ -68,10 +68,12 @@ row_means <- tribble(~term, ~alc, ~alc_weeknd, ~alc_weekday, ~sex, ~sex_weekend,
 attr(row_means, 'position') <- c(5)
 
 
-uni_eneacted_alc <- uni_enacted %>% modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within|R2 Ps|R2|R2 Adj.',
+uni_enacted_alc <- uni_enacted %>% modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within|R2 Ps|R2|R2 Adj.',
                              coef_map = c("treatment:university_enacted" = "Moratorium x University Enacted",
                                           "treatment:ifc_enacted" = "Moratorium x IFC Enacted"),
                              add_rows = row_means) %>% 
+  add_header_above(c(" " = 1, "(1)" = 1, "(2)" = 1, "(3)"= 1,
+                     "(4)" =1, "(5)" = 1, "(6)" = 1)) %>% 
   add_header_above(c(" " = 1, "Alcohol Offenses" = 3, "Sexual Assault" = 3))
 
 

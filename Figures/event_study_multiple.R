@@ -154,7 +154,7 @@ event_study_func <- function(x, window_size) {
 
 
 es_sex <- event_study_func(es_sex, 8) +
-  geom_hline(yintercept = 0, color = "dark red")
+  geom_hline(yintercept = 0, color = "dark red") 
 es_alcohol <- event_study_func(es_alc, 8) +
   geom_hline(yintercept = 0, color = "dark red")
   

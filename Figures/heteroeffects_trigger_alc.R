@@ -38,7 +38,7 @@ names(hetero_reasons_death) <- c("Sexual Assault", "Death of Student", "Behavior
 mean_alcohol <- mean(daily_crime$alcohol_offense_per25, na.rm = T)
 mean_alcohol <- tribble(~sex, ~new, ~x, ~y, ~z,
                        "Mean of Alcohol Offense Per 25k ",mean_alcohol, mean_alcohol, mean_alcohol, mean_alcohol)
-attr(mean_alcohol, 'position') <- c(9)
+attr(mean_alcohol, 'position') <- c(10)
 
 heteroeffects_alc <- hetero_reasons_death %>% 
   modelsummary(stars = T, gof_omit ="^R|^AIC|^BIC|^Log",
@@ -46,5 +46,6 @@ heteroeffects_alc <- hetero_reasons_death %>%
                                "treatment:reason_death" = "Moratorium x Triggering Death of Student",
                                "treatment:reason_behavior" = "Motatorium x Triggering Behavior Violation",
                                "treatment:reason_unknown" = "Moratorium x Triggering Event Unknown"),
-               title = "Effect of fraternity moratoriums on alcohol offenses by triggering event.", add_rows = mean_alcohol) %>% 
+               title = "Effect of fraternity moratoriums on alcohol offenses by triggering event.", add_rows = mean_alcohol) %>%
+  kableExtra::add_header_above(c(" " = 1, "(1)" =1, "(2)" = 1, "(3)" = 1, "(4)" = 1)) %>% 
   kableExtra::add_header_above(c(" " = 1, "Triggering Event" = 4))
