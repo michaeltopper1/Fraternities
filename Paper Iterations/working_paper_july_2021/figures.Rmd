@@ -10,16 +10,16 @@ header-includes:
 ---
 
 
-```{r setup, include=FALSE}
-## get rid of this entire chunk before knitting
-knitr::opts_chunk$set(echo = F, message = F, warning= F)
-knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-library(kableExtra)
-library(tidyverse)
-library(lubridate)
-library(modelsummary)
-theme_set(theme_minimal())
-```
+<!-- ```{r setup, include=FALSE} -->
+<!-- ## get rid of this entire chunk before knitting -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning= F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- library(kableExtra) -->
+<!-- library(tidyverse) -->
+<!-- library(lubridate) -->
+<!-- library(modelsummary) -->
+<!-- theme_set(theme_minimal()) -->
+<!-- ``` -->
 
 
 
@@ -99,14 +99,14 @@ es_sex
 
 
 
-<!-- ```{r} -->
-<!-- source("Figures/leave-one-out-ols.R") -->
-<!-- ``` -->
+```{r}
+source("Figures/leave-one-out-ols.R")
+```
 
-<!-- ```{r leave_one_out,out.width='.49\\linewidth', fig.cap= "\\label{loo} Leave-one-out estimates.", fig.ncol = 2, fig.subcap= c("Alcohol Offenses", "Sexual Assault")} -->
-<!-- loo_alc_ols -->
-<!-- loo_sex_ols -->
-<!-- ``` -->
+```{r leave_one_out,out.width='.49\\linewidth', fig.cap= "\\label{loo} Leave-one-out estimates. The x-axis represents each regression estimation while the y-axis represent the coefficient on moratorium.", fig.ncol = 2, fig.subcap= c("Alcohol Offenses", "Sexual Assault")}
+loo_alc_ols
+loo_sex_ols
+```
 
 
 

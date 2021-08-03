@@ -71,6 +71,7 @@ attr(row_means, 'position') <- c(5)
 uni_enacted_alc <- uni_enacted %>% modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within|R2 Ps|R2|R2 Adj.',
                              coef_map = c("treatment:university_enacted" = "Moratorium x University Enacted",
                                           "treatment:ifc_enacted" = "Moratorium x IFC Enacted"),
+                             title = "Heterogeneous effects for university-enacted moratoriums and IFC-enacted moratoriums.",
                              add_rows = row_means) %>% 
   add_header_above(c(" " = 1, "(1)" = 1, "(2)" = 1, "(3)"= 1,
                      "(4)" =1, "(5)" = 1, "(6)" = 1)) %>% 

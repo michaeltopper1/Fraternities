@@ -10,20 +10,21 @@ header-includes:
 ---
 
 
-```{r setup, include=FALSE}
-## get rid of this entire chunk before knitting
-knitr::opts_chunk$set(echo = F, message = F, warning= F)
-knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-library(kableExtra)
-library(tidyverse)
-library(lubridate)
-library(modelsummary)
-theme_set(theme_minimal())
-```
+<!-- ```{r setup, include=FALSE} -->
+<!-- ## get rid of this entire chunk before knitting -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning= F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- library(kableExtra) -->
+<!-- library(tidyverse) -->
+<!-- library(lubridate) -->
+<!-- library(modelsummary) -->
+<!-- theme_set(theme_minimal()) -->
+<!-- ``` -->
 
 
 
 # Tables
+
 
 ```{r}
 source("Tables/matching_word_table.R")
@@ -33,7 +34,7 @@ source("Tables/matching_word_table.R")
 kable(matching_table, booktabs = T, caption = "Words/phrases used to pattern match on outcomes of interest.") %>%
   kable_styling(full_width = F) %>%
   column_spec(1, bold = T, color = "blue") %>%
-  column_spec(2, width = "20em")
+  column_spec(2, width = "20em") %>% kable_styling(latex_options = "HOLD_position")
 ```
 
 \begin{landscape}

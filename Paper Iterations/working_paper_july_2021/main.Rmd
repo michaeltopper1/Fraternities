@@ -81,10 +81,12 @@ number_of_universities = 53
 ```
 
 
-\newpage
+
+
 ```{r, child = "figures.Rmd"}
 
 ```
+
 
 \newpage
 ```{r, child = "tables.Rmd"}
