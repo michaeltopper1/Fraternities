@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.7.23)  3 AUG 2021 00:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.7.23)  3 AUG 2021 10:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -871,18 +871,18 @@ LaTeX Warning: Reference `tab:summary_stats_crime' on page 7 undefined on input
 [7] [8] [9] [10] [11]
 
 LaTeX Warning: Reference `tab:lag_regressions.' on page 12 undefined on input l
-ine 652.
+ine 651.
 
 [12] [13] [14] [15] [16] [17]
 </Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Paper Iterations/
-working_paper_july_2021/sigma_alpha_rules.pdf, id=352, 614.295pt x 794.97pt>
+working_paper_july_2021/sigma_alpha_rules.pdf, id=351, 614.295pt x 794.97pt>
 File: /Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Paper Iterat
 ions/working_paper_july_2021/sigma_alpha_rules.pdf Graphic file (type pdf)
 <use /Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Paper Iterati
 ons/working_paper_july_2021/sigma_alpha_rules.pdf>
 Package pdftex.def Info: /Users/michaeltopper/Desktop/Fraternities and Sexual A
 ssault/Paper Iterations/working_paper_july_2021/sigma_alpha_rules.pdf  used on 
-input line 880.
+input line 879.
 (pdftex.def)             Requested size: 469.75604pt x 607.9196pt.
 [18] [19]
 Overfull \vbox (20.04738pt too high) has occurred while \output is active []
@@ -890,7 +890,7 @@ Overfull \vbox (20.04738pt too high) has occurred while \output is active []
 [20 </Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Paper Iterati
 ons/working_paper_july_2021/sigma_alpha_rules.pdf>]
 </Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_daily
-_crime_log/Indiana University/1-2014/1-20-14.pdf, id=396, 614.295pt x 831.105pt
+_crime_log/Indiana University/1-2014/1-20-14.pdf, id=395, 614.295pt x 831.105pt
 >
 File: /Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_
 daily_crime_log/Indiana University/1-2014/1-20-14.pdf Graphic file (type pdf)
@@ -898,52 +898,52 @@ daily_crime_log/Indiana University/1-2014/1-20-14.pdf Graphic file (type pdf)
 aily_crime_log/Indiana University/1-2014/1-20-14.pdf>
 Package pdftex.def Info: /Users/michaeltopper/Desktop/Fraternities and Sexual A
 ssault/Data/campus_daily_crime_log/Indiana University/1-2014/1-20-14.pdf  used 
-on input line 887.
+on input line 886.
 (pdftex.def)             Requested size: 469.75604pt x 635.5523pt.
 
 Overfull \vbox (9.62228pt too high) has occurred while \output is active []
 
 [21 </Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Data/campus_d
 aily_crime_log/Indiana University/1-2014/1-20-14.pdf>]
-<main_files/figure-latex/unnamed-chunk-20-1.pdf, id=410, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-20-1.pdf, id=409, 469.755pt x 325.215pt>
 
 File: main_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-20-1.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-20-1.pdf  used o
-n input line 892.
+n input line 891.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<main_files/figure-latex/unnamed-chunk-20-2.pdf, id=411, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-20-2.pdf, id=410, 469.755pt x 325.215pt>
 
 File: main_files/figure-latex/unnamed-chunk-20-2.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-20-2.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-20-2.pdf  used o
-n input line 892.
+n input line 891.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<main_files/figure-latex/unnamed-chunk-20-3.pdf, id=412, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-20-3.pdf, id=411, 469.755pt x 325.215pt>
 
 File: main_files/figure-latex/unnamed-chunk-20-3.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-20-3.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-20-3.pdf  used o
-n input line 892.
+n input line 891.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<main_files/figure-latex/unnamed-chunk-22-1.pdf, id=413, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-22-1.pdf, id=412, 469.755pt x 325.215pt>
 
 File: main_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-22-1.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-22-1.pdf  used o
-n input line 897.
+n input line 896.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [22 <./main_files/figure-latex/unnamed-chunk-20-1.pdf> <./main_files/figure-lat
 ex/unnamed-chunk-20-2.pdf> <./main_files/figure-latex/unnamed-chunk-20-3.pdf>] 
 [23 <./main_files/figure-latex/unnamed-chunk-22-1.pdf>]
-<main_files/figure-latex/unnamed-chunk-24-1.pdf, id=452, 3179.88pt x 2168.1pt>
+<main_files/figure-latex/unnamed-chunk-24-1.pdf, id=451, 3179.88pt x 2168.1pt>
 File: main_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-24-1.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-24-1.pdf  used o
-n input line 904.
+n input line 903.
 (pdftex.def)             Requested size: 688.94968pt x 469.73842pt.
 
-Overfull \hbox (38.51967pt too wide) in paragraph at lines 904--904
+Overfull \hbox (38.51967pt too wide) in paragraph at lines 903--903
 [][] 
  []
 
@@ -953,63 +953,63 @@ Overfull \hbox (38.51967pt too wide) in paragraph at lines 904--904
 Overfull \vbox (24.48338pt too high) has occurred while \output is active []
 
 [25 <./main_files/figure-latex/unnamed-chunk-24-1.pdf>]
-<main_files/figure-latex/unnamed-chunk-26-1.pdf, id=470, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-26-1.pdf, id=469, 469.755pt x 325.215pt>
 
 File: main_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-26-1.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-26-1.pdf  used o
-n input line 910.
+n input line 909.
 (pdftex.def)             Requested size: 318.71239pt x 220.64703pt.
-<main_files/figure-latex/unnamed-chunk-26-2.pdf, id=471, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-26-2.pdf, id=470, 469.755pt x 325.215pt>
 
 File: main_files/figure-latex/unnamed-chunk-26-2.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-26-2.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-26-2.pdf  used o
-n input line 910.
+n input line 909.
 (pdftex.def)             Requested size: 318.71239pt x 220.64703pt.
 [26
 
 
  <./main_files/figure-latex/unnamed-chunk-26-1.pdf> <./main_files/figure-latex/
 unnamed-chunk-26-2.pdf>]
-<main_files/figure-latex/unnamed-chunk-28-1.pdf, id=488, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-28-1.pdf, id=487, 469.755pt x 325.215pt>
 
 File: main_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-28-1.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-28-1.pdf  used o
-n input line 916.
+n input line 915.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-29-1.pdf, id=489, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-29-1.pdf, id=488, 469.755pt x 325.215pt>
 
 File: main_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-29-1.pdf>
 Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-29-1.pdf  used o
-n input line 927.
+n input line 926.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [27
 
  <./main_files/figure-latex/unnamed-chunk-28-1.pdf>]
-<main_files/figure-latex/leave_one_out-1.pdf, id=502, 469.755pt x 325.215pt>
+<main_files/figure-latex/leave_one_out-1.pdf, id=501, 469.755pt x 325.215pt>
 File: main_files/figure-latex/leave_one_out-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/leave_one_out-1.pdf>
 Package pdftex.def Info: main_files/figure-latex/leave_one_out-1.pdf  used on i
-nput line 937.
+nput line 936.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<main_files/figure-latex/leave_one_out-2.pdf, id=503, 469.755pt x 325.215pt>
+<main_files/figure-latex/leave_one_out-2.pdf, id=502, 469.755pt x 325.215pt>
 File: main_files/figure-latex/leave_one_out-2.pdf Graphic file (type pdf)
 <use main_files/figure-latex/leave_one_out-2.pdf>
 Package pdftex.def Info: main_files/figure-latex/leave_one_out-2.pdf  used on i
-nput line 937.
+nput line 936.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
 [28 <./main_files/figure-latex/unnamed-chunk-29-1.pdf>] [29 <./main_files/figur
 e-latex/leave_one_out-1.pdf> <./main_files/figure-latex/leave_one_out-2.pdf>] [
 30] [31]
-Overfull \hbox (31.12132pt too wide) in paragraph at lines 1090--1105
+Overfull \hbox (31.12132pt too wide) in paragraph at lines 1089--1104
  [][] 
  []
 
 
-Overfull \hbox (46.05722pt too wide) in paragraph at lines 1134--1154
+Overfull \hbox (46.05722pt too wide) in paragraph at lines 1133--1153
  [][] 
  []
 
@@ -1130,10 +1130,10 @@ dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf
 xmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/michaeltopper/Library/TinyTeX
 /texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/michaeltopper/Library/TinyT
 eX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (43 pages, 823270 bytes).
+Output written on main.pdf (43 pages, 823217 bytes).
 PDF statistics:
- 738 PDF objects out of 1000 (max. 8388607)
- 614 compressed objects within 7 object streams
+ 737 PDF objects out of 1000 (max. 8388607)
+ 613 compressed objects within 7 object streams
  152 named destinations out of 1000 (max. 500000)
  226 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -26,7 +26,7 @@ EverMoratorium_u = \gamma \mathbb{X}_{u} + \epsilon_u
 \end{equation}
 ```
 
-Figure \ref{predict_moratorium} shows the results of this prediction exercise, plotting each coefficient estimate. Overall, there is little evidence that university characteristics can predict whether or not a moratorium is implemented as the confidence intervals contain the standardized mean. While there appears to be slight evidence that selectivity (e.g. fraction admitted) and total cost are predictors of moratoriums, these are weakly significant, not robust across both estimation methods, and likely represent 'by-chance' significance due to the large number of hypothesis tests. A Bonferroni p-value correction (e.g. multiplying the p-value by the number of hypothesis tests) yields no statistical significance across any of the observable covariates, thus providing further evidence of the plausible exogeneity of moratoriums. 
+Figure \ref{predict_moratorium} shows the results of this prediction exercise, plotting each coefficient estimate. Overall, there is little evidence that university characteristics can predict if a moratorium is implemented as the confidence intervals contain the standardized mean. While there appears to be slight evidence that selectivity (e.g. fraction admitted) and total cost are predictors of moratoriums, these are weakly significant, not robust across both estimation methods, and likely represent 'by-chance' significance due to the large number of hypothesis tests. A Bonferroni p-value correction (e.g. multiplying the p-value by the number of hypothesis tests) yields no statistical significance across any of the observable covariates, thus providing further evidence of the plausible exogeneity of moratoriums. 
 
 
 
