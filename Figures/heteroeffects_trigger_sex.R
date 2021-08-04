@@ -43,7 +43,7 @@ names(hetero_reasons_sex) <- c("Sexual Assault", "Death of Student", "Behavior V
 
 mean_sex <- mean(daily_crime$sexual_assault_per25, na.rm = T)
 mean_of_sex <- tribble(~sex, ~new, ~x, ~y, ~z,
-                       "Mean of Sexual Assault Per 25k ",mean_sex, mean_sex, mean_sex, mean_sex)
+                       "Mean of Sexual Assault",mean_sex, mean_sex, mean_sex, mean_sex)
 attr(mean_of_sex, 'position') <- c(10)
 
 
@@ -53,6 +53,10 @@ heteroeffects_sex <- hetero_reasons_sex %>%
                                "treatment:reason_death" = "Moratorium x Triggering Death of Student",
                                "treatment:reason_behavior" = "Motatorium x Triggering Behavior Violation",
                                "treatment:reason_unknown" = "Moratorium x Triggering Event Unknown"),
-               title = "Effect of fraternity moratoria on sexual assault by triggering event.", add_rows = mean_of_sex) %>% 
+               title = "Effect of fraternity moratoriums on sexual assault by triggering event.", add_rows = mean_of_sex,
+               notes = list("Sexual assaults are per-25,000 students enrolled.",
+                            "Sexual assault as a triggering event can either be allegations or confirmed.",
+                            "Death of a student is the death of a student due to fraternity-related activity.",
+                            "Behavior violation includes hazing, racist activity, and extreme alcohol offense.")) %>% 
   kableExtra::add_header_above(c(" " = 1, "(1)" =1, "(2)" = 1, "(3)" = 1, "(4)" = 1)) %>% 
   kableExtra::add_header_above(c(" " = 1, "Triggering Event" = 4))

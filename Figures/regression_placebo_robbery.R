@@ -50,10 +50,9 @@ robbery_table <- modelsummary(robbery_regs, stars = T, gof_omit = 'DF|Deviance|A
                           "graduation_rate_total_cohort" = "Graduation Rate",
                           "uni_semester" = "University by Semester"),
              title = "Effect of Fraternity Moratoriums on Robbery/Burglary",
-             notes = list("Reports of robbery for ols regressions are per 25,000 students enrolled.",
+             notes = list("Reports of robbery for ols regressions are per-25,000 students enrolled.",
                           "Poisson regressions are counts.",
-             "Full sample includes all days of the week (Mon-Sun).",
-             "Weekends include only Friday-Sunday, and weekdays include only Monday-Thursday."),
+             "Estimates include all days of the week (Mon-Sun)."),
              add_rows = row_means) %>% 
   add_header_above(c(" " = 1, "(1)" = 1, "(2)" = 1))
 

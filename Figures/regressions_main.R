@@ -79,7 +79,9 @@ main_results_table <- modelsummary(main_regs, stars = T, gof_omit = 'DF|Deviance
                           "uni_semester" = "University by Semester"),
              title = "Effect of Fraternity Moratoriums on Sexual Assault and Alcohol Offenses",
              notes = list("Reports of sexual assault and counts of alcohol offenses are per 25,000 students enrolled.",
-                          "Full sample includes all days of the week (Mon-Sun), weekends include only Friday-Sunday, and weekdays include only Monday-Thursday"),
+                          "Full Sample includes every day of the week (Monday-Sunday).",
+                          "Weekends include Friday, Saturday, and Sunday.",
+                          "Weekdays include Monday, Tuesday, Wendesday, Thursday."),
              add_rows = row_means) %>% 
   add_header_above(c(" " = 1, "(1)" = 1, "(2)" = 1, "(3)"= 1,
                      "(4)" =1, "(5)" = 1, "(6)" = 1)) %>% 

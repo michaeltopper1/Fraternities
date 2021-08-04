@@ -65,14 +65,21 @@ weekday_means <- daily_crime_weekdays %>%
 
 row_means <- tribble(~term, ~alc, ~alc_weeknd, ~alc_weekday, ~sex, ~sex_weekend, ~sex_weekday,
                      'Mean of Outcome',full_means[[1]], weekend_means[[1]], weekday_means[[1]], full_means[[2]], weekend_means[[2]], weekday_means[[2]])
-attr(row_means, 'position') <- c(5)
+attr(row_means, 'position') <- c(6)
 
 
 uni_enacted_alc <- uni_enacted %>% modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within|R2 Ps|R2|R2 Adj.',
                              coef_map = c("treatment:university_enacted" = "Moratorium x University Enacted",
                                           "treatment:ifc_enacted" = "Moratorium x IFC Enacted"),
-                             title = "Heterogeneous effects for university-enacted moratoriums and IFC-enacted moratoriums.",
-                             add_rows = row_means) %>% 
+                             title = "Heterogeneous Effects for University-enacted Moratoriums and IFC-enacted Moratoriums.",
+                             add_rows = row_means,
+                             notes = list("IFC-enacted moratorium is a student-enforced moratorium.",
+                                          "University-enacted moratorium is a university-enforced moratorium.",
+                                          "Alcohol offenses are per-25,000 enrolled students",
+                                          "Sexual assaults are per-25,000 enrolled students",
+                                          "Full Sample includes every day of the week (Monday-Sunday).",
+                                          "Weekends include Friday, Saturday, and Sunday.",
+                                          "Weekdays include Monday, Tuesday, Wendesday, Thursday.")) %>% 
   add_header_above(c(" " = 1, "(1)" = 1, "(2)" = 1, "(3)"= 1,
                      "(4)" =1, "(5)" = 1, "(6)" = 1)) %>% 
   add_header_above(c(" " = 1, "Alcohol Offenses" = 3, "Sexual Assault" = 3))
