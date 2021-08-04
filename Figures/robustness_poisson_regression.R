@@ -79,8 +79,11 @@ poisson_results_table <- modelsummary(main_regs_p, stars = T, gof_omit = 'DF|Dev
                                                 "graduation_rate_total_cohort" = "Graduation Rate",
                                                 "uni_semester" = "University by Semester"),
                                    title = "Effect of Fraternity Moratoriums on Sexual Assault and Alcohol Offenses: Poisson Estimation",
-                                   notes = "Reports of sexual assault and alcohol offenses are counts.
-                                   Poisson regression drops some fixed effects (and hence observations) when no variation occurs.",
+                                   notes = list("Reports of sexual assault and alcohol offenses are counts.",
+                                   "Poisson regression drops some fixed effects (and hence observations) when no variation occurs.",
+                                   "Full Sample includes every day of the week (Monday-Sunday).",
+                                   "Weekends include Friday, Saturday, and Sunday.",
+                                   "Weekdays include Monday, Tuesday, Wendesday, Thursday."),
                                    add_rows = row_means) %>% 
   add_header_above(c(" " = 1, "(1)" = 1, "(2)" = 1, "(3)"= 1,
                      "(4)" =1, "(5)" = 1, "(6)" = 1)) %>% 
