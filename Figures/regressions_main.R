@@ -77,7 +77,7 @@ main_results_table <- modelsummary(main_regs, stars = T, gof_omit = 'DF|Deviance
                           "frac_undergrad_hispanic_latino" = "Fraction Undergrad Hispanic",
                           "graduation_rate_total_cohort" = "Graduation Rate",
                           "uni_semester" = "University by Semester"),
-             title = "Effect of Fraternity Moratoriums on Sexual Assault and Alcohol Offenses",
+             title = "Effect of Fraternity Moratoriums on Sexual Assault and Alcohol Offenses: OLS Estimates",
              notes = list("Reports of sexual assault and counts of alcohol offenses are per 25,000 students enrolled.",
                           "Full Sample includes every day of the week (Monday-Sunday).",
                           "Weekends include Friday, Saturday, and Sunday.",
