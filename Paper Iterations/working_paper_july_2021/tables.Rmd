@@ -57,15 +57,13 @@ kbl(closure_table, booktabs = T, caption = "All universities included in the sam
 
 ```
 
-```{r}
+```{r summarystatscrime}
 source("Tables/summary_stats_offenses.R")
 ```
 
-```{r summary_stats_crime}
+```{r }
 summary_stats_crime
 ```
-
-
 
 ```{r university_characteristics}
 source("Tables/summary_stats_university.R")
@@ -74,10 +72,6 @@ source("Tables/summary_stats_university.R")
 ```{r}
 university_characteristics
 ```
-
-
-
-
 
 ```{r lag_regressions}
 source("Figures/lag_regressions.R")
