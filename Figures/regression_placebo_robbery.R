@@ -56,5 +56,7 @@ robbery_table <- modelsummary(robbery_regs, stars = T, gof_omit = 'DF|Deviance|A
              add_rows = row_means) %>% 
   add_header_above(c(" " = 1, "(1)" = 1, "(2)" = 1))
 
+change_that_doesnt_matter <- "doesn't matter"
+
 
 
