@@ -49,7 +49,7 @@ by_day_alcohol <- daily_crime %>%
 #   geom_col(position = "dodge",alpha = 0.8) +
 #   labs(x = "",y= "", fill = "") +
 #   theme_light() +
-#   theme(legend.position = "bottom")
+#   theme(legend.position = "bottom") new theme
 
 by_day_robbery <- daily_crime %>% 
   mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Effect", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Effect"))) %>% 
