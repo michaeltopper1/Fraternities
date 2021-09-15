@@ -121,7 +121,7 @@ appended_crime_logs <- appended_crime_logs %>%
   mutate(report_lag_theft = ifelse(report_lag > 3 & theft == 1, 1, 0))
 
 
-write_csv(appended_crime_logs, file = "Created Data/xMaster_data_2021/appended_crime_logs.csv")
+save(appended_crime_logs, file = "Created Data/xMaster_data_2021/appended_crime_logs.rda")
 
 collapsed_data_daily <- appended_crime_logs %>% 
   select(date_reported, university, sexual_assault, alcohol_offense, drug_offense, theft, robbery_burglary, alcohol_offense_strict,

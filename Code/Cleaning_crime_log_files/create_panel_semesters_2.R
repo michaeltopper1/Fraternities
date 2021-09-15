@@ -146,6 +146,9 @@ daily_panel <- daily_panel %>%
 ## Delaware state only has data from 2017 - onwards
 ## Texas Austin is missing jan/feb 2016
 ## NC state is missing data from August 2014 and before
+## UCSB missing 2019 and december 2018
+## James Madison university only 2017-2019
+## ALbany state only 2017-2019
 daily_panel <- daily_panel %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
     year == 2015 & month < 9 & university == "Ferrum College",
@@ -161,6 +164,22 @@ daily_panel <- daily_panel %>%
   ))) %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
     year== 2014 & (month == 1 | month == 2 | month == 3 | month == 4 | month == 5 | month == 6 | month == 7| month == 8) & university == "North Carolina State University at Raleigh",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2018 & (month == 12) & university == "University of California-Santa Barbara",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2019 & university == "University of California-Santa Barbara",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year <= 2016 & university == "James Madison University",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year <= 2016 & university == "Albany State University",
     NA, .
   )))
 
