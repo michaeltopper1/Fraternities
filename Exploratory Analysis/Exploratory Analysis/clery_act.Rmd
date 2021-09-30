@@ -1,0 +1,281 @@
+---
+title: "Investigating Clery Act Data"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage{bbm} ##for indicator
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage{graphicx}
+- \usepackage{pdfpages}
+- \usepackage{subfig}
+- \floatplacement{figure}{H}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(fixest) 
+library(modelsummary)
+library(lubridate)
+
+all_crime <- read_csv(here::here("Created Data/xMaster_data_2021/merged_clery.csv")) %>% 
+  filter(university %in% ifc::moratorium_schools())
+```
+
+This document will analyze the sexual assault/liquor violations/drug violations in the Clery Act data with comparison to my own daily crime logs. 
+
+# Main Points of the Data
+
+The Clery Act Data is an official source of data representing all crimes on campus (although not necessarily reported to the police). The data is aggregated at the yearly level, and hence, the data is imperfect for my study, but still brings light to some potential mechanisms. 
+
+The data is split into several parts:
+
+* Noncampus -  Any building or property owned or controlled by a student organization that is officially recognized by the institution; or (2) Any building or property owned or controlled by an institution that is used in direct support of, or in relation to, the institution's educational purposes, is frequently used by students, and is not within the same reasonably contiguous geographic area of the institution.
+* Residential Hall - Any student housing facility that is owned or controlled by the institution, or is located on property that is owned or controlled by the institution, and is within the reasonably contiguous geographic area that makes up the campus is considered an on-campus student housing facility.
+* On Campus (Total) - Any building or property owned or controlled by an institution within the same reasonably contiguous geographic area and used by the institution in direct support of, or in a manner related to, the institution's educational purposes, including residence halls; and (2) Any building or property that is within or reasonably contiguous to paragraph (1) of this definition, that is owned by the institution but controlled by another person, is frequently used by students, and supports institutional purposes (such as a food or other retail vendor).
+* Public Property - All public property, including thoroughfares, streets, sidewalks, and parking facilities, that is within the campus, or immediately adjacent to and accessible from the campus.
+
+For my purposes, the most beneficial categories to me are residential halls and noncampus offenses. In particular, it could be that fraternity moratoriums cause a substitution towards behaviors off campus or into residence halls. On the other hand, residence halls are mainly younger students and their amount of partying might be relatively inelastic when it comes to moratoriums (they are not directly affected by it).
+
+All of the regressions in this document will use the following form:
+
+$$ Y_{u,t} = \beta Moratorium_{u,t} + \gamma_u + \phi_t + \epsilon_{u,t}$$
+
+where $Y_{u,t}$ is the outcome of interest in university $u$ in year $t$, $Moratorium_{u,t}$ is a value between 0 and 1 which denotes the fraction of days treated in a year, $\gamma_u$ are university fixed effects and $\phi_t$ are year fixed effects.
+
+
+
+
+
+# Sexual Assaults
+
+```{r}
+all_crime %>% 
+  mutate(noncampus_sexual_assault = noncampus_rape + noncampus_fondl + noncampus_inces) %>% 
+  select("Residence Hall" = residencehall_sexual_assault,"Noncampus" =  noncampus_sexual_assault, "All Sexual Assault in Clery" = clery_sexual_assault,"Daily Crime Logs" = sexual_assault) %>% 
+  datasummary_skim(notes = list("Sexual assault is defined as the sum of rape, fondling, and incest categories."))
+```
+
+## OLS Regressions
+
+First want to compare my results aggregated up to the Clery Act Data.
+
+```{r}
+sex_reg <- all_crime %>% 
+  feols(c(clery_sexual_assault_per_25k, sexual_assault_per_25k) ~ treatment |
+          university + year, cluster = ~university, data = .) 
+names(sex_reg) <- c("Clery Total", "Daily Crime Logs")
+sex_reg %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2', 
+               title = "\\label{all_sex}OLS Regressions on the effect of Moratoriums for Clery Act Sexual Assaults and Daily Crime Log Sexual Assaults")
+```
+
+
+Same direction and neither are signifcant when aggregated up to this level. Let's look deeper into sexual assaults in the clery act data.
+
+```{r}
+sex_reg_res <- all_crime %>% 
+  feols(c(residencehall_sexual_assault_per_25k, clery_offcampus_sexual_assault_per_25k) ~treatment |
+          university + year, cluster = ~university, data = .)
+names(sex_reg_res) <- c("Residence Hall Sexual Assault", "Off Campus Sexual Assault")
+sex_reg_res %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2', title = "\\label{clery_sex}OLS Regressions of Sexual Assault Clery Act Data - Residence Halls and Off Campus")
+```
+
+Off campus sexual assault seems to be going up, while residence hall rapes are going down. Both of these are significant. 
+
+## Poisson Regressions
+
+These are meant as a robustness check to the OLS regressions.
+
+```{r}
+sex_pois <- all_crime %>% 
+  fepois(c(clery_sexual_assault_per_25k, sexual_assault_per_25k) ~ treatment |
+          university + year, cluster = ~university, data = .) 
+
+names(sex_pois) <- c("Clery Act Sexual Assault", "Daily Crime Logs")
+sex_pois %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+               title = "Poisson Regressions of effect of Moratoriums on Sexual assault for Clery Act Data and Daily Crime Logs")
+```
+
+```{r}
+sex_pois_clery <- all_crime %>% 
+  fepois(c(residencehall_sexual_assault_per_25k, clery_offcampus_sexual_assault_per_25k) ~treatment |
+          university + year, cluster = ~university, data = .) 
+names(sex_pois_clery) <- c("Residence Hall", "Off Campus")
+
+sex_pois_clery %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+               title = "Effect of Moratorium on Clery Act Sexual Assaults for Residence Halls and Off Campus")
+```
+
+## Daily Crime Logs Compared to Clery
+
+Daily Crime Logs are my data while Clery Act Data is the official source. 
+
+
+```{r}
+all_crime %>% 
+  rename(daily_crime_log_sexual_assault = sexual_assault) %>% 
+  pivot_longer(cols = c(daily_crime_log_sexual_assault, clery_sexual_assault), names_to = "type", values_to = "total_sexual_assault") %>% 
+  ggplot(aes(year, total_sexual_assault)) +
+  geom_line(aes(color = type)) +
+  labs(color = "Data Source", y= "Sexual Assault Offenses", x = "Year") +
+  facet_wrap(~university, scales = "free_y") +
+  theme_minimal() + 
+  theme(legend.position = "bottom")
+
+
+```
+
+
+# Alcohol/Liquor Violations
+
+```{r}
+all_crime %>% 
+  select("Residence Hall" = residencehall_liquor, "Non-Campus" =  noncampus_liquor, "Total Clery" = clery_alcohol, "Daily Crime Logs" = alcohol_offense) %>% 
+  datasummary_skim(notes = list("Daily Crime logs are my data, while Clery is official.", 
+                                "Total Clery is the sum of liquor violations in Residence Halls, Public Property, and On Campus."))
+```
+
+## OLS Regressions
+
+I will be using the normal difference-in-differences approach with a fixed effect model. 
+
+First, let's see if these give similar results to my data. My data might not show as clear of results since it is aggregated to a higher level, and now all summer months are included. 
+
+```{r}
+alcohol_ols <- all_crime %>% 
+  feols(c(clery_alcohol_per_25k, alcohol_offense_per_25k) ~treatment | university +  year, 
+        cluster = ~university, data = .) 
+names(alcohol_ols) <- c("Clery Act Data", "Daily Crime Logs")
+
+alcohol_ols %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+               title = "Effect of Fraternity Moratorium on Alcohol at Yearly Level for Clery and Daily Crime Logs",  notes = list("My data is the Daily Crime Logs.", "Clery Act Data is official data from Department of Education."))
+```
+
+It appears that alcohol is increasing using the clery act data. Let me look deeper at each subcategory.
+
+```{r}
+alcohol_clery <- all_crime %>% 
+  feols(c(residencehall_liquor_per_25k, noncampus_liquor_per_25k) ~treatment | university + year,
+        cluster = ~university, data = .) 
+names(alcohol_clery) <- c("Residence Hall", "Non-campus")
+alcohol_clery  %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+               notes = "Effect of Moratorium on Alcohol Violations (Residence Halls and Non-campus)")
+  
+```
+
+It looks like alcohol violations are increasing in the residence halls and that's where this effect is coming from. This makes sense for a couple reasons. First, residence hall liquor violations are not often reported to the police - they are dealt with internally. Second, since large fraternity events are now canceled, underage students need to find a new place to engage in underage drinking behavior. A natural place is their own residences.
+
+## Poisson Regression
+
+```{r}
+alcohol_pois <- all_crime %>% 
+  fepois(c(clery_alcohol, alcohol_offense) ~treatment | university +  year, 
+        cluster = ~university, data = .) 
+names(alcohol_pois) <- c("Clery Act Data", "Daily Crime Logs")
+alcohol_pois %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+               title = "Poisson Regressions of Effect of Moratorium on Alcohol Offenses.",
+               notes = list("Clery Act Data is official.", "Daily Crime Logs are my data."))
+```
+
+Note that while we do not see significant decreases in alcohol offenses in the daily crime log data, this is likely because the academic calendar days are not restricted in this data. I COULD restrict to only semester days and it would be significant.
+
+```{r}
+alcohol_pois_clery <- all_crime %>% 
+  fepois(c(residencehall_liquor, noncampus_liquor) ~treatment | university + year,
+        cluster = ~university, data = .) 
+names(alcohol_pois_clery) <- c("Residence Hall", "Non-campus")
+alcohol_pois_clery %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2', notes = list("Offense are counts, not rates."))
+  
+```
+
+The results are robust to the poisson estimator. Residence hall liquor violations are increasing significantly during moratoriums. 
+
+
+## Comparison to Daily Crime Logs
+
+Recall that Daily Crime Logs are my data while the Clery Act is the official data. 
+
+```{r}
+all_crime %>% 
+  rename(daily_crime_log_alcohol = alcohol_offense) %>% 
+  pivot_longer(cols = c(daily_crime_log_alcohol, clery_alcohol), names_to = "type", values_to = "total_alcohol") %>% 
+  ggplot(aes(year, total_alcohol)) +
+  geom_line(aes(color = type)) +
+  labs(color = "Source",y = "Alcohol Offenses", x = "Year") + 
+  facet_wrap(~university, scales = "free_y") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+# Drug Offenses
+
+```{r}
+all_crime %>% 
+  select("Residence Hall" = residencehall_drug,"Non-campus" =  noncampus_drug,"Clery Act Total" = clery_drug, "Daily Crime Logs" = drug_offense) %>% 
+  datasummary_skim()
+```
+
+## OLS Regressions
+
+```{r}
+drug_reg <- all_crime %>% 
+  feols(c(clery_drug_per_25k, drug_offense_per_25k) ~treatment |
+          university + year, cluster = ~university, data = .) 
+names(drug_reg) <- c("Clery Act Data", "Daily Crime Logs")
+drug_reg %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+               title = "OLS Regression of Effect of Moratorium on Drug Offenses")
+```
+
+Each of these have the same sign, as in, the Clery Act Total and the Daily Crime Log toal both show decreases, although only mine show signficant decreases.
+
+```{r}
+drug_clery_reg <- all_crime %>% 
+  feols(c(residencehall_drug_per_25k, noncampus_drug_per_25k) ~treatment |
+          university + year, cluster = ~university, data = .) 
+names(drug_clery_reg) <- c("Residence Hall", "Noncampus")
+drug_clery_reg %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+               title = "OLS Regressions Effect of Moratorium on Drug Offenses Clery Act Data Subsetted")
+```
+
+Appears to be no change in drug offenses on campus or off campus in the drug category. 
+
+
+## Poisson Regressions
+
+```{r}
+drug_pois <- all_crime %>% 
+  fepois(c(clery_drug, drug_offense) ~treatment |
+          university + year, cluster = ~university, data = .)
+
+names(drug_pois) <- c("Clery Act Data", "Daily Crime Logs")
+drug_pois %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+               title = "Poisson Regression Effect of Moratorium on Drug Offenses")
+```
+
+```{r}
+drug_clery_pois <- all_crime %>% 
+  fepois(c(residencehall_drug, noncampus_drug) ~treatment |
+          university + year, cluster = ~university, data = .)
+names(drug_clery_pois) <- c("Residence Hall", "Non-campus")
+drug_clery_pois %>% 
+  modelsummary(stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2', 
+               title = "Effects of Moratorium on Drug Offenses for Clery Act Data")
+```
+

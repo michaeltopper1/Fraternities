@@ -12,7 +12,9 @@ library(kableExtra)
 library(modelsummary)
 
 if(!exists("daily_crime")) {
-  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv") 
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")  %>% 
+    filter(university %in% ifc::moratorium_schools())
+    
 }
 
 daily_crime_weekdays<- daily_crime %>% 
@@ -23,27 +25,27 @@ daily_crime_weekends <- daily_crime %>%
 
 sex <- daily_crime %>% 
   feols(sexual_assault_per25 ~ treatment |
-          uni_semester + weekday, cluster = ~university, data = .)
+          university + weekday + semester_number, cluster = ~university, data = .)
 
 alc <- daily_crime %>% 
   feols(alcohol_offense_per25 ~  treatment  |
-          uni_semester + weekday, cluster = ~university, data = .)
+          university + weekday + semester_number, cluster = ~university, data = .)
 
 sex_weekdays <- daily_crime_weekdays %>% 
   feols(sexual_assault_per25 ~ treatment |
-          uni_semester + weekday, cluster = ~university, data = .)
+          university + weekday + semester_number, cluster = ~university, data = .)
 
 alc_weekdays <- daily_crime_weekdays %>% 
   feols(alcohol_offense_per25 ~  treatment  |
-          uni_semester + weekday, cluster = ~university, data = .)
+          university + weekday + semester_number, cluster = ~university, data = .)
 
 sex_weekends <- daily_crime_weekends %>% 
   feols(sexual_assault_per25 ~ treatment |
-          uni_semester + weekday, cluster = ~university, data = .)
+          university + weekday + semester_number, cluster = ~university, data = .)
 
 alc_weekends <- daily_crime_weekends %>% 
   feols(alcohol_offense_per25 ~  treatment  |
-          uni_semester + weekday, cluster = ~university, data = .)
+          university + weekday + semester_number, cluster = ~university, data = .)
 
 full_means <- daily_crime %>% 
   summarize(alcohol_mean = mean(alcohol_offense_per25, na.rm = T),
