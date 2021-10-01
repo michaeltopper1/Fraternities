@@ -1,0 +1,236 @@
+---
+title: "Exploring Fixed Effects in Regressions"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: console
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage{bbm}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage{graphicx}
+- \usepackage{pdfpages}
+- \usepackage{subfig}
+- \floatplacement{figure}{H}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+library(tidyverse)
+library(lubridate)
+library(fixest)
+library(modelsummary)
+library(fwildclusterboot)
+
+daily_crime <- read_csv(here::here("Created Data/xMaster_data_2021/daily_panel.csv")) %>% 
+  filter(university %in% ifc::moratorium_schools()) %>% 
+  group_by(university, year, semester_number) %>% 
+  mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year) %>% 
+  mutate(university_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year, month) %>% 
+  mutate(university_by_month_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  rename(day_of_week = weekday,
+         university_by_semester_number = uni_semester)
+
+
+daily_crime_weekdays <- daily_crime %>% 
+  filter(day_of_week == "Mon" | day_of_week == "Thu" | day_of_week == "Wed" | day_of_week == "Tue" )
+
+daily_crime_weekends <- daily_crime %>% 
+  filter(day_of_week == 'Fri' | day_of_week == "Sat" | day_of_week == "Sun")
+```
+
+# Main Model
+
+The preferred model is the following:
+
+
+## Alcohol Offenses
+
+I am going to do a table with a bunch of different fixed effects.
+
+```{r}
+x1 <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2 <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3 <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4 <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models <- list(x1, x2, x3,x4)
+modelsummary(models, stars = T, 
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Alcohol Offenses.",
+             notes = list("38 Universities. Each one experiences a moratorium at some point."))
+
+
+## All of these don't change at all. Still very signifcant.
+# x1_boot <- boottest(feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+#        data = daily_crime), B = 9999, param = "treatment", clustid = "university")
+# 
+# x2_boot <- boottest(feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+#        data = daily_crime), B = 9999, param = "treatment", clustid = "university")
+# 
+# x3_boot <- boottest(feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year,
+#        data = daily_crime), B = 9999, param = "treatment", clustid = "university")
+# 
+# x4_boot <- boottest(feols(alcohol_offense_per25 ~ treatment |  day_of_week + university_by_year_by_semester_number,
+#        data = daily_crime), B = 9999, param = "treatment", clustid = "university")
+
+
+
+## Use this to export the wild cluster bootstrap stuff
+# msummary(list(x2_boot), 
+#             estimate = "{estimate}{stars}", 
+#            statistic = "[{conf.low}, {conf.high}]", stars = T)
+```
+
+```{r}
+x1_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_weekend <- list(x1_weekend, x2_weekend, x3_weekend, x4_weekend)
+
+modelsummary(models_weekend, stars = T,
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Alcohol Offenses for Fri thru Sun only.",
+             notes = list("38 Universities. Each one experiences a moratorium at some point."))
+```
+
+
+```{r}
+x1_weekday <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_weekday <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_weekday <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_weekday <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_weekend <- list(x1_weekday, x2_weekday, x3_weekday, x4_weekday)
+
+modelsummary(models_weekend, stars = T,
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Alcohol Offenses for Mon thru Thurs only.",
+             notes = list("38 Universities. Each one experiences a moratorium at some point."))
+```
+
+## Sexual Assault 
+
+
+```{r}
+x1_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_sex <- list(x1_sex, x2_sex, x3_sex,x4_sex)
+modelsummary(models_sex, stars = T, 
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Sexual Assault Offenses.",
+             notes = list("38 Universities. Each one experiences a moratorium at some point."))
+
+```
+
+
+```{r}
+x1_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_sex_weekend <- list(x1_sex_weekend, x2_sex_weekend, x3_sex_weekend,x4_sex_weekend)
+modelsummary(models_sex_weekend, stars = T, 
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Sexual Assault Offenses for Fri thru Sun.",
+             notes = list("38 Universities. Each one experiences a moratorium at some point."))
+
+```
+
+
+```{r}
+x1_sex_weekday <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_sex_weekday <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_sex_weekday <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_sex_weekday <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_sex_weekday <- list(x1_sex_weekday, x2_sex_weekday, x3_sex_weekday,x4_sex_weekday)
+modelsummary(models_sex_weekday, stars = T, 
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Sexual Assault Offenses for Mon thru Thur.",
+             notes = list("38 Universities. Each one experiences a moratorium at some point."))
+
+```
+
