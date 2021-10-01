@@ -8,6 +8,28 @@
 library(tidyverse)
 library(readxl)
 
+## joins with IPEDS, creates university by month FE, creates university by year FE, and filters years greater than 2013.
+create_data_analysis_week <- function(x) {
+  data <- x %>% 
+    left_join(ipeds, by = c("university" = "university", 'year' = 'year')) %>% 
+    mutate(month = month(week), year = year(week)) %>% 
+    mutate(across(c(sexual_assault, alcohol_offense,
+                    theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
+                  .names = "{.fn}_{.col}")) %>% 
+    group_by(university, month) %>% 
+    mutate(uni_month = cur_group_id()) %>% 
+    ungroup() %>% 
+    mutate(across(c(sexual_assault, alcohol_offense,
+                    theft, robbery_burglary, drug_offense, rape), ~./total_enrollment * 25000,
+                  .names = '{.col}_per25')) %>% 
+    group_by(university, year) %>% 
+    mutate(uni_year = cur_group_id()) %>% 
+    ungroup() %>% 
+    filter(year > 2013)
+  return(data)
+}
+
+
 ## sourcing the clean_daily_crime_logs file which connects all of the cleaned crime logs togther
 ## and then creates new variables, and then collapses them
 source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
@@ -44,7 +66,7 @@ daily_panel <- school_dates %>%
 
 
 ## now I need to pull in data that keeps track of which years I have missing
-missing_years <- read_xlsx("Data/campus_daily_crime_log/crime_log_list.xlsx",
+missing_years <- readxl::read_xlsx("Data/campus_daily_crime_log/crime_log_list.xlsx",
                            sheet = "missing_years") %>% janitor::clean_names()
 
 
@@ -66,15 +88,54 @@ daily_panel <- daily_panel %>%
 ## North Florida I only have information from July 2015- onwards. Here I am accounting for this
 
 daily_panel <- daily_panel %>% 
-  mutate(weekday = wday(date, label = T)) %>%  ## gets the weekday label
+  mutate(weekday = wday(date, label = T))
+
+
+## Ferrum College is missing data. only have september 2015 - 2019
+## Delaware state only has data from 2017 - onwards
+## Texas Austin is missing jan/feb 2016
+## NC state is missing data from August 2014 and before
+## UCSB missing 2019 and december 2018
+## James Madison university only 2017-2019
+## ALbany state only 2017-2019
+daily_panel <- daily_panel %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
-    year == 2015 & month < 7 & university == "University of North Florida",
+    year == 2015 & month < 9 & university == "Ferrum College",
     NA, .
-  ))) 
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year <= 2016 & university == "Delaware State University",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2016 & (month == 1 | month == 2) & university == "The University of Texas at Austin",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2014 & (month == 1 | month == 2 | month == 3 | month == 4 | month == 5 | month == 6 | month == 7| month == 8) & university == "North Carolina State University at Raleigh",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2018 & (month == 12) & university == "University of California-Santa Barbara",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year== 2019 & university == "University of California-Santa Barbara",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year <= 2016 & university == "James Madison University",
+    NA, .
+  ))) %>% 
+  mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape"), ~ifelse(
+    year <= 2016 & university == "Albany State University",
+    NA, .
+  )))
+
 
 
 ##### Last Step: pulling in the closure data and merging it with this final_panel
-closures <- read_xlsx("Data/closure_spreadsheet_final_2019.xlsx") %>% 
+closures <- readxl::read_xlsx("Data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
   select(university, date, deadline, date2, deadline2,
          university_enacted_1, university_enacted_2, reason1, reason2) %>% 
@@ -99,22 +160,6 @@ daily_panel <- daily_panel %>%
   ))
 
 
-## Weekly panel: only weekend
-weekly_panel_weekends <- daily_panel %>% 
-  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun") %>% ## reducing to only weekdays
-  group_by(university, week = cut(date, "week")) %>% 
-  summarize(across(c(sexual_assault,
-                     alcohol_offense,
-                     drug_offense,
-                     theft,
-                     robbery_burglary,
-                     alcohol_offense_strict,
-                     noise_offense,
-                     treatment,
-                     rape), ~ sum(., na.rm  = T))) %>% 
-  mutate(week = ymd(week)) %>% 
-  mutate(week_id = wday(week, label = T)) %>% 
-  ungroup() 
 
 ## Weekly panel
 weekly_panel <- daily_panel %>% 
@@ -131,34 +176,6 @@ weekly_panel <- daily_panel %>%
   mutate(week = ymd(week)) %>% 
   mutate(week_id = wday(week, label = T)) %>% 
   ungroup() 
-
-## rejoining the closure data and since i took the sum of treatment, creating two variables: 1 that is a percentage of week treated and one that is an indicator
-weekly_panel <- weekly_panel %>% 
-  left_join(closures, by = c("university" = "university")) %>% 
-  mutate(treatment_percent = treatment/7) %>% 
-  mutate(treatment = ifelse(treatment > 0, 1, 0)) %>% 
-  mutate(year = year(week))
-
-weekly_panel_weekends <- weekly_panel_weekends %>% 
-  left_join(closures, by = c("university" = "university")) %>% 
-  mutate(treatment_percent = treatment/7) %>% 
-  mutate(treatment = ifelse(treatment > 0, 1, 0)) %>% 
-  mutate(year = year(week))
-
-## monthly panel: 
-monthly_panel <- daily_panel %>% 
-  group_by(month, year, university) %>% 
-  summarize(sexual_assault = sum(sexual_assault),
-            alcohol_offense = sum(alcohol_offense),
-            drug_offense = sum(drug_offense),
-            theft = sum(theft),
-            robbery_burglary = sum(robbery_burglary),
-            alcohol_offense_strict = sum(alcohol_offense_strict),
-            noise_offense = sum(noise_offense),
-            treatment = mean(treatment),
-            rape = sum(rape)) %>%
-  ungroup() %>% arrange(university, year) %>% 
-  left_join(closures)
 
 
 ## yearly panel:
@@ -188,26 +205,6 @@ yearly_panel <- daily_panel %>%
 ipeds <- read_csv("Created Data/IPEDS/ipeds_final.csv") %>% 
   filter(year > 2013)
 
-## joins with IPEDS, creates university by month FE, creates university by year FE, and filters years greater than 2013.
-create_data_analysis_week <- function(x) {
-  data <- x %>% 
-    left_join(ipeds, by = c("university" = "university", 'year' = 'year')) %>% 
-    mutate(month = month(week), year = year(week)) %>% 
-    mutate(across(c(sexual_assault, alcohol_offense,
-                    theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
-                  .names = "{.fn}_{.col}")) %>% 
-    group_by(university, month) %>% 
-    mutate(uni_month = cur_group_id()) %>% 
-    ungroup() %>% 
-    mutate(across(c(sexual_assault, alcohol_offense,
-                    theft, robbery_burglary, drug_offense, rape), ~./total_enrollment * 25000,
-                  .names = '{.col}_per25')) %>% 
-    group_by(university, year) %>% 
-    mutate(uni_year = cur_group_id()) %>% 
-    ungroup() %>% 
-    filter(year > 2013)
-  return(data)
-}
 
 
 
@@ -227,38 +224,28 @@ daily_panel <-  daily_panel %>%
   ungroup() %>% 
   filter(year > 2013)
 
+daily_panel %>% colnames()
+## yearly panel:
+yearly_panel <- daily_panel %>% 
+  group_by(year, university) %>% 
+  summarize(sexual_assault = sum(sexual_assault),
+            alcohol_offense = sum(alcohol_offense),
+            drug_offense = sum(drug_offense),
+            theft = sum(theft),
+            robbery_burglary = sum(robbery_burglary),
+            alcohol_offense_strict = sum(alcohol_offense_strict),
+            noise_offense = sum(noise_offense),
+            treatment = mean(treatment),
+            rape = sum(rape)) %>%
+  ungroup() %>% arrange(university, year) 
 
-daily_panel_nosummer <- daily_panel %>% 
-  filter(month !=6 & month != 7 & month != 8) 
 
 
-
-
-weekly_panel <- create_data_analysis_week(weekly_panel)
-weekly_panel_nosummer <- weekly_panel %>% 
-  filter(month !=6 & month !=7 & month!= 8)
-weekly_panel_weekends <- create_data_analysis_week(weekly_panel_weekends)
-weekly_panel_weekends_nosummer <- weekly_panel_weekends %>% 
-  filter(month !=6 & month !=7 & month!= 8)
 
 
 yearly_panel <- yearly_panel %>% 
   left_join(ipeds, by= c("university" = "university", 'year' = "year"))
 
-## full daily panel
-write_csv(daily_panel, file = "Created Data/xMaster_data_2021/daily_panel.csv")
-## daily panel with no summer months
-write_csv(daily_panel_nosummer, file = "Created Data/xMaster_data_2021/daily_panel_nosummer.csv")
 
-## complete weekly panel
-write_csv(weekly_panel, file = "Created Data/xMaster_data_2021/weekly_panel.csv")
-## weekly panel with no summer months
-write_csv(weekly_panel_nosummer, file = "Created Data/xMaster_data_2021/weekly_panel_nosummer.csv")
-## weekly panel with only weekends, summer included
-write_csv(weekly_panel_weekends, file = "Created Data/xMaster_data_2021/weekly_panel_weekends.csv")
-## weekly panel with weekends only (fri/sat/sunday/) and no summer months
-write_csv(weekly_panel_weekends_nosummer, file = "Created Data/xMaster_data_2021/weekly_panel_weekends_nosummer.csv")
-
-
-
-write_csv(yearly_panel, file = "Created Data/xMaster_data_2021/yearly_panel.csv")
+## writing yearly panel
+write_csv(yearly_panel, file = "Created Data/xMaster_data_2021/yearly_panel_full_calendar.csv")

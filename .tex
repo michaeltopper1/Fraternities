@@ -1,0 +1,24 @@
+\begin{table}
+
+\caption{Effect of Moratoriums on Alcohol Offenses for Mon thru Thurs only.}
+\centering
+\begin{tabular}[t]{lcccc}
+\toprule
+  & Model 1 & Model 2 & Model 3 & Model 4\\
+\midrule
+Moratorium & \num{-0.008} & \num{-0.003} & \num{-0.040} & \num{-0.040}\\
+ & (\num{0.024}) & (\num{0.027}) & (\num{0.034}) & (\num{0.034})\\
+\midrule
+Num.Obs. & \num{32327} & \num{32327} & \num{32327} & \num{32327}\\
+Std.Errors & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university)\\
+FE: day_of_week & X & X & X & X\\
+FE: semester_number &  & X &  & \\
+FE: university & X & X &  & \\
+FE: university_by_semester_number &  &  & X & \\
+FE: university_by_year_by_semester_number &  &  &  & X\\
+FE: year & X & X & X & \\
+\bottomrule
+\multicolumn{5}{l}{\rule{0pt}{1em}38 Universities. Each one experiences a moratorium at some point.}\\
+\multicolumn{5}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
