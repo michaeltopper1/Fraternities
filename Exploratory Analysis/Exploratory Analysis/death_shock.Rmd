@@ -1,0 +1,198 @@
+---
+title: "Deaths"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+library(tidyverse)
+library(modelsummary)
+library(fixest)
+daily_crime <- read_csv(here::here("Created Data/xMaster_data_2021/daily_panel.csv")) %>% 
+  group_by(university, year, semester_number) %>% 
+  mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year) %>% 
+  mutate(university_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year, month) %>% 
+  mutate(university_by_month_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  rename(day_of_week = weekday,
+         university_by_semester_number = uni_semester)
+```
+
+This document is to look at the "shock" factor around deaths in fraternities. In particular, I want to make certain that the effects I am seeing are not based on a "shock" factor of death, but the moratorium policy itself. For instance, it is possible that alcohol and sexual assault offenses decline within moratorium periods simply because people are grieving due to the death of oa fraternity member. This could lead to less partying campus wide and more students being cogniscient of their safety.
+
+To address this potential issue, I restrict the current 38 universities to the only 10 that faced a fraternity death that caused a moratorium.^[These schools are: Florida State University, LSU, Murray State University, Texas State, SDSU, University at Buffalo, University of Iowa, University of Vermont, Washington State, and West Viriginia University.] Morever, I add an additional 15 schools that experience a fraternity death in my time period (2014-2019), but do not experience a fraternity moratorium. In effect, I create a control group in which the never-treated units experience a similar "shock" of death, but no moratorium. Therefore, the effects displayed here should give the effect of the moratorium - not the shock.
+
+```{r}
+daily_crime <- daily_crime %>% 
+  filter(university %in% ifc::death_universities()) 
+
+daily_crime_weekends <- daily_crime %>% 
+  filter(day_of_week == 'Fri' | day_of_week == "Sat" | day_of_week == "Sun")
+
+daily_crime_weekdays <- daily_crime %>% 
+  filter(day_of_week == "Mon" | day_of_week == "Thu" | day_of_week == "Wed" | day_of_week == "Tue" )
+```
+
+
+```{r}
+x1 <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2 <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3 <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4 <- daily_crime %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models <- list(x1, x2, x3,x4)
+modelsummary(models, stars = T, 
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Alcohol Offenses.",
+             notes = list("25 Universities. Each one experiences a fraternity death  at some point. 15 are never treated."))
+
+```
+
+```{r}
+x1_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_weekend <- daily_crime_weekends %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_weekend <- list(x1_weekend, x2_weekend, x3_weekend, x4_weekend)
+
+modelsummary(models_weekend, stars = T,
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Alcohol Offenses for Fri thru Sun only.",
+             notes = list("25 Universities. Each one experiences a fraternity death  at some point. 15 are never treated"))
+```
+
+
+```{r}
+x1_weekday <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_weekday <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_weekday <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_weekday <- daily_crime_weekdays %>% 
+  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_weekday <- list(x1_weekday, x2_weekday, x3_weekday, x4_weekday)
+
+modelsummary(models_weekday, stars = T,
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Alcohol Offenses for Mon thru Thurs only.",
+             notes = list("25 Universities. Each one experiences a fraternity death  at some point. 15 are never treated"))
+```
+
+## Sexual Assault 
+
+
+```{r}
+x1_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_sex <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_sex <- list(x1_sex, x2_sex, x3_sex,x4_sex)
+modelsummary(models_sex, stars = T, 
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Sexual Assault Offenses.",
+             notes = list("25 Universities. Each one experiences a fraternity death  at some point. 15 are never treated"))
+
+```
+
+
+```{r}
+x1_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_sex_weekend <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_sex_weekend <- list(x1_sex_weekend, x2_sex_weekend, x3_sex_weekend,x4_sex_weekend)
+modelsummary(models_sex_weekend, stars = T, 
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Sexual Assault Offenses for Fri thru Sun.",
+             notes = list("25 Universities. Each one experiences a fraternity death  at some point. 15 are never treated"))
+
+```
+
+
+```{r}
+x1_sex_weekday <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .)
+
+x2_sex_weekday <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+x3_sex_weekday <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+x4_sex_weekday <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+
+models_sex_weekday <- list(x1_sex_weekday, x2_sex_weekday, x3_sex_weekday,x4_sex_weekday)
+modelsummary(models_sex_weekday, stars = T, 
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+             coef_map = c("treatment" = "Moratorium"),
+             title = "Effect of Moratoriums on Sexual Assault Offenses for Mon thru Thur.",
+             notes = list("25 Universities. Each one experiences a fraternity death  at some point. 15 are never treated"))
+
+```
+
