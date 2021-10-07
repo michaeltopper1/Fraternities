@@ -114,7 +114,7 @@ victim_offender <- map(list.files("Data/nibrs/victim/"), ~paste0("Data/nibrs/vic
   unlist()
 
 year <- 2014
-for (file in files_offender) {
+for (file in victim_offender) {
   name <- paste0("victim_", year)
   admin <- read_rds(file) %>% 
     as_tibble() %>% 
@@ -124,7 +124,9 @@ for (file in files_offender) {
   year <-  year + 1
 }
 
-victim_data <- mget(ls(pattern = "^victim_2")) %>% 
+victim_data <- map(mget(ls(pattern = "^victim_2")), ~.x %>% 
+                     mutate(ucr_offense_code_6 = as.character(ucr_offense_code_6),
+                   ucr_offense_code_7 = as.character(ucr_offense_code_7))) %>% 
   reduce(bind_rows)
 
 write_csv(victim_data, file = "Created Data/nibrs/victim_data.csv")
