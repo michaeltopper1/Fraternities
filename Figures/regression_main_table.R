@@ -86,10 +86,60 @@ alc_weekdays_4 <- daily_crime_weekdays %>%
         cluster = ~university, data = .) 
 
 
+# regressions full sample-------------------------------------------------------------
+sex_ols_1 <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        vcov = cluster ~ university, data = .)
+
+sex_ols_2 <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .)
+
+sex_ols_3 <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+sex_ols_4 <- daily_crime %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .)
+sex_ols <- list("(1)" = sex_ols_1, "(2)" = sex_ols_2, "(3)" = sex_ols_3, "(4)" = sex_ols_4)
+
+
+# regressions weekends ----------------------------------------------------
+
+
+sex_weekend_1 <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .) 
+sex_weekend_2 <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .) 
+sex_weekend_3 <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+sex_weekend_4 <- daily_crime_weekends %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .) 
+
+# regressions weekdays ----------------------------------------------------
+
+
+sex_weekdays_1 <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university,
+        cluster = ~university, data = .) 
+sex_weekdays_2 <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + year + university + semester_number,
+        cluster = ~university, data = .) 
+sex_weekdays_3 <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+        cluster = ~university, data = .)
+sex_weekdays_4 <- daily_crime_weekdays %>% 
+  feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .) 
 
 
 
-
+alcohol_sex_ols <- list("(1)" = alc_ols_1, "(2)" = alc_ols_2, "(3)" = alc_ols_3, "(4)" = alc_ols_4,
+                        "(1)" = sex_ols_1, "(2)" = sex_ols_2, "(3)" = sex_ols_3, "(4)" = sex_ols_4)
 
 
 # functions for cleaning table --------------------------------------------
@@ -147,9 +197,9 @@ reduce_frame <- function(x){
 ## This function will give a tibble of means for the dependent variable of interst
 ## The input is a dataframe. it outputs a tibble with the same columnnames as the connected
 ## functions above
-get_means <- function(x){
+get_means <- function(x, column){
   mean <- x %>% 
-    summarize(mean(alcohol_offense_per25, na.rm = T)) %>% 
+    summarize(mean({{column}}, na.rm = T)) %>% 
     pull()
   mean_vector <- rep(mean, 5)
   mean_tibble <- tribble(~term, ~`est...2`, ~`est...3`, ~`est...4`, ~`est...5`,
@@ -164,18 +214,31 @@ get_means <- function(x){
 # creating table ----------------------------------------------------------
 
 ## getting the dependent variable means
-initial_means <- get_means(daily_crime)
+initial_means_alc <- get_means(daily_crime, alcohol_offense_per25)
+initial_means_sex <- get_means(daily_crime, sexual_assault_per25)
+
+initial_means <- bind_cols(initial_means_alc, initial_means_sex) %>% 
+  select(-`term...6`) %>% 
+  rename("term" = "term...1")
 
 ## appending all the weekend columns together
-models <- list(alc_weekend_1, alc_weekend_2, alc_weekend_3, alc_weekend_4)
+models <- list(alc_weekend_1, alc_weekend_2, alc_weekend_3, alc_weekend_4,
+               sex_weekend_1, sex_weekend_2, sex_weekend_3, sex_weekend_4)
 
 ## performing the get_est function on all the models, then combining them together and gettingn rid of the pvale
 ## I then append the means
+weekend_means_alc <- get_means(daily_crime_weekends, alcohol_offense_per25)
+weekend_means_sex <- get_means(daily_crime_weekends, sexual_assault_per25)
+weekend_means <- bind_cols(weekend_means_alc, weekend_means_sex) %>% 
+  select(-`term...6`) %>% 
+  rename("term" = "term...1")
+
 add_weekends <- map(models, ~get_est(.x)) %>% 
   reduce(bind_cols) %>% 
   reduce_frame() %>% 
-  slice(-c(3)) %>% 
-  bind_rows(get_means(daily_crime_weekends))
+  slice(-c(3))  %>% 
+  bind_rows(weekend_means)
+
 
 ## This is to add the means of the estimated model for the full sample first
 add_weekends <- initial_means %>% 
@@ -183,14 +246,21 @@ add_weekends <- initial_means %>%
 
 
 ## Now i do a similar thing with the weekday models
-models_weekdays <- list(alc_weekdays_1, alc_weekdays_2, alc_weekdays_3, alc_weekdays_4)
+models_weekdays <- list(alc_weekdays_1, alc_weekdays_2, alc_weekdays_3, alc_weekdays_4,
+                        sex_weekdays_1, sex_weekdays_2, sex_weekdays_3, sex_weekdays_4)
 
 ## similar to above
+weekday_means_alc <- get_means(daily_crime_weekdays, alcohol_offense_per25)
+weekday_means_sex <- get_means(daily_crime_weekdays, sexual_assault_per25)
+weekend_means <- bind_cols(weekday_means_alc, weekday_means_sex) %>% 
+  select(-`term...6`) %>% 
+  rename("term" = "term...1")
+
 add_weekdays <- map(models_weekdays, ~get_est(.x)) %>% 
   reduce(bind_cols) %>% 
   reduce_frame() %>% 
   slice(-c(3)) %>% 
-  bind_rows(get_means(daily_crime_weekdays))
+  bind_rows(weekend_means)
 
 ## creating the final tibble to be added to the table
 add_rows <- add_weekends %>% 
@@ -213,22 +283,22 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: university_by_year_by_semester_number", "FE: University-by-Year-by-Semester-Number", ~fmt)
 
 ## Final table
-main_alcohol <- modelsummary(alc_ols,
-             stars = T, 
-             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
-             coef_map = c("treatment" = "Moratorium"),
-             title = "Effect of Moratoriums on Alcohol Offenses.",
-             notes = list("The sample includes 38 universities. Some universities go in and out of moratoriums multiple times.",
-                          "Standard errors are clustered by university.",
-                          "Outcome of interest is alcohol offenses per 25 thousand students.",
-                          "Coefficient estimates shown are for Moratorium."),
-             add_rows = add_rows) %>% 
+main_regressions <- modelsummary(alcohol_sex_ols,
+                             stars = T, 
+                             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+                             coef_map = c("treatment" = "Moratorium"),
+                             title = "\\label{main_ols}Effect of Moratoriums on Alcohol Offenses and Sexual Assault (OLS).",
+                             notes = list("The sample includes 38 universities. Some universities go in and out of moratoriums multiple times.",
+                                          "Standard errors are clustered by university.",
+                                          "Outcomes of interest are alcohol offenses and reports of sexual assaults per 25 thousand students.",
+                                          "Coefficient estimates shown are for Moratorium."),
+                             add_rows = add_rows) %>% 
   pack_rows("Full Sample (Monday - Sunday)",1,4) %>% 
   pack_rows("Weekends (Friday - Sunday)", 5, 8) %>% 
-  pack_rows("Weekdays (Monday - Thursday)",9, 12)
+  pack_rows("Weekdays (Monday - Thursday)",9, 12) %>% 
+  add_header_above(c(" " = 1, "Alcohol Offense" = 4, "Sexual Assault" = 4))
 
 
 
 
 
-        
