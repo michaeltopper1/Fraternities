@@ -74,10 +74,10 @@ nibrs <- nibrs %>%
 
 nibrs <- nibrs %>% 
   mutate(age_of_victim = as.double(age_of_victim)) %>% 
-  mutate(college_age_rape = ifelse(age_of_victim >= 17 & age_of_victim <=24 & (ucr_offense_code == "rape"), 1, 0)) %>%
-  mutate(college_age_sexual_assault_object = ifelse(age_of_victim >= 17 & age_of_victim <=24 & (ucr_offense_code == "sexual assault with an object"), 1, 0)) %>% 
-  mutate(college_age_fondle = ifelse(age_of_victim >= 17 & age_of_victim <=24 & (ucr_offense_code == "fondling (incident liberties/child molest)"), 1, 0)) %>%
-  mutate(college_age_rape_statutory = ifelse(age_of_victim >= 17 & age_of_victim <=24 & (ucr_offense_code == "statutory rape"), 1, 0)) %>%
+  mutate(college_age_rape = ifelse(age_of_victim >= 17 & age_of_victim <=22 & (ucr_offense_code == "rape"), 1, 0)) %>%
+  mutate(college_age_sexual_assault_object = ifelse(age_of_victim >= 17 & age_of_victim <=22 & (ucr_offense_code == "sexual assault with an object"), 1, 0)) %>% 
+  mutate(college_age_fondle = ifelse(age_of_victim >= 17 & age_of_victim <=22 & (ucr_offense_code == "fondling (incident liberties/child molest)"), 1, 0)) %>%
+  mutate(college_age_rape_statutory = ifelse(age_of_victim >= 17 & age_of_victim <=22 & (ucr_offense_code == "statutory rape"), 1, 0)) %>%
   mutate(victim_female = ifelse(sex_of_victim == "female", 1, 0)) %>% 
   mutate(victim_black = ifelse(race_of_victim == "black", 1, 0)) %>% 
   mutate(victim_asian = ifelse(race_of_victim == "asian", 1, 0)) %>% 

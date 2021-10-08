@@ -11,7 +11,7 @@ library(lubridate)
 
 # loading in data ---------------------------------------------------------
 
-
+## be sure to run the aggregate file first!!!!!
 nibrs <- read_csv("Created Data/nibrs/nibrs_aggregated.csv")
 
 closures <- readxl::read_excel("Data/closure_spreadsheet_final_2019.xlsx") %>% 
