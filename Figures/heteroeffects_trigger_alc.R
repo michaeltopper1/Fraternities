@@ -11,7 +11,8 @@ library(modelsummary)
 library(lubridate)
 
 if(!exists("daily_crime")) {
-  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv") %>% 
+    filter(university %in% ifc::moratorium_schools())
 }
 
 weekends <- c("Fri", "Sat", "Sun")
@@ -32,7 +33,7 @@ hetero_reasons_death <- daily_crime_het %>%
                                      treatment:reason_death,
                                      treatment:reason_behavior,
                                      treatment:reason_unknown) |
-          uni_semester + weekday, cluster = ~university, data = .) 
+          university_by_semester_number + day_of_week, cluster = ~university, data = .) 
 names(hetero_reasons_death) <- c("Sexual Assault", "Death of Student", "Behavior Violation", "Unknown")
 
 mean_alcohol <- mean(daily_crime$alcohol_offense_per25, na.rm = T)

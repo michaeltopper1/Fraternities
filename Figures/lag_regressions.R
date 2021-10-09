@@ -4,7 +4,8 @@ library(readxl)
 library(fixest)
 library(modelsummary)
 
-appended_crime_logs <- read_csv("Created Data/xMaster_data_2021/appended_crime_logs.csv")
+appended_crime_logs <- read_csv("Created Data/xMaster_data_2021/appended_crime_logs.csv") %>% 
+  filter(university %in% ifc::moratorium_schools())
 
 ## number of schools that have date occurred
 universities_date_occurred <- appended_crime_logs %>% 

@@ -12,7 +12,8 @@ library(kableExtra)
 library(modelsummary)
 
 if(!exists("daily_crime")) {
-  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv") %>% 
+    filter(university %in% ifc::moratorium_schools())
 }
 
 daily_crime_weekdays<- daily_crime %>% 
@@ -21,8 +22,8 @@ daily_crime_weekdays<- daily_crime %>%
 daily_crime_weekends <- daily_crime %>% 
   filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun")
 
-robbery_ols <- daily_crime %>% 
-  feols(robbery_burglary_per25 ~ treatment |
+robbery_ols <- daily_crime_weekends %>% 
+  feols(c(robbery_burglary_per25, drug_offense_per25, theft_per25) ~ treatment |
           uni_semester + weekday, cluster = ~university, data = .)
 
 robbery_p <- daily_crime %>% 
@@ -56,7 +57,7 @@ robbery_table <- modelsummary(robbery_regs, stars = T, gof_omit = 'DF|Deviance|A
              add_rows = row_means) %>% 
   add_header_above(c(" " = 1, "(1)" = 1, "(2)" = 1))
 
-change_that_doesnt_matter <- "doesn't matter"
+
 
 
 

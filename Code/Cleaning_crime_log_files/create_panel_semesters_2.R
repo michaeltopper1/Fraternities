@@ -264,15 +264,23 @@ daily_panel <-  daily_panel %>%
   mutate(across(c(sexual_assault, alcohol_offense,
                   theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
                 .names = "{.fn}_{.col}")) %>% 
-  group_by(university, month) %>% 
-  mutate(uni_month = cur_group_id()) %>% 
-  ungroup() %>% 
   mutate(across(c(sexual_assault, alcohol_offense,
                   theft, robbery_burglary, drug_offense, rape), ~./total_enrollment * 25000,
                 .names = '{.col}_per25')) %>% 
-  group_by(university, semester_number) %>% 
-  mutate(uni_semester = cur_group_id()) %>% 
+  filter(university %in% ifc::moratorium_schools()) %>% 
+  group_by(university, year, semester_number) %>% 
+  mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
+  group_by(university, year) %>% 
+  mutate(university_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year, month) %>% 
+  mutate(university_by_month_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, semester_number) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  rename(day_of_week = weekday) %>% 
   filter(year > 2013) 
 
 yearly_panel <- yearly_panel %>% 

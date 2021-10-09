@@ -6,7 +6,8 @@ library(lubridate)
 library(kableExtra)
 
 if(!exists("daily_crime")) {
-  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv") %>% 
+    filter(university %in% ifc::moratorium_schools())
 }
 
 daily_crime <- daily_crime %>% 
