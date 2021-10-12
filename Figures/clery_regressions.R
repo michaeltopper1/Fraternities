@@ -36,7 +36,7 @@ add_means <- tribble(~term, ~alc_full, ~alc_res, ~alc_non, ~sex_full, ~sex_res, 
 
 attr(add_means, 'position') <- c(4)
 
-modelsummary(clery_regs,
+clery_reg_table <- modelsummary(clery_regs,
              stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
              add_rows = add_means,
              coef_map = c("treatment" = "Moatorium"),
@@ -48,6 +48,6 @@ modelsummary(clery_regs,
                           "Daily Crime Log data represents full calendar year- not only academic calendar days.")) %>% 
   add_header_above(c(" " = 1, "Alcohol Offenses" = 3, "Sexual Assault" = 3, "Alcohol Offenses" = 1,
                      "Sexual Assault" = 1)) %>% 
-  add_header_above(c(" " = 1, "Clery Act Data" = 6, "Daily Crime Logs" = 2))
+  add_header_above(c(" " = 1, "Campus Safety and Security" = 6, "Daily Crime Logs" = 2))
 
 

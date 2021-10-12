@@ -1,41 +1,49 @@
 ---
-title: "Introduction"
+title: "Writing"
 output: pdf_document
 bibliography: references.bib
 linkcolor: blue
 ---
 # Main Goal of Update
 
-The main goal of this update is to get feedback on a restructing of the previous paper I wrote back in August. I have not started rewriting at this point. Instead, I want to restructure the paper based on tables/figures that I find to be particularly interesting. So for this update, I wanted to present a reworking of the main tables and some new additional tables so that I can have some guidance in what to include/what is missing. 
+The main goal of this update is to get feedback on a restructing of the previous paper I wrote back in August. I have not started rewriting. Instead, I want to restructure the paper based on tables/figures that I find to be particularly interesting. So for this update, I wanted to present a reworking of the main tables and some new additional tables so that I can have some guidance in what to include/what is missing. 
 
-One of the main points of feedback from last time was that the paper should be sold as a different story. Previously, I sold the paper as a "what would happen if fraternities were stronger regulated?", whereas I have been told a better direction could be "what role do fraternities play in the underage drinking problem at universities?" so that I could more directly connect it to the college alcohol literature. To spin this new story, I needed to look into the mechanisms of my previous results more. In particular, I analyzed two official data sets: The Campus Safety Statistics and the National Incidence Based Reporting System (NIBRS) to drill into the mechanisms. However, each of these data sets have massive downfalls compared to the novel data that I constructed, so I want to bring them in as supplemental evidence, not primary evidence. 
+One of the main points of feedback from last time was that the paper should be sold as a different story. Previously, I sold the paper as a "what would happen if fraternities were stronger regulated?", whereas I have been told a better direction could be "what role do fraternities play in the underage drinking problem at universities?" so that I could more directly connect it to the college alcohol literature. To spin this new story, I needed to look into the mechanisms of my previous results more. In particular, I analyzed two official data sets: The Campus Safety and Security Data and the National Incidence Based Reporting System (NIBRS) to drill into the mechanisms. However, each of these data sets have massive downfalls compared to the novel data that I constructed, so I want to bring them in as supplemental evidence, not primary evidence. 
 
 Furthermore, a second aspect of the paper that many found confusing was the sample construction. For instance, why did I choose to have some never-treated universities that experienced a fraternity death? After several iterations of messing with the sample, I decided that the 38 universities that experience a moratorium are the best sample I can get. Hence, my main specifications will be comparing universities that have are currently undergoing a moratorium to universities that **will** or **already have** undergone a moratorium. 
 
 For those of you who like lists, here's a list of updates:
 
-* As secondary evidence, I am using two new data sets: NIBRS and Campus Safety Statistics. 
+* As secondary evidence, I am using two new data sets: NIBRS and Campus Safety and Security Data. 
 * I have reduced the main sample to only 38 universities that eventually experience a moratorium.
-* Using the Campus Safety Statistics, I look into a substitution effect: if alcohol violations are decreasing campus-wide, where is this activity going? What does this mean for sexual assaults?
+* Using the Campus Safety and Security Data, I look into a substitution effect: if alcohol violations are decreasing campus-wide, where is this activity going? What does this mean for sexual assaults?
 * Using the NIBRS data, I look into the age groups that are affected by these moratoriums. In particular, are reports of rape by college-aged individuals decreasing during moratoriums?
-* I look into the "shock mechanism" surrounding universities that experienced a moratorium due to a fraternity death. Is the moratorium the reason why we see decreases in alcohol or is it simply because a death "shocks" the school into changing behaviors. For this, I use a newly constructed sample shown below.
+* I look into the "shock mechanism" surrounding universities that experienced a moratorium due to a fraternity death. Is the moratorium the reason why we see decreases in alcohol or is it simply because a death "shocks" the school into changing behaviors. For this, I use a newly constructed sample that consists of the 10 universities that undergo a moratorium because of a fraternity death occurrence, and 15 other schools that do not undergo a moratorium, but have a fraternity death.
 
 Main feedback wanted:
 
+* Interested in your opinion on which version of the new main results I should choose. In particular, I have Table \ref{main_ols_alc} and Table \ref{main_ols_sex}. However, I can combine them to make Table \ref{main_ols}. Readability matters, but also keeping everything on the same page is nice as well- which one does everyone prefer?
+* I put in some new evidence of crime that is decreasing during moratoriums for other outcomes (drug offenses, thefts). While it's interesting, I am not sure if I should go down the road of showing all of these results because I'll start getting multiple hypothesis questions.
+* What tables/figures are still missing? Right now, I feel like this project is running out of things to try (aside from those new estimators that are robust to heterogeneous treatment effects). 
+* What tables/figures are extraneous? Happy to delete anything that really doesn't paint a picture.
+* What do you think of the new sample selection? To me, this sample makes the most sense and is the most clear (38 universities, all of which are eventually treated).
+* Any papers that could be useful to give me ideas on how to construct the final paper. 
 
-# The New Data
 
-As mentioned above, my main analysis is still using the Daily Crime Logs that I gathered. I consider this to be the best source of data I have, and one of my main contributions to the literature. However, I use two more data sources that have some minor enhancements over the Daily Crime Logs which I describe next.
 
-## Campus Safety Statistics
+# The New Data and Accompanying Results
 
-The Campus Safety Statistics, similar to the Daily Crime Logs, are enforced by the Jeanne Clery Act. Any schools receiving federal funding must report **yearly-level** statistics on a number of crimes. For my purposes, the crimes I use are:
+As mentioned above, my main analysis is still using the Daily Crime Logs that I gathered. I consider these to be the best source of data I have, and one of my main contributions to the literature. However, I use two more data sources that have some minor enhancements over the Daily Crime Logs which I describe next.
+
+## Campus Safety and Security Data
+
+The Campus Safety and Security Data, similar to the Daily Crime Logs, are enforced by the Jeanne Clery Act. Any schools receiving federal funding must report **yearly-level** statistics on a number of crimes. For my purposes, the crimes I use are:
 
 * Rape, fondling, incest, statutory rape - combined together to form "sexual assault" to mitigate the multiple hypothesis issue.
 * Liquor disciplinary violations
 * Drug disciplinary violations (unsure if I want to keep these)
 
-The main benefit of the Campus Safety Statistics is that they are official (no matching algorithm needed to bin specific crimes), and more importantly, they contain general location information. For instance, I am able to delineate between a rape or liquor violation that occurred in the following locations:
+The main benefit of the Campus Safety and Security Data is that they are official (no matching algorithm needed to bin specific crimes), and more importantly, they contain general location information. For instance, I am able to delineate between a rape or liquor violation that occurred in the following locations:
 
 * Noncampus -  Any building or property owned or controlled by a student organization that is officially recognized by the institution; or (2) Any building or property owned or controlled by an institution that is used in direct support of, or in relation to, the institution's educational purposes, is frequently used by students, and is not within the same reasonably contiguous geographic area of the institution.
 * Residential Hall - Any student housing facility that is owned or controlled by the institution, or is located on property that is owned or controlled by the institution, and is within the reasonably contiguous geographic area that makes up the campus is considered an on-campus student housing facility.
@@ -45,6 +53,25 @@ The main benefit of the Campus Safety Statistics is that they are official (no m
 For my purposes, the most beneficial categories to me are residential halls and noncampus offenses. For example, it could be that fraternity moratoriums cause a substitution towards behaviors off campus or into residence halls. On the other hand, residence halls are mainly younger students and their amount of partying might be relatively inelastic when it comes to moratoriums.
 
 The main (and really terrible) downfall of this data is that I only have aggregated *calendar year* statistics. Given that moratoriums are an average of 90 days, this attributes to only 25% of an entire year being treated on average. This also presents some difficulties: how can I check for pretrends with an event study when a school is treated within 2 years for small periods of time? This gets even more messy since there are multiple schools that are treated multiple times over 2014-2019. Hence, a treated university may be treated in a small fraction of 4 out of the 6 years. Any event study would be pretty meaningless. Moreover, since the the sample timeline is only 2014-2019 (6 years) this gives me an insufficient amount of data to look at the trends. While I *could* go back and get more years, rapes are not included in before year 2014, making this difficult to compare. 
+
+### Campus Safety and Security Regressions
+
+As explained earlier, I wanted to analyze if there is any substitution effect of where undergraduates party or consume alcohol when fraternity parties are temporarily unavailable. Partying may be an inelastic good for undergraduates, and if fraternity parties are unavailable, it's likely they will simply move their risky behaviors elsewhere.
+
+All of the regressions using this data will be of the following form:
+
+$$ Y_{u,t} = \beta Moratorium_{u,t} + \gamma_u + \phi_t + \epsilon_{u,t}$$
+
+where $Y_{u,t}$ is the outcome of interest in university $u$ in year $t$, $Moratorium_{u,t}$ is a value between 0 and 1 which denotes the fraction of days treated in a year, $\gamma_u$ are university fixed effects and $\phi_t$ are year fixed effects.
+
+
+Table \ref{clery_reg} shows the main results of these regressions. There are several interesting things to point out:
+
+* When comparing the full sample of the Campus Safety and Security and the Daily Crime Logs, I find opposite effects: alcohol offenses substantially increase when using the Campus Safety and Security Data, yet significantly decrease when using the Daily Crime Logs.
+  + **Explanation**: while this seems like a red-flag, it actually makes a lot of sense once I break down the Campus Safety and Security Data into "Residence Hall" and "Noncampus" offenses. In particular, the residence halls are the main contributor to this large increase. This is where understanding the data is important - Daily Crime Logs are *police reports* of alcohol offenses. Since alcohol offenses in residence halls are handled internally (e.g., an underage student found with alcohol is not going to be reported to the police), it makes sense that there is a spike in alcohol offenses in the residence halls, but a decrease in police reports. Additionally, this means that underage drinkers are substituting away from fraternity parties and into residence halls. Now the real question is: are these residence halls safer places to drink than fraternity parties (see next bullet point)?
+* Sexual assaults actually decrease in residence halls during moratoriums, while liquor violations increase. At first thought, this might seem like an inconsistency as we would expect more alcohol to lead to more sexual assaults.
+  + **Explanation**: this has to do with the riskiness of the setting. Residence halls are generally manned by multiple overseers that stop parties that are getting too loud/rowdy. Hence, these overseers are actually stopping drinking behavior before it gets too dangerous. However, wouldn't we expect a "zero" instead of a significant decrease? Maybe, but more parties also attracts more overseers and brings more attention to settings that may be risky. 
+
 
 ## NIBRS
 
@@ -57,6 +84,20 @@ Despite these benefits, there are huge downfalls to this data which make it only
 * Agencies report voluntarily, and most never report. Once I observed the data, I found only 14/38 university police stations that reported consistently over 2014-2019. 
 * Alcohol offenses are not included in this data unless the perpetrator is *arrested*. Since college students are hardly ever arrested for a liquor violation, this is a terrible proxy for my question.
 
+
+### NIBRS Regressions
+
+The results of these regressions can be found in Table \ref{nibrs_schools}. The specification for this table is the following:
+
+```{=tex}
+\begin{equation}\label{main_model}
+Y_{u,t} = \beta Moratorium_{u,t} + \gamma_{u, semester} + \alpha_{weekday} + \epsilon_{u,t}
+\end{equation}
+```
+
+where $Y_{u,t}$ is college-aged sexual assault. I define college-aged sexual assault as the combination of rape, statutory rape, fondling, and sexual assault with an object for individuals aged 17-22. I changed this age cutoff multiple times and the results remain the same. As shown in Table \ref{nibrsschools}, there appears to be no significant effect. However, this is likely due to power issues. I could only include 14 university police departments that report to the NIBRS on a consistent basis in the sample time frame. 
+
+Additionally, I also use a similar method as @lindo_college_2018, where I take both police departments that serve universities and the university police department themselves and combine. These results are shown in Table \ref{nibrsall}. The results do not change much, although these results suffer from the same issues as discussed above. 
 
 
 # Updates to Old Stuff
@@ -73,7 +114,20 @@ I wanted to show the robustness of my results by using different combination of 
 * semester-number - to clarify what these are, these are fixed effects accounting for each semester in the sample. Since there are 6 years, there are twelve semesters. I put an indicator on 11 of these. 
 * university-by-semester-number - these fixed effects are a combination of university and semester-number. These are created by grouping by university and semester number, then creating a unique identifier for each. These fixed effects allow for the estimates to be identified by a comparison of reports to a university police department during a moratorium day compared to other days while controlling for changes that are expected during a semester.
 
-These fixed effects are similar to what is shown in @lindo_college_2018, given that their empirical strategy is somewhat similar to mine although they utilize football-game-day variation for their identification. 
+These fixed effects are similar to what is shown in @lindo_college_2018, given that their empirical strategy is somewhat similar to mine although they utilize football-game-day variation for their identification. Results can be shown in Tables \ref{main_ols_alc} and \ref{main_ols_sex}, while a combination of the two previous tables is shown in Table \ref{main_ols}. I am interested in which table you prefer to view. Each of the tables shows four specifications with different time-fixed effects to allow for some flexibility. The preferred specification is (3) which includes day-of-week, year, and university-by-semester-number fixed effects (although specification (4) is nearly identical). Given the count-nature of the data (and the large number of zeros), I also estimate the models using poisson regressions. The results remain similar in magnitude and interpretation: alcohol offenses decline by approximately 28% in the full sample and 31% on the weekends, while sexual assault decreases by 32% on the weekends. There is no significant decline in alcohol or sexual assaults during weekdays. 
+
+
+# Other Additions
+
+## Exploring the "shock" mechanism
+
+In Table \ref{tab:hetero_trigger_alc}, I found that moratoriums that are triggered by deaths have stronger effects on alcohol offenses. One of the main concerns here is that behavior is changing because of a "death shock" rather than the moratorium itself. In other words, it may be that students are changing behavior because they are shocked from a death and are now behaving differently rather than the moratorium changing their behavior. To explore this, restrict the sample to only universities that experience a moratorium triggered by a death (10 universities). Additionally, I include 15 "never-treated" universities that experience a fraternity-related death, but never undergo a moratorium as another control group. The idea here is that if it is the "shock" causing alcohol violations to decrease rather than the moratorium, then there should be no effect of the moratorium when comparing these schools. However, this is not the case: Table \ref{death_regression} shows the effects split by full sample, weekends, and weekdays. It appears that moratoriums still have a significant effect (columns (3) and (4)) in the full sample and on the weekends.
+
+## New Figure
+
+I have now included a new figure (Figure \ref{distribution}) which shows the distribution of moratoriums over the time period. 
+
+
 
 
 

@@ -223,8 +223,10 @@ modelsummary(sex_ols,
              notes = list("The sample includes 38 universities. Some universities go in and out of moratoriums multiple times",
                           "Standard errors are clustered by university.",
                           "Outcome of interest is alcohol offenses per 25 thousand students.",
-                          "Coefficient estimates shown are for Moratorium."),
-             add_rows = add_rows) %>% 
+                          "Coefficient estimates shown are for Moratorium.",
+                          "Full Sample includes only academic calendar days (plus 1 extra week on each end)."),
+             add_rows = add_rows,
+             output = "latex") %>% 
   pack_rows("Full Sample (Monday - Sunday)",1,4) %>% 
   pack_rows("Weekends (Friday - Sunday)", 5, 8) %>% 
   pack_rows("Weekdays (Monday - Thursday)",9, 12)

@@ -29,7 +29,7 @@ for (uni in distinct_universities) {
     model <- daily_crime %>% 
       filter(university != uni) %>% 
       feols(sexual_assault_per25 ~ treatment |
-               uni_semester + weekday,
+               university_by_semester_number + day_of_week,
              cluster = ~university, data = .)
     final_results_sex <- broom::tidy(model, conf.int = T)[1,]
   }
@@ -37,7 +37,7 @@ for (uni in distinct_universities) {
     model <- daily_crime %>% 
       filter(university != uni) %>% 
       feols(sexual_assault_per25 ~treatment |
-               uni_semester + weekday,
+               university_by_semester_number + day_of_week,
              cluster = ~university, data = .)
     final_results_append <- broom::tidy(model, conf.int = T)[1,]
     final_results_sex <- final_results_sex %>% 
@@ -53,7 +53,7 @@ for (uni in distinct_universities) {
     model <- daily_crime %>% 
       filter(university != uni) %>% 
       feols(alcohol_offense_per25 ~ treatment |
-               uni_semester + weekday,
+               university_by_semester_number + day_of_week,
              cluster = ~university, data = .)
     final_results_alc <- broom::tidy(model, conf.int = T)[1,]
   }
@@ -61,7 +61,7 @@ for (uni in distinct_universities) {
     model <- daily_crime %>% 
       filter(university != uni) %>% 
       feols(alcohol_offense_per25 ~ treatment|
-               uni_semester + weekday,
+               university_by_semester_number + day_of_week,
              cluster = ~university, data = .)
     final_results_append <- broom::tidy(model, conf.int = T)[1,]
     final_results_alc <- final_results_alc %>% 

@@ -280,11 +280,12 @@ main_regressions <- modelsummary(alcohol_sex_ols,
                                           "Standard errors are clustered by university.",
                                           "Outcomes of interest are alcohol offenses and reports of sexual assaults per 25 thousand students.",
                                           "Coefficient estimates shown are for Moratorium."),
-                             add_rows = add_rows) %>% 
-  pack_rows("Full Sample (Monday - Sunday)",1,4) %>% 
-  pack_rows("Weekends (Friday - Sunday)", 5, 8) %>% 
-  pack_rows("Weekdays (Monday - Thursday)",9, 12) %>% 
-  add_header_above(c(" " = 1, "Alcohol Offense" = 4, "Sexual Assault" = 4))
+                             add_rows = add_rows, output = "latex") %>% 
+  pack_rows("Full Sample (Monday - Sunday)",1,4) %>%
+  pack_rows("Weekends (Friday - Sunday)", 5, 8) %>%
+  pack_rows("Weekdays (Monday - Thursday)",9, 12) %>%
+  add_header_above(c(" " = 1, "Alcohol Offense" = 4, "Sexual Assault" = 4)) %>% 
+  kable_styling(latex_options = "scale_down")
 
 
 
