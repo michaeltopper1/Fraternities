@@ -10,20 +10,12 @@ output:
     # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
 indent: true
 header-includes:
-- \usepackage{amsfonts}
-- \usepackage{amsthm}
-- \usepackage{amsmath}
-- \usepackage{bbm} ##for indicator
-- \usepackage[english]{babel}
-- \usepackage{bm}
-- \usepackage{float}
-- \usepackage[fontsize=11pt]{scrextend}
-- \usepackage{graphicx}
-- \usepackage[utf8]{inputenc}
-- \usepackage{pdfpages}
-- \usepackage[round,authoryear]{natbib}
-- \usepackage{subfig}
-- \floatplacement{figure}{H}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+  - \usepackage{amsfonts}
+  - \usepackage{amsthm}
+  - \usepackage{amsmath}
+  - \usepackage[english]{babel}
 bibliography: "references.bib"
 link-citations: yes
 linkcolor: blue

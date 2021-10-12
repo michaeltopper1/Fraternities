@@ -8,7 +8,7 @@ linkcolor: blue
 
 The main goal of this update is to get feedback on a restructing of the previous paper I wrote back in August. I have not started rewriting. Instead, I want to restructure the paper based on tables/figures that I find to be particularly interesting. So for this update, I wanted to present a reworking of the main tables and some new additional tables so that I can have some guidance in what to include/what is missing. 
 
-One of the main points of feedback from last time was that the paper should be sold as a different story. Previously, I sold the paper as a "what would happen if fraternities were stronger regulated?", whereas I have been told a better direction could be "what role do fraternities play in the underage drinking problem at universities?" so that I could more directly connect it to the college alcohol literature. To spin this new story, I needed to look into the mechanisms of my previous results more. In particular, I analyzed two official data sets: The Campus Safety and Security Data and the National Incidence Based Reporting System (NIBRS) to drill into the mechanisms. However, each of these data sets have massive downfalls compared to the novel data that I constructed, so I want to bring them in as supplemental evidence, not primary evidence. 
+One of the main points of feedback from last time was that the paper should be sold as a different story. Previously, I sold the paper as a "what would happen if fraternities were regulated stronger?", whereas I have been told a better direction could be "what role do fraternities play in the underage drinking problem at universities?" so that I could more directly connect it to the college alcohol literature. To spin this new story, I needed to look into the mechanisms of my previous results more. In particular, I analyzed two official data sets: The Campus Safety and Security Data and the National Incidence Based Reporting System (NIBRS) to drill into the mechanisms. However, each of these data sets have massive downfalls compared to the novel data that I constructed using Daily Crime Logs, so I want to bring them in as supplemental evidence, not primary evidence. 
 
 Furthermore, a second aspect of the paper that many found confusing was the sample construction. For instance, why did I choose to have some never-treated universities that experienced a fraternity death? After several iterations of messing with the sample, I decided that the 38 universities that experience a moratorium are the best sample I can get. Hence, my main specifications will be comparing universities that have are currently undergoing a moratorium to universities that **will** or **already have** undergone a moratorium. 
 
@@ -24,10 +24,18 @@ Main feedback wanted:
 
 * Interested in your opinion on which version of the new main results I should choose. In particular, I have Table \ref{main_ols_alc} and Table \ref{main_ols_sex}. However, I can combine them to make Table \ref{main_ols}. Readability matters, but also keeping everything on the same page is nice as well- which one does everyone prefer?
 * I put in some new evidence of crime that is decreasing during moratoriums for other outcomes (drug offenses, thefts). While it's interesting, I am not sure if I should go down the road of showing all of these results because I'll start getting multiple hypothesis questions.
-* What tables/figures are still missing? Right now, I feel like this project is running out of things to try (aside from those new estimators that are robust to heterogeneous treatment effects). 
+* What tables/figures are still missing? Right now, I feel like this project is running out of things to try (aside from those new estimators that are robust to heterogeneous treatment effects). If everyone could read through the tables and figures and let me know if some need reworking or I am missing crucial information, then this would be super helpful!
 * What tables/figures are extraneous? Happy to delete anything that really doesn't paint a picture.
 * What do you think of the new sample selection? To me, this sample makes the most sense and is the most clear (38 universities, all of which are eventually treated).
-* Any papers that could be useful to give me ideas on how to construct the final paper. 
+* The Campus Safety and Security results...are these shooting myself in the foot? Or are these believable?
+* Any papers that could be useful to give me ideas on how to construct the final paper.
+* General advice on writing the Results section of a paper. Last time I wrote the draft, I felt like I was simply describing the tables. How much "this could be because..." can I write in? How much should be written as a matter of fact? 
+
+Last things on my "things to do":
+
+* Since the Campus Safety and Security data showed some promising results, I wanted to see if I could get some of this data at a more granular level. As a test, I inputted in 2 Freedom of Information Act requests to a couple schools to see if I can get liquor violations and sexual assault violations from residence halls with the accompanying data-of-report/date-of-occurrence. I was not rejected initially from one of the schools, but have not received any data back (FOIAs take a very long time to get processed). 
+* Use one of the new diff-in-diff estimators. Since I have a non-staggered design (e.g., treatment lengths differ and units go in and out of treatment) I need to meet with Clement to see if his estimator is appropriate.
+
 
 
 
@@ -37,7 +45,7 @@ As mentioned above, my main analysis is still using the Daily Crime Logs that I 
 
 ## Campus Safety and Security Data
 
-The Campus Safety and Security Data, similar to the Daily Crime Logs, are enforced by the Jeanne Clery Act. Any schools receiving federal funding must report **yearly-level** statistics on a number of crimes. For my purposes, the crimes I use are:
+The Campus Safety and Security Data, similar to the Daily Crime Logs, are enforced by the Jeanne Clery Act. Any schools receiving federal funding must report **calendar-yearly-level** statistics on a number of crimes. For my purposes, the crimes I use are:
 
 * Rape, fondling, incest, statutory rape - combined together to form "sexual assault" to mitigate the multiple hypothesis issue.
 * Liquor disciplinary violations
@@ -56,9 +64,7 @@ The main (and really terrible) downfall of this data is that I only have aggrega
 
 ### Campus Safety and Security Regressions
 
-As explained earlier, I wanted to analyze if there is any substitution effect of where undergraduates party or consume alcohol when fraternity parties are temporarily unavailable. Partying may be an inelastic good for undergraduates, and if fraternity parties are unavailable, it's likely they will simply move their risky behaviors elsewhere.
-
-All of the regressions using this data will be of the following form:
+As explained earlier, I wanted to analyze if there is any substitution effect of where undergraduates party or consume alcohol when fraternity parties are temporarily unavailable. Partying may be an inelastic good for undergraduates, and if fraternity parties are unavailable, it's likely they will simply move their risky behaviors elsewhere. All of the regressions using this data will be of the following form:
 
 $$ Y_{u,t} = \beta Moratorium_{u,t} + \gamma_u + \phi_t + \epsilon_{u,t}$$
 
@@ -95,9 +101,9 @@ Y_{u,t} = \beta Moratorium_{u,t} + \gamma_{u, semester} + \alpha_{weekday} + \ep
 \end{equation}
 ```
 
-where $Y_{u,t}$ is college-aged sexual assault. I define college-aged sexual assault as the combination of rape, statutory rape, fondling, and sexual assault with an object for individuals aged 17-22. I changed this age cutoff multiple times and the results remain the same. As shown in Table \ref{nibrsschools}, there appears to be no significant effect. However, this is likely due to power issues. I could only include 14 university police departments that report to the NIBRS on a consistent basis in the sample time frame. 
+where $Y_{u,t}$ is college-aged sexual assault. I define college-aged sexual assault as the combination of rape, statutory rape, fondling, and sexual assault with an object for individuals aged 17-22. I changed this age cutoff multiple times and the results remain the same. As shown in Table \ref{nibrs_schools}, there appears to be no significant effect. However, this is likely due to power issues. I could only include 14 university police departments that report to the NIBRS on a consistent basis in the sample time frame. 
 
-Additionally, I also use a similar method as @lindo_college_2018, where I take both police departments that serve universities and the university police department themselves and combine. These results are shown in Table \ref{nibrsall}. The results do not change much, although these results suffer from the same issues as discussed above. 
+Additionally, I also use a similar method as @lindo_college_2018, where I take both police departments that serve universities and the university police department themselves and combine. These results are shown in Table \ref{nibrs_all}. The results do not change much, although these results suffer from the same issues as discussed above. 
 
 
 # Updates to Old Stuff
