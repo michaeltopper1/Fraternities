@@ -9,19 +9,7 @@ library(kableExtra)
 # loading in data ---------------------------------------------------------
 
 if (!exists("daily_crime")) {
-  daily_crime <- read_csv(here::here("Created Data/xMaster_data_2021/daily_panel.csv")) %>% 
-    filter(university %in% ifc::moratorium_schools()) %>% 
-    group_by(university, year, semester_number) %>% 
-    mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
-    ungroup() %>% 
-    group_by(university, year) %>% 
-    mutate(university_by_year = cur_group_id()) %>% 
-    ungroup() %>% 
-    group_by(university, year, month) %>% 
-    mutate(university_by_month_by_year = cur_group_id()) %>% 
-    ungroup() %>% 
-    rename(day_of_week = weekday,
-           university_by_semester_number = uni_semester)
+  daily_crime <- read_csv(here::here("Created Data/xMaster_data_2021/daily_panel.csv")) 
 }
 
 
@@ -291,11 +279,13 @@ main_regressions_pois <- modelsummary(alcohol_sex_pois,
                                               "Standard errors are clustered by university.",
                                               "Outcomes of interest are alcohol offenses and reports of sexual assault counts.",
                                               "Coefficient estimates shown are for Moratorium."),
-                                 add_rows = add_rows) %>% 
+                                 add_rows = add_rows,
+                                 output = "latex") %>% 
   pack_rows("Full Sample (Monday - Sunday)",1,4) %>% 
   pack_rows("Weekends (Friday - Sunday)", 5, 8) %>% 
   pack_rows("Weekdays (Monday - Thursday)",9, 12) %>% 
-  add_header_above(c(" " = 1, "Alcohol Offense" = 4, "Sexual Assault" = 4))
+  add_header_above(c(" " = 1, "Alcohol Offense" = 4, "Sexual Assault" = 4)) %>% 
+  kable_styling(latex_options = "scale_down")
 
 
 

@@ -15,8 +15,8 @@ if(!exists("daily_crime")) {
 
 summary_stats_crime <- daily_crime %>% 
   mutate(days_week = case_when(
-    weekday == "Mon" | weekday == "Tue" | weekday == "Wed" | weekday == "Thu" ~ "Monday - Thursday",
-    weekday == "Fri" | weekday == "Sat" | weekday == "Sun" ~ "Friday - Sunday"
+    day_of_week == "Mon" | day_of_week == "Tue" | day_of_week == "Wed" | day_of_week == "Thu" ~ "Monday - Thursday",
+    day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun" ~ "Friday - Sunday"
   )) %>% 
   mutate(moratorium = ifelse(treatment == 1, "In Effect", "No Moratorium")) %>% 
   datasummary(((`Alcohol Offense` = alcohol_offense_per25) + (`Sexual Assault` = sexual_assault_per25 ) +

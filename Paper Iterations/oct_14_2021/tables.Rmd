@@ -27,7 +27,7 @@ header-includes:
 
 
 ```{r}
-source("Tables/matching_word_table.R")
+source(paste0(here::here("Tables/matching_word_table.R")))
 ```
 
 ```{r matching_table}
@@ -45,7 +45,7 @@ kable(top_categories, booktabs = T, caption = "The top 30 most frequent reported
 \end{landscape}
 
 ```{r}
-source("Tables/closure_table.R")
+source(paste0(here::here("Tables/closure_table.R")))
 ```
 
 ```{r closure_table}
@@ -58,7 +58,7 @@ kbl(closure_table, booktabs = T, caption = "All universities included in the sam
 ```
 
 ```{r summarystatscrime}
-source("Tables/summary_stats_offenses.R")
+source(paste0(here::here("Tables/summary_stats_offenses.R")))
 ```
 
 ```{r }
@@ -66,7 +66,7 @@ summary_stats_crime
 ```
 
 ```{r university_characteristics}
-source("Tables/summary_stats_university.R")
+source(paste0(here::here("Tables/summary_stats_university.R")))
 ```
 
 ```{r}
@@ -74,55 +74,225 @@ university_characteristics
 ```
 
 ```{r lag_regressions}
-source("Figures/lag_regressions.R")
+source(paste0(here::here("Figures/lag_regressions.R")))
 ```
 
 ```{r}
-lag_regresion_table 
+lag_regresion_table
 ```
 
 
 
 
 
-```{r main_results}
-source("Figures/regression_main_table.R")
-```
+<!-- ```{r main_results} -->
+<!-- source(paste0(here::here("Figures/regression_main_table.R"))) -->
+<!-- ``` -->
+\begin{landscape}
+\begin{table}
 
-```{r}
-main_regressions %>%
-  landscape() %>%
-  kable_styling(latex_options = "scale_down")
-```
+\caption{\label{main_ols_alc}Effect of Moratoriums on Alcohol Offenses.}
+\centering
+\begin{tabular}[t]{lcccc}
+\toprule
+  & (1) & (2) & (3) & (4)\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Full Sample (Monday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.141** & -0.143** & -0.141** & -0.141**\\
+\hspace{1em} & (0.050) & (0.049) & (0.047) & (0.047)\\
+\hspace{1em}Num.Obs. & 56614 & 56614 & 56614 & 56614\\
+\hspace{1em}Mean of Dependent Variable & 0.500 & 0.500 & 0.500 & 0.500\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Weekends (Friday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.320** & -0.328** & -0.277** & -0.276**\\
+\hspace{1em} & (0.108) & (0.107) & (0.098) & (0.099)\\
+\hspace{1em}Num.Obs. & 24287 & 24287 & 24287 & 24287\\
+\hspace{1em}Mean of Dependent Variable & 0.890 & 0.890 & 0.890 & 0.890\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Weekdays (Monday - Thursday)}}\\
+\hspace{1em}Moratorium & -0.008 & -0.003 & -0.040 & -0.040\\
+\hspace{1em} & (0.024) & (0.027) & (0.034) & (0.034)\\
+\hspace{1em}Num.Obs. & 32327 & 32327 & 32327 & 32327\\
+\hspace{1em}Mean of Dependent Variable & 0.207 & 0.207 & 0.207 & 0.207\\
+\midrule
+Std. Errors & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university)\\
+FE: day\_of\_week & X & X & X & X\\
+FE: semester\_number &  & X &  & \\
+FE: university & X & X &  & \\
+FE: university\_by\_semester\_number &  &  & X & \\
+FE: university\_by\_year\_by\_semester\_number &  &  &  & X\\
+FE: year & X & X & X & \\
+\bottomrule
+\multicolumn{5}{l}{\textsuperscript{} + p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\multicolumn{5}{l}{\textsuperscript{} The sample includes 38 universities. Some universities go in and out of moratoriums multiple times.}\\
+\multicolumn{5}{l}{\textsuperscript{} Standard errors are clustered by university.}\\
+\multicolumn{5}{l}{\textsuperscript{} Outcome of interest is alcohol offenses per 25 thousand students.}\\
+\multicolumn{5}{l}{\textsuperscript{} Coefficient estimates shown are for Moratorium.}\\
+\multicolumn{5}{l}{\textsuperscript{} Full Sample includes only academic calendar days (plus 1 extra week on each end).}\\
+\end{tabular}
+\end{table}
 
-```{r poisson_results}
-source("Figures/main_regressions_pois.R")
-```
+\begin{table}
+
+\caption{\label{main_ols_sex}Effect of Moratoriums on Reports of Sexual Assualt}
+\centering
+\begin{tabular}[t]{lcccc}
+\toprule
+  & (1) & (2) & (3) & (4)\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Full Sample (Monday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.011+ & -0.009+ & -0.005 & -0.005\\
+\hspace{1em} & (0.006) & (0.005) & (0.007) & (0.007)\\
+\hspace{1em}Num.Obs. & 56614 & 56614 & 56614 & 56614\\
+\hspace{1em}Mean of Dependent Variable & 0.500 & 0.500 & 0.500 & 0.500\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Weekends (Friday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.014* & -0.012+ & -0.017+ & -0.017+\\
+\hspace{1em} & (0.006) & (0.006) & (0.009) & (0.009)\\
+\hspace{1em}Num.Obs. & 24287 & 24287 & 24287 & 24287\\
+\hspace{1em}Mean of Dependent Variable & 0.890 & 0.890 & 0.890 & 0.890\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Weekdays (Monday - Thursday)}}\\
+\hspace{1em}Moratorium & -0.008 & -0.007 & 0.004 & 0.004\\
+\hspace{1em} & (0.008) & (0.007) & (0.009) & (0.009)\\
+\hspace{1em}Num.Obs. & 32327 & 32327 & 32327 & 32327\\
+\hspace{1em}Mean of Dependent Variable & 0.207 & 0.207 & 0.207 & 0.207\\
+\midrule
+Std. Errors & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university)\\
+FE: day\_of\_week & X & X & X & X\\
+FE: semester\_number &  & X &  & \\
+FE: university & X & X &  & \\
+FE: university\_by\_semester\_number &  &  & X & \\
+FE: university\_by\_year\_by\_semester\_number &  &  &  & X\\
+FE: year & X & X & X & \\
+\bottomrule
+\multicolumn{5}{l}{\textsuperscript{} + p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\multicolumn{5}{l}{\textsuperscript{} The sample includes 38 universities. Some universities go in and out of moratoriums multiple times}\\
+\multicolumn{5}{l}{\textsuperscript{} Standard errors are clustered by university.}\\
+\multicolumn{5}{l}{\textsuperscript{} Outcome of interest is alcohol offenses per 25 thousand students.}\\
+\multicolumn{5}{l}{\textsuperscript{} Coefficient estimates shown are for Moratorium.}\\
+\multicolumn{5}{l}{\textsuperscript{} Full Sample includes only academic calendar days (plus 1 extra week on each end).}\\
+\end{tabular}
+\end{table}
+\end{landscape}
 
 
-```{r}
-main_regressions_pois %>%
-  landscape() %>%
-  kable_styling(latex_options = "scale_down")
-```
+\begin{landscape}
+\begin{table}
 
+\caption{\label{main_ols}Effect of Moratoriums on Alcohol Offenses and Sexual Assault (OLS).}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lcccccccc}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Alcohol Offense} & \multicolumn{4}{c}{Sexual Assault} \\
+\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-9}
+  & (1) & (2) & (3) & (4) & (1)  & (2)  & (3)  & (4) \\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{Full Sample (Monday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.141** & -0.143** & -0.141** & -0.141** & -0.011+ & -0.009+ & -0.005 & -0.005\\
+\hspace{1em} & (0.050) & (0.049) & (0.047) & (0.047) & (0.006) & (0.005) & (0.007) & (0.007)\\
+\hspace{1em}Num.Obs. & 56614 & 56614 & 56614 & 56614 & 56614 & 56614 & 56614 & 56614\\
+\hspace{1em}Mean of Dependent Variable & 0.500 & 0.500 & 0.500 & 0.500 & 0.057 & 0.057 & 0.057 & 0.057\\
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{Weekends (Friday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.320** & -0.328** & -0.277** & -0.276** & -0.014* & -0.012+ & -0.017+ & -0.017+\\
+\hspace{1em} & (0.108) & (0.107) & (0.098) & (0.099) & (0.006) & (0.006) & (0.009) & (0.009)\\
+\hspace{1em}Num.Obs. & 24287 & 24287 & 24287 & 24287 & 24287 & 24287 & 24287 & 24287\\
+\hspace{1em}Mean of Dependent Variable & 0.890 & 0.890 & 0.890 & 0.890 & 0.052 & 0.052 & 0.052 & 0.052\\
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{Weekdays (Monday - Thursday)}}\\
+\hspace{1em}Moratorium & -0.008 & -0.003 & -0.040 & -0.040 & -0.008 & -0.007 & 0.004 & 0.004\\
+\hspace{1em} & (0.024) & (0.027) & (0.034) & (0.034) & (0.008) & (0.007) & (0.009) & (0.009)\\
+\hspace{1em}Num.Obs. & 32327 & 32327 & 32327 & 32327 & 32327 & 32327 & 32327 & 32327\\
+\hspace{1em}Mean of Dependent Variable & 0.207 & 0.207 & 0.207 & 0.207 & 0.061 & 0.061 & 0.061 & 0.061\\
+\midrule
+Std. Errors & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university)\\
+FE: day\_of\_week & X & X & X & X & X & X & X & X\\
+FE: semester\_number &  & X &  &  &  & X &  & \\
+FE: university & X & X &  &  & X & X &  & \\
+FE: university\_by\_semester\_number &  &  & X &  &  &  & X & \\
+FE: university\_by\_year\_by\_semester\_number &  &  &  & X &  &  &  & X\\
+FE: year & X & X & X &  & X & X & X & \\
+\bottomrule
+\multicolumn{9}{l}{\textsuperscript{} + p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\multicolumn{9}{l}{\textsuperscript{} The sample includes 38 universities. Some universities go in and out of moratoriums multiple times.}\\
+\multicolumn{9}{l}{\textsuperscript{} Standard errors are clustered by university.}\\
+\multicolumn{9}{l}{\textsuperscript{} Outcomes of interest are alcohol offenses and reports of sexual assaults per 25 thousand students.}\\
+\multicolumn{9}{l}{\textsuperscript{} Coefficient estimates shown are for Moratorium.}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
+
+
+
+
+\begin{landscape}
+\begin{table}
+
+\caption{\label{main_pois}Effect of Moratoriums on Alcohol Offenses and Sexual Assault (Poisson).}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lcccccccc}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Alcohol Offense} & \multicolumn{4}{c}{Sexual Assault} \\
+\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-9}
+  & (1) & (2) & (3) & (4) & (1)  & (2)  & (3)  & (4) \\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{Full Sample (Monday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.243* & -0.217* & -0.343*** & -0.343*** & -0.181+ & -0.159+ & -0.170 & -0.170\\
+\hspace{1em} & (0.102) & (0.094) & (0.100) & (0.100) & (0.100) & (0.094) & (0.120) & (0.120)\\
+\hspace{1em}Num.Obs. & 56614 & 56614 & 53920 & 53866 & 56614 & 56614 & 51656 & 51586\\
+\hspace{1em}Mean of Dependent Variable & 0.537 & 0.537 & 0.537 & 0.537 & 0.057 & 0.057 & 0.057 & 0.057\\
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{Weekends (Friday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.320** & -0.296** & -0.413*** & -0.412*** & -0.221+ & -0.211 & -0.345+ & -0.345+\\
+\hspace{1em} & (0.106) & (0.097) & (0.106) & (0.106) & (0.127) & (0.135) & (0.193) & (0.193)\\
+\hspace{1em}Num.Obs. & 23625 & 23625 & 22568 & 22540 & 24287 & 24287 & 19759 & 19726\\
+\hspace{1em}Mean of Dependent Variable & 0.957 & 0.957 & 0.957 & 0.957 & 0.053 & 0.053 & 0.053 & 0.053\\
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{Weekdays (Monday - Thursday)}}\\
+\hspace{1em}Moratorium & -0.030 & -0.000 & -0.157 & -0.157 & -0.155 & -0.126 & -0.049 & -0.049\\
+\hspace{1em} & (0.111) & (0.117) & (0.162) & (0.162) & (0.123) & (0.115) & (0.145) & (0.145)\\
+\hspace{1em}Num.Obs. & 32327 & 32327 & 29362 & 29331 & 32327 & 32327 & 27527 & 27494\\
+\hspace{1em}Mean of Dependent Variable & 0.222 & 0.222 & 0.222 & 0.222 & 0.060 & 0.060 & 0.060 & 0.060\\
+\midrule
+Std. Errors & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (university)\\
+FE: day\_of\_week & X & X & X & X & X & X & X & X\\
+FE: semester\_number &  & X &  &  &  & X &  & \\
+FE: university & X & X &  &  & X & X &  & \\
+FE: university\_by\_semester\_number &  &  & X &  &  &  & X & \\
+FE: university\_by\_year\_by\_semester\_number &  &  &  & X &  &  &  & X\\
+FE: year & X & X & X &  & X & X & X & \\
+\bottomrule
+\multicolumn{9}{l}{\textsuperscript{} + p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\multicolumn{9}{l}{\textsuperscript{} The sample includes 38 universities. Some universities go in and out of moratoriums multiple times.}\\
+\multicolumn{9}{l}{\textsuperscript{} Standard errors are clustered by university.}\\
+\multicolumn{9}{l}{\textsuperscript{} Outcomes of interest are alcohol offenses and reports of sexual assault counts.}\\
+\multicolumn{9}{l}{\textsuperscript{} Coefficient estimates shown are for Moratorium.}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
 
 ```{r robbery}
 ## might want to redo this if you have some time and just put in all the other regressions
-source("Figures/regression_placebo_robbery.R")
+source(paste0(here::here("Figures/other_outcomes_regressions.R")))
 ```
 
 ```{r}
-robbery_table
+## insert newtable
+other_outcomes_table
 ```
-
-
 
 
 
 
 ```{r hetero_trigger_alc}
-source("Figures/heteroeffects_trigger_alc.R")
+source(paste0(here::here("Figures/heteroeffects_trigger_alc.R")))
 ```
 
 
@@ -134,7 +304,7 @@ heteroeffects_alc %>%
 
 
 ```{r hetero_trigger_sex}
-source("Figures/heteroeffects_trigger_sex.R")
+source(paste0(here::here("Figures/heteroeffects_trigger_sex.R")))
 ```
 
 
@@ -147,7 +317,7 @@ heteroeffects_sex %>%
 
 
 ```{r hetero_uni_ifc}
-source("Figures/heteroeffects_uni_ifc.R")
+source(paste0(here::here("Figures/heteroeffects_uni_ifc.R")))
 ```
 
 ```{r}
@@ -157,6 +327,78 @@ uni_enacted_alc %>%
 ```
 
 
+```{r}
+source(here::here("Figures/clery_regressions.R"))
+```
+
+```{r}
+clery_reg_table %>% 
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r}
+source(here::here("Figures/nibrs_regressions.R"))
+```
+
+```{r}
+nibrs_schools_table %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r}
+nibrs_all_table %>%
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+
+\begin{landscape}
+\begin{table}
+
+\caption{\label{death_regression}Effect of Moratoriums on Alcohol Offenses for Universities with Fraternity Deaths Only.}
+\centering
+\begin{tabular}[t]{lcccc}
+\toprule
+  & (1) & (2) & (3) & (4)\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Full Sample (Monday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.163 & -0.163 & -0.210+ & -0.210+\\
+\hspace{1em} & (0.115) & (0.115) & (0.100) & (0.105)\\
+\hspace{1em}Num.Obs. & 15044 & 15044 & 15044 & 15044\\
+\hspace{1em}Mean of Dependent Variable & 0.674 & 0.674 & 0.674 & 0.674\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Weekends (Friday - Sunday)}}\\
+\hspace{1em}Moratorium & -0.389 & -0.404 & -0.405+ & -0.405+\\
+\hspace{1em} & (0.227) & (0.222) & (0.219) & (0.219)\\
+\hspace{1em}Num.Obs. & 6453 & 6453 & 6453 & 6453\\
+\hspace{1em}Mean of Dependent Variable & 1.198 & 1.198 & 1.198 & 1.198\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Weekdays (Monday - Thursday)}}\\
+\hspace{1em}Moratorium & 0.015 & 0.021 & -0.055 & -0.055\\
+\hspace{1em} & (0.048) & (0.060) & (0.057) & (0.057)\\
+\hspace{1em}Num.Obs. & 8591 & 8591 & 8591 & 8591\\
+\hspace{1em}Mean of Dependent Variable & 0.279 & 0.279 & 0.279 & 0.279\\
+\midrule
+Std. Errors & Clustered (university) & Clustered (university) & Clustered (university) & Clustered (day\_of\_week)\\
+FE: day\_of\_week & X & X & X & X\\
+FE: university & X & X &  & \\
+FE: university\_by\_semester\_number &  &  & X & \\
+FE: university\_by\_year\_by\_semester\_number &  &  &  & X\\
+FE: year & X & X & X & \\
+\bottomrule
+\multicolumn{5}{l}{\textsuperscript{} + p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\multicolumn{5}{l}{\textsuperscript{} The sample includes 25 universities. 10 universities undergo moratoriums, while 15 do not.}\\
+\multicolumn{5}{l}{\textsuperscript{} The 15 untreated universities experienced a fraternity-related death but no moratorium.}\\
+\multicolumn{5}{l}{\textsuperscript{} Standard errors are clustered by university.}\\
+\multicolumn{5}{l}{\textsuperscript{} Outcome of interest is alcohol offenses per 25 thousand students.}\\
+\multicolumn{5}{l}{\textsuperscript{} Coefficient estimates shown are for Moratorium.}\\
+\multicolumn{5}{l}{\textsuperscript{} Full Sample includes only academic calendar days (plus 1 extra week on each end).}\\
+\end{tabular}
+\end{table}
+\end{landscape}
 
 
 

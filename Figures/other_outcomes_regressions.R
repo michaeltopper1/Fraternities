@@ -76,7 +76,7 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: university_by_semester_number", "FE: University-by-Semester", ~fmt,
               "FE: weekday", "FE: Day-of-Week", ~fmt,
               "Std. Errors", "Std.Errors", ~fmt)
-modelsummary(other_models, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
+other_outcomes_table <- modelsummary(other_models, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
                               coef_map = c("treatment" = "Moratorium",
                                            "ftime_total_undergrad" = "Fraction Full-time Undergrad",
                                            "frac_undergrad_black" = "Fraction Undergrad Black",
@@ -84,8 +84,16 @@ modelsummary(other_models, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
                                            "frac_undergrad_hispanic_latino" = "Fraction Undergrad Hispanic",
                                            "graduation_rate_total_cohort" = "Graduation Rate",
                                            "university_by_semester_number_number" = "University by Semester"),
-                              title = "Effect of Fraternity Moratoriums on Robbery/Burglary",
-                              add_rows = row_means)
+                              title = "\\label{otheroutcomes}Effect of Fraternity Moratoriums on other outcomes",
+                         notes = list("The sample includes 38 universities. Some universities go in and out of moratoriums multiple times",
+                          "Standard errors are clustered by university.",
+                          "Outcome of interest is alcohol offenses per 25 thousand students.",
+                          "Coefficient estimates shown are for Moratorium.",
+                          "Full Sample includes only academic calendar days (plus 1 extra week on each end)."),
+                              add_rows = row_means) %>% 
+  add_header_above(c(" " = 1, "Full Sample" = 3, "Weekends (Fri-Sat)" = 3, "Weekdays (Mon - Thurs)" = 3)) %>% 
+  landscape() %>%
+  kable_styling(latex_options = "scale_down")
 
 
 

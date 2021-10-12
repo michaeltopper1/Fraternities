@@ -1,0 +1,124 @@
+---
+title: "Figures"
+output: pdf_document
+bibliography: references.bib
+linkcolor: blue
+editor_options: 
+  chunk_output_type: console
+header-includes:
+- \usepackage{subfig}
+---
+
+
+<!-- ```{r setup, include=FALSE} -->
+<!-- ## get rid of this entire chunk before knitting -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning= F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- library(kableExtra) -->
+<!-- library(tidyverse) -->
+<!-- library(lubridate) -->
+<!-- library(modelsummary) -->
+<!-- theme_set(theme_minimal()) -->
+<!-- ``` -->
+
+
+
+# Figures 
+
+```{r, fig.cap = "\\label{sigma_alpha_rules} Sigma Alpha Epsilon Member Expectations. Signma Alpha Epsilon is a famous, and longstanding IFC Fraternity.", out.width="80%"}
+knitr::include_graphics(paste0(here::here(),"/Paper Iterations/working_paper_july_2021/sigma_alpha_rules.pdf"))
+```
+
+```{r , fig.cap = "\\label{crime_log_example} An example of a Daily Crime Log." }
+knitr::include_graphics(paste0(here::here(),"/Data/campus_daily_crime_log/Indiana University/1-2014/1-20-14.pdf"))
+```
+
+```{r}
+source(here::here(paste0("Figures/barplot_byday.R")))
+```
+
+```{r, out.width='.49\\linewidth', fig.cap= "\\label{barplot} Distribution of the average counts of crime by day of the week.", fig.ncol = 2, fig.subcap= c("Alcohol Offenses", "Sexual Assault", "Robbery/Burglary","Drug Offenses", "Theft")}
+
+by_day_alcohol
+by_day_sexual_assault
+by_day_robbery
+by_day_drug_offense
+by_day_theft
+```
+
+```{r}
+source(here::here("Figures/closure_distribution.R"))
+```
+
+
+```{r, fig.cap= "\\label{distribution} Distribution of the moratoriums for each of the 38 schools.", fig.width= 13, fig.height= 10, out.width = "105%"}
+closure_distribution
+```
+
+
+```{r}
+source(here::here(paste0("Figures/map.R")))
+```
+
+
+
+```{r, fig.cap= "\\label{map}Map of the 38 univerisities included in the sample that experienced a fraternity moratorium."}
+map_of_schools
+```
+
+
+```{r}
+source(here::here(paste0("Figures/triggerplot_bylength.R")))
+```
+
+\begin{landscape}
+```{r, fig.cap= "\\label{trigger_plot}Average number of academic calendar days under moratorium by triggering event of moratorium.", fig.width= 44, fig.height= 30, out.width= "120%"}
+trigger_plot
+```
+\end{landscape}
+
+
+
+
+
+
+
+
+
+```{r}
+source(here::here(paste0("Figures/event_study_multiple.R")))
+```
+
+```{r , fig.cap="\\label{event_study_alc} Event study for alcohol offenses. The x-axis represents weeks from moratorium date, with 0 being the week of a moratorium. The week before is removed from estimation as the reference period and the final lead and lag are binned, but not reported. The y-axis is the point estimate of the beta coefficient. Dark shadowed area represents 95 percent confidence interval."}
+es_alcohol
+```
+
+```{r, fig.cap = "\\label{event_study_sex} Event study for reports of sexual assault. The x-axis represents weeks from moratorium date, with 0 being the week of a moratorium. The week before is removed from estimation as the reference period and the final lead and lag are binned, but not reported. The y-axis is the point estimate of the beta coefficient. Dark shadowed area represents 95 percent confidence interval."}
+es_sex
+```
+
+
+
+
+
+
+<!-- ```{r} -->
+<!-- source(here::here(paste0("Figures/leave-one-out-ols.R"))) -->
+<!-- ``` -->
+
+<!-- ```{r leave_one_out,out.width='.49\\linewidth', fig.cap= "\\label{loo} Leave-one-out estimates. The x-axis represents each regression estimation while the y-axis represent the coefficient on moratorium.", fig.ncol = 2, fig.subcap= c("Alcohol Offenses", "Sexual Assault")} -->
+<!-- loo_alc_ols -->
+<!-- loo_sex_ols -->
+<!-- ``` -->
+
+
+
+
+
+
+
+
+
+
+
+

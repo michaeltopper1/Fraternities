@@ -14,34 +14,34 @@ daily_crime <- daily_crime %>%
   mutate(ifc_enacted = ifelse(university_enacted == 0 & treatment == 1, 1, 0))
 
 daily_crime_weekdays<- daily_crime %>% 
-  filter(weekday != "Fri" & weekday != "Sat" & weekday != "Sun")
+  filter(day_of_week != "Fri" & day_of_week != "Sat" & day_of_week != "Sun")
 
 daily_crime_weekends <- daily_crime %>% 
-  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun")
+  filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun")
 
 
 uni_enacted_alc <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~treatment:university_enacted + treatment:ifc_enacted| uni_semester + weekday,
+  feols(alcohol_offense_per25 ~treatment:university_enacted + treatment:ifc_enacted| university_by_semester_number + day_of_week,
         cluster = ~university, data = .)
 
 uni_enacted_alc_weekend <- daily_crime_weekends %>% 
-  feols(alcohol_offense_per25~treatment:university_enacted+ treatment:ifc_enacted| uni_semester + weekday,
+  feols(alcohol_offense_per25~treatment:university_enacted+ treatment:ifc_enacted| university_by_semester_number + day_of_week,
         cluster = ~university, data = .)
 
 uni_enacted_alc_weekdays <- daily_crime_weekdays %>% 
-  feols(alcohol_offense_per25 ~treatment:university_enacted + treatment:ifc_enacted | uni_semester + weekday,
+  feols(alcohol_offense_per25 ~treatment:university_enacted + treatment:ifc_enacted | university_by_semester_number + day_of_week,
         cluster = ~university, data = .)
 
 uni_enacted_sex <- daily_crime %>% 
-  feols(sexual_assault_per25 ~treatment:university_enacted + treatment:ifc_enacted| uni_semester + weekday,
+  feols(sexual_assault_per25 ~treatment:university_enacted + treatment:ifc_enacted| university_by_semester_number + day_of_week,
         cluster = ~university, data = .)
 
 uni_enacted_sex_weekend <- daily_crime_weekends %>% 
-  feols(sexual_assault_per25~treatment:university_enacted + treatment:ifc_enacted| uni_semester + weekday,
+  feols(sexual_assault_per25~treatment:university_enacted + treatment:ifc_enacted| university_by_semester_number + day_of_week,
         cluster = ~university, data = .)
 
 uni_enacted_sex_weekdays <- daily_crime_weekdays %>% 
-  feols(sexual_assault_per25 ~treatment:university_enacted + treatment:ifc_enacted| uni_semester + weekday,
+  feols(sexual_assault_per25 ~treatment:university_enacted + treatment:ifc_enacted| university_by_semester_number + day_of_week,
         cluster = ~university, data = .)
 
 uni_enacted <- list("Full Sample" = uni_enacted_alc,

@@ -109,18 +109,18 @@ weekly_crime <- weekly_crime %>%
 
 es_alc <- weekly_crime %>% 
   group_by(university, semester_number) %>% 
-  mutate(uni_semester = cur_group_id()) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
   feols(alcohol_offense_per25 ~ beta_lead_binned + beta_minus_7 + beta_minus_6 + beta_minus_5 + beta_minus_4 + beta_minus_3 + beta_minus_2 + beta_0 +
           beta_plus_1 + beta_plus_2 + beta_plus_3 + beta_plus_4 + beta_plus_5 +
-          beta_plus_6 + beta_plus_7 + beta_lag_binned| uni_semester, cluster = ~university, data = .) 
+          beta_plus_6 + beta_plus_7 + beta_lag_binned| university_by_semester_number , cluster = ~university, data = .) 
 es_sex <- weekly_crime %>% 
   group_by(university, semester_number) %>% 
-  mutate(uni_semester = cur_group_id()) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
   feols(sexual_assault_per25 ~ beta_lead_binned + beta_minus_7 + beta_minus_6 + beta_minus_5 + beta_minus_4 + beta_minus_3 + beta_minus_2 + beta_0 +
           beta_plus_1 + beta_plus_2 + beta_plus_3 + beta_plus_4 + beta_plus_5 +
-          beta_plus_6 + beta_plus_7 + beta_lag_binned| uni_semester, cluster = ~university, data = .) 
+          beta_plus_6 + beta_plus_7 + beta_lag_binned| university_by_semester_number, cluster = ~university, data = .) 
 
 
 # creating graphing function ----------------------------------------------
@@ -144,7 +144,7 @@ event_study_func <- function(x, window_size) {
     # geom_errorbar(aes(x = value, ymin = conf.low, ymax = conf.high), alpha = 0.8) +
     # geom_rect(aes(xmin = -0.5, xmax =0.5, ymin = -Inf, ymax = Inf), fill = "light blue", alpha = 0.03) +
     scale_x_continuous(labels = c(-window_size:window_size), breaks = c(-window_size:window_size)) +
-    labs(x = "", y = "") +
+    labs(x = "Weeks to Moratorium", y = "Coefficient Estimate") +
     theme_minimal()
   return(plot)
 }

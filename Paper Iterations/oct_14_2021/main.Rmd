@@ -1,5 +1,5 @@
 ---
-title: "Fraternities"
+title: "Fraternities Update"
 subtitle: ""
 author: 
   - Michael Topper
@@ -19,7 +19,6 @@ header-includes:
 - \usepackage{float}
 - \usepackage[fontsize=11pt]{scrextend}
 - \usepackage{graphicx}
-- \usepackage{indentfirst}
 - \usepackage[utf8]{inputenc}
 - \usepackage{pdfpages}
 - \usepackage[round,authoryear]{natbib}
@@ -28,6 +27,7 @@ header-includes:
 bibliography: "references.bib"
 link-citations: yes
 linkcolor: blue
+abstract: Fraternities remain a ubiquitous, and longstanding tradition across the US with chapters maintaining a presence at over 800 universities and some existing since the mid-1800s. While fraternity membership has positive outcomes, it has also been linked to high rates of alcohol, partying, and toxic masculinity. In this paper, I exploit the variation from temporary university-wide halts on all fraternity activity with alcohol (moratoriums) across 38 universities. I construct a novel data set using webscraping, pdf extracting, and Freedom of Information Act requests to present the first causal evidence of what could happen across university campuses if fraternities were prohibited from serving alcohol at social events and faced stricter regulations. In particular, I find strong and robust evidence that fraternity moratoriums lower alcohol violations campus-wide by 25%. These effects are driven by large decreases on the weekends rather than weekdays and when a university enforces the moratorium rather than the fraternity members themselves. Moreover, I find weak evidence that moratoriums decrease reports of sexual assault on the weekends and when moratoriums are triggered by sexual assault allegations. 
 editor_options: 
   chunk_output_type: console
 ---
@@ -40,6 +40,7 @@ library(kableExtra)
 library(tidyverse)
 library(lubridate)
 library(modelsummary)
+library(maps)
 theme_set(theme_minimal())
 ```
 
@@ -52,3 +53,14 @@ number_of_universities = 53
 ```{r, child = "writing.Rmd"}
 
 ```
+
+\newpage
+```{r, child = "figures.Rmd"}
+
+```
+
+\newpage
+```{r, child = "tables.Rmd"}
+
+```
+

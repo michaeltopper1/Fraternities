@@ -288,6 +288,7 @@ yearly_panel <- yearly_panel %>%
 
 weekly_panel <- weekly_panel %>% 
     left_join(ipeds, by = c("university" = "university", 'year' = 'year')) %>% 
+    filter(university %in% ifc::moratorium_schools()) %>% 
     mutate(month = month(week), year = year(week)) %>% 
     mutate(across(c(sexual_assault, alcohol_offense,
                     theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
@@ -301,6 +302,19 @@ weekly_panel <- weekly_panel %>%
     group_by(university, year) %>% 
     mutate(uni_year = cur_group_id()) %>% 
     ungroup() %>% 
+    group_by(university, year, semester_number) %>% 
+    mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
+    ungroup() %>% 
+    group_by(university, year) %>% 
+    mutate(university_by_year = cur_group_id()) %>% 
+    ungroup() %>% 
+    group_by(university, year, month) %>% 
+    mutate(university_by_month_by_year = cur_group_id()) %>% 
+    ungroup() %>% 
+    group_by(university, semester_number) %>% 
+    mutate(university_by_semester_number = cur_group_id()) %>% 
+    ungroup() %>% 
+    rename(day_of_week = weekday) %>% 
     filter(year > 2013)
 
 

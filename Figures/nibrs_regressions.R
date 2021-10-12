@@ -10,11 +10,18 @@ library(fixest)
 library(modelsummary)
 library(kableExtra)
 
-if (!exists("nibrs_all") & !exists("nibrs_schools") & !exists("nibrs_nonschools")) {
+if (!exists("nibrs_all")) {
   nibrs_schools <- read_csv("Created Data/nibrs/final_panel_all.csv")
+}
+
+if (!exists("nibrs_schools")) {
   nibrs_schools <- read_csv("Created Data/nibrs/final_panel_schools.csv")
+}
+
+if (!exists("nibrs_nonschools")){
   nibrs_nonschools <- read_csv("Created Data/nibrs/final_panel_nonschools.csv")
 }
+
 
 ## function that returns the mean 
 get_means_sex <- function(df) {
@@ -26,7 +33,7 @@ get_means_sex <- function(df) {
 
 
 nibrs <- list(nibrs_schools, nibrs_schools, nibrs_nonschools)
-nibrs <- map(nibrs, ~.x %>% 
+nibrs <- purrr::map(nibrs, ~.x %>% 
       mutate(day_of_week = lubridate::wday(date, label = T), year = lubridate::year(date)) %>% 
       group_by(university, semester_number) %>% 
       mutate(university_by_semester_number = cur_group_id()) %>% 
@@ -40,7 +47,7 @@ nibrs <- map(nibrs, ~.x %>%
 nibrs_schools <- nibrs[[1]]
 nibrs_schools <- nibrs[[2]]
 nibrs_nonschools <- nibrs[[3]]  
-nibrs_schools %>% colnames()
+
 nibrs_all_weekdays <- nibrs_schools %>%
   filter(day_of_week == "Mon" | day_of_week == "Thu" | day_of_week == "Wed" | day_of_week == "Tue" )
 nibrs_schools_weekends <- nibrs_schools %>% 
@@ -108,13 +115,13 @@ nibrs_all_table <- modelsummary(all_models,
              gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
              coef_map = c("treatment" = "Moratorium"),
              add_rows = all_models_row_add,
-             title = "\\label{nibrs_all}Effect of Moratoriums on College-Aged Sexual Assault Victims (includes surrounding police agencies).",
-             notes = list("Dependent variable is college-aged sexual assaults (combination of fondling, rape, and sexual assault w/ object).",
+             title = "\\label{nibrsall}Effect of Moratoriums on College-Aged Sexual Assault Victims includes surrounding police agencies.",
+             notes = list("Dependent variable is college-aged sexual assaults which is combination of fondling, rape, and sexual assault w object.",
                           "Standard errors clustered by university.",
-                          "Only 14/38 universities included in sample due to reporting issues.",
-                          "College-aged includes ages 17-22.")) %>% 
+                          "Only 14 of 38 universities included in sample due to reporting issues.",
+                          "College aged includes ages 17 to 22.")) %>% 
   add_header_above(c(" " = 1, "Total Sample" = 4, "Weekends Only" = 4)) %>% 
-  add_header_above(c(" " = 1, "NIBRS Data (University Police + Surrounding Area)" = 8))
+  add_header_above(c(" " = 1, "NIBRS Data University Police and Surrounding Area" = 8))
 
 # nibrs_schools regressions -----------------------------------------------
 schools_1 <- nibrs_schools %>% 
@@ -171,11 +178,11 @@ nibrs_schools_table <- modelsummary(schools_models,
              gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
              coef_map = c("treatment" = "Moratorium"),
              add_rows = schools_models_row_add,
-             title = "\\label{nibrs_schools}Effect of Moratoriums on College-Aged Sexual Assault for Universities Reporting to NIBRS",
-             notes = list("Dependent variable is college-aged sexual assaults (combination of fondling, rape, and sexual assault w/ object).",
+             title = "\\label{nibrsschools}Effect of Moratoriums on College-Aged Sexual Assault for Universities Reporting to NIBRS",
+             notes = list("Dependent variable is college-aged sexual assaults which is combination of fondling, rape, and sexual assault object.",
                           "Standard errors clustered by university.",
-                          "Only 14/38 universities included in sample due to reporting issues.",
-                          "College-aged includes ages 17-22.")) %>% 
+                          "Only 14 of 38 universities included in sample due to reporting issues.",
+                          "College aged includes ages 17 to 22.")) %>% 
   add_header_above(c(" " = 1, "Total Sample" = 4, "Weekends Only" = 4)) %>% 
   add_header_above(c(" " = 1, "NIBRS Data (University Police Only)" = 8))
 
