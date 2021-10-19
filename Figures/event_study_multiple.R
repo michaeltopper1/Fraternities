@@ -20,7 +20,8 @@ lags <- c(1:lag_endpoint)
 
 
 # loading in the data -----------------------------------------------------
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel.csv") 
+weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel.csv") %>% 
+  filter(university %in% ifc::moratorium_schools())
 
 
 
