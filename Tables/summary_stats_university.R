@@ -15,7 +15,8 @@ if(!exists("daily_crime")) {
     filter(university %in% ifc::moratorium_schools())
 }
 
-university_characteristics <- daily_crime %>% 
+
+university_characteristics <- daily_crime %>%
   mutate(private = ifelse(control_of_institution != "Public", 1, 0)) %>% 
   datasummary((`Total Enrollment` = total_enrollment) + 
                 (`Total Undergrad Enrollment`=undergraduate_enrollment) + 
@@ -27,8 +28,15 @@ university_characteristics <- daily_crime %>%
                 (`SAT Math 75` = sat_math_75) +
                 ( `SAT Reading 75` = sat_reading_75) +
                 (`Fraction Admitted` = frac_admitted_total) +
-                (`Fraction Private`=private)~ (Mean + SD + Median + Min + Max), data = .,
-              title = "University summary statistics of the 53 universities") %>% 
+                (`Fraction Private`=private) +
+                (`Alcohol Offense` = alcohol_offense_per25) + 
+                (`Sexual Assault` = sexual_assault_per25) +
+                (`Drug Offense` = drug_offense_per25) +
+                (`Robbery/Burglary` = robbery_burglary_per25) ~ (Mean + SD + Median + Min + Max), data = .,
+              title = "Summary statistics of the 38 universities in the sample and outcomes used in analysis.",
+              notes = 'Offenses are per-25000 students enrolled.') %>% 
   add_indent(c(2:6)) %>% 
-  add_indent(c(3:6))
+  add_indent(c(3:6)) %>% 
+  pack_rows("University Characteristics", 1, 11) %>% 
+  pack_rows("Daily Crime Log Offenses", 12, 15)
 

@@ -7,6 +7,7 @@
 
 library(tidyverse)
 library(readxl)
+library(haven)
 
 
 
@@ -520,7 +521,8 @@ daily_panel <- daily_panel %>%
 ## Note that all of these are only the academic calendars. These are going to be my final
 ## daily panel
 write_csv(daily_panel, file = "Created Data/xMaster_data_2021/daily_panel.csv")
-
+haven::write_dta(daily_panel %>% 
+                   select(-starts_with("fulltime_"), - starts_with("frac_"), -university_by_year_by_semester_number), path = 'Created Data/xMaster_data_2021/daily_panel.dta')
 ## weekly panel
 write_csv(weekly_panel, file = "Created Data/xMaster_data_2021/weekly_panel.csv")
 write_csv(weekly_panel_weekends, file = "Created Data/xMaster_data_2021/weekly_panel_weekends.csv")
