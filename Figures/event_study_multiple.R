@@ -123,6 +123,21 @@ es_sex <- weekly_crime %>%
           beta_plus_1 + beta_plus_2 + beta_plus_3 + beta_plus_4 + beta_plus_5 +
           beta_plus_6 + beta_plus_7 + beta_lag_binned| university_by_semester_number, cluster = ~university, data = .) 
 
+es_drug <- weekly_crime %>% 
+  group_by(university, semester_number) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  feols(drug_offense_per25 ~ beta_lead_binned + beta_minus_7 + beta_minus_6 + beta_minus_5 + beta_minus_4 + beta_minus_3 + beta_minus_2 + beta_0 +
+          beta_plus_1 + beta_plus_2 + beta_plus_3 + beta_plus_4 + beta_plus_5 +
+          beta_plus_6 + beta_plus_7 + beta_lag_binned| university_by_semester_number, cluster = ~university, data = .) 
+
+es_theft <- weekly_crime %>% 
+  group_by(university, semester_number) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  feols(theft_per25 ~ beta_lead_binned + beta_minus_7 + beta_minus_6 + beta_minus_5 + beta_minus_4 + beta_minus_3 + beta_minus_2 + beta_0 +
+          beta_plus_1 + beta_plus_2 + beta_plus_3 + beta_plus_4 + beta_plus_5 +
+          beta_plus_6 + beta_plus_7 + beta_lag_binned| university_by_semester_number, cluster = ~university, data = .) 
 
 # creating graphing function ----------------------------------------------
 
@@ -154,8 +169,11 @@ event_study_func <- function(x, window_size) {
 # plotting the graphs -----------------------------------------------------
 
 
-es_sex <- event_study_func(es_sex, 8) +
+es_sex_graph <- event_study_func(es_sex, 8) +
   geom_hline(yintercept = 0, color = "dark red") 
-es_alcohol <- event_study_func(es_alc, 8) +
+es_alc_graph <- event_study_func(es_alc, 8) +
   geom_hline(yintercept = 0, color = "dark red")
-  
+es_drug_graph <- event_study_func(es_drug, 8) +
+  geom_hline(yintercept = 0, color = "dark red")
+es_theft_graph <- event_study_func(es_theft, 8) +
+  geom_hline(yintercept = 0, color = "dark red")

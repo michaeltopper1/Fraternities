@@ -18,9 +18,9 @@ library(ifc)
 appended_crime_logs <-  read_csv("Created Data/xMaster_data_2021/appended_crime_logs.csv") %>% 
   filter(university %in% ifc::moratorium_schools())
 
-alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## got rid of disorderly conduct.
-sexual_assault_identifiers <- "sex|rape|fondling|fondle|indecent exposure" 
-drug_identifiers <- "drug|narcotic|marijuana|heroin|overdose|cocaine|controlled"
+alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|dwi|underage|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## got rid of disorderly conduct.
+sexual_assault_identifiers <- "sex|rape|fondling|fondle" 
+drug_identifiers <- "drug|narcotic|marijuana|heroin|overdose|cocaine|controlled substance"
 theft_identifiers <- "larceny|theft|shoplifting|pocket-picking|steal|shop lifting" ##using nibrs
 robbery_burglary_identifiers <- "robbery|burglary|unlawful entry|breaking and entering"
 alcohol_identifiers_strict <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|minor in possession|ovi" ## getting rid of possesion
@@ -38,9 +38,9 @@ robbery_burglary_words <- robbery_burglary_identifiers %>%
   str_replace_all("\\|", ", ")
 theft_words <- theft_identifiers %>% 
   str_replace_all("\\|", ", ")
-words <- list(sexual_assault_words, alcohol_words, robbery_burglary_words)  %>% 
+words <- list(sexual_assault_words, alcohol_words, drug_offense_words,  robbery_burglary_words)  %>% 
   unlist()
-categories <- c("Sexual Assault", "Alcohol Violations", 
+categories <- c("Sexual Assault", "Alcohol Violations", "Drug Offense",
                 "Robbery/Burglary")
 matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
 
