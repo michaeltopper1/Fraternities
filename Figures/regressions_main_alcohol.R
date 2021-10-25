@@ -35,19 +35,22 @@ if (!exists("daily_crime_weekends")) {
 }
 # regressions full sample-------------------------------------------------------------
 alc_ols_1 <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+  feols(alcohol_offense_per25 ~ week_before +  treatment + week_after | day_of_week + year + university,
         vcov = cluster ~ university, data = .)
 
 alc_ols_2 <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week  + university + semester_number,
         cluster = ~university, data = .)
 
 alc_ols_3 <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week + university_by_semester_number + year ,
         cluster = ~university, data = .)
 alc_ols_4 <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
-        cluster = ~university, data = .)
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week + university_by_year_by_semester_number,
+        cluster = ~university, data = .) %>% 
+  fixef()
+
+
 alc_ols <- list("(1)" = alc_ols_1, "(2)" = alc_ols_2, "(3)" = alc_ols_3, "(4)" = alc_ols_4)
 
 

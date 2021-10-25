@@ -66,9 +66,9 @@ appended_crime_logs <- appended_crime_logs %>%
 
 ## got theft from -https://ucr.fbi.gov/nibrs/2012/resources/nibrs-offense-definitions
 ## update these in the matching_word_table.R document if you change them. I no longer pull from here
-alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## got rid of disorderly conduct.
-sexual_assault_identifiers <- "sex|rape|fondling|fondle|indecent exposure" 
-drug_identifiers <- "drug|narcotic|marijuana|heroin|overdose|cocaine|controlled"
+alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|dwi|underage|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## got rid of disorderly conduct.
+sexual_assault_identifiers <- "sex|rape|fondling|fondle" 
+drug_identifiers <- "drug|narcotic|marijuana|heroin|overdose|cocaine|controlled substance"
 theft_identifiers <- "larceny|theft|shoplifting|pocket-picking|steal|shop lifting" ##using nibrs
 robbery_burglary_identifiers <- "robbery|burglary|unlawful entry|breaking and entering"
 alcohol_identifiers_strict <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|minor in possession|ovi" ## getting rid of possesion

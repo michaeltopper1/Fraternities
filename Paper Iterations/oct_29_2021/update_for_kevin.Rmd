@@ -1,0 +1,73 @@
+---
+title: "Untitled"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(fixest)
+library(lubridate)
+library(modelsummary)
+```
+
+```{r}
+source(here::here("Figures/event_study_multiple.R"))
+source(here::here("Figures/event_study_weekdays.R"))
+source(here::here("Figures/event_study_weekends.R"))
+```
+
+# New changes to the model
+
+I decided to change the model a little bit after presenting in reading group. A big fear a lot of people have were that there were lasting effects of a moratorium, which the model does not account for. My previous model assumed that all effects were instantaneous - fraternities stop partying immediately and begin partying immediately following a moratorium and lifting of a moratorium respectively. To combat this, I decided to add in a "week before" and a "week after" control. Each of these controls are indicators equal to 1 for each 7 day period before and following a moratorium. If the effects of this policy is truly instantaneous, I would expect to see dips during treatment, and nulls elsewhere. Results are shown below:
+
+
+
+
+# Event Studies with preferred specification
+
+Want to produce several event studies. All of these are aggregated up to the weekly level. No further manipulations are used. The time fixed effects are university-by-semester-number.
+
+```{r}
+es_alc_graph
+es_sex_graph
+es_drug_graph
+es_theft_graph
+```
+
+## Weekends
+
+The following are subsetted from the sample above to only include Friday-Sunday. Fixed effects remain the same.
+
+```{r}
+es_alc_weekends_graph
+es_sex_weekends_graph
+es_drug_weekends_graph
+es_theft_weekends_graph
+```
+
+## Weekdays
+
+The following are subsetted from the initial sample above to only include Monday-Thursday. Fixed effects remain the same.
+
+```{r}
+es_alc_weekdays_graph
+es_sex_weekdays_graph
+es_drug_weekdays_graph
+es_theft_weekdays_graph
+```
+
+## My opinion
+
+When I subset sexual assaults to only weekends, it doesn't seem like there's much of a trend at all. 
+
+## Event studies with alternative fixed effects
+
+Suppose I want to change the fixed effects to a more traditional "two-way" design where I have university fixed effects and semester-number fixed effects. 
+
+
