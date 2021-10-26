@@ -64,7 +64,7 @@ es_theft_weekdays_graph
 
 ## My opinion
 
-When I subset sexual assaults to only weekends, it doesn't seem like there's much of a trend at all. 
+When I subset sexual assaults to only weekends, it doesn't seem like there's much of a trend at all. Might be worth putting using these as results. 
 
 ## Event studies with alternative fixed effects
 

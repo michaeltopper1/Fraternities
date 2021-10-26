@@ -43,48 +43,41 @@ alc_ols_2 <- daily_crime %>%
         cluster = ~university, data = .)
 
 alc_ols_3 <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week + university_by_semester_number + year ,
-        cluster = ~university, data = .)
-alc_ols_4 <- daily_crime %>% 
-  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week + university_by_year_by_semester_number,
-        cluster = ~university, data = .) %>% 
-  fixef()
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week + university_by_semester_number ,
+        cluster = ~university, data = .) 
 
 
-alc_ols <- list("(1)" = alc_ols_1, "(2)" = alc_ols_2, "(3)" = alc_ols_3, "(4)" = alc_ols_4)
+
+
+alc_ols <- list("(1)" = alc_ols_1, "(2)" = alc_ols_2, "(3)" = alc_ols_3)
 
 
 # regressions weekends ----------------------------------------------------
 
 
 alc_weekend_1 <- daily_crime_weekends %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week + year + university,
         cluster = ~university, data = .) 
 alc_weekend_2 <- daily_crime_weekends %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week + university + semester_number,
         cluster = ~university, data = .) 
 alc_weekend_3 <- daily_crime_weekends %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+  feols(alcohol_offense_per25 ~week_before +  treatment + week_after | day_of_week + university_by_semester_number,
         cluster = ~university, data = .)
-alc_weekend_4 <- daily_crime_weekends %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
-        cluster = ~university, data = .) 
 
 # regressions weekdays ----------------------------------------------------
 
 
 alc_weekdays_1 <- daily_crime_weekdays %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university,
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after| day_of_week + year + university,
         cluster = ~university, data = .) 
 alc_weekdays_2 <- daily_crime_weekdays %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + year + university + semester_number,
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after |day_of_week + university + semester_number,
         cluster = ~university, data = .) 
 alc_weekdays_3 <- daily_crime_weekdays %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_semester_number + year ,
+  feols(alcohol_offense_per25 ~ week_before + treatment + week_after | day_of_week + university_by_semester_number + year ,
         cluster = ~university, data = .)
-alc_weekdays_4 <- daily_crime_weekdays %>% 
-  feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_year_by_semester_number,
-        cluster = ~university, data = .) 
+
 
 
 
@@ -118,8 +111,11 @@ get_est <- function(x, conf.int = FALSE, conf.level = 0.95, ...) {
     select(estimate, std.error, p.value, Num.Obs.) %>% 
     pivot_longer(cols = everything(), values_to = "est", names_to = "stat")
   pvalue = pivoted[[3,2]]
+  pvalue_2 = pivoted[[7,2]]
+  pvalue_3 = pivoted[[11,2]]
   pivoted <- pivoted %>% 
     mutate(est = as.character(sprintf(est,fmt = "%.3f")))
+  ## getting the stars
   if (pvalue < 0.1 & pvalue > 0.05) {
     pivoted[[1,2]] <- paste0(pivoted[[1,2]], "+")
   }
@@ -132,8 +128,38 @@ get_est <- function(x, conf.int = FALSE, conf.level = 0.95, ...) {
   if (pvalue < 0.001){
     pivoted[[1,2]] <- paste0(pivoted[[1,2]], "***")
   }
+  if (pvalue_2 < 0.1 & pvalue_2 > 0.05) {
+    pivoted[[5,2]] <- paste0(pivoted[[5,2]], "+")
+  }
+  if (pvalue_2 < 0.05 & pvalue_2 >= 0.01){
+    pivoted[[5,2]] <- paste0(pivoted[[5,2]], "*")
+  }
+  if (pvalue_2 < 0.01 & pvalue_2 >= 0.001){
+    pivoted[[5,2]] <- paste0(pivoted[[5,2]], "**")
+  }
+  if (pvalue_2 < 0.001){
+    pivoted[[5,2]] <- paste0(pivoted[[5,2]], "***")
+  }
+  if (pvalue_3 < 0.1 & pvalue_3 > 0.05) {
+    pivoted[[9,2]] <- paste0(pivoted[[9,2]], "+")
+  }
+  if (pvalue_3 < 0.05 & pvalue_3 >= 0.01){
+    pivoted[[9,2]] <- paste0(pivoted[[9,2]], "*")
+  }
+  if (pvalue_3 < 0.01 & pvalue_3 >= 0.001){
+    pivoted[[9,2]] <- paste0(pivoted[[9,2]], "**")
+  }
+  if (pvalue_3 < 0.001){
+    pivoted[[9,2]] <- paste0(pivoted[[9,2]], "***")
+  }
+  ## changing the standard errors to have paranthesis
   pivoted[[2,2]] <- paste0("(", pivoted[[2,2]], ")")
+  pivoted[[6,2]] <- paste0("(", pivoted[[6,2]], ")")
+  pivoted[[10,2]] <- paste0("(", pivoted[[10,2]], ")")
+  ## Changing the number of observations
   pivoted[[4,2]] <- str_replace(pivoted[[4,2]], "\\..{1,}", "")
+  pivoted[[8,2]] <- str_replace(pivoted[[8,2]], "\\..{1,}", "")
+  pivoted[[12,2]] <- str_replace(pivoted[[12,2]], "\\..{1,}", "")
   return(pivoted)
 }
 
@@ -152,11 +178,11 @@ get_means <- function(x){
   mean <- x %>% 
     summarize(mean(alcohol_offense_per25, na.rm = T)) %>% 
     pull()
-  mean_vector <- rep(mean, 5)
-  mean_tibble <- tribble(~term, ~`est...2`, ~`est...3`, ~`est...4`, ~`est...5`,
-                         "Mean of Dependent Variable", mean, mean, mean, mean)
+  mean_vector <- rep(mean, 4)
+  mean_tibble <- tribble(~term, ~`est...2`, ~`est...3`, ~`est...4`,
+                         "Mean of Dependent Variable", mean, mean, mean)
   mean_tibble <- mean_tibble %>% 
-    mutate(across(c(2:5), ~as.character(sprintf(.,fmt = "%.3f"))))
+    mutate(across(c(2:4), ~as.character(sprintf(.,fmt = "%.3f"))))
   return(mean_tibble)
 }
 
@@ -168,7 +194,7 @@ get_means <- function(x){
 initial_means <- get_means(daily_crime)
 
 ## appending all the weekend columns together
-models <- list(alc_weekend_1, alc_weekend_2, alc_weekend_3, alc_weekend_4)
+models <- list(alc_weekend_1, alc_weekend_2, alc_weekend_3)
 
 ## performing the get_est function on all the models, then combining them together and gettingn rid of the pvale
 ## I then append the means
@@ -184,7 +210,7 @@ add_weekends <- initial_means %>%
 
 
 ## Now i do a similar thing with the weekday models
-models_weekdays <- list(alc_weekdays_1, alc_weekdays_2, alc_weekdays_3, alc_weekdays_4)
+models_weekdays <- list(alc_weekdays_1, alc_weekdays_2, alc_weekdays_3)
 
 ## similar to above
 add_weekdays <- map(models_weekdays, ~get_est(.x)) %>% 
@@ -207,7 +233,7 @@ attr(add_rows, 'position') <- c(4:12)
 
 ## This maps the fixed effects clean up
 gm <- tribble(~raw, ~clean, ~fmt,
-              "Std.Errors", "Cluster", ~fmt,
+              "Std.Errors ", "Cluster", ~fmt,
               "FE: day_of_week","FE: Day-of-Week", ~fmt,
               "FE: semester_number", "FE: Semester-Number", ~fmt,
               "FE: university","FE: University", ~fmt,
