@@ -27,7 +27,7 @@ TwoWayFEWeights::twowayfeweights(daily_crime,
                                  "treatment",
                                  cmd_type = "feTR",
                                  controls = c("week_before", "week_after"))
-TwoWayFEWeights::twowayfeweights(daily_crime_weekdays,
+TwoWayFEWeights::twowayfeweights(daily_crime,
                                  "alcohol_offense_per25",
                                  "university",
                                  "semester_number",

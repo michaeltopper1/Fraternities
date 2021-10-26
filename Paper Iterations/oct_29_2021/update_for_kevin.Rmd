@@ -27,7 +27,17 @@ source(here::here("Figures/event_study_weekends.R"))
 I decided to change the model a little bit after presenting in reading group. A big fear a lot of people have were that there were lasting effects of a moratorium, which the model does not account for. My previous model assumed that all effects were instantaneous - fraternities stop partying immediately and begin partying immediately following a moratorium and lifting of a moratorium respectively. To combat this, I decided to add in a "week before" and a "week after" control. Each of these controls are indicators equal to 1 for each 7 day period before and following a moratorium. If the effects of this policy is truly instantaneous, I would expect to see dips during treatment, and nulls elsewhere. Results are shown below:
 
 
+Sexual assault looks to be less convincing of an outcome with these new controls in. It's definitely not as robust as it once was to the different time fixed effects. However, across all models with the university and semester fixed effect, I see significant effects on weekends for alcohol, sexual assault, and drug offenses. With university-by-semester-number fixed effects, I see only significant effects for alcohol. With university and day-by-month-by-year fixed effects, I see significant effects for drug and alcohol offenses. 
 
+## New TWFE literature
+
+One of the challenges of this model is that is does not fit into the TWFE literature exactly. For instance, the new estimators by Callaway and Santanna/Sun and Abram all assume a staggered adoption where once treated, you are treated forever after. Moreover, Goodman-Bacon's bacondecomposition only works for staggered adoptions. Finally, DeChaismartin and De'Houtville's estimator could potentially work for this design, but it requires a balanced panel for their command to work (which my panel is not). The documentation says that it is possible to estimate the model with an unbalanced panel, but there needs to be a lot of tweaking done and contacting the package authors is recommended (which I did but no response). On the bright side, I can do the DeChaismartin/De'Houtville version of the bacondecomposition, although I can only use two models: the model with university and semester fixed effects, or the model with university and day-by-month-by-year fixed effects.
+
+When I use this decomposition I get mixed results. In the date-by-month-by-year fixed effects specification, I get good news: no negative weights so sign reversal is impossible. In the semester-number fixed effects model, I get that the negative weights sum to -.09 while the positive weights sum to 1.09. The package says that this DGP is compatible with one in which there could be sign reversal. 
+
+## What to present
+
+With all this information, it's difficult to figure out what I want to present in the paper as my main findings. 
 
 # Event Studies with preferred specification
 

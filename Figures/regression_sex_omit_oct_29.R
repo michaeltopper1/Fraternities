@@ -12,6 +12,9 @@ if (!exists("daily_crime")) {
   daily_crime <- read_csv(here::here("Created Data/xMaster_data_2021/daily_panel.csv")) 
 }
 
+daily_crime <- daily_crime %>% 
+  mutate(sexual_assault_school = ifelse(reason1 %in% c("sexual assault") | reason2 %in% c("sexual assault"), 1,0)) %>%
+  filter(sexual_assault_school == 0)
 
 
 if (!exists("daily_crime_weekdays")) {
@@ -82,16 +85,17 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: university_by_semester_number", "FE: University-by-Semester-Number", ~fmt,
               "FE: date", "FE: Year-by-Month-by-Day", ~fmt)
 
-sex_table <- modelsummary(sex_ols, stars = T,
+sex_omit_sa <- modelsummary(sex_ols, stars = T,
              gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',
              coef_map = c("week_before" = "Week Before",
                           "treatment" = "Moratorium",
                           "week_after" = "Week After"),
-             title = "\\label{sex_offense}Effect of Moratoriums on Sexual Assaults",
+             title = "\\label{sex_offense_sa}Effect of Moratoriums on Sexual Assaults (omitted sexual assault schools)",
              notes = list("The sample includes 38 universities. Some universities go in and out of moratoriums multiple times.",
                           "Standard errors are clustered by university.",
                           "Outcome of interest is sexua assaults per 25 thousand enrolled students.",
                           "Coefficient estimates shown are for Moratorium.",
+                          "Sexual Assault Moratoriums are omitted in this sample",
                           "Full Sample includes only academic calendar days (plus 1 extra week on each end)."),
              gof_map = gm) %>% 
   add_header_above(c(" " = 1, "Full Sample" = 3, "Weekends (Fri-Sat)" = 3, "Weekdays (Mon-Thurs)" = 3))

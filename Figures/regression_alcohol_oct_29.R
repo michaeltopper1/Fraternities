@@ -89,7 +89,7 @@ alc_full <- list("(1)" = alc_ols_1, "(2)" = alc_ols_2, "(3)" = alc_ols_3,
                   "(1)" = alc_weekend_1,"(2)"= alc_weekend_2, "(3)" = alc_weekend_3,
                  "(1)" =  alc_weekdays_1, "(2)" = alc_weekdays_2,"(3)" = alc_weekdays_3)
 
-modelsummary(alc_full, stars = T,
+alc_table <- modelsummary(alc_full, stars = T,
              gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',
              coef_map = c("week_before" = "Week Before",
                           "treatment" = "Moratorium",
