@@ -82,7 +82,7 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: university_by_semester_number", "FE: University-by-Semester-Number", ~fmt,
               "FE: date", "FE: Year-by-Month-by-Day", ~fmt)
 
-modelsummary(drug_ols, stars = T,
+drug_table <- modelsummary(drug_ols, stars = T,
              gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',
              coef_map = c("week_before" = "Week Before",
                           "treatment" = "Moratorium",
