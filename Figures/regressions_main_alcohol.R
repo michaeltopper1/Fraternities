@@ -111,8 +111,11 @@ get_est <- function(x, conf.int = FALSE, conf.level = 0.95, ...) {
     select(estimate, std.error, p.value, Num.Obs.) %>% 
     pivot_longer(cols = everything(), values_to = "est", names_to = "stat")
   pvalue = pivoted[[3,2]]
+  pvalue_2 = pivoted[[7,2]]
+  pvalue_3 = pivoted[[11,2]]
   pivoted <- pivoted %>% 
     mutate(est = as.character(sprintf(est,fmt = "%.3f")))
+  ## getting the stars
   if (pvalue < 0.1 & pvalue > 0.05) {
     pivoted[[1,2]] <- paste0(pivoted[[1,2]], "+")
   }
@@ -125,8 +128,38 @@ get_est <- function(x, conf.int = FALSE, conf.level = 0.95, ...) {
   if (pvalue < 0.001){
     pivoted[[1,2]] <- paste0(pivoted[[1,2]], "***")
   }
+  if (pvalue_2 < 0.1 & pvalue_2 > 0.05) {
+    pivoted[[5,2]] <- paste0(pivoted[[5,2]], "+")
+  }
+  if (pvalue_2 < 0.05 & pvalue_2 >= 0.01){
+    pivoted[[5,2]] <- paste0(pivoted[[5,2]], "*")
+  }
+  if (pvalue_2 < 0.01 & pvalue_2 >= 0.001){
+    pivoted[[5,2]] <- paste0(pivoted[[5,2]], "**")
+  }
+  if (pvalue_2 < 0.001){
+    pivoted[[5,2]] <- paste0(pivoted[[5,2]], "***")
+  }
+  if (pvalue_3 < 0.1 & pvalue_3 > 0.05) {
+    pivoted[[9,2]] <- paste0(pivoted[[9,2]], "+")
+  }
+  if (pvalue_3 < 0.05 & pvalue_3 >= 0.01){
+    pivoted[[9,2]] <- paste0(pivoted[[9,2]], "*")
+  }
+  if (pvalue_3 < 0.01 & pvalue_3 >= 0.001){
+    pivoted[[9,2]] <- paste0(pivoted[[9,2]], "**")
+  }
+  if (pvalue_3 < 0.001){
+    pivoted[[9,2]] <- paste0(pivoted[[9,2]], "***")
+  }
+  ## changing the standard errors to have paranthesis
   pivoted[[2,2]] <- paste0("(", pivoted[[2,2]], ")")
+  pivoted[[6,2]] <- paste0("(", pivoted[[6,2]], ")")
+  pivoted[[10,2]] <- paste0("(", pivoted[[10,2]], ")")
+  ## Changing the number of observations
   pivoted[[4,2]] <- str_replace(pivoted[[4,2]], "\\..{1,}", "")
+  pivoted[[8,2]] <- str_replace(pivoted[[8,2]], "\\..{1,}", "")
+  pivoted[[12,2]] <- str_replace(pivoted[[12,2]], "\\..{1,}", "")
   return(pivoted)
 }
 
