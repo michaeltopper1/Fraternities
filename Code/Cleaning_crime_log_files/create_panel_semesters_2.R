@@ -48,9 +48,14 @@ academic_calendars <- academic_calendars %>%
 academic_calendars <- academic_calendars %>% 
   mutate(fall_start = fall_start - days(7), spring_end = spring_end + days(7)) %>% 
   mutate(spring_start = case_when(
-    spring_start <= as.Date("1/7/14") ~spring_start,
-    spring_start > as.Date("1/7/14") ~spring_start - days(7)
-  ))
+    spring_start == mdy("1/7/14") ~mdy("1/2/14"),
+    spring_start == mdy("1/6/14") ~mdy("1/2/14"),
+    spring_start == mdy("1/5/14") ~mdy("1/2/14"),
+    spring_start == mdy("1/4/14") ~mdy("1/2/14"),
+    spring_start == mdy("1/3/14")~mdy("1/2/14"),
+    spring_start == mdy("1/2/14") ~mdy("1/2/14"),
+    spring_start > mdy("1/7/14") ~ spring_start - days(7)
+  )) 
 
 
 ## looping through all semesters to expand the grid

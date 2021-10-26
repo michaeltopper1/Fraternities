@@ -19,7 +19,7 @@ Academic calendars:
 - used the first day of classes minus a 7 day period for start
 - used the finalized grade date for end of semester
 - added a 7 day period on the tail of spring semester
-- used the first day of classes minus a 7 day period for start of spring (unless earlier than January 7)
+- used the first day of classes minus a 7 day period for start of spring (unless earlier than January 7, then I used January 2nd as a conservative date)
 - for quarter system schools, defined semester 1 as fall quarter, semester 2 as the combination of winter and semester.
 
 Data Cleaning:
