@@ -1,0 +1,170 @@
+---
+title: "Proposed Route"
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+    # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \theoremstyle{definition}
+- \newtheorem{definition}{Definition}[section]
+- \newtheorem{assumption}{Assumption}
+- \newtheorem{theorem}{Theorem}[section]
+- \newtheorem{corollary}{Corollary}[theorem]
+- \newtheorem{lemma}[theorem]{Lemma}
+- \newtheorem*{remark}{Remark}
+- \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+- \newcommand{\indep}{\perp \!\!\! \perp}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+```{r regressions}
+source("Figures/regression_alcohol_oct_29.R")
+source("Figures/regression_drug_oct_29.R")
+source("Figures/regression_sex_oct_29.R")
+```
+
+```{r eventstudy}
+source("Figures/event_study_byday.R")
+source("Figures/event_study_multiple.R")
+source("Figures/event_study_weekends.R")
+source("Figures/event_study_byday_weekend.R")
+source("Figures/event_study_byday_uni_semester.R")
+```
+
+# Proposed Paper Route
+
+This document is meant to show what I think is the most convincing evidence I have based on all the crazy graphs/models/tests I have estimated since this project began. 
+
+To begin, the strong and robust evidence comes from two outcomes: drug offenses and alcohol offenses. While alcohol offenses are a more mechanical feature, I still believe that the fact that alcohol offenses reduce so drastically campus-wide is a pretty significant result. Each of these offenses is robust across many specifications of fixed effects (although drug offenses aren't significant once I put on univeresity-by-semester-number fixed effects - sign remains the same though), and to different estimators (poisson/ols). If I use a TWFE model, with time fixed effects being day-by-month-by-year and group fixed effects being university, then I have absolutely 0 negative weights and sign reversal is impossible. Given that I have an unbalanced panel and a non-staggered adoption, none of the new estimators are fit to work with my model. DeChaismartin's estimator *could* work, but it requires tweaking outside of the package and recommended I contact the package creator to figure out how I could estimate the model (which I did, but I don't think it's worthwhile considering I will not get sign reversal). 
+
+I believe sexual assault is still worth touching upon, but I need to make it clear that there is only suggestive evidence (e.g. negative sign on the weekends across all models), but this evidence isn't necessarily robust to all the checks that need to be done. In particular, sexual assault is not robust across all the time fixed effects (and significant results only show with a pariticular model) and the effects disappear (although sign remains the same) when using poisson estimation rather than OLS. 
+
+Futhermore, I think that the Campus Safety and Security data is interesting (residence halls vs. campus etc.), but I am unsure whether or not to include it since it's aggregated to the yearly level. Unfortunately, my quest for daily-level data is looking much more grim after a few weeks of responses - most schools forward me to their Daily Crime Logs, or cite FERPA saying I cannot have the information. Therefore, the yearly level data might be my best shot although there are certainly a lot of problems when considering using it. I'd leave final judgement to the committee to weigh in on its appeal. 
+
+Finally, I plan to showcase only the main results of the paper in this document to see if they look convincing when looked at in isolation. Note that these tables are not presented in the form I want, but they contain essentially all of the information I want to show. 
+
+## The New Model
+
+After much feedback, a large concern was that the previous model was assuming no long-term effects of fraternity moratoriums. I believe that this assumption is reasonable, as fraternities (anecdotally) begin their business-as-normal immediately following a moratorium. The best solution I could think of to address this plausibly false assumption was to put a week lead and a week lag in the model. Hence, the model is as such:
+
+```{=tex}
+\begin{equation}\label{main_model}
+Y_{u,t} = \beta_bWeekBefore_{u,t} + \beta_m Moratorium_{u,t} + \beta_a WeekAfter_{u,t} + \gamma_{u} + \alpha_{t} + \epsilon_{u,t}
+\end{equation}
+```
+
+$WeekBefore_{u,t}$ and $WeekAfter_{u,t}$ are indicators equal to 1 if the university $u$ at time $t$ is 7 or fewer days away from a fraternity moratorium. I use a TWFE model where $\gamma_{u}$ are university fixed effects and $\alpha_{t}$ are day-by-month-by-year fixed effects. The intuitive comparison here is a moratorium day at a university compared across non-moratorium days at other universities while controlling for differences between the universitys' police department's reporting differences and systematic changes between a particular calendar date.
+As shown in Table \ref{twfe_weights}, the TWFE model contains no negative weights and is therefore consistent with a treatment effect that has the same sign. 
+
+To allow more flexibility, I tweak the model's time fixed effects. In particular, I use the following combinations of fixed effects:
+
+* university, semester-number, and day-of-week - similar to above, just allowing for more variation as day-by-month-by-year is extremely data intensive. Note that this specification had negative weights, although there not many.
+* university-by-semester-number and day-of-week - this allows for systematic changes within a university-semester, and thus gives a more "before-after within a university" interpretation while accounting to the level changes in offenses on particular days of the week. Note that any new estimator or decomposition cannot be done with this specification. Unsure whether the weights will be negative here, but most of the results remain consistent. 
+
+Note: One of the challenges of this model is that is does not fit into the TWFE literature exactly. For instance, the new estimators by Callaway and Santanna/Sun and Abram all assume a staggered adoption where once treated, you are treated forever after. Moreover, Goodman-Bacon's bacondecomposition only works for staggered adoptions. 
+
+# Results
+
+## Alcohol Offenses
+
+Table \ref{alc_offense} shows the results of the models estimated. The results are extremely robust across all models, with effects being highest on the weekends, and disappearing during the weekdays. While not showing here, the results are identical (and more significant) when using poisson regression. Moreover, the results are not driven by one particular university as leave-one-out regressions show the same results. The poisson and leave-one-out tables can be found in the previous iteration of the paper.
+
+```{r}
+alc_table %>% 
+  landscape()
+```
+
+### Common Trends
+
+I estimate several event study regressions shown in \ref{es_alc}.
+```{r, out.width='.49\\linewidth', fig.cap= "\\label{es_alc}Event studies for alcohol offenses. Event studies can either be aggregated to the weekly level, or binned into 7-day periods. Standard errors clustered at the university level.", fig.ncol = 2, fig.subcap= c("Not Aggregated. TWFE.","Not Aggregated. TWFE. Weekends only.","Aggregated. University-by-Semester FE","Aggregated. University-by-Semester. Weekends.", "Not Aggregated. university-by-semester fe")}
+es_alc_graph_day
+es_alc_graph_day_weekend
+es_alc_graph
+es_alc_weekends_graph
+es_alc_graph_day_uni_sem
+```
+
+
+## Drug Offenses
+
+Table \ref{drug_offense} shows the results of the models estimated, but for drug offenses. The results are strong across nearly all specifications except for when using a university-by-semester fixed effect. However, the results are robust across poisson.
+
+```{r}
+drug_table %>% 
+  landscape()
+```
+
+### Common Trends
+
+I do a bunch of different event studies shown in Figure \ref{es_drug} 
+
+```{r, out.width='.49\\linewidth', fig.cap= "\\label{es_drug}Event studies for drug offenses. Event studies can either be aggregated to the weekly level, or binned into 7-day periods. Standard errors clustered at the university level.", fig.ncol = 2, fig.subcap= c("No Aggregated. TWFE.","No Aggregate.TWFE. Weekends only.","Aggregated. university-by-semester fe","Aggregated. university-by-semester. Weekends.", "Not Aggregated. university-by-semester fe")}
+es_drug_graph_day
+es_drug_graph_day_weekend
+es_drug_graph
+es_drug_weekends_graph
+es_drug_graph_day_uni_sem
+```
+
+
+## Sexual Assaults
+
+Table \ref{sex_offense} shows the results for sexual assault. However, I also attempted the same results but with omitting the week before moratorium which are shown in Table \ref{sex_offense_omit}.
+
+```{r}
+sex_table %>% 
+  landscape()
+```
+
+
+```{r}
+source("Figures/regression_sex_weekbefore_oct_29.R")
+```
+
+
+```{r}
+sex_table_omit_weekbefore %>% 
+  landscape()
+```
+
+### Trends
+
+```{r}
+source("Figures/event_study_omit_week.R")
+```
+
+```{r, out.width='.49\\linewidth', fig.cap= "\\label{es_drug}Event studies for drug offenses. Event studies can either be aggregated to the weekly level, or binned into 7-day periods. Standard errors clustered at the university level.", fig.ncol = 2, fig.subcap= c("No Aggregated. TWFE.","No Aggregate.TWFE. Weekends only.","Aggregated. university-by-semester fe","Aggregated. university-by-semester. Weekends.", "Not Aggregated. university-by-semester fe", "Aggregated. omit week before.")}
+es_sex_graph_day
+es_sex_graph_day_weekend
+es_sex_graph
+es_sex_weekends_graph
+es_sex_graph_day_uni_sem
+es_sex_omit
+```
+

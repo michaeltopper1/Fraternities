@@ -50,8 +50,8 @@ lag_columns[1] <- "beta_0"
 for (i in 1:9) {
   column <- lag_columns[i]
   daily_crime_es <- daily_crime_es %>% 
-      mutate(!!sym(column) := ifelse((date >= closure_1_floor + days(lags[i]- 7) & date < closure_1_floor + days(lags[i])) |
-                                        (date >= closure_2_floor + days(lags[i]- 7) & date < closure_2_floor + days(lags[i])),1 ,0))
+    mutate(!!sym(column) := ifelse((date >= closure_1_floor + days(lags[i]- 7) & date < closure_1_floor + days(lags[i])) |
+                                     (date >= closure_2_floor + days(lags[i]- 7) & date < closure_2_floor + days(lags[i])),1 ,0))
   
 }
 
@@ -100,36 +100,36 @@ daily_crime_es <- daily_crime_es %>%
 # estimating the event studies --------------------------------------------
 
 
-es_alc_day <- daily_crime_es %>% 
+es_alc_day_uni_sem <- daily_crime_es %>% 
   group_by(university, semester_number) %>% 
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
   feols(alcohol_offense_per25 ~ beta_lead_binned + beta_lead_7 + beta_lead_6 + beta_lead_5 + beta_lead_4 + beta_lead_3 + beta_lead_2 + beta_0 +
           beta_lag_1 + beta_lag_2 + beta_lag_3 + beta_lag_4 + beta_lag_5 +
-          beta_lag_6 + beta_lag_7 + beta_lag_binned| university + date , cluster = ~university, data = .) 
-es_sex_day <- daily_crime_es %>% 
+          beta_lag_6 + beta_lag_7 + beta_lag_binned| university_by_semester_number+ day_of_week , cluster = ~university, data = .) 
+es_sex_day_uni_sem <- daily_crime_es %>% 
   group_by(university, semester_number) %>% 
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
   feols(sexual_assault_per25 ~ beta_lead_binned + beta_lead_7 + beta_lead_6 + beta_lead_5 + beta_lead_4 + beta_lead_3 + beta_lead_2 + beta_0 +
           beta_lag_1 + beta_lag_2 + beta_lag_3 + beta_lag_4 + beta_lag_5 +
-          beta_lag_6 + beta_lag_7 + beta_lag_binned| university + date, cluster = ~university, data = .) 
+          beta_lag_6 + beta_lag_7 + beta_lag_binned| university_by_semester_number+ day_of_week, cluster = ~university, data = .) 
 
-es_drug_day <- daily_crime_es %>% 
+es_drug_day_uni_sem <- daily_crime_es %>% 
   group_by(university, semester_number) %>% 
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
   feols(drug_offense_per25 ~ beta_lead_binned + beta_lead_7 + beta_lead_6 + beta_lead_5 + beta_lead_4 + beta_lead_3 + beta_lead_2 + beta_0 +
           beta_lag_1 + beta_lag_2 + beta_lag_3 + beta_lag_4 + beta_lag_5 +
-          beta_lag_6 + beta_lag_7 + beta_lag_binned| university + date, cluster = ~university, data = .) 
+          beta_lag_6 + beta_lag_7 + beta_lag_binned| university_by_semester_number + day_of_week, cluster = ~university, data = .) 
 
-es_theft_day <- daily_crime_es %>% 
+es_theft_day_uni_sem <- daily_crime_es %>% 
   group_by(university, semester_number) %>% 
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
   feols(theft_per25 ~ beta_lead_binned + beta_lead_7 + beta_lead_6 + beta_lead_5 + beta_lead_4 + beta_lead_3 + beta_lead_2 + beta_0 +
           beta_lag_1 + beta_lag_2 + beta_lag_3 + beta_lag_4 + beta_lag_5 +
-          beta_lag_6 + beta_lag_7 + beta_lag_binned| university + date, cluster = ~university, data = .) 
+          beta_lag_6 + beta_lag_7 + beta_lag_binned| university_by_semester_number+ day_of_week, cluster = ~university, data = .) 
 
 # creating graphing function ----------------------------------------------
 
@@ -157,17 +157,13 @@ event_study_func <- function(x, window_size) {
   return(plot)
 }
 
-es_sex_graph_day <- event_study_func(es_sex_day, 8) +
+es_sex_graph_day_uni_sem <- event_study_func(es_sex_day_uni_sem, 8) +
   geom_hline(yintercept = 0, color = "dark red") 
-es_alc_graph_day <- event_study_func(es_alc_day, 8) +
+es_alc_graph_day_uni_sem <- event_study_func(es_alc_day_uni_sem, 8) +
   geom_hline(yintercept = 0, color = "dark red")
-es_drug_graph_day <- event_study_func(es_drug_day, 8) +
+es_drug_graph_day_uni_sem <- event_study_func(es_drug_day_uni_sem, 8) +
   geom_hline(yintercept = 0, color = "dark red")
-es_theft_graph_day <- event_study_func(es_theft_day, 8) +
+es_theft_graph_day_uni_sem <- event_study_func(es_theft_day_uni_sem, 8) +
   geom_hline(yintercept = 0, color = "dark red")
 
-es_drug_day %>% 
-  car::linearHypothesis(c("beta_lead_7 =0", "beta_lead_6 = 0",
-                          "beta_lead_5 = 0", "beta_lead_4 = 0",
-                          "beta_lead_3 = 0", "beta_lead_2 =0")) %>% 
-  broom::tidy()
+

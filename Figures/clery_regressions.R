@@ -13,14 +13,15 @@ library(kableExtra)
 clery <- read_csv(here::here("Created Data/xMaster_data_2021/merged_clery.csv")) %>% 
   filter(university %in% ifc::moratorium_schools())
 
-clery %>% colnames()
+clery %>% 
+  colnames()
 clery_regs <- clery %>% 
-  feols(c(clery_alcohol_per_25k, residencehall_liquor_per_25k, noncampus_liquor_per_25k,
-          clery_sexual_assault_per_25k,residencehall_sexual_assault_per_25k, clery_offcampus_sexual_assault_per_25k,
+  feols(c(clery_alcohol_per_25k, residencehall_liquor_per_25k, clery_oncampus_liquor_per_25k,
+          clery_sexual_assault_per_25k,residencehall_sexual_assault_per_25k, clery_oncampus_sexual_assault_per_25k,
           alcohol_offense_per_25k, sexual_assault_per_25k) ~treatment |
           university + year, cluster = ~university, data = .)
-names(clery_regs) = c("Full Sample", "Residence Hall", "Noncampus",
-                   "Full Sample", "Residence Hall", "Noncampus",
+names(clery_regs) = c("Full Sample", "Residence Hall", "On campus",
+                   "Full Sample", "Residence Hall", "On campus",
                    "Full Sample", "Full Sample")
 
 find_mean <- function(data, column) {

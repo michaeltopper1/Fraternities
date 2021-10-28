@@ -23,7 +23,7 @@ if (!exists("daily_crime")) {
 #   mutate(sexual_assault_school = ifelse(reason1 %in% c("sexual assault") | reason2 %in% c("sexual assault"), 1,0)) %>%
 #   filter(sexual_assault_school == 0)
 
-daily_crime <- daily_crime %>% 
+daily_crime_omit <- daily_crime %>% 
   mutate(week_before_2 = lead(week_before, 7)) %>% 
   relocate(week_before_2, week_before) %>% 
   filter(week_before !=1) %>% 
@@ -31,29 +31,28 @@ daily_crime <- daily_crime %>%
   select(-week_before) %>% 
   rename("week_before" = "week_before_2") 
   
-if (!exists("daily_crime_weekdays")) {
-  daily_crime_weekdays <- daily_crime %>% 
+if (!exists("daily_crime_weekdays_omit")) {
+  daily_crime_weekdays_omit <- daily_crime_omit %>% 
     filter(day_of_week == "Mon" | day_of_week == "Thu" | day_of_week == "Wed" | day_of_week == "Tue" )
 }
 
-if (!exists("daily_crime_weekends")) {
-  daily_crime_weekends <- daily_crime %>%
+if (!exists("daily_crime_weekends_omit")) {
+  daily_crime_weekends_omit <- daily_crime_omit %>%
     filter(day_of_week == 'Fri' | day_of_week == "Sat" | day_of_week == "Sun")
 }
 
-daily_crime %>% 
-  filter(treatment == 1 & week_before == 1)
+
 
 # regressions full sample-------------------------------------------------------------
-sex_ols_1 <- daily_crime %>% 
-  feols(sexual_assault_per25 ~week_before +  treatment + week_after | day_of_week + year + university,
+sex_ols_1 <- daily_crime_omit %>% 
+  feols(sexual_assault_per25 ~week_before +  treatment + week_after | date + university,
         vcov = cluster ~ university, data = .)
 
-sex_ols_2 <- daily_crime %>% 
+sex_ols_2 <- daily_crime_omit %>% 
   feols(sexual_assault_per25 ~ week_before + treatment+ week_after | day_of_week + university + semester_number,
         cluster = ~university, data = .)
 
-sex_ols_3 <- daily_crime %>% 
+sex_ols_3 <- daily_crime_omit %>% 
   feols(sexual_assault_per25 ~ week_before + treatment + week_after| day_of_week + university_by_semester_number  ,
         cluster = ~university, data = .)
 
@@ -63,13 +62,13 @@ sex_ols_3 <- daily_crime %>%
 # regressions weekends ----------------------------------------------------
 
 
-sex_weekend_1 <- daily_crime_weekends %>% 
-  feols(sexual_assault_per25 ~ week_before + treatment + week_after | day_of_week + year + university,
+sex_weekend_1 <- daily_crime_weekends_omit %>% 
+  feols(sexual_assault_per25 ~ week_before + treatment + week_after | date + university,
         cluster = ~university, data = .) 
-sex_weekend_2 <- daily_crime_weekends %>% 
+sex_weekend_2 <- daily_crime_weekends_omit %>% 
   feols(sexual_assault_per25 ~ week_before + treatment + week_after | day_of_week + university + semester_number,
         cluster = ~university, data = .) 
-sex_weekend_3 <- daily_crime_weekends %>% 
+sex_weekend_3 <- daily_crime_weekends_omit %>% 
   feols(sexual_assault_per25 ~week_before +  treatment  + week_after| day_of_week + university_by_semester_number ,
         cluster = ~university, data = .)
 
@@ -77,18 +76,18 @@ sex_weekend_3 <- daily_crime_weekends %>%
 # regressions weekdays ----------------------------------------------------
 
 
-sex_weekdays_1 <- daily_crime_weekdays %>% 
-  feols(sexual_assault_per25 ~week_before +  treatment + week_after | day_of_week + year + university,
+sex_weekdays_1 <- daily_crime_weekdays_omit %>% 
+  feols(sexual_assault_per25 ~week_before +  treatment + week_after | date + university,
         cluster = ~university, data = .) 
-sex_weekdays_2 <- daily_crime_weekdays %>% 
+sex_weekdays_2 <- daily_crime_weekdays_omit %>% 
   feols(sexual_assault_per25 ~week_before + treatment + week_after| day_of_week + university + semester_number,
         cluster = ~university, data = .) 
-sex_weekdays_3 <- daily_crime_weekdays %>% 
+sex_weekdays_3 <- daily_crime_weekdays_omit %>% 
   feols(sexual_assault_per25 ~ week_before + treatment + week_after| day_of_week + university_by_semester_number ,
         cluster = ~university, data = .)
 
 
-sex_ols <- list("(1)" = sex_ols_1, "(2)" = sex_ols_2, "(3)" = sex_ols_3,
+sex_ols_omit <- list("(1)" = sex_ols_1, "(2)" = sex_ols_2, "(3)" = sex_ols_3,
                 "(1)" = sex_weekend_1, "(2)" = sex_weekend_2, "(3)" = sex_weekend_3, 
                 "(1)" = sex_weekdays_1, "(2)" = sex_weekdays_2, "(3)" = sex_weekdays_3)
 
@@ -98,14 +97,15 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: semester_number", "FE: Semester-Number", ~fmt,
               "FE: university","FE: University", ~fmt,
               "FE: year", "FE: Year", ~fmt,
-              "FE: university_by_semester_number", "FE: University-by-Semester-Number", ~fmt)
+              "FE: university_by_semester_number", "FE: University-by-Semester-Number", ~fmt,
+              "FE: date", "FE: Day-by-Month-by-Year", ~fmt)
 
-modelsummary(sex_ols, stars = T,
+sex_table_omit_weekbefore <- modelsummary(sex_ols_omit, stars = T,
              gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',
              coef_map = c("week_before" = "2 Weeks Before",
                           "treatment" = "Moratorium",
                           "week_after" = "Week After"),
-             title = "\\label{sex_offense}Effect of Moratoriums on Sexual Assaults (Omitting week before)",
+             title = "\\label{sex_offense_omit}Effect of Moratoriums on Sexual Assaults (Omitting week before)",
              notes = list("The sample includes 38 universities. Some universities go in and out of moratoriums multiple times.",
                           "Standard errors are clustered by university.",
                           "Week before is not 2 weeks before to reflect the dropped week before",

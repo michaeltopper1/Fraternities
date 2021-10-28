@@ -50,8 +50,8 @@ lag_columns[1] <- "beta_0"
 for (i in 1:9) {
   column <- lag_columns[i]
   daily_crime_es <- daily_crime_es %>% 
-      mutate(!!sym(column) := ifelse((date >= closure_1_floor + days(lags[i]- 7) & date < closure_1_floor + days(lags[i])) |
-                                        (date >= closure_2_floor + days(lags[i]- 7) & date < closure_2_floor + days(lags[i])),1 ,0))
+    mutate(!!sym(column) := ifelse((date >= closure_1_floor + days(lags[i]- 7) & date < closure_1_floor + days(lags[i])) |
+                                     (date >= closure_2_floor + days(lags[i]- 7) & date < closure_2_floor + days(lags[i])),1 ,0))
   
 }
 
@@ -99,15 +99,18 @@ daily_crime_es <- daily_crime_es %>%
 
 # estimating the event studies --------------------------------------------
 
+### subsetting to weekends
+daily_crime_es_weekend <- daily_crime_es %>% 
+  filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun")
 
-es_alc_day <- daily_crime_es %>% 
+es_alc_day_weekend <- daily_crime_es_weekend %>% 
   group_by(university, semester_number) %>% 
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
   feols(alcohol_offense_per25 ~ beta_lead_binned + beta_lead_7 + beta_lead_6 + beta_lead_5 + beta_lead_4 + beta_lead_3 + beta_lead_2 + beta_0 +
           beta_lag_1 + beta_lag_2 + beta_lag_3 + beta_lag_4 + beta_lag_5 +
           beta_lag_6 + beta_lag_7 + beta_lag_binned| university + date , cluster = ~university, data = .) 
-es_sex_day <- daily_crime_es %>% 
+es_sex_day_weekend <- daily_crime_es_weekend %>% 
   group_by(university, semester_number) %>% 
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
@@ -115,7 +118,7 @@ es_sex_day <- daily_crime_es %>%
           beta_lag_1 + beta_lag_2 + beta_lag_3 + beta_lag_4 + beta_lag_5 +
           beta_lag_6 + beta_lag_7 + beta_lag_binned| university + date, cluster = ~university, data = .) 
 
-es_drug_day <- daily_crime_es %>% 
+es_drug_day_weekend <- daily_crime_es_weekend %>% 
   group_by(university, semester_number) %>% 
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
@@ -123,7 +126,7 @@ es_drug_day <- daily_crime_es %>%
           beta_lag_1 + beta_lag_2 + beta_lag_3 + beta_lag_4 + beta_lag_5 +
           beta_lag_6 + beta_lag_7 + beta_lag_binned| university + date, cluster = ~university, data = .) 
 
-es_theft_day <- daily_crime_es %>% 
+es_theft_day_weekend <- daily_crime_es_weekend %>% 
   group_by(university, semester_number) %>% 
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup() %>% 
@@ -152,21 +155,21 @@ event_study_func <- function(x, window_size) {
     # geom_errorbar(aes(x = value, ymin = conf.low, ymax = conf.high), alpha = 0.8) +
     # geom_rect(aes(xmin = -0.5, xmax =0.5, ymin = -Inf, ymax = Inf), fill = "light blue", alpha = 0.03) +
     scale_x_continuous(labels = c(-window_size:window_size), breaks = c(-window_size:window_size)) +
-    labs(x = "7-day Periods to Moratorium", y = "Coefficient Estimate") +
+    labs(x = "Weeks to Moratorium", y = "Coefficient Estimate") +
     theme_minimal()
   return(plot)
 }
 
-es_sex_graph_day <- event_study_func(es_sex_day, 8) +
+es_sex_graph_day_weekend <- event_study_func(es_sex_day_weekend, 8) +
   geom_hline(yintercept = 0, color = "dark red") 
-es_alc_graph_day <- event_study_func(es_alc_day, 8) +
+es_alc_graph_day_weekend <- event_study_func(es_alc_day_weekend, 8) +
   geom_hline(yintercept = 0, color = "dark red")
-es_drug_graph_day <- event_study_func(es_drug_day, 8) +
+es_drug_graph_day_weekend <- event_study_func(es_drug_day_weekend, 8) +
   geom_hline(yintercept = 0, color = "dark red")
-es_theft_graph_day <- event_study_func(es_theft_day, 8) +
+es_theft_graph_day_weekend <- event_study_func(es_theft_day_weekend, 8) +
   geom_hline(yintercept = 0, color = "dark red")
 
-es_drug_day %>% 
+es_alc_day_weekend %>% 
   car::linearHypothesis(c("beta_lead_7 =0", "beta_lead_6 = 0",
                           "beta_lead_5 = 0", "beta_lead_4 = 0",
                           "beta_lead_3 = 0", "beta_lead_2 =0")) %>% 
