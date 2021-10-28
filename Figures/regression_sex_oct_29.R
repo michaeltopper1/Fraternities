@@ -80,7 +80,7 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: university","FE: University", ~fmt,
               "FE: year", "FE: Year", ~fmt,
               "FE: university_by_semester_number", "FE: University-by-Semester-Number", ~fmt,
-              "FE: date", "FE: Year-by-Month-by-Day", ~fmt)
+              "FE: date", "FE: Day-by-Month-by-Year", ~fmt)
 
 sex_table <- modelsummary(sex_ols, stars = T,
              gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',

@@ -43,7 +43,7 @@ With all this information, it's difficult to figure out what I want to present i
 
 Want to produce several event studies. All of these are aggregated up to the weekly level. No further manipulations are used. The time fixed effects are university-by-semester-number.
 
-```{r}
+```{r, fig.cap = "Event studies for full sample using university-by-semester fixed effects. Data aggregated to the weekly level."}
 es_alc_graph
 es_sex_graph
 es_drug_graph
@@ -54,7 +54,7 @@ es_theft_graph
 
 The following are subsetted from the sample above to only include Friday-Sunday. Fixed effects remain the same.
 
-```{r}
+```{r, fig.cap = "Event studies for weekends only using university-by-semester fixed effects. Data aggregated to the weekly level."}
 es_alc_weekends_graph
 es_sex_weekends_graph
 es_drug_weekends_graph
@@ -65,7 +65,7 @@ es_theft_weekends_graph
 
 The following are subsetted from the initial sample above to only include Monday-Thursday. Fixed effects remain the same.
 
-```{r}
+```{r, fig.cap = "Event studies for weekdays only using university-by-semester fixed effects. Data aggregated to the weekly level."}
 es_alc_weekdays_graph
 es_sex_weekdays_graph
 es_drug_weekdays_graph
@@ -76,8 +76,38 @@ es_theft_weekdays_graph
 
 When I subset sexual assaults to only weekends, it doesn't seem like there's much of a trend at all. Might be worth putting using these as results. 
 
-## Event studies with alternative fixed effects
+# Event studies with alternative fixed effects
 
-Suppose I want to change the fixed effects to a more traditional "two-way" design where I have university fixed effects and semester-number fixed effects. 
+Suppose I want to change the fixed effects to a more traditional "two-way" design where I have university fixed effects and day-by-month-by-year fixed effects. This is the design in which I do not see any negative weights, so I suspect people will want to see this design and the accompanying trends.
+
+```{r}
+source(here::here("Figures/event_study_byday.R"))
+```
+
+
+```{r, fig.cap="Event studies using day-by-month-by-year fixed effects and university fixed effects. This is utilizing the entire sample. Data is not aggregated. Instead, 7-day periods are used as weeks to keep the day-by-month-by-year fixed effects possible. Standard errors clustered at the university level."}
+es_sex_graph_day
+es_alc_graph_day
+es_drug_graph_day
+es_theft_graph_day
+```
+
+
+```{r, fig.cap = "Event studies using day-by-month-by-year fixed effects and university fixed effects for weekends only. Data is not aggregated. Instead, 7-day periods are used as weeks. Standard errors clustered at the university level.}
+es_sex_graph_day_weekend
+es_alc_graph_day_weekend
+es_drug_graph_day_weekend
+es_theft_graph_day_weekend
+```
+
+
+# Event Studies for Sexual Assault with omitted period -1
+
+The last event studies to show are the event studies for sexual assault in which the week before is omitted from the sample. I do these for both models with both types of fixed effects, and for weekends/full sample. 
+
+```{r, fig.cap= "Event studies for sexual assaults when omitting the week before a moratorium. Data is aggregated to the weekly level and fixed effects are university-by-semester. Standard errors clustered at the university level."}
+es_sex_omit
+es_sex_omit_weekends
+```
 
 

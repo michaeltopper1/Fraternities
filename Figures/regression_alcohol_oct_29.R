@@ -83,7 +83,7 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: university","FE: University", ~fmt,
               "FE: year", "FE: Year", ~fmt,
               "FE: university_by_semester_number", "FE: University-by-Semester-Number", ~fmt,
-              "FE: date", "FE: Year-by-Month-Day", ~fmt)
+              "FE: date", "FE: Day-by-Month-by-Year", ~fmt)
 
 alc_full <- list("(1)" = alc_ols_1, "(2)" = alc_ols_2, "(3)" = alc_ols_3,
                   "(1)" = alc_weekend_1,"(2)"= alc_weekend_2, "(3)" = alc_weekend_3,

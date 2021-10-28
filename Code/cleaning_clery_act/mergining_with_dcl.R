@@ -44,7 +44,10 @@ all_crime <- all_crime %>%
          clery_robbery = noncampus_robbe + oncampus_robbe + publicproperty_robbe) %>% 
   mutate(clery_offcampus_sexual_assault = noncampus_rape + noncampus_fondl + noncampus_inces +
            publicproperty_rape + publicproperty_fondl + publicproperty_inces) %>% 
-  mutate(residencehall_sexual_assault = residencehall_rape + residencehall_fondl + residencehall_inces) %>% 
+  mutate(clery_oncampus_sexual_assault = oncampus_rape + oncampus_fondl) %>% 
+  mutate(clery_oncampus_drug = oncampus_drug) %>% 
+  mutate(clery_oncampus_liquor = oncampus_liquor) %>% 
+  mutate(residencehall_sexual_assault = residencehall_rape + residencehall_fondl) %>% 
   mutate(across(starts_with("clery_"), ~ (./total_enrollment) * 25000, .names = "{.col}_per_25k")) %>% 
   mutate(across(c(residencehall_sexual_assault, residencehall_drug, residencehall_liquor), ~ (./total_enrollment) * 25000, .names = "{.col}_per_25k")) %>% 
   mutate(across(c(sexual_assault, alcohol_offense, robbery_burglary, drug_offense), ~ (./total_enrollment) * 25000, .names = "{.col}_per_25k")) %>% 
