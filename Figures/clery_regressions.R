@@ -46,6 +46,7 @@ clery_reg_table <- modelsummary(clery_regs,
                           "Daily Crime Logs represent the novel data I constructed.",
                           "Standard errors clustered by university.",
                           "All data is aggregated at the calendar-year level.",
+                          "On campus crimes are all on-campus including residence hall crimes.",
                           "Daily Crime Log data represents full calendar year- not only academic calendar days.")) %>% 
   add_header_above(c(" " = 1, "Alcohol Offenses" = 3, "Sexual Assault" = 3, "Alcohol Offenses" = 1,
                      "Sexual Assault" = 1)) %>% 

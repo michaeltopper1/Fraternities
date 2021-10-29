@@ -82,6 +82,20 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: university_by_semester_number", "FE: University-by-Semester-Number", ~fmt,
               "FE: date", "FE: Day-by-Month-by-Year", ~fmt)
 
+find_mean <- function(data, column) {
+  column_mean <- data %>% 
+    summarize(mean({{column}}, na.rm = T)) %>% 
+    pull()
+  return(column_mean)
+}
+
+add_means <- tribble(~term, ~alc_full, ~alc_full, ~alc_full, ~alc_weekend, ~alc_weekend, ~alc_weekend, ~alc_weekday, ~alc_weekday,~alc_weekday,
+                     "Mean of Dependent Variable", find_mean(daily_crime, sexual_assault_per25), find_mean(daily_crime, sexual_assault_per25), find_mean(daily_crime, sexual_assault_per25),
+                     find_mean(daily_crime_weekends, sexual_assault_per25), find_mean(daily_crime_weekends, sexual_assault_per25), find_mean(daily_crime_weekends, sexual_assault_per25),
+                     find_mean(daily_crime_weekdays, sexual_assault_per25), find_mean(daily_crime_weekdays, sexual_assault_per25), find_mean(daily_crime_weekdays, sexual_assault_per25))
+
+attr(add_means, 'position') <- c(8) 
+
 sex_table <- modelsummary(sex_ols, stars = T,
              gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',
              coef_map = c("week_before" = "Week Before",
@@ -93,5 +107,6 @@ sex_table <- modelsummary(sex_ols, stars = T,
                           "Outcome of interest is sexua assaults per 25 thousand enrolled students.",
                           "Coefficient estimates shown are for Moratorium.",
                           "Full Sample includes only academic calendar days (plus 1 extra week on each end)."),
-             gof_map = gm) %>% 
+             gof_map = gm,
+             add_rows = add_means) %>% 
   add_header_above(c(" " = 1, "Full Sample" = 3, "Weekends (Fri-Sat)" = 3, "Weekdays (Mon-Thurs)" = 3))

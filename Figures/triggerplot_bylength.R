@@ -64,8 +64,8 @@ trigger_plot <- length_graph %>%
   scale_x_reordered() +
   theme_light() +
   labs(y = "Length of Moratorium in Days", x= "", fill = "", caption = "Note: Behavior contains conduct violations/racist activity/alcohol violations/hazing") +
-  theme(legend.position ="bottom", strip.text = element_text(colour = 'white', size = 34),
-        strip.background = element_rect(fill = "gray60"), legend.key.size = unit(.5, "cm"),
+  theme_minimal() +
+  theme(legend.position ="bottom", legend.key.size = unit(.5, "cm"),
         text = element_text(size = 30))
 
 

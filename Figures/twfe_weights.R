@@ -6,6 +6,7 @@
 ##
 
 library(tidyverse)
+library(kableExtra)
 # library(TwoWayFEWeights)
 # if (!exists("daily_crime")) {
 #   daily_crime <- read_csv(here::here("Created Data/xMaster_data_2021/daily_panel.csv")) 
@@ -43,10 +44,10 @@ twfe_decomp <- tibble(model_fixed_effects = c("University and Day-by-Month-by-Ye
        number_of_att_negative = c("0", "27", "Cannot be computed."),
        number_of_att_positive = c("2843", "37", "Cannot be computed."))
 
-twfe_weights <- kableExtra::kbl(twfe_decomp,
+twfe_weights <- kbl(twfe_decomp,
                 booktabs = T,
                 col.names = c("Model", "Sum of Positive Weights", "Sum of Negative Weights", "Number of Negative ATT", "Number of Positive ATT"),
-                title = "\\label{twfe_weights}DeChaismartin decomposition of TWFE with primary models.")
+                caption = "\\label{twfe_weights}DeChaismartin decomposition of TWFE with primary models.")
 
 
 
