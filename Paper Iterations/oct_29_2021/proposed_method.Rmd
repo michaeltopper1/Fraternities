@@ -42,6 +42,10 @@ knitr::opts_chunk$set(echo = F, message = F, warning = F)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 ```
 
+```{r}
+source("Figures/twfe_weights.R")
+```
+
 ```{r regressions}
 source("Figures/regression_alcohol_oct_29.R")
 source("Figures/regression_drug_oct_29.R")
@@ -62,9 +66,9 @@ This document is meant to show what I think is the most convincing evidence I ha
 
 To begin, the strong and robust evidence comes from two outcomes: drug offenses and alcohol offenses. While alcohol offenses are a more mechanical feature, I still believe that the fact that alcohol offenses reduce so drastically campus-wide is a pretty significant result. Each of these offenses is robust across many specifications of fixed effects (although drug offenses aren't significant once I put on univeresity-by-semester-number fixed effects - sign remains the same though), and to different estimators (poisson/ols). If I use a TWFE model, with time fixed effects being day-by-month-by-year and group fixed effects being university, then I have absolutely 0 negative weights and sign reversal is impossible. Given that I have an unbalanced panel and a non-staggered adoption, none of the new estimators are fit to work with my model. DeChaismartin's estimator *could* work, but it requires tweaking outside of the package and recommended I contact the package creator to figure out how I could estimate the model (which I did, but I don't think it's worthwhile considering I will not get sign reversal). 
 
-I believe sexual assault is still worth touching upon, but I need to make it clear that there is only suggestive evidence (e.g. negative sign on the weekends across all models), but this evidence isn't necessarily robust to all the checks that need to be done. In particular, sexual assault is not robust across all the time fixed effects (and significant results only show with a pariticular model) and the effects disappear (although sign remains the same) when using poisson estimation rather than OLS. 
+I believe sexual assault is still worth touching upon, but I need to make it clear that there is only suggestive evidence (e.g. negative sign on the weekends across all models), but this evidence isn't necessarily robust to all the checks that need to be done. In particular, sexual assault is not robust across all the time fixed effects (and significant results only show with a particular model) and the effects disappear (although sign remains the same) when using poisson estimation rather than OLS. 
 
-Futhermore, I think that the Campus Safety and Security data is interesting (residence halls vs. campus etc.), but I am unsure whether or not to include it since it's aggregated to the yearly level. Unfortunately, my quest for daily-level data is looking much more grim after a few weeks of responses - most schools forward me to their Daily Crime Logs, or cite FERPA saying I cannot have the information. Therefore, the yearly level data might be my best shot although there are certainly a lot of problems when considering using it. I'd leave final judgement to the committee to weigh in on its appeal. 
+Furthermore, I think that the Campus Safety and Security data is interesting (residence halls vs. campus etc.), but I am unsure whether or not to include it since it's aggregated to the yearly level. Unfortunately, my quest for daily-level data is looking much more grim after a few weeks of responses - most schools forward me to their Daily Crime Logs, or cite FERPA saying I cannot have the information. Therefore, the yearly level data might be my best shot although there are certainly a lot of problems when considering using it. I'd leave final judgment to the committee to weigh in on its appeal. 
 
 Finally, I plan to showcase only the main results of the paper in this document to see if they look convincing when looked at in isolation. Note that these tables are not presented in the form I want, but they contain essentially all of the information I want to show. 
 
@@ -78,7 +82,7 @@ Y_{u,t} = \beta_bWeekBefore_{u,t} + \beta_m Moratorium_{u,t} + \beta_a WeekAfter
 \end{equation}
 ```
 
-$WeekBefore_{u,t}$ and $WeekAfter_{u,t}$ are indicators equal to 1 if the university $u$ at time $t$ is 7 or fewer days away from a fraternity moratorium. I use a TWFE model where $\gamma_{u}$ are university fixed effects and $\alpha_{t}$ are day-by-month-by-year fixed effects. The intuitive comparison here is a moratorium day at a university compared across non-moratorium days at other universities while controlling for differences between the universitys' police department's reporting differences and systematic changes between a particular calendar date.
+$WeekBefore_{u,t}$ and $WeekAfter_{u,t}$ are indicators equal to 1 if the university $u$ at time $t$ is 7 or fewer days away from a fraternity moratorium. I use a TWFE model where $\gamma_{u}$ are university fixed effects and $\alpha_{t}$ are day-by-month-by-year fixed effects. The intuitive comparison here is a moratorium day at a university compared across non-moratorium days at other universities while controlling for differences between the university's police department's reporting differences and systematic changes between a particular calendar date.
 As shown in Table \ref{twfe_weights}, the TWFE model contains no negative weights and is therefore consistent with a treatment effect that has the same sign. 
 
 To allow more flexibility, I tweak the model's time fixed effects. In particular, I use the following combinations of fixed effects:
@@ -87,6 +91,12 @@ To allow more flexibility, I tweak the model's time fixed effects. In particular
 * university-by-semester-number and day-of-week - this allows for systematic changes within a university-semester, and thus gives a more "before-after within a university" interpretation while accounting to the level changes in offenses on particular days of the week. Note that any new estimator or decomposition cannot be done with this specification. Unsure whether the weights will be negative here, but most of the results remain consistent. 
 
 Note: One of the challenges of this model is that is does not fit into the TWFE literature exactly. For instance, the new estimators by Callaway and Santanna/Sun and Abram all assume a staggered adoption where once treated, you are treated forever after. Moreover, Goodman-Bacon's bacondecomposition only works for staggered adoptions. 
+
+```{r}
+twfe_weights %>% 
+  column_spec(1, width = "10em") %>% 
+  kable_styling(latex_options = "scale_down")
+```
 
 # Results
 
@@ -101,7 +111,10 @@ alc_table %>%
 
 ### Common Trends
 
-I estimate several event study regressions shown in \ref{es_alc}.
+I estimate several event study regressions shown in \ref{es_alc}. Note that I use two different methods for the event studies: aggregating to the weekly level and binning 7 day periods. When I aggregate to the weekly level, the most micro form of the data is at the week level. When I do not aggregate and bin 7 day periods, the data is still at the daily level, and hence, I can still use the day-by-month-by-year fixed effects. I am not confident which of these is the most preferred, but I assume people would want to see the trends for the preferred model. As of this point, I am still unsure which model is the most preferred (do I follow the results or do I follow intuition?).
+
+The results from these events studies are mostly good. While panel (a) appears to have 1 minor blip 4 weeks before the moratorium, I ran an F-test and found no joint significance across the pre-period. The other event studies look more convincing from just a visual perspective, and I don't see any reason why someone would think common trends does not hold here. I looked into the Jonathan Roth paper on common trends, and if necessary, I believe I can do his new method - but I haven't seen this done in any published work yet.
+
 ```{r, out.width='.49\\linewidth', fig.cap= "\\label{es_alc}Event studies for alcohol offenses. Event studies can either be aggregated to the weekly level, or binned into 7-day periods. Standard errors clustered at the university level.", fig.ncol = 2, fig.subcap= c("Not Aggregated. TWFE.","Not Aggregated. TWFE. Weekends only.","Aggregated. University-by-Semester FE","Aggregated. University-by-Semester. Weekends.", "Not Aggregated. university-by-semester fe")}
 es_alc_graph_day
 es_alc_graph_day_weekend
@@ -113,7 +126,7 @@ es_alc_graph_day_uni_sem
 
 ## Drug Offenses
 
-Table \ref{drug_offense} shows the results of the models estimated, but for drug offenses. The results are strong across nearly all specifications except for when using a university-by-semester fixed effect. However, the results are robust across poisson.
+Table \ref{drug_offense} shows the results of the models estimated, but for drug offenses. The results are strong across nearly all specifications except for when using a university-by-semester fixed effect. However, the results are robust across poisson. This leaves me with the question of which model should be the preferred specification - I am torn between model (1) and model (3) university-by-semester-number. I would prefer not to use model (2) simply because there are negative weights which could lead a referee to poo poo the results.
 
 ```{r}
 drug_table %>% 
@@ -122,7 +135,7 @@ drug_table %>%
 
 ### Common Trends
 
-I do a bunch of different event studies shown in Figure \ref{es_drug} 
+Similar to alcohol offenses, I do many different combinations of event studies as shown in Figure \ref{es_drug}. As before, I switch between aggregating to the weekly level and remaining at the daily level to keep the day-by-month-by-year fixed effects. Panel (a) and panel (b) look to be the most concerning to me, but the confidence intervals are so large here that I don't expect any pretrends - plus, an F-test rejected any pre-trends. Panel (d) looks great to me, but it's not using the method in which I can check for negative weights. Note that panel (d) also looked great for alcohol offenses too which is why I gravitate towards the university-by-semester-number model.
 
 ```{r, out.width='.49\\linewidth', fig.cap= "\\label{es_drug}Event studies for drug offenses. Event studies can either be aggregated to the weekly level, or binned into 7-day periods. Standard errors clustered at the university level.", fig.ncol = 2, fig.subcap= c("No Aggregated. TWFE.","No Aggregate.TWFE. Weekends only.","Aggregated. university-by-semester fe","Aggregated. university-by-semester. Weekends.", "Not Aggregated. university-by-semester fe")}
 es_drug_graph_day
@@ -135,7 +148,7 @@ es_drug_graph_day_uni_sem
 
 ## Sexual Assaults
 
-Table \ref{sex_offense} shows the results for sexual assault. However, I also attempted the same results but with omitting the week before moratorium which are shown in Table \ref{sex_offense_omit}.
+Table \ref{sex_offense} shows the results for sexual assault. Once I included the lead and lag weeks in the model, the effects for sexual assaults disappeared. These effects are robust across poisson estimation as well. Interestingly, poisson estimation shows significance in the week before moratorium for nearly all the models - just as you suspected. To combat this, I also estimated the same models but with omitting the week before moratorium which are shown in Table \ref{sex_offense_omit}. 
 
 ```{r}
 sex_table %>% 
@@ -155,6 +168,8 @@ sex_table_omit_weekbefore %>%
 
 ### Trends
 
+Figure \ref{es_drug} shows the event studies for sexual assault. The only difference between these and the previous event studies is that I included one extra specification where I omit the week before in panel (f). I think it is reasonable to assume in many of these specifications that I don't have parallel trends, but the results I have for sexual assault in the main tables aren't very spectacular after the model tweaks. 
+
 ```{r}
 source("Figures/event_study_omit_week.R")
 ```
@@ -166,5 +181,29 @@ es_sex_graph
 es_sex_weekends_graph
 es_sex_graph_day_uni_sem
 es_sex_omit
+```
+
+# Campus Safety and Security Data
+
+Unfortunately, this data is only at the yearly level. I cannot estimate an event study using this data since it would be too messy - some schools may be treated in fractions of many years, and there wouldn't be much of a pre-period here. However, I still estimate some regressions to see if I can get at any of the mechanisms. The figures here are pretty similar to last time, I just added in drug offenses as well. I am still waiting to hear back on all of  my FOIA requests, and as of now, I'm not getting the documents I was hoping to receive. In particular, one school forwarded me to their Daily Crime Logs, which actually does have address information (as do some of my other crime logs), but I think this would entail me geocoding the addresses and matching them within school boundary lines (similar to the water project). However, this might not be too hard if it's just for one school - I can wait and see what the others say.
+
+Results for using this data when compared to the Daily Crime Logs are shown in Figures \ref{clery_reg} and \ref{clery_reg_drug}. Note that "oncampus" is inclusive of residence halls.
+
+```{r}
+source("Figures/clery_regressions.R")
+source("Figures/clery_regressions_drug.R")
+```
+
+
+```{r}
+clery_reg_table %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r}
+clery_reg_table_drug %>% 
+  landscape()%>% 
+  kable_styling(latex_options = "scale_down")
 ```
 

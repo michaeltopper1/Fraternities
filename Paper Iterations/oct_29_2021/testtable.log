@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.9.29)  28 OCT 2021 13:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.9.29)  28 OCT 2021 16:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**proposed_method.tex
-(./proposed_method.tex
+**testtable.tex
+(./testtable.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27> (/Users/michaeltopper/Library/TinyTeX/texmf-d
 ist/tex/latex/base/article.cls
@@ -728,21 +728,8 @@ File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box80
 ))
 Package: l3keys2e 2021-08-27 LaTeX2e option processing using LaTeX3 keys
-)) (./proposed_method.aux
-
-LaTeX Warning: Label `tab:regressions' multiply defined.
-
-
-LaTeX Warning: Label `tab:regressions' multiply defined.
-
-
-LaTeX Warning: Label `es_drug' multiply defined.
-
-
-LaTeX Warning: Label `tab:unnamed-chunk-12' multiply defined.
-
-)
-\openout1 = `proposed_method.aux'.
+)) (./testtable.aux)
+\openout1 = `testtable.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 104.
 LaTeX Font Info:    ... okay on input line 104.
@@ -792,9 +779,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 104.
 LaTeX Info: Redefining \pageref on input line 104.
 LaTeX Info: Redefining \nameref on input line 104.
-(./proposed_method.out) (./proposed_method.out)
+(./testtable.out) (./testtable.out)
 \@outlinefile=\write3
-\openout3 = `proposed_method.out'.
+\openout3 = `testtable.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -876,218 +863,40 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 106
 .
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 112.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 112.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 112.
+[1
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.
-map}]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 166.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 166.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 166.
-[2]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-88.
-(/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [3] [4]
-Overfull \hbox (28.25655pt too wide) in paragraph at lines 243--272
- [][] 
- []
-
-[5]
-<proposed_method_files/figure-latex/unnamed-chunk-4-1.pdf, id=84, 469.755pt x 3
-25.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-4-1.p
-df  used on input line 299.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-4-2.pdf, id=85, 469.755pt x 3
-25.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-4-2.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-4-2.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-4-2.p
-df  used on input line 299.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-4-3.pdf, id=86, 469.755pt x 3
-25.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-4-3.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-4-3.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-4-3.p
-df  used on input line 299.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-4-4.pdf, id=87, 469.755pt x 3
-25.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-4-4.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-4-4.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-4-4.p
-df  used on input line 299.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-4-5.pdf, id=88, 469.755pt x 3
-25.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-4-5.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-4-5.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-4-5.p
-df  used on input line 299.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[6
-
-
-] [7 <./proposed_method_files/figure-latex/unnamed-chunk-4-1.pdf> <./proposed_m
-ethod_files/figure-latex/unnamed-chunk-4-2.pdf> <./proposed_method_files/figure
--latex/unnamed-chunk-4-3.pdf> <./proposed_method_files/figure-latex/unnamed-chu
-nk-4-4.pdf> <./proposed_method_files/figure-latex/unnamed-chunk-4-5.pdf>] [8]
-Overfull \hbox (13.89561pt too wide) in paragraph at lines 318--346
- [][] 
- []
-
-[9]
-<proposed_method_files/figure-latex/unnamed-chunk-6-1.pdf, id=159, 469.755pt x 
-325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-6-1.p
-df  used on input line 364.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-6-2.pdf, id=160, 469.755pt x 
-325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-6-2.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-6-2.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-6-2.p
-df  used on input line 364.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-6-3.pdf, id=161, 469.755pt x 
-325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-6-3.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-6-3.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-6-3.p
-df  used on input line 364.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-6-4.pdf, id=162, 469.755pt x 
-325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-6-4.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-6-4.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-6-4.p
-df  used on input line 364.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-6-5.pdf, id=163, 469.755pt x 
-325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-6-5.pdf Graphic file (ty
-pe pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-6-5.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-6-5.p
-df  used on input line 364.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[10
-
-
-] [11 <./proposed_method_files/figure-latex/unnamed-chunk-6-1.pdf> <./proposed_
-method_files/figure-latex/unnamed-chunk-6-2.pdf> <./proposed_method_files/figur
-e-latex/unnamed-chunk-6-3.pdf> <./proposed_method_files/figure-latex/unnamed-ch
-unk-6-4.pdf> <./proposed_method_files/figure-latex/unnamed-chunk-6-5.pdf>] [12]
-[13] [14]
-<proposed_method_files/figure-latex/unnamed-chunk-11-1.pdf, id=239, 469.755pt x
- 325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (t
-ype pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-11-1.
-pdf  used on input line 462.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-11-2.pdf, id=240, 469.755pt x
- 325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-11-2.pdf Graphic file (t
-ype pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-11-2.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-11-2.
-pdf  used on input line 462.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-11-3.pdf, id=241, 469.755pt x
- 325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-11-3.pdf Graphic file (t
-ype pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-11-3.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-11-3.
-pdf  used on input line 462.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-11-4.pdf, id=242, 469.755pt x
- 325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-11-4.pdf Graphic file (t
-ype pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-11-4.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-11-4.
-pdf  used on input line 462.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-11-5.pdf, id=243, 469.755pt x
- 325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-11-5.pdf Graphic file (t
-ype pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-11-5.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-11-5.
-pdf  used on input line 462.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<proposed_method_files/figure-latex/unnamed-chunk-11-6.pdf, id=244, 469.755pt x
- 325.215pt>
-File: proposed_method_files/figure-latex/unnamed-chunk-11-6.pdf Graphic file (t
-ype pdf)
-<use proposed_method_files/figure-latex/unnamed-chunk-11-6.pdf>
-Package pdftex.def Info: proposed_method_files/figure-latex/unnamed-chunk-11-6.
-pdf  used on input line 462.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[15
-
-
-
-
-] [16 <./proposed_method_files/figure-latex/unnamed-chunk-11-1.pdf> <./proposed
-_method_files/figure-latex/unnamed-chunk-11-2.pdf> <./proposed_method_files/fig
-ure-latex/unnamed-chunk-11-3.pdf> <./proposed_method_files/figure-latex/unnamed
--chunk-11-4.pdf> <./proposed_method_files/figure-latex/unnamed-chunk-11-5.pdf> 
-<./proposed_method_files/figure-latex/unnamed-chunk-11-6.pdf>] [17] [18] [19] (
-./proposed_method.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `proposed_method.out' has not changed.
-(rerunfilecheck)             Checksum: F112FACDCA3AF89F5F4335D13DC8C3DB;1333.
+map}] [2] (./testtable.aux)
+Package rerunfilecheck Info: File `testtable.out' has not changed.
+(rerunfilecheck)             Checksum: 6F4E1DB1D79B8FCBE9A23414E341527A;101.
  ) 
 Here is how much of TeX's memory you used:
- 18645 strings out of 480559
- 332082 string characters out of 5901947
- 669702 words of memory out of 5000000
- 35857 multiletter control sequences out of 15000+600000
- 478104 words of font info for 87 fonts, out of 8000000 for 9000
+ 18327 strings out of 480559
+ 320250 string characters out of 5901947
+ 654937 words of memory out of 5000000
+ 35622 multiletter control sequences out of 15000+600000
+ 467454 words of font info for 83 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,12n,108p,1358b,798s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
-}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.
-enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.
-enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.e
-nc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathi
-t.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lm
-bx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm
-/lmmi12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public
-/lm/lmmi8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/publ
-ic/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/pu
-blic/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/
-public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type
-1/public/lm/lmri12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/t
-ype1/public/lm/lmsy10.pfb>
-Output written on proposed_method.pdf (19 pages, 257187 bytes).
+ 108i,10n,108p,291b,770s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit
+.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.
+enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
+nc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx1
+2.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lm
+mi12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm
+/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/
+lm/lmr17.pfb>
+Output written on testtable.pdf (2 pages, 90317 bytes).
 PDF statistics:
- 389 PDF objects out of 1000 (max. 8388607)
- 314 compressed objects within 4 object streams
- 67 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 52 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
+ 6 named destinations out of 1000 (max. 500000)
+ 9 words of extra memory for PDF output out of 10000 (max. 10000000)
 
