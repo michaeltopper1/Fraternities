@@ -1,2 +1,0 @@
-readme
-For florida interantional, I was able to get in 2013-2014 without any trouble. THey are saved in the  .rda under crime_201314. However, 2015-2019 had issues with the first page, so I had to interactively gather the data. Hence, I have crime_201519.rda which does not include the first pages, then i have a ton of .csvs for each of the first pages which I still need to merge to together with crime_201519 (as of Jan. 20, 2021)
