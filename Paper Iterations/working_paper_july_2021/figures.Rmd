@@ -58,7 +58,7 @@ source("Figures/triggerplot_bylength.R")
 ```
 
 \begin{landscape}
-```{r, fig.cap= "\\label{trigger_plot}Average number of academic calendar days under moratorium by triggering event of moratorium.", fig.width= 44, fig.height= 30, out.width= "120%"}
+```{r, fig.cap= "\\label{trigger_plot}Average number of academic calendar days under moratorium by triggering event of moratorium.", fig.align = "center",fig.width= 44, fig.height= 36, out.width= "80%"}
 trigger_plot
 ```
 \end{landscape}
