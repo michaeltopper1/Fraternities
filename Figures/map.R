@@ -9,10 +9,10 @@ library(tidyverse)
 library(maps)
 
 if(!exists("daily_crime")) {
-  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+  daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
 }
 
-ifc_fraternities <- read_csv("Data/ifc_fraternity_count.csv")
+ifc_fraternities <- read_csv("data/ifc_fraternity_count.csv")
 
 us_states <- map_data("state") %>% 
   as_tibble()

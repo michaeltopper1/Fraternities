@@ -32,7 +32,7 @@ create_data_analysis_week <- function(x) {
 
 ## sourcing the clean_daily_crime_logs file which connects all of the cleaned crime logs togther
 ## and then creates new variables, and then collapses them
-source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
+source("code/cleaning_crime_log_files/append_daily_crime_logs_1.R")
 
 
 
@@ -66,7 +66,7 @@ daily_panel <- school_dates %>%
 
 
 ## now I need to pull in data that keeps track of which years I have missing
-missing_years <- readxl::read_xlsx("Data/campus_daily_crime_log/crime_log_list.xlsx",
+missing_years <- readxl::read_xlsx("data/campus_daily_crime_log/crime_log_list.xlsx",
                            sheet = "missing_years") %>% janitor::clean_names()
 
 
@@ -135,7 +135,7 @@ daily_panel <- daily_panel %>%
 
 
 ##### Last Step: pulling in the closure data and merging it with this final_panel
-closures <- readxl::read_xlsx("Data/closure_spreadsheet_final_2019.xlsx") %>% 
+closures <- readxl::read_xlsx("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
   select(university, date, deadline, date2, deadline2,
          university_enacted_1, university_enacted_2, reason1, reason2) %>% 
@@ -202,7 +202,7 @@ yearly_panel <- daily_panel %>%
 
 
 ### adding in IPEDS data
-ipeds <- read_csv("Created Data/IPEDS/ipeds_final.csv") %>% 
+ipeds <- read_csv("created_data/ipeds/ipeds_final.csv") %>% 
   filter(year > 2013)
 
 
@@ -248,4 +248,4 @@ yearly_panel <- yearly_panel %>%
 
 
 ## writing yearly panel
-write_csv(yearly_panel, file = "Created Data/xMaster_data_2021/yearly_panel_full_calendar.csv")
+write_csv(yearly_panel, file = "created_data/xmaster_data/yearly_panel_full_calendar.csv")

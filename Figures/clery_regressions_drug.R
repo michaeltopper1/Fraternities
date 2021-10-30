@@ -10,7 +10,7 @@ library(fixest)
 library(modelsummary)
 library(kableExtra)
 
-clery <- read_csv(here::here("Created Data/xMaster_data_2021/merged_clery.csv")) %>% 
+clery <- read_csv(here::here("created_data/xmaster_data/merged_clery.csv")) %>% 
   filter(university %in% ifc::moratorium_schools())
 
 clery %>% 

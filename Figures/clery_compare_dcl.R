@@ -9,8 +9,8 @@ library(tidyverse)
 library(lubridate)
 library(tidytext)
 
-discipline <- read_csv("Created Data/Clery_act_data/discipline.csv")
-crimes <- read_csv("Created Data/Clery_act_data/crime.csv")
+discipline <- read_csv("created_data/clery_act/discipline.csv")
+crimes <- read_csv("created_data/clery_act/crime.csv")
 
 clery <- discipline %>% 
   left_join(crimes)
@@ -32,7 +32,7 @@ clery <- clery %>%
            oncampus_rape + oncampus_fondl + oncampus_statr + oncampus_inces + publicproperty_rape + publicproperty_fondl +
            publicproperty_statr + publicproperty_inces)
 
-yearly_crime <- read_csv("Created Data/xMaster_data_2021/yearly_panel.csv") %>% 
+yearly_crime <- read_csv("created_data/xmaster_data/yearly_panel.csv") %>% 
   filter(year > 2013)
 
 

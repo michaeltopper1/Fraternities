@@ -1,3 +1,4 @@
 *appended_crime_logs.csv filter=lfs diff=lfs merge=lfs -text
 Created[[:space:]]Data/xMaster_data_2021/appended_crime_logs.csv filter=lfs diff=lfs merge=lfs -text
 Created[[:space:]]Data/nibrs/* filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text

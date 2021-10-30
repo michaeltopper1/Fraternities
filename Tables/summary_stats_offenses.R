@@ -9,7 +9,7 @@ library(kableExtra)
 
 ## Note that this is omitting the summer months of 6, 7, and 8. 
 if(!exists("daily_crime")) {
-  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv") %>% 
+  daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv") %>% 
     filter(university %in% ifc::moratorium_schools())
 }
 

@@ -21,7 +21,7 @@ lags <- c(1:lag_endpoint)
 
 
 # loading in the data -----------------------------------------------------
-weekly_crime <- read_csv("Created Data/xMaster_data_2021/weekly_panel.csv") %>% 
+weekly_crime <- read_csv("created_data/xmaster_data/weekly_panel.csv") %>% 
   filter(university %in% ifc::moratorium_schools())
 
 
@@ -86,7 +86,7 @@ weekly_crime <- weekly_crime %>%
 
 # getting semester numbers ------------------------------------------------
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv")
+daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
 
 daily_crime <- daily_crime %>% 
   mutate(date_floor = floor_date(date, unit = "week", week_start = 1))

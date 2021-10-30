@@ -7,7 +7,7 @@ lag_endpoint <- 9
 leads <- c(1:lead_endpoint)  *7
 lags <- c(1:lag_endpoint) * 7
 
-daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv") %>% 
+daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv") %>% 
   filter(university %in% ifc::moratorium_schools())
 
 daily_crime_es <- daily_crime %>% 

@@ -15,7 +15,7 @@ library(ifc)
 
 # identifier - pull from append_daily_crime_logs_1 ------------------------
 
-appended_crime_logs <-  read_csv("Created Data/xMaster_data_2021/appended_crime_logs.csv") %>% 
+appended_crime_logs <-  read_csv("created_data/xmaster_data/appended_crime_logs.csv") %>% 
   filter(university %in% ifc::moratorium_schools())
 
 alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|dwi|underage|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## got rid of disorderly conduct.
