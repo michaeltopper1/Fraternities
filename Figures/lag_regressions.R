@@ -4,7 +4,7 @@ library(readxl)
 library(fixest)
 library(modelsummary)
 
-appended_crime_logs <- read_csv("Created Data/xMaster_data_2021/appended_crime_logs.csv") %>% 
+appended_crime_logs <- read_csv("created_data/xmaster_data/appended_crime_logs.csv") %>% 
   filter(university %in% ifc::moratorium_schools())
 
 ## number of schools that have date occurred
@@ -45,7 +45,7 @@ collapsed_data_daily <- appended_crime_logs %>%
 # Creating Academic Calendar panels by semester ---------------------------
 
 ## pulling in the academic calendars
-academic_calendars <- read_csv("Data/academic_calendars.csv") %>% janitor::clean_names()
+academic_calendars <- read_csv("data/academic_calendars.csv") %>% janitor::clean_names()
 
 ## moving all calendar dates to start in 2014
 academic_calendars <- academic_calendars %>% 
@@ -123,7 +123,7 @@ date_occurred_panel <- panel %>%
 
 
 ## now I need to pull in data that keeps track of which years I have missing
-missing_years <- read_xlsx("Data/campus_daily_crime_log/crime_log_list.xlsx",
+missing_years <- read_xlsx("data/campus_daily_crime_log/crime_log_list.xlsx",
                            sheet = "missing_years") %>% janitor::clean_names()
 
 
@@ -181,7 +181,7 @@ date_occurred_panel <- date_occurred_panel %>%
 # Pulling in school closure data ------------------------------------------
 
 ##### Last Step: pulling in the closure data and merging it with this final_panel
-closures <- read_xlsx("Data/closure_spreadsheet_final_2019.xlsx") %>% 
+closures <- read_xlsx("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
   select(university, date, deadline, date2, deadline2,
          university_enacted_1, university_enacted_2, reason1, reason2) %>% 

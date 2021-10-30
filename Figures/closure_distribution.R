@@ -9,7 +9,7 @@ library(tidyverse)
 library(readxl)
 library(ggrepel)
 
-closures <- read_excel("Data/closure_spreadsheet_final_2019.xlsx") %>% 
+closures <- read_excel("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
   filter(!is.na(date))
 

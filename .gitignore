@@ -3,11 +3,12 @@
 .Rdata
 .httr-oauth
 *.DS_Store
-Data/campus_daily_crime_log/Texas Arlington
-Data/campus_daily_crime_log/
-Data/campus_daily_crime_log
+data/campus_daily_crime_log/Texas Arlington
+data/campus_daily_crime_log/
+data/campus_daily_crime_log
 tables_files/
-Data/Clery_act_data
+data/clery_act_data
 *.Renviron
-Data/nibrs
-Created Data/nibrs/
+data/nibrs
+created_data/nibrs/victim_data.csv
+created_data/nibrs/offense_data.csv

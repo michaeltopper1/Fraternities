@@ -15,7 +15,7 @@ library(haven)
 
 ## sourcing the clean_daily_crime_logs file which connects all of the cleaned crime logs togther
 ## and then creates new variables, and then collapses them
-source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
+source("code/cleaning_crime_log_files/append_daily_crime_logs_1.R")
 
 
 
@@ -29,7 +29,7 @@ universities <- appended_crime_logs %>% distinct(university) %>% pull(university
 # Creating Academic Calendar panels by semester ---------------------------
 
 ## pulling in the academic calendars
-academic_calendars <- read_csv("Data/academic_calendars.csv") %>% janitor::clean_names()
+academic_calendars <- read_csv("data/academic_calendars.csv") %>% janitor::clean_names()
 
 ## moving all calendar dates to start in 2014
 academic_calendars <- academic_calendars %>% 
@@ -123,7 +123,7 @@ daily_panel <- panel %>%
 # Changing NAs to 0s where applicable + missing data ----------------------
 
 ## now I need to pull in data that keeps track of which years I have missing
-missing_years <- read_xlsx("Data/campus_daily_crime_log/crime_log_list.xlsx",
+missing_years <- read_xlsx("data/campus_daily_crime_log/crime_log_list.xlsx",
                            sheet = "missing_years") %>% janitor::clean_names()
 
 
@@ -194,7 +194,7 @@ daily_panel <- daily_panel %>%
 # Pulling in school closure data ------------------------------------------
 
 ##### Last Step: pulling in the closure data and merging it with this final_panel
-closures <- read_xlsx("Data/closure_spreadsheet_final_2019.xlsx") %>% 
+closures <- read_xlsx("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
   select(university, date, deadline, date2, deadline2,
          university_enacted_1, university_enacted_2, reason1, reason2) %>% 
@@ -307,7 +307,7 @@ yearly_panel <- daily_panel %>%
 # Adding in IPEDS ---------------------------------------------------------
 
 ### adding in IPEDS data
-ipeds <- read_csv("Created Data/IPEDS/ipeds_final.csv") %>% 
+ipeds <- read_csv("created_data/ipeds/ipeds_final.csv") %>% 
   filter(year > 2013)
 
 daily_panel <-  daily_panel %>% 
@@ -525,14 +525,14 @@ daily_panel <- daily_panel %>%
 
 ## Note that all of these are only the academic calendars. These are going to be my final
 ## daily panel
-write_csv(daily_panel, file = "Created Data/xMaster_data_2021/daily_panel.csv")
+write_csv(daily_panel, file = "created_data/xmaster_data/daily_panel.csv")
 haven::write_dta(daily_panel %>% 
-                   select(-starts_with("fulltime_"), - starts_with("frac_"), -university_by_year_by_semester_number), path = 'Created Data/xMaster_data_2021/daily_panel.dta')
+                   select(-starts_with("fulltime_"), - starts_with("frac_"), -university_by_year_by_semester_number), path = 'created_data/xmaster_data/daily_panel.dta')
 ## weekly panel
-write_csv(weekly_panel, file = "Created Data/xMaster_data_2021/weekly_panel.csv")
-write_csv(weekly_panel_weekends, file = "Created Data/xMaster_data_2021/weekly_panel_weekends.csv")
-write_csv(weekly_panel_weekdays, file = "Created Data/xMaster_data_2021/weekly_panel_weekdays.csv")
+write_csv(weekly_panel, file = "created_data/xmaster_data/weekly_panel.csv")
+write_csv(weekly_panel_weekends, file = "created_data/xmaster_data/weekly_panel_weekends.csv")
+write_csv(weekly_panel_weekdays, file = "created_data/xmaster_data/weekly_panel_weekdays.csv")
 
 ## yearly panel
-write_csv(yearly_panel, file = "Created Data/xMaster_data_2021/yearly_panel.csv")
+write_csv(yearly_panel, file = "created_data/xmaster_data/yearly_panel.csv")
 

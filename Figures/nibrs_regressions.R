@@ -11,15 +11,15 @@ library(modelsummary)
 library(kableExtra)
 
 if (!exists("nibrs_all")) {
-  nibrs_schools <- read_csv("Created Data/nibrs/final_panel_all.csv")
+  nibrs_schools <- read_csv("created_data/nibrs/final_panel_all.csv")
 }
 
 if (!exists("nibrs_schools")) {
-  nibrs_schools <- read_csv("Created Data/nibrs/final_panel_schools.csv")
+  nibrs_schools <- read_csv("created_data/nibrs/final_panel_schools.csv")
 }
 
 if (!exists("nibrs_nonschools")){
-  nibrs_nonschools <- read_csv("Created Data/nibrs/final_panel_nonschools.csv")
+  nibrs_nonschools <- read_csv("created_data/nibrs/final_panel_nonschools.csv")
 }
 
 

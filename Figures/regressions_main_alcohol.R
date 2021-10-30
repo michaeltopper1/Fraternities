@@ -9,7 +9,7 @@ library(kableExtra)
 # loading in data ---------------------------------------------------------
 
 if (!exists("daily_crime")) {
-  daily_crime <- read_csv(here::here("Created Data/xMaster_data_2021/daily_panel.csv")) %>% 
+  daily_crime <- read_csv(here::here("created_data/xmaster_data/daily_panel.csv")) %>% 
     filter(university %in% ifc::moratorium_schools()) %>% 
     group_by(university, year, semester_number) %>% 
     mutate(university_by_year_by_semester_number = cur_group_id()) %>% 

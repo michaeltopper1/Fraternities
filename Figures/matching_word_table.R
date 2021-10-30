@@ -10,7 +10,7 @@ library(glue)
 library(ifc)
 
 ## getting in the data that I matched with 
-source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
+source("code/cleaning_crime_log_files/append_daily_crime_logs_1.R")
 
 ## table of words to match on
 alcohol_words <- alcohol_identifiers %>% 
