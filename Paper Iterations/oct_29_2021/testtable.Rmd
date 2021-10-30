@@ -44,59 +44,41 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r}
+source("Figures/triggerplot_bylength.R")
+```
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+\begin{landscape}
+```{r, fig.cap= "\\label{trigger_plot}Average number of academic calendar days under moratorium by triggering event of moratorium.", fig.align = "center",fig.width= 44, fig.height= 36, out.width= "80%"}
+trigger_plot
+```
+\end{landscape}
+
 
 ```{r}
-## Purpose of script:
-##
-## Author: Michael Topper
-##
-## Date Last Edited: 2021-05-16
-##
-
-library(modelsummary)
 library(tidyverse)
 library(kableExtra)
 
-if(!exists("daily_crime")) {
-  daily_crime <- read_csv("Created Data/xMaster_data_2021/daily_panel.csv") %>% 
-    filter(university %in% ifc::moratorium_schools())
-}
+data_used <- tibble(attributes = c("Source","Reporting Mandate", "Level of Aggregation", "Fraction of Sample Reporting Consistently", "Alcohol Violations", 
+                      "Sexual Assaults", "Drug Offenses", "Residence Hall Information" ,"Analysis in Paper"),
+       daily_crime_log = c(" Clery Act Requests", "By-law", "Incident-level", "1", "All Incidences Reported",
+                           "All Incidences Reported","All Incidences Reported", "No", "Main Analysis"),
+       clery = c("US Department of Education", "By-law", "Yearly", "1", "All Incidences Reported", "All Incidences",
+                 "All Incidences Reported","Yes", "Secondary"),
+       nibrs = c("FBI", "Voluntary", "Incident-level", as.character(round(14/38,3)), "Arrests Only", "All Incidences Reported",
+       "All Incidences Reported", "No", "Not Used"),
+       ucr = c("FBI", "Voluntary", "Monthly", as.character(round(30/38, 3)), "None","Hierarchy Rule",
+               "None", "No", "Not Used"))
+kbl(data_used, booktabs = T, digits = 3,
+    col.names = c("Characteristics", "Daily Crime Logs", "Campus Safety and Security", "NIBRS", "UCR")) %>%
+  kable_styling(latex_options = "scale_down") %>%
+  # add_header_above(c(" " = 1, "Main Analysis" = 1, "Secondary Analysis" = 1, "Unused" = 2)) %>% 
+  add_header_above(c(" " = 1, "Data Source" = 4)) %>% 
+  footnote(list("Hierarchy Rule is where only the most serious crime in an incident is reported.",
+                "While over 50 percent of UCR data is displayed to be reported consistently, it is actually truly unknown since NAs and 0s are the same.")) %>% 
+  row_spec(8, hline_after = T) %>%
+  column_spec(1, italic = T) %>% 
+  landscape()
 
-university_rows = data.frame("Total Number of Universities", "38", " ", " ", " ", " ")
-
-university_characteristics <- daily_crime %>%
-  mutate(private = ifelse(control_of_institution != "Public", 1, 0)) %>% 
-  datasummary((`Total Enrollment` = total_enrollment) + 
-                (`Total Undergrad Enrollment`=undergraduate_enrollment) + 
-                (`Fraction Asian` = frac_undergrad_asian) +
-                 (`Fraction Black`= frac_undergrad_black) + 
-                (`Fraction Hispanic` = frac_undergrad_hispanic_latino) +
-                (`Fraction White` = frac_undergrad_white) +
-                 (`Graduation Rate` = graduation_rate_total_cohort) + 
-                (`SAT Math 75` = sat_math_75) +
-                ( `SAT Reading 75` = sat_reading_75) +
-                (`Fraction Admitted` = frac_admitted_total) +
-                (`Fraction Private`=private) +
-                (`Alcohol Offense` = alcohol_offense_per25) + 
-                (`Sexual Assault` = sexual_assault_per25) +
-                (`Drug Offense` = drug_offense_per25) +
-                (`Robbery/Burglary` = robbery_burglary_per25) ~ (Mean + SD + Median + Min + Max), data = .,
-              title = "Summary statistics of the 38 universities in the sample and outcomes used in analysis.",
-              notes = 'Offenses are per-25000 students enrolled.',
-              add_rows = university_rows) %>% 
-  row_spec(15, hline_after = T) %>% 
-  row_spec(16, bold = T) %>% 
-  add_indent(c(2:6)) %>% 
-  add_indent(c(3:6)) %>% 
-  pack_rows("University Characteristics", 1, 11) %>% 
-  pack_rows("Daily Crime Log Offenses", 12, 15)
-
-```
-
-```{r}
-university_characteristics
 ```
 

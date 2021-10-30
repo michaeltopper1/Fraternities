@@ -28,18 +28,19 @@ length <- bind_rows(length_1, length_2)
 
 
 ## note: behavior contains conduct violations/bad bheavior/not following rules/racist activity/alcohol violations/hazing
-## note: unknown contains "national trends/
+## note: unspecified contains "national trends/
 length <- length %>% 
   mutate(reason = ifelse(reason == "bad behavior", "behavior", reason),
          reason = ifelse(reason == "conduct violation", "behavior", reason ),
          reason = ifelse(reason == "not following rules", "behavior", reason),
          reason = ifelse(reason == "racist", "racist activity", reason),
          reason = ifelse(reason == "trends", "national trends", reason), 
-         reason = ifelse(reason == "other", "unknown", reason),
+         reason = ifelse(reason == "other", "unspecified", reason),
          reason = ifelse(reason == "alcohol", "behavior", reason),
          reason = ifelse(reason == "hazing", "behavior", reason),
-         reason = ifelse(reason == "national trends", "unknown", reason),
+         reason = ifelse(reason == "national trends", "unspecified", reason),
          reason = ifelse(reason == "racist activity", "behavior", reason)) %>% 
+  mutate(reason = ifelse(reason == "unknown", "unspecified", reason)) %>% 
   mutate(reason = str_to_title(reason))
 
 length_graph <- length %>% 
@@ -63,9 +64,9 @@ trigger_plot <- length_graph %>%
   facet_wrap(~reason, scales = "free_y") +
   scale_x_reordered() +
   theme_light() +
-  labs(y = "Length of Moratorium in Days", x= "", fill = "", caption = "Note: Behavior contains conduct violations/racist activity/alcohol violations/hazing") +
+  labs(y = "Length of Moratorium in Days", x= "", fill = "") +
   theme_minimal() +
-  theme(legend.position ="bottom", legend.key.size = unit(.5, "cm"),
-        text = element_text(size = 30))
+  theme(legend.position ="bottom",
+        text = element_text(size = 45))
 
 
