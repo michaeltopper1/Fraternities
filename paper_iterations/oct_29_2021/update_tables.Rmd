@@ -1,0 +1,98 @@
+---
+title: "New Tables"
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+    # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \theoremstyle{definition}
+- \newtheorem{definition}{Definition}[section]
+- \newtheorem{assumption}{Assumption}
+- \newtheorem{theorem}{Theorem}[section]
+- \newtheorem{corollary}{Corollary}[theorem]
+- \newtheorem{lemma}[theorem]{Lemma}
+- \newtheorem*{remark}{Remark}
+- \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+- \newcommand{\indep}{\perp \!\!\! \perp}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+```{r}
+library(kableExtra)
+source("figures/regressions_semesters.R")
+source("figures/regression_semester_pois.R")
+```
+
+
+
+# Results from Aggregating
+
+I aggregated everything to the semester level. I estimated two separate models. The first labeled (1) is with university and semester-by-year fixed effects. The second labeled (2) is with university-by-semester-number (e.g. univeresity interacted with either spring or fall semester) and a year fixed effect.
+
+I estimated this two separate ways: one with OLS and one with Poisson. I don't think these look as robust as the other results, but at least the effects are still there and seem to be in line in magnitude to the other effects I saw with the other models.
+
+Lastly, I did a decomposition for model (1) using the DeChaismartin decomposition for negative weights. In this case, the TWFE estimator estimates a weighted sum of 64 ATTs where 55 of the ATTs receive positive weight and 9 receive negative weight. The sum of the positive weights is 1.01 while the sum of the negative weights is -.01. This TWFE estimator is compatible with a DGP where those ATT all are of a different sign than beta.
+
+
+Alcohol offenses are shown in Tables \ref{alc_offense} and \ref{alc_offense_p}. Drug offenses are shown in Tables \ref{drug_offense} and \ref{drug_offense_p}. Sexual assaults are shown in Tables \ref{sex_offense_p}.
+
+```{r}
+alc %>% 
+  landscape()
+```
+
+```{r}
+alc_p %>% 
+  landscape()
+```
+
+```{r}
+drug %>% 
+  landscape()
+```
+
+```{r}
+drug_p %>% 
+  landscape()
+```
+
+```{r}
+sex %>% 
+  landscape()
+```
+
+```{r}
+sex_p %>% 
+  landscape()
+```
+
+
+
+
+
+
