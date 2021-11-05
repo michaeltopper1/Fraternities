@@ -536,3 +536,144 @@ write_csv(weekly_panel_weekdays, file = "created_data/xmaster_data/weekly_panel_
 ## yearly panel
 write_csv(yearly_panel, file = "created_data/xmaster_data/yearly_panel.csv")
 
+
+
+
+# aggregating to semesters and saving --------------------------------------
+
+treatment_daily_crime <- daily_panel %>% 
+  group_by(semester_number, university, year) %>% 
+  summarize(treatment = mean(treatment))
+semester_level <- daily_panel %>% 
+  group_by(semester_number, university, year, .drop = F) %>% 
+  summarize(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary), ~sum(.,na.rm = T)))
+
+semester_level <- semester_level %>% 
+  left_join(treatment_daily_crime) %>% 
+  left_join(ipeds) %>% 
+  ungroup() %>% 
+  mutate(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary),
+                ~(./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
+  mutate(semester_season = ifelse(semester_number %% 2 == 0, 1,2)) %>% 
+  group_by(university, semester_season) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
+  ungroup()
+
+semester_level <- semester_level %>% 
+  group_by(university) %>% 
+  mutate(semester_before_dose = lead(treatment)) %>% 
+  mutate(semester_after_dose = lag(treatment)) %>% 
+  mutate(semester_before_dose = ifelse(semester_before_dose > 0 & treatment >0, 0, semester_before_dose),
+         semester_after_dose = ifelse(semester_after_dose > 0 & treatment > 0, 0, semester_after_dose)) %>% 
+  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(is.na(.), 0, .))) %>% 
+  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(. >0, 1, 0), .names = "{.col}_indicator")) %>% 
+  relocate(semester_number, university, treatment, semester_before_dose, semester_after_dose) %>% 
+  ungroup()
+
+
+
+# semester weekends only --------------------------------------------------
+
+
+daily_panel_weekends <- daily_panel %>%
+  filter(day_of_week == 'Fri' | day_of_week == "Sat" | day_of_week == "Sun")
+
+treatment_daily_crime_weekends <- daily_panel_weekends %>% 
+  group_by(semester_number, university, year) %>% 
+  summarize(treatment = mean(treatment))
+semester_level_weekends <- daily_panel_weekends %>% 
+  group_by(semester_number, university, year, .drop = F) %>% 
+  summarize(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary), ~sum(.,na.rm = T)))
+
+
+semester_level_weekends <- semester_level_weekends %>% 
+  left_join(treatment_daily_crime) %>% 
+  left_join(ipeds) %>% 
+  mutate(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary),
+                ~(./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
+  ungroup() %>% 
+  mutate(semester_season = ifelse(semester_number %% 2 == 0, 1,2)) %>% 
+  group_by(university, semester_season) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
+  ungroup()
+
+## indicators  before and after
+semester_level_weekends <- semester_level_weekends %>% 
+  group_by(university) %>% 
+  mutate(semester_before_dose = lead(treatment)) %>% 
+  mutate(semester_after_dose = lag(treatment)) %>% 
+  mutate(semester_before_dose = ifelse(semester_before_dose > 0 & treatment >0, 0, semester_before_dose),
+         semester_after_dose = ifelse(semester_after_dose > 0 & treatment > 0, 0, semester_after_dose)) %>% 
+  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(is.na(.), 0, .))) %>% 
+  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(. >0, 1, 0), .names = "{.col}_indicator")) %>% 
+  relocate(semester_number, university, treatment, semester_before_dose, semester_after_dose) %>% 
+  ungroup()
+
+
+# semester weekdays only --------------------------------------------------
+
+daily_panel_weekdays <- daily_panel %>% 
+  filter(day_of_week == "Mon" | day_of_week == "Thu" | day_of_week == "Wed" | day_of_week == "Tue" )
+
+## weekdays 
+treatment_daily_crime_weekdays <- daily_panel_weekdays %>% 
+  group_by(semester_number, university, year) %>% 
+  summarize(treatment = mean(treatment))
+semester_level_weekdays <- daily_panel_weekdays %>% 
+  group_by(semester_number, university, year, .drop = F) %>% 
+  summarize(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary), ~sum(.,na.rm = T)))
+
+semester_level_weekdays <- semester_level_weekdays %>% 
+  left_join(treatment_daily_crime) %>% 
+  left_join(ipeds) %>% 
+  mutate(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary),
+                ~(./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
+  ungroup() %>% 
+  mutate(semester_season = ifelse(semester_number %% 2 == 0, 1,2)) %>% 
+  group_by(university, semester_season) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
+  ungroup()
+
+## indicators before and after moratorium
+semester_level_weekdays <- semester_level_weekdays %>% 
+  group_by(university) %>% 
+  mutate(semester_before_dose = lead(treatment)) %>% 
+  mutate(semester_after_dose = lag(treatment)) %>% 
+  mutate(semester_before_dose = ifelse(semester_before_dose > 0 & treatment >0, 0, semester_before_dose),
+         semester_after_dose = ifelse(semester_after_dose > 0 & treatment > 0, 0, semester_after_dose)) %>% 
+  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(is.na(.), 0, .))) %>% 
+  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(. >0, 1, 0), .names = "{.col}_indicator")) %>% 
+  relocate(semester_number, university, treatment, semester_before_dose, semester_after_dose) %>% 
+  ungroup()
+
+
+# create quartiles and semester spring/fall -------------------------------
+
+get_quartile_columns <- function(df) {
+  ## find the quartiles of the treatment
+  quartiles <- df %>% 
+    filter(treatment > 0) %>% 
+    summarize(qunatile_treatments = quantile(treatment, c(0.25, 0.5, 0.75))) %>% 
+    pull()
+  ## put in indicators for quartiles and semester season
+  df <- df %>% 
+    mutate(quartile_1 = ifelse(between(semester_level$treatment,0.001, quartiles[[1]] ) , 1, 0),
+           quartile_2 = ifelse(between(treatment, quartiles[[1]], quartiles[[2]]), 1 ,0),
+           quartile_3 = ifelse(between(treatment, quartiles[[2]], quartiles[[3]]), 1, 0),
+           quartile_4 = ifelse(between(treatment, quartiles[[3]], 1), 1, 0)) %>% 
+    mutate(fall_semester = ifelse(semester_number %%2 == 0, 1, 0),
+           spring_semester = ifelse(semester_number %% 2 == 1, 1, 0))
+  return(df)
+}
+
+semester_level <- get_quartile_columns(semester_level)
+semester_level_weekdays <- get_quartile_columns(semester_level_weekdays)
+semester_level_weekends <- get_quartile_columns(semester_level_weekends)
+
+
+# writing semester files --------------------------------------------------
+
+
+write_csv(semester_level, file = "created_data/xmaster_data/semester_level.csv")
+write_csv(semester_level_weekends, file = "created_data/xmaster_data/semester_level_weekends.csv")
+write_csv(semester_level_weekdays, file ="created_data/xmaster_data/semester_level_weekdays.csv")
