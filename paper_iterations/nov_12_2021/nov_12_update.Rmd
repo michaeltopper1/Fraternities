@@ -1,0 +1,170 @@
+---
+title: "Update November 12"
+subtitle: ""
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    citation_package: natbib
+    # latex_engine: xelatex # If i hashtag it out my code works? I'm not sure
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \theoremstyle{definition}
+- \newtheorem{definition}{Definition}[section]
+- \newtheorem{assumption}{Assumption}
+- \newtheorem{theorem}{Theorem}[section]
+- \newtheorem{corollary}{Corollary}[theorem]
+- \newtheorem{lemma}[theorem]{Lemma}
+- \newtheorem*{remark}{Remark}
+- \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+- \newcommand{\indep}{\perp \!\!\! \perp}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+linkcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+# Summary of Update
+
+It turns out I was doing lags and leads incorrectly in the previous updates. In particular, I was turning off any lag that had a non-zero value at the same time as the treatment, which was incorrect. I have since fixed those issues and had Dick take a look at my data to make sure the model was doing what I wanted it to do. Unfortunately, using *correct* leads and lags lead to really noisy estimates in the semester-level data. My understanding is that this is the case due to the reference group in these regressions - since there are quite a few schools that don't have 2 semesters before or 2 semesters after the moratorium, the reference groups are the groups with a higher levels of crime which is why most of the coefficients on things like alcohol offenses are negative all over the place. I will leave final judgement to the triple threat trio committee, but the semester-level analysis looks a lot less convincing than the daily-level analysis after modifying my code.
+
+I am splitting this update into two main sections: the semester level analysis and the daily level analysis. The semester level analysis will show the baseline specifications and the heterogeneous effects by fraction of semester treated. The daily level analysis will show the baseline specifications and heterogeneous effects by length of moratorium, triggering event, IFC/university enacted (e.g. student vs. administrators), and some additional analysis on the first lag. 
+
+Since the model has changed to include 2 semesters/weeks before/after the moratorium (and the data has changed), I updated the TWFE weights in Table \ref{twfe_weights}. Unfortunately, I am not so lucky this time and every specification has negative weights. I reached out to Clement about using his estimator, and it looks like I'll have to tweak the data a little to match my model. In particular, Clement's estimator treats the period inbetween moratorium 1 and 2 as if the moratorium is still occuring.
+
+# Semester-level
+
+The baseline specifications for the semester-level data are shown in Tables \ref{alc_semester}, \ref{drug_semester}, and \ref{sex_semester}. Note that I could not do one specification (university-by-semester-year) due to collinearity issues. The story here does not look too clear to me. While there is evidence of non-statistical zeros for alcohol offenses in the second specification, the coefficients for the semesters before and after are all negative. This is strange, and I think it has to do with the unbalanced panel issue, so the reference group happens to be schools more "in the middle" of the sample that happen to be rather large. Drug offenses looks noisy to me, and sexual assaults have the same issue that alcohol offenses have, except I'd need to explain the weird drops in sexual assault cases in the semester after. 
+
+
+Heterogeneous effects at the semester-level for differences in the fraction of days within a semester treated (split by quartiles) are shown in Table \ref{quartile_semester} (full sample) and Table \ref{quartile_semester_weekend} (weekends). The biggest decreases for alcohol seem to come in the first quartile, which doesn't align with the daily-level data, and seems like a hard story to sell given that I'm aggregated up to such a high level and have lost so much precision. 
+
+
+# Daily-level
+
+As reference, I have put in a table of summary statistics in Table \ref{summary_stats}. This should help give reference to the means of the dependent variables since these are quite painful to add to the regression tables, and I was trying to put this document together rather quickly.
+
+The baseline specifications for the daily-level data are shown in Tables \ref{alc}, \ref{drug}, and \ref{sex}. In my opinion, the story looks more clear in these specifications, especially alcohol offenses. For alcohol offenses, the weeks before and weeks after have no statistical non-zeros, and their signs fluctuate around zero *somewhat* tightly. Drug offenses also tell a rather interesting story since the offenses are driven by weekday offenses rather than weekend offenses. However, the effects are at least showing up where they should be. For sexual assaults, the results don't seem perfect. While there is evidence of large decreases, these aren't significant and there are some strange effects going on in the weeks following. Could just be that these are super noisy estimates since sexual assaults are so rare. 
+
+Heterogeneous effects by length of moratoriums are shown in Table \ref{hetero_length}. Moreover, to get at the idea of whether lasting effects differ by length of moratorium, I regressed each outcome on the first lag (i.e. week after) interacted with the different quartiles of lengths. These coefficient estimates are shown in figure-form in Figure \ref{}. Heterogeneous effects by triggering event are shown in Table \ref{trigger_table}. Heterogeneous effects by whether the moratorium was enacted by the IFC or university are shown in Table \ref{ifc_hetero}.
+
+
+
+\newpage
+
+# Tables
+
+```{r}
+source("figures/twfe_weights.R")
+```
+
+```{r}
+twfe_weights %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r}
+source("figures/regressions_semester_nov_8.R")
+```
+
+```{r}
+alc_table_sem 
+```
+
+```{r}
+drug_table_sem 
+```
+
+```{r}
+sex_table_sem 
+```
+
+```{r}
+source("figures/regressions_semester_quartiles.R")
+```
+
+```{r}
+quartile_semester_table %>% 
+  landscape()
+```
+
+```{r}
+quartile_semester_table_weekends %>% 
+  landscape()
+```
+
+
+```{r}
+source("tables/summary_stats_university.R")
+```
+
+```{r}
+university_characteristics
+```
+
+```{r}
+source("figures/regressions_daily_nov_8.R")
+```
+
+```{r}
+alc_table 
+```
+```{r}
+drug_table 
+```
+```{r}
+sex_table 
+```
+
+```{r}
+source("figures/regressions_quartiles_daily_nov_8.R")
+```
+
+```{r}
+length_table %>% 
+  landscape()
+```
+
+```{r}
+source("figures/heteroeffects_trigger.R")
+```
+
+```{r}
+trigger_table
+```
+
+```{r}
+source("figures/heteroeffects_uni_ifc.R")
+```
+```{r}
+ifc_uni_table %>% 
+  landscape()
+```
+
+
+
+```{r,echo = F, fig.cap= "\\label{lag_on_outcome}Outcomes regressed on the week after moratorium interacted with an indicator for quartile length."}
+full_sample_lags
+```
+

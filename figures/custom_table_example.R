@@ -26,7 +26,8 @@ tab8 <- modelsummary(cyl8, "data.frame") %>%
 ar <- rbind(tab6, tab8)
 attr(ar, "position") <- 7:(7 + nrow(ar))
 
+modelsummary(cyl4)
 modelsummary(cyl4, add_rows = ar) %>% 
-  pack_rows("Cylinders: 4", 1, 6) %>% 
+  pack_rows("Cylinders: 4", 1, 6, italic = T, bold = F) %>% 
   pack_rows("Cylinders: 6", 7, 12) %>% 
   pack_rows("Cylinders: 8", 13, 18)

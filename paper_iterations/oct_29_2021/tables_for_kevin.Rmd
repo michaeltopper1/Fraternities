@@ -44,3 +44,9 @@ sex %>%
   landscape()
 ```
 
+```{r}
+full_table %>% 
+  kbl(booktabs = T) %>% 
+  pack_rows("Full Sample", 1, 7, bold = F, italic = T)
+```
+

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.11.1)  6 NOV 2021 21:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.11.1)  7 NOV 2021 23:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -700,7 +700,14 @@ ifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.204 \end{landscape}
-                     ] (./tables_for_kevin.aux)
+                     ] [5
+
+
+
+
+
+
+] (./tables_for_kevin.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -708,27 +715,28 @@ Package rerunfilecheck Info: File `tables_for_kevin.out' has not changed.
 (rerunfilecheck)             Checksum: E607A1BC6B09B8EF5ABBB8BA8DC965DF;74.
  ) 
 Here is how much of TeX's memory you used:
- 13943 strings out of 480539
- 242921 string characters out of 5901304
+ 13946 strings out of 480539
+ 242950 string characters out of 5901304
  539938 words of memory out of 5000000
- 31342 multiletter control sequences out of 15000+600000
- 442828 words of font info for 64 fonts, out of 8000000 for 9000
+ 31343 multiletter control sequences out of 15000+600000
+ 447091 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  70i,10n,81p,266b,780s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit
-.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.
-enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-math
-sy.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-e
-c.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lm
+{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
+}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
+enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.e
+nc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-maths
+y.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lm
 bx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm
 /lmmi10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public
 /lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/publ
 ic/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/pu
-blic/lm/lmsy10.pfb>
-Output written on tables_for_kevin.pdf (4 pages, 96063 bytes).
+blic/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1
+/public/lm/lmsy10.pfb>
+Output written on tables_for_kevin.pdf (5 pages, 108405 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
+ 80 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 500000)
  9 words of extra memory for PDF output out of 10000 (max. 10000000)
 
