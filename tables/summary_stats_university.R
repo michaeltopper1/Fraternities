@@ -15,7 +15,16 @@ if(!exists("daily_crime")) {
     filter(university %in% ifc::moratorium_schools())
 }
 
-university_rows = data.frame("Total Number of Universities", "38", " ", " ", " ", " ")
+
+
+moratoriums <- ifc::moratorium_lengths()
+moratorium_summary <- moratoriums %>% 
+  datasummary((`Length of Moratoriums` = length_moratorium) ~ (Mean + SD + Median + Min + Max ), data = .,
+              output = "data.frame") 
+moratorium_rows <- moratorium_summary %>%
+  add_row(` ` = "Total Number of Universities",`Mean` =  "38",`SD` = " ",`Median` =  " ", `Min` = " ", `Max` =" ")
+
+
 
 university_characteristics <- daily_crime %>%
   mutate(private = ifelse(control_of_institution != "Public", 1, 0)) %>% 
@@ -33,14 +42,16 @@ university_characteristics <- daily_crime %>%
                 (`Alcohol Offense` = alcohol_offense_per25) + 
                 (`Sexual Assault` = sexual_assault_per25) +
                 (`Drug Offense` = drug_offense_per25) +
-                (`Robbery/Burglary` = robbery_burglary_per25) ~ (Mean + SD + Median + Min + Max), data = .,
-              title = "Summary statistics of the 38 universities in the sample and outcomes used in analysis.",
-              notes = 'Offenses are per-25000 students enrolled.',
-              add_rows = university_rows) %>% 
-  row_spec(15, hline_after = T) %>% 
-  row_spec(16, bold = T) %>% 
+                (`Robbery/Burglary` = robbery_burglary_per25) ~ (Mean + SD + Median + Min + Max ), data = .,
+              title = "\\label{summary_stats}Summary statistics of the 38 universities in the sample and outcomes used in analysis.",
+              notes = list('Offenses are per-25000 students enrolled.',
+                           "Length of moratorium statistics are in academic calendar days."),
+              add_rows = moratorium_rows) %>% 
+  row_spec(16, hline_after = T) %>% 
+  row_spec(17, bold = F, italic = T) %>% 
   add_indent(c(2:6)) %>% 
   add_indent(c(3:6)) %>% 
-  pack_rows("University Characteristics", 1, 11) %>% 
-  pack_rows("Daily Crime Log Offenses", 12, 15)
+  pack_rows("University Characteristics", 1, 11, bold = T, italic = F) %>% 
+  pack_rows("Daily Crime Log Offenses", 12, 15, bold = T, italic = F) %>% 
+  pack_rows("Moratorium Characteristics", 16, 16, bold = T, italic = F) 
 

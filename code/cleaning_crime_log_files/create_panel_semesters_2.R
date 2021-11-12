@@ -505,19 +505,28 @@ weekly_panel_weekdays <- weekly_panel_weekdays %>%
 # creating week before and week after -------------------------------------
 
 daily_panel <- daily_panel %>% 
-  mutate(week_before_1 = closure_1 - days(7),
-         week_after_1 = closure_1_end + days(7),
-         week_before_2 = closure_2 - days(7),
-         week_after_2 = closure_2_end + days(7)) %>% 
-  mutate(week_before_1_r = ifelse(date >= week_before_1 & date < closure_1, 1, 0),
-         week_after_1_r = ifelse(date > closure_1_end & date <= week_after_1, 1, 0),
-         week_before_2_r = ifelse(date >= week_before_2 & date < closure_2, 1, 0),
-         week_after_2_r = ifelse(date > closure_2_end & date <= week_after_2, 1, 0)) %>% 
-  mutate(week_before = ifelse(week_before_1_r ==1 | week_before_2_r == 1, 1, 0),
-         week_after = ifelse(week_after_1_r ==1 | week_after_2_r == 1, 1, 0)) %>%
-  mutate(week_after = ifelse(week_after == 1 & treatment ==1 , 0, week_after)) %>%
-  mutate(week_before = ifelse(is.na(week_before), 0, week_before),
-         week_after = ifelse(is.na(week_after), 0, week_after))
+  group_by(university) %>% 
+  arrange(date) %>% 
+  mutate(week_before = lead(treatment, 7)) %>% 
+  mutate(week_before = ifelse(treatment ==1 & week_before ==1, 0, week_before)) %>% 
+  mutate(week_before_2 = lead(week_before,7)) %>% 
+  mutate(week_before_2 = ifelse(treatment == 1 & week_before_2 == 1, 0 , week_before_2)) %>% 
+  mutate(week_after = lag(treatment, 7)) %>% 
+  mutate(week_after = ifelse(treatment == 1 & week_after == 1, 0 , week_after)) %>% 
+  mutate(week_after_2 = lag(week_after, 7)) %>% 
+  mutate(week_after_2 = ifelse(treatment == 1 & week_after_2 == 1, 0 , week_after_2)) %>% 
+  mutate(across(starts_with("week_"), ~ifelse(is.na(.), 0, .))) %>% 
+  mutate(lead_1 = lead(treatment, 7)) %>% 
+  mutate(lead_2 = lead(lead_1, 7)) %>% 
+  mutate(lag_1 = lag(treatment, 7)) %>% 
+  mutate(lag_2 = lag(lag_1, 7)) %>% 
+  mutate(across(matches("^lead|^lag"), ~ifelse(is.na(.), 0, .))) %>% 
+  relocate(lead_2, lead_1, treatment, lag_1, lag_2, university) %>%  
+  # feols(c(sexual_assault_per25, alcohol_offense_per25, drug_offense_per25) ~ week_before_2 + week_before + treatment+ week_after + week_after_2 | day_of_week + university + semester_number,
+  #       cluster = ~university, data = .) %>% 
+  # filter(day_of_week == "Sat" | day_of_week == "Sun" | day_of_week == "Fri") %>% 
+  ungroup() %>% 
+  mutate(ifc_enacted = ifelse(university_enacted == 0 & treatment == 1, 1, 0))
 
 
 
@@ -559,17 +568,31 @@ semester_level <- semester_level %>%
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup()
 
-semester_level <- semester_level %>% 
+semester_level <- semester_level %>%  
   group_by(university) %>% 
-  mutate(semester_before_dose = lead(treatment)) %>% 
-  mutate(semester_after_dose = lag(treatment)) %>% 
-  mutate(semester_before_dose = ifelse(semester_before_dose > 0 & treatment >0, 0, semester_before_dose),
-         semester_after_dose = ifelse(semester_after_dose > 0 & treatment > 0, 0, semester_after_dose)) %>% 
-  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(is.na(.), 0, .))) %>% 
-  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(. >0, 1, 0), .names = "{.col}_indicator")) %>% 
-  relocate(semester_number, university, treatment, semester_before_dose, semester_after_dose) %>% 
+  arrange(year) %>% 
+  mutate(semester_before = lead(treatment)) %>% 
+  mutate(semester_after = lag(treatment)) %>% 
+  mutate(semester_before = if_else(semester_before >0 & treatment > 0, 0, semester_before)) %>% 
+  mutate(semester_after = if_else(semester_after >0  & treatment >0, 0, semester_after)) %>% 
+  mutate(semester_before_2 = lead(semester_before)) %>% 
+  mutate(semester_after_2 = lag(semester_after)) %>% 
+  mutate(semester_before_2 = if_else(semester_before_2 >0 & treatment > 0, 0, semester_before_2)) %>% 
+  mutate(semester_after_2 = if_else(semester_after_2 >0  & treatment >0, 0, semester_after_2)) %>% 
+  mutate(across(c(semester_before, semester_after,
+                  semester_before_2, semester_after_2), ~ifelse(. >0, 1, 0))) %>% 
+  mutate(across(c(semester_before, semester_after,
+                  semester_before_2, semester_after_2), ~ifelse(is.na(.), 0, .))) %>% 
+  mutate(lead_1 = lead(treatment)) %>% 
+  mutate(lead_2= lead(lead_1)) %>% 
+  mutate(lag_1= lag(treatment)) %>% 
+  mutate(lag_2 = lag(lag_1)) %>% 
+  mutate(across(c("lead_1", "lead_2",
+                  "lag_1",  "lag_2"), ~ifelse(is.na(.), 0, .))) %>% 
+  ungroup() %>% 
+  group_by(university, semester_number) %>% 
+  mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
   ungroup()
-
 
 
 # semester weekends only --------------------------------------------------
@@ -587,7 +610,7 @@ semester_level_weekends <- daily_panel_weekends %>%
 
 
 semester_level_weekends <- semester_level_weekends %>% 
-  left_join(treatment_daily_crime) %>% 
+  left_join(treatment_daily_crime_weekends) %>% 
   left_join(ipeds) %>% 
   mutate(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary),
                 ~(./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
@@ -597,16 +620,33 @@ semester_level_weekends <- semester_level_weekends %>%
   mutate(university_by_semester_number = cur_group_id()) %>% 
   ungroup()
 
+
+
 ## indicators  before and after
 semester_level_weekends <- semester_level_weekends %>% 
   group_by(university) %>% 
-  mutate(semester_before_dose = lead(treatment)) %>% 
-  mutate(semester_after_dose = lag(treatment)) %>% 
-  mutate(semester_before_dose = ifelse(semester_before_dose > 0 & treatment >0, 0, semester_before_dose),
-         semester_after_dose = ifelse(semester_after_dose > 0 & treatment > 0, 0, semester_after_dose)) %>% 
-  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(is.na(.), 0, .))) %>% 
-  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(. >0, 1, 0), .names = "{.col}_indicator")) %>% 
-  relocate(semester_number, university, treatment, semester_before_dose, semester_after_dose) %>% 
+  arrange(year) %>% 
+  mutate(semester_before = lead(treatment)) %>% 
+  mutate(semester_after = lag(treatment)) %>% 
+  mutate(semester_before = if_else(semester_before >0 & treatment > 0, 0, semester_before)) %>% 
+  mutate(semester_after = if_else(semester_after >0  & treatment >0, 0, semester_after)) %>% 
+  mutate(semester_before_2 = lead(semester_before)) %>% 
+  mutate(semester_after_2 = lag(semester_after)) %>% 
+  mutate(semester_before_2 = if_else(semester_before_2 >0 & treatment > 0, 0, semester_before_2)) %>% 
+  mutate(semester_after_2 = if_else(semester_after_2 >0  & treatment >0, 0, semester_after_2)) %>% 
+  mutate(across(c(semester_before, semester_after,
+                  semester_before_2, semester_after_2), ~ifelse(. >0, 1, 0))) %>% 
+  mutate(across(c(semester_before, semester_after,
+                  semester_before_2, semester_after_2), ~ifelse(is.na(.), 0, .))) %>% 
+  mutate(lead_1 = lead(treatment)) %>% 
+  mutate(lead_2= lead(lead_1)) %>% 
+  mutate(lag_1= lag(treatment)) %>% 
+  mutate(lag_2 = lag(lag_1)) %>% 
+  mutate(across(c("lead_1", "lead_2",
+                  "lag_1",  "lag_2"), ~ifelse(is.na(.), 0, .))) %>% 
+  ungroup() %>% 
+  group_by(university, semester_number) %>% 
+  mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
   ungroup()
 
 
@@ -624,7 +664,7 @@ semester_level_weekdays <- daily_panel_weekdays %>%
   summarize(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary), ~sum(.,na.rm = T)))
 
 semester_level_weekdays <- semester_level_weekdays %>% 
-  left_join(treatment_daily_crime) %>% 
+  left_join(treatment_daily_crime_weekdays) %>% 
   left_join(ipeds) %>% 
   mutate(across(c(sexual_assault, alcohol_offense, drug_offense, robbery_burglary),
                 ~(./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
@@ -637,13 +677,28 @@ semester_level_weekdays <- semester_level_weekdays %>%
 ## indicators before and after moratorium
 semester_level_weekdays <- semester_level_weekdays %>% 
   group_by(university) %>% 
-  mutate(semester_before_dose = lead(treatment)) %>% 
-  mutate(semester_after_dose = lag(treatment)) %>% 
-  mutate(semester_before_dose = ifelse(semester_before_dose > 0 & treatment >0, 0, semester_before_dose),
-         semester_after_dose = ifelse(semester_after_dose > 0 & treatment > 0, 0, semester_after_dose)) %>% 
-  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(is.na(.), 0, .))) %>% 
-  mutate(across(c(semester_before_dose, semester_after_dose), ~ifelse(. >0, 1, 0), .names = "{.col}_indicator")) %>% 
-  relocate(semester_number, university, treatment, semester_before_dose, semester_after_dose) %>% 
+  arrange(year) %>% 
+  mutate(semester_before = lead(treatment)) %>% 
+  mutate(semester_after = lag(treatment)) %>% 
+  mutate(semester_before = if_else(semester_before >0 & treatment > 0, 0, semester_before)) %>% 
+  mutate(semester_after = if_else(semester_after >0  & treatment >0, 0, semester_after)) %>% 
+  mutate(semester_before_2 = lead(semester_before)) %>% 
+  mutate(semester_after_2 = lag(semester_after)) %>% 
+  mutate(semester_before_2 = if_else(semester_before_2 >0 & treatment > 0, 0, semester_before_2)) %>% 
+  mutate(semester_after_2 = if_else(semester_after_2 >0  & treatment >0, 0, semester_after_2)) %>% 
+  mutate(across(c(semester_before, semester_after,
+                  semester_before_2, semester_after_2), ~ifelse(. >0, 1, 0))) %>% 
+  mutate(across(c(semester_before, semester_after,
+                  semester_before_2, semester_after_2), ~ifelse(is.na(.), 0, .))) %>% 
+  mutate(lead_1 = lead(treatment)) %>% 
+  mutate(lead_2= lead(lead_1)) %>% 
+  mutate(lag_1= lag(treatment)) %>% 
+  mutate(lag_2 = lag(lag_1)) %>% 
+  mutate(across(c("lead_1", "lead_2",
+                  "lag_1",  "lag_2"), ~ifelse(is.na(.), 0, .))) %>% 
+  ungroup() %>% 
+  group_by(university, semester_number) %>% 
+  mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
   ungroup()
 
 
@@ -677,3 +732,6 @@ semester_level_weekends <- get_quartile_columns(semester_level_weekends)
 write_csv(semester_level, file = "created_data/xmaster_data/semester_level.csv")
 write_csv(semester_level_weekends, file = "created_data/xmaster_data/semester_level_weekends.csv")
 write_csv(semester_level_weekdays, file ="created_data/xmaster_data/semester_level_weekdays.csv")
+
+write_csv(daily_panel_weekends , fil = "created_data/xmaster_data/daily_panel_weekends.csv")
+write_csv(daily_panel_weekdays, file = "created_data/xmaster_data/daily_panel_weekdays.csv")

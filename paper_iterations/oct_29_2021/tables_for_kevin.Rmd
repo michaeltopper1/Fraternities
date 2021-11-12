@@ -1,0 +1,52 @@
+---
+title: "Tables for Kevin: Baseline Specification"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning= F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(kableExtra)
+library(tidyverse)
+library(lubridate)
+library(modelsummary)
+library(maps)
+theme_set(theme_minimal())
+```
+
+```{r}
+source("figures/regressions_semesters.R")
+```
+
+# Tables
+
+Here are the tables. For "semester before" there is an indicator variable equal to 1 if the semester is the semester before a moratorium starts. For "semester after" there is an indicator variable equal to 1 if the semester is the semester following the end of a moratorium.
+
+Table \ref{alc_offense} shows the table of alcohol offenses aggregated to the semester level with two types of fixed effects specifications.  
+
+Table \ref{drug_offense} shows the table of drug offenses aggregated to the semester level with two types of fixed effects specifications.
+
+Table \ref{sex_offense} shows the table of sexual assault offenses aggregated to the semester level with two types of fixed effects specifications.
+
+
+```{r}
+alc %>% 
+  landscape()
+```
+
+```{r}
+drug %>% 
+  landscape()
+```
+
+```{r}
+sex %>% 
+  landscape()
+```
+
+```{r}
+full_table %>% 
+  kbl(booktabs = T) %>% 
+  pack_rows("Full Sample", 1, 7, bold = F, italic = T)
+```
+

@@ -181,3 +181,41 @@ sex <- modelsummary(sex_models, stars = T,
              gof_map = gm,
              add_rows = add_means_sex) %>% 
   add_header_above(c(" " = 1, "Full Sample" = 2, "Weekends (Fri-Sat)" = 2, "Weekdays (Mon-Thurs)" = 2))
+
+
+full_sample <- modelsummary(sex_models, output = "data.frame", stars = T,
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',
+             coef_map = c("semester_before_dose_indicator" = "Semester Before",
+                          "treatment" = "Moratorium",
+                          "semester_after_dose_indicator" = "Semester After"),
+             gof_map = gm) %>% 
+  mutate(term = ifelse(statistic == "modelsummary_tmp2", "", term)) %>% 
+  select(2, "one" = 4,"two" = 5) %>% 
+  slice(1:7) 
+
+
+weekends <- modelsummary(sex_models, output = "data.frame", stars = T,
+             gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',
+             coef_map = c("semester_before_dose_indicator" = "Semester Before",
+                          "treatment" = "Moratorium",
+                          "semester_after_dose_indicator" = "Semester After"),
+             gof_map = gm) %>% 
+  mutate(term = ifelse(statistic == "modelsummary_tmp2", "", term)) %>% 
+  select(2,"one"= 6,"two" = 7) %>% 
+  slice(1:7)
+
+weekdays <- modelsummary(sex_models, output = "data.frame", stars = T,
+                         gof_omit = 'DF|Deviance|AIC|BIC|Log|R2|St',
+                         coef_map = c("semester_before_dose_indicator" = "Semester Before",
+                                      "treatment" = "Moratorium",
+                                      "semester_after_dose_indicator" = "Semester After"),
+                         gof_map = gm) %>% 
+  mutate(term = ifelse(statistic == "modelsummary_tmp2", "", term)) %>% 
+  select(2,"one" = 8,"two" = 9) 
+
+full_table <- bind_rows(full_sample, weekends, weekdays)
+
+full_table %>% 
+  kbl(booktabs = T) %>% 
+  pack_rows("Full Sample", 1, 7, bold = F, italic = T)
+
