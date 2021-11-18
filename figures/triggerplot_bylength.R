@@ -59,7 +59,7 @@ trigger_plot <- length_graph %>%
   mutate(university = reorder_within(university, length, reason)) %>% 
   filter(!is.na(length)) %>% 
   ggplot(aes(university, length, fill = factor(university_enacted))) +
-  geom_col(alpha = 0.8) + coord_flip() +
+  geom_col(alpha = 0.5) + coord_flip() +
   geom_text(aes(label = length), color = "black", size = 10, hjust = -.1) +
   facet_wrap(~reason, scales = "free_y") +
   scale_x_reordered() +

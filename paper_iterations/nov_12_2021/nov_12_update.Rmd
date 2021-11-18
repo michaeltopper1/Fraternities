@@ -37,6 +37,8 @@ header-includes:
 - \floatplacement{figure}{H}
 - \usepackage{natbib}
 linkcolor: blue
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}

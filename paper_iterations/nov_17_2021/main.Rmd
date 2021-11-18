@@ -1,0 +1,113 @@
+---
+title: "Paper Outline"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+Paper for dummies.
+
+# Background on Fraternities
+
+* Figure: fraternity membership (Appendix A)
+
+# Moratoriums
+
+Answers why fraternity moratoriums occur, how long they last for, and how wide-spread is this practice across the US.
+
+* Figure - Distribution of lengths (Main Figure)
+* Figure - Distribution of why moratoriums happen (Main Figure)
+* Figure - Map of locations of universities (Main Figure? or Appendix?)
+* Table - List of schools and their dates (Appendix Figure)
+
+# Data
+
+Explains the construction of the data set. Why is this data unique? What benefits does this data have over other primary sources?
+
+* Example of crime log (Appendix Figure)
+* Benefits of this data over others figure (Appendix Figure)
+* Words used to match (Main Table)
+
+How well does this method of construction work?
+
+* Matching table results with top 15 from each category (Appendix table)
+
+
+What schools are in the data? What does the sample generally look like?
+
+* Summary Statistics Table - university characters + offense characteristics + moratorium characteristics (Main Table)
+
+# Empirical Strategy
+
+Explains strategy. Explain by saying this is not a true staggered adoption to halt the looming TWFE effects questions. This is not staggered, and schools go in-and-out of treatment with different lengths. Given this, no new TWFE estimator can cleanly deal with this empirical strategy. However, explain that the TWFE weights in the preferred specification (number (3)) has zero negative weights and therefore sign reversal is not concerning. 
+
+* TWFE weight table (Appendix? Is this necessary or can I just mention it?)
+
+Explain the assumptions of the model. Common trends a necessary assumption, along with no longterm effects. Mention that there are checks for each of these in the results section through leads and lags/an event study.
+
+* Event study with TWFE and F-test of trends (Appendix because isn't exactly what I want)
+
+# Main Results
+
+Tells the story of the effects. These have an effect on crimes that we would expect.
+
+* Table - goes through the varying specifications with different controls. (Main Table)
+
+Pick a preferred specification, probably the one that satisfies the TWFE no negative weights. Do these results show up where we think they would? Weekends/Weekdays?
+
+* Table - compares the full sample to weekend/weekdays - shows that weekends are where the effects are (Main Table)
+
+We might expect there to be lasting effects of these moratoriums. However, there is not, fraternities return and do "business-as-usual". Get at this with a lead/lag of two weeks.
+
+* Lead and Lag table of 2 weeks - Split by Full/Weekends/Weekdays (Mainn Table  OR Figure)
+
+Note that there is a "release the hounds" effect following the moratorium. Might want to further analysis on this.
+
+## Robustness
+
+Some crime papers like to use poisson regressions. Do the similar analysis, but with poisson regressions.
+
+* Poisson regression table to mimic the tables (Appendix)
+
+Does one school dictate these results? Could be that one school had one massive moratorium that drove the results:
+
+* Leave-one-out analysis with preferred specification (Main Figure or Appendix?)
+
+Are all crimes going down and it's just a product of more police?
+
+* Robbery/burglarly regressions (Main Table?)
+
+Do the moratoriums change reporting behavior and that's why we see effects?
+
+* Date reported - date occurred analysis (Main table?)
+
+# Heterogeneity
+
+## Lengths - What length is best?
+
+Does the length of the moratorium matter? Some schools have extremely long moratoriums, so the effects may fade.
+
+* Figure of the treatment effect broken down into weekly/monthly component (Main Figure)
+
+Does the length of the moratorium have an effect on what happens after the moratorium? Do longer ones have lasting effects?
+
+* Need a figure here? Hard question to answer.
+
+## Method of Oversight: Who should oversee these?
+
+Who should oversee these moratoriums? Should it be the university or the student's themselves?
+
+* Main Figure/Table of differences between IFC/University enforced.
+
+Why should we expect one to work over the other?
+
+## What type of triggering event has the biggest effects
+
+Some types of events may be more salient than others and cause bigger effects (e.g. a death). 
+
+* Table on differences in effects (Main Table)
+
