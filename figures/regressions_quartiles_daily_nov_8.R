@@ -7,6 +7,7 @@
 
 library(tidyverse)
 library(fixest)
+library(modelsummary)
 
 ## create an academic year variable
 ## aggregate by university the percentage of days within an academic year
@@ -44,15 +45,14 @@ moratorium_lengths <- daily_crime %>%
   filter(moratorium_id != 0) %>% 
   distinct(length_moratorium, university, moratorium_id) 
 
-quartiles <- quantile(moratorium_lengths$length_moratorium, c(0.25, 0.5, 0.75, 1))
+quartiles <- quantile(moratorium_lengths$length_moratorium, c(0.33, .66, 1))
 
 daily_crime <- daily_crime %>% 
   left_join(moratorium_lengths) %>% 
   mutate(length_moratorium = ifelse(is.na(length_moratorium), 0, length_moratorium)) %>% 
-  mutate(below_q25 = if_else(between(length_moratorium, 0.1,quartiles[[1]]), 1,0)) %>% 
-  mutate(between_q25_q50 = ifelse(between(length_moratorium, quartiles[[1]], quartiles[[2]]), 1, 0)) %>% 
-  mutate(between_q50_q75 = ifelse(between(length_moratorium, quartiles[[2]], quartiles[[3]]), 1, 0)) %>% 
-  mutate(above_q75 = ifelse(between(length_moratorium, quartiles[[3]], quartiles[[4]]), 1, 0))
+  mutate(below_q33 = if_else(between(length_moratorium, 0.1,quartiles[[1]]), 1,0)) %>% 
+  mutate(between_q33_q66 = ifelse(between(length_moratorium, quartiles[[1]], quartiles[[2]]), 1, 0)) %>% 
+  mutate(above_q66 = ifelse(between(length_moratorium, quartiles[[2]], quartiles[[3]]), 1, 0)) 
 
 
 
@@ -68,68 +68,53 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: date", "FE: Day-by-Month-by-Year", ~fmt,
               "FE: university_by_year_by_semester_number", "FE: University-by-Year-by-Semester-Number", ~fmt)
 
-length_full <- daily_crime %>% 
-  # filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") %>% 
-  feols(c(alcohol_offense_per25, drug_offense_per25, sexual_assault_per25) ~ lead_2 + lead_1 + treatment:below_q25 + treatment:between_q25_q50 +
-          treatment:between_q50_q75 + treatment:above_q75 + lag_1 + lag_2 |
-          university + date, cluster = ~university, data = .) %>% 
-  modelsummary(stars = T,
-               gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
-               coef_omit = "^l", output = "data.frame",
-               gof_map = gm) %>% 
-  mutate(term = ifelse(statistic == "modelsummary_tmp2", "", term)) %>% 
-  select(-part, - statistic)
+explanatory_vars <- c( "treatment:below_q33",
+                           "treatment:between_q33_q66", "treatment:above_q66")
+explanatory_vars_flex <- c("lead_2", "lead_1", "treatment:below_q33",
+                      "treatment:between_q33_q66", "treatment:above_q66", 
+                      "lag_1", "lag_2")
 
-length_weekend <- daily_crime %>% 
-  filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") %>%
-  feols(c(alcohol_offense_per25, drug_offense_per25, sexual_assault_per25) ~ lead_2 + lead_1 + treatment:below_q25 + treatment:between_q25_q50 +
-          treatment:between_q50_q75 + treatment:above_q75 + lag_1 + lag_2 |
-          university + date, cluster = ~university, data = .) %>% 
-  modelsummary(stars = T,
-               gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
-               coef_omit = "^l", output = "data.frame",
-               gof_map = gm) %>% 
-  mutate(term = ifelse(statistic == "modelsummary_tmp2", "", term)) %>% 
-  select(-part, - statistic, - term)
+fe <- c("university", "date")
 
 
-# create table ------------------------------------------------------------
+outcomes <- list("alcohol_offense_per25", "drug_offense_per25", "sexual_assault_per25")
 
 
-length_table <- bind_cols(length_full, length_weekend)
+# without leads and lags --------------------------------------------------
 
-length_table <- length_table %>% 
-  kbl(col.names = c(" ", "Alcohol", "Drug", "Sexual Assault", "Alcohol", "Drug", "Sexual Assault"),
-      booktabs = T,
-      caption = "\\label{hetero_length} Heterogeneous Effects: Difference in Lengths") %>% 
-  add_header_above(c(" " = 1, "Full Sample" = 3, "Weekends" = 3)) %>% 
-  kable_paper() %>% 
-  footnote(list("Standard errors clustered by university.", 
-                "2 leads and 2 lags for week before are included in the specification.",
-                "Each estimate represents a different percentile.",
-                "Percentiles are 25th, 50th, 75th"))
+quantile_estimates<- map(outcomes, ~ifc::reghdfe(daily_crime , .,explanatory_vars, fe, "university"))
+names(quantile_estimates) <- c("Alcohol Offense", "Drug Offense", "Sexual Assault")
 
 
+quantile_moratorium <- quantile_estimates_ll %>% modelplot(coef_map = c("treatment:below_q33" = "Moratorium Length:
+33rd Percentile",
+"treatment:between_q33_q66" = "Moratorium Length: 
+33rd-66th Percentile",
+"treatment:above_q66" = "Moratorium Length:
+Above 66th Percentile")) +
+  geom_vline(xintercept  = 0, linetype = "dotted", color = "red") +
+  coord_flip() +
+  facet_grid(~model) +
+  scale_color_manual(values=c("black", "black", "black")) +
+  theme_minimal() +
+  theme(legend.position = "none")
 
 
-# lag differentials by length ---------------------------------------------
+# with leads/lags ---------------------------------------------------------
 
-weekend_lags <- daily_crime %>% 
-  filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") %>% 
-  feols(c(alcohol_offense_per25, drug_offense_per25, sexual_assault_per25) ~treatment +lag_1:below_q25 + lag_1:between_q25_q50 +
-          lag_1:between_q50_q75 + lag_1:above_q75 |
-          university + date , cluster = ~university, data = .) %>% 
-  modelplot(coef_rename = c("treatment" = "Moratorium",
-                            "alcohol_offense_per25" = "Alcohol Offense")) +
-  geom_vline(xintercept = 0, color = "red", alpha = 0.4) +
-  labs(caption = "Fixed effects are university and day-by-month-by-year.")
+quantile_estimates_ll<- map(outcomes, ~ifc::reghdfe(daily_crime , .,explanatory_vars_flex, fe, "university"))
+names(quantile_estimates_ll) <- c("Alcohol Offense", "Drug Offense", "Sexual Assault")
 
-full_sample_lags <- daily_crime %>% 
-  feols(c(alcohol_offense_per25, drug_offense_per25, sexual_assault_per25) ~treatment +lag_1:below_q25 + lag_1:between_q25_q50 +
-          lag_1:between_q50_q75 + lag_1:above_q75 |
-          university + date , cluster = ~university, data = .) %>% 
-  modelplot(coef_rename = c("treatment" = "Moratorium",
-                            "alcohol_offense_per25" = "Alcohol Offense")) +
-  geom_vline(xintercept = 0, color = "red", alpha = 0.4) +
-  labs(caption = "Fixed effects are university and day-by-month-by-year.")
+
+quantile_moratorium_ll <- quantile_estimates_ll %>% modelplot(coef_map = c("lead_2" = "-2",
+                                                                           "lead_1" = "-1","treatment:below_q33" = "33rd",
+                         "treatment:between_q33_q66" = "33rd-66th",
+                         "treatment:above_q66" = "66th", "lag_1" = "1", "lag_2" = "2")) +
+  geom_vline(xintercept  = 0, linetype = "dotted", color = "red") +
+  coord_flip() +
+  facet_grid(~model) +
+  scale_color_manual(values=c("black", "blue", "red")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+  
 
