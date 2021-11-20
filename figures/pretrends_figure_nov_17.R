@@ -144,7 +144,7 @@ alc_trends_2 %>%
   geom_point(aes(shape =week)) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  scale_x_continuous(breaks = c(-1:1), labels = c("1-6 Weeks Before", "Moratorium in Place", "1-6 Weeks After")) +
+  scale_x_continuous(breaks = c(-1:1), labels = c("-6 Weeks", "Moratorium in Place", "+6 Weeks")) +
   facet_wrap(~week) +
   labs(x = " ", y = "Coefficient Estimate", linetype = " ", shape = " ")
 
@@ -156,7 +156,7 @@ drug_trends_2 %>%
   geom_point(aes(shape =week)) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  scale_x_continuous(breaks = c(-1:1), labels = c("1-6 Weeks Before", "Moratorium in Place", "1-6 Weeks After")) +
+  scale_x_continuous(breaks = c(-1:1), labels =c("-6 Weeks", "Moratorium in Place", "+6 Weeks")) +
   facet_wrap(~week) +
   labs(x = " ", y = "Coefficient Estimate", linetype = " ", shape = " ")
 
@@ -168,6 +168,6 @@ sex_trends_2 %>%
   geom_point(aes(shape =week)) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  scale_x_continuous(breaks = c(-1:1), labels = c("1-6 Weeks Before", "Moratorium in Place", "1-6 Weeks After")) +
+  scale_x_continuous(breaks = c(-1:1), labels = c("-6 Weeks", "Moratorium in Place", "+6 Weeks")) +
   facet_wrap(~week) +
   labs(x = " ", y = "Coefficient Estimate", linetype = " ", shape = " ")

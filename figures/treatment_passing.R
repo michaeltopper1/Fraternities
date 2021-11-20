@@ -41,13 +41,13 @@ daily_crime_within <- daily_crime %>%
 daily_crime_within <- daily_crime_within %>% 
   group_by(university) %>% 
   arrange(date) %>% 
-  mutate(within_1 = laag(closure_ind, c(0:6)),
-         within_2 = laag(closure_ind, c(7:13)),
-         within_3 = laag(closure_ind, c(14:20)),
-         within_4 = laag(closure_ind, c(21:27)),
-         within_two_months = laag(closure_ind, c(28:58)),
-         within_three_months = laag(closure_ind, c(59, 88)),
-         within_over_three_months = laag(closure_ind, c(89:500))
+  mutate(within_1 = laag(closure_ind, c(0:14)),
+         within_2 = laag(closure_ind, c(15:28)),
+         within_3 = laag(closure_ind, c(29:42)),
+         within_4 = laag(closure_ind, c(43:56)),
+         within_two_months = laag(closure_ind, c(57:70)),
+         within_three_months = laag(closure_ind, c(71, 84)),
+         within_over_three_months = laag(closure_ind, c(85:500))
          ) %>% 
   mutate(across(starts_with("within"), ~ifelse(treatment == 0 & . == 1, 0, .))) %>% 
   ungroup()
@@ -69,7 +69,7 @@ for (i in 1:length(explanatory_vars)){
 }
 
 ## creating timeline of the mutually exclusive treatments
-timeline <- c("Week 1", "Week 2", "Week 3", "Week 4", "Month 2", "Month 3", "Month 4-beyond")
+timeline <- c("Weeks 1 & 2", "Weeks 3 & 4", "Weeks 5 & 6", "Weeks 7 & 8", "Weeks 9 & 10", "Weeks 11 & 12", "Weeks 13+")
 timing <- tibble(number_identified_by, timeline, time = c(1:7))  %>% 
   mutate(timeline = glue::glue("{timeline} 
                                ({number_identified_by})"))
@@ -138,7 +138,8 @@ mprogression_alc <- alc_progression %>%
   scale_fill_manual(values=cbbPalette) +
   scale_color_manual(values = cbbPalette) +
   theme_minimal() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") +
+  facet_wrap(~day_type)
 
 
 mprogression_drug <- drug_progression %>% 
@@ -153,7 +154,9 @@ mprogression_drug <- drug_progression %>%
   scale_fill_manual(values=cbbPalette) +
   scale_color_manual(values = cbbPalette) +
   theme_minimal() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") +
+  facet_wrap(~day_type)
+
 
 mprogression_sex <- sex_progression %>% 
   bind_rows(sex_progression_weekend) %>% 
@@ -167,5 +170,6 @@ mprogression_sex <- sex_progression %>%
   scale_fill_manual(values=cbbPalette) +
   scale_color_manual(values = cbbPalette) +
   theme_minimal() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") +
+  facet_wrap(~day_type)
 

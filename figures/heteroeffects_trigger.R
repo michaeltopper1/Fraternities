@@ -10,6 +10,7 @@ library(fixest)
 library(modelsummary)
 library(lubridate)
 library(kableExtra)
+library(ggrepel)
 
 if(!exists("daily_crime")) {
   daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv") 
@@ -30,31 +31,62 @@ daily_crime_het <- daily_crime %>%
   mutate(reason_unknown = ifelse((reason1 == 'unknown' & (date >= closure_1 & date < closure_1_end)  & treatment == 1) 
                                  | (reason2 == 'unknown' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0))
 
-# daily_crime_het_weekends <- daily_crime_weekends %>% 
-#   mutate(across(c(reason1, reason2), ~ifelse(is.na(.), "untreated", .))) %>% 
-#   mutate(reason_sexual_assault = ifelse((reason1 == 'sexual assault' & (date >= closure_1 & date < closure_1_end)  & treatment == 1) 
-#                                         | (reason2 == 'sexual assault' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0)) %>% 
-#   mutate(reason_death = ifelse((reason1 == 'death' & (date >= closure_1 & date < closure_1_end)  & treatment == 1) 
-#                                | (reason2 == 'death' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0)) %>% 
-#   mutate(reason_behavior = ifelse((reason1 == 'behavior' & (date >= closure_1 & date < closure_1_end)  & treatment == 1) 
-#                                   | (reason2 == 'behavior' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0)) %>% 
-#   mutate(reason_unknown = ifelse((reason1 == 'unknown' & (date >= closure_1 & date < closure_1_end)  & treatment == 1) 
-#                                  | (reason2 == 'unknown' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0))
+daily_crime_het_weekends <- daily_crime_weekends %>%
+  mutate(across(c(reason1, reason2), ~ifelse(is.na(.), "untreated", .))) %>%
+  mutate(reason_sexual_assault = ifelse((reason1 == 'sexual assault' & (date >= closure_1 & date < closure_1_end)  & treatment == 1)
+                                        | (reason2 == 'sexual assault' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0)) %>%
+  mutate(reason_death = ifelse((reason1 == 'death' & (date >= closure_1 & date < closure_1_end)  & treatment == 1)
+                               | (reason2 == 'death' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0)) %>%
+  mutate(reason_behavior = ifelse((reason1 == 'behavior' & (date >= closure_1 & date < closure_1_end)  & treatment == 1)
+                                  | (reason2 == 'behavior' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0)) %>%
+  mutate(reason_unknown = ifelse((reason1 == 'unknown' & (date >= closure_1 & date < closure_1_end)  & treatment == 1)
+                                 | (reason2 == 'unknown' & (date >= closure_2 & date < closure_2_end) & treatment == 1) , 1, 0))
 
 offenses <- list("alcohol_offense_per25", "drug_offense_per25", "sexual_assault_per25")
 
-offenses_regs <- map(offenses, ~ifc::reghdfe(daily_crime_het,  ., c("lead_2", "lead_1","treatment:reason_sexual_assault",
-                                                                      "treatment:reason_death",
-                                                                      "treatment:reason_behavior",
-                                                                      "treatment:reason_unknown",
-                                                                      "lag_1", "lag_2"), c("university", "date"), "university"))
+explanatory_vars <- c("treatment:reason_sexual_assault",
+                      "treatment:reason_death",
+                      "treatment:reason_behavior",
+                      "treatment:reason_unknown")
 
-# offenses_regs_weekends <- map(offenses, ~ifc::reghdfe(daily_crime_het_weekends,  ., c("lead_2", "lead_1","treatment:reason_sexual_assault",
-#                                                                     "treatment:reason_death",
-#                                                                     "treatment:reason_behavior",
-#                                                                     "treatment:reason_unknown",
-#                                                                     "lag_1", "lag_2"), c("university", "date"), "university"))
-names(offenses_regs) <- c("Alcohol", "Drug", "Sexual Assault")
+fe <- c("university", "date")
+offenses_regs <- map(offenses, ~ifc::reghdfe(daily_crime_het,  ., explanatory_vars ,fe , "university"))
+
+offenses_regs_weekends <- map(offenses, ~ifc::reghdfe(daily_crime_het_weekends,  ., explanatory_vars
+                                                      , fe, "university"))
+
+
+
+
+trigger_regs <- c(offenses_regs, offenses_regs_weekends)
+
+trigger_regs <- map_df(trigger_regs, ~broom::tidy(., conf.int = T))
+
+type <- c(rep("Alcohol Offense", 4), rep("Drug Offense", 4), rep("Sexual Assault", 4), rep("Alcohol Offense", 4),
+  rep("Drug Offense", 4), rep("Sexual Assault", 4))
+
+week_type <- c(rep("Full Sample", 12), rep("Weekends (Fri-Sun)", 12))
+
+trigger_reg_graph <- tibble(trigger_regs, type, week_type) %>% 
+  mutate(model = case_when(
+    str_detect(term, "sexual_assault") ~ "Trigger: Sexual Assault",
+    str_detect(term, "death") ~"Trigger: Fraternity-related Death",
+    str_detect(term, "unknown") ~"Trigger: Unspecified",
+    str_detect(term, "behavior") ~"Trigger: Behavior")) %>% 
+  mutate(estimate = round(estimate, 3)) %>% 
+  ggplot(aes(type, estimate, group = week_type, color = week_type)) +
+  geom_point(aes(shape = type), position = position_dodge(width = 0.3),
+             show.legend = F) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), position = position_dodge(width = 0.3)) +
+  geom_hline(yintercept = 0, linetype = "dotted", color = "red", alpha = 0.8) +
+  facet_wrap(~model) +
+  labs(type = " ", group = " ", color = " ", x = " ", y = "Coefficient Estimates and 95% Confidence Intervals") +
+  scale_color_manual(values=c("#000000", "#0072B2")) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+  
+
+
 
 gm <- tribble(~raw, ~clean, ~fmt,
               "nobs", "Num.Obs", ~fmt,
