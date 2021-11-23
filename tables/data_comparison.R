@@ -20,13 +20,14 @@ data_used <- tibble(attributes = c("Source","Reporting Mandate", "Level of Aggre
                               "All Incidences Reported", "No", "Not Used"),
                     ucr = c("FBI", "Voluntary", "Monthly", as.character(round(30/38, 3)), "None","Hierarchy Rule",
                             "None", "No", "Not Used"))
-kbl(data_used, booktabs = T, digits = 3,
-    col.names = c("Characteristics", "Daily Crime Logs", "Campus Safety and Security", "NIBRS", "UCR")) %>%
+data_used <- kbl(data_used, booktabs = T, digits = 3,
+    col.names = c("Characteristics", "Daily Crime Logs", "Campus Safety and Security", "NIBRS", "UCR"),
+    caption = "\\label{data_used}Comparison of all the potential data sources for this project. The Daily Crime Logs are used for the main analysis due to the advantages it has over the other sources.") %>%
   kable_styling() %>%
   # add_header_above(c(" " = 1, "Main Analysis" = 1, "Secondary Analysis" = 1, "Unused" = 2)) %>% 
   add_header_above(c(" " = 1, "Data Source" = 4)) %>% 
   footnote(list("Hierarchy Rule is where only the most serious crime in an incident is reported.",
                 "While over 50 percent of UCR data is displayed to be reported consistently, it is actually truly unknown since NAs and 0s are the same.")) %>% 
   row_spec(8, hline_after = T) %>%
-  column_spec(1, italic = T, width = "6cm") %>% 
+  column_spec(1, italic = F, bold = T, width = "6cm") %>% 
   landscape()

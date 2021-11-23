@@ -70,10 +70,10 @@ main_table <- ifc::table_panels(alc, drug, sex) %>%
   pack_rows("Panel A: Alcohol Offenses", 1, 10, bold = F, italic = T) %>% 
   pack_rows("Panel B: Drug Offenses", 11, 20, bold = F, italic = T) %>% 
   pack_rows("Panel C: Sexual Assaults", 21, 30, bold = F, italic = T) %>% 
-  add_footnote(list("+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001",
-                    "Standard errors are clustered by university.",
+  footnote(list("Standard errors are clustered by university.",
                     "Offenses are per-25000 enrolled students.",
-                    "Moratorium is a temporary hault on fraternity-related activities with alcohol.")) 
+                    "Moratorium is a temporary hault on fraternity-related activities with alcohol.",
+                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) 
 
 # table 2: weekends vs. full sample ---------------------------------------
 
@@ -111,8 +111,8 @@ weekend_table <- ifc::table_panels(alc_weeksplit, drug_weeksplit, sex_weeksplit)
   pack_rows("Panel A: Alcohol Offenses", 1, 6, bold = F, italic = T) %>% 
   pack_rows("Panel B: Drug Offenses", 7, 12, bold = F, italic = T) %>% 
   pack_rows("Panel C: Sexual Assaults", 13, 18, bold = F, italic = T) %>% 
-  add_footnote(list("+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001",
-                    "Standard errors are clustered by university.",
+  footnote(list("Standard errors are clustered by university.",
                     "Offenses are per-25000 enrolled students.",
-                    "Moratorium is a temporary hault on fraternity-related activities with alcohol.")) 
+                    "Moratorium is a temporary hault on fraternity-related activities with alcohol.",
+                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) 
 

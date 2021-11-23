@@ -56,9 +56,9 @@ gm <- tribble(~raw, ~clean, ~fmt,
 robbery_table <- modelsummary(robbery, stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
              coef_map = c("treatment" = "Moratorium"),
              title = "\\label{robbery_table}Effect of Fraternity Moratoriums on Robbery/Burglary",
-             notes = list("Reports of robbery for ols regressions are per-25,000 students enrolled.",
+             notes = list("Reports of robbery/burglary for OLS regressions are per-25,000 students enrolled.",
              "Estimates include all days of the week (Mon-Sun).",
-             "Standard errors clustered by university"),
+             "Standard errors clustered by university."),
              add_rows = row_means,
              gof_map = gm) 
 
