@@ -139,7 +139,7 @@ mprogression_alc <- alc_progression %>%
   scale_color_manual(values = cbbPalette) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  facet_wrap(~day_type)
+  facet_wrap(~day_type, nrow = 2)
 
 
 mprogression_drug <- drug_progression %>% 
@@ -155,7 +155,7 @@ mprogression_drug <- drug_progression %>%
   scale_color_manual(values = cbbPalette) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  facet_wrap(~day_type)
+  facet_wrap(~day_type, nrow = 2)
 
 
 mprogression_sex <- sex_progression %>% 
@@ -171,5 +171,5 @@ mprogression_sex <- sex_progression %>%
   scale_color_manual(values = cbbPalette) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  facet_wrap(~day_type)
+  facet_wrap(~day_type, nrow = 2)
 

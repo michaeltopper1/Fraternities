@@ -1,0 +1,74 @@
+---
+title: "Tables"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- library(kableExtra) -->
+<!-- ``` -->
+
+# Tables
+
+```{r}
+source(paste0(here::here("Tables/matching_word_table.R")))
+```
+
+```{r}
+kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words/phrases used to pattern match on outcomes of interest. Each word to match represents a portion of a word to match on. For example, the word 'sex' will match on 'sexual assault' and 'sex offense' since 'sex' appears in each of these descriptions.") %>%
+  kable_styling(full_width = F) %>%
+  # column_spec(1, bold = T, color = "blue") %>%
+  column_spec(2, width = "30em") %>% kable_styling(latex_options = "HOLD_position") %>% 
+  footnote(list("'dwi' abbreviation for 'driving while intoxicated'.",
+                    "'dip' abbrevation for 'drunk in public'.",
+                    "'abcc' abbreviation for 'alcohol beverage control comission'.",
+                    "'pula' abbrevation for 'person under legal age'.",
+                    "'owi' abbreviation for 'operating while intoxicated'.",
+                    "'mip' abbreviation for 'minor in possesion'.",
+                    "'ovi' abbreivation for 'operating vehicle intoxicated'."))
+```
+
+
+```{r university_characteristics}
+source(paste0(here::here("tables/summary_stats_university.R")))
+```
+
+```{r}
+university_characteristics
+```
+
+
+```{r}
+source(here::here(paste0("tables/regressions_main.R")))
+```
+
+```{r}
+main_table %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r}
+weekend_table
+```
+
+```{r}
+source(here::here(paste0("tables/regression_placebo_robbery.R")))
+```
+
+
+```{r}
+robbery_table
+```
+
+```{r}
+source(here::here(paste0("figures/heteroeffects_uni_ifc.R")))
+```
+
+\begin{landscape}
+```{r}
+ifc_uni_table
+```
+\end{landscape}

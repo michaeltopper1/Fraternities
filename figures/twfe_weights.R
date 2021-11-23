@@ -62,11 +62,15 @@ twfe_decomp <- tibble(model_fixed_effects = c("University and Day-by-Month-by-Ye
 ## these numbers asssume that the lead and lags are correct
 twfe_weights <- kbl(twfe_decomp,
                 booktabs = T,
-                col.names = c("Model", "Sum of Positive Weights", "Sum of Negative Weights", "Number of Negative ATT", "Number of Positive ATT"),
-                caption = "\\label{twfe_weights}DeChaismartin decomposition of TWFE with primary models.") %>% 
+                col.names = c("Model", "Sum(+ Weights)", "Sum(- Weights)", "Count(Negative ATT)", "Count(Positive ATT)"),
+                caption = "\\label{twfe_weights}DeChaismartin decomposition of TWFE with primary models.
+                Reading from left to right: the first column represents the model specification,
+                the second column represents the sum of the positive weights, the third column represents the sum of the negative weights,
+                the fourth column represents the number of negative average treatment effects on the treated,
+                and the fifth column represents the number of postiive average treatment effects on the treated.
+                Note that NAs mean that the TWFEWeights package cannot estimate negative weights for a specification. ") %>% 
   kable_styling() %>% 
-  pack_rows("Daily-level Data", 1, 3) %>% 
-  column_spec(1, width = "10em") 
+  column_spec(1, width = "20em") 
 
 
 

@@ -65,12 +65,12 @@ trend_graph <- function(x) {
 
 # plots -------------------------------------------------------------------
 
-alcohol_trends %>% 
+a_trends <- alcohol_trends %>% 
   trend_graph() +
-  labs(x = "Weeks to moratorium", y = "Coefficient Estimate", linetype = " ", shape = " ") +
-  scale_x_continuous(labels = c("-2", "-1", "Moratorium in Place", "1", "2")) 
+  labs(x = "Weeks to moratorium", y = "Coefficient Estimate and 95 Percent Confidence Interval", linetype = " ", shape = " ") +
+  scale_x_continuous(labels = c("-2", "-1", "Moratorium", "1", "2")) 
 
-drug_trends %>% 
+d_trends <- drug_trends %>% 
   ggplot(aes(time, estimate)) +
   geom_line(aes(linetype = week)) +
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), fill = "light grey", alpha =0.5) +
@@ -78,11 +78,11 @@ drug_trends %>%
   geom_point(aes(shape =week)) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  scale_x_continuous(labels = c("-2", "-1", "Moratorium in Place", "1", "2")) +
+  scale_x_continuous(labels = c("-2", "-1", "Moratorium", "1", "2")) +
   facet_wrap(~week) +
-  labs(x = "Weeks to moratorium", y = "Coefficient Estimate", linetype = " ", shape = " ")
+  labs(x = "Weeks to moratorium", y = "Coefficient Estimate and 95 Percent Confidence Interval", linetype = " ", shape = " ")
 
-sex_trends %>% 
+s_trends <- sex_trends %>% 
   ggplot(aes(time, estimate)) +
   geom_line(aes(linetype = week)) +
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), fill = "light grey", alpha =0.5) +
@@ -90,9 +90,9 @@ sex_trends %>%
   geom_point(aes(shape =week)) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  scale_x_continuous(labels = c("-2", "-1", "Moratorium in Place", "1", "2")) +
+  scale_x_continuous(labels = c("-2", "-1", "Moratorium", "1", "2")) +
   facet_wrap(~week) +
-  labs(x = "Weeks to moratorium", y = "Coefficient Estimate", linetype = " ", shape = " ")
+  labs(x = "Weeks to moratorium", y = "Coefficient Estimate and 95 Percent Confidence Interval", linetype = " ", shape = " ")
 
 
 
@@ -136,7 +136,7 @@ sex_trends_2 <- map_df(data_2, ~ifc::reghdfe(., "sexual_assault_per25",explanato
   mutate(time = period_2)
 
 
-alc_trends_2 %>% 
+a_trends_2 <- alc_trends_2 %>% 
   ggplot(aes(time, estimate)) +
   geom_line(aes(linetype = week)) +
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), fill = "light grey", alpha =0.5) +
@@ -144,11 +144,11 @@ alc_trends_2 %>%
   geom_point(aes(shape =week)) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  scale_x_continuous(breaks = c(-1:1), labels = c("-6 Weeks", "Moratorium in Place", "+6 Weeks")) +
+  scale_x_continuous(breaks = c(-1:1), labels = c("-6", "Moratorium", "+6")) +
   facet_wrap(~week) +
-  labs(x = " ", y = "Coefficient Estimate", linetype = " ", shape = " ")
+  labs(x = " ", y = "Coefficient Estimate and 95 Percent Confidence Interval", linetype = " ", shape = " ")
 
-drug_trends_2 %>% 
+d_trends_2 <- drug_trends_2 %>% 
   ggplot(aes(time, estimate)) +
   geom_line(aes(linetype = week)) +
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), fill = "light grey", alpha =0.5) +
@@ -156,11 +156,11 @@ drug_trends_2 %>%
   geom_point(aes(shape =week)) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  scale_x_continuous(breaks = c(-1:1), labels =c("-6 Weeks", "Moratorium in Place", "+6 Weeks")) +
+  scale_x_continuous(breaks = c(-1:1), labels =c("-6", "Moratorium", "+6")) +
   facet_wrap(~week) +
-  labs(x = " ", y = "Coefficient Estimate", linetype = " ", shape = " ")
+  labs(x = " ", y = "Coefficient Estimate and 95 Percent Confidence Interval", linetype = " ", shape = " ")
 
-sex_trends_2 %>% 
+s_trends_2 <- sex_trends_2 %>% 
   ggplot(aes(time, estimate)) +
   geom_line(aes(linetype = week)) +
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), fill = "light grey", alpha =0.5) +
@@ -168,6 +168,6 @@ sex_trends_2 %>%
   geom_point(aes(shape =week)) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  scale_x_continuous(breaks = c(-1:1), labels = c("-6 Weeks", "Moratorium in Place", "+6 Weeks")) +
+  scale_x_continuous(breaks = c(-1:1), labels = c("-6", "Moratorium in Place", "+6")) +
   facet_wrap(~week) +
-  labs(x = " ", y = "Coefficient Estimate", linetype = " ", shape = " ")
+  labs(x = " ", y = "Coefficient Estimate and 95 Percent Confidence Interval", linetype = " ", shape = " ")

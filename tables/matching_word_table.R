@@ -84,5 +84,5 @@ top_burglary <- appended_crime_logs %>%
   mutate(incident = glue("({n}) {incident}")) %>% 
   head(30) %>%  select(incident) %>% rename("Robbery/Burglary Offense" = incident)
 
-top_categories <- bind_cols(top_sexual_assault, top_alcohol_offense, top_burglary)
+top_categories <- bind_cols(top_sexual_assault, top_alcohol_offense, top_drug_offense)
 

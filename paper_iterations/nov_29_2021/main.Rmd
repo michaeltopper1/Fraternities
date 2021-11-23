@@ -1,0 +1,208 @@
+---
+title: "Paper Outline"
+output: pdf_document
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+- \usepackage{pdflscape}
+linkcolor: blue
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(kableExtra)
+library(bookdown)
+library(modelsummary)
+library(fixest)
+```
+
+# Main Questions:
+
+* When I do heterogeneity analysis, should I use the preferred specification, or the preferred specification with the leads + lags? Right now, the triggering event figure does not have leads/lags, and the IFC/university enacted table does. I don't think that the results change too much with them.
+
+* Are Figures 10-12 worth seeing? Heather looked at them before when I had them binned at the 1 week level and thought I was reading tea-leaves. I binned at the 2 week level to get more power and I think this looks decent, but I'm also a sucker for a pretty figure.
+
+* Still unsure whether to include the event study graphs or not. Here I put in the lead/lag figures so that we can see the big dip. I provided two types of figures, one where I include 2 leads and lags by 1 week each, and one where I have 1 lead and lag that is at the 6 week level  (the approximate median of moratorium length - things get a little sketchier if I go too far out). If people want to see event studies, I can throw them in the appendix with everything else with a big disclaimer explaining why they don't look terrific. They still pass an F-test, so I don't think I'm hiding anything - just doesn't look as appealing.
+
+
+# Introduction
+
+Paragraph 1: Why is this important? Why is this potentially interesting? Is there a clear cut answer that is obvious, or is the answer not-so obvious?
+
+This paper is important because it is the first to estimate the causal effects of fraternity campus-wide moratoriums on crime. Moratoriums became a common policy technique for school administrators and student-groups to employ on their school fraternity life. In particular, the policy involves placing a temporary ban on all fraternity social events with alcohol. This technique is most commonly used after an unexpected shock to fraternity life at a university. These shocks come in the form of fraternity related deaths, behavior violations (e.g. hazing violations/inappropriate behavior gone viral ), or sexual assault allegations. 
+
+How these moratoriums actually effect student behavior across the university is ambiguous. On one hand, prohibiting alcohol from fraternities may reduce alcohol consumption through several channels. First, fraternities are a common source of alcohol for underage drinking, as fraternities are typically a mix of students aging 18 to 22 (e.g. freshman - seniors). The inclusion of legal-age drinkers and large open-invitation social events allows for easy access to alcohol for underage students. Second, fraternities tend to live in their own private residences and host their social events within their residences. These houses are free from the typical university oversight such as residence-hall employees that could potentially intervene if rules are being violated or behavior is getting too dangerous. Hence, the lack of alcohol at these large, unregulated events with easy access to alcohol may decrease the amount of alcohol consumption. On the other hand, there are several mechanisms as to why these policies may have the opposite effect. First, without fraternity events, students may substitute away from consuming alcohol at fraternity houses to potentially riskier places. As a stylized example, members could continue to consume alcohol socially, but do so in locations that are far away from any potential oversight. Second, there could be a defier effect where fraternity members now want to engage in *more* alcoholic activities now that it is prohibited. Therefore, it is not clear how moratoriums will affect behavior across a university campus.
+
+
+
+
+
+2: what do you know? 
+
+*Alcohol Literature*
+
+We know that college partying leads to more sexual assault using variation in sports games (Lindo/White). We know that harsher punishment (through zero-tolerance driving laws) leads to less drinking among college-aged individuals (Liang and Huang). More financial aid leads to more heavy binge drinking (Cowan). Legal access to alcohol hinders academic performance (Ha and Smith).
+
+Why do we care about alcohol? Alcohol is bad because it can lead to undesirable actions such as increased assaults (Dobkin), sexual assault victimization (Hansen/Chalfin), lower GPA, reduced cognition etc. Find some papers to back all of these things.
+
+
+*Fraternity Literature*
+
+We know that fraternity membership increases the likelihood of graduating on-time, and has a small negative impact on grades (Routon and Walker/Mara, Davis, Schmidt). If a roommate joins a fraternity, then more likely for that person to join (Sacerdote). 
+
+
+3: what we don’t know? Why don’t we know this? What are the frictions?
+
+We don't know how fraternity activity causally affect campus-wide alcohol/drug/sexual assault behaviors. This is because of a lack of variation, and the difficulty in obtaining data. We also don't know how much fraternities contribute to alcohol problems in universities since it has, until now, been impossible to link fraternity behavior to alcohol violations with the data that is available. 
+
+4: what you do
+
+I use the variation in timing from campus-wide moratoriums across 38 universities to estimate the causal effect of moratoriums on alcohol, drug, and sexual assault offenses. I construct a novel data set that contains fraternity moratorium dates linked with incidence-level reports of all crimes that are reported by each university police department. I use a difference-in-differences design and find that moratoriums decrease alcohol offenses by BLANK campus wide. These effects are most salient on the weekend days (Fri-Sun). Moreover, I find evidence that drug offenses also decline during these moratoriums, although there is little evidence to support reductions in sexual assault offenses.  
+
+# Background on Fraternities
+
+Questions to answer: who are in fraternities? Why do fraternities exist? What percentage of universities are fraternities? What is the difference between an IFC fraternity and a "business" or "multi-cultural" fraternity? What do you have to do to be in a fraternity? How do people perceive fraternities? 
+
+There are multiple types of fraternities in a university setting, however, the ones I focus on are the Interfraternity Council (IFC) fraternities. 
+
+* Figure: fraternity membership guidelines (Appendix A)
+
+# Moratoriums
+
+Answers why fraternity moratoriums occur, how long they last for, and how wide-spread is this practice across the US.
+
+Moratoriums occur because of a particular triggering event. This event can be a prominent sexual assault allegation, a fraternity-related death (usually due to alcohol poisoning), or bad behavior that was brought to light (e.g. a hazing violation or inappropriate behavior caught on video and gone viral). 
+
+Moratoriums can be implemented by two sources of jurisdictions: the university or the Interfraternity Council. When a moratorium is implemented by the university, the university sets the guidelines that fraternities must abide by during the moratorium. On the other hand, an IFC-implemented moratorium is student-enforced. This means that the overarching IFC council (a group of student representatives from each fraternity chapter) is responsible for oversight. Heterogeneity analysis on the differences between these is explored later in the paper.
+
+It is not always known how long a fraternity moratorium will last when a university implements one. For instance, some universities may "re-evaluate" the situation in a set amount of time or impose certain criteria that fraternities must abide by in order to lift the moratorium (e.g. sexual assault training). In other cases, moratoriums may be cut short by outside pressures from the fraternities themselves. 
+
+* Figure - Distribution of lengths (Main Figure)
+* Figure - Distribution of why moratoriums happen (Main Figure)
+* Figure - Map of locations of universities (Main Figure? or Appendix?)
+* Table - List of schools and their dates (Appendix Figure)
+
+# Data
+
+Explains the construction of the data set. Why is this data unique? What benefits does this data have over other primary sources?
+
+* Example of crime log (Appendix Figure)
+* Benefits of this data over others figure (Appendix Figure)
+* Words used to match (Main Table)
+
+How well does this method of construction work?
+
+* Matching table results with top 15 from each category (Appendix table)
+
+
+What schools are in the data? What does the sample generally look like?
+
+* Summary Statistics Table - university characters + offense characteristics + moratorium characteristics (Main Table)
+
+# Empirical Strategy
+
+Explains strategy. Explain by saying this is not a true staggered adoption to halt the looming TWFE effects questions. This is not staggered, and schools go in-and-out of treatment with different lengths. Given this, no new TWFE estimator can cleanly deal with this empirical strategy. However, explain that the TWFE weights in the preferred specification (number (3)) has zero negative weights and therefore sign reversal is not concerning. 
+
+* TWFE weight table (Appendix? Is this necessary or can I just mention it?)
+
+Explain the assumptions of the model. Common trends a necessary assumption, along with no longterm effects. Mention that there are checks for each of these in the results section through leads and lags/an event study.
+
+* Event study with TWFE and F-test of trends (Appendix because isn't exactly what I want)
+
+# Main Results
+
+Tells the story of the effects. These have an effect on crimes that we would expect.
+
+* Table - goes through the varying specifications with different controls. (Main Table)
+
+Pick a preferred specification, probably the one that satisfies the TWFE no negative weights. Do these results show up where we think they would? Weekends/Weekdays?
+
+* Table - compares the full sample to weekend/weekdays - shows that weekends are where the effects are (Main Table)
+
+We might expect there to be lasting effects of these moratoriums. However, there is not, fraternities return and do "business-as-usual". Get at this with a lead/lag of two weeks.
+
+* Lead and Lag table of 2 weeks - Split by Full/Weekends/Weekdays (Main Table  OR Figure)
+
+Note that there is a "release the hounds" effect following the moratorium. Might want to further analysis on this.
+
+## Robustness
+
+Some crime papers like to use poisson regressions. Do the similar analysis, but with poisson regressions.
+
+* Poisson regression table to mimic the tables (Appendix)
+
+Does one school dictate these results? Could be that one school had one massive moratorium that drove the results:
+
+* Leave-one-out analysis with preferred specification (Main Figure or Appendix?)
+
+Are all crimes going down and it's just a product of more police?
+
+* Robbery/burglary regressions (Main Table?)
+
+Do the moratoriums change reporting behavior and that's why we see effects?
+
+* Date reported - date occurred analysis (Main table?)
+
+# Heterogeneity
+
+## Lengths - What length is best?
+
+Does the length of the moratorium matter? Some schools have extremely long moratoriums, so the effects may fade.
+
+* Figure of the treatment effect broken down into weekly/monthly component (Main Figure)
+
+Does the length of the moratorium have an effect on what happens after the moratorium? Do longer ones have lasting effects?
+
+* Need a figure here? Hard question to answer.
+
+## Method of Oversight: Who should oversee these?
+
+Who should oversee these moratoriums? Should it be the university or the student's themselves?
+
+* Main Figure/Table of differences between IFC/University enforced.
+
+Why should we expect one to work over the other?
+
+## What type of triggering event has the biggest effects
+
+Some types of events may be more salient than others and cause bigger effects (e.g. a death). 
+
+* Table on differences in effects (Main Table)
+
+
+```{r, child = "figures.Rmd"}
+
+```
+
+```{r, child = "tables.Rmd"}
+
+```
+
+
+\newpage
+```{=tex}
+\appendix
+\renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{A\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+
+
+
+```{r, child="appendix.Rmd"}
+
+```
+
+

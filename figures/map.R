@@ -18,6 +18,7 @@ ifc_fraternities <- read_csv("data/ifc_fraternity_count.csv") %>%
 us_states <- map_data("state") %>% 
   as_tibble()
 
+detach("package:maps", unload = TRUE)
 
 ipeds <- read_csv("created_data/ipeds/ipeds_final.csv") %>% 
   filter(university %in% ifc::moratorium_schools())
