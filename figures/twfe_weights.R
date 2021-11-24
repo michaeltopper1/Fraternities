@@ -56,7 +56,7 @@ twfe_decomp <- tibble(model_fixed_effects = c("University and Day-by-Month-by-Ye
        positive_weights_sum = c("1", "1.01", "NA"),
        negative_weights_sum = c("0", "-0.01","NA"),
        number_of_att_negative = c("0", "10", "NA"),
-       number_of_att_positive = c("2843", "64", "NA"))
+       number_of_att_positive = c("2865", "64", "NA"))
 
 
 ## these numbers asssume that the lead and lags are correct

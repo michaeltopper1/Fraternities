@@ -3,6 +3,7 @@ library(lubridate)
 library(readxl)
 library(fixest)
 library(modelsummary)
+library(kableExtra)
 
 appended_crime_logs <- read_csv("created_data/xmaster_data/appended_crime_logs.csv") %>% 
   filter(university %in% ifc::moratorium_schools())
@@ -183,12 +184,14 @@ date_occurred_panel <- date_occurred_panel %>%
 ##### Last Step: pulling in the closure data and merging it with this final_panel
 closures <- read_xlsx("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
-  select(university, date, deadline, date2, deadline2,
-         university_enacted_1, university_enacted_2, reason1, reason2) %>% 
+  select(university, date, deadline, date2, deadline2,date3, deadline3,
+         university_enacted_1, university_enacted_2, university_enacted_3, reason1, reason2, reason3) %>% 
   rename("closure_1" = date,
          "closure_1_end" = deadline,
          "closure_2" = date2,
-         "closure_2_end" = deadline2)
+         "closure_2_end" = deadline2,
+         "closure_3" = date3,
+         "closure_3_end" = deadline3)
 
 
 
@@ -197,56 +200,129 @@ date_occurred_panel <- date_occurred_panel %>%
   mutate(treatment = case_when(
     (!is.na(closure_1) & !is.na(closure_1_end)) & (date >= closure_1 & date < closure_1_end) ~ 1,
     (!is.na(closure_2) & !is.na(closure_2_end)) & (date >= closure_2 & date < closure_2_end) ~ 1,
+    (!is.na(closure_3) & !is.na(closure_3_end)) & (date >= closure_3 & date < closure_3_end) ~ 1,
     TRUE ~as.double(0)
   )) %>% 
   mutate(university_enacted = case_when(
     university_enacted_1 == 1 & treatment == 1 ~ 1,
     university_enacted_2 == 1 & treatment == 1 ~ 1,
+    university_enacted_3 == 1 & treatment == 1 ~ 1,
     TRUE ~as.double(0)
   ))
 
+
+# creating other weekend/weekday panels -----------------------------------
+
+date_occurred_panel_weekends <- date_occurred_panel %>% 
+  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun")
+
+date_occurred_panel_weekdays <- date_occurred_panel %>% 
+  filter(weekday == "Mon" | weekday == "Tue" | weekday == "Wed" | weekday == "Thu")
+
+lag_datas <- list(date_occurred_panel, date_occurred_panel_weekends, date_occurred_panel_weekdays)
 
 ## now finally creating the columns for "proportion of crimes with reporting lag"
 date_occurred_panel %>% 
   select(alcohol_offense, report_lag_alc) %>% 
   modelsummary::datasummary_skim()
 
-date_occurred_panel <- date_occurred_panel %>% 
-  mutate(proportion_alc_lag = ifelse(alcohol_offense == 0, 0, report_lag_alc/alcohol_offense),
-         proportion_sex_lag = ifelse(sexual_assault == 0, 0, report_lag_sex/sexual_assault),
-         proportion_drug_lag = ifelse(drug_offense == 0, 0, report_lag_drug/drug_offense),
-         proportion_theft_lag = ifelse(theft == 0, 0, report_lag_theft/theft),
-         proportion_rob_lab = ifelse(robbery_burglary == 0, 0, report_lag_rob/robbery_burglary)) 
+lag_datas <- map(lag_datas, ~.x %>% 
+      mutate(proportion_alc_lag = ifelse(alcohol_offense == 0, 0, report_lag_alc/alcohol_offense),
+             proportion_sex_lag = ifelse(sexual_assault == 0, 0, report_lag_sex/sexual_assault),
+             proportion_drug_lag = ifelse(drug_offense == 0, 0, report_lag_drug/drug_offense),
+             proportion_theft_lag = ifelse(theft == 0, 0, report_lag_theft/theft),
+             proportion_rob_lab = ifelse(robbery_burglary == 0, 0, report_lag_rob/robbery_burglary)) )
 
-lag_means <- date_occurred_panel %>% 
-  ungroup() %>% 
-  summarize(across(c(proportion_sex_lag, proportion_alc_lag), ~mean(.,na.rm = T), .names = "{.col}_mean"))
-row_means <- tribble(~term , ~sex_lag, ~alc_lag,
-                     "Mean of Dependent Variable",lag_means[[1]], lag_means[[2]])
+date_occurred_panel <- lag_datas[[1]]
+date_occurred_panel_weekends <- lag_datas[[2]]
+date_occurred_panel_weekdays <- lag_datas[[3]]
+
+
 
 attr(row_means, 'position') <- c(4)
 
 lag_regression <- date_occurred_panel %>% 
-  group_by(university, semester_number) %>% 
-  mutate(uni_semester = cur_group_id()) %>% 
-  ungroup() %>% 
   feols(c(proportion_sex_lag, proportion_alc_lag) ~ treatment |
-          uni_semester + weekday, cluster = ~university, data = .) 
-names(lag_regression) <- c("Sexual Assault", "Alcohol Offense")
+          date + university, cluster = ~university, data = .) 
 
-lag_regresion_table <-  modelsummary::modelsummary(lag_regression,stars = T,gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
-                             coef_map = c("treatment" = "Moratorium",
-                                          "proportion_sex_lag" = "Proportion Reported w/ Lag (Sex)",
-                                          "frac_undergrad_black" = "Fraction Undergrad Black",
-                                          "frac_undergrad_asian" = "Fraction Undergrad Asian",
-                                          "frac_undergrad_hispanic_latino" = "Fraction Undergrad Hispanic",
-                                          "graduation_rate_total_cohort" = "Graduation Rate",
-                                          "uni_semester" = "University by Semester"),
-                             title = "Differences in reporting between moratorium and non-moratorium days.",
-                             notes = list("The dependent variable is the proportion of offenses that are reported with a lag.",
-                                          "A lag is defined as when date reported is more than 3 days later than the date occurred.",
-                             "Observations are based off of a subset of the sample due to data constraints on the date reported."),
-                             add_rows = row_means) %>% 
-  kableExtra::add_header_above(c(" " = 1, "Proportion Reported with a Lag" = 2))
+fe <- c("date", "university")
+explanatory_vars <- c("treatment")
+
+lag_alc <- map(lag_datas, ~ifc::reghdfe(., "proportion_alc_lag", explanatory_vars = explanatory_vars, fe, "university"))
+lag_drug <- map(lag_datas, ~ifc::reghdfe(., "proportion_drug_lag", explanatory_vars = explanatory_vars, fe, "university"))
+lag_sex <- map(lag_datas, ~ifc::reghdfe(., "proportion_sex_lag", explanatory_vars = explanatory_vars, fe, "university"))
+
+
+# robbery regressions -----------------------------------------------------
+
+if(!exists("daily_crime")) {
+  daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv") %>% 
+    filter(university %in% ifc::moratorium_schools())
+}
+
+if (!exists("daily_crime_weekends")){
+  daily_crime_weekends <- read_csv("created_data/xmaster_data/daily_panel_weekends.csv")
+}
+
+if (!exists("daily_crime_weekdays")){
+  daily_crime_weekdays <- read_csv("created_data/xmaster_data/daily_panel_weekdays.csv")
+}
+
+explanatory_vars <- c("treatment")
+fe <- c("university", "date")
+
+data <- list(daily_crime, daily_crime_weekends, daily_crime_weekends)
+
+robbery <- map(data, ~ifc::reghdfe(., "robbery_burglary_per25", explanatory_vars, fe, "university")) 
+
+
+
+
+
+# final table -------------------------------------------------------------
+
+
+
+depolice_table <- ifc::main_table(lag_alc, lag_drug, lag_sex,  last_panel = robbery) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(date_occurred_panel_weekends$proportion_alc_lag, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(date_occurred_panel_weekdays$proportion_alc_lag, na.rm = T)),
+          .before = 4) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_drug_lag, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(date_occurred_panel_weekends$proportion_drug_lag, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(date_occurred_panel_weekdays$proportion_drug_lag, na.rm = T)),
+          .before = 8) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_sex_lag, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(date_occurred_panel_weekends$proportion_sex_lag, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(date_occurred_panel_weekdays$proportion_sex_lag, na.rm = T)),
+          .before = 12) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$robbery_burglary_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$robbery_burglary_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$robbery_burglary_per25, na.rm = T)),
+          .before = 16) %>% 
+  kbl(booktabs = T,
+      col.names = c(" ","Full Sample", "Weekends", "Weekdays"),
+      caption = "\\label{reports_lag}OLS regressions showing no changes in reporting or policing. Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a lag of 
+      3 days or more. Not all universities had information on date occurred (33/38), and therefore total number of observations between
+      Panels A-C and Panel D differ. Panel D represents OLS regressions of robbery/burglary (e.g. combined) on fraternity moratoriums.") %>% 
+  kable_paper() %>% 
+  pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = T, bold = F) %>%
+  pack_rows("Panel B: Proportion of Drug Offenses Reported with Lag", 5, 8, italic = T, bold = F) %>%
+  pack_rows("Panel C: Proportion of Alcohol Offenses Reported with Lag", 9,12, italic = T, bold = F) %>%
+  pack_rows("Panel D: Robbery/Burglary", 13, 16, italic = T, bold = F) %>% 
+  pack_rows("Controls for Panels A-D:", 17, 18, italic = T, bold = F) %>% 
+  footnote(list("Standard errors clustered by university.",
+                "Robbery/burglary offenses are per-25000 enrolled students.",
+                "Reported with a lag means date reported is greater than 3 days the date occurred.",
+                "33 of 38 universities have data on date occurred.",
+                "FE abbreviation for fixed effects.",
+                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
+
+
+
 
 

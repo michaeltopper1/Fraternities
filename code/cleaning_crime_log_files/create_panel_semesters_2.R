@@ -196,12 +196,14 @@ daily_panel <- daily_panel %>%
 ##### Last Step: pulling in the closure data and merging it with this final_panel
 closures <- read_xlsx("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
-  select(university, date, deadline, date2, deadline2,
-         university_enacted_1, university_enacted_2, reason1, reason2) %>% 
+  select(university, date, deadline, date2, deadline2,date3, deadline3,
+         university_enacted_1, university_enacted_2, university_enacted_3, reason1, reason2,reason3) %>% 
   rename("closure_1" = date,
          "closure_1_end" = deadline,
          "closure_2" = date2,
-         "closure_2_end" = deadline2)
+         "closure_2_end" = deadline2,
+         "closure_3" = date3,
+         "closure_3_end" = deadline3)
 
 
 
@@ -210,11 +212,13 @@ daily_panel <- daily_panel %>%
   mutate(treatment = case_when(
     (!is.na(closure_1) & !is.na(closure_1_end)) & (date >= closure_1 & date < closure_1_end) ~ 1,
     (!is.na(closure_2) & !is.na(closure_2_end)) & (date >= closure_2 & date < closure_2_end) ~ 1,
+    (!is.na(closure_3) & !is.na(closure_3_end)) & (date >= closure_3 & date < closure_3_end) ~ 1,
     TRUE ~as.double(0)
   )) %>% 
   mutate(university_enacted = case_when(
     university_enacted_1 == 1 & treatment == 1 ~ 1,
     university_enacted_2 == 1 & treatment == 1 ~ 1,
+    university_enacted_3 == 1 & treatment == 1 ~1,
     TRUE ~as.double(0)
   ))
 

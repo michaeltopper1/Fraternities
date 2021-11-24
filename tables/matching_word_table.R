@@ -38,10 +38,9 @@ robbery_burglary_words <- robbery_burglary_identifiers %>%
   str_replace_all("\\|", ", ")
 theft_words <- theft_identifiers %>% 
   str_replace_all("\\|", ", ")
-words <- list(sexual_assault_words, alcohol_words, drug_offense_words,  robbery_burglary_words)  %>% 
+words <- list(sexual_assault_words, alcohol_words, drug_offense_words)  %>% 
   unlist()
-categories <- c("Sexual Assault", "Alcohol Violations", "Drug Offense",
-                "Robbery/Burglary")
+categories <- c("Sexual Assault", "Alcohol Violations", "Drug Offense")
 matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
 
 

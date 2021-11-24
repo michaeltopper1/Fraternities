@@ -39,19 +39,18 @@ university_characteristics <- daily_crime %>%
                 ( `SAT Reading 75` = sat_reading_75) +
                 (`Fraction Admitted` = frac_admitted_total) +
                 (`Fraction Private`=private) +
-                (`Alcohol Offense` = alcohol_offense_per25) + 
-                (`Sexual Assault` = sexual_assault_per25) +
-                (`Drug Offense` = drug_offense_per25) +
-                (`Robbery/Burglary` = robbery_burglary_per25) ~ (Mean + SD + Median + Min + Max ), data = .,
+                (`Alcohol Offense` = alcohol_offense_per25) +
+                (`Drug Offense` = drug_offense_per25)  +
+                (`Sexual Assault` = sexual_assault_per25)  ~ (Mean + SD + Median + Min + Max ), data = .,
               title = "\\label{summary_stats}Summary statistics of the 38 universities in the sample and outcomes used in analysis.",
               notes = list('Offenses are per-25000 students enrolled.',
                            "Length of moratorium statistics are in academic calendar days."),
               add_rows = moratorium_rows) %>% 
-  row_spec(16, hline_after = T) %>% 
-  row_spec(17, bold = F, italic = T) %>% 
+  row_spec(15, hline_after = T) %>% 
+  row_spec(16, bold = F, italic = T) %>% 
   add_indent(c(2:6)) %>% 
   add_indent(c(3:6)) %>% 
   pack_rows("University Characteristics", 1, 11, bold = T, italic = F) %>% 
-  pack_rows("Daily Crime Log Offenses", 12, 15, bold = T, italic = F) %>% 
-  pack_rows("Moratorium Characteristics", 16, 16, bold = T, italic = F) 
+  pack_rows("Daily Crime Log Offenses", 12, 14, bold = T, italic = F) %>% 
+  pack_rows("Moratorium Characteristics", 15, 15, bold = T, italic = F) 
 
