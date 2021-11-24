@@ -24,7 +24,7 @@ ipeds <- read_csv("created_data/ipeds/ipeds_final.csv") %>%
   filter(university %in% ifc::moratorium_schools())
 ipeds <- ipeds %>% 
   group_by(university) %>% 
-  summarize(avg_enrollment = mean(total_enrollment, na.rm = T))
+  summarize(avg_enrollment = mean(undergraduate_enrollment, na.rm = T))
 
 universities <- daily_crime %>% 
   select(university, latitude, longitude, control_of_institution) %>% 
@@ -36,6 +36,10 @@ universities <- daily_crime %>%
 
 universities <- universities %>% 
   mutate(ifc_frac = most_recent/avg_enrollment) 
+
+# universities %>% 
+#   select(ifc_frac) %>% 
+#   modelsummary::datasummary_skim(fmt = "%.4f")
   
 ## 5 schools had missing data for IFC
 map_of_schools <- us_states %>% 
