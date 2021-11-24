@@ -55,12 +55,12 @@ weekend_table
 ```
 
 ```{r}
-source(here::here(paste0("tables/regression_placebo_robbery.R")))
+source(here::here(paste0("tables/regressions_depolicing.R")))
 ```
 
 
 ```{r}
-robbery_table
+depolice_table
 ```
 
 ```{r}

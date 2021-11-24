@@ -27,7 +27,7 @@ daily_crime <- daily_crime %>%
 fixed_effects_0 <- c()
 fixed_effects_1 <- c("university_by_semester_number", "semester_number", "day_of_week")
 fixed_effects_2 <- c("university", "date")
-fixed_effects_3 <- c("university_by_year_by_semester_number", "day_of_week")
+fixed_effects_3 <- c("university_by_year_by_semester_number", "date", "university")
 
 
 daily_fixed_effects = list(fixed_effects_0,fixed_effects_1, fixed_effects_2, fixed_effects_3)
@@ -43,7 +43,7 @@ sex <- map(daily_fixed_effects, ~ifc::reghdfe(daily_crime, c("sexual_assault_per
 )
 
 
-main_table <- ifc::table_panels(alc, drug, sex) %>% 
+main_table <- ifc::main_table(alc, drug, last_panel = sex) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
@@ -55,24 +55,25 @@ main_table <- ifc::table_panels(alc, drug, sex) %>%
           `Model 2` = sprintf("%.3f",mean(daily_crime$drug_offense_per25, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime$drug_offense_per25, na.rm = T)),
           `Model 4` = sprintf("%.3f",mean(daily_crime$drug_offense_per25, na.rm = T)),
-          .before = 14) %>% 
+          .before = 8) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
           `Model 4` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
-          .before = 24) %>% 
+          .before = 12) %>% 
   kbl(booktabs = T, 
       col.names = c(" ", "(1)", "(2)", "(3)", "(4)"),
       digits = 3,
       caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assault.") %>% 
   kable_paper() %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 10, bold = F, italic = T) %>% 
-  pack_rows("Panel B: Drug Offenses", 11, 20, bold = F, italic = T) %>% 
-  pack_rows("Panel C: Sexual Assaults", 21, 30, bold = F, italic = T) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>% 
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>% 
+  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
+  pack_rows("Controls for Panels A-C:",13, 18, bold = F, italic = T ) %>% 
   footnote(list("Standard errors are clustered by university.",
                     "Offenses are per-25000 enrolled students.",
-                    "Moratorium is a temporary hault on fraternity-related activities with alcohol.",
+                    "Moratorium is a temporary halt on fraternity-related activities with alcohol.",
                     "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) 
 
 # table 2: weekends vs. full sample ---------------------------------------
@@ -90,7 +91,7 @@ drug_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("drug_offense_per25"),exp
 sex_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university")
 )
 
-weekend_table <- ifc::table_panels(alc_weeksplit, drug_weeksplit, sex_weeksplit) %>% 
+weekend_table <- ifc::main_table(alc_weeksplit, drug_weeksplit, last_panel = sex_weeksplit) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
@@ -100,19 +101,20 @@ weekend_table <- ifc::table_panels(alc_weeksplit, drug_weeksplit, sex_weeksplit)
           `Model 1` = sprintf("%.3f",mean(daily_crime$drug_offense_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$drug_offense_per25, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$drug_offense_per25, na.rm = T)),
-          .before = 10) %>% 
+          .before = 8) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
-          .before = 16) %>% 
+          .before = 12) %>% 
   kbl(booktabs = T, col.names = c(" ", "Full Sample", "Weekends", "Weekdays"),
       caption = "\\label{weekend_table}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assault by Weekend/Weekdays.") %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 6, bold = F, italic = T) %>% 
-  pack_rows("Panel B: Drug Offenses", 7, 12, bold = F, italic = T) %>% 
-  pack_rows("Panel C: Sexual Assaults", 13, 18, bold = F, italic = T) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>% 
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>% 
+  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
+  pack_rows("Controls for Panels A-C:", 13, 14, bold = F, italic = T) %>% 
   footnote(list("Standard errors are clustered by university.",
                     "Offenses are per-25000 enrolled students.",
-                    "Moratorium is a temporary hault on fraternity-related activities with alcohol.",
+                    "A moratorium is a temporary halt on fraternity-related activities with alcohol.",
                     "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) 
 

@@ -23,8 +23,13 @@ length_2 <- daily_crime %>%
   filter(date >= closure_2 & date < closure_2_end) %>% 
   count(treatment, reason2, university_enacted_2) %>% 
   rename("university_enacted" = "university_enacted_2", "length" = "n", "reason" = "reason2")
+length_3 <- daily_crime %>% 
+  group_by(university) %>% 
+  filter(date >= closure_3 & date < closure_3_end) %>% 
+  count(treatment, reason3, university_enacted_3) %>% 
+  rename("university_enacted" = "university_enacted_3", "length" = "n", "reason" = "reason3")
 
-length <- bind_rows(length_1, length_2)
+length <- bind_rows(length_1, length_2, length_3)
 
 
 ## note: behavior contains conduct violations/bad bheavior/not following rules/racist activity/alcohol violations/hazing

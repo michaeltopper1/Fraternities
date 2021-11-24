@@ -21,10 +21,9 @@ if(!exists("daily_crime_weekdays")) {
 
 offenses <- list("alcohol_offense_per25", "drug_offense_per25", "sexual_assault_per25")
 
-explanatory_vars <- c("lead_2", "lead_1",
+explanatory_vars <- c(
                       "treatment:ifc_enacted",
-                      "treatment:university_enacted",
-                      "lag_1", "lag_2")
+                      "treatment:university_enacted")
 
 ifc_uni_regs <- map(offenses, ~ifc::reghdfe(daily_crime,  ., explanatory_vars, c("university", "date"), "university"))
 
@@ -49,7 +48,7 @@ weekend_means <- daily_crime_weekends %>%
 row_means <- tribble(~term, ~alc, ~drug, ~sex, ~alc_w, ~drug_w, ~sex_w,
                      "Mean of Dependent Variable", full_means[[1,1]], full_means[[1,2]], full_means[[1,3]],
                      weekend_means[[1,1]], weekend_means[[1,2]], weekend_means[[1,3]])
-attr(row_means, 'position') <- c(14)
+attr(row_means, 'position') <- c(6)
 
 gm <- tribble(~raw, ~clean, ~fmt,
               "nobs", "Num.Obs.", ~fmt,
@@ -65,11 +64,7 @@ gm <- tribble(~raw, ~clean, ~fmt,
 ifc_uni_table <- modelsummary(ifc_regs,
              stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within|R2 Ps|R2|R2 Adj.',
              coef_map = c("treatment:university_enacted" = "Moratorium x University Enacted",
-                          "treatment:ifc_enacted" = "Moratorium x IFC Enacted",
-                          "lead_2" = "2 Weeks Before",
-                          "lead_1" = "1 Week Before",
-                          "lag_1" = "1 Week After",
-                          "lag_2" = "2 Weeks After"),
+                          "treatment:ifc_enacted" = "Moratorium x IFC Enacted"),
              title = "\\label{ifc_hetero}Heterogeneous Effects for University-enacted Moratoriums and IFC-enacted Moratoriums.",
              gof_map = gm,
              add_rows = row_means,
