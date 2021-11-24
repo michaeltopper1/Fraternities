@@ -34,20 +34,18 @@ library(fixest)
 
 * Still unsure whether to include the event study graphs or not. Here I put in the lead/lag figures so that we can see the big dip. I provided two types of figures, one where I include 2 leads and lags by 1 week each, and one where I have 1 lead and lag that is at the 6 week level  (the approximate median of moratorium length - things get a little sketchier if I go too far out). If people want to see event studies, I can throw them in the appendix with everything else with a big disclaimer explaining why they don't look terrific. They still pass an F-test, so I don't think I'm hiding anything - just doesn't look as appealing.
 
+* Should the Campus Safety and Security Data be added in to discuss the possible substitution effect? It's not perfect by any means, but I find it interesting.
+
 
 # Introduction
 
-Paragraph 1: Why is this important? Why is this potentially interesting? Is there a clear cut answer that is obvious, or is the answer not-so obvious?
+**Why is this important? Why is this potentially interesting? Is there a clear cut answer that is obvious, or is the answer not-so obvious?**
 
-This paper is important because it is the first to estimate the causal effects of fraternity campus-wide moratoriums on crime. Moratoriums became a common policy technique for school administrators and student-groups to employ on their school fraternity life. In particular, the policy involves placing a temporary ban on all fraternity social events with alcohol. This technique is most commonly used after an unexpected shock to fraternity life at a university. These shocks come in the form of fraternity related deaths, behavior violations (e.g. hazing violations/inappropriate behavior gone viral ), or sexual assault allegations. 
+This paper is important because it is the first to estimate the causal effects of fraternity campus-wide moratoriums on crime. Moratoriums became a common policy technique for school administrators and student-groups to employ on their school fraternity life. In particular, the policy involves placing a temporary ban on all fraternity social events with alcohol. This technique is most commonly used after an unexpected shock to fraternity life at a university. These shocks come in the form of fraternity related deaths, behavior violations (e.g. hazing violations/inappropriate behavior gone viral), or sexual assault allegations. 
 
-How these moratoriums actually effect student behavior across the university is ambiguous. On one hand, prohibiting alcohol from fraternities may reduce alcohol consumption through several channels. First, fraternities are a common source of alcohol for underage drinking, as fraternities are typically a mix of students aging 18 to 22 (e.g. freshman - seniors). The inclusion of legal-age drinkers and large open-invitation social events allows for easy access to alcohol for underage students. Second, fraternities tend to live in their own private residences and host their social events within their residences. These houses are free from the typical university oversight such as residence-hall employees that could potentially intervene if rules are being violated or behavior is getting too dangerous. Hence, the lack of alcohol at these large, unregulated events with easy access to alcohol may decrease the amount of alcohol consumption. On the other hand, there are several mechanisms as to why these policies may have the opposite effect. First, without fraternity events, students may substitute away from consuming alcohol at fraternity houses to potentially riskier places. As a stylized example, members could continue to consume alcohol socially, but do so in locations that are far away from any potential oversight. Second, there could be a defier effect where fraternity members now want to engage in *more* alcoholic activities now that it is prohibited. Therefore, it is not clear how moratoriums will affect behavior across a university campus.
+How these moratoriums actually effect student behavior across the university is ambiguous. On one hand, prohibiting alcohol from fraternities may reduce alcohol consumption through several channels. First, fraternities are a common source of alcohol for underage drinking, as fraternities are typically a mix of students aging 18 to 22 (e.g. freshman - seniors). The inclusion of legal-age drinkers and large open-invitation social events allows for easy access to alcohol for underage students. Second, fraternities tend to live in their own private residences and host their social events within their residences. These houses are free from the typical university oversight such as residence-hall employees that could potentially intervene if rules are being violated or behavior is getting too dangerous. With a moratorium implemented, these large unregulated events with easy access to alcohol may decrease the amount of alcohol consumption. On the other hand, there are several mechanisms as to why these policies may have the opposite effect. First, without fraternity events, students may substitute away from consuming alcohol at fraternity houses to potentially riskier places. As a stylized example, members could continue to consume alcohol socially, but do so in locations that are far away from any potential oversight. Second, there could be a defier effect where fraternity members now want to engage in *more* alcoholic activities now that it is prohibited. Therefore, it is not clear how moratoriums will affect behavior across a university campus.
 
-
-
-
-
-2: what do you know? 
+**What do we know about this topic?**
 
 *Alcohol Literature*
 
@@ -61,25 +59,41 @@ Why do we care about alcohol? Alcohol is bad because it can lead to undesirable 
 We know that fraternity membership increases the likelihood of graduating on-time, and has a small negative impact on grades (Routon and Walker/Mara, Davis, Schmidt). If a roommate joins a fraternity, then more likely for that person to join (Sacerdote). 
 
 
-3: what we don’t know? Why don’t we know this? What are the frictions?
+**What don't we know? Why don’t we know this? What are the frictions?**
 
 We don't know how fraternity activity causally affect campus-wide alcohol/drug/sexual assault behaviors. This is because of a lack of variation, and the difficulty in obtaining data. We also don't know how much fraternities contribute to alcohol problems in universities since it has, until now, been impossible to link fraternity behavior to alcohol violations with the data that is available. 
 
-4: what you do
+**What do you do?**
 
 I use the variation in timing from campus-wide moratoriums across 38 universities to estimate the causal effect of moratoriums on alcohol, drug, and sexual assault offenses. I construct a novel data set that contains fraternity moratorium dates linked with incidence-level reports of all crimes that are reported by each university police department. I use a difference-in-differences design and find that moratoriums decrease alcohol offenses by BLANK campus wide. These effects are most salient on the weekend days (Fri-Sun). Moreover, I find evidence that drug offenses also decline during these moratoriums, although there is little evidence to support reductions in sexual assault offenses.  
 
 # Background on Fraternities
 
-Questions to answer: who are in fraternities? Why do fraternities exist? What percentage of universities are fraternities? What is the difference between an IFC fraternity and a "business" or "multi-cultural" fraternity? What do you have to do to be in a fraternity? How do people perceive fraternities? 
+Questions to answer: who are in fraternities? Why do fraternities exist? What percentage of universities are fraternities? What is the difference between an IFC fraternity and a "business" or "multi-cultural" fraternity? What do you have to do to be in a fraternity? How do people perceive fraternities? How proportion of universities are IFC?
 
-There are multiple types of fraternities in a university setting, however, the ones I focus on are the Interfraternity Council (IFC) fraternities. 
+Fraternities are a ubiquitous, and longstanding tradition in the United States. They maintain a presence at 800 universities across the US (Hechinger 2017) with the oldest fraternities forming in the mid 1800s (IFC website). Fraternities consist of students from families of higher-than-average educational attainment and income; they are predominantly white, and prior research has linked fraternity membership to increases in graduation rates (Routon and Walker 2014), income (Mara, Davis, and Schmidt 2018), and GPA (DeBard and Sacks 2011). However, members spend approximately 2 more hours partying than nonmembers (Routon and Walker 2014).
+
+Fraternities have a unique structure of organization. The largest fraternities have national coverage, spanning across many of the top universities. Each fraternity sets their own guidelines for their chapters (e.g. a small satellite of a fraternity at a unique university) to follow. Appendix Figure (Sigma Alpha Epsilon Figure) shows an example of the guidelines that each chapter of the Sigma Alpha Epsilon (one of the oldest and largest fraternities) must abide by; their members are required to maintain a GPA above a chosen threshold, pay membership fees, participate in a minimum number of philanthropy hours, and attend a sizable majority of chapter meetings/rituals. These types of guidelines are commonplace in the types of fraternities that this paper focuses on: the Interfraternity Council (IFC) fraternities. IFC fraternities are colloquially known as the 'social' fraternities - while they participate in philanthropy and professional development, these are not their sole purpose. According to their creed, they "exist to promote the shared interests and values of our member fraternities: leadership, service, brotherhood and scholarship" [@hechinger_true_2017]. IFC fraternities belong to the North American Interfraternity Conference (NIC), a trade association representing the fraternities which, according to their constitution, "promote the well-being of its member fraternities" by offering services such as "cooperative action in dealing with fraternity matters of mutual concern, research in areas of fraternity operations and procedures, fact-finding and data gathering, and the dissemination of such data to the member fraternities". Importantly, IFC fraternities are the fraternities subject to moratoriums in the sample.
+
+There are three sources of regulation for each IFC fraternity chapter: the chapter's national headquarters, the chapter's university, and the university's own IFC council. As described above, the chapter's national headquarters can set guidelines for each for each of their satellites to follow. However, each chapter is also subject to their university's own rules which may be more strict. For instance, universities can impose rules on their fraternities use of school property for their events and recruitment. Failure to abide by these rules can result in a fraternity being unrecognized by the university which is costly to a fraternity - a fraternity relies on the university for recruitment. Lastly, each university has it's own IFC council - a group of student representatives from each recognized IFC fraternity chapter which regularly meet with university staff to discuss rules/boundaries.
+
+To become a member of an IFC fraternity, prospective members must apply during recruitment events that take place in the fall or spring semester (or both). Once a chapter and prospective member jointly accept membership, the new member (the “pledge”) must abide by the chapter, university, and IFC council's guidelines.  Upon membership, pledges may be invited to live within the chapter's fraternity house which can reside either on or off campus. These properties usually house the majority of each chapter's members. However, chapter houses are not managed by university-housing, and hence, do not have university employees enforcing the legal drinking age or curfew. Hence, fraternities have been found to be a reliable source of alcohol for first-year undergraduates (Mara, Davis, and Schmidt 2018).
+
+IFC fraternities represent a relatively small portion of the undergraduate enrollment in the sample. On average, IFC fraternities represent approximately 5% of all undergraduate enrollment. However, there is a substantial amount of variation with the maximum being over 10% and the minimum being 1%. 
 
 * Figure: fraternity membership guidelines (Appendix A)
 
 # Moratoriums
 
-Answers why fraternity moratoriums occur, how long they last for, and how wide-spread is this practice across the US.
+**What are moratoriums?**
+
+Moratoriums are defined as a temporary ban on alcohol at social events for IFC fraternities. There is some heterogeneity within these moratoriums such as some schools cancel all third party events or require some sort of training to get out of a moratorium.
+
+**How did you get these dates?**
+
+I received these moratorium dates by searching news articles in addition to conversations with fraternity and sorority life advisers. The dates were verified either by newspaper article, Freedom of Information Act Request, or a conversation with the university's Fraternity and Sorority Life adviser. While I verified 38 university's moratoriums, there are other moratoriums that occurred in this time period that could not be verified and have been excluded from the sample (e.g. Miami University). Therefore, this sample represents the schools in which a fraternity moratorium occurred and their respective dates could be verified.^[San Diego State actually had 3 moratoriums, 1 which is not included in the sample since I could not verify the exact end date. Hence, the sample treats this period as "untreated" when it is indeed treated. However, this moratorium was extremely short (below 3 weeks) and the analysis is robust to leave-one-out so I decided to leave in SDSU since it has 2 other moratoriums.]
+
+**Why fraternity moratoriums occur, how long they last for, and how wide-spread is this practice across the US?**
 
 Moratoriums occur because of a particular triggering event. This event can be a prominent sexual assault allegation, a fraternity-related death (usually due to alcohol poisoning), or bad behavior that was brought to light (e.g. a hazing violation or inappropriate behavior caught on video and gone viral). 
 
@@ -94,24 +108,49 @@ It is not always known how long a fraternity moratorium will last when a univers
 
 # Data
 
-Explains the construction of the data set. Why is this data unique? What benefits does this data have over other primary sources?
+**Why is this data unique? What benefits does this data have over other primary sources?**
+
+This data is unique because it is the first data set to combine multiple university's universe of crimes at an incidence level. This data comes from Daily Crime Logs, which are mandated by the federal government under the Jeanne Clery Act for all universities that receive federal funding. The Daily Crime Logs are incidence-level reports of all activity reported by a university-specific police department. The logs must include information such as, date reported, date occurred, incident description, general location, and a case-ID.^[While this information is mandatory, much of the time certain fields such as date occurred and general location are missing]. 
+
+I use the Daily Crime Logs over two federal sources of crime data: the National Incidence Based Reporting System and the Uniform Crime Reports. While both the NIBRS and UCR data sets are nationally maintained by the FBI, these data sets have many shortcomings. First, no police department is mandated to report their crimes to these sources. This creates a large missing data problem where many police departments fluctuate between reporting and non-reporting. Moreover, each of these sources are either at too high of aggregation (monthly) or do not include alcohol offenses unless they are arrests. Given that students are generally not arrested for alcohol, the Daily Crime Logs represent the most accurate picture of campus alcohol usage at the incidence-level. 
+
+**How did you put these crime logs together?**
+
+Each of these Daily Crime Logs were requested from their respective university police departments. While this means I have the universe of crimes at each police department, this comes at the cost of harmonization - each department has different ways of reporting their incidence descriptions. To mitigate this, I pattern-matched using regular expressions on each incident description. In particular I first observed the most common ways each type of violation was described at each university. Then, I used key-words to  match on the descriptions. Importantly, the words used to match can only match to an offense a maximum of one times. For instance, if a incident description reads "alcohol offense - dui - minor in possession", then the words "alcohol", "dui", and "minor in possession" would all match this offense as an alcohol offense, but it would only be counted 1 time. Furthermore, since this process uses regular expressions, the word "sex" would match on descriptions such as "sex offense" or "sexual assault in the first degree". 
 
 * Example of crime log (Appendix Figure)
 * Benefits of this data over others figure (Appendix Figure)
 * Words used to match (Main Table)
 
-How well does this method of construction work?
+**How well does this method of construction work?**
 
 * Matching table results with top 15 from each category (Appendix table)
 
 
-What schools are in the data? What does the sample generally look like?
-
-* Summary Statistics Table - university characters + offense characteristics + moratorium characteristics (Main Table)
-
 # Empirical Strategy
 
-Explains strategy. Explain by saying this is not a true staggered adoption to halt the looming TWFE effects questions. This is not staggered, and schools go in-and-out of treatment with different lengths. Given this, no new TWFE estimator can cleanly deal with this empirical strategy. However, explain that the TWFE weights in the preferred specification (number (3)) has zero negative weights and therefore sign reversal is not concerning. 
+*What is the primary specification?*
+
+I use a difference-in-differences design utilizing the variation in the timing of the moratoriums. I use multiple specifications with different time controls. Note that this design is not a staggered adoption - schools can go 'in-and-out' of treatment multiple times. Because of this, none of the new estimators from Callaway and Santanna and Abram and Sun cannot be used. While DeChaisemartin and DeHouteville can be used in some cases of **multiple** treatments, in this case it cannot without tweaking to the package which will violate the assumptions of the model. In particular, if a school has 2 treatment dates, A and B, then between A and B will be represented as "treated" instead of "untreated". Clement advised that I could either change the identifier of the university that has multiple treatments (e.g. create a new identifier for the university after it is treated once), or I could use it as-is and accept that it does not identify what I want. However, using the DeChaisemartin and Dehouteville decomposition of TWFE shows that I do not have any negative weights on my primary specification (university and day-by-month-by-year fixed effects) and therefore sign reversal is impossible.
+
+*What are the assumptions of the model*
+
+These are the main assumptions of the model: parallel trends, moratoriums are not correlated with unobservables (e.g. the error term) that affect the dependent variable, no long-run effects, and no systematic changes in reporting/policing due to a moratorium. 
+
+The parallel trends assumption is checked using 1 and 2 week lead and lags. This shows that universities are not implementing moratoriums because their alcohol/drug/sexual assault violations are increasing or decreasing. Moreover, each moratorium tends to occur almost immediately following a triggering event. For example, any time there is a fraternity-related death, the moratorium is implemented within a 3-day period (maybe I should have a chart of this?), and hence, there is no anticipatory effects given this rather instantaneous shock. 
+
+The omitted variable bias assumption is checked using a variety of different fixed effects to allow for flexibility - more on this later in the results section. 
+
+The no long-run effects assumption is checked using the specification with 2 week leads/lags. I also include 6 week lead/lag (binned together) to allow for more power within a point estimate. This can be seen in Figures 4-9 (thoughts on which one looks more convincing/should be put in the paper?).
+
+The no-systematic changes in reporting is checked using a regression of whether the timing between the date-reported and date-occurred changes during moratorium days relative to non-moratorium days. There is no difference, and this is a very precise 0.
+
+The no-systematic changes in policing is shown with the robbery/burglary regression where I combine robbery and burglary offenses together and regress on the moratorium indicator. Robberies and burglaries are a very tight and insignificant zero. 
+
+
+*What schools are in the data? What does the sample generally look like?*
+
+* Summary Statistics Table - university characters + offense characteristics + moratorium characteristics (Main Table)
 
 * TWFE weight table (Appendix? Is this necessary or can I just mention it?)
 
@@ -121,6 +160,7 @@ Explain the assumptions of the model. Common trends a necessary assumption, alon
 
 # Main Results
 
+While it is certainly true that university police departments have different policing behaviors, this is controlled for with a university fixed effect. Other concerns may be that certain days are more likely to have higher crime than others (i.e. Fri-Sat), and these are controlled for with day-of-week fixed effects. In addition, university-by-semester-by-year fixed effects are added to give a 'within a university semester' comparison - the estimator will be picking up the differences between a moratorium day and a non-moratorium day accounting for differences within a university-semester-year while 
 Tells the story of the effects. These have an effect on crimes that we would expect.
 
 * Table - goes through the varying specifications with different controls. (Main Table)
