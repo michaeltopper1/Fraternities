@@ -47,9 +47,9 @@ map_of_schools <- us_states %>%
   geom_polygon(fill = "white") +
   borders("state") +
   geom_point(data = universities %>% filter(!is.na(ifc_frac)), aes(longitude, latitude, group = university, size = ifc_frac, color = control_of_institution),
-             alpha = 0.5) +
+             alpha = 0.7) +
   geom_point(data = universities %>% filter(is.na(ifc_frac)), aes(longitude, latitude, group = university, color = control_of_institution),
              alpha =0.5) +
-  labs(color = "University Type:", size = "Fraction of total enrollment in IFC:") +
+  labs(color = "University Type:", size = "Fraction of total enrollment in IFC Fraternities:") +
   ggthemes::theme_map() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom", legend.box="vertical", legend.margin=margin())

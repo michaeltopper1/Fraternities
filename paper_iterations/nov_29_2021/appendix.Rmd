@@ -16,6 +16,7 @@ source(paste0(here::here("tables/closure_table.R")))
 
 
 ```{r}
+## closure_table
 closure_table
 ```
 
@@ -24,6 +25,7 @@ source(paste0(here::here("tables/data_comparison.R")))
 ```
 
 ```{r}
+## data_used
 data_used
 ```
 
@@ -49,6 +51,7 @@ source(paste0(here::here("figures/twfe_weights.R")))
 ```
 
 ```{r}
+## twfe_weights
 twfe_weights %>% 
   kable_styling(latex_options = "scale_down")
 ```
@@ -59,10 +62,12 @@ source(paste0(here::here("tables/regressions_main_poisson.R")))
 ```
 
 ```{r}
+## main_table_p
 main_table_p
 ```
 
 ```{r}
+## weekend_table_p
 weekend_table_p
 ```
 

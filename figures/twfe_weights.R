@@ -52,7 +52,7 @@ library(kableExtra)
 #                                  cmd_type = "feTR")
 
 twfe_decomp <- tibble(model_fixed_effects = c("University and Day-by-Month-by-Year", "University and Semester-by-Year",
-                               "University-by-Semester Number and Semester-by-Year"),
+                               "University-by-Semester-by-Year, University, and Day-by-Month-by-Year"),
        positive_weights_sum = c("1", "1.01", "NA"),
        negative_weights_sum = c("0", "-0.01","NA"),
        number_of_att_negative = c("0", "10", "NA"),

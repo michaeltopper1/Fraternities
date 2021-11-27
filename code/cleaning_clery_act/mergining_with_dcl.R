@@ -13,14 +13,14 @@ library(fixest)
 # loading in data ---------------------------------------------------------
 
 
-yearly_crime <- read_csv("Created Data/xMaster_data_2021/yearly_panel_full_calendar.csv") %>% 
+yearly_crime <- read_csv("created_data/xmaster_data/yearly_panel_full_calendar.csv") %>% 
   filter(year > 2013)
 
-clery_discipline <- read_csv("Created Data/Clery_act_data/discipline.csv")
+clery_discipline <- read_csv("created_data/clery_act/discipline.csv")
 
-clery_crime <- read_csv("Created Data/Clery_act_data/crime.csv")
+clery_crime <- read_csv("created_data/clery_act/crime.csv")
 
-closure_spreadsheet <- readxl::read_excel("Data/closure_spreadsheet_final_2019.xlsx") %>% 
+closure_spreadsheet <- readxl::read_excel("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
   select(university, starts_with("reason"), starts_with("university_enacted"))
 
@@ -81,5 +81,5 @@ all_crime <- all_crime %>%
          reason2 = ifelse(reason2 == "national trends", "unknown", reason2),
          reason2 = ifelse(reason2 == "racist activity", "behavior", reason2))
 
-write_csv(all_crime, file = "Created Data/xMaster_data_2021/merged_clery.csv")
+write_csv(all_crime, file = "created_data/xmaster_data/merged_clery.csv")
 

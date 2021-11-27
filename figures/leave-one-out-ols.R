@@ -39,7 +39,6 @@ loo_function <- function(dependent_var, data){
       final_results<- broom::tidy(model, conf.int = T)[1,]
     }
     else {
-      print(paste(count,uni))
       model <- ifc::reghdfe(data %>% filter(university != uni),
                             dependent_var, "treatment", c("university", "date"),cluster = 'university')
       final_results_append <- broom::tidy(model, conf.int = T)[1,]

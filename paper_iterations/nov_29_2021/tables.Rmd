@@ -37,6 +37,7 @@ source(paste0(here::here("tables/summary_stats_university.R")))
 ```
 
 ```{r}
+## summary_stats
 university_characteristics
 ```
 
@@ -60,6 +61,7 @@ source(here::here(paste0("tables/regressions_depolicing.R")))
 
 
 ```{r}
+## depolice_table
 depolice_table
 ```
 

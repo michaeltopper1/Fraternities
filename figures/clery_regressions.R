@@ -13,16 +13,13 @@ library(kableExtra)
 clery <- read_csv(here::here("created_data/xmaster_data/merged_clery.csv")) %>% 
   filter(university %in% ifc::moratorium_schools())
 
-clery %>% 
-  colnames()
+
 clery_regs <- clery %>% 
   feols(c(clery_alcohol_per_25k, residencehall_liquor_per_25k, clery_oncampus_liquor_per_25k,
           clery_sexual_assault_per_25k,residencehall_sexual_assault_per_25k, clery_oncampus_sexual_assault_per_25k,
           alcohol_offense_per_25k, sexual_assault_per_25k) ~treatment |
           university + year, cluster = ~university, data = .)
-names(clery_regs) = c("Full Sample", "Residence Hall", "On campus",
-                   "Full Sample", "Residence Hall", "On campus",
-                   "Full Sample", "Full Sample")
+
 
 find_mean <- function(data, column) {
   column_mean <- data %>% 
@@ -52,4 +49,22 @@ clery_reg_table <- modelsummary(clery_regs,
                      "Sexual Assault" = 1)) %>% 
   add_header_above(c(" " = 1, "Campus Safety and Security" = 6, "Daily Crime Logs" = 2))
 
+
+alc_clery <- clery %>% 
+  feols(c(alcohol_offense_per_25k, clery_alcohol_per_25k, residencehall_liquor_per_25k, clery_oncampus_liquor_per_25k) ~treatment | 
+          year + university, cluster = ~university, data =.)
+names(alc_clery) <- c("Model 1", "Model 2", "Model 3", "Model 4")
+
+drug_clery <- clery %>% 
+  feols(c(drug_offense_per_25k, clery_drug_per_25k, residencehall_drug_per_25k, clery_oncampus_drug_per_25k)~treatment | 
+          year + university, cluster = ~university, data =.)
+names(drug_clery) <- c("Model 1", "Model 2", "Model 3", "Model 4")
+
+sex_clery <- clery %>% 
+  feols(c(sexual_assault_per_25k,clery_sexual_assault_per_25k,residencehall_sexual_assault_per_25k, clery_oncampus_sexual_assault_per_25k) ~ treatment | 
+  year + university, cluster = ~university, data =.)
+names(sex_clery) <- c("Model 1", "Model 2", "Model 3", "Model 4")
+
+
+ifc::main_table(alc_clery, drug_clery,last_panel = sex_clery)
 
