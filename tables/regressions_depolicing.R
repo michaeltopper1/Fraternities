@@ -238,9 +238,6 @@ date_occurred_panel_weekends <- lag_datas[[2]]
 date_occurred_panel_weekdays <- lag_datas[[3]]
 
 
-
-attr(row_means, 'position') <- c(4)
-
 lag_regression <- date_occurred_panel %>% 
   feols(c(proportion_sex_lag, proportion_alc_lag) ~ treatment |
           date + university, cluster = ~university, data = .) 
@@ -306,7 +303,7 @@ depolice_table <- ifc::main_table(lag_alc, lag_drug, lag_sex,  last_panel = robb
           .before = 16) %>% 
   kbl(booktabs = T,
       col.names = c(" ","Full Sample", "Weekends", "Weekdays"),
-      caption = "\\label{reports_lag}OLS regressions showing no changes in reporting or policing. Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a lag of 
+      caption = "\\label{depolice_table}OLS regressions showing no changes in reporting or policing. Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a lag of 
       3 days or more. Not all universities had information on date occurred (33/38), and therefore total number of observations between
       Panels A-C and Panel D differ. Panel D represents OLS regressions of robbery/burglary (e.g. combined) on fraternity moratoriums.") %>% 
   kable_paper() %>% 

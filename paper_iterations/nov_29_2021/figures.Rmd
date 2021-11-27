@@ -78,15 +78,15 @@ source(here::here(paste0("figures/treatment_passing.R")))
 ```
 
 
-```{r, fig.cap = "\\label{mpasssing_alc}Effect of moratorium on alcohol offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
+```{r, fig.cap = "\\label{mpassing_alc}Effect of moratorium on alcohol offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
 mprogression_alc
 ```
 
-```{r, fig.cap = "\\label{mpasssing_drug}Effect of moratorium on drug offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
+```{r, fig.cap = "\\label{mpassing_drug}Effect of moratorium on drug offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
 mprogression_drug
 ```
 
-```{r, fig.cap = "\\label{mpasssing_sex}Effect of moratorium on sexual assault offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
+```{r, fig.cap = "\\label{mpassing_sex}Effect of moratorium on sexual assault offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
 mprogression_sex
 ```
 

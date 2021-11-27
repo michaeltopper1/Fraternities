@@ -26,15 +26,23 @@ library(modelsummary)
 library(fixest)
 ```
 
+*Please ignore the writing style. This is an outline of my ideas, so the stylistic choices are not optimal.*
+
 # Main Questions:
 
-* When I do heterogeneity analysis, should I use the preferred specification, or the preferred specification with the leads + lags? Right now, the triggering event figure does not have leads/lags, and the IFC/university enacted table does. I don't think that the results change too much with them.
+* My main request is that you take a look through each of the figures and tables in order without reading any of the text and see if you can understand the paper. I want to finalize all of these tables/figures before I begin writing.
 
-* Are Figures 10-12 worth seeing? Heather looked at them before when I had them binned at the 1 week level and thought I was reading tea-leaves. I binned at the 2 week level to get more power and I think this looks decent, but I'm also a sucker for a pretty figure.
+* Are Figures 10-12 worth seeing?. I binned at the 2 week level to get more power and I think this looks decent. I think it at least gets the point across that there are diminishing returns to a moratorium.
 
-* Still unsure whether to include the event study graphs or not. Here I put in the lead/lag figures so that we can see the big dip. I provided two types of figures, one where I include 2 leads and lags by 1 week each, and one where I have 1 lead and lag that is at the 6 week level  (the approximate median of moratorium length - things get a little sketchier if I go too far out). If people want to see event studies, I can throw them in the appendix with everything else with a big disclaimer explaining why they don't look terrific. They still pass an F-test, so I don't think I'm hiding anything - just doesn't look as appealing.
+* Still unsure whether to include the event study graphs or not. Here I put in the lead/lag figures (Figures \ref{trends_a}, \ref{trends_a2}, \ref{trends_d}, \ref{trends_d2}, \ref{trends_s}, and \ref{trends_s2}) so that we can see the big dip. I provided two types of figures, one where I include 2 leads and lags by 1 week each, and one where I have 1 lead and lag that is at the 6 week level  (the approximate median of moratorium length - things get a little sketchier if I go too far out). If people want to see event studies, I can throw them in the appendix with everything else with a big disclaimer explaining why they don't look terrific. They still pass an F-test, so I don't think I'm hiding anything - just doesn't look as appealing. Alternatively, Kevin recommended I try an event study without staggering the treatment effect - so the "0" period would be the entire moratorium period and "period 1" would be week after a moratorium ends and so on. This will probably get my a nice dip, and will allow me to compare all data to the week before rather than all of my data outside of the small 4 week period around moratoriums. Would love to hear thoughts on this.
 
-* Should the Campus Safety and Security Data be added in to discuss the possible substitution effect? It's not perfect by any means, but I find it interesting.
+* How does everyone feel about robbery/burglary having a tight null result being evidence of no change in policing during a moratorium (Table \ref{depolice_table})? Personally, I feel that robbery/burglarly should have absolutely no effect when a moratorium occurs, as I doubt college students are committing these crimes. However, since they have a tight null result (and the coefficient sign is positive), I think this makes for good evidence.
+
+* For the Empirical Strategy section, I am curious how this should be presented. I want to talk about all the assumptions that need to be satisfied and the steps I take to convince you I meet these assumptions, but many of these tables I want to present later on in the paper. For instance, I specify that common trends and no change in reporting needs to be satisfied, but I want to present the common trends portion in the Main Results section where I have leads/lags. Do I just state the results from those later sections and say that they will be discussed in more detail later?
+
+* If you have time, look through the introduction to see if my outline hits the right points. In particular, I'd want to know what types of literature I should really hit on. This is a very understudied topic, and most of the relevant fraternity literature I believe should occur in the Background section whereas the main literature in economics on alcohol/sexual assault in college should be presented in the introduction. 
+
+* If you have time, look through the entire outline to see if the story makes sense, and maybe evaluate if I am missing something crucial to the story.
 
 
 # Introduction
@@ -65,7 +73,7 @@ We don't know how fraternity activity causally affect campus-wide alcohol/drug/s
 
 **What do you do?**
 
-I use the variation in timing from campus-wide moratoriums across 38 universities to estimate the causal effect of moratoriums on alcohol, drug, and sexual assault offenses. I construct a novel data set that contains fraternity moratorium dates linked with incidence-level reports of all crimes that are reported by each university police department. I use a difference-in-differences design and find that moratoriums decrease alcohol offenses by BLANK campus wide. These effects are most salient on the weekend days (Fri-Sun). Moreover, I find evidence that drug offenses also decline during these moratoriums, although there is little evidence to support reductions in sexual assault offenses.  
+I use the variation in timing from campus-wide moratoriums across 38 universities to estimate the causal effect of moratoriums on alcohol, drug, and sexual assault offenses. I construct a novel data set that contains fraternity moratorium dates linked with incidence-level reports of all crimes that are reported by each university police department. I use a difference-in-differences design and find that moratoriums decrease alcohol offenses by BLANK campus wide. These effects are most salient on the weekends (Fri-Sun) and non-existent on the weekdays (Mon-Thurs). Moreover, I find evidence that drug offenses also decline during these moratoriums, although there is little evidence to support reductions in sexual assault offenses.  
 
 # Background on Fraternities
 
@@ -81,7 +89,7 @@ To become a member of an IFC fraternity, prospective members must apply during r
 
 IFC fraternities represent a relatively small portion of the undergraduate enrollment in the sample. On average, IFC fraternities represent approximately 5% of all undergraduate enrollment. However, there is a substantial amount of variation with the maximum being over 10% and the minimum being 1%. 
 
-* Figure: fraternity membership guidelines (Appendix A)
+* Figure \ref{sigma_alpha_rules}: fraternity membership guidelines (Appendix A)
 
 # Moratoriums
 
@@ -101,10 +109,10 @@ Moratoriums can be implemented by two sources of jurisdictions: the university o
 
 It is not always known how long a fraternity moratorium will last when a university implements one. For instance, some universities may "re-evaluate" the situation in a set amount of time or impose certain criteria that fraternities must abide by in order to lift the moratorium (e.g. sexual assault training). In other cases, moratoriums may be cut short by outside pressures from the fraternities themselves. 
 
-* Figure - Distribution of lengths (Main Figure)
-* Figure - Distribution of why moratoriums happen (Main Figure)
-* Figure - Map of locations of universities (Main Figure? or Appendix?)
-* Table - List of schools and their dates (Appendix Figure)
+* Figure \ref{closure_distribution}- Distribution of lengths (Main Figure)
+* Figure \ref{trigger_plot}- Distribution of why moratoriums happen (Main Figure)
+* Figure \ref{map}- Map of locations of universities (Main Figure? or Appendix?)
+* Table \ref{closure_table}- List of schools and their dates (Appendix Table)
 
 # Data
 
@@ -118,22 +126,27 @@ I use the Daily Crime Logs over two federal sources of crime data: the National 
 
 Each of these Daily Crime Logs were requested from their respective university police departments. While this means I have the universe of crimes at each police department, this comes at the cost of harmonization - each department has different ways of reporting their incidence descriptions. To mitigate this, I pattern-matched using regular expressions on each incident description. In particular I first observed the most common ways each type of violation was described at each university. Then, I used key-words to  match on the descriptions. Importantly, the words used to match can only match to an offense a maximum of one times. For instance, if a incident description reads "alcohol offense - dui - minor in possession", then the words "alcohol", "dui", and "minor in possession" would all match this offense as an alcohol offense, but it would only be counted 1 time. Furthermore, since this process uses regular expressions, the word "sex" would match on descriptions such as "sex offense" or "sexual assault in the first degree". 
 
-* Example of crime log (Appendix Figure)
-* Benefits of this data over others figure (Appendix Figure)
-* Words used to match (Main Table)
-
 **How well does this method of construction work?**
 
-* Matching table results with top 15 from each category (Appendix table)
+* Figure \ref{crime_log_example} - Example of crime log (Appendix Figure)
+* Table \ref{data_used} - Benefits of this data over others figure (Appendix Table)
+* Table \ref{matching_table} - Words used to match (Main Table)
+* Table \ref{top_categories} - Matching table results with top 15 from each category (Appendix table)
 
 
 # Empirical Strategy
 
-*What is the primary specification?*
+**What is the primary specification?**
+
+The preferred specification (specification (3)), is of the following form:
+
+$$ Y_{u,t} = \beta Moratorium_{u,t} + \gamma_u + \phi_t + \epsilon_{u,t}$$
+
+where $Y_{u,t}$ is the outcome of interest in university $u$ in time $t$, $Moratorium_{u,t}$ is a value between 0 and 1 which equals 1 if a univeristy $u$ is experiencing a moratorium in time $t$, $\gamma_u$ are university fixed effects and $\phi_t$ are day-by-month-by-year fixed effects, $\epsilon_{u,t}$ is the error term. *I choose this specification because it has no negative weights so sign reversal is not possible*. 
 
 I use a difference-in-differences design utilizing the variation in the timing of the moratoriums. I use multiple specifications with different time controls. Note that this design is not a staggered adoption - schools can go 'in-and-out' of treatment multiple times. Because of this, none of the new estimators from Callaway and Santanna and Abram and Sun cannot be used. While DeChaisemartin and DeHouteville can be used in some cases of **multiple** treatments, in this case it cannot without tweaking to the package which will violate the assumptions of the model. In particular, if a school has 2 treatment dates, A and B, then between A and B will be represented as "treated" instead of "untreated". Clement advised that I could either change the identifier of the university that has multiple treatments (e.g. create a new identifier for the university after it is treated once), or I could use it as-is and accept that it does not identify what I want. However, using the DeChaisemartin and Dehouteville decomposition of TWFE shows that I do not have any negative weights on my primary specification (university and day-by-month-by-year fixed effects) and therefore sign reversal is impossible.
 
-*What are the assumptions of the model*
+**What are the assumptions of the model?**
 
 These are the main assumptions of the model: parallel trends, moratoriums are not correlated with unobservables (e.g. the error term) that affect the dependent variable, no long-run effects, and no systematic changes in reporting/policing due to a moratorium. 
 
@@ -148,82 +161,77 @@ The no-systematic changes in reporting is checked using a regression of whether 
 The no-systematic changes in policing is shown with the robbery/burglary regression where I combine robbery and burglary offenses together and regress on the moratorium indicator. Robberies and burglaries are a very tight and insignificant zero. 
 
 
-*What schools are in the data? What does the sample generally look like?*
+**What schools are in the data? What does the sample generally look like?**
 
-* Summary Statistics Table - university characters + offense characteristics + moratorium characteristics (Main Table)
+Describe the summary statistics table in detail. Note that my sample is generally larger universities that are above 20k students and crimes are reporting quite differently across universities. 
 
-* TWFE weight table (Appendix? Is this necessary or can I just mention it?)
+* Summary Statistics Table \ref{summary_stats} - university characters + offense characteristics + moratorium characteristics (Main Table)
 
-Explain the assumptions of the model. Common trends a necessary assumption, along with no longterm effects. Mention that there are checks for each of these in the results section through leads and lags/an event study.
+* Table \ref{twfe_weights} - TWFE weights table (Appendix? Is this necessary or can I just mention it?)
 
-* Event study with TWFE and F-test of trends (Appendix because isn't exactly what I want)
+* Event study with TWFE and F-test of trends (Appendix because isn't exactly what I want) - **unsure about this one still**
 
 # Main Results
 
-While it is certainly true that university police departments have different policing behaviors, this is controlled for with a university fixed effect. Other concerns may be that certain days are more likely to have higher crime than others (i.e. Fri-Sat), and these are controlled for with day-of-week fixed effects. In addition, university-by-semester-by-year fixed effects are added to give a 'within a university semester' comparison - the estimator will be picking up the differences between a moratorium day and a non-moratorium day accounting for differences within a university-semester-year while 
-Tells the story of the effects. These have an effect on crimes that we would expect.
+*What is the story behind these results?*
 
-* Table - goes through the varying specifications with different controls. (Main Table)
+The story is that moratoriums have a lasting effect only when in place. This effect is not "by-chance" given the robustness to the many different controls I throw at it. Moreover, this effect is most prominent on the weekends, and non-existant on the weekdays. This matches with intuition, as fraternity parties/activies are more likely to occur on weekends rather than weekdays. Furthermore, it may be worrying that these moratoriums change behavior in universities forever (e.g. fraternities learn their lesson). However, this is shown to not be the case with my lead/lag figures.
 
-Pick a preferred specification, probably the one that satisfies the TWFE no negative weights. Do these results show up where we think they would? Weekends/Weekdays?
 
-* Table - compares the full sample to weekend/weekdays - shows that weekends are where the effects are (Main Table)
+* Table \ref{main_table}- goes through the varying specifications with different controls. (Main Table)
 
-We might expect there to be lasting effects of these moratoriums. However, there is not, fraternities return and do "business-as-usual". Get at this with a lead/lag of two weeks.
+* Table \ref{weekend_table}- compares the full sample to weekend/weekdays - shows that weekends are where the effects are (Main Table)
 
-* Lead and Lag table of 2 weeks - Split by Full/Weekends/Weekdays (Main Table  OR Figure)
+* Figures \ref{trends_a}, \ref{trends_a2}, \ref{trends_d}, \ref{trends_d2}, \ref{trends_s}, and \ref{trends_s2} - Lead and Lag table of 2 weeks OR lead and lag of 1 six week period. - (Main Figure) - **Should I do a traditional event study instead??**
 
-Note that there is a "release the hounds" effect following the moratorium. Might want to further analysis on this.
 
 ## Robustness
 
-Some crime papers like to use poisson regressions. Do the similar analysis, but with poisson regressions.
+**How robust are your results? Can they survive a different estimator? Does one school drive the results? Are the moratorium effects driven by changes in reporting/policing?**
 
-* Poisson regression table to mimic the tables (Appendix)
+These results are robust. I use poisson regressions as an alternative to OLS given the count-nature of the data. In addition, I do a leave-one-out specification where I drop one university at a time and estimate the main model. There appears to be one university that has a decent amount of leverage in alcohol offenses (West Virigina University). When I analyzed the data for this school, it appears that WVU has quite a few outliers that come in times of non-moratoriums. While this could be solved by dropping outliers over a few standard deviations of the mean, I don't think this is a smart decision. Large fraternity parties could be the contributors of these large outliers where there are 30 alcohol violations in a night, and moratoriums may indeed be preventing such large outlier events from happening.  Lastly, these results are not driven by changes in reporting or policing. To check if reporting is changing, I estimate whether there is a change in the proportion of crimes that are reported with a 3 day lag (this is based on Sahay's work). There appears to be no change in reporting except for a strange effect for drug offenses ion the weekdays. I believe that this is simply multiple-hypothesis testing, as I can't think of a theoretical reason why this would be so. The effects of robbery/burglary show that there is no de-policing occurring as there is no change in the amount of robberies/burglaries reported to the police during moratoriums. These are extremely tight zeros. 
 
-Does one school dictate these results? Could be that one school had one massive moratorium that drove the results:
+* Tables \ref{main_table_p} and \ref{weekend_table_p} - Poisson regression table to mimic the tables (Appendix)
 
-* Leave-one-out analysis with preferred specification (Main Figure or Appendix?)
+* Figures \ref{loo_alc}, \ref{loo_drug}, and \ref{loo_sex} -Leave-one-out analysis with preferred specification (Appendix)
 
-Are all crimes going down and it's just a product of more police?
-
-* Robbery/burglary regressions (Main Table?)
-
-Do the moratoriums change reporting behavior and that's why we see effects?
-
-* Date reported - date occurred analysis (Main table?)
+* Table \ref{depolice_table} - Robbery/burglary regressions (Main Table?)
 
 # Heterogeneity
 
-## Lengths - What length is best?
+**What length of a moratorium is best? Does the length of the moratorium matter? Some schools have extremely long moratoriums, so the effects may fade.**
 
-Does the length of the moratorium matter? Some schools have extremely long moratoriums, so the effects may fade.
+* Figures \ref{mpassing_alc}, \ref{mpassing_drug}, \ref{mpassing_sex} -  Treatment effect broken down into weekly/monthly component (Main Figure)
 
-* Figure of the treatment effect broken down into weekly/monthly component (Main Figure)
+**Does the length of the moratorium have an effect on what happens after the moratorium? Do longer ones have lasting effects?**
 
-Does the length of the moratorium have an effect on what happens after the moratorium? Do longer ones have lasting effects?
+* Need a figure here? Hard question to answer. Maybe a regression of the outcome on the lag for week 1 interacted with different quantiles of length?
 
-* Need a figure here? Hard question to answer.
+**Method of Oversight: Who should oversee these? Should it be the university or the student's themselves? Why should we expect one to work over the other?**
 
-## Method of Oversight: Who should oversee these?
+The method of oversight that works best is the university. This is likely because university's actually impose their rules instead of the students themselves. Students are liekly only implementing these moratoriums to "save face" instead of actually restricting their behavior.
 
-Who should oversee these moratoriums? Should it be the university or the student's themselves?
+* Table \ref{ifc_hetero} -Main Figure/Table of differences between IFC/University enforced.
 
-* Main Figure/Table of differences between IFC/University enforced.
-
-Why should we expect one to work over the other?
 
 ## What type of triggering event has the biggest effects
 
 Some types of events may be more salient than others and cause bigger effects (e.g. a death). 
 
-* Table on differences in effects (Main Table)
+* Figure \ref{hetero_trigger} - Table on differences in effects (Main Table)
+
+# Discussion
+
+What on earth do you talk about here that is different from the conclusion?
+
+# Conclusion
 
 
+\newpage
 ```{r, child = "figures.Rmd"}
 
 ```
-
+\newpage
 ```{r, child = "tables.Rmd"}
 
 ```
