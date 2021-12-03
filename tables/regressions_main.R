@@ -18,17 +18,12 @@ if (!exists("daily_crime_weekdays")){
 
 explanatory_vars <- c("treatment")
 
-daily_crime <- daily_crime %>% 
-  group_by(university, date) %>% 
-  mutate(university_by_date = cur_group_id()) %>% 
-  ungroup()
 
 # fixed effects for daily_level -------------------------------------------
-fixed_effects_0 <- c()
-fixed_effects_1 <- c("university_by_semester_number", "semester_number", "day_of_week")
-fixed_effects_2 <- c("university", "date")
-fixed_effects_3 <- c("university_by_year_by_semester_number", "date", "university")
-
+fixed_effects_0 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday")
+fixed_effects_1 <- c("day_of_week", "semester_by_academic_year", "university", "holiday")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday")
+fixed_effects_3 <- c("day_of_week_by_semester_by_academic_year", "university_by_academic_year_by_semester", "holiday")
 
 daily_fixed_effects = list(fixed_effects_0,fixed_effects_1, fixed_effects_2, fixed_effects_3)
 
@@ -67,18 +62,18 @@ main_table <- ifc::main_table(alc, drug, last_panel = sex) %>%
       digits = 3,
       caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assault.") %>% 
   kable_paper() %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>% 
-  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>%
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>%
   pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
-  pack_rows("Controls for Panels A-C:",13, 18, bold = F, italic = T ) %>% 
+  pack_rows("Controls for Panels A-C:",13, 19, bold = F, italic = T ) %>% 
   footnote(list("Standard errors are clustered by university.",
                     "Offenses are per-25000 enrolled students.",
                     "Moratorium is a temporary halt on fraternity-related activities with alcohol.",
-                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) 
+                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
 
 # table 2: weekends vs. full sample ---------------------------------------
 
-fixed_effects_preferred <- c("university", "date")
+fixed_effects_preferred <-  c("day_of_week_by_semester_by_academic_year", "university_by_academic_year_by_semester", "holiday")
 
 data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
 

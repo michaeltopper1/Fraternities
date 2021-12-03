@@ -44,12 +44,16 @@ library(kableExtra)
 #     day_of_week == "Sat" ~6,
 #     day_of_week == "Sun" ~7
 #   ))
-# TwoWayFEWeights::twowayfeweights(daily_crime,
+# TwoWayFEWeights::twowayfeweights(daily_crime %>% 
+#                                    group_by(day_of_week) %>% 
+#                                    mutate(day = cur_group_id()) %>% 
+#                                    ungroup(),
 #                                  "alcohol_offense_per25",
-#                                  "university_by_semester_number",
-#                                  "semester_number",
+#                                  "university",
+#                                  "academic_year",
 #                                  "treatment",
-#                                  cmd_type = "feTR")
+#                                  cmd_type = "feTR",
+#                                  control = c("day", "spring_semester"))
 
 twfe_decomp <- tibble(model_fixed_effects = c("University and Day-by-Month-by-Year", "University and Semester-by-Year",
                                "University-by-Semester-by-Year, University, and Day-by-Month-by-Year"),

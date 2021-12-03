@@ -55,25 +55,33 @@ How these moratoriums actually effect student behavior across the university is 
 
 **What do we know about this topic?**
 
-*Alcohol Literature*
+*Alcohol Literature/Drug Literature*
 
-We know that college partying leads to more sexual assault using variation in sports games (Lindo/White). We know that harsher punishment (through zero-tolerance driving laws) leads to less drinking among college-aged individuals (Liang and Huang). More financial aid leads to more heavy binge drinking (Cowan). Legal access to alcohol hinders academic performance (Ha and Smith).
+We know that college partying leads to more sexual assault using variation in sports games (Lindo/White). We know that harsher punishment (through zero-tolerance driving laws) leads to less drinking among college-aged individuals (Liang and Huang), additional sanctions for DUI people lead to less reoffending (Hansen). More financial aid leads to more heavy binge drinking (Cowan). Legal access to alcohol hinders academic performance (Ha and Smith). Peer influences on alcohol consumption (Fletcher).
 
-Why do we care about alcohol? Alcohol is bad because it can lead to undesirable actions such as increased assaults (Dobkin), sexual assault victimization (Hansen/Chalfin), lower GPA, reduced cognition etc. Find some papers to back all of these things.
+Why do we care about alcohol? Alcohol is bad because it can lead to undesirable actions such as increased assaults (Dobkin), sexual assault victimization (Hansen/Chalfin), lower GPA, reduced cognition etc. Alcohol has extreme health effects (Dobkin and Carpenter) Find some papers to back all of these things. Binge drinking affects drunk driving (Francesoni).
 
+Why do we care about drugs? Marijuana usage leads to higher propensity to drop out of college (McCraffey). More access to marijuana leads to lower academic performance (Marie)
 
 *Fraternity Literature*
 
-We know that fraternity membership increases the likelihood of graduating on-time, and has a small negative impact on grades (Routon and Walker/Mara, Davis, Schmidt). If a roommate joins a fraternity, then more likely for that person to join (Sacerdote). 
+We know that fraternity membership increases the likelihood of graduating on-time, and has a small negative impact on grades (Routon and Walker/Mara, Davis, Schmidt). If a roommate joins a fraternity, then more likely for that person to join (Sacerdote). Fraternities cause binge drinking (DeSimone). Presence of a fraternity makes more binge drinking (Chaloupka). Fraternity parties had higher levels of intoxicationt han others (Glinderman)
+
+*Downfalls of the fraternity literature?*
+
+All of the fraternity literature relies on survey data.
 
 
 **What don't we know? Why don’t we know this? What are the frictions?**
 
 We don't know how fraternity activity causally affect campus-wide alcohol/drug/sexual assault behaviors. This is because of a lack of variation, and the difficulty in obtaining data. We also don't know how much fraternities contribute to alcohol problems in universities since it has, until now, been impossible to link fraternity behavior to alcohol violations with the data that is available. 
 
-**What do you do?**
+**What do you do/contribution?**
 
-I use the variation in timing from campus-wide moratoriums across 38 universities to estimate the causal effect of moratoriums on alcohol, drug, and sexual assault offenses. I construct a novel data set that contains fraternity moratorium dates linked with incidence-level reports of all crimes that are reported by each university police department. I use a difference-in-differences design and find that moratoriums decrease alcohol offenses by BLANK campus wide. These effects are most salient on the weekends (Fri-Sun) and non-existent on the weekdays (Mon-Thurs). Moreover, I find evidence that drug offenses also decline during these moratoriums, although there is little evidence to support reductions in sexual assault offenses.  
+I use the variation in timing from campus-wide moratoriums across 38 universities to estimate the causal effect of moratoriums on alcohol, drug, and sexual assault offenses. I construct a novel data set that contains fraternity moratorium dates linked with incidence-level reports of all crimes that are reported by each university police department. I use a difference-in-differences design and find that moratoriums decrease alcohol offenses by BLANK campus wide. These effects are most salient on the weekends (Fri-Sun) and non-existent on the weekdays (Mon-Thurs). Moreover, I find evidence that drug offenses also decline during these moratoriums, although there is little evidence to support reductions in sexual assault offenses. 
+
+My contribution is the data - it's the first time the daily crime logs are used at such a large scale for so many universities compiled. My other contribution is it's the first study to look at the effects of fraternity moratoriums on drinking behavior. It's also the first study to estimate how much fraternities can attribute to drinking behavior. Advances the literature on how partying effects crime and substance abuse. Adds to the literature on fraternities and drinking. 
+
 
 # Background on Fraternities
 
