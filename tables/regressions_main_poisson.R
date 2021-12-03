@@ -24,10 +24,10 @@ daily_crime <- daily_crime %>%
   ungroup()
 
 # fixed effects for daily_level -------------------------------------------
-fixed_effects_0 <- c()
-fixed_effects_1 <- c("university_by_semester_number", "semester_number", "day_of_week")
-fixed_effects_2 <- c("university", "date")
-fixed_effects_3 <- c("university_by_year_by_semester_number", "day_of_week")
+fixed_effects_0 <- c("day_of_week", "academic_year", "spring_semester", "university")
+fixed_effects_1 <- c("day_of_week", "semester_by_academic_year", "university")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year_by_semester")
+fixed_effects_3 <- c("day_of_week_by_semester_by_academic_year", "university_by_academic_year_by_semester")
 
 
 daily_fixed_effects = list(fixed_effects_0,fixed_effects_1, fixed_effects_2, fixed_effects_3)
@@ -43,7 +43,7 @@ sex <- map(daily_fixed_effects, ~ifc::reghdfe_pois(daily_crime, c("sexual_assaul
 )
 
 
-main_table_p <- ifc::table_panels(alc, drug, sex) %>% 
+main_table_p <- ifc::main_table(alc, drug, last_panel =sex) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime$alcohol_offense, na.rm = T)),
@@ -55,21 +55,21 @@ main_table_p <- ifc::table_panels(alc, drug, sex) %>%
           `Model 2` = sprintf("%.3f",mean(daily_crime$drug_offense, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime$drug_offense, na.rm = T)),
           `Model 4` = sprintf("%.3f",mean(daily_crime$drug_offense, na.rm = T)),
-          .before = 14) %>% 
+          .before = 8) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime$sexual_assault, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime$sexual_assault, na.rm = T)),
           `Model 4` = sprintf("%.3f",mean(daily_crime$sexual_assault, na.rm = T)),
-          .before = 24) %>% 
+          .before = 12) %>% 
   kbl(booktabs = T, 
       col.names = c(" ", "(1)", "(2)", "(3)", "(4)"),
       digits = 3,
       caption = "\\label{main_table_p}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assault (Poisson Regressions).") %>% 
   kable_paper() %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 10, bold = F, italic = T) %>% 
-  pack_rows("Panel B: Drug Offenses", 11, 20, bold = F, italic = T) %>% 
-  pack_rows("Panel C: Sexual Assaults", 21, 30, bold = F, italic = T) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>%
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>%
+  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
   add_footnote(list("+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001",
                     "Standard errors are clustered by university.",
                     "Offenses are counts.",
@@ -77,7 +77,7 @@ main_table_p <- ifc::table_panels(alc, drug, sex) %>%
 
 # table 2: weekends vs. full sample ---------------------------------------
 
-fixed_effects_preferred <- c("university", "date")
+fixed_effects_preferred <-  c("day_of_week_by_semester_by_academic_year", "university_by_academic_year_by_semester")
 
 data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
 

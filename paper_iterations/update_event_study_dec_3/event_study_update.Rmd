@@ -1,0 +1,239 @@
+---
+title: "Event Studies"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{subfig}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+#bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warnings = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(fixest)
+library(modelsummary)
+library(kableExtra)
+```
+
+# Main Table
+
+Recall I have four specifications in the main table as of right now as shown in Table \ref{main_table}:
+
+```{r}
+source("tables/regressions_main.R")
+```
+
+```{r}
+main_table
+```
+
+
+# Event Studies (Period 0 is Entire Moratorium Period)
+
+```{r, include = F}
+es_8_week <- ifc::event_study_day(daily_crime, 8, clusters = 7)
+es_8_2weeks <- ifc::event_study_day(daily_crime, 8, clusters = 14)
+es_4_median <- ifc::event_study_day(daily_crime, 4, clusters = 48)
+
+fixed_effects_0 <- c("day_of_week", "academic_year", "spring_semester", "university")
+fixed_effects_1 <- c("day_of_week", "semester_by_academic_year", "university")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year_by_semester")
+fixed_effects_3 <- c("day_of_week_by_semester_by_academic_year", "university_by_academic_year_by_semester")
+
+daily_fixed_effects = list(fixed_effects_0,fixed_effects_1, fixed_effects_2, fixed_effects_3)
+
+explanatory_vars_week <- c("beta_lead_binned", "beta_lead_7", "beta_lead_6", "beta_lead_5", "beta_lead_4", "beta_lead_3", "beta_lead_2", "treatment",
+                      "beta_lag_1", "beta_lag_2", "beta_lag_3", "beta_lag_4", "beta_lag_5", "beta_lag_6", "beta_lag_7", "beta_lag_binned")
+
+explanatory_vars_median <- c("beta_lead_binned","beta_lead_3", "beta_lead_2", "treatment",
+                      "beta_lag_1", "beta_lag_2", "beta_lag_3", "beta_lag_binned")
+
+
+```
+
+```{r}
+## week regressions
+week_regs <- map(daily_fixed_effects, ~ifc::reghdfe(es_8_week, "alcohol_offense_per25", explanatory_vars_week, ., cluster = "university")) 
+```
+
+
+```{r}
+## 2 week regressions
+two_week_regs <- map(daily_fixed_effects, ~ifc::reghdfe(es_8_2weeks, "alcohol_offense_per25", explanatory_vars_week, ., cluster = "university")) 
+
+
+```
+
+```{r}
+## median regressions
+median_regs <- map(daily_fixed_effects, ~ifc::reghdfe(es_4_median, "alcohol_offense_per25", explanatory_vars_median, ., cluster = "university")) 
+
+```
+
+
+
+
+
+```{r}
+## week regressions
+week_reg_drugs <- map(daily_fixed_effects, ~ifc::reghdfe(es_8_week, "drug_offense_per25", explanatory_vars_week, ., cluster = "university")) 
+
+```
+
+
+```{r}
+## 2 week regressions
+two_week_regs_drug <- map(daily_fixed_effects, ~ifc::reghdfe(es_8_2weeks, "drug_offense_per25", explanatory_vars_week, ., cluster = "university")) 
+
+```
+
+```{r}
+## median regressions
+median_regs_drug <- map(daily_fixed_effects, ~ifc::reghdfe(es_4_median, "drug_offense_per25", explanatory_vars_median, ., cluster = "university")) 
+
+```
+
+
+
+```{r}
+## week regressions
+week_reg_sex <- map(daily_fixed_effects, ~ifc::reghdfe(es_8_week, "sexual_assault_per25", explanatory_vars_week, ., cluster = "university")) 
+
+```
+
+
+```{r}
+## 2 week regressions
+two_week_regs_sex <- map(daily_fixed_effects, ~ifc::reghdfe(es_8_2weeks, "sexual_assault_per25", explanatory_vars_week, ., cluster = "university")) 
+
+```
+
+```{r}
+## median regressions
+median_regs_sex <- map(daily_fixed_effects, ~ifc::reghdfe(es_4_median, "sexual_assault_per25", explanatory_vars_median, ., cluster = "university")) 
+
+```
+
+
+## Model (1) Event Studies
+
+
+```{r,echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Event studies with 7-day periods. Period 0 represents the entire moratorium. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}
+
+ifc::event_study_graph(week_regs[[1]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 7 Week Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(week_reg_drugs[[1]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 7 Week Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(week_reg_sex[[1]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 7 Week Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Event studies with 14-day periods. Period 0 represents the entire moratorium. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}
+
+ifc::event_study_graph(two_week_regs[[1]], 8) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 14 Week Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(two_week_regs_drug[[1]], 8) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 14 Week Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(two_week_regs_sex[[1]], 8) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 14 Week Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Event studies with 48-day periods. Period 0 represents the entire moratorium. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}
+
+ifc::event_study_graph(median_regs[[1]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48-day (e.g. median moratorium) Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(median_regs_drug[[1]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48-day (e.g. median moratorium) Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(median_regs_sex[[1]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48-day (e.g. median moratorium) Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+
+## Model (4) Event Studies
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Event studies with 7-day periods. Period 0 represents the entire moratorium. This is Model (4) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}
+
+ifc::event_study_graph(week_regs[[4]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 7 Week Periods (Model (4))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(week_reg_drugs[[4]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 7 Week Periods (Model (4))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(week_reg_sex[[4]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 7 Week Periods (Model (4))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Event studies with 14-day periods. Period 0 represents the entire moratorium. This is Model (4) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(two_week_regs[[4]], 8) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 14 Week Periods (Model (4))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(two_week_regs_drug[[4]], 8) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 14 Week Periods (Model (4))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(two_week_regs_sex[[4]], 8) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 14 Week Periods (Model (4))", y = "Coefficient Estimate")
+```
+
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Event studies with 48-day periods. Period 0 represents the entire moratorium. This is Model (4) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}
+
+ifc::event_study_graph(median_regs[[4]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48-day (e.g. median moratorium) Periods (Model (4))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(median_regs_drug[[4]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48-day (e.g. median moratorium) Periods (Model (4))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(median_regs_sex[[4]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48-day (e.g. median moratorium) Periods (Model (4))", y = "Coefficient Estimate")
+```
+
+
+## Model (1) Weekends Only 48-day Period (my favorite of the above)
+
+```{r}
+median_regs_weekend <- map(daily_fixed_effects, ~ifc::reghdfe(es_4_median %>% 
+                                                        filter(day_of_week == "Fri" |
+                                                                 day_of_week == "Sat" |
+                                                                 day_of_week == "Sun"), "alcohol_offense_per25", explanatory_vars_median, ., cluster = "university")) 
+median_regs_drug_weekend <- map(daily_fixed_effects , ~ifc::reghdfe(es_4_median %>% filter(day_of_week == "Fri" | day_of_week == "Sat" |
+                                                                 day_of_week == "Sun"), "drug_offense_per25", explanatory_vars_median, ., cluster = "university")) 
+median_regs_sex_weekend <- map(daily_fixed_effects, ~ifc::reghdfe(es_4_median %>% filter(day_of_week == "Fri" |
+                                                                 day_of_week == "Sat" |
+                                                                 day_of_week == "Sun"), "sexual_assault_per25", explanatory_vars_median, ., cluster = "university")) 
+```
+
+
+```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Event studies with 48-day periods WEEKEND DAYS ONLY. Period 0 represents the entire moratorium. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}
+
+ifc::event_study_graph(median_regs_weekend[[1]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48-day (e.g. median moratorium) Periods (Model (1)- Weekends)", y = "Coefficient Estimate")
+
+ifc::event_study_graph(median_regs_drug_weekend[[1]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48-day (e.g. median moratorium) Periods (Model (1)- Weekends)", y = "Coefficient Estimate")
+
+ifc::event_study_graph(median_regs_sex_weekend[[1]], 4) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48-day (e.g. median moratorium) Periods (Model (1)- Weekends)", y = "Coefficient Estimate")
+```

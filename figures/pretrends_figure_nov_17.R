@@ -17,7 +17,7 @@ if (!exists("daily_crime_weekdays")){
 explanatory_vars <- c("lead_2","lead_1", "treatment", "lag_1", "lag_2")
 
 # fixed effects for daily_level -------------------------------------------
-fixed_effects_1 <- c("university", "date")
+fixed_effects_1 <- c("day_of_week", "academic_year", "spring_semester", "university")
 
 
 
@@ -98,15 +98,21 @@ s_trends <- sex_trends %>%
 
 
 daily_crime <- daily_crime %>% 
+  group_by(university) %>% 
+  arrange(date) %>% 
   mutate(median_before = lead(treatment, 42),
          median_after = lag(treatment, 42))
 
 daily_crime_weekends_2 <- daily_crime %>% 
+  group_by(university) %>% 
+  arrange(date) %>% 
   mutate(median_before = lead(treatment, 42),
          median_after = lag(treatment, 42)) %>% 
   filter(day_of_week == "Sat" | day_of_week == "Sun" | day_of_week == "Fri")
 
 daily_crime_weekdays_2 <- daily_crime %>% 
+  group_by(university) %>% 
+  arrange(date) %>% 
   mutate(median_before = lead(treatment, 42),
          median_after = lag(treatment, 42)) %>% 
   filter(day_of_week == "Mon" | day_of_week == "Tue" | day_of_week == "Wed" | day_of_week == "Thu")
