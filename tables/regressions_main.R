@@ -22,11 +22,11 @@ explanatory_vars <- c("treatment")
 # fixed effects for daily_level -------------------------------------------
 fixed_effects_0 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday")
 fixed_effects_1 <- c("day_of_week", "semester_by_academic_year", "university", "holiday")
-fixed_effects_2 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday")
-fixed_effects_3 <- c("day_of_week_by_semester_by_academic_year", "university_by_academic_year_by_semester", "holiday")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+fixed_effects_3 <- c("day_of_week", "university_by_academic_year", "holiday",  "spring_semester")
+
 
 daily_fixed_effects = list(fixed_effects_0,fixed_effects_1, fixed_effects_2, fixed_effects_3)
-
 
 alc <- map(daily_fixed_effects, ~ifc::reghdfe(daily_crime, c("alcohol_offense_per25"),explanatory_vars, ., "university")
 )
@@ -74,7 +74,7 @@ main_table <- ifc::main_table(alc, drug, last_panel = sex) %>%
 # table 2: weekends vs. full sample ---------------------------------------
 
 fixed_effects_preferred <-  c("day_of_week_by_semester_by_academic_year", "university_by_academic_year_by_semester", "holiday")
-
+# fixed_effects_preferred_l <-  c("day_of_week", "university_by_academic_year_by_semester", "holiday")
 data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
 
 alc_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university")

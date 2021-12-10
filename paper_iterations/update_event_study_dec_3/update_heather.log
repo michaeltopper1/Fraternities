@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.2)  6 DEC 2021 14:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.2)  9 DEC 2021 20:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**event_study_update.tex
-(./event_study_update.tex
+**update_heather.tex
+(./update_heather.tex
 LaTeX2e <2021-11-15>
 L3 programming layer <2021-11-22> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -540,24 +540,12 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count315
 \l__pdf_internal_box=\box71
-) (./event_study_update.aux
+) (./update_heather.aux
 
-LaTeX Warning: Label `two_sided_plot' multiply defined.
-
-
-LaTeX Warning: Label `two_sided_plot' multiply defined.
-
-
-LaTeX Warning: Label `two_sided_plot' multiply defined.
-
-
-LaTeX Warning: Label `two_sided_plot' multiply defined.
-
-
-LaTeX Warning: Label `two_sided_plot' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-1' multiply defined.
 
 )
-\openout1 = `event_study_update.aux'.
+\openout1 = `update_heather.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
 LaTeX Font Info:    ... okay on input line 102.
@@ -596,9 +584,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 102.
 LaTeX Info: Redefining \pageref on input line 102.
 LaTeX Info: Redefining \nameref on input line 102.
-(./event_study_update.out) (./event_study_update.out)
+(./update_heather.out) (./update_heather.out)
 \@outlinefile=\write3
-\openout3 = `event_study_update.out'.
+\openout3 = `update_heather.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -673,137 +661,333 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 104.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 111.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 105.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (635.57053pt too wide) in paragraph at lines 114--114
+Overfull \hbox (635.57053pt too wide) in paragraph at lines 108--108
 []\T1/lmtt/m/n/12 ## Warning: In version 0.8.0 of the `modelsummary` package, the default significance markers produced by the `stars=TRUE` argument were changed to be consistent with R's defaults.[] 
  []
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 120.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 120.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 120.
-<event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf, id=25, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 169.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf, id=26, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf  used on input line 169.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf, id=27, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf  used on input line 169.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
 [1
 
-{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf, id=45, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf  used on input line 173.
+{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 160.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 160.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 160.
+[2]
+<update_heather_files/figure-latex/unnamed-chunk-5-1.pdf, id=66, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 266.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf, id=46, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf  used on input line 173.
+<update_heather_files/figure-latex/unnamed-chunk-5-2.pdf, id=67, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-5-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-5-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-5-2.pdf  used on input line 266.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf, id=47, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf  used on input line 173.
+<update_heather_files/figure-latex/unnamed-chunk-5-3.pdf, id=68, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-5-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-5-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-5-3.pdf  used on input line 266.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[3 <./event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf>]
-<event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf, id=82, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 177.
+<update_heather_files/figure-latex/unnamed-chunk-6-1.pdf, id=69, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-6-1.pdf  used on input line 270.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf, id=83, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf  used on input line 177.
+<update_heather_files/figure-latex/unnamed-chunk-6-2.pdf, id=70, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-6-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-6-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-6-2.pdf  used on input line 270.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf, id=84, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf  used on input line 177.
+<update_heather_files/figure-latex/unnamed-chunk-6-3.pdf, id=71, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-6-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-6-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-6-3.pdf  used on input line 270.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[4 <./event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf>]
-<event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf, id=117, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf  used on input line 187.
+[3
+
+
+ <./update_heather_files/figure-latex/unnamed-chunk-5-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-5-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-5-3.pdf>] [4]
+<update_heather_files/figure-latex/unnamed-chunk-7-1.pdf, id=114, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-7-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-7-1.pdf  used on input line 274.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf, id=118, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf  used on input line 187.
+<update_heather_files/figure-latex/unnamed-chunk-7-2.pdf, id=115, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-7-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-7-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-7-2.pdf  used on input line 274.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf, id=119, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf  used on input line 187.
+<update_heather_files/figure-latex/unnamed-chunk-7-3.pdf, id=116, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-7-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-7-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-7-3.pdf  used on input line 274.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[5 <./event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf>]
-<event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf, id=153, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf  used on input line 191.
+[5 <./update_heather_files/figure-latex/unnamed-chunk-6-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-6-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-6-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-8-1.pdf, id=152, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-8-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-8-1.pdf  used on input line 285.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf, id=154, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf  used on input line 191.
+<update_heather_files/figure-latex/unnamed-chunk-8-2.pdf, id=153, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-8-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-8-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-8-2.pdf  used on input line 285.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf, id=155, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf  used on input line 191.
+<update_heather_files/figure-latex/unnamed-chunk-8-3.pdf, id=154, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-8-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-8-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-8-3.pdf  used on input line 285.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[6 <./event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf>]
-<event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf, id=190, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf  used on input line 195.
+[6 <./update_heather_files/figure-latex/unnamed-chunk-7-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-7-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-7-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-9-1.pdf, id=190, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 289.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf, id=191, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf  used on input line 195.
+<update_heather_files/figure-latex/unnamed-chunk-9-2.pdf, id=191, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-9-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-9-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-9-2.pdf  used on input line 289.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf, id=192, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf  used on input line 195.
+<update_heather_files/figure-latex/unnamed-chunk-9-3.pdf, id=192, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-9-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-9-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-9-3.pdf  used on input line 289.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[7 <./event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf>] [8 <./event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf>] (./event_study_update.aux)
+[7 <./update_heather_files/figure-latex/unnamed-chunk-8-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-8-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-8-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-10-1.pdf, id=225, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 293.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-10-2.pdf, id=226, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-10-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-10-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-10-2.pdf  used on input line 293.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-10-3.pdf, id=227, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-10-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-10-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-10-3.pdf  used on input line 293.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[8 <./update_heather_files/figure-latex/unnamed-chunk-9-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-9-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-9-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-11-1.pdf, id=262, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-11-1.pdf  used on input line 304.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-11-2.pdf, id=263, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-11-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-11-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-11-2.pdf  used on input line 304.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-11-3.pdf, id=264, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-11-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-11-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-11-3.pdf  used on input line 304.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[9 <./update_heather_files/figure-latex/unnamed-chunk-10-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-10-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-10-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-12-1.pdf, id=301, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-12-1.pdf  used on input line 308.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-12-2.pdf, id=302, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-12-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-12-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-12-2.pdf  used on input line 308.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-12-3.pdf, id=303, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-12-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-12-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-12-3.pdf  used on input line 308.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[10 <./update_heather_files/figure-latex/unnamed-chunk-11-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-11-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-11-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-13-1.pdf, id=335, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 312.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-13-2.pdf, id=336, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-13-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-13-2.pdf  used on input line 312.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-13-3.pdf, id=337, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-13-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-13-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-13-3.pdf  used on input line 312.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[11 <./update_heather_files/figure-latex/unnamed-chunk-12-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-12-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-12-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-14-1.pdf, id=372, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-14-1.pdf  used on input line 325.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-14-2.pdf, id=373, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-14-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-14-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-14-2.pdf  used on input line 325.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-14-3.pdf, id=374, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-14-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-14-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-14-3.pdf  used on input line 325.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[12 <./update_heather_files/figure-latex/unnamed-chunk-13-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-13-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-13-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-15-1.pdf, id=412, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 329.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-15-2.pdf, id=413, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-15-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-15-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-15-2.pdf  used on input line 329.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-15-3.pdf, id=414, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-15-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-15-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-15-3.pdf  used on input line 329.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[13 <./update_heather_files/figure-latex/unnamed-chunk-14-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-14-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-14-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-16-1.pdf, id=447, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-16-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-16-1.pdf  used on input line 333.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-16-2.pdf, id=448, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-16-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-16-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-16-2.pdf  used on input line 333.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-16-3.pdf, id=449, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-16-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-16-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-16-3.pdf  used on input line 333.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[14 <./update_heather_files/figure-latex/unnamed-chunk-15-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-15-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-15-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-17-1.pdf, id=484, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-17-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 343.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-17-2.pdf, id=485, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-17-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-17-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-17-2.pdf  used on input line 343.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-17-3.pdf, id=486, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-17-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-17-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-17-3.pdf  used on input line 343.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[15 <./update_heather_files/figure-latex/unnamed-chunk-16-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-16-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-16-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-18-1.pdf, id=523, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-18-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-18-1.pdf  used on input line 347.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-18-2.pdf, id=524, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-18-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-18-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-18-2.pdf  used on input line 347.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-18-3.pdf, id=525, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-18-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-18-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-18-3.pdf  used on input line 347.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[16 <./update_heather_files/figure-latex/unnamed-chunk-17-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-17-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-17-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-19-1.pdf, id=557, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-19-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 351.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-19-2.pdf, id=558, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-19-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-19-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-19-2.pdf  used on input line 351.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-19-3.pdf, id=559, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-19-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-19-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-19-3.pdf  used on input line 351.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[17 <./update_heather_files/figure-latex/unnamed-chunk-18-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-18-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-18-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-20-1.pdf, id=594, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-20-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-20-1.pdf  used on input line 361.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-20-2.pdf, id=595, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-20-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-20-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-20-2.pdf  used on input line 361.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-20-3.pdf, id=596, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-20-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-20-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-20-3.pdf  used on input line 361.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[18 <./update_heather_files/figure-latex/unnamed-chunk-19-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-19-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-19-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-21-1.pdf, id=632, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-21-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-21-1.pdf  used on input line 365.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-21-2.pdf, id=633, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-21-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-21-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-21-2.pdf  used on input line 365.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-21-3.pdf, id=634, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-21-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-21-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-21-3.pdf  used on input line 365.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[19 <./update_heather_files/figure-latex/unnamed-chunk-20-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-20-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-20-3.pdf>]
+<update_heather_files/figure-latex/unnamed-chunk-22-1.pdf, id=668, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-22-1.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 369.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-22-2.pdf, id=669, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-22-2.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-22-2.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-22-2.pdf  used on input line 369.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<update_heather_files/figure-latex/unnamed-chunk-22-3.pdf, id=670, 469.755pt x 325.215pt>
+File: update_heather_files/figure-latex/unnamed-chunk-22-3.pdf Graphic file (type pdf)
+<use update_heather_files/figure-latex/unnamed-chunk-22-3.pdf>
+Package pdftex.def Info: update_heather_files/figure-latex/unnamed-chunk-22-3.pdf  used on input line 369.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[20 <./update_heather_files/figure-latex/unnamed-chunk-21-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-21-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-21-3.pdf>] [21 <./update_heather_files/figure-latex/unnamed-chunk-22-1.pdf> <./update_heather_files/figure-latex/unnamed-chunk-22-2.pdf> <./update_heather_files/figure-latex/unnamed-chunk-22-3.pdf>] (./update_heather.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `event_study_update.out' has not changed.
-(rerunfilecheck)             Checksum: 51D4731044AE44F0A9E2C3291316EACE;1069.
+Package rerunfilecheck Info: File `update_heather.out' has not changed.
+(rerunfilecheck)             Checksum: BAB623D14EFB84995485AB20EC1D0EA4;1129.
  ) 
 Here is how much of TeX's memory you used:
- 16290 strings out of 480313
- 277491 string characters out of 5895947
- 617335 words of memory out of 5000000
- 33794 multiletter control sequences out of 15000+600000
- 475049 words of font info for 86 fonts, out of 8000000 for 9000
+ 16799 strings out of 480313
+ 298938 string characters out of 5895947
+ 623657 words of memory out of 5000000
+ 34195 multiletter control sequences out of 15000+600000
+ 478047 words of font info for 87 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,10n,106p,771b,419s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,10n,106p,696b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on event_study_update.pdf (8 pages, 244893 bytes).
+Output written on update_heather.pdf (21 pages, 429266 bytes).
 PDF statistics:
- 300 PDF objects out of 1000 (max. 8388607)
- 239 compressed objects within 3 object streams
- 44 named destinations out of 1000 (max. 500000)
- 131 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 789 PDF objects out of 1000 (max. 8388607)
+ 639 compressed objects within 7 object streams
+ 116 named destinations out of 1000 (max. 500000)
+ 351 words of extra memory for PDF output out of 10000 (max. 10000000)
 

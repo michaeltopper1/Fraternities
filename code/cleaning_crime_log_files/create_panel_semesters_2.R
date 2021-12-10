@@ -113,7 +113,7 @@ panel <- panel %>%
 ## Next Step: Now I need to merge the two datas together - the collapsed data and the large panel.
 ## joining together the dates and the counts to make a long panel
 daily_panel <- panel %>% 
-  left_join(collapsed_data_daily, by = c("university" = "university", "date" = "date_reported")) %>% 
+  left_join(collapsed_data_daily, by = c("university" = "university", "date" = "date_preferred")) %>% ## changed here! 
   mutate(year = year(date), month = month(date), day = day(date))
 
 
@@ -566,6 +566,22 @@ daily_panel <- daily_panel %>%
   ungroup() %>% 
   group_by(day_of_week, semester_by_academic_year) %>% 
   mutate(day_of_week_by_semester_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  mutate(week = lubridate::week(date)) %>% 
+  group_by(university, month) %>% 
+  mutate(university_by_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, week) %>% 
+  mutate(university_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, academic_year, week) %>% 
+  mutate(university_by_academic_year_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year) %>% 
+  mutate(university_by_calendar_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, spring_semester) %>% 
+  mutate(university_by_spring_semester = cur_group_id()) %>% 
   ungroup()
 
 

@@ -13,7 +13,7 @@ files <- list.files(directory)
 files <- map(files, ~paste0("data/campus_daily_crime_log/cleaned_schools/", .))
 
 ## binds all data together
-appended_crime_logs <- map(files,
+appended_crime_logs <- map_df(files,
                   ~ read_csv(.,col_types = cols(
                         time_occurred = col_character(),
                         time_reported = col_character(),
@@ -24,12 +24,15 @@ appended_crime_logs <- map(files,
                         incident = col_character(),
                         university = col_character()
                       ), guess_max = 2000
-                  )) %>%
-  reduce(bind_rows)
+                  ))
 
 
 ## creating specific year-month-day columns
 appended_crime_logs <- appended_crime_logs %>% 
+  mutate(date_preferred  = lubridate::as_date(ifelse(!is.na(date_occurred), date_occurred, date_reported))) %>% 
+  mutate(year_preferred = year(date_preferred),
+         month_preferred = month(date_preferred),
+         day_preferred = day(date_preferred)) %>% 
   mutate(year_reported = year(date_reported),
          month_reported = month(date_reported),
          day_reported = day(date_reported)) %>% 
@@ -60,7 +63,7 @@ appended_crime_logs <- appended_crime_logs %>%
 
 ## filtering out any date reported that are NA or incidents that are NA - this data is not useful to me
 appended_crime_logs <- appended_crime_logs %>% 
-  filter(!is.na(date_reported)) %>% 
+  filter(!is.na(date_preferred)) %>% 
   filter(!is.na(incident))
 
 
@@ -123,10 +126,12 @@ appended_crime_logs <- appended_crime_logs %>%
 
 write_csv(appended_crime_logs, file = "created_data/xmaster_data/appended_crime_logs.csv")
 
+
+
 collapsed_data_daily <- appended_crime_logs %>% 
-  select(date_reported, university, sexual_assault, alcohol_offense, drug_offense, theft, robbery_burglary, alcohol_offense_strict,
+  select(date_preferred, university, sexual_assault, alcohol_offense, drug_offense, theft, robbery_burglary, alcohol_offense_strict,
          noise_offense, rape, starts_with("report_lag_")) %>% 
-  group_by(university, date_reported) %>% 
+  group_by(university, date_preferred) %>% 
   summarize(across(everything(), ~sum(.,na.rm = T)))
 
 

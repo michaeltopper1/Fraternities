@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.2)  6 DEC 2021 14:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.2)  9 DEC 2021 21:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**event_study_update.tex
-(./event_study_update.tex
+**quick_update.tex
+(./quick_update.tex
 LaTeX2e <2021-11-15>
 L3 programming layer <2021-11-22> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -540,24 +540,12 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count315
 \l__pdf_internal_box=\box71
-) (./event_study_update.aux
+) (./quick_update.aux
 
-LaTeX Warning: Label `two_sided_plot' multiply defined.
-
-
-LaTeX Warning: Label `two_sided_plot' multiply defined.
-
-
-LaTeX Warning: Label `two_sided_plot' multiply defined.
-
-
-LaTeX Warning: Label `two_sided_plot' multiply defined.
-
-
-LaTeX Warning: Label `two_sided_plot' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-1' multiply defined.
 
 )
-\openout1 = `event_study_update.aux'.
+\openout1 = `quick_update.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
 LaTeX Font Info:    ... okay on input line 102.
@@ -596,9 +584,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 102.
 LaTeX Info: Redefining \pageref on input line 102.
 LaTeX Info: Redefining \nameref on input line 102.
-(./event_study_update.out) (./event_study_update.out)
+(./quick_update.out) (./quick_update.out)
 \@outlinefile=\write3
-\openout3 = `event_study_update.out'.
+\openout3 = `quick_update.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -673,137 +661,141 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 104.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 111.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 108.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (635.57053pt too wide) in paragraph at lines 114--114
+Overfull \hbox (635.57053pt too wide) in paragraph at lines 111--111
 []\T1/lmtt/m/n/12 ## Warning: In version 0.8.0 of the `modelsummary` package, the default significance markers produced by the `stars=TRUE` argument were changed to be consistent with R's defaults.[] 
  []
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 120.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 120.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 120.
-<event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf, id=25, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 169.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf, id=26, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf  used on input line 169.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf, id=27, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf  used on input line 169.
-(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
 [1
 
-{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf, id=45, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf  used on input line 173.
+{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 126.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 126.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 126.
+[2]
+<quick_update_files/figure-latex/unnamed-chunk-5-1.pdf, id=37, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 221.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf, id=46, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf  used on input line 173.
+<quick_update_files/figure-latex/unnamed-chunk-5-2.pdf, id=38, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-5-2.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-5-2.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-5-2.pdf  used on input line 221.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf, id=47, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf  used on input line 173.
+<quick_update_files/figure-latex/unnamed-chunk-5-3.pdf, id=39, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-5-3.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-5-3.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-5-3.pdf  used on input line 221.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[3 <./event_study_update_files/figure-latex/unnamed-chunk-13-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-13-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-13-3.pdf>]
-<event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf, id=82, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 177.
+<quick_update_files/figure-latex/unnamed-chunk-6-1.pdf, id=40, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-6-1.pdf  used on input line 225.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf, id=83, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf  used on input line 177.
+<quick_update_files/figure-latex/unnamed-chunk-6-2.pdf, id=41, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-6-2.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-6-2.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-6-2.pdf  used on input line 225.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf, id=84, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf  used on input line 177.
+<quick_update_files/figure-latex/unnamed-chunk-6-3.pdf, id=42, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-6-3.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-6-3.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-6-3.pdf  used on input line 225.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[4 <./event_study_update_files/figure-latex/unnamed-chunk-14-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-14-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-14-3.pdf>]
-<event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf, id=117, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf  used on input line 187.
+[3
+
+
+ <./quick_update_files/figure-latex/unnamed-chunk-5-1.pdf> <./quick_update_files/figure-latex/unnamed-chunk-5-2.pdf> <./quick_update_files/figure-latex/unnamed-chunk-5-3.pdf>] [4]
+<quick_update_files/figure-latex/unnamed-chunk-7-1.pdf, id=84, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-7-1.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-7-1.pdf  used on input line 233.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf, id=118, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf  used on input line 187.
+<quick_update_files/figure-latex/unnamed-chunk-7-2.pdf, id=85, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-7-2.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-7-2.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-7-2.pdf  used on input line 233.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf, id=119, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf  used on input line 187.
+<quick_update_files/figure-latex/unnamed-chunk-7-3.pdf, id=86, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-7-3.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-7-3.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-7-3.pdf  used on input line 233.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[5 <./event_study_update_files/figure-latex/unnamed-chunk-15-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-15-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-15-3.pdf>]
-<event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf, id=153, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf  used on input line 191.
+[5 <./quick_update_files/figure-latex/unnamed-chunk-6-1.pdf> <./quick_update_files/figure-latex/unnamed-chunk-6-2.pdf> <./quick_update_files/figure-latex/unnamed-chunk-6-3.pdf>]
+<quick_update_files/figure-latex/unnamed-chunk-8-1.pdf, id=120, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-8-1.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-8-1.pdf  used on input line 237.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf, id=154, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf  used on input line 191.
+<quick_update_files/figure-latex/unnamed-chunk-8-2.pdf, id=121, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-8-2.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-8-2.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-8-2.pdf  used on input line 237.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf, id=155, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf  used on input line 191.
+<quick_update_files/figure-latex/unnamed-chunk-8-3.pdf, id=122, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-8-3.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-8-3.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-8-3.pdf  used on input line 237.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[6 <./event_study_update_files/figure-latex/unnamed-chunk-26-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-26-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-26-3.pdf>]
-<event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf, id=190, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf  used on input line 195.
+[6 <./quick_update_files/figure-latex/unnamed-chunk-7-1.pdf> <./quick_update_files/figure-latex/unnamed-chunk-7-2.pdf> <./quick_update_files/figure-latex/unnamed-chunk-7-3.pdf>]
+<quick_update_files/figure-latex/unnamed-chunk-9-1.pdf, id=157, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 248.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf, id=191, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf  used on input line 195.
+<quick_update_files/figure-latex/unnamed-chunk-9-2.pdf, id=158, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-9-2.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-9-2.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-9-2.pdf  used on input line 248.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-<event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf, id=192, 469.755pt x 325.215pt>
-File: event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf Graphic file (type pdf)
-<use event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf>
-Package pdftex.def Info: event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf  used on input line 195.
+<quick_update_files/figure-latex/unnamed-chunk-9-3.pdf, id=159, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-9-3.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-9-3.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-9-3.pdf  used on input line 248.
 (pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
-[7 <./event_study_update_files/figure-latex/unnamed-chunk-27-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-27-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-27-3.pdf>] [8 <./event_study_update_files/figure-latex/unnamed-chunk-28-1.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-28-2.pdf> <./event_study_update_files/figure-latex/unnamed-chunk-28-3.pdf>] (./event_study_update.aux)
+[7 <./quick_update_files/figure-latex/unnamed-chunk-8-1.pdf> <./quick_update_files/figure-latex/unnamed-chunk-8-2.pdf> <./quick_update_files/figure-latex/unnamed-chunk-8-3.pdf>]
+<quick_update_files/figure-latex/unnamed-chunk-10-1.pdf, id=195, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 252.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<quick_update_files/figure-latex/unnamed-chunk-10-2.pdf, id=196, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-10-2.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-10-2.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-10-2.pdf  used on input line 252.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+<quick_update_files/figure-latex/unnamed-chunk-10-3.pdf, id=197, 469.755pt x 325.215pt>
+File: quick_update_files/figure-latex/unnamed-chunk-10-3.pdf Graphic file (type pdf)
+<use quick_update_files/figure-latex/unnamed-chunk-10-3.pdf>
+Package pdftex.def Info: quick_update_files/figure-latex/unnamed-chunk-10-3.pdf  used on input line 252.
+(pdftex.def)             Requested size: 230.18196pt x 159.35674pt.
+[8 <./quick_update_files/figure-latex/unnamed-chunk-9-1.pdf> <./quick_update_files/figure-latex/unnamed-chunk-9-2.pdf> <./quick_update_files/figure-latex/unnamed-chunk-9-3.pdf>] [9 <./quick_update_files/figure-latex/unnamed-chunk-10-1.pdf> <./quick_update_files/figure-latex/unnamed-chunk-10-2.pdf> <./quick_update_files/figure-latex/unnamed-chunk-10-3.pdf>] (./quick_update.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `event_study_update.out' has not changed.
-(rerunfilecheck)             Checksum: 51D4731044AE44F0A9E2C3291316EACE;1069.
+Package rerunfilecheck Info: File `quick_update.out' has not changed.
+(rerunfilecheck)             Checksum: 4ECA581FD13A7B3348EB2F8428CDE849;393.
  ) 
 Here is how much of TeX's memory you used:
- 16290 strings out of 480313
- 277491 string characters out of 5895947
- 617335 words of memory out of 5000000
- 33794 multiletter control sequences out of 15000+600000
- 475049 words of font info for 86 fonts, out of 8000000 for 9000
+ 16293 strings out of 480313
+ 276236 string characters out of 5895947
+ 618304 words of memory out of 5000000
+ 33799 multiletter control sequences out of 15000+600000
+ 472051 words of font info for 85 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,10n,106p,771b,419s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,10n,106p,804b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on event_study_update.pdf (8 pages, 244893 bytes).
+Output written on quick_update.pdf (9 pages, 239831 bytes).
 PDF statistics:
- 300 PDF objects out of 1000 (max. 8388607)
+ 301 PDF objects out of 1000 (max. 8388607)
  239 compressed objects within 3 object streams
- 44 named destinations out of 1000 (max. 500000)
- 131 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 42 named destinations out of 1000 (max. 500000)
+ 115 words of extra memory for PDF output out of 10000 (max. 10000000)
 
