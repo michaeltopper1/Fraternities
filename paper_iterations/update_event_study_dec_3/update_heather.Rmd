@@ -1,0 +1,319 @@
+---
+title: "Update Heather"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{subfig}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+#bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+---
+
+```{r setup, include=FALSE, echo = F, message = F, warning = F}
+knitr::opts_chunk$set(echo = F, message = F, warnings = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(fixest)
+library(modelsummary)
+library(kableExtra)
+```
+
+
+```{r}
+source("tables/regressions_main_split.R")
+```
+
+```{r}
+source("figures/event_studies_all_dec_10.R")
+```
+
+# Update
+
+Purpose of this update is to investigate why the trends were changing so much when I added in a university by academic year by semester fixed effect. Recall that when this was added in, while the results did not change too much, a seemingly linear trend appeared in the event studies. 
+
+I will split the data into two sections: moratorium schools that are below the median length of a moratorium (48 days) and those that are above. The hope is that by splitting this, I will be able to see that a lot of variation is going away from a specification with university by academic year and university by academic year by semester. This is likely because the moratoriums that "bleed" into other semesters are falling into an incorrect comparison group. For instance, with a university by academic year by semester fixed effect, I will have comparison groups for smaller moratoriums. However, in much larger ones, I will only be comparing the "tail" or "beginning ends" of each of these to non moratorium days.
+
+As an example, consider a school with a moratorium that lasts throughout all of a 2014 Fall and 4 days in 2015 Spring. Hence, the comparison will only see the varition from the 4 days in 2015 spring to the rest of the Spring 2015 Semester. This might be misleading. On the other hand, a school that has a short moratorium lasting 20 days in 2014 Fall will be comparing only the Fall 2014 moratorium days to the Fall 2014 non-moratorium days at that university. This is much less misleading. Therefore, I do not think that there should be a university by academic year by semester fixed effect because the comparison groups could be misleading. 
+
+However, this logic can expand to any school that "bleeds across" into different academic years as well. There appears to be 6 schools that bleed into other academic years.
+
+Because of this, it seems reasonable to use the baseline specification (1) as my preferred specification. This will alleviate the concerns of the controls groups bleeding in and out the the time trends. I think there is utility in showing the other specifications, although final judgment left to the committee.
+
+
+Table \ref{table_differences} shows the main specifications subset by median length of moratorium. Table \ref{main_table} shows the main results with all schools in the sample. 
+\begin{landscape}
+```{r}
+table_differences
+```
+\end{landscape}
+```{r}
+main_table
+```
+
+
+
+
+# Event Studies
+
+I test two separate types of event studies: the classic staggered adoption and a non-staggered adoption where period 0 is the entire moratorium period. For each of these, I want to have a pre and post period that is approximately equal to the length of a median moratorium (48 days). Hence, when using 7 day bins, I should have 7 pre and post periods. When using 14 day bins, I should have 3. Finally, when I use 48 day moratorium periods, I can use just 1 or 2.
+
+
+## Period 0 is the entire moratorium
+
+### Model 1
+
+The Figures, \ref{es_7_1}, \ref{es_14_1}, and \ref{es_48_1} show the event studies when period 0 is the entire moratorium period and the model used is model 1
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_1}Event studies with 7-day periods. Period 0 represents the entire moratorium. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_7[[1]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_7[[1]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_7[[1]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_1}Event studies with 14-day periods. Period 0 represents the entire moratorium. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14[[1]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14[[1]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14[[1]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_1}Event studies with 48-day periods. Period 0 represents the entire moratorium. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48[[1]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48[[1]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48[[1]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+
+### Model 2
+
+The Figures, \ref{es_7_2}, \ref{es_14_2}, and \ref{es_48_2} show the event studies when period 0 is the entire moratorium period and the model used is model 2.
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_2}Event studies with 7-day periods. Period 0 represents the entire moratorium. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_7[[2]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_7[[2]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_7[[2]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_2}Event studies with 14-day periods. Period 0 represents the entire moratorium. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14[[2]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14[[2]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14[[2]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_2}Event studies with 48-day periods. Period 0 represents the entire moratorium. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48[[2]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48[[2]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48[[2]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+```
+
+### Model 3
+
+The Figures, \ref{es_7_3}, \ref{es_14_3}, and \ref{es_48_3} show the event studies when period 0 is the entire moratorium period and the model used is model 3.
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_3}Event studies with 7-day periods. Period 0 represents the entire moratorium. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_7[[3]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_7[[3]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_7[[3]], 8) +
+  labs(x = "7 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_3}Event studies with 14-day periods. Period 0 represents the entire moratorium. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_3}Event studies with 48-day periods. Period 0 represents the entire moratorium. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+## Staggered Adoption
+
+### Model 1
+
+The Figures, \ref{es_7_1_s}, \ref{es_14_1_s}, and \ref{es_48_1_s} show the staggered event study and the model used is model 1
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_1_s}Event studies with 7-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_7_s[[1]], 8) +
+  labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_7_s[[1]], 8) +
+  labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_7_s[[1]], 8) +
+  labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_1_s}Event studies with 14-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14_s[[1]], 5) +
+  labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14_s[[1]], 5) +
+  labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14_s[[1]], 5) +
+  labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_1_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48_s[[1]], 3) +
+  labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48_s[[1]], 3) +
+  labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48_s[[1]], 3) +
+  labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
+```
+
+### Model 2
+
+The Figures, \ref{es_7_2_s}, \ref{es_14_2_s}, and \ref{es_48_2_s} show the staggered event study and the model used is model 2.
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_2_s}Event studies with 7-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_7_s[[2]], 8) +
+  labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_7_s[[2]], 8) +
+  labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_7_s[[2]], 8) +
+  labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_2_s}Event studies with 14-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14_s[[2]], 5) +
+  labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14_s[[2]], 5) +
+  labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14_s[[2]], 5) +
+  labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_2_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48_s[[2]], 3) +
+  labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48_s[[2]], 3) +
+  labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48_s[[2]], 3) +
+  labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+```
+
+
+### Model 3
+
+The Figures, \ref{es_7_3_s}, \ref{es_14_3_s}, and \ref{es_48_3_s} show the staggered event study and the model used is model 3.
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_3_s}Event studies with 7-day periods. Staggered. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_7_s[[3]], 8) +
+  labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_7_s[[3]], 8) +
+  labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_7_s[[3]], 8) +
+  labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_3_s}Event studies with 14-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14_s[[3]], 5) +
+  labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14_s[[3]], 5) +
+  labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14_s[[3]], 5) +
+  labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_3_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48_s[[3]], 3) +
+  labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48_s[[3]], 3) +
+  labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48_s[[3]], 3) +
+  labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+

@@ -1,0 +1,137 @@
+---
+title: "Small Update"
+output: pdf_document
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{subfig}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+#bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warnings = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(fixest)
+library(modelsummary)
+library(kableExtra)
+```
+
+# Specifications
+```{r}
+source("tables/regressions_main_split.R")
+```
+
+```{r}
+source("figures/event_studies_all_dec_10.R")
+```
+Table \ref{table_differences} shows the main specifications subset by median length of moratorium. Table \ref{main_table} shows the main results with all schools in the sample. 
+
+As an aside, there are 5 universities in the "under 48 day moratoriums" that have moratorium periods that "bleed" into other academic-year-semesters. 
+
+\begin{landscape}
+```{r}
+table_differences
+```
+\end{landscape}
+```{r}
+main_table
+```
+
+
+# Subset further
+
+The criteria for this next subset is that these are the schools in which a moratorium occurs completely within an academic year - semester  (e.g. Spring 2014) and have at least 3 weeks of untreated days within that same semester. The hope was that there would be less linear trends in the corresponding event studies for Model (3). These still do not look great to me (at least for alcohol). See Figure \ref{es_14_3_r} and \ref{es_48_3_r}. 
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_3_r}Event studies with 14-day periods restricting to only schools with entire moratorium in a semester-academic year and an additional 3 weeks of control periods. Period 0 represents the entire moratorium. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14_r[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14_r[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14_r[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_3_r}Event studies with 48-day periods restricting to only schools with entire moratorium in a semester-academic year and an additional 3 weeks of control periods. Period 0 represents the entire moratorium. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48_r[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48_r[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48_r[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+For reference, here are the same figures (Figures \ref{es_14_3} and \ref{es_48_3}) for the entire sample for this model (3) as shown today in the meeting.
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_3}Event studies with 14-day periods. Period 0 represents the entire moratorium. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14[[3]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_3}Event studies with 48-day periods. Period 0 represents the entire moratorium. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48[[3]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+```
+
+
+# Preferred Specification
+
+In light of this, I believe specification (2) is the best fit. Recall from last time the Model (2) event studies shown in Figures \ref{es_14_2} and \ref{es_48_2}
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_2}Event studies with 14-day periods. Period 0 represents the entire moratorium. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_14[[2]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_14[[2]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_14[[2]], 5) +
+  labs(x = "14 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+```
+
+```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_2}Event studies with 48-day periods. Period 0 represents the entire moratorium. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+
+ifc::event_study_graph(es_alc_48[[2]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Alcohol Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_drug_48[[2]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Drug Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+
+ifc::event_study_graph(es_sex_48[[2]], 3) +
+  labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+```
