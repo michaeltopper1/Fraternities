@@ -49,7 +49,7 @@ explanatory_vars <- c("treatment:reason_sexual_assault",
                       "treatment:reason_behavior",
                       "treatment:reason_unknown")
 
-fe <- c("university", "date")
+fe <- c( "day_of_week", "university_by_academic_year", "holiday", "spring_semester")
 offenses_regs <- map(offenses, ~ifc::reghdfe(daily_crime_het,  ., explanatory_vars ,fe , "university"))
 
 offenses_regs_weekends <- map(offenses, ~ifc::reghdfe(daily_crime_het_weekends,  ., explanatory_vars

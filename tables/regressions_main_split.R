@@ -60,7 +60,7 @@ short_moratorium_schools_fullsem <- c("University of California-Berkeley",
                                       "Washington State University")
 
 daily_crime_short <- daily_crime %>% 
-  filter((university %in% short_moratorium_schools))
+  filter((university %in% short_moratorium_schools_fullsem))
 
 daily_crime_long <- daily_crime %>% 
   filter(!(university %in% short_moratorium_schools))

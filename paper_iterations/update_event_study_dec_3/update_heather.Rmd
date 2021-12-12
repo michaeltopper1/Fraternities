@@ -194,126 +194,126 @@ ifc::event_study_graph(es_sex_48[[3]], 3) +
   labs(x = "48 Day Periods - Period 0 represents entire moratorium", title = "Sexual Assault Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
 ```
 
-## Staggered Adoption
+<!-- ## Staggered Adoption -->
 
-### Model 1
+<!-- ### Model 1 -->
 
-The Figures, \ref{es_7_1_s}, \ref{es_14_1_s}, and \ref{es_48_1_s} show the staggered event study and the model used is model 1
+<!-- The Figures, \ref{es_7_1_s}, \ref{es_14_1_s}, and \ref{es_48_1_s} show the staggered event study and the model used is model 1 -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_1_s}Event studies with 7-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_1_s}Event studies with 7-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_7_s[[1]], 8) +
-  labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_7_s[[1]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_7_s[[1]], 8) +
-  labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_7_s[[1]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_7_s[[1]], 8) +
-  labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_7_s[[1]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (1))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_1_s}Event studies with 14-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_1_s}Event studies with 14-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_14_s[[1]], 5) +
-  labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_14_s[[1]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_14_s[[1]], 5) +
-  labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_14_s[[1]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_14_s[[1]], 5) +
-  labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_14_s[[1]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (1))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_1_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_1_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_48_s[[1]], 3) +
-  labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_48_s[[1]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_48_s[[1]], 3) +
-  labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_48_s[[1]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_48_s[[1]], 3) +
-  labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_48_s[[1]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (1))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
-### Model 2
+<!-- ### Model 2 -->
 
-The Figures, \ref{es_7_2_s}, \ref{es_14_2_s}, and \ref{es_48_2_s} show the staggered event study and the model used is model 2.
+<!-- The Figures, \ref{es_7_2_s}, \ref{es_14_2_s}, and \ref{es_48_2_s} show the staggered event study and the model used is model 2. -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_2_s}Event studies with 7-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_2_s}Event studies with 7-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_7_s[[2]], 8) +
-  labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_7_s[[2]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_7_s[[2]], 8) +
-  labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_7_s[[2]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_7_s[[2]], 8) +
-  labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_7_s[[2]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (2))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_2_s}Event studies with 14-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_2_s}Event studies with 14-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_14_s[[2]], 5) +
-  labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_14_s[[2]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_14_s[[2]], 5) +
-  labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_14_s[[2]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_14_s[[2]], 5) +
-  labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_14_s[[2]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (2))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_2_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_2_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_48_s[[2]], 3) +
-  labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_48_s[[2]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_48_s[[2]], 3) +
-  labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_48_s[[2]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_48_s[[2]], 3) +
-  labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_48_s[[2]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (2))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
 
-### Model 3
+<!-- ### Model 3 -->
 
-The Figures, \ref{es_7_3_s}, \ref{es_14_3_s}, and \ref{es_48_3_s} show the staggered event study and the model used is model 3.
+<!-- The Figures, \ref{es_7_3_s}, \ref{es_14_3_s}, and \ref{es_48_3_s} show the staggered event study and the model used is model 3. -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_3_s}Event studies with 7-day periods. Staggered. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_7_3_s}Event studies with 7-day periods. Staggered. This is Model (3) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_7_s[[3]], 8) +
-  labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_7_s[[3]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Alcohol Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_7_s[[3]], 8) +
-  labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_7_s[[3]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Drug Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_7_s[[3]], 8) +
-  labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_7_s[[3]], 8) + -->
+<!--   labs(x = "7 Day Periods", title = "Sexual Assault Event Study: 7 Day Periods (Model (3))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_3_s}Event studies with 14-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_14_3_s}Event studies with 14-day periods. Staggered. This is Model (2) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_14_s[[3]], 5) +
-  labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_14_s[[3]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Alcohol Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_14_s[[3]], 5) +
-  labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_14_s[[3]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Drug Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_14_s[[3]], 5) +
-  labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_14_s[[3]], 5) + -->
+<!--   labs(x = "14 Day Periods", title = "Sexual Assault Event Study: 14 Day Periods (Model (3))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
-```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_3_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")} 
+<!-- ```{r,  echo = F,out.width='.49\\linewidth', fig.cap= "\\label{es_48_3_s}Event studies with 48-day periods. Staggered. This is Model (1) from main table.", fig.ncol = 2, fig.subcap= c("Alcohol", "Drug", "Sexual Assault")}  -->
 
-ifc::event_study_graph(es_alc_48_s[[3]], 3) +
-  labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_alc_48_s[[3]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Alcohol Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_drug_48_s[[3]], 3) +
-  labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
+<!-- ifc::event_study_graph(es_drug_48_s[[3]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Drug Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate") -->
 
-ifc::event_study_graph(es_sex_48_s[[3]], 3) +
-  labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate")
-```
+<!-- ifc::event_study_graph(es_sex_48_s[[3]], 3) + -->
+<!--   labs(x = "48 Day Periods", title = "Sexual Assault Event Study: 48 Day Periods (Model (3))", y = "Coefficient Estimate") -->
+<!-- ``` -->
 
