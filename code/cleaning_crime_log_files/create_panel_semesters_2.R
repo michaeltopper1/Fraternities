@@ -602,18 +602,84 @@ daily_panel <- daily_panel %>%
   mutate(veterans = ifelse(date %in% lubridate::as_date(veterans), 1, 0)) %>% 
   mutate(holiday = ifelse(labor == 1 | thanksgiving == 1 | halloween == 1 | mlk == 1 | veterans == 1, 1, 0))
 
+
+
+# omitting week before for sexual assault only ----------------------------
+
+daily_panel <- daily_panel %>% 
+  filter(!(university == "Arkansas State University-Main Campus" & (date >= "2017-02-14"& date <"2017-02-21"))) %>% 
+  filter(!(university == "Clemson University" & (date >=  "2014-09-16" & date < "2014-09-23"))) %>% 
+  filter(!(university == "East Carolina University" & (date >= "2015-01-21" & date < "2015-01-28"))) %>% 
+  filter(!(university == "Emory University" & (date >= "2014-10-27" & date < "2014-11-03"))) %>% 
+  filter(!(university == "North Carolina State University at Raleigh" & (date >= "2015-03-13" & date < "2015-03-20"))) %>% 
+  filter(!(university == "San Diego State University" & (date >= "2014-11-18" & date < "2014-11-25"))) %>% 
+  filter(!(university == "University of California-Berkeley" & (date >= "2016-10-09" & date < "2016-10-16"))) %>% 
+  filter(!(university == "University of Michigan-Ann Arbor" & (date >= "2017-11-02" & date < "2017-11-09"))) %>% 
+  filter(!(university == "University of Virginia-Main Campus" & (date >= "2014-11-15" & date < "2014-11-22"))) %>% 
+  filter(!(university == "California Polytechnic State University-San Luis Obispo" & (date >= "2018-04-10" & date < "2018-04-17"))) 
+
+
+# adding in indicators for 2 and 1 weeks before and after -----------------
+
+leead <- function(x, v){
+  xx <- rep(0, length(x))
+  for(i in v){
+    xx <- xx + lead(x, i)
+  }
+  xx[is.na(xx)] <- 0
+  xx
+}
+
+laag <- function(x, v){
+  xx <- rep(0, length(x))
+  for(i in v){
+    xx <- xx + dplyr::lag(x, i)
+  }
+  xx[is.na(xx)] <- 0
+  xx
+}
+
+daily_panel <- daily_panel %>% 
+  group_by(university) %>%
+  arrange(date) %>%
+  mutate(day_one_moratorium = case_when(
+    closure_1 == date ~ 1,
+    closure_2 == date ~ 1,
+    closure_3 == date ~ 1,
+    university == "Florida International University" & date == "2018-01-04" ~ 1,
+    TRUE ~as.double(0))) %>% 
+  mutate(final_day_moratorium = case_when(
+    closure_1_end == date + lubridate::days(1) ~ 1,
+    closure_2_end == date +lubridate::days(1)~ 1,
+    closure_3_end == date + lubridate::days(1)~1,
+    university == "San Diego State University" & date == "2014-12-16" ~1,
+    university == "University of Virginia-Main Campus" & date == "2014-12-18" ~ 1,
+    university == "Washington State University" & date == "2016-12-22" ~1,
+    university == "Monmouth University" & date == "2018-12-23" ~1,
+    TRUE ~ as.double(0)
+  )) %>% 
+  mutate(week_before = leead(day_one_moratorium, c(1:7)),
+         week_after = laag(final_day_moratorium, c(1:7)),
+         two_weeks_before = leead(day_one_moratorium, c(8:14)),
+         two_weeks_after = laag(final_day_moratorium, c(8:14))) %>% 
+  ungroup()
+
+
 daily_panel_weekdays <- daily_panel %>% 
   filter(day_of_week == "Mon" | day_of_week == "Thu" | day_of_week == "Wed" | day_of_week == "Tue" )
 daily_panel_weekends <- daily_panel %>%
   filter(day_of_week == 'Fri' | day_of_week == "Sat" | day_of_week == "Sun")
+
+
 
 # Writing to csv ----------------------------------------------------------
 
 ## Note that all of these are only the academic calendars. These are going to be my final
 ## daily panel
 write_csv(daily_panel, file = "created_data/xmaster_data/daily_panel.csv")
-write_csv(daily_panel_weekends , fil = "created_data/xmaster_data/daily_panel_weekends.csv")
+write_csv(daily_panel_weekends , file = "created_data/xmaster_data/daily_panel_weekends.csv")
 write_csv(daily_panel_weekdays, file = "created_data/xmaster_data/daily_panel_weekdays.csv")
+
 # haven::write_dta(daily_panel %>% 
 #                    select(-starts_with("fulltime_"), - starts_with("frac_"), -university_by_year_by_semester_number), path = 'created_data/xmaster_data/daily_panel.dta')
 ## weekly panel

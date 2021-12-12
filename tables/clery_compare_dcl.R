@@ -13,8 +13,10 @@ discipline <- read_csv("created_data/clery_act/discipline.csv")
 crimes <- read_csv("created_data/clery_act/crime.csv")
 
 clery <- discipline %>% 
-  left_join(crimes)
+  left_join(crimes) %>% 
+  filter(university %in% ifc::moratorium_schools())
 
+c
 ## According to the CSH help center email ("question on clery act data") We have:
 # 1.The three primary geographical categories (on campus, noncampus, and public property) are mutually exclusive. However, On-campus student housing facilities are located on campus, and thus are a subset of on campus.
 # 
@@ -28,12 +30,13 @@ clery <- clery %>%
   mutate(clery_total_drug = noncampus_drug + publicproperty_drug + oncampus_drug) %>% 
   mutate(clery_total_burglary = noncampus_burgla + publicproperty_burgla + oncampus_burgla) %>% 
   mutate(clery_total_liquor = noncampus_liquor + publicproperty_liquor + oncampus_liquor) %>% 
-  mutate(clery_total_sexual_assault = noncampus_rape + noncampus_fondl + noncampus_statr + noncampus_inces +
-           oncampus_rape + oncampus_fondl + oncampus_statr + oncampus_inces + publicproperty_rape + publicproperty_fondl +
-           publicproperty_statr + publicproperty_inces)
+  mutate(clery_total_sexual_assault = noncampus_rape + noncampus_fondl + noncampus_statr  +
+           oncampus_rape + oncampus_fondl + oncampus_statr + publicproperty_rape + publicproperty_fondl +
+           publicproperty_statr) ## note that this aligns with my definition
 
 yearly_crime <- read_csv("created_data/xmaster_data/yearly_panel.csv") %>% 
-  filter(year > 2013)
+  filter(year > 2013) %>% 
+  filter(university %in% ifc::moratorium_schools())
 
 
 

@@ -1,0 +1,110 @@
+---
+title: "Untitled"
+output: pdf_document
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage{indentfirst}
+- \usepackage[utf8]{inputenc}
+- \usepackage{subfig}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+#bibliography: "references.bib"
+link-citations: yes
+linkcolor: blue
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warnings = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(fixest)
+library(modelsummary)
+library(kableExtra)
+
+```
+
+#
+```{r}
+if (!exists("daily_crime")){
+  daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
+}
+if (!exists("daily_crime_weekends")){
+  daily_crime_weekends <- read_csv("created_data/xmaster_data/daily_panel_weekends.csv")
+}
+
+if (!exists("daily_crime_weekdays")){
+  daily_crime_weekdays <- read_csv("created_data/xmaster_data/daily_panel_weekdays.csv")
+}
+
+
+
+explanatory_vars <- c("treatment")
+data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
+
+fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+explanatory_vars_week_before <- c("week_before", "treatment", "week_after")
+# fixed_effects_preferred_l <-  c("day_of_week", "university_by_academic_year_by_semester", "holiday")
+data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
+
+alc_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university")
+)
+
+drug_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("drug_offense_per25"),explanatory_vars, fixed_effects_preferred, "university")
+)
+
+sex_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university")
+)
+
+alc_weeksplit_controls <- map(data_subsets, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars_week_before, fixed_effects_preferred, "university")
+)
+
+drug_weeksplit_controls <- map(data_subsets, ~ifc::reghdfe(., c("drug_offense_per25"),explanatory_vars_week_before, fixed_effects_preferred, "university")
+)
+
+sex_weeksplit_controls <- map(data_subsets, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars_week_before, fixed_effects_preferred, "university")
+)
+
+weekend_table <- ifc::main_table(alc_weeksplit, drug_weeksplit, sex_weeksplit, alc_weeksplit_controls,
+                                 drug_weeksplit_controls,last_panel = sex_weeksplit_controls) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$alcohol_offense_per25, na.rm = T)),
+          .before = 4) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$drug_offense_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$drug_offense_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$drug_offense_per25, na.rm = T)),
+          .before = 8) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
+          .before = 12) %>% 
+  kbl(booktabs = T, col.names = c(" ", "Full Sample", "Weekends", "Weekdays"),
+      caption = "\\label{weekend_table}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assault by Weekend/Weekdays.") %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>% 
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>% 
+  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
+  pack_rows("Panel D: Alcohol Offenses ", 13, 19, bold = F, italic = T, hline_before = T) %>% 
+  pack_rows("Panel E: Drug Offenses", 20, 26, bold = F, italic = T) %>% 
+  pack_rows("Panel C: Sexual Assaults", 27, 33, bold = F, italic = T) %>% 
+  pack_rows("Controls for Panels A-F:", 34, 37, bold = F, italic = T) %>% 
+  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since not in panel. A moratorium is a temporary halt on fraternity-related activities with alcohol. ",
+                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) 
+
+```
+
+```{r}
+weekend_table
+```
+

@@ -59,7 +59,7 @@ for (i in seq_along(universities)){
 
 ## joining together the dates and the counts to make a long panel
 daily_panel <- school_dates %>% 
-  left_join(collapsed_data_daily, by = c("university" = "university", "date" = "date_reported")) %>% 
+  left_join(collapsed_data_daily, by = c("university" = "university", "date" = "date_preferred")) %>% 
   mutate(year = year(date), month = month(date), day = day(date))
 
 

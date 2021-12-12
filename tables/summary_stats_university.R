@@ -42,7 +42,7 @@ university_characteristics <- daily_crime %>%
                 (`Alcohol Offense` = alcohol_offense_per25) +
                 (`Drug Offense` = drug_offense_per25)  +
                 (`Sexual Assault` = sexual_assault_per25)  ~ (Mean + SD + Median + Min + Max ), data = .,
-              title = "\\label{summary_stats}Summary statistics of the 38 universities in the sample and outcomes used in analysis.",
+              title = "\\label{summary_stats}Summary statistics of the universities in the sample.",
               notes = list('Offenses are per-25000 students enrolled.',
                            "Length of moratorium statistics are in academic calendar days."),
               add_rows = moratorium_rows) %>% 

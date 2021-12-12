@@ -36,9 +36,9 @@ all_crime <- yearly_crime %>%
 # creating totals for clery act crimes so that i can compare with  --------
 
 all_crime <- all_crime %>% 
-  mutate(clery_sexual_assault = noncampus_rape + noncampus_fondl + noncampus_inces +
-            oncampus_rape + oncampus_fondl + oncampus_inces + publicproperty_rape + 
-           publicproperty_fondl + publicproperty_inces,
+  mutate(clery_sexual_assault = noncampus_rape + noncampus_fondl  +
+            oncampus_rape + oncampus_fondl  + publicproperty_rape + 
+           publicproperty_fondl,
          clery_alcohol = noncampus_liquor + oncampus_liquor + publicproperty_liquor,
          clery_drug = noncampus_drug + oncampus_drug + publicproperty_drug,
          clery_robbery = noncampus_robbe + oncampus_robbe + publicproperty_robbe) %>% 
@@ -48,11 +48,11 @@ all_crime <- all_crime %>%
   mutate(clery_oncampus_drug = oncampus_drug) %>% 
   mutate(clery_oncampus_liquor = oncampus_liquor) %>% 
   mutate(residencehall_sexual_assault = residencehall_rape + residencehall_fondl) %>% 
-  mutate(across(starts_with("clery_"), ~ (./total_enrollment) * 25000, .names = "{.col}_per_25k")) %>% 
-  mutate(across(c(residencehall_sexual_assault, residencehall_drug, residencehall_liquor), ~ (./total_enrollment) * 25000, .names = "{.col}_per_25k")) %>% 
-  mutate(across(c(sexual_assault, alcohol_offense, robbery_burglary, drug_offense), ~ (./total_enrollment) * 25000, .names = "{.col}_per_25k")) %>% 
-  mutate(across(c(noncampus_liquor, noncampus_drug, noncampus_rape), ~(./total_enrollment) * 25000, .names = "{.col}_per_25k")) %>% 
-  mutate(across(clery_offcampus_sexual_assault, ~(./total_enrollment) * 25000, .names = "{.col}_per_25k"))
+  mutate(across(starts_with("clery_"), ~ (./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
+  mutate(across(c(residencehall_sexual_assault, residencehall_drug, residencehall_liquor), ~ (./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
+  mutate(across(c(sexual_assault, alcohol_offense, robbery_burglary, drug_offense), ~ (./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
+  mutate(across(c(noncampus_liquor, noncampus_drug, noncampus_rape), ~(./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
+  mutate(across(clery_offcampus_sexual_assault, ~(./total_enrollment) * 25000, .names = "{.col}_per25"))
   
 
 
@@ -80,6 +80,10 @@ all_crime <- all_crime %>%
          reason2 = ifelse(reason2 == "hazing", "behavior", reason2),
          reason2 = ifelse(reason2 == "national trends", "unknown", reason2),
          reason2 = ifelse(reason2 == "racist activity", "behavior", reason2))
+
+all_crime <- all_crime %>% 
+  filter(university %in% ifc::moratorium_schools())
+
 
 write_csv(all_crime, file = "created_data/xmaster_data/merged_clery.csv")
 

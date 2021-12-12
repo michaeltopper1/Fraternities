@@ -6,17 +6,24 @@
 ##
 
 library(tidyverse)
+library(fixest)
+
+daily_crime <- read_csv('created_data/xmaster_data/daily_panel.csv')
+
+fixed_effects_0 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+fixed_effects_3 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday",  "spring_semester")
+
+
+daily_fixed_effects = list(fixed_effects_0, fixed_effects_2, fixed_effects_3)
 
 
 # nonstaggered ------------------------------------------------------------
 
 es_7 <- ifc::event_study_day(daily_crime, 8, 7)
 es_14 <- ifc::event_study_day(daily_crime, 5, 14)
-es_14_r <- ifc::event_study_day(daily_crime %>% 
-                                  filter(university %in% short_moratorium_schools_fullsem), 5, 14)
 es_48 <- ifc::event_study_day(daily_crime, 3, 48 )
-es_48_r <- ifc::event_study_day(daily_crime %>% 
-                                  filter(university %in% short_moratorium_schools_fullsem), 3, 48 )
+
 
 
 # staggered ---------------------------------------------------------------

@@ -13,58 +13,49 @@ library(kableExtra)
 clery <- read_csv(here::here("created_data/xmaster_data/merged_clery.csv")) %>% 
   filter(university %in% ifc::moratorium_schools())
 
+## changing to per 25000 enrolled students per day. 
+clery <- clery %>% 
+  mutate(across(ends_with("per25"), ~ . / 365))
 
-clery_regs <- clery %>% 
-  feols(c(clery_alcohol_per_25k, residencehall_liquor_per_25k, clery_oncampus_liquor_per_25k,
-          clery_sexual_assault_per_25k,residencehall_sexual_assault_per_25k, clery_oncampus_sexual_assault_per_25k,
-          alcohol_offense_per_25k, sexual_assault_per_25k) ~treatment |
-          university + year, cluster = ~university, data = .)
+explanatory_vars <- c("treatment")
+fixed_effects <- c("year", "university")
 
+alc_offenses <- list("alcohol_offense_per25", "clery_alcohol_per25", "residencehall_liquor_per25")
+drug_offenses <- list("drug_offense_per25", "clery_drug_per25", "residencehall_drug_per25")
+sex_offenses <- list("sexual_assault_per25", "clery_sexual_assault_per25", "residencehall_sexual_assault_per25")
 
-find_mean <- function(data, column) {
-  column_mean <- data %>% 
-    summarize(mean({{column}}, na.rm = T)) %>% 
-    pull()
-  return(column_mean)
-}
+alc_clery <- map(alc_offenses, ~ifc::reghdfe(clery, ., explanatory_vars, fixed_effects, cluster = "university"))
+drug_clery <- map(drug_offenses, ~ifc::reghdfe(clery, ., explanatory_vars, fixed_effects, cluster = "university"))
+sex_clery <- map(sex_offenses, ~ifc::reghdfe(clery, ., explanatory_vars, fixed_effects, cluster = "university"))
 
-add_means <- tribble(~term, ~alc_full, ~alc_res, ~alc_non, ~sex_full, ~sex_res, ~sex_non, ~dcl_alc, ~dcl_sex,
-                     "Mean of Dependent Variable", find_mean(clery, clery_alcohol_per_25k), find_mean(clery, residencehall_liquor_per_25k), find_mean(clery,noncampus_liquor_per_25k),
-                     find_mean(clery,clery_sexual_assault_per_25k), find_mean(clery,residencehall_sexual_assault_per_25k ), find_mean(clery, clery_offcampus_sexual_assault_per_25k), find_mean(clery,alcohol_offense_per_25k), find_mean(clery, sexual_assault_per_25k))
+clery_compare <- ifc::main_table(alc_clery, drug_clery, last_panel = sex_clery) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(clery$alcohol_offense_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(clery$clery_alcohol_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(clery$residencehall_liquor_per25, na.rm = T)),
+          .before = 4) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(clery$drug_offense_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(clery$clery_drug_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(clery$residencehall_drug_per25, na.rm = T)),
+          .before = 8) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(clery$sexual_assault_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(clery$clery_sexual_assault_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(clery$residencehall_sexual_assault_per25, na.rm = T)),
+          .before = 12) %>% 
+  kbl(booktabs = T, 
+      col.names = c(" ", "Full Sample", "Full Sample", "Residence Halls"),
+      digits = 3,
+      caption = "\\label{clery_compare}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assaults: Comparison of Daily Crime Logs and Campus Safety and Security.") %>% 
+  kable_paper() %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>%
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>%
+  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
+  pack_rows("Controls for Panels A-C:", 13, 14, bold = F, italic = T) %>% 
+  add_header_above(c(" " = 1, "Daily Crime Logs" = 1, 
+                     "Campus Safety and Security" = 2)) %>% 
+  footnote(list("Standard errors are clustered by university and each offense is defined as offense per-25000 enrolled students per-calendar day. In this model, the In Moratorium treatment variable is defined as a fraction between 0 and 1 where the fraction represents the proportion of calendar-days that experienced a moratorium in a calendar year. Full Samples include the entire Daily Crime Logs/Campus Safety and Security Data (CSS), while Residence Halls is a subset of the CSS. Full Sample in the CSS data contains both off-campus and on-campus reports. CSS data does not necessary need to be reported to the university police and hence, may not show up in the Daily Crime Logs.  A moratorium is a temporary halt on fraternity-related activities with alcohol.",
+                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
 
-attr(add_means, 'position') <- c(4)
-
-clery_reg_table <- modelsummary(clery_regs,
-             stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2',
-             add_rows = add_means,
-             coef_map = c("treatment" = "Moatorium"),
-             title = "\\label{clery_reg}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults in Two Separate Data Sets.",
-             notes = list("Clery Act Data represents Campus Safety Report Official Statistics.",
-                          "Daily Crime Logs represent the novel data I constructed.",
-                          "Standard errors clustered by university.",
-                          "All data is aggregated at the calendar-year level.",
-                          "On campus crimes are all on-campus including residence hall crimes.",
-                          "Daily Crime Log data represents full calendar year- not only academic calendar days.")) %>% 
-  add_header_above(c(" " = 1, "Alcohol Offenses" = 3, "Sexual Assault" = 3, "Alcohol Offenses" = 1,
-                     "Sexual Assault" = 1)) %>% 
-  add_header_above(c(" " = 1, "Campus Safety and Security" = 6, "Daily Crime Logs" = 2))
-
-
-alc_clery <- clery %>% 
-  feols(c(alcohol_offense_per_25k, clery_alcohol_per_25k, residencehall_liquor_per_25k, clery_oncampus_liquor_per_25k) ~treatment | 
-          year + university, cluster = ~university, data =.)
-names(alc_clery) <- c("Model 1", "Model 2", "Model 3", "Model 4")
-
-drug_clery <- clery %>% 
-  feols(c(drug_offense_per_25k, clery_drug_per_25k, residencehall_drug_per_25k, clery_oncampus_drug_per_25k)~treatment | 
-          year + university, cluster = ~university, data =.)
-names(drug_clery) <- c("Model 1", "Model 2", "Model 3", "Model 4")
-
-sex_clery <- clery %>% 
-  feols(c(sexual_assault_per_25k,clery_sexual_assault_per_25k,residencehall_sexual_assault_per_25k, clery_oncampus_sexual_assault_per_25k) ~ treatment | 
-  year + university, cluster = ~university, data =.)
-names(sex_clery) <- c("Model 1", "Model 2", "Model 3", "Model 4")
-
-
-ifc::main_table(alc_clery, drug_clery,last_panel = sex_clery)
-
+## need some summary stats on what percentage is on-campus/off campus i think - maybe an appendix of the summary statistics
