@@ -11,7 +11,7 @@ library(kableExtra)
 # semester_level <- read_csv("created_data/xmaster_data/semester_level.csv")
 # 
 
-# daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
+daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
 # library(TwoWayFEWeights)
 # if (!exists("daily_crime")) {
 #   daily_crime <- read_csv(here::here("Created Data/xMaster_data_2021/daily_panel.csv")) 
@@ -44,16 +44,16 @@ library(kableExtra)
 #     day_of_week == "Sat" ~6,
 #     day_of_week == "Sun" ~7
 #   ))
-# TwoWayFEWeights::twowayfeweights(daily_crime %>% 
-#                                    group_by(day_of_week) %>% 
-#                                    mutate(day = cur_group_id()) %>% 
-#                                    ungroup(),
-#                                  "alcohol_offense_per25",
-#                                  "university",
-#                                  "academic_year",
-#                                  "treatment",
-#                                  cmd_type = "feTR",
-#                                  control = c("day", "spring_semester"))
+TwoWayFEWeights::twowayfeweights(daily_crime %>%
+                                   group_by(day_of_week) %>%
+                                   mutate(day = cur_group_id()) %>%
+                                   ungroup(),
+                                 "alcohol_offense_per25",
+                                 "university",
+                                 "academic_year",
+                                 "treatment",
+                                 cmd_type = "feTR",
+                                 control = c("day", "spring_semester", "holiday"))
 
 twfe_decomp <- tibble(model_fixed_effects = c("University and Day-by-Month-by-Year", "University and Semester-by-Year",
                                "University-by-Semester-by-Year, University, and Day-by-Month-by-Year"),

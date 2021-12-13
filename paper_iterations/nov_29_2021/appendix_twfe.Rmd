@@ -1,0 +1,48 @@
+---
+title: "Appendix: Bowing down to TWFE"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# TWFE
+
+```{r}
+
+
+TwoWayFEWeights::twowayfeweights(daily_crime %>%
+                                   group_by(day_of_week) %>%
+                                   mutate(day = cur_group_id()) %>%
+                                   ungroup(),
+                                 "alcohol_offense_per25",
+                                 "university",
+                                 "academic_year",
+                                 "treatment",
+                                 cmd_type = "feTR",
+                                 control = c("day", "spring_semester", "holiday"))
+TwoWayFEWeights::twowayfeweights(daily_crime %>%
+                                   group_by(day_of_week) %>%
+                                   mutate(day = cur_group_id()) %>%
+                                   ungroup(),
+                                 "alcohol_offense_per25",
+                                 "university",
+                                 "date",
+                                 "treatment",
+                                 cmd_type = "feTR")
+
+```
+
+In this section, I analyze a model that differs from the main specifications shown in Table \ref{main_table}. In particular, specification (2) uses a two-way fixed-effects (TWFE) design where the group fixed effects are university fixed effects and the time fixed effects are the academic year. While this model is intuitively sound, recent literature including (list all the fucking papers) have shown that the estimator $\hat{\beta}$ may not be producing the average treatment effect on the treated as desired. In particular, Bacon and DeChaismartin have shown that the parameter $\hat{\beta}$ on an indicator variable for treatment in a TWFE design is a weighted average of the sum of 2x2 difference-in-differences estimator and a weighted sum of the average treatment effect on the treated where some of the weights may be negative respectively. While there are a variety of new methods that can mitigate these issues (Santana, Abram, DeChaismartin) none of them can accomodate the model used in this paper where universities go in and out of treatment (non-staggered design) and universities may be treated multiple times. Therefore, I estimate the negative weights that are associated with each of the specifications in Table \ref{main} to diagnose the magnitude of this potential issue.
+
+Table \ref{twfe_weights} shows the corresponding weights of the ATTs attached to each of the specifications' estimates of $\beta$ shown in Table \ref{main}. These weights were calculated using DeChaismartin's TWFEWEIGHTS package rather than the bacondecomposition package as DeChaismartin's package allows for models in which units can go in and out of treatment where Goodmanbacon's is only suitable for staggered designs. As shown in Table \ref{twfe_weights}, only specification (2) can be diagnosed since specifcation (1) has no controls, and specifications (3) and (4) contains interacted group controls (university by academic year and university by academic year by semester respectively) which cannot be diagnosed using the TWFEWEIGHTS package. The sum of the positive weights in specification (2) is equal to 1.019 while the sum of the negative weights are equal to -0.019. While the negative weights are small, there is still a possibility of sign-reversal (e.g., the true average treatment effect on the treated is actually positive instead of the negative estimate shown).
+
+To alleviate concerns of sign reversal, I diagnose the negative weights of the following classic TWFE specification:
+
+$$ 
+Y_{ut} = \beta Moratorium_{ut} + \gamma_u + \alpha_t + \epsilon_{ut}
+$$
+where $Y_{ut}$ is the outcome for university $u$ at time $t$, $Moratorium_{ut}$ is an indicator equal to one if university $u$ is in a moratorium at time $t$, $\gamma_u$ are university fixed effects, $\alpha_t$ are day by month by year fixed effects, and $\epsilon_{ut}$ is the error term. Hence, this model compares calendar days within a moratorium to the same calendar days without a moratorium while controlling for systematic differences between universities. 
+
+As shown in Table \ref{twfe}, there are no negative weights in this particular specification, and therefore sign reversal is impossible. With this advantage, I reestimate the main results in the paper in Table . Results show the same thing. 
+
+
