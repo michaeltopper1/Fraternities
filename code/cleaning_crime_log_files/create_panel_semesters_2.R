@@ -223,73 +223,6 @@ daily_panel <- daily_panel %>%
   ))
 
 
-## Weekly panel
-weekly_panel <- daily_panel %>% 
-  group_by(university, week = cut(date, "week")) %>% 
-  summarize(across(c(sexual_assault,
-                     alcohol_offense,
-                     drug_offense,
-                     theft,
-                     robbery_burglary,
-                     alcohol_offense_strict,
-                     noise_offense,
-                     treatment,
-                     rape), ~ sum(., na.rm  = T))) %>% 
-  mutate(week = ymd(week)) %>% 
-  mutate(week_id = wday(week, label = T)) %>% 
-  ungroup() 
-
-weekly_panel_weekends <- daily_panel %>% 
-  group_by(university, week = cut(date, "week")) %>% 
-  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun") %>% 
-  summarize(across(c(sexual_assault,
-                     alcohol_offense,
-                     drug_offense,
-                     theft,
-                     robbery_burglary,
-                     alcohol_offense_strict,
-                     noise_offense,
-                     treatment,
-                     rape), ~ sum(., na.rm  = T))) %>% 
-  mutate(week = ymd(week)) %>% 
-  mutate(week_id = wday(week, label = T)) %>% 
-  ungroup() 
-
-weekly_panel_weekdays <- daily_panel %>% 
-  group_by(university, week = cut(date, "week")) %>% 
-  filter(!(weekday == "Fri" | weekday == "Sat" | weekday == "Sun")) %>% 
-  summarize(across(c(sexual_assault,
-                     alcohol_offense,
-                     drug_offense,
-                     theft,
-                     robbery_burglary,
-                     alcohol_offense_strict,
-                     noise_offense,
-                     treatment,
-                     rape), ~ sum(., na.rm  = T))) %>% 
-  mutate(week = ymd(week)) %>% 
-  mutate(week_id = wday(week, label = T)) %>% 
-  ungroup() 
-
-## rejoining the closure data and since i took the sum of treatment, creating two variables: 1 that is a percentage of week treated and one that is an indicator
-weekly_panel <- weekly_panel %>% 
-  left_join(closures, by = c("university" = "university")) %>% 
-  mutate(treatment_percent = treatment/7) %>% 
-  mutate(treatment = ifelse(treatment > 0, 1, 0)) %>% 
-  mutate(year = year(week))
-
-weekly_panel_weekends <- weekly_panel_weekends %>% 
-  left_join(closures, by = c("university" = "university")) %>% 
-  mutate(treatment_percent = treatment/7) %>% 
-  mutate(treatment = ifelse(treatment > 0, 1, 0)) %>% 
-  mutate(year = year(week))
-
-weekly_panel_weekdays <- weekly_panel_weekdays %>% 
-  left_join(closures, by = c("university" = "university")) %>% 
-  mutate(treatment_percent = treatment/7) %>% 
-  mutate(treatment = ifelse(treatment > 0, 1, 0)) %>% 
-  mutate(year = year(week))
-
 
 ## yearly panel:
 yearly_panel <- daily_panel %>% 
@@ -313,6 +246,30 @@ yearly_panel <- daily_panel %>%
 ### adding in IPEDS data
 ipeds <- read_csv("created_data/ipeds/ipeds_final.csv") %>% 
   filter(year > 2013)
+
+daily_panel_allschools <- daily_panel %>% 
+  left_join(ipeds, by = c("university" = "university", 'year' = 'year')) %>% 
+  mutate(across(c(sexual_assault, alcohol_offense,
+                  theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
+                .names = "{.fn}_{.col}")) %>% 
+  mutate(across(c(sexual_assault, alcohol_offense,
+                  theft, robbery_burglary, drug_offense, rape), ~./total_enrollment * 25000,
+                .names = '{.col}_per25')) %>% 
+  group_by(university, year, semester_number) %>% 
+  mutate(university_by_year_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year) %>% 
+  mutate(university_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year, month) %>% 
+  mutate(university_by_month_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, semester_number) %>% 
+  mutate(university_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  rename(day_of_week = weekday) %>% 
+  filter(year > 2013) 
+
 
 daily_panel <-  daily_panel %>% 
   left_join(ipeds, by = c("university" = "university", 'year' = 'year')) %>% 
@@ -338,81 +295,15 @@ daily_panel <-  daily_panel %>%
   rename(day_of_week = weekday) %>% 
   filter(year > 2013) 
 
+
 yearly_panel <- yearly_panel %>% 
   left_join(ipeds, by= c("university" = "university", 'year' = "year"))
 
-weekly_panel <- weekly_panel %>% 
-    left_join(ipeds, by = c("university" = "university", 'year' = 'year')) %>% 
-    filter(university %in% ifc::moratorium_schools()) %>% 
-    mutate(month = month(week), year = year(week)) %>% 
-    mutate(across(c(sexual_assault, alcohol_offense,
-                    theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
-                  .names = "{.fn}_{.col}")) %>% 
-    group_by(university, month) %>% 
-    mutate(uni_month = cur_group_id()) %>% 
-    ungroup() %>% 
-    mutate(across(c(sexual_assault, alcohol_offense,
-                    theft, robbery_burglary, drug_offense, rape), ~./total_enrollment * 25000,
-                  .names = '{.col}_per25')) %>% 
-    group_by(university, year) %>% 
-    mutate(uni_year = cur_group_id()) %>% 
-    ungroup() %>% 
-    group_by(university, year) %>% 
-    mutate(university_by_year = cur_group_id()) %>% 
-    ungroup() %>% 
-    group_by(university, year, month) %>% 
-    mutate(university_by_month_by_year = cur_group_id()) %>% 
-    ungroup() %>% 
-    filter(year > 2013)
 
 
-weekly_panel_weekends <- weekly_panel_weekends %>% 
-  left_join(ipeds, by = c("university" = "university", 'year' = 'year')) %>% 
-  filter(university %in% ifc::moratorium_schools()) %>% 
-  mutate(month = month(week), year = year(week)) %>% 
-  mutate(across(c(sexual_assault, alcohol_offense,
-                  theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
-                .names = "{.fn}_{.col}")) %>% 
-  group_by(university, month) %>% 
-  mutate(uni_month = cur_group_id()) %>% 
-  ungroup() %>% 
-  mutate(across(c(sexual_assault, alcohol_offense,
-                  theft, robbery_burglary, drug_offense, rape), ~./total_enrollment * 25000,
-                .names = '{.col}_per25')) %>% 
-  group_by(university, year) %>% 
-  mutate(uni_year = cur_group_id()) %>% 
-  ungroup() %>% 
-  group_by(university, year) %>% 
-  mutate(university_by_year = cur_group_id()) %>% 
-  ungroup() %>% 
-  group_by(university, year, month) %>% 
-  mutate(university_by_month_by_year = cur_group_id()) %>% 
-  ungroup() %>% 
-  filter(year > 2013)
 
-weekly_panel_weekdays <- weekly_panel_weekdays %>% 
-  left_join(ipeds, by = c("university" = "university", 'year' = 'year')) %>% 
-  filter(university %in% ifc::moratorium_schools()) %>% 
-  mutate(month = month(week), year = year(week)) %>% 
-  mutate(across(c(sexual_assault, alcohol_offense,
-                  theft, robbery_burglary, drug_offense, rape), list(ihs = ifc::ihs_transform),
-                .names = "{.fn}_{.col}")) %>% 
-  group_by(university, month) %>% 
-  mutate(uni_month = cur_group_id()) %>% 
-  ungroup() %>% 
-  mutate(across(c(sexual_assault, alcohol_offense,
-                  theft, robbery_burglary, drug_offense, rape), ~./total_enrollment * 25000,
-                .names = '{.col}_per25')) %>% 
-  group_by(university, year) %>% 
-  mutate(uni_year = cur_group_id()) %>% 
-  ungroup() %>% 
-  group_by(university, year) %>% 
-  mutate(university_by_year = cur_group_id()) %>% 
-  ungroup() %>% 
-  group_by(university, year, month) %>% 
-  mutate(university_by_month_by_year = cur_group_id()) %>% 
-  ungroup() %>% 
-  filter(year > 2013)
+
+
 
 # cleaning ----------------------------------------------------------------
 
@@ -440,71 +331,7 @@ daily_panel <- daily_panel %>%
          reason2 = ifelse(reason2 == "national trends", "unknown", reason2),
          reason2 = ifelse(reason2 == "racist activity", "behavior", reason2))
 
-weekly_panel <- weekly_panel %>% 
-  mutate(reason1 = ifelse(reason1 == "bad behavior", "behavior", reason1),
-         reason1 = ifelse(reason1 == "conduct violation", "behavior", reason1 ),
-         reason1 = ifelse(reason1 == "not following rules", "behavior", reason1),
-         reason1 = ifelse(reason1 == "racist", "racist activity", reason1),
-         reason1 = ifelse(reason1 == "trends", "national trends", reason1), 
-         reason1 = ifelse(reason1 == "other", "unknown", reason1),
-         reason1 = ifelse(reason1 == "alcohol", "behavior", reason1),
-         reason1 = ifelse(reason1 == "hazing", "behavior", reason1),
-         reason1 = ifelse(reason1 == "national trends", "unknown", reason1),
-         reason1 = ifelse(reason1 == "racist activity", "behavior", reason1)) %>% 
-  mutate(reason2 = ifelse(reason2 == "bad behavior", "behavior", reason2),
-         reason2 = ifelse(reason2 == "conduct violation", "behavior", reason2 ),
-         reason2 = ifelse(reason2 == "not following rules", "behavior", reason2),
-         reason2 = ifelse(reason2 == "racist", "racist activity", reason2),
-         reason2 = ifelse(reason2 == "trends", "national trends", reason2), 
-         reason2 = ifelse(reason2 == "other", "unknown", reason2),
-         reason2 = ifelse(reason2 == "alcohol", "behavior", reason2),
-         reason2 = ifelse(reason2 == "hazing", "behavior", reason2),
-         reason2 = ifelse(reason2 == "national trends", "unknown", reason2),
-         reason2 = ifelse(reason2 == "racist activity", "behavior", reason2))
 
-weekly_panel_weekends <- weekly_panel_weekends %>% 
-  mutate(reason1 = ifelse(reason1 == "bad behavior", "behavior", reason1),
-         reason1 = ifelse(reason1 == "conduct violation", "behavior", reason1 ),
-         reason1 = ifelse(reason1 == "not following rules", "behavior", reason1),
-         reason1 = ifelse(reason1 == "racist", "racist activity", reason1),
-         reason1 = ifelse(reason1 == "trends", "national trends", reason1), 
-         reason1 = ifelse(reason1 == "other", "unknown", reason1),
-         reason1 = ifelse(reason1 == "alcohol", "behavior", reason1),
-         reason1 = ifelse(reason1 == "hazing", "behavior", reason1),
-         reason1 = ifelse(reason1 == "national trends", "unknown", reason1),
-         reason1 = ifelse(reason1 == "racist activity", "behavior", reason1)) %>% 
-  mutate(reason2 = ifelse(reason2 == "bad behavior", "behavior", reason2),
-         reason2 = ifelse(reason2 == "conduct violation", "behavior", reason2 ),
-         reason2 = ifelse(reason2 == "not following rules", "behavior", reason2),
-         reason2 = ifelse(reason2 == "racist", "racist activity", reason2),
-         reason2 = ifelse(reason2 == "trends", "national trends", reason2), 
-         reason2 = ifelse(reason2 == "other", "unknown", reason2),
-         reason2 = ifelse(reason2 == "alcohol", "behavior", reason2),
-         reason2 = ifelse(reason2 == "hazing", "behavior", reason2),
-         reason2 = ifelse(reason2 == "national trends", "unknown", reason2),
-         reason2 = ifelse(reason2 == "racist activity", "behavior", reason2))
-
-weekly_panel_weekdays <- weekly_panel_weekdays %>% 
-  mutate(reason1 = ifelse(reason1 == "bad behavior", "behavior", reason1),
-         reason1 = ifelse(reason1 == "conduct violation", "behavior", reason1 ),
-         reason1 = ifelse(reason1 == "not following rules", "behavior", reason1),
-         reason1 = ifelse(reason1 == "racist", "racist activity", reason1),
-         reason1 = ifelse(reason1 == "trends", "national trends", reason1), 
-         reason1 = ifelse(reason1 == "other", "unknown", reason1),
-         reason1 = ifelse(reason1 == "alcohol", "behavior", reason1),
-         reason1 = ifelse(reason1 == "hazing", "behavior", reason1),
-         reason1 = ifelse(reason1 == "national trends", "unknown", reason1),
-         reason1 = ifelse(reason1 == "racist activity", "behavior", reason1)) %>% 
-  mutate(reason2 = ifelse(reason2 == "bad behavior", "behavior", reason2),
-         reason2 = ifelse(reason2 == "conduct violation", "behavior", reason2 ),
-         reason2 = ifelse(reason2 == "not following rules", "behavior", reason2),
-         reason2 = ifelse(reason2 == "racist", "racist activity", reason2),
-         reason2 = ifelse(reason2 == "trends", "national trends", reason2), 
-         reason2 = ifelse(reason2 == "other", "unknown", reason2),
-         reason2 = ifelse(reason2 == "alcohol", "behavior", reason2),
-         reason2 = ifelse(reason2 == "hazing", "behavior", reason2),
-         reason2 = ifelse(reason2 == "national trends", "unknown", reason2),
-         reason2 = ifelse(reason2 == "racist activity", "behavior", reason2))
 
 # creating week before and week after -------------------------------------
 
@@ -584,6 +411,66 @@ daily_panel <- daily_panel %>%
   mutate(university_by_spring_semester = cur_group_id()) %>% 
   ungroup()
 
+daily_panel_allschools <- daily_panel_allschools %>% 
+  mutate(academic_year = case_when(
+    semester_number == 1 ~ 1, ## 2014 spring
+    semester_number == 2 | semester_number == 3 ~ 2, ## 2015 
+    semester_number == 4 | semester_number == 5 ~ 3,
+    semester_number == 6 | semester_number == 7 ~ 4,
+    semester_number == 8 | semester_number == 9 ~ 5,
+    semester_number == 10 | semester_number == 11 ~ 6,
+    semester_number == 12 ~7 ## 2019 fall
+  )) %>% 
+  group_by(university, academic_year) %>% 
+  mutate(university_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(day_of_week, month) %>% 
+  mutate(day_of_week_by_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(day_of_week, month, academic_year) %>% 
+  mutate(day_of_week_by_month_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, month, day_of_week) %>% 
+  mutate(university_by_day_of_week_by_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, month, day_of_week, academic_year) %>% 
+  mutate(university_by_academic_year_by_month_by_day_of_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  mutate(spring_semester = ifelse(semester_number %% 2 == 0,1, 0)) %>% 
+  group_by(day_of_week, spring_semester) %>% 
+  mutate(day_of_week_by_spring_semester = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(day_of_week, semester_number) %>% 
+  mutate(day_of_week_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, month, academic_year) %>% 
+  mutate(university_by_month_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(academic_year, spring_semester) %>% 
+  mutate(semester_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, spring_semester, academic_year) %>% 
+  mutate(university_by_academic_year_by_semester = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(day_of_week, semester_by_academic_year) %>% 
+  mutate(day_of_week_by_semester_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  mutate(week = lubridate::week(date)) %>% 
+  group_by(university, month) %>% 
+  mutate(university_by_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, week) %>% 
+  mutate(university_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, academic_year, week) %>% 
+  mutate(university_by_academic_year_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year) %>% 
+  mutate(university_by_calendar_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, spring_semester) %>% 
+  mutate(university_by_spring_semester = cur_group_id()) %>% 
+  ungroup()
 
 # adding in holiday controls ----------------------------------------------
 library(timeDate)
@@ -603,21 +490,39 @@ daily_panel <- daily_panel %>%
   mutate(holiday = ifelse(labor == 1 | thanksgiving == 1 | halloween == 1 | mlk == 1 | veterans == 1, 1, 0))
 
 
+daily_panel_allschools <- daily_panel_allschools %>% 
+  mutate(labor = ifelse(date %in% lubridate::as_date(labor), 1, 0)) %>% 
+  mutate(thanksgiving = ifelse(date %in% lubridate::as_date(thanksgiving), 1, 0)) %>% 
+  mutate(halloween = ifelse(date %in% lubridate::as_date(halloween), 1, 0)) %>% 
+  mutate(mlk = ifelse(date %in% lubridate::as_date(mlk), 1, 0)) %>% 
+  mutate(veterans = ifelse(date %in% lubridate::as_date(veterans), 1, 0)) %>% 
+  mutate(holiday = ifelse(labor == 1 | thanksgiving == 1 | halloween == 1 | mlk == 1 | veterans == 1, 1, 0))
 
 # omitting week before for sexual assault only ----------------------------
 
-daily_panel <- daily_panel %>% 
-  filter(!(university == "Arkansas State University-Main Campus" & (date >= "2017-02-14"& date <"2017-02-21"))) %>% 
-  filter(!(university == "Clemson University" & (date >=  "2014-09-16" & date < "2014-09-23"))) %>% 
-  filter(!(university == "East Carolina University" & (date >= "2015-01-21" & date < "2015-01-28"))) %>% 
-  filter(!(university == "Emory University" & (date >= "2014-10-27" & date < "2014-11-03"))) %>% 
-  filter(!(university == "North Carolina State University at Raleigh" & (date >= "2015-03-13" & date < "2015-03-20"))) %>% 
-  filter(!(university == "San Diego State University" & (date >= "2014-11-18" & date < "2014-11-25"))) %>% 
-  filter(!(university == "University of California-Berkeley" & (date >= "2016-10-09" & date < "2016-10-16"))) %>% 
-  filter(!(university == "University of Michigan-Ann Arbor" & (date >= "2017-11-02" & date < "2017-11-09"))) %>% 
-  filter(!(university == "University of Virginia-Main Campus" & (date >= "2014-11-15" & date < "2014-11-22"))) %>% 
-  filter(!(university == "California Polytechnic State University-San Luis Obispo" & (date >= "2018-04-10" & date < "2018-04-17"))) 
-
+# daily_panel <- daily_panel %>% 
+#   filter(!(university == "Arkansas State University-Main Campus" & (date >= "2017-02-14"& date <"2017-02-21"))) %>% 
+#   filter(!(university == "Clemson University" & (date >=  "2014-09-16" & date < "2014-09-23"))) %>% 
+#   filter(!(university == "East Carolina University" & (date >= "2015-01-21" & date < "2015-01-28"))) %>% 
+#   filter(!(university == "Emory University" & (date >= "2014-10-27" & date < "2014-11-03"))) %>% 
+#   filter(!(university == "North Carolina State University at Raleigh" & (date >= "2015-03-13" & date < "2015-03-20"))) %>% 
+#   filter(!(university == "San Diego State University" & (date >= "2014-11-18" & date < "2014-11-25"))) %>% 
+#   filter(!(university == "University of California-Berkeley" & (date >= "2016-10-09" & date < "2016-10-16"))) %>% 
+#   filter(!(university == "University of Michigan-Ann Arbor" & (date >= "2017-11-02" & date < "2017-11-09"))) %>% 
+#   filter(!(university == "University of Virginia-Main Campus" & (date >= "2014-11-15" & date < "2014-11-22"))) %>% 
+#   filter(!(university == "California Polytechnic State University-San Luis Obispo" & (date >= "2018-04-10" & date < "2018-04-17"))) 
+# 
+# daily_panel_allschools <- daily_panel_allschools %>% 
+#   filter(!(university == "Arkansas State University-Main Campus" & (date >= "2017-02-14"& date <"2017-02-21"))) %>% 
+#   filter(!(university == "Clemson University" & (date >=  "2014-09-16" & date < "2014-09-23"))) %>% 
+#   filter(!(university == "East Carolina University" & (date >= "2015-01-21" & date < "2015-01-28"))) %>% 
+#   filter(!(university == "Emory University" & (date >= "2014-10-27" & date < "2014-11-03"))) %>% 
+#   filter(!(university == "North Carolina State University at Raleigh" & (date >= "2015-03-13" & date < "2015-03-20"))) %>% 
+#   filter(!(university == "San Diego State University" & (date >= "2014-11-18" & date < "2014-11-25"))) %>% 
+#   filter(!(university == "University of California-Berkeley" & (date >= "2016-10-09" & date < "2016-10-16"))) %>% 
+#   filter(!(university == "University of Michigan-Ann Arbor" & (date >= "2017-11-02" & date < "2017-11-09"))) %>% 
+#   filter(!(university == "University of Virginia-Main Campus" & (date >= "2014-11-15" & date < "2014-11-22"))) %>% 
+#   filter(!(university == "California Polytechnic State University-San Luis Obispo" & (date >= "2018-04-10" & date < "2018-04-17"))) 
 
 # adding in indicators for 2 and 1 weeks before and after -----------------
 
@@ -664,6 +569,30 @@ daily_panel <- daily_panel %>%
          two_weeks_after = laag(final_day_moratorium, c(8:14))) %>% 
   ungroup()
 
+daily_panel_allschools <- daily_panel_allschools %>% 
+  group_by(university) %>%
+  arrange(date) %>%
+  mutate(day_one_moratorium = case_when(
+    closure_1 == date ~ 1,
+    closure_2 == date ~ 1,
+    closure_3 == date ~ 1,
+    university == "Florida International University" & date == "2018-01-04" ~ 1,
+    TRUE ~as.double(0))) %>% 
+  mutate(final_day_moratorium = case_when(
+    closure_1_end == date + lubridate::days(1) ~ 1,
+    closure_2_end == date +lubridate::days(1)~ 1,
+    closure_3_end == date + lubridate::days(1)~1,
+    university == "San Diego State University" & date == "2014-12-16" ~1,
+    university == "University of Virginia-Main Campus" & date == "2014-12-18" ~ 1,
+    university == "Washington State University" & date == "2016-12-22" ~1,
+    university == "Monmouth University" & date == "2018-12-23" ~1,
+    TRUE ~ as.double(0)
+  )) %>% 
+  mutate(week_before = leead(day_one_moratorium, c(1:7)),
+         week_after = laag(final_day_moratorium, c(1:7)),
+         two_weeks_before = leead(day_one_moratorium, c(8:14)),
+         two_weeks_after = laag(final_day_moratorium, c(8:14))) %>% 
+  ungroup()
 
 daily_panel_weekdays <- daily_panel %>% 
   filter(day_of_week == "Mon" | day_of_week == "Thu" | day_of_week == "Wed" | day_of_week == "Tue" )
@@ -679,13 +608,10 @@ daily_panel_weekends <- daily_panel %>%
 write_csv(daily_panel, file = "created_data/xmaster_data/daily_panel.csv")
 write_csv(daily_panel_weekends , file = "created_data/xmaster_data/daily_panel_weekends.csv")
 write_csv(daily_panel_weekdays, file = "created_data/xmaster_data/daily_panel_weekdays.csv")
+write_csv(daily_panel_allschools, file = "created_data/xmaster_data/daily_panel_allschools.csv")
 
 # haven::write_dta(daily_panel %>% 
 #                    select(-starts_with("fulltime_"), - starts_with("frac_"), -university_by_year_by_semester_number), path = 'created_data/xmaster_data/daily_panel.dta')
-## weekly panel
-write_csv(weekly_panel, file = "created_data/xmaster_data/weekly_panel.csv")
-write_csv(weekly_panel_weekends, file = "created_data/xmaster_data/weekly_panel_weekends.csv")
-write_csv(weekly_panel_weekdays, file = "created_data/xmaster_data/weekly_panel_weekdays.csv")
 
 ## yearly panel
 write_csv(yearly_panel, file = "created_data/xmaster_data/yearly_panel.csv")

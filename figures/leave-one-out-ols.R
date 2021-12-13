@@ -35,12 +35,12 @@ loo_function <- function(dependent_var, data){
   for (uni in distinct_universities) {
     if (count == 1) {
       model <- ifc::reghdfe(data %>% filter(university != uni) , 
-                     dependent_var, "treatment", c("university", "date"), 'university')
+                     dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), 'university')
       final_results<- broom::tidy(model, conf.int = T)[1,]
     }
     else {
       model <- ifc::reghdfe(data %>% filter(university != uni),
-                            dependent_var, "treatment", c("university", "date"),cluster = 'university')
+                            dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"),cluster = 'university')
       final_results_append <- broom::tidy(model, conf.int = T)[1,]
       final_results<- final_results %>% 
         bind_rows(final_results_append)
@@ -77,7 +77,7 @@ leave_one_out_plot <- function(data) {
     geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
     facet_wrap(~week_type) +
     theme_minimal() +
-    geom_hline(aes(yintercept = 0), color = "red") +
+    geom_hline(aes(yintercept = 0), color = "dark red") +
     theme(axis.title.x = element_blank(), axis.text.x = element_blank()) +
     labs(y = "Coefficient Estimate and 95% Confidence Interval")
   return(plot)

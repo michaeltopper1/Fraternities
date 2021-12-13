@@ -211,13 +211,94 @@ date_occurred_panel <- date_occurred_panel %>%
   ))
 
 
+date_occurred_panel <- date_occurred_panel %>% 
+  mutate(day_of_week = lubridate::wday(date, label = T)) %>% 
+  mutate(academic_year = case_when(
+    semester_number == 1 ~ 1, ## 2014 spring
+    semester_number == 2 | semester_number == 3 ~ 2, ## 2015 
+    semester_number == 4 | semester_number == 5 ~ 3,
+    semester_number == 6 | semester_number == 7 ~ 4,
+    semester_number == 8 | semester_number == 9 ~ 5,
+    semester_number == 10 | semester_number == 11 ~ 6,
+    semester_number == 12 ~7 ## 2019 fall
+  )) %>% 
+  group_by(university, academic_year) %>% 
+  mutate(university_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(day_of_week, month) %>% 
+  mutate(day_of_week_by_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(day_of_week, month, academic_year) %>% 
+  mutate(day_of_week_by_month_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, month, day_of_week) %>% 
+  mutate(university_by_day_of_week_by_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, month, day_of_week, academic_year) %>% 
+  mutate(university_by_academic_year_by_month_by_day_of_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  mutate(spring_semester = ifelse(semester_number %% 2 == 0,1, 0)) %>% 
+  group_by(day_of_week, spring_semester) %>% 
+  mutate(day_of_week_by_spring_semester = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(day_of_week, semester_number) %>% 
+  mutate(day_of_week_by_semester_number = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, month, academic_year) %>% 
+  mutate(university_by_month_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(academic_year, spring_semester) %>% 
+  mutate(semester_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, spring_semester, academic_year) %>% 
+  mutate(university_by_academic_year_by_semester = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(day_of_week, semester_by_academic_year) %>% 
+  mutate(day_of_week_by_semester_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  mutate(week = lubridate::week(date)) %>% 
+  group_by(university, month) %>% 
+  mutate(university_by_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, week) %>% 
+  mutate(university_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, academic_year, week) %>% 
+  mutate(university_by_academic_year_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, year) %>% 
+  mutate(university_by_calendar_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(university, spring_semester) %>% 
+  mutate(university_by_spring_semester = cur_group_id()) %>% 
+  ungroup()
+
+library(timeDate)
+veterans <- as.character(timeDate::holiday(2014:2019, "USVeteransDay")) 
+thanksgiving <- as.character(timeDate::holiday(2014:2019, "USThanksgivingDay"))  
+labor <- as.character(timeDate::holiday(2014:2019, "USLaborDay"))
+halloween <- c("2014-10-31", "2015-10-31", "2016-10-31", "2017-10-31", "2018-10-31", "2019-10-31")
+mlk <- as.character(timeDate::holiday(2014:2019, "USMLKingsBirthday"))
+detach("package:timeDate", unload = TRUE)
+
+date_occurred_panel <- date_occurred_panel %>% 
+  mutate(labor = ifelse(date %in% lubridate::as_date(labor), 1, 0)) %>% 
+  mutate(thanksgiving = ifelse(date %in% lubridate::as_date(thanksgiving), 1, 0)) %>% 
+  mutate(halloween = ifelse(date %in% lubridate::as_date(halloween), 1, 0)) %>% 
+  mutate(mlk = ifelse(date %in% lubridate::as_date(mlk), 1, 0)) %>% 
+  mutate(veterans = ifelse(date %in% lubridate::as_date(veterans), 1, 0)) %>% 
+  mutate(holiday = ifelse(labor == 1 | thanksgiving == 1 | halloween == 1 | mlk == 1 | veterans == 1, 1, 0))
+
+
+
+
 # creating other weekend/weekday panels -----------------------------------
 
 date_occurred_panel_weekends <- date_occurred_panel %>% 
-  filter(weekday == "Fri" | weekday == "Sat" | weekday == "Sun")
+  filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun")
 
 date_occurred_panel_weekdays <- date_occurred_panel %>% 
-  filter(weekday == "Mon" | weekday == "Tue" | weekday == "Wed" | weekday == "Thu")
+  filter(day_of_week == "Mon" | day_of_week == "Tue" | day_of_week == "Wed" | day_of_week == "Thu")
 
 lag_datas <- list(date_occurred_panel, date_occurred_panel_weekends, date_occurred_panel_weekdays)
 
@@ -242,36 +323,12 @@ lag_regression <- date_occurred_panel %>%
   feols(c(proportion_sex_lag, proportion_alc_lag) ~ treatment |
           date + university, cluster = ~university, data = .) 
 
-fe <- c("date", "university")
+fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
 explanatory_vars <- c("treatment")
 
 lag_alc <- map(lag_datas, ~ifc::reghdfe(., "proportion_alc_lag", explanatory_vars = explanatory_vars, fe, "university"))
 lag_drug <- map(lag_datas, ~ifc::reghdfe(., "proportion_drug_lag", explanatory_vars = explanatory_vars, fe, "university"))
 lag_sex <- map(lag_datas, ~ifc::reghdfe(., "proportion_sex_lag", explanatory_vars = explanatory_vars, fe, "university"))
-
-
-# robbery regressions -----------------------------------------------------
-
-if(!exists("daily_crime")) {
-  daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv") %>% 
-    filter(university %in% ifc::moratorium_schools())
-}
-
-if (!exists("daily_crime_weekends")){
-  daily_crime_weekends <- read_csv("created_data/xmaster_data/daily_panel_weekends.csv")
-}
-
-if (!exists("daily_crime_weekdays")){
-  daily_crime_weekdays <- read_csv("created_data/xmaster_data/daily_panel_weekdays.csv")
-}
-
-explanatory_vars <- c("treatment")
-fe <- c("university", "date")
-
-data <- list(daily_crime, daily_crime_weekends, daily_crime_weekends)
-
-robbery <- map(data, ~ifc::reghdfe(., "robbery_burglary_per25", explanatory_vars, fe, "university")) 
-
 
 
 
@@ -280,7 +337,7 @@ robbery <- map(data, ~ifc::reghdfe(., "robbery_burglary_per25", explanatory_vars
 
 
 
-depolice_table <- ifc::main_table(lag_alc, lag_drug, lag_sex,  last_panel = robbery) %>% 
+reporting_table <- ifc::main_table(lag_alc, lag_drug,  last_panel = lag_sex) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(date_occurred_panel_weekends$proportion_alc_lag, na.rm = T)),
@@ -296,27 +353,15 @@ depolice_table <- ifc::main_table(lag_alc, lag_drug, lag_sex,  last_panel = robb
           `Model 2` = sprintf("%.3f",mean(date_occurred_panel_weekends$proportion_sex_lag, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(date_occurred_panel_weekdays$proportion_sex_lag, na.rm = T)),
           .before = 12) %>% 
-  add_row(term = "Mean of Dependent Variable", 
-          `Model 1` = sprintf("%.3f",mean(daily_crime$robbery_burglary_per25, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$robbery_burglary_per25, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$robbery_burglary_per25, na.rm = T)),
-          .before = 16) %>% 
   kbl(booktabs = T,
       col.names = c(" ","Full Sample", "Weekends", "Weekdays"),
-      caption = "\\label{depolice_table}OLS regressions showing no changes in reporting or policing. Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a lag of 
-      3 days or more. Not all universities had information on date occurred (33/38), and therefore total number of observations between
-      Panels A-C and Panel D differ. Panel D represents OLS regressions of robbery/burglary (e.g. combined) on fraternity moratoriums.") %>% 
+      caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting.") %>% 
   kable_paper() %>% 
   pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = T, bold = F) %>%
   pack_rows("Panel B: Proportion of Drug Offenses Reported with Lag", 5, 8, italic = T, bold = F) %>%
   pack_rows("Panel C: Proportion of Alcohol Offenses Reported with Lag", 9,12, italic = T, bold = F) %>%
-  pack_rows("Panel D: Robbery/Burglary", 13, 16, italic = T, bold = F) %>% 
-  pack_rows("Controls for Panels A-D:", 17, 18, italic = T, bold = F) %>% 
-  footnote(list("Standard errors clustered by university.",
-                "Robbery/burglary offenses are per-25000 enrolled students.",
-                "Reported with a lag means date reported is greater than 3 days the date occurred.",
-                "33 of 38 universities have data on date occurred.",
-                "FE abbreviation for fixed effects.",
+  pack_rows("Controls for Panels A-C:", 13, 16, italic = T, bold = F) %>% 
+  footnote(list("Standard errors clustered by university.  Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a lag of 3 days or more. A lag is defined as an offense that was reported more than 3 days after it occurred. Not all universities had information on date occurred (33/38).",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
 
 
