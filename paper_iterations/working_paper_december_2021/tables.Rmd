@@ -18,12 +18,11 @@ source(paste0(here::here("Tables/matching_word_table.R")))
 ```
 
 ```{r}
-kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words/phrases used to pattern match on outcomes of interest.") %>%
+kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words/phrases used to pattern match on outcomes of interest. Each word to match represents a portion of a word to match on. For example, the word 'sex' will match on 'sexual assault' and 'sex offense' since 'sex' appears in each of these descriptions.") %>%
   kable_styling(full_width = F) %>%
   # column_spec(1, bold = T, color = "blue") %>%
   column_spec(2, width = "30em") %>% kable_styling(latex_options = "HOLD_position") %>% 
-  footnote(list("Each word to match represents a portion of a word to match on. For example, the word 'sex' will match on 'sexual assault' and 'sex offense' since 'sex' appears in each of these descriptions.",
-                    "'dwi' abbreviation for 'driving while intoxicated'.",
+  footnote(list("'dwi' abbreviation for 'driving while intoxicated'.",
                     "'dip' abbrevation for 'drunk in public'.",
                     "'abcc' abbreviation for 'alcohol beverage control comission'.",
                     "'pula' abbrevation for 'person under legal age'.",
@@ -62,8 +61,8 @@ source(here::here(paste0("tables/regressions_depolicing.R")))
 
 
 ```{r}
-## reporting_table
-reporting_table
+## depolice_table
+depolice_table
 ```
 
 ```{r}

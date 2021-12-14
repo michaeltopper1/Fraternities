@@ -1,0 +1,101 @@
+---
+title: "Figures"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- ``` -->
+
+# Figures
+
+```{r}
+source(here::here("figures/closure_distribution.R"))
+```
+
+\begin{landscape}
+```{r, fig.cap="\\label{closure_distribution}Distribution of moratoriums for 38 universities across the sample period (2014-2019). Length of moratoriums represent calendar-year days.", fig.align = "center",fig.width= 13, fig.height= 7, out.width= "100%"}
+closure_distribution
+```
+\end{landscape}
+
+```{r}
+source(here::here(paste0("figures/triggerplot_bylength.R")))
+```
+
+\begin{landscape}
+```{r, fig.cap= "\\label{trigger_plot}Average number of academic calendar days under moratorium by triggering event of moratorium.", fig.align = "center",fig.width= 44, fig.height= 36, out.width= "80%"}
+trigger_plot
+```
+\end{landscape}
+
+```{r}
+source(here::here(paste0("Figures/map.R")))
+```
+
+```{r, fig.cap= "\\label{map}Map of the 38 univerisities included in the sample that experienced a fraternity moratorium. IFC fraternity populations are based on the data most recently available."}
+map_of_schools
+```
+
+```{r}
+source(here::here(paste0("figures/pretrends_figure_nov_17.R")))
+```
+
+```{r, fig.cap = "\\label{trends_a}OLS regressions of alcohol offenses on fraternity moratoriums. Shaded area represents the 95% confidence intervals, while the points represent the coefficient point estimates. Two leads and lags are included in the specification at the weekly level. Fixed effects include university and day-by-month-by year (e.g. the preferred specification). A joint hypothesis test of the leads is not statistically significant below the 10% level." }
+a_trends
+```
+
+```{r, fig.cap = "\\label{trends_a2}OLS regressions of alcohol offenses on fraternity moratoriums. Shaded area represents the 95% confidence intervals, while the points represent the coefficient point estimates. One lead and lag is included in the specification at the 6-week level for more power (6-weeks is approximately the median moratorium length in the sample). Fixed effects include university and day-by-month-by year (e.g. the preferred specification)."}
+a_trends_2
+```
+
+
+
+```{r, fig.cap = "\\label{trends_d}OLS regressions of drug offenses on fraternity moratoriums. Shaded area represents the 95% confidence intervals, while the points represent the coefficient point estimates. Two leads and lags are included in the specification at the weekly level. Fixed effects include university and day-by-month-by year (e.g. the preferred specification). A joint hypothesis test of the leads is not statistically significant below the 10% level." }
+d_trends
+```
+
+```{r, fig.cap = "\\label{trends_d2}OLS regressions of drug offenses on fraternity moratoriums. Shaded area represents the 95% confidence intervals, while the points represent the coefficient point estimates. One lead and lag is included in the specification at the 6-week level for more power (6-weeks is approximately the median moratorium length in the sample). Fixed effects include university and day-by-month-by year (e.g. the preferred specification)."}
+d_trends_2
+```
+
+```{r, fig.cap = "\\label{trends_s}OLS regressions of reports of sexual assaults on fraternity moratoriums. Shaded area represents the 95% confidence intervals, while the points represent the coefficient point estimates. Two leads and lags are included in the specification at the weekly level. Fixed effects include university and day-by-month-by year (e.g. the preferred specification). A joint hypothesis test of the leads is not statistically significant below the 10% level." }
+s_trends
+```
+
+```{r, fig.cap = "\\label{trends_s2}OLS regressions of sexual assaults on fraternity moratoriums. Shaded area represents the 95% confidence intervals, while the points represent the coefficient point estimates. One lead and lag is included in the specification at the 6-week level for more power (6-weeks is approximately the median moratorium length in the sample). Fixed effects include university and day-by-month-by year (e.g. the preferred specification)."}
+s_trends_2
+```
+
+
+
+
+```{r}
+source(here::here(paste0("figures/treatment_passing.R")))
+```
+
+
+```{r, fig.cap = "\\label{mpassing_alc}Effect of moratorium on alcohol offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
+mprogression_alc
+```
+
+```{r, fig.cap = "\\label{mpassing_drug}Effect of moratorium on drug offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
+mprogression_drug
+```
+
+```{r, fig.cap = "\\label{mpassing_sex}Effect of moratorium on sexual assault offenses broken down by time within moraotrium. Each category is mutually exclusive. Numbers below x-axis labels represent the number of schools the estimate is identified by since each university's moratorium length differs."}
+mprogression_sex
+```
+
+```{r}
+source(here::here(paste0("figures/heteroeffects_trigger.R")))
+```
+
+```{r, fig.cap = "\\label{hetero_trigger}Effect of moratorium on alcohol offenses, drug offenses, and sexual assaults by triggering event of the moratorium. Moratoriums can be triggered by four different types of events: behavior violations (including hazing/poor behavior caught on video), fraternity-related death, sexual assault allegations, or unspecified. See Figure 2 for universities within each triggering event. Each point represents a coefficient estimate while each bar represents a 95% confidence interval. Black points/bars represent the entire sample, while blue points/bars represents the sample restricted to only weekends."}
+
+trigger_reg_graph
+```
+

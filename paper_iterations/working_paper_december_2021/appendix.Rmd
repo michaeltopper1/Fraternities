@@ -1,0 +1,89 @@
+---
+title: "Appendix"
+output: pdf_document
+---
+
+# Appendix
+
+```{r, fig.cap = "\\label{sigma_alpha_rules} An example of fraternity membership guidelines from one of the oldest IFC fraternities: Sigma Alpha Epsilon.", out.width="80%"}
+knitr::include_graphics(paste0(here::here("paper_iterations/nov_29_2021/sigma_alpha_rules.pdf")))
+```
+
+
+```{r}
+source(paste0(here::here("tables/closure_table.R")))
+```
+
+
+```{r}
+## closure_table
+closure_table
+```
+
+```{r}
+source(paste0(here::here("tables/data_comparison.R")))
+```
+
+```{r}
+## data_used
+data_used
+```
+
+
+```{r , fig.cap = "\\label{crime_log_example} An example of a Daily Crime Log. The main analysis uses data from 38 universities' Daily Crime Logs - each unique in their own respect.",fig.align = "center" ,out.width= "80%"}
+knitr::include_graphics(paste0(here::here("paper_iterations/nov_29_2021/sample_crime_log.png")))
+```
+
+
+```{r}
+source(paste0(here::here("Tables/matching_word_table.R")))
+```
+
+\begin{landscape}
+```{r top_categories}
+kable(top_categories, booktabs = T, caption = "\\label{top_categories}The top 30 most frequent reported incidents after pattern matching into each category. Numbers in parenthesis denote the frequency of offense in the data.") %>%
+  kable_styling(latex_options = "scale_down")
+```
+\end{landscape}
+
+```{r}
+source(paste0(here::here("figures/twfe_weights.R")))
+```
+
+```{r}
+## twfe_weights
+twfe_weights %>% 
+  kable_styling(latex_options = "scale_down")
+```
+
+
+```{r}
+source(paste0(here::here("tables/regressions_main_poisson.R")))
+```
+
+```{r}
+## main_table_p
+main_table_p
+```
+
+```{r}
+## weekend_table_p
+weekend_table_p
+```
+
+```{r}
+source(paste0(here::here("figures/leave-one-out-ols.R")))
+```
+
+```{r, fig.cap = "\\label{loo_alc}Leave-one-out OLS regressions of alcohol offenses per 25000 enrolled students on the moratorium indicator. Each point is an estimate from omitting one unique university. Hence, there are 38 regressions per panel. Black bars represent 95% confidence intervals. Full Sample includes all days of the week, while Weekends includes only Friday-Sunday and Weekdays includes only Monday-Thursday. "}
+loo_alc_ols
+```
+
+```{r, fig.cap = "\\label{loo_drug}Leave-one-out OLS regressions of drug offenses per 25000 enrolled students on the moratorium indicator. Each point is an estimate from omitting one unique university. Hence, there are 38 regressions per panel. Black bars represent 95% confidence intervals. Full Sample includes all days of the week, while Weekends includes only Friday-Sunday and Weekdays includes only Monday-Thursday. "}
+loo_drug_ols
+```
+
+```{r, fig.cap = "\\label{loo_sex}Leave-one-out OLS regressions of sexual assaults per 25000 enrolled students on the moratorium indicator. Each point is an estimate from omitting one unique university. Hence, there are 38 regressions per panel. Black bars represent 95% confidence intervals. Full Sample includes all days of the week, while Weekends includes only Friday-Sunday and Weekdays includes only Monday-Thursday. "}
+loo_sex_ols
+```
+
