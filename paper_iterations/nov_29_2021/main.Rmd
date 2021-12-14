@@ -65,7 +65,7 @@ Why do we care about drugs? Marijuana usage leads to higher propensity to drop o
 
 *Fraternity Literature*
 
-We know that fraternity membership increases the likelihood of graduating on-time, and has a small negative impact on grades (Routon and Walker/Mara, Davis, Schmidt). If a roommate joins a fraternity, then more likely for that person to join (Sacerdote). Fraternities cause binge drinking (DeSimone). Presence of a fraternity makes more binge drinking (Chaloupka). Fraternity parties had higher levels of intoxicationt han others (Glinderman)
+We know that fraternity membership increases the likelihood of graduating on-time, and has a small negative impact on grades (Routon and Walker/Mara, Davis, Schmidt). If a roommate joins a fraternity, then more likely for that person to join (Sacerdote). Fraternities cause binge drinking (DeSimone). Presence of a fraternity makes more binge drinking (Chaloupka). Fraternity parties had higher levels of intoxication than others (Glinderman)
 
 *Downfalls of the fraternity literature?*
 
@@ -141,6 +141,15 @@ Each of these Daily Crime Logs were requested from their respective university p
 * Table \ref{matching_table} - Words used to match (Main Table)
 * Table \ref{top_categories} - Matching table results with top 15 from each category (Appendix table)
 
+**What schools are in the data? What does the sample generally look like?**
+
+Describe the summary statistics table in detail. Note that my sample is generally larger universities that are above 20k students and crimes are reporting quite differently across universities. 
+
+* Summary Statistics Table \ref{summary_stats} - university characters + offense characteristics + moratorium characteristics (Main Table)
+
+**What are the limitations of the data?**
+
+Limitations include some missing data, missing residence hall offenses (e.g. offenses that are not reported to the campus police). Moreover, cannot bin this stuff perfectly. Some schools are missing date occurred and I have to use date reported (this occurs in X% of schools). 
 
 # Empirical Strategy
 
@@ -168,12 +177,6 @@ The no-systematic changes in reporting is checked using a regression of whether 
 
 The no-systematic changes in policing is shown with the robbery/burglary regression where I combine robbery and burglary offenses together and regress on the moratorium indicator. Robberies and burglaries are a very tight and insignificant zero. 
 
-
-**What schools are in the data? What does the sample generally look like?**
-
-Describe the summary statistics table in detail. Note that my sample is generally larger universities that are above 20k students and crimes are reporting quite differently across universities. 
-
-* Summary Statistics Table \ref{summary_stats} - university characters + offense characteristics + moratorium characteristics (Main Table)
 
 * Table \ref{twfe_weights} - TWFE weights table (Appendix? Is this necessary or can I just mention it?)
 

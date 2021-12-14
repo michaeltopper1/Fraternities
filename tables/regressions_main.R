@@ -62,12 +62,12 @@ main_table <- ifc::main_table(alc, drug, last_panel = sex) %>%
       digits = 3,
       caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assaults.") %>% 
   kable_paper() %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>%
-  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>%
-  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
-  pack_rows("Controls for Panels A-C:",13, 19, bold = F, italic = T ) %>% 
-  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since not in panel. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
-                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>%
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = T, italic = F) %>%
+  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = T, italic = F) %>% 
+  pack_rows("Controls for Panels A-C:",13, 19, bold = T, italic = F ) %>% 
+  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since these holiday's are not on any university's academic calendar. A moratorium is a temporary halt on fraternity-related activities with alcohol. Specification (3) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates.",
+                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"), threeparttable = T)
 
 # table 2: weekends vs. full sample ---------------------------------------
 
@@ -100,12 +100,14 @@ weekend_table <- ifc::main_table(alc_weeksplit, drug_weeksplit, last_panel = sex
           `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
           .before = 12) %>% 
-  kbl(booktabs = T, col.names = c(" ", "Full Sample", "Weekends", "Weekdays"),
+  kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays"),
       caption = "\\label{weekend_table}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assault by Weekend/Weekdays.") %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>% 
-  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>% 
-  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
-  pack_rows("Controls for Panels A-C:", 13, 16, bold = F, italic = T) %>% 
-  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since not in panel. A moratorium is a temporary halt on fraternity-related activities with alcohol. ",
-                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>% 
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = T, italic = F) %>% 
+  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = T, italic = F) %>% 
+  pack_rows("Controls for Panels A-C:", 13, 16, bold = T, italic = F) %>% 
+  add_header_above(c(" " = 2, "Restricting Days of the Week" = 2)) %>% 
+  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column 'All Days' represents specification (3) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
+                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
+           threeparttable = T) 
 

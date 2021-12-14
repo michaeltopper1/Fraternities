@@ -16,7 +16,7 @@ clery <- discipline %>%
   left_join(crimes) %>% 
   filter(university %in% ifc::moratorium_schools())
 
-c
+
 ## According to the CSH help center email ("question on clery act data") We have:
 # 1.The three primary geographical categories (on campus, noncampus, and public property) are mutually exclusive. However, On-campus student housing facilities are located on campus, and thus are a subset of on campus.
 # 

@@ -51,13 +51,12 @@ weekend_table_allschools <- ifc::main_table(alc_weeksplit, drug_weeksplit, last_
           `Model 2` = sprintf("%.3f",mean(daily_crime_allschools_weekends$sexual_assault_per25, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime_allschools_weekdays$sexual_assault_per25, na.rm = T)),
           .before = 12) %>% 
-  kbl(booktabs = T, col.names = c(" ", "Full Sample", "Weekends", "Weekdays"),
+  kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays"),
       caption = "\\label{weekend_table_allschools}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assault by Weekend/Weekdays. Never-treated schools included.") %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>% 
-  pack_rows("Panel B: Drug Offenses", 5, 8, bold = F, italic = T) %>% 
-  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = F, italic = T) %>% 
-  pack_rows("Controls for Panels A-C:", 13, 16, bold = F, italic = T) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>% 
+  pack_rows("Panel B: Drug Offenses", 5, 8, bold = T, italic = F) %>% 
+  pack_rows("Panel C: Sexual Assaults", 9, 12, bold = T, italic = F) %>% 
+  pack_rows("Controls for Panels A-C:", 13, 16, bold = T, italic = F) %>% 
   footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. 14 never-treated schools are included in the sample for additional power. A never-treated schools is defined as a university that does not experience a moratorium in the time period of 2014-2019 and was included on the Top 40 fraternity schools on niche.com. See link here: https://www.niche.com/colleges/search/best-greek-life-colleges/. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since not in panel. A moratorium is a temporary halt on fraternity-related activities with alcohol. ",
-                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) 
-daily_crime_allschools %>% 
-  distinct(university)
+                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"), threeparttable = T) 
+
