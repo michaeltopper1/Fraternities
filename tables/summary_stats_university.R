@@ -18,12 +18,15 @@ if(!exists("daily_crime")) {
 
 
 moratoriums <- ifc::moratorium_lengths()
+moratoriums <- moratoriums %>% 
+  group_by(university) %>% 
+  mutate(moratorium_id = n()) %>% 
+  ungroup()
 moratorium_summary <- moratoriums %>% 
-  datasummary((`Length of Moratoriums` = length_moratorium) ~ (Mean + SD + Median + Min + Max ), data = .,
+  datasummary((`Number of Moratoriums Per-University` = moratorium_id) +(`Length of Moratoriums` = length_moratorium) ~ (Mean + SD + Median + Min + Max ), data = .,
               output = "data.frame") 
 moratorium_rows <- moratorium_summary %>%
   add_row(` ` = "Total Number of Universities",`Mean` =  "38",`SD` = " ",`Median` =  " ", `Min` = " ", `Max` =" ")
-
 
 
 university_characteristics <- daily_crime %>%
@@ -42,15 +45,15 @@ university_characteristics <- daily_crime %>%
                 (`Alcohol Offense` = alcohol_offense_per25) +
                 (`Drug Offense` = drug_offense_per25)  +
                 (`Sexual Assault` = sexual_assault_per25)  ~ (Mean + SD + Median + Min + Max ), data = .,
-              title = "\\label{summary_stats}Summary statistics of the universities in the sample.",
-              notes = list('Offenses are per-25000 students enrolled.',
-                           "Length of moratorium statistics are in academic calendar days."),
+              title = "\\label{summary_stats}Summary Statistics of the Universities in the Sample.",
               add_rows = moratorium_rows) %>% 
-  row_spec(15, hline_after = T) %>% 
-  row_spec(16, bold = F, italic = T) %>% 
+  row_spec(16, hline_after = T) %>% 
+  row_spec(17, bold = F, italic = T) %>% 
   add_indent(c(2:6)) %>% 
   add_indent(c(3:6)) %>% 
   pack_rows("University Characteristics", 1, 11, bold = T, italic = F) %>% 
   pack_rows("Daily Crime Log Offenses", 12, 14, bold = T, italic = F) %>% 
-  pack_rows("Moratorium Characteristics", 15, 15, bold = T, italic = F) 
+  pack_rows("Moratorium Characteristics", 15, 16, bold = T, italic = F) %>% 
+  footnote("Offenses are per-25000 students enrolled per-academic calendar day. Length of moratorium statistics are in academic calendar days. Number of moratoriums refers to number of moratoriums only within the 2014-2019 time period. Some schools may or may not have had moratoriums in periods before or after the time period of analysis. Only a subset of races were chosen, and hence, the sum of the fractions do not sum to 1 in the table.",
+           threeparttable = T)
 

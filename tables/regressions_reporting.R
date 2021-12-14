@@ -354,15 +354,17 @@ reporting_table <- ifc::main_table(lag_alc, lag_drug,  last_panel = lag_sex) %>%
           `Model 3` = sprintf("%.3f",mean(date_occurred_panel_weekdays$proportion_sex_lag, na.rm = T)),
           .before = 12) %>% 
   kbl(booktabs = T,
-      col.names = c(" ","Full Sample", "Weekends", "Weekdays"),
+      col.names = c(" ","All Days", "Weekends", "Weekdays"),
       caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting.") %>% 
   kable_paper() %>% 
-  pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = T, bold = F) %>%
-  pack_rows("Panel B: Proportion of Drug Offenses Reported with Lag", 5, 8, italic = T, bold = F) %>%
-  pack_rows("Panel C: Proportion of Alcohol Offenses Reported with Lag", 9,12, italic = T, bold = F) %>%
+  pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = F, bold = T) %>%
+  pack_rows("Panel B: Proportion of Drug Offenses Reported with Lag", 5, 8, italic = F, bold = T) %>%
+  pack_rows("Panel C: Proportion of Alcohol Offenses Reported with Lag", 9,12, italic = F, bold = T) %>%
   pack_rows("Controls for Panels A-C:", 13, 16, italic = T, bold = F) %>% 
+  add_header_above(c(" " = 2, "Restricting Days of the Week" = 2)) %>% 
   footnote(list("Standard errors clustered by university.  Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a lag of 3 days or more. A lag is defined as an offense that was reported more than 3 days after it occurred. Not all universities had information on date occurred (33/38).",
-                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
+                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
+           threeparttable = T)
 
 
 
