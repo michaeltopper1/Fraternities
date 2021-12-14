@@ -25,54 +25,44 @@ explanatory_vars <- c(
                       "treatment:ifc_enacted",
                       "treatment:university_enacted")
 
-ifc_uni_regs <- map(offenses, ~ifc::reghdfe(daily_crime,  ., explanatory_vars, c("university", "date"), "university"))
-
-ifc_uni_regs_weekends <- map(offenses, ~ifc::reghdfe(daily_crime_weekends,  ., explanatory_vars, c("university", "date"), "university"))
-
-ifc_regs <- c(ifc_uni_regs, ifc_uni_regs_weekends)
+datas <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
 
 
-names(ifc_regs) <- c("Alcohol", "Drug", "Sexual Assault", "Alcohol", "Drug", "Sexual Assault")
+# ifc enacted regressions -------------------------------------------------
 
-full_means <- daily_crime %>% 
-  summarize(alcohol_mean = mean(alcohol_offense_per25, na.rm = T),
-            drug_mean = mean(drug_offense_per25, na.rm = T),
-            sex_mean = mean(sexual_assault_per25, na.rm = T)) %>% 
-  mutate(across(everything(), ~round(.,4)))
-weekend_means <- daily_crime_weekends %>% 
-  summarize(alcohol_mean = mean(alcohol_offense_per25, na.rm = T),
-            drug_mean = mean(drug_offense_per25, na.rm = T),
-            sex_mean = mean(sexual_assault_per25, na.rm = T)) %>% 
-  mutate(across(everything(), ~round(.,4)))
+ifc_regs_alc <- map(datas, ~ifc::reghdfe(.,  "alcohol_offense_per25", "treatment:ifc_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
 
-row_means <- tribble(~term, ~alc, ~drug, ~sex, ~alc_w, ~drug_w, ~sex_w,
-                     "Mean of Dependent Variable", full_means[[1,1]], full_means[[1,2]], full_means[[1,3]],
-                     weekend_means[[1,1]], weekend_means[[1,2]], weekend_means[[1,3]])
-attr(row_means, 'position') <- c(6)
+ifc_regs_drug <- map(datas, ~ifc::reghdfe(.,  "drug_offense_per25", "treatment:ifc_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
 
-gm <- tribble(~raw, ~clean, ~fmt,
-              "nobs", "Num.Obs.", ~fmt,
-              "FE: day_of_week","FE: Day-of-Week", ~fmt,
-              "FE: semester_number", "FE: Semester-by-Year", ~fmt,
-              "FE: university","FE: University", ~fmt,
-              "FE: year", "FE: Year", ~fmt,
-              "FE: university_by_semester_number", "FE: University-by-Semester-Number", ~fmt,
-              "FE: date", "FE: Day-by-Month-by-Year", ~fmt,
-              "FE: university_by_year_by_semester_number", "FE: University-by-Year-by-Semester-Number", ~fmt)
+ifc_regs_sex <- map(datas, ~ifc::reghdfe(.,  "sexual_assault_per25", "treatment:ifc_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
 
 
-ifc_uni_table <- modelsummary(ifc_regs,
-             stars = T, gof_omit = 'DF|Deviance|AIC|BIC|Log|R2 Within|R2 Ps|R2|R2 Adj.',
-             coef_map = c("treatment:university_enacted" = "Moratorium x University Enacted",
-                          "treatment:ifc_enacted" = "Moratorium x IFC Enacted"),
-             title = "\\label{ifc_hetero}Heterogeneous Effects for University-enacted Moratoriums and IFC-enacted Moratoriums.",
-             gof_map = gm,
-             add_rows = row_means,
-             notes = list("Standard errors clustered by university",
-                          "Universitiy enacted is a moratorium enacted by university officials.",
-                          "IFC enacted is a moratorium enacted by the student-IFC representatives.")) %>% 
-  add_header_above(c(" "= 1, "Full Sample" = 3, "Weekends" = 3)) %>% 
-  add_header_above(c(" " =1, "Dependent Variable" = 6))
+
+# university enacted regressions ------------------------------------------
+
+uni_regs_alc <- map(datas, ~ifc::reghdfe(.,  "alcohol_offense_per25", "treatment:university_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
+
+uni_regs_drug <- map(datas, ~ifc::reghdfe(.,  "drug_offense_per25", "treatment:university_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
+
+uni_regs_sex <- map(datas, ~ifc::reghdfe(.,  "sexual_assault_per25", "treatment:university_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
+
+
+
+ifc_uni_table <- ifc::main_table(uni_regs_alc, uni_regs_drug, uni_regs_sex,
+                ifc_regs_alc, ifc_regs_drug, last_panel =  ifc_regs_sex) %>% 
+  slice(1:18) %>% 
+  kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays"), caption = "\\label{ifc_uni_table}Effect of Moratoriums Imposed by the University vs. the IFC") %>% 
+kable_paper() %>% 
+  pack_rows("Panel A: University-Imposed Moratoriums", 1, 9, hline_after = T) %>% 
+  pack_rows("Panel B: IFC-Imposed Moratoriums", 10, 18, hline_after = T) %>% 
+  pack_rows("Alcohol", 1, 3, italic = T) %>% 
+  pack_rows("Drug Offense", 4, 6, italic = T) %>% 
+  pack_rows("Sexual Assault", 7,9, italic = T) %>% 
+  pack_rows("Alcohol Offense", 10, 12, italic = T) %>% 
+  pack_rows("Drug Offense", 13, 15, italic = T) %>% 
+  pack_rows("Sexual Assault",16, 18, italic = T ) %>% 
+  footnote(list("Standard errors clustered by university. Controls follow specification (3) in the main results table with day of week, holiday, semester, and universitiy by academic year fixed effects. Panel A shows the effects of a moratorium when a moratorium is imposed by the university. University-imposed moratoriums represent 28/45 (62%) of the moratoriums. Panel B shows the effects of a moratorium when the IFC council imposes the moratorium. This is a student-lead initiative. IFC-imposed moratoriums represent 17/45 (38%) of the moratoriums in the sample. Weekends represent Fridays through Sundays while Weekdays represent Mondays through Thursdays.",
+                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"))
 
 
 
