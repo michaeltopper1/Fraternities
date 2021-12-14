@@ -58,7 +58,7 @@ daily_crime_within <- daily_crime_within %>%
 
 explanatory_vars <- c("within_1",  "within_2", "within_3", "within_4",
                       "within_two_months", "within_three_months", "within_over_three_months")
-fe <- c("university", "date")
+fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
 ifc::reghdfe(daily_crime_within , "alcohol_offense_per25", explanatory_vars, fe, "university") %>% summary()
 number_identified_by <- c()
 for (i in 1:length(explanatory_vars)){
