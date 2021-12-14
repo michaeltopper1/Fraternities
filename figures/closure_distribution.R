@@ -26,7 +26,7 @@ closure_distribution <- closures %>%
   mutate(university = ifelse(university == "North Carolina State University at Raleigh", "North Carolina State", university)) %>% 
   mutate(length_1 = deadline - date, length_2 = deadline2 - date2, length_3 = deadline3 - date3) %>% 
   mutate(across(starts_with("length_"), ~paste(as.character(.), "days"))) %>%
-  arrange(desc(university)) %>% 
+  mutate(university = fct_reorder(university, desc(university))) %>% 
   ggplot() +
   geom_segment(aes(x = university, xend = university, y = date, yend = deadline)) +
   geom_segment(aes(x = university, xend = university, y = date2, yend = deadline2)) +

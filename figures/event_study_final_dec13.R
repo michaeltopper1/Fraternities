@@ -86,21 +86,21 @@ es_sex_48 <- ifc::reghdfe(es_48, "sexual_assault_per25", explanatory_vars_48, fi
 # graphs ------------------------------------------------------------------
 
 
-es_alc_14 <- ifc::event_study_graph(es_alc_14, 5) +
+es_alc_14_g <- ifc::event_study_graph(es_alc_14, 5) +
   labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
-es_drug_14 <- ifc::event_study_graph(es_drug_14, 5) +
+es_drug_14_g <- ifc::event_study_graph(es_drug_14, 5) +
+  labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval") 
+
+es_sex_14_g <- ifc::event_study_graph(es_sex_14, 5) +
   labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
-es_sex_14 <- ifc::event_study_graph(es_sex_14, 5) +
-  labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
-
-es_alc_48 <- ifc::event_study_graph(es_alc_48, 3) +
+es_alc_48_g <- ifc::event_study_graph(es_alc_48, 3) +
   labs(x = "48 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
-es_drug_48 <- ifc::event_study_graph(es_drug_48, 3) +
+es_drug_48_g <- ifc::event_study_graph(es_drug_48, 3) +
   labs(x = "48 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
-es_sex_48 <- ifc::event_study_graph(es_sex_48, 3) +
+es_sex_48_g <- ifc::event_study_graph(es_sex_48, 3) +
   labs(x = "48 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
