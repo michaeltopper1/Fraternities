@@ -94,7 +94,7 @@ es_alc_14_g
 ```
 ```{=latex}
 \caption{Event Study for Alcohol Offenses \label{es_alc}}
-\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 14 day periods. Period length was chosen to give approximately a median-length (48 days) of a moratorium on each side of the shaded area. All periods are normalized by the 14-day period before the moratorium. Alcohol offenses are defined as alcohol offenses per-25000 enrolled students. All errorbars represent 95\% confidence intervals. A joint-hypothesis F-test that each of the leading periods are zero shows that the p-value is 0.39 which is statistically insignificant.
+\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 14 day periods. Period length was chosen to give approximately a median-length (48 days) of a moratorium on each side of the shaded area. All periods are normalized by the 14-day period before the moratorium. Alcohol offenses are defined as alcohol offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals. A joint-hypothesis F-test that each of the leading periods are zero shows that the p-value is 0.39 which is statistically insignificant.
 \end{figure}
 ```
 
@@ -107,7 +107,7 @@ es_drug_14_g
 ```
 ```{=latex}
 \caption{Event Study for Drug Offenses \label{es_drug}}
-\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 14 day periods. Period length was chosen to give approximately a median-length (48 days) of a moratorium on each side of the shaded area. All periods are normalized by the 14-day period before the moratorium. Drug offenses are defined as drug offenses per-25000 enrolled students. All errorbars represent 95\% confidence intervals. A joint-hypothesis F-test that each of the leading periods are zero shows that the p-value is 0.55 which is statistically insignificant.
+\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 14 day periods. Period length was chosen to give approximately a median-length (48 days) of a moratorium on each side of the shaded area. All periods are normalized by the 14-day period before the moratorium. Drug offenses are defined as drug offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals. A joint-hypothesis F-test that each of the leading periods are zero shows that the p-value is 0.55 which is statistically insignificant.
 \end{figure}
 ```
 
@@ -119,7 +119,7 @@ es_sex_14_g
 ```
 ```{=latex}
 \caption{Event Study for Sexual Assault Offenses \label{es_sex}}
-\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 14 day periods. Period length was chosen to give approximately a median-length (48 days) of a moratorium on each side of the shaded area. All periods are normalized by the 14-day period before the moratorium. Sexual assault offenses are defined as sexual assaults per-25000 enrolled students. All errorbars represent 95\% confidence intervals. A joint-hypothesis F-test that each of the leading periods are zero shows that the p-value is 0.38 which is statistically insignificant.
+\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 14 day periods. Period length was chosen to give approximately a median-length (48 days) of a moratorium on each side of the shaded area. All periods are normalized by the 14-day period before the moratorium. Sexual assault offenses are defined as sexual assaults per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals. A joint-hypothesis F-test that each of the leading periods are zero shows that the p-value is 0.38 which is statistically insignificant. 
 \end{figure}
 ```
 
@@ -135,18 +135,28 @@ source(here::here(paste0("figures/week_before_after.R")))
 week_before_after_graph
 ```
 ```{=latex}
-\caption{Coefficient Estimates of Week Before, Week After, and In Moratorium \label{week_before_after}}
-\textit{Notes:} The x-axis represents three periods: the week before a moratorium, the moratorium itself, and the week after the moratorium. Indicators for week before and week after are added to specification (3) from Table \ref{main_table}. Weekends represent Fridays, Saturdays, and Sundays. Weekdays represent Mondays-Thursdays. Errorbars represent 95\% confidence intervals.
+\caption{Coefficient Estimates Including a Week Before and Week After Indicator \label{week_before_after}}
+\textit{Notes:} The x-axis represents three periods: the week before a moratorium, the moratorium itself, and the week after the moratorium. Indicators for week before and week after are added to specification (3) from Table \ref{main_table}. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. Weekends represent Fridays, Saturdays, and Sundays. Weekdays represent Mondays-Thursdays. Errorbars represent 95\% confidence intervals.
 \end{figure}
 ```
 
 
-<!-- ```{r} -->
-<!-- source(here::here(paste0("figures/heteroeffects_trigger.R"))) -->
-<!-- ``` -->
+```{r}
+source(here::here(paste0("figures/heteroeffects_trigger.R")))
+```
 
-<!-- ```{r, fig.cap = "\\label{hetero_trigger}Effect of moratorium on alcohol offenses, drug offenses, and sexual assaults by triggering event of the moratorium. Moratoriums can be triggered by four different types of events: behavior violations (including hazing/poor behavior caught on video), fraternity-related death, sexual assault allegations, or unspecified. See Figure 2 for universities within each triggering event. Each point represents a coefficient estimate while each bar represents a 95% confidence interval. Black points/bars represent the entire sample, while blue points/bars represents the sample restricted to only weekends."} -->
+```{=latex}
+\begin{landscape}
+\begin{figure}[t]
+```
+```{r, echo=FALSE, fig.width= 10}
+trigger_reg_graph
+```
+```{=latex}
+\caption{Heterogeneous Effects of Moratoriums by Triggering Event \label{trigger_reg_graph}}
+\textit{Notes:} The x-axis represents three periods: the entire sample (All Days), weekends only, and weekdays only.  Indicators for week before and week after are added to specification (3) from Table \ref{main_table}. Each of the four categories represents the event that triggered a moratorium. Behavior violations is a catchall term for hazing, rule violations, offensive behavior, and other disorderly conduct. Death relates to a fraternity-related death that triggered a moratorium. Sexual assaults relate to a sexuall assault case that triggered a moratorium. Lastly, the Unspecified category represents all moratoriums in which the moratorium triggering event is unknown. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. Weekends represent Fridays, Saturdays, and Sundays. Weekdays represent Mondays-Thursdays. Errorbars represent 95\% confidence intervals.
+\end{figure}
+\end{landscape}
+```
 
-<!-- trigger_reg_graph -->
-<!-- ``` -->
 

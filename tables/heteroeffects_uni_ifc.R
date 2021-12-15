@@ -61,7 +61,7 @@ kable_paper() %>%
   pack_rows("Alcohol Offense", 10, 12, italic = T, bold = F) %>% 
   pack_rows("Drug Offense", 13, 15, italic = T, bold = F) %>% 
   pack_rows("Sexual Assault",16, 18, italic = T, bold = F ) %>% 
-  add_header_above(c(" " = 2, "Restricting Days of the Week" = 2)) %>% 
+  add_header_above(c(" " = 2, "Days of the Week" = 2)) %>% 
   footnote(list("Standard errors clustered by university. Controls follow specification (3) in the main results table with day of week, holiday, semester, and universitiy by academic year fixed effects. Panel A shows the effects of a moratorium when a moratorium is imposed by the university. University-imposed moratoriums represent 28/45 (62%) of the moratoriums. Panel B shows the effects of a moratorium when the IFC council imposes the moratorium. This is a student-lead initiative. IFC-imposed moratoriums represent 17/45 (38%) of the moratoriums in the sample. Weekends represent Fridays through Sundays while Weekdays represent Mondays through Thursdays.",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T)

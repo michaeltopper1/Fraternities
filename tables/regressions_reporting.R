@@ -29,11 +29,26 @@ collapsed_data_daily <- appended_crime_logs %>%
   mutate(report_lag = date_reported - date_occurred) %>% relocate(report_lag) %>% 
   filter(report_lag >=0 | is.na(report_lag)) %>% 
   filter(!is.na(date_occurred)) %>% 
-  mutate(report_lag_alc = ifelse(report_lag > 3 & alcohol_offense == 1, 1, 0)) %>% 
-  mutate(report_lag_sex = ifelse(report_lag > 3 & sexual_assault == 1, 1, 0)) %>% 
-  mutate(report_lag_drug = ifelse(report_lag > 3 & drug_offense == 1, 1, 0)) %>% 
-  mutate(report_lag_rob = ifelse(report_lag > 3 & robbery_burglary == 1, 1, 0)) %>% 
-  mutate(report_lag_theft = ifelse(report_lag > 3 & theft == 1, 1, 0)) %>% 
+  mutate(report_lag_alc_1 = ifelse(report_lag > 1 & alcohol_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_sex_1 = ifelse(report_lag > 1 & sexual_assault == 1, 1, 0)) %>% 
+  mutate(report_lag_drug_1 = ifelse(report_lag > 1 & drug_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_rob_1 = ifelse(report_lag > 1 & robbery_burglary == 1, 1, 0)) %>% 
+  mutate(report_lag_theft_1 = ifelse(report_lag > 1 & theft == 1, 1, 0)) %>% 
+  mutate(report_lag_alc_3 = ifelse(report_lag > 3 & alcohol_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_sex_3 = ifelse(report_lag > 3 & sexual_assault == 1, 1, 0)) %>% 
+  mutate(report_lag_drug_3 = ifelse(report_lag > 3 & drug_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_rob_3 = ifelse(report_lag > 3 & robbery_burglary == 1, 1, 0)) %>% 
+  mutate(report_lag_theft_3 = ifelse(report_lag > 3 & theft == 1, 1, 0)) %>% 
+  mutate(report_lag_alc_7 = ifelse(report_lag > 7 & alcohol_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_sex_7 = ifelse(report_lag >  7& sexual_assault == 1, 1, 0)) %>% 
+  mutate(report_lag_drug_7 = ifelse(report_lag > 7 & drug_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_rob_7 = ifelse(report_lag > 7 & robbery_burglary == 1, 1, 0)) %>% 
+  mutate(report_lag_theft_7 = ifelse(report_lag > 7 & theft == 1, 1, 0)) %>% 
+  mutate(report_lag_alc_14 = ifelse(report_lag > 14 & alcohol_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_sex_14 = ifelse(report_lag > 14 & sexual_assault == 1, 1, 0)) %>% 
+  mutate(report_lag_drug_14 = ifelse(report_lag > 14 & drug_offense == 1, 1, 0)) %>% 
+  mutate(report_lag_rob_14 = ifelse(report_lag > 14 & robbery_burglary == 1, 1, 0)) %>% 
+  mutate(report_lag_theft_14 = ifelse(report_lag > 14 & theft == 1, 1, 0)) %>% 
   relocate(report_lag_alc, alcohol_offense, report_lag_sex, sexual_assault) %>% 
   select(date_reported, university, sexual_assault, alcohol_offense, drug_offense, theft, robbery_burglary, alcohol_offense_strict,
          noise_offense, rape, starts_with("report_lag_")) %>% 
@@ -138,11 +153,17 @@ not_missing_2014 <- missing_years %>%
 ## i did this because i can assume there were 0 reports on a date that there was no crime in years i have
 date_occurred_panel <- date_occurred_panel %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape",
-                  "report_lag_alc", "report_lag_sex", "report_lag_drug", "report_lag_theft", "report_lag_rob"), 
+                  "report_lag_alc_3", "report_lag_sex_3", "report_lag_drug_3", "report_lag_theft_3", "report_lag_rob_3",
+                  "report_lag_alc_1", "report_lag_sex_1", "report_lag_drug_1", "report_lag_theft_1", "report_lag_rob_1",
+                  "report_lag_alc_7", "report_lag_sex_7", "report_lag_drug_7", "report_lag_theft_7", "report_lag_rob_7",
+                  "report_lag_alc_14", "report_lag_sex_14", "report_lag_drug_14", "report_lag_theft_14", "report_lag_rob_14"), 
                 ~ifelse(year== 2014 & is.na(.) & university %in% not_missing_2014,
                         0, .))) %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape",
-                  "report_lag_alc", "report_lag_sex", "report_lag_drug", "report_lag_theft", "report_lag_rob"), 
+                  "report_lag_alc_3", "report_lag_sex_3", "report_lag_drug_3", "report_lag_theft_3", "report_lag_rob_3",
+                  "report_lag_alc_1", "report_lag_sex_1", "report_lag_drug_1", "report_lag_theft_1", "report_lag_rob_1",
+                  "report_lag_alc_7", "report_lag_sex_7", "report_lag_drug_7", "report_lag_theft_7", "report_lag_rob_7",
+                  "report_lag_alc_14", "report_lag_sex_14", "report_lag_drug_14", "report_lag_theft_14", "report_lag_rob_14"), 
                 ~ifelse(year >= 2015 & is.na(.), 0, .)))## changes all missings from 2015 onwards to 0s
 
 
@@ -157,22 +178,34 @@ date_occurred_panel <- date_occurred_panel %>%
 ## NC state is missing data from August 2014 and before
 date_occurred_panel <- date_occurred_panel %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape",
-                  "report_lag_alc", "report_lag_sex", "report_lag_drug", "report_lag_theft", "report_lag_rob"), ~ifelse(
+                  "report_lag_alc_3", "report_lag_sex_3", "report_lag_drug_3", "report_lag_theft_3", "report_lag_rob_3",
+                  "report_lag_alc_1", "report_lag_sex_1", "report_lag_drug_1", "report_lag_theft_1", "report_lag_rob_1",
+                  "report_lag_alc_7", "report_lag_sex_7", "report_lag_drug_7", "report_lag_theft_7", "report_lag_rob_7",
+                  "report_lag_alc_14", "report_lag_sex_14", "report_lag_drug_14", "report_lag_theft_14", "report_lag_rob_14"), ~ifelse(
     year == 2015 & month < 9 & university == "Ferrum College",
     NA, .
   ))) %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape",
-                  "report_lag_alc", "report_lag_sex", "report_lag_drug", "report_lag_theft", "report_lag_rob"), ~ifelse(
+                  "report_lag_alc_3", "report_lag_sex_3", "report_lag_drug_3", "report_lag_theft_3", "report_lag_rob_3",
+                  "report_lag_alc_1", "report_lag_sex_1", "report_lag_drug_1", "report_lag_theft_1", "report_lag_rob_1",
+                  "report_lag_alc_7", "report_lag_sex_7", "report_lag_drug_7", "report_lag_theft_7", "report_lag_rob_7",
+                  "report_lag_alc_14", "report_lag_sex_14", "report_lag_drug_14", "report_lag_theft_14", "report_lag_rob_14"), ~ifelse(
     year <= 2016 & university == "Delaware State University",
     NA, .
   ))) %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape",
-                  "report_lag_alc", "report_lag_sex", "report_lag_drug", "report_lag_theft", "report_lag_rob"), ~ifelse(
+                  "report_lag_alc_3", "report_lag_sex_3", "report_lag_drug_3", "report_lag_theft_3", "report_lag_rob_3",
+                  "report_lag_alc_1", "report_lag_sex_1", "report_lag_drug_1", "report_lag_theft_1", "report_lag_rob_1",
+                  "report_lag_alc_7", "report_lag_sex_7", "report_lag_drug_7", "report_lag_theft_7", "report_lag_rob_7",
+                  "report_lag_alc_14", "report_lag_sex_14", "report_lag_drug_14", "report_lag_theft_14", "report_lag_rob_14"), ~ifelse(
     year== 2016 & (month == 1 | month == 2) & university == "The University of Texas at Austin",
     NA, .
   ))) %>% 
   mutate(across(c("alcohol_offense", "sexual_assault", "theft", "drug_offense","robbery_burglary", "alcohol_offense_strict", "noise_offense", "rape",
-                  "report_lag_alc", "report_lag_sex", "report_lag_drug", "report_lag_theft", "report_lag_rob"), ~ifelse(
+                  "report_lag_alc_3", "report_lag_sex_3", "report_lag_drug_3", "report_lag_theft_3", "report_lag_rob_3",
+                  "report_lag_alc_1", "report_lag_sex_1", "report_lag_drug_1", "report_lag_theft_1", "report_lag_rob_1",
+                  "report_lag_alc_7", "report_lag_sex_7", "report_lag_drug_7", "report_lag_theft_7", "report_lag_rob_7",
+                  "report_lag_alc_14", "report_lag_sex_14", "report_lag_drug_14", "report_lag_theft_14", "report_lag_rob_14"), ~ifelse(
     year== 2014 & (month == 1 | month == 2 | month == 3 | month == 4 | month == 5 | month == 6 | month == 7| month == 8) & university == "North Carolina State University at Raleigh",
     NA, .
   )))
@@ -308,11 +341,26 @@ date_occurred_panel %>%
   modelsummary::datasummary_skim()
 
 lag_datas <- map(lag_datas, ~.x %>% 
-      mutate(proportion_alc_lag = ifelse(alcohol_offense == 0, 0, report_lag_alc/alcohol_offense),
-             proportion_sex_lag = ifelse(sexual_assault == 0, 0, report_lag_sex/sexual_assault),
-             proportion_drug_lag = ifelse(drug_offense == 0, 0, report_lag_drug/drug_offense),
-             proportion_theft_lag = ifelse(theft == 0, 0, report_lag_theft/theft),
-             proportion_rob_lab = ifelse(robbery_burglary == 0, 0, report_lag_rob/robbery_burglary)) )
+      mutate(proportion_alc_lag_1 = ifelse(alcohol_offense == 0, 0, report_lag_alc_1/alcohol_offense),
+             proportion_sex_lag_1 = ifelse(sexual_assault == 0, 0, report_lag_sex_1/sexual_assault),
+             proportion_drug_lag_1 = ifelse(drug_offense == 0, 0, report_lag_drug_1/drug_offense),
+             proportion_theft_lag_1 = ifelse(theft == 0, 0, report_lag_theft_1/theft),
+             proportion_rob_lab_1 = ifelse(robbery_burglary == 0, 0, report_lag_rob_1/robbery_burglary),
+             proportion_alc_lag_3 = ifelse(alcohol_offense == 0, 0, report_lag_alc_3/alcohol_offense),
+             proportion_sex_lag_3 = ifelse(sexual_assault == 0, 0, report_lag_sex_3/sexual_assault),
+             proportion_drug_lag_3 = ifelse(drug_offense == 0, 0, report_lag_drug_3/drug_offense),
+             proportion_theft_lag_3 = ifelse(theft == 0, 0, report_lag_theft_3/theft),
+             proportion_rob_lab_3 = ifelse(robbery_burglary == 0, 0, report_lag_rob_3/robbery_burglary),
+             proportion_alc_lag_7 = ifelse(alcohol_offense == 0, 0, report_lag_alc_7/alcohol_offense),
+             proportion_sex_lag_7 = ifelse(sexual_assault == 0, 0, report_lag_sex_7/sexual_assault),
+             proportion_drug_lag_7 = ifelse(drug_offense == 0, 0, report_lag_drug_7/drug_offense),
+             proportion_theft_lag_7 = ifelse(theft == 0, 0, report_lag_theft_7/theft),
+             proportion_rob_lab_7 = ifelse(robbery_burglary == 0, 0, report_lag_rob_7/robbery_burglary),
+             proportion_alc_lag_14 = ifelse(alcohol_offense == 0, 0, report_lag_alc_14/alcohol_offense),
+             proportion_sex_lag_14 = ifelse(sexual_assault == 0, 0, report_lag_sex_14/sexual_assault),
+             proportion_drug_lag_14 = ifelse(drug_offense == 0, 0, report_lag_drug_14/drug_offense),
+             proportion_theft_lag_14 = ifelse(theft == 0, 0, report_lag_theft_14/theft),
+             proportion_rob_lab_14 = ifelse(robbery_burglary == 0, 0, report_lag_rob_14/robbery_burglary)) )
 
 date_occurred_panel <- lag_datas[[1]]
 date_occurred_panel_weekends <- lag_datas[[2]]
@@ -320,15 +368,18 @@ date_occurred_panel_weekdays <- lag_datas[[3]]
 
 
 lag_regression <- date_occurred_panel %>% 
-  feols(c(proportion_sex_lag, proportion_alc_lag) ~ treatment |
+  feols(c(proportion_sex_lag_7, proportion_alc_lag_7) ~ treatment |
           date + university, cluster = ~university, data = .) 
 
 fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
 explanatory_vars <- c("treatment")
 
-lag_alc <- map(lag_datas, ~ifc::reghdfe(., "proportion_alc_lag", explanatory_vars = explanatory_vars, fe, "university"))
-lag_drug <- map(lag_datas, ~ifc::reghdfe(., "proportion_drug_lag", explanatory_vars = explanatory_vars, fe, "university"))
-lag_sex <- map(lag_datas, ~ifc::reghdfe(., "proportion_sex_lag", explanatory_vars = explanatory_vars, fe, "university"))
+lag_variables_alc <- c("proportion_alc_lag_1", "proportion_alc_lag_3","proportion_alc_lag_7","proportion_alc_lag_14")
+lag_variables_drug <- c("proportion_drug_lag_1","proportion_drug_lag_3", "proportion_drug_lag_7","proportion_drug_lag_14")
+lag_variables_sex <- c("proportion_sex_lag_1","proportion_sex_lag_3", "proportion_sex_lag_7","proportion_sex_lag_14")
+lag_alc <- map(lag_variables_alc, ~ifc::reghdfe(date_occurred_panel, ., explanatory_vars = explanatory_vars, fe, "university"))
+lag_drug <- map(lag_variables_drug, ~ifc::reghdfe(date_occurred_panel, ., explanatory_vars = explanatory_vars, fe, "university"))
+lag_sex <- map(lag_variables_sex, ~ifc::reghdfe(date_occurred_panel, ., explanatory_vars = explanatory_vars, fe, "university"))
 
 
 
@@ -339,30 +390,33 @@ lag_sex <- map(lag_datas, ~ifc::reghdfe(., "proportion_sex_lag", explanatory_var
 
 reporting_table <- ifc::main_table(lag_alc, lag_drug,  last_panel = lag_sex) %>% 
   add_row(term = "Mean of Dependent Variable", 
-          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(date_occurred_panel_weekends$proportion_alc_lag, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(date_occurred_panel_weekdays$proportion_alc_lag, na.rm = T)),
+          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_1, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_3, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_7, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_14, na.rm = T)),
           .before = 4) %>% 
   add_row(term = "Mean of Dependent Variable", 
-          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_drug_lag, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(date_occurred_panel_weekends$proportion_drug_lag, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(date_occurred_panel_weekdays$proportion_drug_lag, na.rm = T)),
+          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_drug_lag_1, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(date_occurred_panel$proportion_drug_lag_3, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(date_occurred_panel$proportion_drug_lag_7, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_14, na.rm = T)),
           .before = 8) %>% 
   add_row(term = "Mean of Dependent Variable", 
-          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_sex_lag, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(date_occurred_panel_weekends$proportion_sex_lag, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(date_occurred_panel_weekdays$proportion_sex_lag, na.rm = T)),
+          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_sex_lag_1, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(date_occurred_panel$proportion_sex_lag_3, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(date_occurred_panel$proportion_sex_lag_7, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_14, na.rm = T)),
           .before = 12) %>% 
   kbl(booktabs = T,
-      col.names = c(" ","All Days", "Weekends", "Weekdays"),
+      col.names = c(" ","More than 1-Day Lag","More than 3-Day Lag", "More than 7-Day Lag", "More than 14-day Lag"),
       caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting.") %>% 
   kable_paper() %>% 
   pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = F, bold = T) %>%
   pack_rows("Panel B: Proportion of Drug Offenses Reported with Lag", 5, 8, italic = F, bold = T) %>%
   pack_rows("Panel C: Proportion of Alcohol Offenses Reported with Lag", 9,12, italic = F, bold = T) %>%
-  pack_rows("Controls for Panels A-C:", 13, 16, italic = T, bold = F) %>% 
-  add_header_above(c(" " = 2, "Restricting Days of the Week" = 2)) %>% 
-  footnote(list("Standard errors clustered by university.  Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a lag of 3 days or more. A lag is defined as an offense that was reported more than 3 days after it occurred. Not all universities had information on date occurred (33/38).",
+  pack_rows("Controls for Panels A-C:", 13, 16, italic = F, bold = T) %>% 
+  add_header_above(c(" " = 1, "Reporting Lag" = 4)) %>% 
+  footnote(list("Standard errors clustered by university.  Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. Not all universities had information on date occurred (33/38).",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T)
 

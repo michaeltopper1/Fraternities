@@ -1,6 +1,17 @@
 ---
 title: "Tables"
 output: pdf_document
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \floatplacement{figure}{H}
+- \usepackage{natbib}
+- \usepackage{pdflscape}
 editor_options: 
   chunk_output_type: console
 ---
@@ -59,11 +70,12 @@ weekend_table
 source(here::here(paste0("tables/regressions_reporting.R")))
 ```
 
-
+\begin{landscape}
 ```{r}
 ## reporting_table
 reporting_table
 ```
+\end{landscape}
 
 ```{r}
 source(here::here(paste0("tables/heteroeffects_uni_ifc.R")))
@@ -72,6 +84,15 @@ source(here::here(paste0("tables/heteroeffects_uni_ifc.R")))
 
 ```{r}
 ifc_uni_table
+```
+
+```{r}
+source(here::here(paste0("tables/regressions_quantiles.R")))
+```
+
+```{r}
+## quantile_table
+quantile_table
 ```
 
 ```{r}
