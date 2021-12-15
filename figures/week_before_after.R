@@ -61,3 +61,6 @@ week_before_after_graph <- weeksplit_controls %>%
   theme(legend.position = "none") +
   labs(x = "Coefficient Estimate and 95% Confidence Interval", y = " ") +
   coord_flip() 
+
+
+
