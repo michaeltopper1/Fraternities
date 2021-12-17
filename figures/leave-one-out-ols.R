@@ -53,7 +53,7 @@ loo_function <- function(dependent_var, data){
 
 # putting together data for looping ---------------------------------------
 datas <- list(daily_crime, daily_crime_weekends ,daily_crime_weekdays)
-week_type <- tibble(week_type = c(rep("Full Sample", 38), rep("Weekends", 38), rep("Weekdays", 38)),
+week_type <- tibble(week_type = c(rep("All Days", 38), rep("Weekends", 38), rep("Weekdays", 38)),
                     row_number = c(1:38, 1:38, 1:38))
 
 
