@@ -33,14 +33,14 @@ kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words/Phra
   kable_styling(full_width = F) %>%
   # column_spec(1, bold = T, color = "blue") %>%
   column_spec(2, width = "30em") %>% kable_styling(latex_options = "HOLD_position") %>% 
-  footnote(list("Each word to match represents a portion of a word to match on. For example, the word 'sex' will match on 'sexual assault' and 'sex offense' since 'sex' appears in each of these descriptions.",
-                    "`dwi' is an abbreviation for 'driving while intoxicated'.",
-                    "`dip' is an abbrevation for 'drunk in public'.",
-                    "`abcc' is an abbreviation for 'alcohol beverage control comission'.",
-                    "`pula' is an abbrevation for 'person under legal age'.",
-                    "`owi' is an abbreviation for 'operating while intoxicated'.",
-                    "`mip' is an abbreviation for 'minor in possesion'.",
-                    "`ovi' is an abbreivation for 'operating vehicle intoxicated'."), threeparttable = T)
+  footnote(list("Each word to match represents a portion of a word to match on. For example, the word `sex' will match on `sexual assault' and `sex offense' since 'sex' appears in each of these descriptions.",
+                    "`dwi' is an abbreviation for `driving while intoxicated'.",
+                    "`dip' is an abbrevation for `drunk in public'.",
+                    "`abcc' is an abbreviation for `alcohol beverage control comission'.",
+                    "`pula' is an abbrevation for `person under legal age'.",
+                    "`owi' is an abbreviation for `operating while intoxicated'.",
+                    "`mip' is an abbreviation for `minor in possesion'.",
+                    "`ovi' is an abbreivation for `operating vehicle intoxicated'."), threeparttable = T)
 ```
 
 

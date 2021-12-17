@@ -23,7 +23,7 @@ moratoriums <- moratoriums %>%
   mutate(moratorium_id = n()) %>% 
   ungroup()
 moratorium_summary <- moratoriums %>% 
-  datasummary((`Number of Moratoriums Per-University` = moratorium_id) +(`Length of Moratoriums` = length_moratorium) ~ (Mean + SD + Median + Min + Max ), data = .,
+  datasummary((`Number of Moratoriums per-University` = moratorium_id) +(`Length of Moratoriums` = length_moratorium) ~ (Mean + SD + Median + Min + Max ), data = .,
               output = "data.frame") 
 moratorium_rows <- moratorium_summary %>%
   add_row(` ` = "Total Number of Universities",`Mean` =  "38",`SD` = " ",`Median` =  " ", `Min` = " ", `Max` =" ")
@@ -38,8 +38,8 @@ university_characteristics <- daily_crime %>%
                 (`Fraction Hispanic` = frac_undergrad_hispanic_latino) +
                 (`Fraction White` = frac_undergrad_white) +
                  (`Graduation Rate` = graduation_rate_total_cohort) + 
-                (`SAT Math 75` = sat_math_75) +
-                ( `SAT Reading 75` = sat_reading_75) +
+                (`SAT Math 75th Percentile` = sat_math_75) +
+                ( `SAT Reading 75th Percentile` = sat_reading_75) +
                 (`Fraction Admitted` = frac_admitted_total) +
                 (`Fraction Private`=private) +
                 (`Alcohol Offense` = alcohol_offense_per25) +
@@ -51,9 +51,9 @@ university_characteristics <- daily_crime %>%
   row_spec(17, bold = F, italic = T) %>% 
   add_indent(c(2:6)) %>% 
   add_indent(c(3:6)) %>% 
-  pack_rows("University Characteristics", 1, 11, bold = T, italic = F) %>% 
-  pack_rows("Daily Crime Log Offenses", 12, 14, bold = T, italic = F) %>% 
-  pack_rows("Moratorium Characteristics", 15, 16, bold = T, italic = F) %>% 
-  footnote("Offenses are per-25000 students enrolled per-academic calendar day. Length of moratorium statistics are in academic calendar days. Number of moratoriums refers to number of moratoriums only within the 2014-2019 time period. Some schools may or may not have had moratoriums in periods before or after the time period of analysis. Only a subset of races were chosen, and hence, the sum of the fractions do not sum to 1 in the table.",
+  pack_rows("Panel A: University Characteristics", 1, 11, bold = T, italic = F) %>% 
+  pack_rows("Panel B: Daily Crime Log Offenses", 12, 14, bold = T, italic = F) %>% 
+  pack_rows("Panel C: Moratorium Characteristics", 15, 16, bold = T, italic = F) %>% 
+  footnote("Offenses are per-25000 students enrolled per-academic calendar day. Length of moratorium statistics are in academic calendar days. Number of moratoriums refers to number of moratoriums only within the 2014-2019 time period. Some schools may or may not have had moratoriums in periods before or after the time period of analysis. Only a subset of races were chosen, and hence, the sum of the fractions do not sum to 1 in the table. SAT Math 75th Percentile and SAT Reading 75th Percentile correspond to the 75th perctile SAT score for an admitted student. A perfect score is 800, while an average score is approximately 500. Fraction Private refers to the fractin of universities that are private universities.",
            threeparttable = T)
 
