@@ -1,0 +1,50 @@
+---
+title: "Empirical Strategy"
+output: pdf_document
+---
+
+# Empirical Strategy
+
+The goal of this paper is to identify the average causal effect of fraternity moratoriums on alcohol, drug, and sexual assault offenses across universities. In a naive analysis, this would amount to taking a difference of means for moratorium days and non-moratorium days across all universities for each offense. However, there are several issues with identifying such difference of means as a causal effect. First, university police departments each vary considerably in the frequency of reporting offenses. This is the result of differing policing tactics, the departments available resources—such as number of officers per-student—and the overall composition of students at the university. For instance, a police department that oversees a university with a reputation for partying may police considerably different than police department that rarely handles college partying. Second, frequencies of offenses vary depending on the day of the week and the time of year. As an example, alcohol offenses most commonly occur on Fridays, Saturdays and Sundays, and fraternity recruitment is typically in the fall semester. A simple difference of means fails to account for each of these systematic differences between universities, days of the week, and semester. 
+
+To circumvent these issues, I estimate the following difference-in-diferrences regression specification:
+
+\begin{equation}\label{main_model}
+Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \epsilon_{u,t}
+\end{equation}
+
+where $Y_{u,t}$ is an outcome of alcohol offenses, drug offenses, or sexual assaults per-25000 enrolled students per academic-calendar day at university $u$ in time $t$. $Moratorium_{u,t}$ is an indicator variable equal to one when university $u$ is undergoing a moratorium at time $t$, $\gamma_u$ is a university-specific fixed effect, $\mathbb{X}_t$ is a vector of time-varying controls that are shared across universities, and $\epsilon_{u,t}$ is the error term.  
+
+Including university-specific fixed effects ($\gamma_u$) accounts for systematic differences between a universities police department and the corresponding student demographic they are are policing. As stated above, a police department may have systematic differences in the frequency of reporting due to the corresponding demographic of the university. Hence, including university-specific fixed effects ensures that moratorium days are compared to non-moratorium days while adjusting for these expected differences in universities. Moreover, $\mathbb{X}_{t}$ includes day of the week, semester type (spring/fall), holiday, and academic year controls. Day of the week controls are included since most offenses occur on the weekends, while semester controls are included to adjust for the fact that fraternity recruitment events usually occur in the fall semester. Lastly, holiday controls are included since there may be less student activity on holidays and academic year controls are included due to differences between fraternity rules and guidelines between academic years. Taken together, the corresponding interpretation of the parameter of interest, $\beta$, is the average difference in offense $Y_{u,t}$ on moratorium days relative to non-moratorium days, conditional on the expected differences between universities, days of the week, holidays, semesters, and academic years.
+
+## Assumptions 
+
+## Threats to Identification
+
+
+
+
+
+
+
+Why is a naive OLS estimation bad?
+
+It is only comparing a difference of means with a moratorium and without a moratorium. It is not accounting for systematic differences in university police department reporting schemes, differential effects that occur on days of the week, differential partying that occurs in each semester (pledge vs. non pledge) nor does it take into account holidays. 
+
+Day of week fixed effect - accounts for systematic changes between days of the week. This allows us to compare a Monday to a Monday or a Saturday to a Saturday. Hence, our results would be the additional increase expected from a typical Saturday.
+
+University fixed effect - accounts for systematic differences in a university police department/university. Perhaps universities vary on their enforcement of alcohol offenses? Maybe some university police departments do not report this much at all (New Mexico). 
+
+Academic year fixed effect - accounts for differences in academic years. Academic years can vary a lot in terms of new rules/guidelines that are implemented for partying/fraternities/sororities/pledging etc. It is important to take into account these differences and only compare days within an academic calendar to each other. 
+
+University by academic year - allows for flexibility in the model. Allows us to only compare days within a university academic year. Hence, we this gives the interpretation of comparing a day at UCSB in 2013-14 to a non moratorium day in 2013-2014. 
+
+University by academic year by semester - similar to above but by semester as well.
+
+Assumptions of the model:
+
+1. assumes parallel trends (DID) - notes that this is accomplished using event study
+2. assumes that there are no systematic changes in reporting during a moratorium rather than outside a moratorium. An example could be that students decide to come-forward more about sexual assaults during moratoriums since there is already pressure on fraternities. 
+3. assumes that there is no systematic change in policing. 
+4. assumes that there are no lasting effects. 
+5. preffered specification - assumes that a saturday in each month within academic year 2013 is the same as a saturday within each month in year 2013. reasonable.
