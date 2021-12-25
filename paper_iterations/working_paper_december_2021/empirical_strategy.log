@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.15)  24 DEC 2021 13:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.15)  24 DEC 2021 22:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -408,37 +408,61 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 103.
 
-LaTeX Warning: Reference `results' on page 1 undefined on input line 144.
+LaTeX Warning: Reference `results' on page 1 undefined on input line 148.
 
 [1
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `triggerplot' on page 2 undefined on input line 168.
+LaTeX Warning: Reference `triggerplot' on page 2 undefined on input line 172.
 
 
-LaTeX Warning: Reference `' on page 2 undefined on input line 201.
+LaTeX Warning: Reference `reasons' on page 2 undefined on input line 181.
+
+
+LaTeX Warning: Reference `' on page 2 undefined on input line 216.
+
+
+LaTeX Warning: Reference `summary_stats' on page 2 undefined on input line 237.
+
+
+LaTeX Warning: Reference `es_alc' on page 2 undefined on input line 238.
+
+
+LaTeX Warning: Reference `es_drug' on page 2 undefined on input line 238.
+
+
+LaTeX Warning: Reference `es_sex' on page 2 undefined on input line 238.
+
+
+LaTeX Warning: Reference `' on page 2 undefined on input line 254.
+
+
+LaTeX Warning: Reference `' on page 2 undefined on input line 254.
+
+
+LaTeX Warning: Reference `' on page 2 undefined on input line 254.
 
 [2] [3] (./empirical_strategy.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `empirical_strategy.out' has not changed.
-(rerunfilecheck)             Checksum: C1D669CC8E2099E7AA144C64EEB9F5DC;907.
+(rerunfilecheck)             Checksum: 2B44BF6CD2003D6FEA56B5B25F70C59D;572.
  ) 
 Here is how much of TeX's memory you used:
- 10478 strings out of 480313
- 164351 string characters out of 5895946
- 464416 words of memory out of 5000000
- 28167 multiletter control sequences out of 15000+600000
- 457687 words of font info for 68 fonts, out of 8000000 for 9000
+ 10477 strings out of 480313
+ 164285 string characters out of 5895946
+ 465324 words of memory out of 5000000
+ 28168 multiletter control sequences out of 15000+600000
+ 461950 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,8n,63p,302b,324s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on empirical_strategy.pdf (3 pages, 201192 bytes).
+{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on empirical_strategy.pdf (3 pages, 214375 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
+ 14 named destinations out of 1000 (max. 500000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 
