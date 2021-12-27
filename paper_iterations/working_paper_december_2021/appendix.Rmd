@@ -165,7 +165,7 @@ loo_alc_ols
 loo_drug_ols
 ```
 ```{=latex}
-\caption{Leave-one-out OLS Regressions of Alcohol Offenses \label{loo_drug_ols}}
+\caption{Leave-one-out OLS Regressions of Drug Offenses \label{loo_drug_ols}}
 \textit{Notes:} Each point represents specification (3) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
 \end{figure}
 ```
@@ -177,7 +177,7 @@ loo_drug_ols
 loo_sex_ols
 ```
 ```{=latex}
-\caption{Leave-one-out OLS Regressions of Alcohol Offenses \label{loo_sex_ols}}
+\caption{Leave-one-out OLS Regressions of Sexual Assaults \label{loo_sex_ols}}
 \textit{Notes:} Each point represents specification (3) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
 \end{figure}
 ```
