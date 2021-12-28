@@ -86,7 +86,8 @@ timeline <- timing %>%
 alc_progression <- ifc::reghdfe(daily_crime_within, "alcohol_offense_per25", explanatory_vars, fe, "university") %>% 
   broom::tidy(conf.int = T) %>% 
   bind_cols(timing) %>% 
-  mutate(day_type = "Full Sample")
+  mutate(day_type = "Full Sample") %>% 
+  mutate(offense = "Alcohol Offense")
 alc_progression_weekend <- ifc::reghdfe(daily_crime_within %>% 
                filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") , "alcohol_offense_per25", explanatory_vars, fe, "university") %>% 
   broom::tidy(conf.int = T) %>% 
@@ -97,7 +98,8 @@ alc_progression_weekend <- ifc::reghdfe(daily_crime_within %>%
 drug_progression <- ifc::reghdfe(daily_crime_within, "drug_offense_per25", explanatory_vars, fe, "university") %>% 
   broom::tidy(conf.int = T) %>% 
   bind_cols(timing) %>% 
-  mutate(day_type = "Full Sample")
+  mutate(day_type = "Full Sample") %>% 
+  mutate(offense = "Drug Offense")
 
 drug_progression_weekend <- ifc::reghdfe(daily_crime_within %>% 
                                            filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") ,
@@ -110,7 +112,8 @@ drug_progression_weekend <- ifc::reghdfe(daily_crime_within %>%
 sex_progression <- ifc::reghdfe(daily_crime_within, "sexual_assault_per25", explanatory_vars, fe, "university") %>% 
   broom::tidy(conf.int = T) %>% 
   bind_cols(timing) %>% 
-  mutate(day_type = "Full Sample")
+  mutate(day_type = "Full Sample") %>% 
+  mutate(offense = "Sexual Assault")
 
 sex_progression_weekend <- ifc::reghdfe(daily_crime_within %>% 
                                           filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") ,
@@ -126,50 +129,51 @@ sex_progression_weekend <- ifc::reghdfe(daily_crime_within %>%
 
 cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
-mprogression_alc <- alc_progression %>% 
-  bind_rows(alc_progression_weekend) %>% 
-  ggplot(aes(x = time, y = estimate, group = day_type)) +
-  geom_path(aes(linetype = day_type)) +
-  geom_point(aes(shape = day_type)) +
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = day_type), alpha =0.2) +
+treatment_passing <- alc_progression %>% 
+  bind_rows(drug_progression) %>% 
+  bind_rows(sex_progression) %>% 
+  ggplot(aes(x = time, y = estimate, group = offense)) +
+  geom_path(aes(linetype = offense)) +
+  geom_point(aes(shape = offense)) +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = offense), alpha =0.2) +
   scale_x_continuous(breaks = c(1:7), labels = timeline) +
   geom_hline(yintercept = 0, color = "dark red")  +
-  labs(x = "", y = "Coefficient Estimate", group = " ", linetype = " ", shape = " ", fill = " ", color = " ") +
+  labs(x = "", y = "Coefficient Estimate and 95% Confidence Interval", group = " ", linetype = " ", shape = " ", fill = " ", color = " ") +
   scale_fill_manual(values=cbbPalette) +
   scale_color_manual(values = cbbPalette) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  facet_wrap(~day_type, nrow = 2)
+  facet_wrap(~offense, scales = "free", nrow = 3)
 
-
-mprogression_drug <- drug_progression %>% 
-  bind_rows(drug_progression_weekend) %>% 
-  ggplot(aes(x = time, y = estimate, group = day_type)) +
-  geom_path(aes(linetype = day_type)) +
-  geom_point(aes(shape = day_type)) +
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = day_type), alpha =0.2) +
-  scale_x_continuous(breaks = c(1:7), labels = timeline) +
-  geom_hline(yintercept = 0, color = "dark red")  +
-  labs(x = "", y = "Coefficient Estimate", group = " ", linetype = " ", shape = " ", fill = " ", color = " ") +
-  scale_fill_manual(values=cbbPalette) +
-  scale_color_manual(values = cbbPalette) +
-  theme_minimal() +
-  theme(legend.position = "bottom") +
-  facet_wrap(~day_type, nrow = 2)
-
-
-mprogression_sex <- sex_progression %>% 
-  bind_rows(sex_progression_weekend) %>% 
-  ggplot(aes(x = time, y = estimate, group = day_type)) +
-  geom_path(aes(linetype = day_type)) +
-  geom_point(aes(shape = day_type)) +
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = day_type), alpha =0.2) +
-  scale_x_continuous(breaks = c(1:7), labels = timeline) +
-  geom_hline(yintercept = 0, color = "dark red")  +
-  labs(x = "", y = "Coefficient Estimate", group = " ", linetype = " ", shape = " ", fill = " ", color = " ") +
-  scale_fill_manual(values=cbbPalette) +
-  scale_color_manual(values = cbbPalette) +
-  theme_minimal() +
-  theme(legend.position = "bottom") +
-  facet_wrap(~day_type, nrow = 2)
-
+# 
+# mprogression_drug <- drug_progression %>% 
+#   bind_rows(drug_progression_weekend) %>% 
+#   ggplot(aes(x = time, y = estimate, group = day_type)) +
+#   geom_path(aes(linetype = day_type)) +
+#   geom_point(aes(shape = day_type)) +
+#   geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = day_type), alpha =0.2) +
+#   scale_x_continuous(breaks = c(1:7), labels = timeline) +
+#   geom_hline(yintercept = 0, color = "dark red")  +
+#   labs(x = "", y = "Coefficient Estimate", group = " ", linetype = " ", shape = " ", fill = " ", color = " ") +
+#   scale_fill_manual(values=cbbPalette) +
+#   scale_color_manual(values = cbbPalette) +
+#   theme_minimal() +
+#   theme(legend.position = "bottom") +
+#   facet_wrap(~day_type, nrow = 2)
+# 
+# 
+# mprogression_sex <- sex_progression %>% 
+#   bind_rows(sex_progression_weekend) %>% 
+#   ggplot(aes(x = time, y = estimate, group = day_type)) +
+#   geom_path(aes(linetype = day_type)) +
+#   geom_point(aes(shape = day_type)) +
+#   geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = day_type), alpha =0.2) +
+#   scale_x_continuous(breaks = c(1:7), labels = timeline) +
+#   geom_hline(yintercept = 0, color = "dark red")  +
+#   labs(x = "", y = "Coefficient Estimate", group = " ", linetype = " ", shape = " ", fill = " ", color = " ") +
+#   scale_fill_manual(values=cbbPalette) +
+#   scale_color_manual(values = cbbPalette) +
+#   theme_minimal() +
+#   theme(legend.position = "bottom") +
+#   facet_wrap(~day_type, nrow = 2)
+# 
