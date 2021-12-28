@@ -160,3 +160,23 @@ trigger_reg_graph
 ```
 
 
+
+```{r}
+source("figures/treatment_passing.R")
+```
+
+
+```{=latex}
+\begin{landscape}
+\begin{figure}[t]
+```
+```{r, echo=FALSE}
+treatment_passing
+```
+```{=latex}
+\caption{The Effect of Moratoriums by Number of Weeks Within a Moratorium \label{treatment_passing}}
+\textit{Notes:} This figure shows how a moratorium progresses over time. Note that all point estimates shown in this figure are from moratorium days only. Since moratorium lengths differ by university and moratorium universities drop out of the estimates. The number of universities used to identify each coefficient estimate is displayed in parenthesis on the x-axis in addition to the number of weeks within a moratorium. The preffered specification is used which includes day of week, holiday, university by academic calendar, and semester controls. Standard errors are clustered at the university level. 
+\end{figure}
+\end{landscape}
+```
+
