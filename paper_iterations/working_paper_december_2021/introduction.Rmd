@@ -1,0 +1,53 @@
+---
+title: "Introduction"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This paper is the first to estimate the causal effects of temporary campus-wide bans on fraternity social events with alcohol (henceforth, moratoriums) on university-police reports of alcohol, drug, and sexual assault offenses. Since 2010, over 50 moratoriums have been enacted across university campuses, thus becoming a common policy tool among school administrators. However, no prior research has investigated this topic; moratorium dates are difficult to find/confirm and there does not exist a centralized data source for university-specific crime with fine enough detail for casual inference. Despite this lack of research, administrators continue to use moratoriums as a disciplinary action on their fraternities.
+
+Nonetheless, how these moratoriums effect student behavior, and thus on-campus crime, is theoretically unclear. On one hand, prohibiting alcohol from fraternity social events may reduce reports of crime. Fraternities are a common source of alcohol for underage drinking, as fraternities are typically a mix of lower and upperclassmen [@armstrong_sexual_2006]. The inclusion of legal-age drinkers and large social events allows for easy access to alcohol for underage students. Given that the literature has documented that alcohol causes higher prevalence of crimes such as assaults and alcohol offenses [@carpenter_minimum_2015], road accidents and arrests [@francesconi_liquid_2019], and rape [@zimmerman_alcohol_2007;@lindo_college_2018], prohibiting such events could reduce the amount of on-campus crime. On the other hand, moratoriums may have the opposite effect. Without alcohol-fueled fraternity parties, students may substitute away from consuming alcohol at fraternity houses to potentially riskier places where behavior is less regulated. As a result, the net effect of moratoriums is ambiguous. 
+
+In this paper, I estimate the causal effect of 45 fraternity moratoriums across 38 universities over a six-year period (2014-2019) on reports of alcohol, drug, and sexual assaults offenses. I use a difference-in-differences identification strategy, leveraging the unanticipated nature of moratoriums. Intuitively, I compare academic-calendar days with a moratorium to academic-calendar days without a moratorium while accounting for expected differences across days of the week and across different times of the year. I construct a novel data set, merging together two particularly unique data sources: university-specific Daily Crime Logs, which contain the universe of all reported incidences of crime to the university police at the incident-level, and moratorium start and end dates obtained through school newspapers and public records requests. Using this data, I find that moratoriums significantly decrease alcohol offenses campus-wide on academic-calendar days by 27%. This effect is driven by weekends (Fridays-Sundays) when college partying is more frequent and is robust across various specifications, estimation methods, and sensitively tests. Furthermore, I find weaker evidence that sexual assaults decrease by 26% on weekends. This result is consistent with the findings from @lindo_college_2018 where increases in college partying from football games were associated with a 28% daily increase in rape.
+
+This paper contributes to several areas of research. First, 
+
+Main contributions of the study:
+- new constructed data
+- first study to look at fraternity moratoriums
+- advances growing body of literature relating to fraternitie: differed recruitment, 
+
+Fits into the literature:
+Studies most related to mine. Literature on partying and sexual assault:
+- lindo - how college partying affects sexual assault
+
+literature on regulating fraternities/fraternity impact:
+- even and smith - differed recruitment - grades 
+- routon and walker - effect of membership on graduation/grades/partying
+- manu raghav - fraternities affect drug andn liquor law violations
+
+# Fraternities in the US
+
+## Background
+
+Fraternities are a ubiquitous, and longstanding tradition in the United States. They maintain a presence at 800 universities across the US (Hechinger 2017) with the oldest fraternities forming in the mid 1800s (IFC website). Fraternities consist of students from families of higher-than-average educational attainment and income; they are predominantly white, and prior research has linked fraternity membership to increases in graduation rates (Routon and Walker 2014), income (Mara, Davis, and Schmidt 2018), and GPA (DeBard and Sacks 2011). However, members spend approximately 2 more hours partying than nonmembers (Routon and Walker 2014). Desimone 2007 shows that members are more likely to binge drink by 23 percentage points and binge drink on 1.7 additional days. Need some sources on linking fraternity members to sexual assaults.
+
+This paper focuses on the Interfraternity Council (IFC) fraternities otherwise colloquially known as the ‘social’ fraternities. IFC fraternities participate in philanthropy and professional development, although according to their creed, they “exist to promote the shared interests and values of our member fraternities: leadership, service, brotherhood and scholarship” [@hechinger_true_2017].
+
+
+There are three sources of regulation for each IFC fraternity chapter^[Describe what a chapter is here]: the chapter’s national headquarters, university, and the university’s own IFC council—a group of student representatives from each recognized IFC fraternity chapter whom regularly meet with university staff to discuss rules/boundaries. Failure to abide by university policies can result in a fraternity being unrecognized by the university which is costly—a fraternity relies on the university for new students to recruit.  
+
+## Moratoriums
+
+Moratoriums are defined as a temporary ban on alcohol at social events for IFC fraternities. There is some heterogeneity within these moratoriums such as some schools cancel all third party events or require some sort of training to get out of a moratorium.
+
+Moratoriums occur because of a particular triggering event. This event can be a prominent sexual assault allegation, a fraternity-related death (usually due to alcohol poisoning), or bad behavior that was brought to light (e.g. a hazing violation or inappropriate behavior caught on video and gone viral).
+
+Moratoriums can be implemented by two sources of jurisdictions: the university or the Interfraternity Council. When a moratorium is implemented by the university, the university sets the guidelines that fraternities must abide by during the moratorium. On the other hand, an IFC-implemented moratorium is student-enforced. This means that the overarching IFC council (a group of student representatives from each fraternity chapter) is responsible for oversight. Heterogeneity analysis on the differences between these is explored later in the paper.
+
+It is not always known how long a fraternity moratorium will last when a university implements one. For instance, some universities may “re-evaluate” the situation in a set amount of time or impose certain criteria that fraternities must abide by in order to lift the moratorium (e.g. sexual assault training). In other cases, moratoriums may be cut short by outside pressures from the fraternities themselves.
