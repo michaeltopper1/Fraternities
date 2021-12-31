@@ -84,8 +84,6 @@ map_of_schools
 source(here::here(paste0("figures/event_study_final_dec13.R")))
 ```
 
-Figure \ref{es_alc}
-
 ```{=latex}
 \begin{figure}[t]
 ```

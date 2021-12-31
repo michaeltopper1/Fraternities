@@ -24,16 +24,14 @@ library(kableExtra)
 
 # Appendix
 
-```{=latex}
-\begin{figure}[t]
+```{r}
+source(here::here(paste0("tables/trigger_event_description.R")))
 ```
-```{r ,out.width="80%"}
-knitr::include_graphics(paste0(here::here("paper_iterations/working_paper_december_2021/sigma_alpha_rules.pdf")))
-```
-```{=latex}
-\caption{An Example of Fraternity Membership Guidelines \label{frat_rules}}
-\textit{Notes:}  These are the membership guidelines for Sigma Alpha Epsilon, one of the oldest IFC fraternities in the nation. 
-\end{figure}
+
+```{r}
+reasons_table %>% 
+  add_footnote(list("Description of the triggering event is summarized based on newsarticles or conversations with Fraternity and Sorority Life staff. The date of the triggering event is shown if provided. The classification of each event is based off of the description and aligns with Figure \ref{triggerplot}.")
+    ,threeparttable = T)
 ```
 
 
@@ -126,6 +124,17 @@ es_sex_46_g
 \textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Sexual assault offenses are defined as sexual assault offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
 \end{figure}
 ```
+
+```{r}
+source(paste0(here::here('tables/regressions_main_nevertreated.R')))
+```
+
+```{r}
+weekend_table_allschools
+```
+
+
+
 ```{r}
 source(paste0(here::here("tables/regressions_main_poisson.R")))
 ```
