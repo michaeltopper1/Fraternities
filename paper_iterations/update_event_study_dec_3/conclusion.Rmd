@@ -3,11 +3,11 @@ title: "Discussion and Conclusion"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = TRUE) -->
+<!-- ``` -->
 
-# Discussion and Conclusion
+# Discussion and Conclusion \label{section:conclusion}
 
 In this paper, I estimate the causal effect of temporary bans of fraternity social events with alcohol (moratoriums) on campus-wide alcohol, drug, and sexual assaults across 38 universities in the US. I construct a novel dataset which includes daily-level incidence reports from each university-specific police department. Using this data, I compare academic calendar days with a moratorium to academic calendar days without a moratorium while controlling for expected differences in the days of the week, holidays, semesters (spring/fall), academic years, and universities. I find that moratoriums decrease the average incidence of alcohol offenses on a given academic calendar day by approximately 27%. This result is most prominent on the weekends when partying is most frequent (29% reduction) while nonexistent on the weekdays. Moreover, I find weaker evidence of decreases in sexual assaults on the weekends with a 26% reduction from the mean, although only significant at the 10% level. Notably, the moratoriums show no lasting effects. Including an indicator for the week before and week after a moratorium shows a significant dip during the moratorium, but immediate returns to previous levels after the moratorium is lifted. These results demonstrate that moratoriums are only effective when in place; despite the motivation that moratoriums allow time for members to reevaluate and change their systematic behavior, the effects do not persist. 
 
