@@ -1,6 +1,8 @@
 ---
 title: "Paper Outline"
-output: pdf_document
+output: 
+  pdf_document:
+    number_sections: true
 header-includes:
 - \usepackage{amsfonts}
 - \usepackage{amsthm}
@@ -13,7 +15,8 @@ header-includes:
 - \usepackage{natbib}
 - \usepackage{pdflscape}
 linkcolor: blue
-
+bibliography: "references.bib"
+link-citations: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -28,7 +31,9 @@ library(fixest)
 
 *Please ignore the writing style. This is an outline of my ideas, so the stylistic choices are not optimal.*
 
-# Main Questions:
+# Main Questions \label{section:questions}
+
+In section \ref{section:questions}
 
 * My main request is that you take a look through each of the figures and tables in order without reading any of the text and see if you can understand the paper. I want to finalize all of these tables/figures before I begin writing.
 
@@ -233,7 +238,7 @@ Some types of events may be more salient than others and cause bigger effects (e
 
 # Discussion
 
-What on earth do you talk about here that is different from the conclusion?
+What on earth do you talk about here that is different from the conclusion? [@routon_impact_2014]
 
 # Conclusion
 
@@ -247,6 +252,9 @@ What on earth do you talk about here that is different from the conclusion?
 
 ```
 
+# References
+
+<div id="refs"></div>
 
 \newpage
 ```{=tex}
@@ -257,11 +265,34 @@ What on earth do you talk about here that is different from the conclusion?
 \setcounter{page}{1}
 ```
 
+# First
 
-
-
-```{r, child="appendix.Rmd"}
-
+```{r, fig.cap = "hi"}
+mtcars %>% 
+  ggplot(aes(mpg)) +
+  geom_histogram()
 ```
+
+\newpage
+```{=tex}
+\appendix
+\renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+# Second
+
+```{r, fig.cap = "hell"}
+mtcars %>% 
+  ggplot(aes(mpg)) +
+  geom_histogram()
+```
+
+
+
+<!-- ```{r, child="appendix.Rmd"} -->
+
+<!-- ``` -->
 
 

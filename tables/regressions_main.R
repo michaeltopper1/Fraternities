@@ -106,7 +106,7 @@ weekend_table <- ifc::main_table(alc_weeksplit, drug_weeksplit, last_panel = sex
   pack_rows("Panel B: Drug Offenses", 5, 8, bold = T, italic = F) %>% 
   pack_rows("Panel C: Sexual Assaults", 9, 12, bold = T, italic = F) %>% 
   pack_rows("Controls for Panels A-C:", 13, 16, bold = T, italic = F) %>% 
-  add_header_above(c(" " = 2, "Days of the Week" = 3)) %>% 
+  add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
   footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column 'All Days' represents specification (3) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
                     "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T) 

@@ -4,7 +4,7 @@ output:
   pdf_document: default
 ---
 
-# Data
+# Data \label{section:data}
 
 The main analysis uses data from a variety sources. In particular, I construct a novel data set that links incidence-level crime from university police departments, fraternity moratorium dates, and university characteristics over a six-year period (2014-2019).
 

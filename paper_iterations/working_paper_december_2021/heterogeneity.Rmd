@@ -3,17 +3,17 @@ title: "Heterogeneity"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = TRUE) -->
+<!-- ``` -->
 
-# Heterogeneity
+# Heterogeneity \label{section:heterogeneity}
 
 In this section, I analyze three types of heterogeneous effects. First, I examine which type of triggering event of a moratorium causes the most significant decreases of offenses and find that fraternity-related deaths exhibit the strongest results for alcohol offenses. Second, I estimate the optimal length of a moratorium. While there is no clear answer to this, the estimates show that moratoriums should last at least a month to give effects. Last, I show that moratoriums are most effective when overseen by the university rather than the fraternity members themselves. 
 
 ## Triggering Event
 
-As described in Section BLANK, there are several reasons why a moratorium is triggered: a fraternity-related death, a prominent sexual assault, or a behavior violation. There is little reason to expect that each of these cause similar effects. As an illustration, a death may be more salient than a behavior violation,^[Recall that a behavior violation includes hazing, offensive behavior, rule violations, and other disorderly conduct.] resulting in a stronger belief among fraternity members that their behaviors need to be modified. Moreover, both deaths and sexual assaults are less subjective results of risky behavior—a moratorium may seem more justified than an instance of hazing. 
+As described in Section \ref{section:background}, there are several reasons why a moratorium is triggered: a fraternity-related death, a prominent sexual assault, or a behavior violation. There is little reason to expect that each of these cause similar effects. As an illustration, a death may be more salient than a behavior violation,^[Recall that a behavior violation includes hazing, offensive behavior, rule violations, and other disorderly conduct.] resulting in a stronger belief among fraternity members that their behaviors need to be modified. Moreover, both deaths and sexual assaults are less subjective results of risky behavior—a moratorium may seem more justified than an instance of hazing. 
 
 Figure \ref{trigger_reg_graph} demonstrates that when a moratorium occurs due to a fraternity-related death or sexual assault, the effects of the moratorium are most prominent. Alcohol offenses decline significantly when a fraternity-related death is the triggering event. However, this may be due to a shock mechanism in which students across campus are changing their behavior in response to the death rather than the moratorium. For instance, students may be mourning the death of a student and partying behavior is reduced in response. This effect would contaminate the effect of a moratorium, as it would be unclear whether the moratorium is changing behavior or the death itself. To mitigate this issue, I include an additional 15 universities that experienced a fraternity-related death in the sample period, but *did not* undergo a moratorium.^[These universities were found using Hank Nuwer's repository of hazing-related deaths in the US: https://www.hanknuwer.com/hazing-deaths/.]. With the inclusion of these universities, alcohol offenses maintain strong and significant decreases signaling that the moratorium itself is changing behavior rather than the occurrence of a death.
 

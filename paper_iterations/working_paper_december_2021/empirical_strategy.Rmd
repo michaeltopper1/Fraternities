@@ -3,7 +3,7 @@ title: "Empirical Strategy"
 output: pdf_document
 ---
 
-# Empirical Strategy
+# Empirical Strategy \label{section:strategy}
 
 ## Baseline and Preferred Specifications
 
