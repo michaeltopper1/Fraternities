@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.15)  31 DEC 2021 15:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.1.1)  2 JAN 2022 12:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -309,7 +309,7 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headsep=\skip55
 \dth@everypar=\toks30
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2021/11/29 3.67 The Babel package
+Package: babel 2021/12/30 3.69 The Babel package
 \babel@savecnt=\count282
 \U@D=\dimen162
 \l@unhyphenated=\language3
@@ -380,6 +380,11 @@ Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
 Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count286
+\c@@ppsavesec=\count287
+\c@@ppsaveapp=\count288
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen163
@@ -392,12 +397,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen170
 \cmidrulekern=\dimen171
 \defaultaddspace=\dimen172
-\@cmidla=\count286
-\@cmidlb=\count287
+\@cmidla=\count289
+\@cmidlb=\count290
 \@aboverulesep=\dimen173
 \@belowrulesep=\dimen174
-\@thisruleclass=\count288
-\@lastruleclass=\count289
+\@thisruleclass=\count291
+\@lastruleclass=\count292
 \@thisrulewidth=\dimen175
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
@@ -405,17 +410,17 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTright=\skip59
 \LTpre=\skip60
 \LTpost=\skip61
-\LTchunksize=\count290
+\LTchunksize=\count293
 \LTcapwidth=\dimen176
 \LT@head=\box54
 \LT@firsthead=\box55
 \LT@foot=\box56
 \LT@lastfoot=\box57
 \LT@gbox=\box58
-\LT@cols=\count291
-\LT@rows=\count292
-\c@LT@tables=\count293
-\c@LT@chunks=\count294
+\LT@cols=\count294
+\LT@rows=\count295
+\c@LT@tables=\count296
+\c@LT@chunks=\count297
 \LT@p@ftn=\toks33
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
@@ -429,13 +434,13 @@ Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip64
-\multirow@cntb=\count295
+\multirow@cntb=\count298
 \multirow@dima=\skip65
 \bigstrutjot=\dimen179
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen180
 \WF@size=\dimen181
-\c@WF@wrappedlines=\count296
+\c@WF@wrappedlines=\count299
 \WF@box=\box61
 \WF@everypar=\toks35
 Package: wrapfig 2003/01/31  v 3.6
@@ -448,16 +453,16 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box62
-\sift@deathcycles=\count297
+\sift@deathcycles=\count300
 \@vwid@loff=\dimen182
 \@vwid@roff=\dimen183
 )
-\c@taburow=\count298
-\tabu@nbcols=\count299
-\tabu@cnt=\count300
-\tabu@Xcol=\count301
-\tabu@alloc=\count302
-\tabu@nested=\count303
+\c@taburow=\count301
+\tabu@nbcols=\count302
+\tabu@cnt=\count303
+\tabu@Xcol=\count304
+\tabu@alloc=\count305
+\tabu@nested=\count306
 \tabu@target=\dimen184
 \tabu@spreadtarget=\dimen185
 \tabu@naturalX=\dimen186
@@ -491,7 +496,7 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \UL@skip=\skip69
 \UL@hook=\toks39
 \UL@height=\dimen193
-\UL@pe=\count304
+\UL@pe=\count307
 \UL@pixel=\dimen194
 \ULC@box=\box70
 Package: ulem 2019/11/18
@@ -499,55 +504,55 @@ Package: ulem 2019/11/18
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen196
-\c@nlinenum=\count305
+\c@nlinenum=\count308
 \TeXr@lab=\toks40
 )
 \cslhangindent=\skip70
 \csllabelwidth=\skip71
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count306
-\calc@Bcount=\count307
+\calc@Acount=\count309
+\calc@Bcount=\count310
 \calc@Adimen=\dimen197
 \calc@Bdimen=\dimen198
 \calc@Askip=\skip72
 \calc@Bskip=\skip73
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count308
+\calc@Ccount=\count311
 \calc@Cskip=\skip74
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count309
+\l__color_backend_stack_int=\count312
 \l__pdf_internal_box=\box71
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 119.
+Package hyperref Info: Link coloring ON on input line 120.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -555,11 +560,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count310
+\c@section@level=\count313
 )
-LaTeX Info: Redefining \ref on input line 119.
-LaTeX Info: Redefining \pageref on input line 119.
-LaTeX Info: Redefining \nameref on input line 119.
+LaTeX Info: Redefining \ref on input line 120.
+LaTeX Info: Redefining \pageref on input line 120.
+LaTeX Info: Redefining \nameref on input line 120.
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -598,222 +603,218 @@ LaTeX Info: Redefining \nameref on input line 119.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 121.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 122.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 121.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 122.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 121.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 122.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 121.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 122.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 121.
+(Font)              <14.4> on input line 122.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 121.
+(Font)              <10> on input line 122.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 121.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 121.
+(Font)              <7> on input line 122.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 122.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 121.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 122.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 133.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 134.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
-LaTeX Warning: Reference `trends_a' on page 1 undefined on input line 143.
+LaTeX Warning: Reference `trends_a' on page 1 undefined on input line 144.
 
 
-LaTeX Warning: Reference `trends_a2' on page 1 undefined on input line 143.
+LaTeX Warning: Reference `trends_a2' on page 1 undefined on input line 144.
 
 
-LaTeX Warning: Reference `trends_d' on page 1 undefined on input line 144.
+LaTeX Warning: Reference `trends_d' on page 1 undefined on input line 145.
 
 
-LaTeX Warning: Reference `trends_d2' on page 1 undefined on input line 144.
+LaTeX Warning: Reference `trends_d2' on page 1 undefined on input line 145.
 
 
-LaTeX Warning: Reference `trends_s' on page 1 undefined on input line 144.
+LaTeX Warning: Reference `trends_s' on page 1 undefined on input line 145.
 
 
-LaTeX Warning: Reference `trends_s2' on page 1 undefined on input line 144.
+LaTeX Warning: Reference `trends_s2' on page 1 undefined on input line 145.
 
 
-LaTeX Warning: Reference `depolice_table' on page 1 undefined on input line 163.
+LaTeX Warning: Reference `depolice_table' on page 1 undefined on input line 164.
 
 [1
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
 
-LaTeX Warning: Reference `sigma_alpha_rules' on page 5 undefined on input line 388.
+LaTeX Warning: Reference `sigma_alpha_rules' on page 5 undefined on input line 389.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 413.
+(Font)              <12> on input line 414.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 413.
+(Font)              <8> on input line 414.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 413.
+(Font)              <6> on input line 414.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 418.
+(Font)              <5> on input line 419.
 [5]
 
-LaTeX Warning: Reference `closure_distribution' on page 6 undefined on input line 448.
+LaTeX Warning: Reference `closure_distribution' on page 6 undefined on input line 449.
 
 
-LaTeX Warning: Reference `trigger_plot' on page 6 undefined on input line 451.
+LaTeX Warning: Reference `trigger_plot' on page 6 undefined on input line 452.
 
 
-LaTeX Warning: Reference `map' on page 6 undefined on input line 454.
+LaTeX Warning: Reference `map' on page 6 undefined on input line 455.
 
 
-LaTeX Warning: Reference `closure_table' on page 6 undefined on input line 457.
+LaTeX Warning: Reference `closure_table' on page 6 undefined on input line 458.
 
 [6]
 
-LaTeX Warning: Reference `crime_log_example' on page 7 undefined on input line 514.
+LaTeX Warning: Reference `crime_log_example' on page 7 undefined on input line 515.
 
 
-LaTeX Warning: Reference `data_used' on page 7 undefined on input line 517.
+LaTeX Warning: Reference `data_used' on page 7 undefined on input line 518.
 
 
-LaTeX Warning: Reference `matching_table' on page 7 undefined on input line 520.
+LaTeX Warning: Reference `matching_table' on page 7 undefined on input line 521.
 
 
-LaTeX Warning: Reference `top_categories' on page 7 undefined on input line 522.
+LaTeX Warning: Reference `top_categories' on page 7 undefined on input line 523.
 
 
-LaTeX Warning: Reference `summary_stats' on page 7 undefined on input line 536.
+LaTeX Warning: Reference `summary_stats' on page 7 undefined on input line 537.
 
 [7] [8]
 
-LaTeX Warning: Reference `twfe_weights' on page 9 undefined on input line 622.
+LaTeX Warning: Reference `twfe_weights' on page 9 undefined on input line 623.
 
 
-LaTeX Warning: Reference `main_table' on page 9 undefined on input line 646.
+LaTeX Warning: Reference `main_table' on page 9 undefined on input line 647.
 
 
-LaTeX Warning: Reference `weekend_table' on page 9 undefined on input line 649.
+LaTeX Warning: Reference `weekend_table' on page 9 undefined on input line 650.
 
 
-LaTeX Warning: Reference `trends_a' on page 9 undefined on input line 653.
+LaTeX Warning: Reference `trends_a' on page 9 undefined on input line 654.
 
 
-LaTeX Warning: Reference `trends_a2' on page 9 undefined on input line 653.
+LaTeX Warning: Reference `trends_a2' on page 9 undefined on input line 654.
 
 
-LaTeX Warning: Reference `trends_d' on page 9 undefined on input line 653.
+LaTeX Warning: Reference `trends_d' on page 9 undefined on input line 654.
 
 
-LaTeX Warning: Reference `trends_d2' on page 9 undefined on input line 654.
+LaTeX Warning: Reference `trends_d2' on page 9 undefined on input line 655.
 
 
-LaTeX Warning: Reference `trends_s' on page 9 undefined on input line 654.
+LaTeX Warning: Reference `trends_s' on page 9 undefined on input line 655.
 
 
-LaTeX Warning: Reference `trends_s2' on page 9 undefined on input line 654.
+LaTeX Warning: Reference `trends_s2' on page 9 undefined on input line 655.
 
 [9]
 
-LaTeX Warning: Reference `main_table_p' on page 10 undefined on input line 691.
+LaTeX Warning: Reference `main_table_p' on page 10 undefined on input line 692.
 
 
-LaTeX Warning: Reference `weekend_table_p' on page 10 undefined on input line 691.
+LaTeX Warning: Reference `weekend_table_p' on page 10 undefined on input line 692.
 
 
-LaTeX Warning: Reference `loo_alc' on page 10 undefined on input line 694.
+LaTeX Warning: Reference `loo_alc' on page 10 undefined on input line 695.
 
 
-LaTeX Warning: Reference `loo_drug' on page 10 undefined on input line 694.
+LaTeX Warning: Reference `loo_drug' on page 10 undefined on input line 695.
 
 
-LaTeX Warning: Reference `loo_sex' on page 10 undefined on input line 694.
+LaTeX Warning: Reference `loo_sex' on page 10 undefined on input line 695.
 
 
-LaTeX Warning: Reference `depolice_table' on page 10 undefined on input line 697.
+LaTeX Warning: Reference `depolice_table' on page 10 undefined on input line 698.
 
 
-LaTeX Warning: Reference `mpassing_alc' on page 10 undefined on input line 711.
+LaTeX Warning: Reference `mpassing_alc' on page 10 undefined on input line 712.
 
 
-LaTeX Warning: Reference `mpassing_drug' on page 10 undefined on input line 711.
+LaTeX Warning: Reference `mpassing_drug' on page 10 undefined on input line 712.
 
 
-LaTeX Warning: Reference `mpassing_sex' on page 10 undefined on input line 711.
+LaTeX Warning: Reference `mpassing_sex' on page 10 undefined on input line 712.
 
 
-LaTeX Warning: Reference `ifc_hetero' on page 10 undefined on input line 740.
+LaTeX Warning: Reference `ifc_hetero' on page 10 undefined on input line 741.
 
 
-LaTeX Warning: Reference `hetero_trigger' on page 10 undefined on input line 754.
+LaTeX Warning: Reference `hetero_trigger' on page 10 undefined on input line 755.
 
 [10] [11]
-<main_files/figure-latex/unnamed-chunk-1-1.pdf, id=147, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-1-1.pdf, id=152, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-1-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 799.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 805.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.803 \newpage
+l.809 \newpage
                [1pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.803 \newpage
-               <./main_files/figure-latex/unnamed-chunk-1-1.pdf>]pdfTeX warning (ext4): destination with the same identifier (name{appendix.A}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.812 \section{Second}\label{second}}
-                                     
-<main_files/figure-latex/unnamed-chunk-2-1.pdf, id=158, 469.755pt x 325.215pt>
+l.809 \newpage
+               <./main_files/figure-latex/unnamed-chunk-1-1.pdf>]
+<main_files/figure-latex/unnamed-chunk-2-1.pdf, id=164, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-2-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 816.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 821.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.817 \caption
+l.822 \caption
               {hell}pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.817 \caption{hell}
+l.822 \caption{hell}
                     pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.820 \end{document}
+l.825 \end{document}
                      [1 <./main_files/figure-latex/unnamed-chunk-2-1.pdf>] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B2657B6392886BE1E2CDA49739B5CFB9;1800.
+(rerunfilecheck)             Checksum: E4298EDBB3C6FC3DFB1F59AFD1B40DF0;1870.
  ) 
 Here is how much of TeX's memory you used:
- 14824 strings out of 480313
- 240282 string characters out of 5895946
- 587752 words of memory out of 5000000
- 32343 multiletter control sequences out of 15000+600000
+ 14942 strings out of 480313
+ 242288 string characters out of 5895948
+ 589285 words of memory out of 5000000
+ 32455 multiletter control sequences out of 15000+600000
  491673 words of font info for 97 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  108i,8n,106p,391b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on main.pdf (13 pages, 236660 bytes).
+Output written on main.pdf (13 pages, 237141 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
- 131 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 236 PDF objects out of 1000 (max. 8388607)
+ 195 compressed objects within 2 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 139 words of extra memory for PDF output out of 10000 (max. 10000000)
 

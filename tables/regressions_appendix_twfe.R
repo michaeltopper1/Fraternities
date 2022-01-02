@@ -1,21 +1,3 @@
----
-title: "Appendix: Bowing down to TWFE"
-output: pdf_document
----
-
-# Appendix: Robustness Under TWFE \label{section:twfe}
-
-In this appendix, I analyze a model that differs from the main specifications shown in Table \ref{main_table}. In particular, specification (2) in Table \ref{main_table} uses a two-way fixed-effects (TWFE) design where the group fixed effects are university fixed effects and the time fixed effects are the academic year. While this model is intuitive, recent literature has shown that the OLS estimator $\hat{\beta}$ may not be producing the average treatment effect on the treated when treatment effects are heterogeneous between groups and over time [@de_chaisemartin_two-way_2020; @sun_estimating_2021; @goodman-bacon_difference--differences_2021; @athey_design-based_2022]. In particular,  @de_chaisemartin_two-way_2020 show that the parameter $\hat{\beta}$ on an indicator variable for treatment in a TWFE design is a weighted sum of the average treatment effects on the treated where some of the weights may be negative. While there are a variety of new methods that can mitigate these issues, none of them can accommodate the model used in this paper where universities go in and out of treatment (non-staggered design) and universities are treated multiple times. To circumvent this issue, I estimate a model that contains no negative weights. These weights are calculated using the TwoWayFEWeights package [@de_chaisemartin_twowayfeweights_2020]. The estimated model is the following TWFE specification:
-
-$$ 
-Y_{ut} = \beta Moratorium_{ut} + \gamma_u + \alpha_t + \epsilon_{ut}
-$$
-where $Y_{ut}$ is the outcome for university $u$ at time $t$ measured by per-25000 enrolled students per academic-calendar day, $Moratorium_{ut}$ is an indicator equal to one if university $u$ is in a moratorium at time $t$, $\gamma_u$ are university fixed effects, $\alpha_t$ are day by month by year fixed effects, and $\epsilon_{ut}$ is the error term. Hence, this model compares academic calendar days within a moratorium to the same calendar days without a moratorium while controlling for systematic differences between universities. As mentioned above, there are no negative weights in this specification and therefore sign reversal is impossible. With this advantage, I re-estimate the results in Table \ref{weekend_table}.
-
-Table \ref{twfe_table} shows that the results of the TWFE specification with no negative weights are mostly consistent with the results in Table \ref{weekend_table}. In Panel A, alcohol offenses exhibit a 21% decrease from the mean during a moratorium, and a 26% decrease on the weekends. Although sexual assaults do not exhibit statistically significant decreases on the weekends, this is potentially due to the loss of identifying variation from the data-intensive controls. However, it is important to note that the coefficient sign remains the same on all of the estimates. Hence, under the identifying assumptions of the model, it is certain that moratoriums decrease alcohol offenses.
-
-
-```{r, echo = F, warning = F, message = F}
 library(tidyverse)
 library(modelsummary)
 library(fixest)
@@ -76,13 +58,5 @@ twfe_table <- ifc::main_table(alc_weeksplit, drug_weeksplit, last_panel = sex_we
   pack_rows("Controls for Panels A-C:", 13, 14, bold = T, italic = F) %>% 
   add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
   footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column `All Days' represents specification (3) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. A moratorium is a temporary halt on fraternity-related activities with alcohol. The specification used in this table has no negative weights and thus, sign reversal is impossible.",
-                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
+                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T) 
-
-```
-
-```{r, echo = F, warning = F, message = F, fig.pos='H'}
-twfe_table %>% 
-  kable_styling(latex_options = "HOLD_position")
-```
-

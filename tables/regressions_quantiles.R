@@ -93,7 +93,7 @@ quantile_table <- ifc::main_table(quantile_estimates_alc,quantile_estimates_drug
   slice(1:9) %>% 
   kbl(booktabs = T, col.names = c(" ", "Alcohol Offenses", "Drug Offenses", "Sexual Assaults"),
       caption = "\\label{quantile_table}Effect of Moratoriums by Moratorium Length") %>% 
-  kable_paper() %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
   pack_rows("Panel A: Below 33rd Percentile in Length", 1, 3) %>% 
   pack_rows("Panel B: Between 33rd and 66th Percentile in Length", 4, 6) %>% 
   pack_rows("Panel C: Above 66th Percentile in Length", 7, 9) %>% 

@@ -14,6 +14,7 @@ header-includes:
 - \floatplacement{figure}{H}
 - \usepackage{natbib}
 - \usepackage{pdflscape}
+- \usepackage[title,titletoc,toc]{appendix}
 linkcolor: blue
 bibliography: "references.bib"
 link-citations: yes
@@ -243,29 +244,32 @@ What on earth do you talk about here that is different from the conclusion? [@ro
 # Conclusion
 
 
-\newpage
-```{r, child = "figures.Rmd"}
+<!-- \newpage -->
+<!-- ```{r, child = "figures.Rmd"} -->
 
-```
-\newpage
-```{r, child = "tables.Rmd"}
+<!-- ``` -->
+<!-- \newpage -->
+<!-- ```{r, child = "tables.Rmd"} -->
 
-```
+<!-- ``` -->
 
 # References
 
 <div id="refs"></div>
 
 \newpage
+# Appendix {-}
 ```{=tex}
 \appendix
+\setcounter{section}{0}
 \renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0}
 \renewcommand{\thetable}{A\arabic{table}} \setcounter{table}{0}
 \renewcommand{\theequation}{A\arabic{table}} \setcounter{equation}{0}
 \setcounter{page}{1}
 ```
 
-# First
+# Next
+
 
 ```{r, fig.cap = "hi"}
 mtcars %>% 
@@ -274,14 +278,13 @@ mtcars %>%
 ```
 
 \newpage
+# TWFE
 ```{=tex}
-\appendix
 \renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0}
 \renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0}
 \renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0}
 \setcounter{page}{1}
 ```
-# Second
 
 ```{r, fig.cap = "hell"}
 mtcars %>% 
