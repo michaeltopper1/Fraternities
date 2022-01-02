@@ -47,7 +47,7 @@ clery_compare <- ifc::main_table(alc_clery, drug_clery, last_panel = sex_clery) 
   kbl(booktabs = T, 
       col.names = c(" ", "Full Sample", "Full Sample", "Residence Halls"),
       digits = 3,
-      caption = "\\label{clery_compare}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assaults: Comparison of Daily Crime Logs and Campus Safety and Security.") %>% 
+      caption = "\\label{clery_compare}Effect of Moratoriums on Alcohol Offenses, Drug Offenses, and Sexual Assaults: Comparison of Daily Crime Logs and Campus Safety and Security (OLS).") %>% 
   kable_paper() %>% 
   pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>%
   pack_rows("Panel B: Drug Offenses", 5, 8, bold = T, italic = F) %>%
