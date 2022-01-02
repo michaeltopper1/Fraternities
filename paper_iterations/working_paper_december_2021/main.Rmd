@@ -7,6 +7,8 @@ date: "Last Updated: `r Sys.Date()`"
 output: 
   pdf_document:
     number_sections: true
+    extra_dependencies: ["flafter"]
+indent: true
 header-includes:
 - \usepackage{amsfonts}
 - \usepackage{amsthm}
@@ -16,8 +18,8 @@ header-includes:
 - \usepackage{bm}
 - \usepackage{float}
 - \usepackage[fontsize=12pt]{scrextend}
-- \usepackage{graphicx}
 - \usepackage{indentfirst}
+- \usepackage{graphicx}
 - \usepackage[utf8]{inputenc}
 - \usepackage{pdfpages}
 - \usepackage[round,authoryear]{natbib}
@@ -44,27 +46,27 @@ library(fixest)
 
 \newpage
 \pagenumbering{arabic}
-```{r, child = "introduction.Rmd"}
+```{r, child = "paper_iterations/working_paper_december_2021/introduction.Rmd"}
 
 ```
 
-```{r, child="data.Rmd"}
+```{r, child="paper_iterations/working_paper_december_2021/data.Rmd"}
 
 ```
 
-```{r, child="empirical_strategy.Rmd"}
+```{r, child="paper_iterations/working_paper_december_2021/empirical_strategy.Rmd"}
 
 ```
 
-```{r, child = "results.Rmd"}
+```{r, child = "paper_iterations/working_paper_december_2021/results.Rmd"}
 
 ```
 
-```{r, child = "heterogeneity.Rmd"}
+```{r, child = "paper_iterations/working_paper_december_2021/heterogeneity.Rmd"}
 
 ```
 
-```{r, child = "conclusion.Rmd"}
+```{r, child = "paper_iterations/working_paper_december_2021/conclusion.Rmd"}
 
 ```
 
@@ -75,17 +77,20 @@ library(fixest)
 
 
 \newpage
-```{r, child = "figures.Rmd"}
-
-```
-\newpage
-```{r, child = "tables.Rmd"}
+```{r, child = "paper_iterations/working_paper_december_2021/figures.Rmd"}
 
 ```
 
 
+\newpage
+```{r, child = "paper_iterations/working_paper_december_2021/tables.Rmd"}
+
+```
+
+
 
 \newpage
+# Appendix {-}
 ```{=tex}
 \appendix
 \renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0}
@@ -94,34 +99,38 @@ library(fixest)
 \setcounter{page}{1}
 ```
 
-```{r, child = "appendix.Rmd"}
+```{r, child = "paper_iterations/working_paper_december_2021/appendix_twfe.Rmd", fig.pos='H' }
 
 ```
 
+
 \newpage
 ```{=tex}
-\appendix
 \renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0}
 \renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0}
 \renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0}
 \setcounter{page}{1}
 ```
 
-```{r, child = "appendix_twfe.Rmd"}
+```{r, child = "paper_iterations/working_paper_december_2021/appendix_spillover.Rmd", fig.pos='H' }
 
 ```
 
-
-\newpage
 ```{=tex}
-\appendix
 \renewcommand{\thefigure}{C\arabic{figure}} \setcounter{figure}{0}
 \renewcommand{\thetable}{C\arabic{table}} \setcounter{table}{0}
 \renewcommand{\theequation}{C\arabic{table}} \setcounter{equation}{0}
 \setcounter{page}{1}
 ```
 
-```{r, child = "appendix_spillover.Rmd"}
+
+\newpage
+```{r, child = "paper_iterations/working_paper_december_2021/appendix_figures.Rmd", fig.pos='H' }
+
+```
+
+\newpage
+```{r, child = "paper_iterations/working_paper_december_2021/appendix_tables.Rmd", fig.pos='H' }
 
 ```
 

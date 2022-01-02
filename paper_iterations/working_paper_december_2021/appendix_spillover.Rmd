@@ -4,7 +4,7 @@ output: pdf_document
 ---
 
 
-# Appendix C \label{section:spillovers}
+# Appendix: Spillovers \label{section:spillovers}
 
 As discussed previously, while the main results show a significant decrease in daily reports of alcohol offenses and sexual assaults on the weekends, there is concern that these offenses are being substituted to more risky places. To my knowledge, there is no data that can directly address this concern; while the NIBRS data includes incidence-level data, only 36% of the universities in the sample have a nearest-neighbor police department that consistently report crime over the sample period. In addition, the NIBRS data does not include all reports of alcohol offenses, but only alcohol offenses that end in an arrest. Given that university students are unlikely to be arrested for underage drinking, this data would underestimate the true substitution effect (if exists). 
 
@@ -36,7 +36,8 @@ Although the results using aggregated Daily Crime Logs are relatively similar, t
 source(paste0(here::here("tables/regressions_clery_dcl.R")))
 ```
 
-```{r, echo = F, message = F, warning = F}
-clery_compare
+```{r, echo = F, message = F, warning = F,fig.pos='H' }
+clery_compare %>% 
+  kable_styling(latex_options = "HOLD_position")
 ```
 

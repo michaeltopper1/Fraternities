@@ -39,7 +39,7 @@ lag_table <- lag_table %>%
   kbl(booktabs = T,
       col.names = c(" ", "Alcohol", "Drug", "Sexual Assault"),
       caption = "\\label{lag_table}Effect of Moratoriums on Alcohol Offenses (Daily-level)") %>% 
-  kable_paper() %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
   pack_rows("Full Sample", 1, 11, bold = F, italic = T) %>% 
   pack_rows("Weekends", 12, 22, bold = F, italic = T) %>% 
   pack_rows("Weekdays", 23, 33, bold = F, italic = T) %>% 
