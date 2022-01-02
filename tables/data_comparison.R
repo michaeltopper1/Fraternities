@@ -23,7 +23,7 @@ data_used <- tibble(attributes = c("Source of Data:","Reporting Mandate:", "Leve
 data_used <-  kbl(data_used, booktabs = T, digits = 3,
     col.names = c(" ", "Daily Crime Logs", "Campus Safety and Security", "NIBRS", "UCR"),
     caption = "\\label{data_used}Comparison of all Relevant Data Sources") %>%
-  kable_styling() %>%
+  kable_styling(latex_options = "HOLD_position") %>%
   # add_header_above(c(" " = 1, "Main Analysis" = 1, "Secondary Analysis" = 1, "Unused" = 2)) %>% 
   add_header_above(c(" " = 1, "Data Source" = 4)) %>% 
   footnote(list("The Daily Crime Logs are used for the main analysis due to the advantages it has over the other sources. NIBRS stands for the National Incidence Based Reporting System. UCR stands for Uniform Crime Reporting Program. The fraction reporting consistency refers to the fraction of the sample university police departments. Hierarchy Rule is where only the most serious crime in an incident is reported. While over 50 percent of UCR data is displayed to be reported consistently, it is actually truly unknown since NAs and 0s are the same."),

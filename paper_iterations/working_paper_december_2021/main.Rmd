@@ -129,8 +129,4 @@ library(fixest)
 
 ```
 
-\newpage
-```{r, child = "paper_iterations/working_paper_december_2021/appendix_tables.Rmd", fig.pos='H' }
-
-```
 

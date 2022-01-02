@@ -3,7 +3,7 @@ title: "Appendix: Bowing down to TWFE"
 output: pdf_document
 ---
 
-# Appendix: Robustness Under TWFE \label{section:twfe}
+# Robustness Under TWFE \label{section:twfe}
 
 In this appendix, I analyze a model that differs from the main specifications shown in Table \ref{main_table}. In particular, specification (2) in Table \ref{main_table} uses a two-way fixed-effects (TWFE) design where the group fixed effects are university fixed effects and the time fixed effects are the academic year. While this model is intuitive, recent literature has shown that the OLS estimator $\hat{\beta}$ may not be producing the average treatment effect on the treated when treatment effects are heterogeneous between groups and over time [@de_chaisemartin_two-way_2020; @sun_estimating_2021; @goodman-bacon_difference--differences_2021; @athey_design-based_2022]. In particular,  @de_chaisemartin_two-way_2020 show that the parameter $\hat{\beta}$ on an indicator variable for treatment in a TWFE design is a weighted sum of the average treatment effects on the treated where some of the weights may be negative. While there are a variety of new methods that can mitigate these issues, none of them can accommodate the model used in this paper where universities go in and out of treatment (non-staggered design) and universities are treated multiple times. To circumvent this issue, I estimate a model that contains no negative weights. These weights are calculated using the TwoWayFEWeights package [@de_chaisemartin_twowayfeweights_2020]. The estimated model is the following TWFE specification:
 
