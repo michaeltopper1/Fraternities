@@ -21,7 +21,7 @@ reasons_table %>%
   column_spec(2, width = "8cm") %>% 
   column_spec(3, width = "1.5cm") %>% 
   column_spec(4, width = "1.5cm") %>% 
-  kable_styling(font_size = 7)
+  kable_styling(font_size = 7, latex_options = "HOLD_position")
 ```
 
 
@@ -47,19 +47,6 @@ data_used
 ```
 
 
-```{=latex}
-\begin{figure}[t]
-```
-```{r ,fig.align = "center" ,out.width= "80%"}
-knitr::include_graphics(paste0(here::here("paper_iterations/working_paper_december_2021/sample_crime_log.png")))
-```
-```{=latex}
-\caption{An Example of a Daily Crime Log \label{crime_log}}
-\textit{Notes:} The main analysis uses data from 38 universities' Daily Crime Logs - each unique in their own respect. All Daily Crime Logs had to be requested from each university and harmonized using pattern matching.
-\end{figure}
-```
-
-
 ```{r}
 source(paste0(here::here("Tables/matching_word_table.R")))
 ```
@@ -67,7 +54,7 @@ source(paste0(here::here("Tables/matching_word_table.R")))
 \begin{landscape}
 ```{r top_categories}
 kable(top_categories, booktabs = T, caption = "\\label{top_categories}The Top 30 Most Frequently Reported Incidents") %>%
-  kable_styling(latex_options = "scale_down") %>%
+  kable_styling(latex_options = c("scale_down", "HOLD_position")) %>%
   footnote(list("Numbers in parenthesis denote the frequency of offense in the data. These offenses represent the  30 most frequent crimes in each category after the pattern-matching algorithm is applied."),
                threeparttable = T)
 ```

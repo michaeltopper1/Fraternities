@@ -4,7 +4,7 @@ output: pdf_document
 ---
 
 
-# Appendix: Spillovers \label{section:spillovers}
+# Spillovers \label{section:spillovers}
 
 As discussed previously, while the main results show a significant decrease in daily reports of alcohol offenses and sexual assaults on the weekends, there is concern that these offenses are being substituted to more risky places. To my knowledge, there is no data that can directly address this concern; while the NIBRS data includes incidence-level data, only 36% of the universities in the sample have a nearest-neighbor police department that consistently report crime over the sample period. In addition, the NIBRS data does not include all reports of alcohol offenses, but only alcohol offenses that end in an arrest. Given that university students are unlikely to be arrested for underage drinking, this data would underestimate the true substitution effect (if exists). 
 
