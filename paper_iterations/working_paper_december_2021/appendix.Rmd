@@ -18,7 +18,9 @@ source(here::here(paste0("tables/trigger_event_description.R")))
 ```{r}
 reasons_table %>% 
   add_footnote(list("Description of the triggering event is summarized based on newsarticles or conversations with Fraternity and Sorority Life staff. The date of the triggering event is shown if provided. The classification of each event is based off of the description and aligns with Figure \ref{triggerplot}.")
-    ,threeparttable = T)
+    ,threeparttable = T) %>% 
+  landscape() %>% 
+  kable_styling(latex_options = "scale_down")
 ```
 
 

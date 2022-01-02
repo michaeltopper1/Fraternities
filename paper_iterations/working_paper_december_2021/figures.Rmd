@@ -9,7 +9,7 @@ output: pdf_document
 <!-- ``` -->
 
 # Figures
-This first page is intentionally left blank. 
+This page is intentionally blank. 
 
 ```{r}
 source(here::here("figures/closure_distribution.R"))
