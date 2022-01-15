@@ -1,0 +1,186 @@
+---
+title: "Appendix Figures"
+output: pdf_document
+---
+
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = TRUE) -->
+<!-- ``` -->
+
+# Appendix Figures and Tables \label{section:appendixf}
+
+
+```{=latex}
+\begin{figure}[t]
+```
+```{r ,fig.align = "center" ,out.width= "80%"}
+knitr::include_graphics(paste0(here::here("paper_iterations/working_paper_december_2021/sample_crime_log.png")))
+```
+```{=latex}
+\caption{An Example of a Daily Crime Log \label{crime_log}}
+\textit{Notes:} The main analysis uses data from 38 universities' Daily Crime Logs - each unique in their own respect. All Daily Crime Logs had to be requested from each university and harmonized using pattern matching.
+\end{figure}
+```
+
+
+```{r}
+source(here::here(paste0("figures/event_study_final_dec13.R")))
+```
+
+
+```{=latex}
+\begin{figure}[t]
+```
+```{r, echo=FALSE}
+es_alc_46_g
+```
+```{=latex}
+\caption{Event Study for Alcohol Offenses \label{es_alc_46_g}}
+\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Alcohol offenses are defined as alcohol offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
+\end{figure}
+```
+
+
+```{=latex}
+\begin{figure}[t]
+```
+```{r, echo=FALSE}
+es_drug_46_g
+```
+```{=latex}
+\caption{Event Study for Drug Offenses \label{es_drug_46_g}}
+\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Drug offenses are defined as drug offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
+\end{figure}
+```
+
+```{=latex}
+\begin{figure}[t]
+```
+```{r, echo=FALSE}
+es_sex_46_g
+```
+```{=latex}
+\caption{Event Study for Sexual Assault Offenses \label{es_sex_46_g}}
+\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Sexual assault offenses are defined as sexual assault offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
+\end{figure}
+```
+
+
+```{r}
+source(paste0(here::here("figures/leave-one-out-ols.R")))
+```
+
+
+
+```{=latex}
+\begin{figure}[t]
+```
+```{r}
+loo_alc_ols
+```
+```{=latex}
+\caption{Leave-one-out OLS Regressions of Alcohol Offenses \label{loo_alc_ols}}
+\textit{Notes:} Each point represents specification (3) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
+\end{figure}
+```
+
+```{=latex}
+\begin{figure}[t]
+```
+```{r}
+loo_drug_ols
+```
+```{=latex}
+\caption{Leave-one-out OLS Regressions of Drug Offenses \label{loo_drug_ols}}
+\textit{Notes:} Each point represents specification (3) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
+\end{figure}
+```
+
+```{=latex}
+\begin{figure}[t]
+```
+```{r}
+loo_sex_ols
+```
+```{=latex}
+\caption{Leave-one-out OLS Regressions of Sexual Assaults \label{loo_sex_ols}}
+\textit{Notes:} Each point represents specification (3) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
+\end{figure}
+```
+
+
+```{r}
+source(here::here(paste0("tables/trigger_event_description.R")))
+```
+
+```{r}
+reasons_table %>% 
+  column_spec(1, width = "3cm") %>% 
+  column_spec(2, width = "8cm") %>% 
+  column_spec(3, width = "1.5cm") %>% 
+  column_spec(4, width = "1.5cm") %>% 
+  kable_styling(font_size = 7, latex_options = "HOLD_position")
+```
+
+
+
+```{r}
+source(paste0(here::here("tables/closure_table.R")))
+```
+
+
+```{r,options(knitr.kable.NA = '')}
+## closure_table
+closure_table
+```
+
+```{r}
+source(paste0(here::here("tables/data_comparison.R")))
+```
+
+
+```{r}
+## data_used
+data_used
+```
+
+
+```{r}
+source(paste0(here::here("Tables/matching_word_table.R")))
+```
+
+\begin{landscape}
+```{r top_categories}
+kable(top_categories, booktabs = T, caption = "\\label{top_categories}The Top 30 Most Frequently Reported Incidents") %>%
+  kable_styling(latex_options = c("scale_down", "HOLD_position")) %>%
+  footnote(list("Numbers in parenthesis denote the frequency of offense in the data. These offenses represent the  30 most frequent crimes in each category after the pattern-matching algorithm is applied."),
+               threeparttable = T)
+```
+\end{landscape}
+
+```{r}
+source(paste0(here::here('tables/regressions_main_nevertreated.R')))
+```
+
+```{r}
+weekend_table_allschools
+```
+
+
+
+```{r}
+source(paste0(here::here("tables/regressions_main_poisson.R")))
+```
+
+```{r}
+## main_table_p
+main_table_p
+```
+
+```{r}
+## weekend_table_p
+weekend_table_p
+```
+
+
+

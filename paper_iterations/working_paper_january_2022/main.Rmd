@@ -1,0 +1,132 @@
+---
+title: "The Campus-Wide Effects of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults"
+subtitle: ""
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    extra_dependencies: ["flafter"]
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage{bbm} ##for indicator
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{indentfirst}
+- \usepackage{graphicx}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \floatplacement{figure}{H}
+linkcolor: blue
+bibliography: "references.bib"
+link-citations: yes
+abstract: \singlespacing Fraternities maintain a presence at over 800 universities in the United States. While there are positive effects of membership such as increased graduation rates and future income, fraternities are also a reliable source of alcohol and partying for underage students in addition to their members exhibiting more binge drinking behavior than their non-member peers. In this paper, I exploit the variation in timing from 45 temporary university-wide halts on all fraternity activity with alcohol (moratoriums) across 38 universities over a six-year period (2014-2019). I construct a novel data set, merging unique incidence-level crime logs from university police departments to provide the first causal estimates of the effect of moratoriums on campus-wide reports of alcohol and sexual assault offenses. In particular, I find strong and robust evidence that fraternity moratoriums alcohol violations campus-wide by 27%. This effect is driven by decreases in weekend reports, consistent with the timing of most fraternity parties.  Additionally, I find weaker evidence that moratoriums decrease reports of sexual assault on the weekends. However, both of these effects are transient, with moratoriums showing no evidence of long-run changes in student behavior.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(kableExtra)
+library(bookdown)
+library(modelsummary)
+library(fixest)
+```
+
+
+
+\newpage
+\pagenumbering{arabic}
+```{r, child = "paper_iterations/working_paper_december_2021/introduction.Rmd"}
+
+```
+
+```{r, child="paper_iterations/working_paper_december_2021/data.Rmd"}
+
+```
+
+```{r, child="paper_iterations/working_paper_december_2021/empirical_strategy.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/working_paper_december_2021/results.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/working_paper_december_2021/heterogeneity.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/working_paper_december_2021/conclusion.Rmd"}
+
+```
+
+\newpage
+# References
+
+<div id="refs"></div>
+
+
+\newpage
+```{r, child = "paper_iterations/working_paper_december_2021/figures.Rmd"}
+
+```
+
+
+\newpage
+```{r, child = "paper_iterations/working_paper_december_2021/tables.Rmd"}
+
+```
+
+
+
+\newpage
+# Appendix {-}
+```{=tex}
+\appendix
+\renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{A\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+```{r, child = "paper_iterations/working_paper_december_2021/appendix_twfe.Rmd", fig.pos='H' }
+
+```
+
+
+\newpage
+```{=tex}
+\renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+```{r, child = "paper_iterations/working_paper_december_2021/appendix_spillover.Rmd", fig.pos='H' }
+
+```
+
+```{=tex}
+\renewcommand{\thefigure}{C\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{C\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{C\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+
+\newpage
+```{r, child = "paper_iterations/working_paper_december_2021/appendix_figures.Rmd", fig.pos='H' }
+
+```
+
+
