@@ -41,17 +41,6 @@ es_alc_46_g
 ```
 
 
-```{=latex}
-\begin{figure}[t]
-```
-```{r, echo=FALSE}
-es_drug_46_g
-```
-```{=latex}
-\caption{Event Study for Drug Offenses \label{es_drug_46_g}}
-\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Drug offenses are defined as drug offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
-\end{figure}
-```
 
 ```{=latex}
 \begin{figure}[t]
@@ -84,17 +73,6 @@ loo_alc_ols
 \end{figure}
 ```
 
-```{=latex}
-\begin{figure}[t]
-```
-```{r}
-loo_drug_ols
-```
-```{=latex}
-\caption{Leave-one-out OLS Regressions of Drug Offenses \label{loo_drug_ols}}
-\textit{Notes:} Each point represents specification (3) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
-\end{figure}
-```
 
 ```{=latex}
 \begin{figure}[t]

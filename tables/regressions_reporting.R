@@ -375,10 +375,8 @@ fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semeste
 explanatory_vars <- c("treatment")
 
 lag_variables_alc <- c("proportion_alc_lag_1", "proportion_alc_lag_3","proportion_alc_lag_7","proportion_alc_lag_14")
-lag_variables_drug <- c("proportion_drug_lag_1","proportion_drug_lag_3", "proportion_drug_lag_7","proportion_drug_lag_14")
 lag_variables_sex <- c("proportion_sex_lag_1","proportion_sex_lag_3", "proportion_sex_lag_7","proportion_sex_lag_14")
 lag_alc <- map(lag_variables_alc, ~ifc::reghdfe(date_occurred_panel, ., explanatory_vars = explanatory_vars, fe, "university"))
-lag_drug <- map(lag_variables_drug, ~ifc::reghdfe(date_occurred_panel, ., explanatory_vars = explanatory_vars, fe, "university"))
 lag_sex <- map(lag_variables_sex, ~ifc::reghdfe(date_occurred_panel, ., explanatory_vars = explanatory_vars, fe, "university"))
 
 
@@ -388,7 +386,7 @@ lag_sex <- map(lag_variables_sex, ~ifc::reghdfe(date_occurred_panel, ., explanat
 
 
 
-reporting_table <- ifc::main_table(lag_alc, lag_drug,  last_panel = lag_sex) %>% 
+reporting_table <- ifc::main_table(lag_alc, last_panel = lag_sex) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_1, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_3, na.rm = T)),
@@ -396,27 +394,20 @@ reporting_table <- ifc::main_table(lag_alc, lag_drug,  last_panel = lag_sex) %>%
           `Model 4` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_14, na.rm = T)),
           .before = 4) %>% 
   add_row(term = "Mean of Dependent Variable", 
-          `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_drug_lag_1, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(date_occurred_panel$proportion_drug_lag_3, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(date_occurred_panel$proportion_drug_lag_7, na.rm = T)),
-          `Model 4` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_14, na.rm = T)),
-          .before = 8) %>% 
-  add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_sex_lag_1, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(date_occurred_panel$proportion_sex_lag_3, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(date_occurred_panel$proportion_sex_lag_7, na.rm = T)),
           `Model 4` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_14, na.rm = T)),
-          .before = 12) %>% 
+          .before = 8) %>% 
   kbl(booktabs = T,
       col.names = c(" ","More than 1-Day Lag","More than 3-Day Lag", "More than 7-Day Lag", "More than 14-day Lag"),
       caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting.") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = F, bold = T) %>%
-  pack_rows("Panel B: Proportion of Drug Offenses Reported with Lag", 5, 8, italic = F, bold = T) %>%
-  pack_rows("Panel C: Proportion of Alcohol Offenses Reported with Lag", 9,12, italic = F, bold = T) %>%
-  pack_rows("Controls for Panels A-C:", 13, 16, italic = F, bold = T) %>% 
+  pack_rows("Panel B: Proportion of Sexual Assaults Reported with Lag", 5, 8, italic = F, bold = T) %>%
+  pack_rows("Controls for Panels A and B:", 9, 12, italic = F, bold = T) %>% 
   add_header_above(c(" " = 1, "Reporting Lag" = 4)) %>% 
-  footnote(list("Standard errors clustered by university.  Panels A-C are OLS regressions of proportions of alcohol, drug offenses, and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. Not all universities had information on date occurred (33/38).",
+  footnote(list("Standard errors clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses, and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. 33 of the 38 universities have information on date occurred.",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T)
 
