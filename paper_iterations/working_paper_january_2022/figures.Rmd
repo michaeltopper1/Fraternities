@@ -25,7 +25,7 @@ closure_distribution
 ```
 ```{=latex}
 \caption{Distribution of Moratoriums Across the Sample Period for all Universities \label{closure_distribution}}
-\textit{Notes:} The sample period starts in 2014 and ends on the last day of 2019. The lengths of the moratoriums in this graph represent calendar-day lengths, not academic-calendar day lengths. Universities xperience between 1 to 3 moratoriums in the sample period.
+\textit{Notes:} The sample period starts in 2014 and ends on the last day of 2019. The lengths of the moratoriums in this graph represent calendar-day lengths, not academic-calendar day lengths. Universities experience between 1 to 3 moratoriums in the sample period.
 \end{figure}
 \end{landscape}
 ```
@@ -84,18 +84,6 @@ es_alc_14_g
 \end{figure}
 ```
 
-
-```{=latex}
-\begin{figure}[t]
-```
-```{r, echo=FALSE}
-es_drug_14_g
-```
-```{=latex}
-\caption{Event Study for Drug Offenses \label{es_drug}}
-\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 14 day periods. Number of days within a period was chosen to give approximately a median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 14-day period before the moratorium. Drug offenses are defined as drug offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals. A joint-hypothesis F-test that each of the leading periods are zero shows that the p-value is 0.55 which is statistically insignificant.
-\end{figure}
-```
 
 ```{=latex}
 \begin{figure}[t]
