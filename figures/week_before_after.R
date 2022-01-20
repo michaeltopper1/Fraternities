@@ -41,7 +41,7 @@ sex_weeksplit_controls <- map_df(data_subsets, ~ifc::reghdfe(., c("sexual_assaul
          offense = "Sexual Assault",
          time = c(rep(c("Week Before", "In\nMoratorium", "Week After"), 3)))
 
-weeksplit_controls <- bind_rows(alc_weeksplit_controls, drug_weeksplit_controls, sex_weeksplit_controls)
+weeksplit_controls <- bind_rows(alc_weeksplit_controls, sex_weeksplit_controls)
 
 week_before_after_graph <- weeksplit_controls %>%
   mutate(time_grid = case_when(

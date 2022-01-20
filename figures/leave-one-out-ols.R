@@ -62,8 +62,7 @@ week_type <- tibble(week_type = c(rep("All Days", 38), rep("Weekends", 38), rep(
 
 alc_loo <- map_df(datas, ~loo_function("alcohol_offense_per25", .x)) %>% 
   bind_cols(week_type)
-drug_loo <- map_df(datas, ~loo_function("drug_offense_per25", .x)) %>% 
-  bind_cols(week_type)
+
 sex_loo <- map_df(datas, ~loo_function("sexual_assault_per25", .x)) %>% 
   bind_cols(week_type)
 
@@ -88,4 +87,4 @@ leave_one_out_plot <- function(data) {
 
 loo_sex_ols <- leave_one_out_plot(sex_loo) 
 loo_alc_ols <- leave_one_out_plot(alc_loo) 
-loo_drug_ols <- leave_one_out_plot(drug_loo)
+
