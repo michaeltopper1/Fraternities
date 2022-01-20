@@ -11,15 +11,14 @@ library(kableExtra)
 
 
 data_used <- tibble(attributes = c("Source of Data:","Reporting Mandate:", "Level of Aggregation:", "Fraction Reporting Consistently:", "Alcohol Violations:", 
-                                   "Sexual Assaults:", "Drug Offenses:", "Residence Hall Information:" ,"Analysis in Paper:"),
+                                   "Sexual Assaults:", "Residence Hall Information:" ,"Analysis in Paper:"),
                     daily_crime_log = c("University Police Departments", "By-law", "Incident-level", "1.000", "All Incidences Reported",
-                                        "All Incidences Reported","All Incidences Reported", "No", "Main Analysis"),
-                    clery = c("US Department of Education", "By-law", "Yearly", "1.000", "All Incidences Reported", "All Incidences",
-                              "All Incidences Reported","Yes", "Secondary"),
+                                        "All Incidences Reported", "No", "Main Analysis"),
+                    clery = c("US Department of Education", "By-law", "Yearly", "1.000", "All Incidences Reported", "All Incidences Reported","Yes", "Secondary"),
                     nibrs = c("FBI", "Voluntary", "Incident-level", as.character(round(14/38,3)), "Arrests Only", "All Incidences Reported",
-                              "All Incidences Reported", "No", "Not Used"),
+                               "No", "Not Used"),
                     ucr = c("FBI", "Voluntary", "Monthly", as.character(round(30/38, 3)), "None","Hierarchy Rule",
-                            "None", "No", "Not Used"))
+                             "No", "Not Used"))
 data_used <-  kbl(data_used, booktabs = T, digits = 3,
     col.names = c(" ", "Daily Crime Logs", "Campus Safety and Security", "NIBRS", "UCR"),
     caption = "\\label{data_used}Comparison of all Relevant Data Sources") %>%

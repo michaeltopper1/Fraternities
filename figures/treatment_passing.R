@@ -95,19 +95,6 @@ alc_progression_weekend <- ifc::reghdfe(daily_crime_within %>%
   mutate(day_type = "Weekends (Fri-Sun)")
 
 
-drug_progression <- ifc::reghdfe(daily_crime_within, "drug_offense_per25", explanatory_vars, fe, "university") %>% 
-  broom::tidy(conf.int = T) %>% 
-  bind_cols(timing) %>% 
-  mutate(day_type = "Full Sample") %>% 
-  mutate(offense = "Drug Offense")
-
-drug_progression_weekend <- ifc::reghdfe(daily_crime_within %>% 
-                                           filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") ,
-                                         "drug_offense_per25", explanatory_vars, fe, "university") %>% 
-  broom::tidy(conf.int = T) %>% 
-  bind_cols(timing) %>% 
-  mutate(day_type = "Weekends (Fri-Sun)")
-
 
 sex_progression <- ifc::reghdfe(daily_crime_within, "sexual_assault_per25", explanatory_vars, fe, "university") %>% 
   broom::tidy(conf.int = T) %>% 
@@ -130,7 +117,6 @@ sex_progression_weekend <- ifc::reghdfe(daily_crime_within %>%
 cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 treatment_passing <- alc_progression %>% 
-  bind_rows(drug_progression) %>% 
   bind_rows(sex_progression) %>% 
   ggplot(aes(x = time, y = estimate, group = offense)) +
   geom_path(aes(linetype = offense)) +

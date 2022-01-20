@@ -70,7 +70,7 @@ gm <- tribble(~raw, ~clean, ~fmt,
               "FE: date", "FE: Day-by-Month-by-Year", ~fmt,
               "FE: university_by_year_by_semester_number", "FE: University-by-Year-by-Semester-Number", ~fmt)
 
-outcomes <- c("alcohol_offense_per25", "drug_offense_per25",
+outcomes <- c("alcohol_offense_per25",
                       "sexual_assault_per25")
 
 fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
@@ -82,22 +82,22 @@ explanatory_vars <- list("treatment:below_q33",
 
 # without leads and lags --------------------------------------------------
 
-quantile_estimates_alc <- map(outcomes, ~ifc::reghdfe(daily_crime , .,"treatment:below_q33", fe, "university"))
-quantile_estimates_drug <- map(outcomes, ~ifc::reghdfe(daily_crime , .,"treatment:between_q33_q66", fe, "university"))
-quantile_estimates_sex <- map(outcomes, ~ifc::reghdfe(daily_crime , .,"treatment:above_q66", fe, "university"))
+quantile_estimates_panel_a <- map(outcomes, ~ifc::reghdfe(daily_crime , .,"treatment:below_q33", fe, "university"))
+quantile_estimates_panel_b <- map(outcomes, ~ifc::reghdfe(daily_crime , .,"treatment:between_q33_q66", fe, "university"))
+quantile_estimates_panel_c <- map(outcomes, ~ifc::reghdfe(daily_crime , .,"treatment:above_q66", fe, "university"))
 
 
 
 
-quantile_table <- ifc::main_table(quantile_estimates_alc,quantile_estimates_drug, last_panel = quantile_estimates_sex) %>% 
+quantile_table <- ifc::main_table(quantile_estimates_panel_a,quantile_estimates_panel_b, last_panel = quantile_estimates_panel_c) %>% 
   slice(1:9) %>% 
-  kbl(booktabs = T, col.names = c(" ", "Alcohol Offenses", "Drug Offenses", "Sexual Assaults"),
+  kbl(booktabs = T, col.names = c(" ", "Alcohol Offenses", "Sexual Assaults"),
       caption = "\\label{quantile_table}Effect of Moratoriums by Moratorium Length") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   pack_rows("Panel A: Below 33rd Percentile in Length", 1, 3) %>% 
   pack_rows("Panel B: Between 33rd and 66th Percentile in Length", 4, 6) %>% 
   pack_rows("Panel C: Above 66th Percentile in Length", 7, 9) %>% 
-  add_header_above(c(" " = 1, "Type of Offense" = 3)) %>% 
+  add_header_above(c(" " = 1, "Type of Offense" = 2)) %>% 
   footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Each panel represents a subset of moratoriums that were split by three quantiles based on moratorium length: below the 33rd percentile, between the 33rd and 66th percentile, and above the 66th percentile. Controls include day of week, spring semester, holiday, and university by academic year. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T) 

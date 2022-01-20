@@ -31,8 +31,6 @@ fixed_effects <- c("day_of_week", "university_by_academic_year", "holiday", "spr
 es_alc_14 <- ifc::reghdfe(es_14, "alcohol_offense_per25", explanatory_vars_14, fixed_effects, cluster = "university")
 
 
-es_drug_14 <- ifc::reghdfe(es_14, "drug_offense_per25", explanatory_vars_14, fixed_effects, cluster = "university")
-
 es_sex_14 <- ifc::reghdfe(es_14, "sexual_assault_per25", explanatory_vars_14, fixed_effects, cluster = "university")
 
 
@@ -43,11 +41,7 @@ alc_14_prepvalue <- car::linearHypothesis(es_alc_14,
                         "beta_lead_3 =0",
                         "beta_lead_4 =0")) %>% broom::tidy() %>% 
   slice(2) %>% pull(3)
-drug_14_prepvalue <- car::linearHypothesis(es_drug_14,
-                      c("beta_lead_2 =0",
-                        "beta_lead_3 =0",
-                        "beta_lead_4 =0")) %>% broom::tidy()%>% 
-  slice(2) %>% pull(3)
+
 
 sex_14_prepvalue <- car::linearHypothesis(es_sex_14,
                       c("beta_lead_2 =0",
@@ -78,7 +72,6 @@ sex_14_prepvalue <- car::linearHypothesis(es_sex_14,
 es_alc_46 <- ifc::reghdfe(es_46, "alcohol_offense_per25", explanatory_vars_46, fixed_effects, cluster = "university")
 
 
-es_drug_46 <- ifc::reghdfe(es_46, "drug_offense_per25", explanatory_vars_46, fixed_effects, cluster = "university")
 
 es_sex_46 <- ifc::reghdfe(es_46, "sexual_assault_per25", explanatory_vars_46, fixed_effects, cluster = "university")
 
@@ -89,8 +82,6 @@ es_sex_46 <- ifc::reghdfe(es_46, "sexual_assault_per25", explanatory_vars_46, fi
 es_alc_14_g <- ifc::event_study_graph(es_alc_14, 5) +
   labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
-es_drug_14_g <- ifc::event_study_graph(es_drug_14, 5) +
-  labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval") 
 
 es_sex_14_g <- ifc::event_study_graph(es_sex_14, 5) +
   labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
@@ -98,8 +89,6 @@ es_sex_14_g <- ifc::event_study_graph(es_sex_14, 5) +
 es_alc_46_g <- ifc::event_study_graph(es_alc_46, 3) +
   labs(x = "46 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
-es_drug_46_g <- ifc::event_study_graph(es_drug_46, 3) +
-  labs(x = "46 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 es_sex_46_g <- ifc::event_study_graph(es_sex_46, 3) +
   labs(x = "46 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
