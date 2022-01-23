@@ -1,5 +1,5 @@
 ---
-title: "The Campus-Wide Effects of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults"
+title: "The Effects of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults"
 subtitle: ""
 author: 
   - Michael Topper
@@ -46,27 +46,27 @@ library(fixest)
 
 \newpage
 \pagenumbering{arabic}
-```{r, child = "paper_iterations/working_paper_december_2021/introduction.Rmd"}
+```{r, child = "paper_iterations/working_paper_january_2022/introduction.Rmd"}
 
 ```
 
-```{r, child="paper_iterations/working_paper_december_2021/data.Rmd"}
+```{r, child="paper_iterations/working_paper_january_2022/data.Rmd"}
 
 ```
 
-```{r, child="paper_iterations/working_paper_december_2021/empirical_strategy.Rmd"}
+```{r, child="paper_iterations/working_paper_january_2022/empirical_strategy.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_december_2021/results.Rmd"}
+```{r, child = "paper_iterations/working_paper_january_2022/results.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_december_2021/heterogeneity.Rmd"}
+```{r, child = "paper_iterations/working_paper_january_2022/heterogeneity.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_december_2021/conclusion.Rmd"}
+```{r, child = "paper_iterations/working_paper_january_2022/conclusion.Rmd"}
 
 ```
 
@@ -77,13 +77,13 @@ library(fixest)
 
 
 \newpage
-```{r, child = "paper_iterations/working_paper_december_2021/figures.Rmd"}
+```{r, child = "paper_iterations/working_paper_january_2022/figures.Rmd"}
 
 ```
 
 
 \newpage
-```{r, child = "paper_iterations/working_paper_december_2021/tables.Rmd"}
+```{r, child = "paper_iterations/working_paper_january_2022/tables.Rmd"}
 
 ```
 
@@ -99,7 +99,7 @@ library(fixest)
 \setcounter{page}{1}
 ```
 
-```{r, child = "paper_iterations/working_paper_december_2021/appendix_twfe.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_january_2022/appendix_twfe.Rmd", fig.pos='H' }
 
 ```
 
@@ -112,7 +112,7 @@ library(fixest)
 \setcounter{page}{1}
 ```
 
-```{r, child = "paper_iterations/working_paper_december_2021/appendix_spillover.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_january_2022/appendix_spillover.Rmd", fig.pos='H' }
 
 ```
 
@@ -125,7 +125,7 @@ library(fixest)
 
 
 \newpage
-```{r, child = "paper_iterations/working_paper_december_2021/appendix_figures.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_january_2022/appendix_figures.Rmd", fig.pos='H' }
 
 ```
 
