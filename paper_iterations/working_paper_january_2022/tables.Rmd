@@ -63,6 +63,14 @@ main_table
 weekend_table
 ```
 
+```{r}
+source(here::here(paste0("tables/regressions_quantiles.R")))
+```
+
+```{r}
+## quantile_table
+quantile_table
+```
 
 ```{r}
 source(here::here(paste0("tables/heteroeffects_uni_ifc.R")))
@@ -73,14 +81,7 @@ source(here::here(paste0("tables/heteroeffects_uni_ifc.R")))
 ifc_uni_table
 ```
 
-```{r}
-source(here::here(paste0("tables/regressions_quantiles.R")))
-```
 
-```{r}
-## quantile_table
-quantile_table
-```
 
 <!-- ```{r} -->
 <!-- source(here::here(paste0("tables/regressions_clery_dcl.R"))) -->
