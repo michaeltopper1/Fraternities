@@ -1,0 +1,224 @@
+---
+title: "The Effects of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults"
+subtitle: "Advancement to Candidacy"
+author: "Michael Topper"
+institute: "University of California, Santa Barbara"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts] 
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+editor_options: 
+  chunk_output_type: console
+---
+<style type="text/css">
+.remark-slide-content {
+    font-size: 25px;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+library(modelsummary)
+library(here)
+opts_chunk$set(
+  fig.align = "center",  
+  fig.asp = 9/16,
+  out.width = "95%",
+  dpi= 300,
+  cache=TRUE, 
+  warning=FALSE, message=FALSE,
+  echo=FALSE
+  )
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+# Background
+
+Fraternities are a widespread tradition in the US.
+
+## Benefits of Fraternities:
+  - Community service, volunteering, graduation rates, and future income.
+  
+## Downsides of Fraternity Membership:
+  - Risky Behavior
+  - Binge drinking and college partying
+
+Recently, campus administrators began to use temporary campus-wide bans of fraternity social events with alcohol (moratoriums) to change behavior.
+
+**Question**: How do these moratoriums affect alcohol offenses and sexual assaults?
+
+---
+
+# Moratoriums
+
+## Moratorium Definition:
+
+A temporary *campus-wide* halt on fraternity social events with alcohol.
+  - Applies to IFC fraternities (e.g., social fraternities)
+  - Popularized in the mid-2010s.
+
+## Sources of Enforcement:
+  - University Administration
+  - IFC Council (student-enforced)
+
+---
+
+# How might a moratorium affect behavior?
+.pull-left[
+### Moratoriums may be beneficial:
+* Fraternities are source of alcohol for underage drinking ()
+  * College partying leads to more rape and alcohol (Lindo)
+  * Restricting alcohol harsher leads to less drinking (Lin)
+  * Alcohol has shown to increase mortality, poor academics, and crime.
+
+]
+
+.pull-right[
+### Moratoriums may be detrimental:
+* Displacement of crime
+  * May cause large increases after moratorium is over - net effect could be worse
+  * Partying in riskier places
+]
+---
+
+# Research Question
+
+### Question: 
+* How do fraternity moratoriums affect campus-wide police reports of alcohol offenses and sexual assault?
+
+### Novel Data: 
+* Constructed from Daily Crime Logs from university-specific police departments (2014-2019).
+
+### Identification: 
+* Exploit the variation in timing of the moratoriums using a difference-in-differences design.
+
+
+---
+
+```{r}
+source(here::here("figures/closure_distribution.R"))
+```
+
+# Distribution of Moratoriums
+```{r, fig.cap = "Distribution of Moratoriums Across the Sample Period for all Universities", fig.align = "center",fig.width= 13, fig.height= 7, out.width= "100%"}
+closure_distribution
+```
+
+---
+# Locations of Moratoriums
+```{r}
+source(here::here(paste0("figures/map.R")))
+```
+```{r}
+map_of_schools
+```
+
+---
+# Contribution
+* First study to evaluate moratoriums. (Go into why this is the first)
+* Novel data constructed. (Go into how you construct)
+  * Mitigates the shortcomings of other fraternity works using Campus Safety Security Data (Raghav)
+* Further the college partying literature
+  * Fraternities are a major partying source at universities - unclear what their impact is
+  * Represent decrease in partying 
+  * Closely links student behavior to partying
+
+---
+```{r}
+source(here::here("advancement_presentation/tables/summary_stats_university.R"))
+```
+
+# The Pathway to a Moratorium
+
+* Starts with triggering event -> announcement of moratorium -> end date
+* Small delay between first and second 
+* Announcement can be from one of two sources of jurisdiction
+  * University Administration 
+  * IFC council = students from fraternities at university
+  
+
+```{r}
+moratorium_summary %>% 
+  kable_styling()
+```
+
+---
+# Triggering Events
+```{r}
+source(here::here(paste0("figures/triggerplot_bylength.R")))
+```
+
+```{r, echo=FALSE, fig.align = "center",fig.width= 44, fig.height= 36, out.width= "95%"}
+trigger_plot
+```
+---
+# Sample Construction
+
+## Criteria:
+* Must have some media coverage (web-searchable).
+* Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can have more).
+* Must have Daily Crime Logs in readable format.
+
+## Final Sample:
+* 38 universities with 45 moratoriums total (mean: 1.36, max = 3).
+  * Do not represent the universe of moratoriums (Google/Lexis Nexus/Documents).
+  * Some universities were left out (4 known).
+  
+---
+# Summary Statistics on Universities
+
+
+```{r}
+summary_stats_university %>% 
+  kable_styling(bootstrap_options = c("bordered")) %>% 
+  add_indent(c(2:6)) %>% 
+  add_indent(c(3:6))
+```
+
+
+---
+# Data Construction
+
+.pull-left[```{r, fig.align = "center" ,out.width= "80%"}
+knitr::include_graphics(here::here("advancement_presentation/figs/sample_crime_log.png"))
+```
+]
+
+.pull-right[
+* Use unique university police-department Daily Crime Logs
+* Match on specific offenses using regular expressions
+]
+
+---
+# Empirical Strategy
+
+### Baseline specification:
+
+$$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \epsilon_{u,t}$$
+
+* $Y_{u,t}$ is an outcome of alcohol offenses or sexual assaults per-25000 enrolled students per academic-calendar day at university $u$ in time $t$.
+* $Moratorium_{u,t}$ is an indicator variable equal to one when university $u$ is undergoing a moratorium at time $t$.
+* $\gamma_u$ is a university-specific fixed effect.
+* $\mathbb{X}_t$ is a vector of time-varying controls that are shared across universities.
+
+*Intuition*: comparing academic-calendar days with a moratorium to academic calendar-days without a moratorium, while adjusting for fixed differences in universities and times of the year.
+---
+# Assumptions:
+
+1. Moratoriums are as-good-as-random/common trends
+2. Reporting does not change/Propensity to report does not change during moratorium.
+3. No lasting effects of the moratorium
+
+---
+# Results:
+
+

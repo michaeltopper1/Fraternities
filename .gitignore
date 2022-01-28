@@ -5,7 +5,7 @@
 *.DS_Store
 data/campus_daily_crime_log/Texas Arlington
 data/campus_daily_crime_log/
-data/campus_daily_crime_log
+data/campus_daily_crime
 tables_files/
 data/clery_act_data
 *.Renviron
