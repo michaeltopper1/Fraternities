@@ -1,0 +1,152 @@
+---
+title: "Outline for Advancement Talk"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Background
+
+* Fraternities are a widespread tradition in the US.
+* Fraternities have benefits
+** Community service, volunteering, graduation rates, income
+** Binge drinking/party behavior
+** 
+* Recently, campus administrators began to use temporary campus-wide bans of fraternity social events with alcohol (moratoriums) to change behavior.
+** widespread (show map)
+* Question: how do these moratoriums affect alcohol offenses and sexual assaults?
+
+
+# Moratoriums
+
+* Definition: a temporary campus-wide halt on fraternity social events with alcohol.
+** Applies to IFC fraternities (social)
+** Became popularized in the mid 2010s
+* Two sources can implement/enforce a moratorium
+** University administration
+** IFC council (students)
+
+# Potential Impacts: How might a moratorium affect student behavior?
+
+One side of slide:
+Moratoriums may be beneficial
+* Fraternities are source of alcohol for underage drinking ()
+** College partying leads to more rape and alcohol (Lindo)
+** Restricting alcohol harsher leads to less drinking (Lin)
+** Alcohol has shown to increase mortality, poor academics, and crime.
+This implies that 
+
+On other side:
+Moratoriums may be detrimental
+* Displacement of crime
+** May cause large increases after moratorium is over - net effect could be worse
+** Partying in riskier places
+
+
+# Research Question
+
+Question: How do fraternity moratoriums affect campus-wide police reports of alcohol offenses and sexual assault?
+
+Novel Data: Constructed from Daily Crime Logs from university-specific police departments (2014-2019).
+
+Identification: Exploit the variation in timing of the moratoriums using a difference-in-differences design.
+
+# Contribution
+
+* First study to evaluate moratoriums. (Go into why this is the first)
+* Novel data constructed. (Go into how you construct)
+** Mitigates the shortcomings of other fraternity works using Campus Safety Security Data (Raghav)
+* Further the college partying literature
+** Fraternities are a major partying source at universities - unclear what their impact is
+** Represent decrease in partying 
+*** Closely link student behavior to partying
+
+
+# The Pathway to a Moratorium
+
+* Starts with triggering event -> announcement of moratorium -> end date
+* Small delay between first and second 
+* Announcement can be from one of two sources of jurisdiction
+** University Administration 
+** IFC council = students from fraternities at university
+
+
+# Triggering Events
+
+Show figure - describe the figure
+
+Show statistics on the moratoriums themselves
+* length
+* average number
+* Total number
+* Number for each triggering offense?
+
+Show figure for distribution of moratoriums in time
+
+# Sample Construction
+
+* 38 universities, 45 moratoriums total 
+** do not represent the universe of moratoriums (Google/Lexis Nexus/Documents)
+** Some universities were left out (4 known)
+Criteria:
+* Must have some media coverage (searchable)
+* Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can have more)
+* Must have Daily Crime Logs in readable format
+
+Summary Statistics on the schools
+
+
+# Data Construction
+
+Picture on Left of daily crime log
+* Use unique university police-department Daily Crime Logs
+* Match on specific offenses using regular expressions
+(Need a slide on the regular expression matching like you have in your head)
+
+# Empirical Strat
+
+Put up the baseline specification
+
+Intuition: comparing academic-calendar days with moratorium to academic calendar-days without a moratorium, while adjusting for fixed differences in universities and times of the year.
+
+* Make graphs for each of the fixed effects? Day of week, semester, universities, 
+
+# Assumptions
+
+* Moratoriums are as-good-as-random/common trends
+* Reporting does not change/Propensity to report does not change during moratorium.
+* No lasting effects of the moratorium
+
+# Results
+
+* Large decreases in daily reports of alcohol offenses
+** most pronounced on the weekends
+* Weaker evidence of sexual assault declines
+** also most pronounced on the weekends
+
+# Robustness
+
+* Poisson estimations show similar results
+* Leave-one-out regressions maintain results
+* TWFE shows no negative weights => no sign reversal
+
+
+# Heterogeneity
+
+* Triggering Events
+** Deaths cause the biggest decrease in drinking
+
+* IFC vs. University Enforcement
+** Evidence that university enforcement is more effective
+
+* Length of Moratorium
+** Moratoriums should last at least a month to gather effects.
+
+# Possible Mechanism: Displacement 
+
+* Cannot directly test this
+
+
+

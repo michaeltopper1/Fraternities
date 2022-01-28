@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The Effects of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Michael Topper" />
+    <meta name="date" content="2022-01-27" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# The Effects of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults
+## Advancement to Candidacy
+### Michael Topper
+### University of California, Santa Barbara
+### 2022-01-27
+
+---
+
+&lt;style type="text/css"&gt;
+.remark-slide-content {
+    font-size: 25px;
+    padding: 1em 4em 1em 4em;
+}
+&lt;/style&gt;
+
+
+# Background
+
+Fraternities are a widespread tradition in the US.
+
+## Benefits of Fraternities:
+  - Community service, volunteering, graduation rates, and future income.
+  
+## Downsides of Fraternity Membership:
+  - Risky Behavior
+  - Binge drinking and college partying
+
+Recently, campus administrators began to use temporary campus-wide bans of fraternity social events with alcohol (moratoriums) to change behavior.
+
+**Question**: How do these moratoriums affect alcohol offenses and sexual assaults?
+
+---
+
+# Moratoriums
+
+## Moratorium Definition:
+
+A temporary *campus-wide* halt on fraternity social events with alcohol.
+  - Applies to IFC fraternities (e.g., social fraternities)
+  - Popularized in the mid-2010s.
+
+## Sources of Enforcement:
+  - University Administration
+  - IFC Council (student-enforced)
+
+---
+
+# How might a moratorium affect behavior?
+.pull-left[
+### Moratoriums may be beneficial:
+* Fraternities are source of alcohol for underage drinking ()
+  * College partying leads to more rape and alcohol (Lindo)
+  * Restricting alcohol harsher leads to less drinking (Lin)
+  * Alcohol has shown to increase mortality, poor academics, and crime.
+
+]
+
+.pull-right[
+### Moratoriums may be detrimental:
+* Displacement of crime
+  * May cause large increases after moratorium is over - net effect could be worse
+  * Partying in riskier places
+]
+---
+
+# Research Question
+
+### Question: 
+* How do fraternity moratoriums affect campus-wide police reports of alcohol offenses and sexual assault?
+
+### Novel Data: 
+* Constructed from Daily Crime Logs from university-specific police departments (2014-2019).
+
+### Identification: 
+* Exploit the variation in timing of the moratoriums using a difference-in-differences design.
+
+
+---
+
+
+
+# Distribution of Moratoriums
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-2-1.png" alt="Distribution of Moratoriums Across the Sample Period for all Universities" width="100%" /&gt;
+&lt;p class="caption"&gt;Distribution of Moratoriums Across the Sample Period for all Universities&lt;/p&gt;
+&lt;/div&gt;
+
+---
+# Contribution
+* First study to evaluate moratoriums. (Go into why this is the first)
+* Novel data constructed. (Go into how you construct)
+  * Mitigates the shortcomings of other fraternity works using Campus Safety Security Data (Raghav)
+* Further the college partying literature
+  * Fraternities are a major partying source at universities - unclear what their impact is
+  * Represent decrease in partying 
+  * Closely links student behavior to partying
+
+---
+
+
+# The Pathway to a Moratorium
+
+* Starts with triggering event -&gt; announcement of moratorium -&gt; end date
+* Small delay between first and second 
+* Announcement can be from one of two sources of jurisdiction
+  * University Administration 
+  * IFC council = students from fraternities at university
+  
+
+&lt;table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Summary Statistics of Moratoriums&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Mean &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; SD &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Median &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Min &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Max &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Number of Moratoriums per-University &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Length of Moratoriums &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 63.89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 79.98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 541.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+# Triggering Events
+
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-6-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+---
+# Sample Construction
+
+## Criteria:
+* Must have some media coverage (web-searchable).
+* Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can have more).
+* Must have Daily Crime Logs in readable format.
+
+## Final Sample:
+* 38 universities with 45 moratoriums total (mean: 1.36, max = 3).
+  * Do not represent the universe of moratoriums (Google/Lexis Nexus/Documents).
+  * Some universities were left out (4 known).
+  
+---
+# Summary Statistics on Universities
+
+
+&lt;table class="table table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Summary Statistics of the Universities in the Sample.&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Mean &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; SD &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Median &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Min &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Max &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Total Enrollment &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 28683.99 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14455.98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 28664.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3127.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 69402.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Total Undergrad Enrollment &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22142.26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11859.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21921.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2571.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 59371.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 4em;" indentlevel="2"&gt; Fraction Asian &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.36 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 4em;" indentlevel="2"&gt; Fraction Black &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.06 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 4em;" indentlevel="2"&gt; Fraction Hispanic &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.68 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 4em;" indentlevel="2"&gt; Fraction White &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.67 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.83 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Graduation Rate &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.64 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 71.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 39.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 95.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Fraction Admitted &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.94 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Fraction Private &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+# Data Construction
+
+.pull-left[```{r, fig.align = "center" ,out.width= "80%"}
+knitr::include_graphics(here::here("advancement_presentation/figs/sample_crime_log.png"))
+```
+]
+
+.pull-right[
+* Use unique university police-department Daily Crime Logs
+* Match on specific offenses using regular expressions
+]
+
+---
+# Empirical Strategy
+
+### Baseline specification:
+
+`$$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \epsilon_{u,t}$$`
+
+* `\(Y_{u,t}\)` is an outcome of alcohol offenses or sexual assaults per-25000 enrolled students per academic-calendar day at university `\(u\)` in time `\(t\)`.
+* `\(Moratorium_{u,t}\)` is an indicator variable equal to one when university `\(u\)` is undergoing a moratorium at time `\(t\)`.
+* `\(\gamma_u\)` is a university-specific fixed effect.
+* `\(\mathbb{X}_t\)` is a vector of time-varying controls that are shared across universities.
+
+*Intuition*: comparing academic-calendar days with a moratorium to academic calendar-days without a moratorium, while adjusting for fixed differences in universities and times of the year.
+---
+# Assumptions:
+
+1. Moratoriums are as-good-as-random/common trends
+2. Reporting does not change/Propensity to report does not change during moratorium.
+3. No lasting effects of the moratorium
+
+---
+# Results:
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
