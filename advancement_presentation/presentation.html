@@ -4,7 +4,7 @@
     <title>The Effects of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults</title>
     <meta charset="utf-8" />
     <meta name="author" content="Michael Topper" />
-    <meta name="date" content="2022-01-27" />
+    <meta name="date" content="2022-01-31" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
@@ -20,7 +20,7 @@ class: center, middle, inverse, title-slide
 ## Advancement to Candidacy
 ### Michael Topper
 ### University of California, Santa Barbara
-### 2022-01-27
+### 2022-01-31
 
 ---
 
@@ -104,6 +104,11 @@ A temporary *campus-wide* halt on fraternity social events with alcohol.
 &lt;/div&gt;
 
 ---
+# Locations of Moratoriums
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-4-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+---
 # Contribution
 * First study to evaluate moratoriums. (Go into why this is the first)
 * Novel data constructed. (Go into how you construct)
@@ -161,7 +166,7 @@ A temporary *campus-wide* halt on fraternity social events with alcohol.
 # Triggering Events
 
 
-&lt;img src="presentation_files/figure-html/unnamed-chunk-6-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-8-1.png" width="95%" style="display: block; margin: auto;" /&gt;
 ---
 # Sample Construction
 
@@ -271,15 +276,812 @@ A temporary *campus-wide* halt on fraternity social events with alcohol.
 ---
 # Data Construction
 
-.pull-left[```{r, fig.align = "center" ,out.width= "80%"}
-knitr::include_graphics(here::here("advancement_presentation/figs/sample_crime_log.png"))
-```
+.pull-left[
+&lt;img src="/Users/michaeltopper/Desktop/fraternities/advancement_presentation/figs/sample_crime_log.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
+### Benefits:
+* Incidence-level reports mandated by Federal government.
+* All reports
+* Caveat: Needs Harmonization
+
+### Construction:
 * Use unique university police-department Daily Crime Logs
 * Match on specific offenses using regular expressions
+* Merge with moratorium dates and IPEDs
 ]
+
+---
+
+
+# Comparison of Data
+
+<div id="yidowlnpve" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#yidowlnpve .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yidowlnpve .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yidowlnpve .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yidowlnpve .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yidowlnpve .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yidowlnpve .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yidowlnpve .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yidowlnpve .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yidowlnpve .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yidowlnpve .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yidowlnpve .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yidowlnpve .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yidowlnpve .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#yidowlnpve .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yidowlnpve .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yidowlnpve .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yidowlnpve .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#yidowlnpve .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yidowlnpve .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#yidowlnpve .gt_left {
+  text-align: left;
+}
+
+#yidowlnpve .gt_center {
+  text-align: center;
+}
+
+#yidowlnpve .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yidowlnpve .gt_font_normal {
+  font-weight: normal;
+}
+
+#yidowlnpve .gt_font_bold {
+  font-weight: bold;
+}
+
+#yidowlnpve .gt_font_italic {
+  font-style: italic;
+}
+
+#yidowlnpve .gt_super {
+  font-size: 65%;
+}
+
+#yidowlnpve .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Comparison of Relevant Data Sources</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1"> </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4">
+        <span class="gt_column_spanner">Data Source</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Daily Crime Logs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Campus Safety Security</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">NIBRS</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">UCR</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Source of Data:</td>
+<td class="gt_row gt_left">University Police Departments</td>
+<td class="gt_row gt_left">US Department of Education</td>
+<td class="gt_row gt_left">FBI</td>
+<td class="gt_row gt_left">FBI</td></tr>
+    <tr><td class="gt_row gt_left">Reporting Mandate:</td>
+<td class="gt_row gt_left" style="color: #006400;">By-law</td>
+<td class="gt_row gt_left" style="color: #006400;">By-law</td>
+<td class="gt_row gt_left" style="color: #FF0000;">Voluntary</td>
+<td class="gt_row gt_left" style="color: #FF0000;">Voluntary</td></tr>
+    <tr><td class="gt_row gt_left">Level of Aggregation:</td>
+<td class="gt_row gt_left" style="color: #006400;">Incident-level</td>
+<td class="gt_row gt_left" style="color: #FF0000;">Yearly</td>
+<td class="gt_row gt_left" style="color: #006400;">Incident-level</td>
+<td class="gt_row gt_left" style="color: #FF0000;">Monthly</td></tr>
+    <tr><td class="gt_row gt_left">Fraction Reporting Consistently:</td>
+<td class="gt_row gt_left" style="color: #006400;">1.000</td>
+<td class="gt_row gt_left" style="color: #006400;">1.000</td>
+<td class="gt_row gt_left" style="color: #FF0000;">0.368</td>
+<td class="gt_row gt_left" style="color: #FF0000;">0.789</td></tr>
+    <tr><td class="gt_row gt_left">Alcohol Violations:</td>
+<td class="gt_row gt_left">All Incidences Reported</td>
+<td class="gt_row gt_left">All Incidences Reported</td>
+<td class="gt_row gt_left">Arrests Only</td>
+<td class="gt_row gt_left">None</td></tr>
+    <tr><td class="gt_row gt_left">Sexual Assaults:</td>
+<td class="gt_row gt_left">All Incidences Reported</td>
+<td class="gt_row gt_left">All Incidences Reported</td>
+<td class="gt_row gt_left">All Incidences Reported</td>
+<td class="gt_row gt_left">Hierarchy Rule</td></tr>
+    <tr><td class="gt_row gt_left">Residence Hall Information:</td>
+<td class="gt_row gt_left">No</td>
+<td class="gt_row gt_left">Yes</td>
+<td class="gt_row gt_left">No</td>
+<td class="gt_row gt_left">No</td></tr>
+    <tr><td class="gt_row gt_left">Analysis in Paper:</td>
+<td class="gt_row gt_left">Main Analysis</td>
+<td class="gt_row gt_left">Secondary</td>
+<td class="gt_row gt_left">Not Used</td>
+<td class="gt_row gt_left">Not Used</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+# Matching Process:
+
+
+
+
+<div id="ksowbdlfno" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#ksowbdlfno .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ksowbdlfno .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ksowbdlfno .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ksowbdlfno .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ksowbdlfno .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ksowbdlfno .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ksowbdlfno .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ksowbdlfno .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ksowbdlfno .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ksowbdlfno .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ksowbdlfno .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ksowbdlfno .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ksowbdlfno .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#ksowbdlfno .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ksowbdlfno .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ksowbdlfno .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ksowbdlfno .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ksowbdlfno .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ksowbdlfno .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ksowbdlfno .gt_left {
+  text-align: left;
+}
+
+#ksowbdlfno .gt_center {
+  text-align: center;
+}
+
+#ksowbdlfno .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ksowbdlfno .gt_font_normal {
+  font-weight: normal;
+}
+
+#ksowbdlfno .gt_font_bold {
+  font-weight: bold;
+}
+
+#ksowbdlfno .gt_font_italic {
+  font-style: italic;
+}
+
+#ksowbdlfno .gt_super {
+  font-size: 65%;
+}
+
+#ksowbdlfno .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Words and Phrases used to Pattern Match</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Outcome</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Words to Match</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Alcohol Violations</td>
+<td class="gt_row gt_left">alcohol, dwi, intox, drink, dui, drunk, liquor, driving under the influence, dip, abcc, underage, dwi, underage, pula, owi, mip, under age, beer, wine, booze, minor in possession, ovi</td></tr>
+    <tr><td class="gt_row gt_left">Sexual Assault</td>
+<td class="gt_row gt_left">sex, rape, fondling, fondle</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+
+--
+### Example:
+* East Carolina Crime Logs:
+  * Incident Report 1: "Underage Possession of Liquor (1)"
+  * Incident Report 2: "Consume Alcohol &lt; Age 21"
+* Change to lowercase, match on word:
+  * Incident Report 1: "underage possession of &lt;mark&gt;liquor&lt;/mark&gt; (1)"
+  * Incident Report 2: "consume &lt;mark&gt;alcohol&lt;/mark&gt; &lt; age 21"
+
+
 
 ---
 # Empirical Strategy
@@ -298,11 +1100,2974 @@ knitr::include_graphics(here::here("advancement_presentation/figs/sample_crime_l
 # Assumptions:
 
 1. Moratoriums are as-good-as-random/common trends
+
 2. Reporting does not change/Propensity to report does not change during moratorium.
+
 3. No lasting effects of the moratorium
 
 ---
-# Results:
+# Assumption 1:
+
+### Moratoriums are good as random:
+
+---
+# Event Study: Alcohol Offenses
+
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-16-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+---
+# Event Study: Sexual Assaults
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-17-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+---
+# Assumption 2:
+
+
+<div id="amegbinegz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#amegbinegz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#amegbinegz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#amegbinegz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#amegbinegz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#amegbinegz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#amegbinegz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#amegbinegz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#amegbinegz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#amegbinegz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#amegbinegz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#amegbinegz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#amegbinegz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#amegbinegz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#amegbinegz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#amegbinegz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#amegbinegz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#amegbinegz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#amegbinegz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#amegbinegz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#amegbinegz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#amegbinegz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#amegbinegz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#amegbinegz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#amegbinegz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#amegbinegz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#amegbinegz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#amegbinegz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#amegbinegz .gt_left {
+  text-align: left;
+}
+
+#amegbinegz .gt_center {
+  text-align: center;
+}
+
+#amegbinegz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#amegbinegz .gt_font_normal {
+  font-weight: normal;
+}
+
+#amegbinegz .gt_font_bold {
+  font-weight: bold;
+}
+
+#amegbinegz .gt_font_italic {
+  font-style: italic;
+}
+
+#amegbinegz .gt_super {
+  font-size: 65%;
+}
+
+#amegbinegz .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Effect of Moratoriums on Changes in Reporting: Alcohol Offenses</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1"> </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4">
+        <span class="gt_column_spanner">Reporting Lag</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">More than 1-Day Lag</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">More than 3-Day Lag</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">More than 7-Day Lag</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">More than 14-Day Lag</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">In Moratorium</td>
+<td class="gt_row gt_left">0.002</td>
+<td class="gt_row gt_left">0.000</td>
+<td class="gt_row gt_left">0.000</td>
+<td class="gt_row gt_left">0.000</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">(0.002)</td>
+<td class="gt_row gt_left">(0.001)</td>
+<td class="gt_row gt_left">(0.001)</td>
+<td class="gt_row gt_left">(0.001)</td></tr>
+    <tr><td class="gt_row gt_left">Observations</td>
+<td class="gt_row gt_left">49425</td>
+<td class="gt_row gt_left">49425</td>
+<td class="gt_row gt_left">49425</td>
+<td class="gt_row gt_left">49425</td></tr>
+    <tr><td class="gt_row gt_left">Mean of Dependent Variable</td>
+<td class="gt_row gt_left">0.003</td>
+<td class="gt_row gt_left">0.002</td>
+<td class="gt_row gt_left">0.001</td>
+<td class="gt_row gt_left">0.001</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Standard errors clustered by university. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. 33 of the 38 universities have information on date occurred.</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+---
+# Assumption 2 Continued:
+
+<div id="iohgvusvgg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#iohgvusvgg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iohgvusvgg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iohgvusvgg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iohgvusvgg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iohgvusvgg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iohgvusvgg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iohgvusvgg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iohgvusvgg .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iohgvusvgg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iohgvusvgg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iohgvusvgg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iohgvusvgg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iohgvusvgg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#iohgvusvgg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iohgvusvgg .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iohgvusvgg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iohgvusvgg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iohgvusvgg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iohgvusvgg .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iohgvusvgg .gt_left {
+  text-align: left;
+}
+
+#iohgvusvgg .gt_center {
+  text-align: center;
+}
+
+#iohgvusvgg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iohgvusvgg .gt_font_normal {
+  font-weight: normal;
+}
+
+#iohgvusvgg .gt_font_bold {
+  font-weight: bold;
+}
+
+#iohgvusvgg .gt_font_italic {
+  font-style: italic;
+}
+
+#iohgvusvgg .gt_super {
+  font-size: 65%;
+}
+
+#iohgvusvgg .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Effect of Moratoriums on Changes in Reporting: Sexual Assaults</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1"> </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4">
+        <span class="gt_column_spanner">Reporting Lag</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">More than 1-Day Lag</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">More than 3-Day Lag</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">More than 7-Day Lag</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">More than 14-Day Lag</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">In Moratorium</td>
+<td class="gt_row gt_left">0.000</td>
+<td class="gt_row gt_left">-0.001</td>
+<td class="gt_row gt_left">0.000</td>
+<td class="gt_row gt_left">0.001</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">(0.004)</td>
+<td class="gt_row gt_left">(0.004)</td>
+<td class="gt_row gt_left">(0.003)</td>
+<td class="gt_row gt_left">(0.003)</td></tr>
+    <tr><td class="gt_row gt_left">Observations</td>
+<td class="gt_row gt_left">49425</td>
+<td class="gt_row gt_left">49425</td>
+<td class="gt_row gt_left">49425</td>
+<td class="gt_row gt_left">49425</td></tr>
+    <tr><td class="gt_row gt_left">Mean of Dependent Variable</td>
+<td class="gt_row gt_left">0.018</td>
+<td class="gt_row gt_left">0.014</td>
+<td class="gt_row gt_left">0.011</td>
+<td class="gt_row gt_left">0.001</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Standard errors clustered by university. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. 33 of the 38 universities have information on date occurred.</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+
+---
+# Assumption 3:
+
+* Event study gives preliminary evidence, but stay tuned for more results.
+
+* The no-lasting effects allows for the criticism of DID estimator from Andrew Goodman Bacon
+
+---
+# Main Results:
+
+### Alcohol Offenses
+* Large decreases in reports of alcohol offenses during moratoriums. 
+  * Driven by the weekends (Friday-Sunday).
+  * Transient effects.
+
+### Sexual Assaults
+* Weaker evidence of decreases in sexual assault
+  * Large decreases, only 10% significance on weekends only.
+  * Likely lacking power.
+
+---
+
+
+# Alcohol Offenses:
+
+<div id="byrsfdsryw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#byrsfdsryw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#byrsfdsryw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#byrsfdsryw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#byrsfdsryw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#byrsfdsryw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#byrsfdsryw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#byrsfdsryw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#byrsfdsryw .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#byrsfdsryw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#byrsfdsryw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#byrsfdsryw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#byrsfdsryw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#byrsfdsryw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#byrsfdsryw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#byrsfdsryw .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#byrsfdsryw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#byrsfdsryw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#byrsfdsryw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#byrsfdsryw .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#byrsfdsryw .gt_left {
+  text-align: left;
+}
+
+#byrsfdsryw .gt_center {
+  text-align: center;
+}
+
+#byrsfdsryw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#byrsfdsryw .gt_font_normal {
+  font-weight: normal;
+}
+
+#byrsfdsryw .gt_font_bold {
+  font-weight: bold;
+}
+
+#byrsfdsryw .gt_font_italic {
+  font-style: italic;
+}
+
+#byrsfdsryw .gt_super {
+  font-size: 65%;
+}
+
+#byrsfdsryw .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Effect of Moratoriums on Alcohol Offenses (OLS)</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"> </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">(1)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">(2)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">(3)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">In Moratorium</td>
+<td class="gt_row gt_left">-0.148**</td>
+<td class="gt_row gt_left">-0.132*</td>
+<td class="gt_row gt_left">-0.145**</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">(0.049)</td>
+<td class="gt_row gt_left">(0.050)</td>
+<td class="gt_row gt_left">(0.046)</td></tr>
+    <tr><td class="gt_row gt_left">Observations</td>
+<td class="gt_row gt_left">56514</td>
+<td class="gt_row gt_left">56514</td>
+<td class="gt_row gt_left">56514</td></tr>
+    <tr><td class="gt_row gt_left">Mean of Dependent Variable</td>
+<td class="gt_row gt_left">0.497</td>
+<td class="gt_row gt_left">0.497</td>
+<td class="gt_row gt_left">0.497</td></tr>
+    <tr><td class="gt_row gt_left">FE: Day of Week</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Holiday</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Semester (Spring/Fall)</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: University</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left"></td></tr>
+    <tr><td class="gt_row gt_left">FE: Academic Year</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left"></td></tr>
+    <tr><td class="gt_row gt_left">FE: University by Academic Year</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left"></td></tr>
+    <tr><td class="gt_row gt_left">FE: University by Academic Year by Semester</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">X</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+
+---
+# Alcohol: Weekend vs. Weekday
+
+<div id="pdxbfwgxds" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#pdxbfwgxds .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pdxbfwgxds .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pdxbfwgxds .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pdxbfwgxds .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pdxbfwgxds .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pdxbfwgxds .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pdxbfwgxds .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pdxbfwgxds .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pdxbfwgxds .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pdxbfwgxds .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pdxbfwgxds .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pdxbfwgxds .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pdxbfwgxds .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pdxbfwgxds .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pdxbfwgxds .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pdxbfwgxds .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pdxbfwgxds .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pdxbfwgxds .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pdxbfwgxds .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pdxbfwgxds .gt_left {
+  text-align: left;
+}
+
+#pdxbfwgxds .gt_center {
+  text-align: center;
+}
+
+#pdxbfwgxds .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pdxbfwgxds .gt_font_normal {
+  font-weight: normal;
+}
+
+#pdxbfwgxds .gt_font_bold {
+  font-weight: bold;
+}
+
+#pdxbfwgxds .gt_font_italic {
+  font-style: italic;
+}
+
+#pdxbfwgxds .gt_super {
+  font-size: 65%;
+}
+
+#pdxbfwgxds .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Effect of Moratoriums on Alcohol Offenses by Weekend/Weekdays (OLS)</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1"> </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3">
+        <span class="gt_column_spanner">Days of the Week</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">All Days</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Weekends</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Weekdays</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">In Moratorium</td>
+<td class="gt_row gt_left">-0.132*</td>
+<td class="gt_row gt_left">-0.263*</td>
+<td class="gt_row gt_left">-0.032</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">(0.050)</td>
+<td class="gt_row gt_left">(0.106)</td>
+<td class="gt_row gt_left">(0.026)</td></tr>
+    <tr><td class="gt_row gt_left">Observations</td>
+<td class="gt_row gt_left">56514</td>
+<td class="gt_row gt_left">24244</td>
+<td class="gt_row gt_left">32270</td></tr>
+    <tr><td class="gt_row gt_left">Mean of Dependent Variable</td>
+<td class="gt_row gt_left">0.497</td>
+<td class="gt_row gt_left">0.892</td>
+<td class="gt_row gt_left">0.201</td></tr>
+    <tr><td class="gt_row gt_left">FE: Day of Week</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Holiday</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Semester (Spring/Fall)</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: University by Academic Year</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column `All Days' represents specification (2) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="4">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+
+
+---
+
+
+# Transient Effects:
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-25-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+---
+# Sexual Assaults:
+<div id="okmwjwjuvi" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#okmwjwjuvi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#okmwjwjuvi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#okmwjwjuvi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#okmwjwjuvi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#okmwjwjuvi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#okmwjwjuvi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#okmwjwjuvi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#okmwjwjuvi .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#okmwjwjuvi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#okmwjwjuvi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#okmwjwjuvi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#okmwjwjuvi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#okmwjwjuvi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#okmwjwjuvi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okmwjwjuvi .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okmwjwjuvi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#okmwjwjuvi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#okmwjwjuvi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#okmwjwjuvi .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#okmwjwjuvi .gt_left {
+  text-align: left;
+}
+
+#okmwjwjuvi .gt_center {
+  text-align: center;
+}
+
+#okmwjwjuvi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#okmwjwjuvi .gt_font_normal {
+  font-weight: normal;
+}
+
+#okmwjwjuvi .gt_font_bold {
+  font-weight: bold;
+}
+
+#okmwjwjuvi .gt_font_italic {
+  font-style: italic;
+}
+
+#okmwjwjuvi .gt_super {
+  font-size: 65%;
+}
+
+#okmwjwjuvi .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Effect of Moratoriums on Sexual Assaults (OLS)</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"> </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">(1)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">(2)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">(3)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">In Moratorium</td>
+<td class="gt_row gt_left">-0.009*</td>
+<td class="gt_row gt_left">-0.010</td>
+<td class="gt_row gt_left">-0.007</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">(0.004)</td>
+<td class="gt_row gt_left">(0.006)</td>
+<td class="gt_row gt_left">(0.006)</td></tr>
+    <tr><td class="gt_row gt_left">Observations</td>
+<td class="gt_row gt_left">56514</td>
+<td class="gt_row gt_left">56514</td>
+<td class="gt_row gt_left">56514</td></tr>
+    <tr><td class="gt_row gt_left">Mean of Dependent Variable</td>
+<td class="gt_row gt_left">0.055</td>
+<td class="gt_row gt_left">0.055</td>
+<td class="gt_row gt_left">0.055</td></tr>
+    <tr><td class="gt_row gt_left">FE: Day of Week</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Holiday</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Semester (Spring/Fall)</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: University</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left"></td></tr>
+    <tr><td class="gt_row gt_left">FE: Academic Year</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left"></td></tr>
+    <tr><td class="gt_row gt_left">FE: University by Academic Year</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left"></td></tr>
+    <tr><td class="gt_row gt_left">FE: University by Academic Year by Semester</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">X</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+
+---
+# Sexual Assaults: Weekend vs. Weekday
+
+<div id="xjplttlgkc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xjplttlgkc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xjplttlgkc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xjplttlgkc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xjplttlgkc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xjplttlgkc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xjplttlgkc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xjplttlgkc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xjplttlgkc .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xjplttlgkc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xjplttlgkc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xjplttlgkc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xjplttlgkc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xjplttlgkc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#xjplttlgkc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjplttlgkc .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjplttlgkc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xjplttlgkc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xjplttlgkc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xjplttlgkc .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xjplttlgkc .gt_left {
+  text-align: left;
+}
+
+#xjplttlgkc .gt_center {
+  text-align: center;
+}
+
+#xjplttlgkc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xjplttlgkc .gt_font_normal {
+  font-weight: normal;
+}
+
+#xjplttlgkc .gt_font_bold {
+  font-weight: bold;
+}
+
+#xjplttlgkc .gt_font_italic {
+  font-style: italic;
+}
+
+#xjplttlgkc .gt_super {
+  font-size: 65%;
+}
+
+#xjplttlgkc .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Effect of Moratoriums on Sexual Assaults by Weekend/Weekdays (OLS)</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1"> </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3">
+        <span class="gt_column_spanner">Days of the Week</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">All Days</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Weekends</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Weekdays</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">In Moratorium</td>
+<td class="gt_row gt_left">-0.010</td>
+<td class="gt_row gt_left">-0.017+</td>
+<td class="gt_row gt_left">-0.004</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">(0.006)</td>
+<td class="gt_row gt_left">(0.010)</td>
+<td class="gt_row gt_left">(0.006)</td></tr>
+    <tr><td class="gt_row gt_left">Observations</td>
+<td class="gt_row gt_left">56514</td>
+<td class="gt_row gt_left">24244</td>
+<td class="gt_row gt_left">32270</td></tr>
+    <tr><td class="gt_row gt_left">Mean of Dependent Variable</td>
+<td class="gt_row gt_left">0.055</td>
+<td class="gt_row gt_left">0.064</td>
+<td class="gt_row gt_left">0.047</td></tr>
+    <tr><td class="gt_row gt_left">FE: Day of Week</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Holiday</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Semester (Spring/Fall)</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: University by Academic Year</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column `All Days' represents specification (2) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="4">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+
+---
+# Transcient Effects:
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-28-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+---
+# Potential Mechanism
+
+## Is the moratorium displacing crime?
+
+* Difficult to answer - there does not exist a perfect data source
+  * National Incident Based Reporting System (NIBRS) `\(\rightarrow\)`
+  * Uniform Crime Reporting System (UCR) 
+
+## Indirect Test:
+
+* Use the Campus Safety and Security Data (CSS)
+  * Downfalls: Aggregated to calendar year, not 1-1 match with Daily Crime Logs.
+  * Benefits: Contains good location data: on-campus/off-campus and 
+
+This is **not** causal! 
+---
+# Potential Mechanism: Model
+
+### Specification:
+
+`$$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda_{t} + \epsilon_{u,t}$$`
+
+* `\(Y_{u,t}\)` is an outcome of alcohol offenses or sexual assaults per-25000 enrolled students per-calendar day at university `\(u\)` in time `\(t\)`.
+* `\(Moratorium_{u,t}\)` is the fraction of calendar-days treated within a year.
+* `\(\gamma_u\)` is a university-specific fixed effect.
+* `\(\lambda_t\)` are calendar-year fixed effects.
+
+*Warning*: This is not causal, only speculative due to the data limitations.
+
+---
+# Potential Mechanism: Results
+
+
+<div id="gvarcsadxo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#gvarcsadxo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 50%;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gvarcsadxo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gvarcsadxo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gvarcsadxo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gvarcsadxo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gvarcsadxo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gvarcsadxo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gvarcsadxo .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gvarcsadxo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gvarcsadxo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gvarcsadxo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gvarcsadxo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gvarcsadxo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#gvarcsadxo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gvarcsadxo .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gvarcsadxo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gvarcsadxo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gvarcsadxo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gvarcsadxo .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gvarcsadxo .gt_left {
+  text-align: left;
+}
+
+#gvarcsadxo .gt_center {
+  text-align: center;
+}
+
+#gvarcsadxo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gvarcsadxo .gt_font_normal {
+  font-weight: normal;
+}
+
+#gvarcsadxo .gt_font_bold {
+  font-weight: bold;
+}
+
+#gvarcsadxo .gt_font_italic {
+  font-style: italic;
+}
+
+#gvarcsadxo .gt_super {
+  font-size: 65%;
+}
+
+#gvarcsadxo .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Effect of Moratoriums on Alcohol Offenses and Sexual Assaults: Comparison of Daily Crime Logs and Campus Safety and Security (OLS).</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1"> </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1">
+        <span class="gt_column_spanner">Daily Crime Logs</span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2">
+        <span class="gt_column_spanner">Campus Safety and Security</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Full Sample</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Full Sample</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Residence Halls</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <td colspan="4" class="gt_group_heading" style="font-weight: bold; NA">Panel A: Alcohol Offenses</td>
+    </tr>
+    <tr><td class="gt_row gt_left">In Moratorium</td>
+<td class="gt_row gt_left">-0.142+</td>
+<td class="gt_row gt_left">0.282*</td>
+<td class="gt_row gt_left">0.249*</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">(0.077)</td>
+<td class="gt_row gt_left">(0.111)</td>
+<td class="gt_row gt_left">(0.119)</td></tr>
+    <tr><td class="gt_row gt_left">Observations</td>
+<td class="gt_row gt_left">226</td>
+<td class="gt_row gt_left">228</td>
+<td class="gt_row gt_left">228</td></tr>
+    <tr><td class="gt_row gt_left">Mean of Dependent Variable</td>
+<td class="gt_row gt_left">0.388</td>
+<td class="gt_row gt_left">1.042</td>
+<td class="gt_row gt_left">0.979</td></tr>
+    <tr class="gt_group_heading_row">
+      <td colspan="4" class="gt_group_heading" style="font-weight: bold; NA">Panel B: Sexual Assaults</td>
+    </tr>
+    <tr><td class="gt_row gt_left">In Moratorium</td>
+<td class="gt_row gt_left">-0.015</td>
+<td class="gt_row gt_left">-0.049</td>
+<td class="gt_row gt_left">-0.035*</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">(0.011)</td>
+<td class="gt_row gt_left">(0.040)</td>
+<td class="gt_row gt_left">(0.014)</td></tr>
+    <tr><td class="gt_row gt_left">Observations</td>
+<td class="gt_row gt_left">226</td>
+<td class="gt_row gt_left">228</td>
+<td class="gt_row gt_left">228</td></tr>
+    <tr><td class="gt_row gt_left">Mean of Dependent Variable</td>
+<td class="gt_row gt_left">0.043</td>
+<td class="gt_row gt_left">0.081</td>
+<td class="gt_row gt_left">0.041</td></tr>
+    <tr class="gt_group_heading_row">
+      <td colspan="4" class="gt_empty_group_heading" style="NA NA NA"></td>
+    </tr>
+    <tr><td class="gt_row gt_left">FE: University</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+    <tr><td class="gt_row gt_left">FE: Year</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td>
+<td class="gt_row gt_left">X</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+
+---
+# Robustness:
+
+### Poisson Estimation:
+
+* Helps with count-data. Results similar—30 and 31 percent average reductions for alcohol offenses and sexual assaults on the weekends.
+
+### Leave-one-out Estimation
+
+* Is one university driving these results?
+
+### TWFE Literature
+
+* Several papers have shown issues with DID in TWFE models with heterogeneous effects
+* Changing model to TWFE with group = university and time = day-by-month-by-year gives 0 negative weights and consistent results.
+
+### Inclusion of Never-Treated
+
+* Results are similar
+
+&lt;!-- --- --&gt;
+&lt;!-- ```{r} --&gt;
+&lt;!-- source("figures/leave-one-out-ols.R") --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- # Leave-one-out: Alcohol --&gt;
+&lt;!-- ```{r} --&gt;
+&lt;!-- loo_alc_ols --&gt;
+&lt;!-- ``` --&gt;
+
+
+&lt;!-- --- --&gt;
+&lt;!-- # Leave-one-out: Sexual Assault --&gt;
+
+&lt;!-- ```{r} --&gt;
+&lt;!-- loo_sex_ols --&gt;
+&lt;!-- ``` --&gt;
 
 
     </textarea>

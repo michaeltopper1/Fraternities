@@ -6,6 +6,10 @@
 data/campus_daily_crime_log/Texas Arlington
 data/campus_daily_crime_log/
 data/campus_daily_crime
+advancement_presentation/presentation_cache/
+advancement_presentation/presentation_files/
+advancement_presentation/presentation_cache
+advancement_presentation/presentation_files
 tables_files/
 data/clery_act_data
 *.Renviron
