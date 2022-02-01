@@ -29,12 +29,13 @@ library(tidyverse)
 library(kableExtra)
 library(modelsummary)
 library(here)
+library(gt)
 opts_chunk$set(
   fig.align = "center",  
   fig.asp = 9/16,
   out.width = "95%",
   dpi= 300,
-  cache=TRUE, 
+  cache=F, 
   warning=FALSE, message=FALSE,
   echo=FALSE
   )
@@ -188,15 +189,63 @@ summary_stats_university %>%
 ---
 # Data Construction
 
-.pull-left[```{r, fig.align = "center" ,out.width= "80%"}
+.pull-left[
+```{r, fig.align = "center" ,out.width= "80%"}
+
 knitr::include_graphics(here::here("advancement_presentation/figs/sample_crime_log.png"))
 ```
 ]
 
 .pull-right[
+### Benefits:
+* Incidence-level reports mandated by Federal government.
+* All reports
+* Caveat: Needs Harmonization
+
+### Construction:
 * Use unique university police-department Daily Crime Logs
 * Match on specific offenses using regular expressions
+* Merge with moratorium dates and IPEDs
 ]
+
+---
+```{r}
+source(paste0(here::here("advancement_presentation/tables/data_comparison.R")))
+```
+
+# Comparison of Data
+
+```{r}
+data_used_table
+```
+
+---
+# Matching Process:
+
+```{r}
+source(paste0(here::here("Tables/matching_word_table.R")))
+```
+
+
+```{r}
+matching_table %>% 
+  gt() %>% 
+  tab_header(title = "Words and Phrases used to Pattern Match")
+# kable(matching_table, booktabs = T, caption = "Words and Phrases used to Pattern Match") %>%
+#   kable_styling(full_width = F) 
+```
+
+
+--
+### Example:
+* East Carolina Crime Logs:
+  * Incident Report 1: "Underage Possession of Liquor (1)"
+  * Incident Report 2: "Consume Alcohol < Age 21"
+* Change to lowercase, match on word:
+  * Incident Report 1: "underage possession of <mark>liquor</mark> (1)"
+  * Incident Report 2: "consume <mark>alcohol</mark> < age 21"
+
+
 
 ---
 # Empirical Strategy
@@ -215,10 +264,195 @@ $$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \eps
 # Assumptions:
 
 1. Moratoriums are as-good-as-random/common trends
+
 2. Reporting does not change/Propensity to report does not change during moratorium.
+
 3. No lasting effects of the moratorium
 
 ---
-# Results:
+# Assumption 1:
+
+### Moratoriums are good as random:
+
+---
+# Event Study: Alcohol Offenses
+```{r}
+source(here::here(paste0("figures/event_study_final_dec13.R")))
+```
+
+```{r, echo=FALSE}
+es_alc_14_g
+```
+
+---
+# Event Study: Sexual Assaults
+
+```{r, echo=FALSE}
+es_sex_14_g
+```
+---
+# Assumption 2:
+```{r}
+source(here::here(paste0("advancement_presentation/tables/regressions_reporting.R")))
+```
+
+```{r}
+## reporting_table
+reporting_table_alc
+```
+---
+# Assumption 2 Continued:
+
+```{r}
+reporting_table_sex
+```
+
+---
+# Assumption 3:
+
+* Event study gives preliminary evidence, but stay tuned for more results.
+
+* The no-lasting effects allows for the criticism of DID estimator from Andrew Goodman Bacon
+
+---
+# Main Results:
+
+### Alcohol Offenses
+* Large decreases in reports of alcohol offenses during moratoriums. 
+  * Driven by the weekends (Friday-Sunday).
+  * Transient effects.
+
+### Sexual Assaults
+* Weaker evidence of decreases in sexual assault
+  * Large decreases, only 10% significance on weekends only.
+  * Likely lacking power.
+
+---
+```{r}
+source(paste0(here::here("advancement_presentation/tables/regressions_main.R")))
+```
+
+# Alcohol Offenses:
+
+```{r, fig.height=7}
+main_table_alc
+```
+
+---
+# Alcohol: Weekend vs. Weekday
+
+```{r}
+weekend_table_alc
+```
+
+
+---
+```{r}
+source(paste0(here::here("advancement_presentation/figs/week_before_after.R")))
+```
+
+# Transient Effects:
+
+```{r}
+week_before_after_graph_alc
+```
+
+---
+# Sexual Assaults:
+```{r}
+main_table_sex
+```
+
+---
+# Sexual Assaults: Weekend vs. Weekday
+
+```{r}
+weekend_table_sex
+```
+
+---
+# Transcient Effects:
+
+```{r}
+week_before_after_graph_sex
+```
+
+---
+# Potential Mechanism
+
+## Is the moratorium displacing crime?
+
+* Difficult to answer - there does not exist a perfect data source
+  * National Incident Based Reporting System (NIBRS) $\rightarrow$
+  * Uniform Crime Reporting System (UCR) 
+
+## Indirect Test:
+
+* Use the Campus Safety and Security Data (CSS)
+  * Downfalls: Aggregated to calendar year, not 1-1 match with Daily Crime Logs.
+  * Benefits: Contains good location data: on-campus/off-campus and 
+
+This is **not** causal! 
+---
+# Potential Mechanism: Model
+
+### Specification:
+
+$$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda_{t} + \epsilon_{u,t}$$
+
+* $Y_{u,t}$ is an outcome of alcohol offenses or sexual assaults per-25000 enrolled students per-calendar day at university $u$ in time $t$.
+* $Moratorium_{u,t}$ is the fraction of calendar-days treated within a year.
+* $\gamma_u$ is a university-specific fixed effect.
+* $\lambda_t$ are calendar-year fixed effects.
+
+*Warning*: This is not causal, only speculative due to the data limitations.
+
+---
+# Potential Mechanism: Results
+```{r}
+source("advancement_presentation/tables/regressions_clery_dcl.R")
+```
+
+```{r}
+clery_compare
+```
+
+---
+# Robustness:
+
+### Poisson Estimation:
+
+* Helps with count-data. Results similar—30 and 31 percent average reductions for alcohol offenses and sexual assaults on the weekends.
+
+### Leave-one-out Estimation
+
+* Is one university driving these results?
+
+### TWFE Literature
+
+* Several papers have shown issues with DID in TWFE models with heterogeneous effects
+* Changing model to TWFE with group = university and time = day-by-month-by-year gives 0 negative weights and consistent results.
+
+### Inclusion of Never-Treated
+
+* Results are similar
+
+<!-- --- -->
+<!-- ```{r} -->
+<!-- source("figures/leave-one-out-ols.R") -->
+<!-- ``` -->
+
+<!-- # Leave-one-out: Alcohol -->
+<!-- ```{r} -->
+<!-- loo_alc_ols -->
+<!-- ``` -->
+
+
+<!-- --- -->
+<!-- # Leave-one-out: Sexual Assault -->
+
+<!-- ```{r} -->
+<!-- loo_sex_ols -->
+<!-- ``` -->
 
 
