@@ -140,7 +140,7 @@ source(here::here("advancement_presentation/tables/summary_stats_university.R"))
 
 # The Pathway to a Moratorium
 
-* Starts with triggering event -> announcement of moratorium -> end date
+* Starts with triggering event $\rightarrow$ announcement of moratorium $\rightarrow$ end date
 * Small delay between first and second 
 * Announcement can be from one of two sources of jurisdiction
   * University Administration 
@@ -237,7 +237,7 @@ matching_table %>%
 
 
 --
-### Example:
+### Example of the Matching Process:
 * East Carolina Crime Logs:
   * Incident Report 1: "Underage Possession of Liquor (1)"
   * Incident Report 2: "Consume Alcohol < Age 21"
@@ -264,15 +264,14 @@ $$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \eps
 # Assumptions:
 
 1. Moratoriums are as-good-as-random/common trends
+  * Multiple Event Event Study
 
 2. Reporting does not change/Propensity to report does not change during moratorium.
+  * Indirect test: Changes between date reported and date occurred?
 
 3. No lasting effects of the moratorium
+  * 
 
----
-# Assumption 1:
-
-### Moratoriums are good as random:
 
 ---
 # Event Study: Alcohol Offenses
@@ -291,18 +290,18 @@ es_alc_14_g
 es_sex_14_g
 ```
 ---
-# Assumption 2:
+# Changes in Reporting:
 ```{r}
 source(here::here(paste0("advancement_presentation/tables/regressions_reporting.R")))
 ```
-
+<br>
 ```{r}
 ## reporting_table
 reporting_table_alc
 ```
 ---
-# Assumption 2 Continued:
-
+# Changes in Reporting Continued:
+<br>
 ```{r}
 reporting_table_sex
 ```
@@ -393,19 +392,6 @@ week_before_after_graph_sex
   * Benefits: Contains good location data: on-campus/off-campus and 
 
 This is **not** causal! 
----
-# Potential Mechanism: Model
-
-### Specification:
-
-$$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda_{t} + \epsilon_{u,t}$$
-
-* $Y_{u,t}$ is an outcome of alcohol offenses or sexual assaults per-25000 enrolled students per-calendar day at university $u$ in time $t$.
-* $Moratorium_{u,t}$ is the fraction of calendar-days treated within a year.
-* $\gamma_u$ is a university-specific fixed effect.
-* $\lambda_t$ are calendar-year fixed effects.
-
-*Warning*: This is not causal, only speculative due to the data limitations.
 
 ---
 # Potential Mechanism: Results
@@ -420,39 +406,103 @@ clery_compare
 ---
 # Robustness:
 
-### Poisson Estimation:
+1. Poisson Estimation:
 
 * Helps with count-data. Results similar—30 and 31 percent average reductions for alcohol offenses and sexual assaults on the weekends.
 
-### Leave-one-out Estimation
+2. Leave-one-out Estimation
 
 * Is one university driving these results?
 
-### TWFE Literature
+3. TWFE Literature
 
 * Several papers have shown issues with DID in TWFE models with heterogeneous effects
-* Changing model to TWFE with group = university and time = day-by-month-by-year gives 0 negative weights and consistent results.
+* Changing model to TWFE with **group = university** and **time = day-by-month-by-year** gives 0 negative weights and consistent results.
 
-### Inclusion of Never-Treated
+4. Inclusion of Never-Treated
 
 * Results are similar
 
-<!-- --- -->
-<!-- ```{r} -->
-<!-- source("figures/leave-one-out-ols.R") -->
-<!-- ``` -->
+---
+# Heterogeneity:
 
-<!-- # Leave-one-out: Alcohol -->
-<!-- ```{r} -->
-<!-- loo_alc_ols -->
-<!-- ``` -->
+### What type of triggering event causes the largest effects?
 
+* Behavior Violation
+* Sexual Assault
+* Fraternity-related Death
 
-<!-- --- -->
-<!-- # Leave-one-out: Sexual Assault -->
+### How long until a moratorium is effective? 
 
-<!-- ```{r} -->
-<!-- loo_sex_ols -->
-<!-- ``` -->
+* Diminishing returns?
+
+### What type of oversight works best?
+
+* University vs. IFC Council 
+
+---
+```{r}
+source(here::here(paste0("figures/heteroeffects_trigger.R")))
+```
+
+# Triggering Event:
+
+```{r, echo=FALSE, fig.width= 10}
+trigger_reg_graph
+```
+
+---
+```{r}
+source(paste0(here::here("figures/treatment_passing.R")))
+```
+
+# How long until a Moratorium is Effective?
+
+```{r, echo=FALSE, fig.align = "center", fig.width= 10, fig.cap="How Moratoriums Effect Offenses by Each Week of the Moratorium"}
+treatment_passing
+```
+
+---
+```{r}
+source(paste0(here::here("advancement_presentation/tables/regressions_quantiles.R")))
+```
+
+# How long until a Moratorium is Effective?
+
+```{r}
+quantile_table
+```
+
+---
+```{r}
+source(paste0(here::here("advancement_presentation/tables/regressions_ifc_uni.R")))
+```
+
+# Alcohol Offenses: Which enforcement is best?
+
+```{r}
+ifc_uni_alc
+```
+
+---
+# Sexual Assaults: Which enforcement is best?
+```{r}
+ifc_uni_sex
+```
+
+---
+# Conclusion
+
+### Main Takeaways:
+* First study to estimate the causal effects of fraternity moratoriums.
+  * Find 27% decrease in alcohol offenses $\rightarrow$ effects are transient.
+  * Find weaker evidence of decreases in reports of sexual assaults  (10% significance), although large magnitude
+  (26%) on weekends.
+  * Evidence of stronger effects with university enforcement/longer length moratoriums.
+* Construct a novel dataset 
+  * Many advantages over typically used data such as NIBRS/UCR
+  
+---
+# Other Projects
 
 
