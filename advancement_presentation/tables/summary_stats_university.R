@@ -27,7 +27,7 @@ summary_stats_university <- daily_crime %>%
                 (`Graduation Rate` = graduation_rate_total_cohort) + 
                 (`Fraction Admitted` = frac_admitted_total) +
                 (`Fraction Private`=private) ~ (Mean + SD + Median + Min + Max ), data = .,
-              title = "Summary Statistics of the Universities in the Sample.", output = 'html')
+              title = "Summary Statistics of the Universities in the Sample.") 
 
 
 moratoriums <- ifc::moratorium_lengths()
