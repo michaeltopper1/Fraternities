@@ -57,7 +57,7 @@ week_before_after_graph_alc <- weeksplit_controls %>%
   ggplot(aes(estimate, time, color = in_moratorium)) +
   geom_point() +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high)) +
-  facet_wrap(~week_type, scales = "free") +
+  facet_wrap(~week_type) +
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
   theme(legend.position = "none") +
@@ -77,7 +77,7 @@ week_before_after_graph_sex <- weeksplit_controls %>%
   ggplot(aes(estimate, time, color = in_moratorium)) +
   geom_point() +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high)) +
-  facet_wrap(~week_type, scales = "free") +
+  facet_wrap(~week_type) +
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
   theme(legend.position = "none") +

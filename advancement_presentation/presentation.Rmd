@@ -42,20 +42,19 @@ opts_chunk$set(
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 ```
 
-# Background
-
-Fraternities are a widespread tradition in the US.
+# Background: A wide-spread tradition
 
 ## Benefits of Fraternities:
-  - Community service, volunteering, graduation rates, and future income.
+  - Community service, volunteering, graduation rates, and future income ([Mara, Davis, and Schmidt 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/coep.12249); [Hayek et. al. 2002](https://scholarworks.iu.edu/dspace/handle/2022/24308); [Asel, Seifert, Pascarella 2009](https://scholarworks.wm.edu/oracle/vol4/iss2/2/))
   
 ## Downsides of Fraternity Membership:
-  - Risky Behavior
-  - Binge drinking and college partying
+  - Risky Behavior ([Hechinger 2017](https://www.amazon.com/True-Gentlemen-Broken-America%C2%92s-Fraternities/dp/1610396820); [Seabrook 2019](https://www.tandfonline.com/doi/full/10.1080/07448481.2019.1679153); [Minow and Einolf 2009](https://journals.sagepub.com/doi/10.1177/1077801209334472))
+  - Binge drinking and college partying ([DeSimone 2007](https://www.sciencedirect.com/science/article/abs/pii/S0167629607000069); [Routon and Walker 2014](https://www.sciencedirect.com/science/article/abs/pii/S2214804314000147))
+  - Access to alcohol for lower classmen ([Armstrong, Hamilton, and Sweeney 2006](https://academic.oup.com/socpro/article-abstract/53/4/483/1711176?redirectedFrom=fulltext))
 
 Recently, campus administrators began to use temporary campus-wide bans of fraternity social events with alcohol (moratoriums) to change behavior.
 
-**Question**: How do these moratoriums affect alcohol offenses and sexual assaults?
+<font color="blue">**Question**</font>: How do these moratoriums affect alcohol offenses and sexual assaults?
 
 ---
 
@@ -63,31 +62,30 @@ Recently, campus administrators began to use temporary campus-wide bans of frate
 
 ## Moratorium Definition:
 
-A temporary *campus-wide* halt on fraternity social events with alcohol.
-  - Applies to IFC fraternities (e.g., social fraternities)
+A temporary <font color="blue">*campus-wide*</font> halt on fraternity social events with alcohol.
+  - Applies to Interfraternity Council fraternities (IFC) $\rightarrow$ primary type of social fraternity.
   - Popularized in the mid-2010s.
 
 ## Sources of Enforcement:
-  - University Administration
-  - IFC Council (student-enforced)
+  - University Administration <font color="blue">(62%)</font>
+  - IFC Council $\rightarrow$ student enforced <font color="blue">(38%)</font>
 
 ---
 
 # How might a moratorium affect behavior?
 .pull-left[
 ### Moratoriums may be beneficial:
-* Fraternities are source of alcohol for underage drinking ()
-  * College partying leads to more rape and alcohol (Lindo)
-  * Restricting alcohol harsher leads to less drinking (Lin)
-  * Alcohol has shown to increase mortality, poor academics, and crime.
-
+* Fraternities are a source of alcohol for underage drinking ([Armstrong, Hamilton, and Sweeney 2006](https://academic.oup.com/socpro/article-abstract/53/4/483/1711176?redirectedFrom=fulltext))
+* College partying leads to more rape and alcohol ([Lindo, Siminski and Swensen 2018](https://www.aeaweb.org/articles?id=10.1257/app.20160031))
+* Restricting alcohol + higher penalty leads to less drinking ([Liang and Huang 2008](https://onlinelibrary.wiley.com/doi/abs/10.1002/hec.1321))
+* Alcohol increases mortality, poor academics, and crime. ([Carpenter and Dobkin 2009](https://www.aeaweb.org/articles?id=10.1257/app.1.1.164); [Carrell et. al. 2011](https://www.sciencedirect.com/science/article/abs/pii/S0047272710001143); [Ha and Smith 2019](https://www.proquest.com/econlit/docview/2301876286/BCBDC18DDCE14ACCPQ/7))
 ]
 
 .pull-right[
 ### Moratoriums may be detrimental:
 * Displacement of crime
-  * May cause large increases after moratorium is over - net effect could be worse
   * Partying in riskier places
+* May cause large increases after moratorium is over $\rightarrow$ net effect could be worse due to pent up demand ([Brassiolo 2016](https://www.journals.uchicago.edu/doi/full/10.1086/683666?casa_token=Gm7R4k8X_3IAAAAA%3ARrrOrCv8KEDwFZuKpRNK14jsDvxfCsKqFWINiScXkJW_AixQk1h4l8sCaQX1hiYosOujUNIA7cQ))
 ]
 ---
 
@@ -97,23 +95,35 @@ A temporary *campus-wide* halt on fraternity social events with alcohol.
 * How do fraternity moratoriums affect campus-wide police reports of alcohol offenses and sexual assault?
 
 ### Novel Data: 
-* Constructed from Daily Crime Logs from university-specific police departments (2014-2019).
+* Construct data set from Daily Crime Logs from university-specific police departments (2014-2019).
 
 ### Identification: 
 * Exploit the variation in timing of the moratoriums using a difference-in-differences design.
 
-
 ---
+# Contribution
+* First study to evaluate moratoriums. 
+  * Key potential policy lever to reduce partying/sexual assaults. 
+* Novel data constructed. 
+  * Mitigates the shortcomings of other fraternity works using Campus Safety Security Data ([Raghav and Diette 2021](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3908875); [DeSimone 2007](https://www.sciencedirect.com/science/article/abs/pii/S0167629607000069); [Routon and Walker 2014](https://www.sciencedirect.com/science/article/abs/pii/S2214804314000147)).
+* Further the college partying literature (e.g., [Lindo, Siminski and Swensen 2018](https://www.aeaweb.org/articles?id=10.1257/app.20160031)).
+  * Fraternities are a major partying source at universities $\rightarrow$ provides evidence what their impact on partying is.
+  * Represent decrease in partying $\rightarrow$ reason to expect asymmetries ([Cunningham and Shah 2018](file:///Users/michaeltopper/Zotero/storage/KUI5MLJN/4756165.html))
+  * Closely links <font color="blue">student</font> behavior to partying.
+---
+# Sample Construction
 
-```{r}
-source(here::here("figures/closure_distribution.R"))
-```
+## Criteria:
+* Must have some media coverage (web-searchable by Google/Lexis-Nexis).
+* Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can have more).
+* Must have Daily Crime Logs in readable format.
+* Moratorium must be in sample period of <font color="blue">2014-2019</font> $\rightarrow$ Daily Crime Log archive length + avoid pandemic.
 
-# Distribution of Moratoriums
-```{r, fig.cap = "Distribution of Moratoriums Across the Sample Period for all Universities", fig.align = "center",fig.width= 13, fig.height= 7, out.width= "100%"}
-closure_distribution
-```
+## Final Sample:
+* 38 universities with 45 moratoriums total (<font color="blue">Mean: 1.36</font>; <font color="blue">Max = 3</font>).
+  * Do not represent the universe of moratoriums as there are 4 others known in this sample period that were left out.
 
+  
 ---
 # Locations of Moratoriums
 ```{r}
@@ -122,34 +132,43 @@ source(here::here(paste0("figures/map.R")))
 ```{r}
 map_of_schools
 ```
-
----
-# Contribution
-* First study to evaluate moratoriums. (Go into why this is the first)
-* Novel data constructed. (Go into how you construct)
-  * Mitigates the shortcomings of other fraternity works using Campus Safety Security Data (Raghav)
-* Further the college partying literature
-  * Fraternities are a major partying source at universities - unclear what their impact is
-  * Represent decrease in partying 
-  * Closely links student behavior to partying
-
+  
 ---
 ```{r}
 source(here::here("advancement_presentation/tables/summary_stats_university.R"))
 ```
+# Summary Statistics on Universities
+
+```{r}
+summary_stats_university %>% 
+  kable_styling(bootstrap_options = c("bordered")) %>% 
+  add_indent(c(2:6)) %>% 
+  add_indent(c(3:6))
+```
+---
 
 # The Pathway to a Moratorium
 
-* Starts with triggering event $\rightarrow$ announcement of moratorium $\rightarrow$ end date
-* Small delay between first and second 
-* Announcement can be from one of two sources of jurisdiction
+<font color="brown sand">Triggering Event</font> $\rightarrow$ <font color="darkgreen">Announcement/Implementation of Moratorium</font> $\rightarrow$ <font color="red">End Date</font>.
+* Small delay between triggering event and implementation.
+* Announcement/Enforcement can be from one of two sources of jurisdiction:
   * University Administration 
-  * IFC council = students from fraternities at university
+  * IFC council $\rightarrow$  students from fraternities at university
   
-
 ```{r}
 moratorium_summary %>% 
   kable_styling()
+```
+
+* Academic-calendar days vs. calendar days.
+---
+```{r}
+source(here::here("figures/closure_distribution.R"))
+```
+
+# Distribution of Moratoriums
+```{r, fig.cap = "Distribution of Moratoriums Across the Sample Period for all Universities", fig.align = "center",fig.width= 13, fig.height= 7, out.width= "100%"}
+closure_distribution
 ```
 
 ---
@@ -161,30 +180,6 @@ source(here::here(paste0("figures/triggerplot_bylength.R")))
 ```{r, echo=FALSE, fig.align = "center",fig.width= 44, fig.height= 36, out.width= "95%"}
 trigger_plot
 ```
----
-# Sample Construction
-
-## Criteria:
-* Must have some media coverage (web-searchable).
-* Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can have more).
-* Must have Daily Crime Logs in readable format.
-
-## Final Sample:
-* 38 universities with 45 moratoriums total (mean: 1.36, max = 3).
-  * Do not represent the universe of moratoriums (Google/Lexis Nexus/Documents).
-  * Some universities were left out (4 known).
-  
----
-# Summary Statistics on Universities
-
-
-```{r}
-summary_stats_university %>% 
-  kable_styling(bootstrap_options = c("bordered")) %>% 
-  add_indent(c(2:6)) %>% 
-  add_indent(c(3:6))
-```
-
 
 ---
 # Data Construction
@@ -197,15 +192,12 @@ knitr::include_graphics(here::here("advancement_presentation/figs/sample_crime_l
 ]
 
 .pull-right[
-### Benefits:
+### Construction + Benefits:
 * Incidence-level reports mandated by Federal government.
-* All reports
-* Caveat: Needs Harmonization
-
-### Construction:
+* All reports—caveat: needs harmonization.
 * Use unique university police-department Daily Crime Logs
 * Match on specific offenses using regular expressions
-* Merge with moratorium dates and IPEDs
+* Merge with moratorium dates (public records requests/news articles/fraternity advisers), IPEDS, and academic-calendars.
 ]
 
 ---
@@ -242,7 +234,7 @@ matching_table %>%
   * Incident Report 1: "Underage Possession of Liquor (1)"
   * Incident Report 2: "Consume Alcohol < Age 21"
 * Change to lowercase, match on word:
-  * Incident Report 1: "underage possession of <mark>liquor</mark> (1)"
+  * Incident Report 1: "<mark>underage</mark> possession of <mark>liquor</mark> (1)" $\rightarrow$ counts as 1.
   * Incident Report 2: "consume <mark>alcohol</mark> < age 21"
 
 
@@ -258,19 +250,20 @@ $$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \eps
 * $Moratorium_{u,t}$ is an indicator variable equal to one when university $u$ is undergoing a moratorium at time $t$.
 * $\gamma_u$ is a university-specific fixed effect.
 * $\mathbb{X}_t$ is a vector of time-varying controls that are shared across universities.
+* Standard errors clustered by university.
 
 *Intuition*: comparing academic-calendar days with a moratorium to academic calendar-days without a moratorium, while adjusting for fixed differences in universities and times of the year.
 ---
 # Assumptions:
 
-1. Moratoriums are as-good-as-random/common trends
-  * Multiple Event Event Study
+### 1. Moratoriums are as-good-as-random/common trends
+  * "Multiple Event" Event Study + Triggering Event Dates + Hank Nuwer Archives.
 
-2. Reporting does not change/Propensity to report does not change during moratorium.
+### 2. Reporting does not change/Propensity to report does not change during moratorium.
   * Indirect test: Changes between date reported and date occurred?
 
-3. No lasting effects of the moratorium
-  * 
+### 3. No lasting effects of the moratorium
+  * Event studies + Further Analysis + Presence of Multiple Moratoriums.
 
 
 ---
@@ -290,40 +283,55 @@ es_alc_14_g
 es_sex_14_g
 ```
 ---
-# Changes in Reporting:
+# Assumption 2: No Changes in Reporting
 ```{r}
 source(here::here(paste0("advancement_presentation/tables/regressions_reporting.R")))
 ```
+.left-column[
 <br>
+* <font color="blue">RHS</font>: Proportion of offenses with lag.
+* <font color="blue">Lag Definition:</font> Date reported minus the date occurred.
+]
+
+.right-column[
 ```{r}
 ## reporting_table
 reporting_table_alc
 ```
+]
 ---
-# Changes in Reporting Continued:
+# Assumption 2: No Changes in Reporting
+.left-column[
 <br>
+* <font color="blue">RHS</font>: Proportion of offenses with lag.
+* <font color="blue">Lag Definition:</font> Date reported minus the date occurred.
+]
+.right-column[
 ```{r}
 reporting_table_sex
 ```
+]
 
 ---
-# Assumption 3:
+# Assumption 3: No Lasting Effects
+<br>
+* Presence of multiple moratoriums within a university.
 
-* Event study gives preliminary evidence, but stay tuned for more results.
+* Event study gives preliminary evidence, but further evidence shown later.
 
-* The no-lasting effects allows for the criticism of DID estimator from Andrew Goodman Bacon
+* Gives value to sample $\rightarrow$ universities that have been already treated are good counterfactuals. 
 
 ---
 # Main Results:
 
 ### Alcohol Offenses
-* Large decreases in reports of alcohol offenses during moratoriums. 
+* Large decreases in reports of alcohol offenses during moratoriums (<font color="blue">27%</font>). 
   * Driven by the weekends (Friday-Sunday).
   * Transient effects.
 
 ### Sexual Assaults
 * Weaker evidence of decreases in sexual assault
-  * Large decreases, only 10% significance on weekends only.
+  * Large decreases (<font color="blue">26%</font>) of 10% significance on weekends only.
   * Likely lacking power.
 
 ---
@@ -331,14 +339,14 @@ reporting_table_sex
 source(paste0(here::here("advancement_presentation/tables/regressions_main.R")))
 ```
 
-# Alcohol Offenses:
+# Alcohol Offenses: Main Results
 
 ```{r, fig.height=7}
 main_table_alc
 ```
 
 ---
-# Alcohol: Weekend vs. Weekday
+# Alcohol Offenses: Weekend vs. Weekday
 
 ```{r}
 weekend_table_alc
@@ -350,14 +358,14 @@ weekend_table_alc
 source(paste0(here::here("advancement_presentation/figs/week_before_after.R")))
 ```
 
-# Transient Effects:
+# Alcohol Offenses: Transient Effects
 
 ```{r}
 week_before_after_graph_alc
 ```
 
 ---
-# Sexual Assaults:
+# Sexual Assaults: Main Results
 ```{r}
 main_table_sex
 ```
@@ -370,28 +378,58 @@ weekend_table_sex
 ```
 
 ---
-# Transcient Effects:
+# Sexual Assaults: Transcient Effects
 
 ```{r}
 week_before_after_graph_sex
 ```
 
 ---
+# Robustness:
+
+### Poisson Estimation:
+
+* Suitable for count-data that is non-zero.
+* Results similar $\rightarrow$ 30 and 31 percent average reductions for alcohol offenses and sexual assaults on the weekends.
+
+### Leave-one-out Estimation
+
+* Estimation by omitting each university $\rightarrow$ no one university is driving results.
+* Results consistent with each university being omitted. 
+
+---
+# Robustness Continued
+
+### TWFE Literature
+
+* Several papers have shown issues with DID in TWFE models with heterogeneous effects ([Chaismartin and D’Haultfœuille 2020](https://www.aeaweb.org/articles?id=10.1257/aer.20181169); [Sun and Abraham 2021](https://www.sciencedirect.com/science/article/abs/pii/S030440762030378X); [Athey and Imbens 2022](https://www.sciencedirect.com/science/article/abs/pii/S0304407621000488))
+* Changing model to TWFE with **group = university** and **time = day-by-month-by-year** gives 0 negative weights and consistent results.
+
+### Inclusion of Never-Treated
+
+* Colleges with the Best Greek Life list on niche.com. 
+  * Selected if top 50 school. 
+  * 17 already in sample.
+  * 14 of remaining 33 universities able to provide Daily Crime Logs. 
+* Adds a true control group + increases power $\rightarrow$ consistent results.
+
+---
 # Potential Mechanism
 
 ## Is the moratorium displacing crime?
 
-* Difficult to answer - there does not exist a perfect data source
-  * National Incident Based Reporting System (NIBRS) $\rightarrow$
-  * Uniform Crime Reporting System (UCR) 
+* Difficult to answer $\rightarrow$ there does not exist a perfect data source.
+  * National Incident Based Reporting System (NIBRS) $\rightarrow$ only 36% coverage.
+  * Uniform Crime Reporting System (UCR) $\rightarrow$ aggregated to month + inconsistent reporting.
 
 ## Indirect Test:
 
 * Use the Campus Safety and Security Data (CSS)
-  * Downfalls: Aggregated to calendar year, not 1-1 match with Daily Crime Logs.
-  * Benefits: Contains good location data: on-campus/off-campus and 
+  * Downfalls: Aggregated to calendar year, not 1-1 match with Daily Crime Logs. Treatment defined as fraction of calendar-year treated.
+  * Outcome is number of offenses per calendar-day.
+  * Benefits: Contains good location data: on-campus/off-campus + residence halls information.
 
-This is **not** causal! 
+<font color="red">This is not causal, only speculative!</font> 
 
 ---
 # Potential Mechanism: Results
@@ -403,25 +441,7 @@ source("advancement_presentation/tables/regressions_clery_dcl.R")
 clery_compare
 ```
 
----
-# Robustness:
 
-1. Poisson Estimation:
-
-* Helps with count-data. Results similar—30 and 31 percent average reductions for alcohol offenses and sexual assaults on the weekends.
-
-2. Leave-one-out Estimation
-
-* Is one university driving these results?
-
-3. TWFE Literature
-
-* Several papers have shown issues with DID in TWFE models with heterogeneous effects
-* Changing model to TWFE with **group = university** and **time = day-by-month-by-year** gives 0 negative weights and consistent results.
-
-4. Inclusion of Never-Treated
-
-* Results are similar
 
 ---
 # Heterogeneity:
@@ -456,7 +476,7 @@ trigger_reg_graph
 source(paste0(here::here("figures/treatment_passing.R")))
 ```
 
-# How long until a Moratorium is Effective?
+# How long until a moratorium is effective?
 
 ```{r, echo=FALSE, fig.align = "center", fig.width= 10, fig.cap="How Moratoriums Effect Offenses by Each Week of the Moratorium"}
 treatment_passing
@@ -467,7 +487,7 @@ treatment_passing
 source(paste0(here::here("advancement_presentation/tables/regressions_quantiles.R")))
 ```
 
-# How long until a Moratorium is Effective?
+# How long until a moratorium is effective?
 
 ```{r}
 quantile_table
@@ -495,14 +515,47 @@ ifc_uni_sex
 
 ### Main Takeaways:
 * First study to estimate the causal effects of fraternity moratoriums.
-  * Find 27% decrease in alcohol offenses $\rightarrow$ effects are transient.
-  * Find weaker evidence of decreases in reports of sexual assaults  (10% significance), although large magnitude
-  (26%) on weekends.
+  * Find <font color="blue">27%</font> decrease in alcohol offenses $\rightarrow$ effects are transient.
+  * Find weaker evidence of decreases in reports of sexual assaults (10% significance), although large magnitude
+  (<font color="blue">26%</font>) on weekends.
   * Evidence of stronger effects with university enforcement/longer length moratoriums.
-* Construct a novel dataset 
-  * Many advantages over typically used data such as NIBRS/UCR
+  * Possible mechanism is displacement of crime to safer areas (e.g., residence halls).
+* I construct a novel dataset. 
+  * Mitigates issued with commonly used data such as NIBRS/UCR.
+  * Able to directly assess *university* crime.
+* Potential research $\rightarrow$ deferred recruitment/barring of singular fraternities.
+* This study does not advocate for removal of fraternities.
   
 ---
-# Other Projects
+# Gunshot Violence and Birth Outcomes
+
+### Gunshot Violence and Birth Outcomes with Anna Jaskiewicz
+* <font color="blue">Motivation</font>: Maternal stress during gestation can have negative effects such as pre-term delivery and low birth weight ([Aizer et. al. 2015](https://www.nber.org/system/files/working_papers/w18422/w18422.pdf))
+  * Fear of victim $\rightarrow$ stress and hearing gunshots $\rightarrow$ fear ([Robinson and Keithley 2000](https://www.researchgate.net/publication/248978393_The_impacts_of_crime_on_health_and_health_services_A_literature_review))
+* <font color="blue">Question</font>: How does exposure to gunshot violence affect birth outcomes?
+* <font color="blue">Data</font>: 
+  * Shotspotter: uses microphones to identify exact location of gunshots.
+  * Illinois Birth Data: Contains mother characteristics + home address
+* <font color="blue">Main Idea</font>: Match mothers to exposure of gunshot violence and compare birth outcomes from mothers on one street who received more exposure to those on a street slightly further away that did not receive as much exposure.
 
 
+---
+# Police Shifts and Use of Force 
+
+### Police Shifts and Use of Force with Toshio Ferrazares
+
+* <font color="blue">Motivation</font>: Previous work has shown how shift length can affect performance ([Brachet et. al 2012](https://repository.upenn.edu/hcmg_papers/67/)).
+* <font color="blue">Question</font>: How does length of police shift affect police use-of-force?
+  * Variation: 12 hour shifts vs. 8 hour shifts.
+  * Variation: Multiple shifts in a row (e.g., 3 days) vs. fewer shifts in a row (2 days).
+  * Setting: Chicago Police Department + Louisville Metro Police + LAPD (pending decision)
+* <font color="blue">Data</font>: Universe of police shift lengths beginning in 2014 from 3 large police departments in addition to use-of-force reports.
+  * Detailed use-of-force incidents allows for positional analysis.
+  
+---
+# Example of Use of Force Report
+
+```{r, fig.align = "center" ,out.width= "450px"}
+
+knitr::include_graphics(here::here("advancement_presentation/figs/uof_2019_3.png"))
+```
