@@ -23,7 +23,7 @@ editor_options:
 }
 </style>
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
+options(htmltools.dir.version = FALSE,htmltools.preserve.raw = FALSE)
 library(knitr)
 library(tidyverse)
 library(kableExtra)
@@ -398,11 +398,11 @@ week_before_after_graph_sex
 * Results consistent with each university being omitted. 
 
 ---
-# Robustness Continued
+# Robustness:
 
 ### TWFE Literature
 
-* Several papers have shown issues with DID in TWFE models with heterogeneous effects ([Chaismartin and D’Haultfœuille 2020](https://www.aeaweb.org/articles?id=10.1257/aer.20181169); [Sun and Abraham 2021](https://www.sciencedirect.com/science/article/abs/pii/S030440762030378X); [Athey and Imbens 2022](https://www.sciencedirect.com/science/article/abs/pii/S0304407621000488))
+* Several papers have shown issues with DID in TWFE models with heterogeneous effects ([Chaismartin and D’Haultfœuille 2020](https://www.aeaweb.org/articles?id=10.1257/aer.20181169); [Sun and Abraham 2021](https://www.sciencedirect.com/science/article/abs/pii/S030440762030378X); [Athey and Imbens 2022](https://www.sciencedirect.com/science/article/abs/pii/S0304407621000488)).
 * Changing model to TWFE with **group = university** and **time = day-by-month-by-year** gives 0 negative weights and consistent results.
 
 ### Inclusion of Never-Treated
@@ -518,11 +518,9 @@ ifc_uni_sex
   * Find <font color="blue">27%</font> decrease in alcohol offenses $\rightarrow$ effects are transient.
   * Find weaker evidence of decreases in reports of sexual assaults (10% significance), although large magnitude
   (<font color="blue">26%</font>) on weekends.
-  * Evidence of stronger effects with university enforcement/longer length moratoriums.
   * Possible mechanism is displacement of crime to safer areas (e.g., residence halls).
 * I construct a novel dataset. 
   * Mitigates issued with commonly used data such as NIBRS/UCR.
-  * Able to directly assess *university* crime.
 * Potential research $\rightarrow$ deferred recruitment/barring of singular fraternities.
 * This study does not advocate for removal of fraternities.
   
@@ -537,7 +535,6 @@ ifc_uni_sex
   * Shotspotter: uses microphones to identify exact location of gunshots.
   * Illinois Birth Data: Contains mother characteristics + home address
 * <font color="blue">Main Idea</font>: Match mothers to exposure of gunshot violence and compare birth outcomes from mothers on one street who received more exposure to those on a street slightly further away that did not receive as much exposure.
-
 
 ---
 # Police Shifts and Use of Force 
