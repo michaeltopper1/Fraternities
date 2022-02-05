@@ -1,0 +1,162 @@
+---
+title: "presentation_notes"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Slide 2: Background
+
+-   Over 800 universities .
+
+-   Dated back to as far as 1856 such as sigma alpha episilon.
+
+-   Moreoever, Gallup Survey: well-being like a greater sense of purpose and community and strong relationships with friends. Redo their college experience.
+
+-   We can think of movies like animal house or even just walking through Isla Vista where houses are setting couches on fire. The literature has documented much of this behavior which includes higher levels of binge drinking and college partying than their peers. Furthermore, we also know that fraternities are generally a mix of upper and lower classmen. Because of these we have kids of ages 17 to 22 interacting with eachother and hence, this provides access to alcohol for underage drinkers.
+
+-   So what does this all mean? Well this means that fraternities are a large source of partying and underage drinking for colleges. But in the 2010s a new policy became fashionable which are called moratoriums. These moratoriums are campus-wide bans of fraternity social events with alcohol. The goal of these were to change behavior and give the fraternities time to re-evaluate and think about what they did. So the question is how do these moratoriums affect alcohol offenses and sexual assaults.
+
+### Possible Q's
+
+Mara - one university, alumni survey - use the presence of theme houses and non-greek social houses as an instrument for membership
+
+DiSimeone - uses survey data and also only controls for variables - not very causal
+
+Even and Smith - find that membership causes students to select into easier courses
+
+# Slide 3
+
+-   Minimum on specific type of fraternity
+
+-   Describe IFC fraternities
+
+    -   white, high income, social fraternities - differ from others
+
+    -   can be up to 10% or as small as below 1%
+
+-   since 2010 at least 50 of these documented -\> didn't exist much before
+
+-   Describe the IFC Council
+
+# Slide 4: How Might...
+
+-   Theoretically ambiguous
+
+-   mix of students
+
+-   explain the study- football game variation increases in rape and alcohol
+
+-   explain study - zero tolerance laws
+
+-   fraternities going rough
+
+-   release the hounds -\> similar to divorce
+
+# Slide 5: Research Question
+
+-   Brief overview of the question: how does restricting one main (large) source of partying affect partying behavior and subsequent consequences
+
+-   Brief overview of the data - strengths (can see all reports to or from police for alcohol, only university crime, by-law mandated)
+
+-   cointoss will be these triggering events in which normal behavior went too far
+
+# Slide 6: Contribution
+
+-   first study - moratoriums haven't been looked at because difficult (data restrictions, crime report harmonization, schools seem rather ashamed)
+
+-   disemon/routon use either self reported survey data or focus on one school, while the working paper uses prop of fraternities and can't precisely estimate
+
+# Sample Construction:
+
+-   some campuses restrict all fraternities + sororities
+
+-   Penn state
+
+# Location:
+
+-   one of the worries we have in experiments/research is how generalizable is something? one of the strengths of this study
+
+-   Possible Q: does represent all the sample: 33/38 - only one has greater than 10%, average is about 5%
+
+# Summary Stats
+
+-   low amounts of white students are florida international, UC berkeley, SDSU
+
+# The pathway
+
+-   small delay: 14/16 of the ones i have exact dates for, 3 days or less (usually over the weekend)
+
+-   academic calendar days - days in which school is in session (first day of sem - final grade deadline) plus or minus 7
+
+# Distribution
+
+-   academic vs. calendar
+
+# Data Construction
+
+-   most come in in pdf, some in excel.
+
+-   certain things that must be in these - although information can be missing quite frequently
+
+-   no national incidence-level university crime database
+
+-   stress reports to the police
+
+-   individually look at crime reports, sort them, and then find the words that match a certain offense
+
+-   no one cares but..actually messaged some fraternity members on facebook/email.
+
+# Comparison of Data
+
+-   UCR + NIBRS are FBI and voluntary
+
+# Empirical Strategy
+
+-   University fixed effect - differences between university partying in general/differences in policing between departments
+
+-   time controls - day of week, semester, holidays, academic year
+
+-   preffered specification is going to slightly alter with university by academic year
+
+# Assumptions
+
+-   14/16
+
+# Event Study
+
+-   Define the event study a little differently - non-staggered
+
+-   14 day periods instead of 7 - there is about .5 alcohol offenses per day so we can think of this as approximately 7 or so offenses
+
+-   F test gives a p-value of around .30 or so
+
+# Main Results
+
+-   this is robust to numerous specifications/robustness checks/sensitivity tests as will be shown later
+
+-   results align with what we'd expect given we see decreases
+
+# Alcohol Offenses
+
+-   column 1 baseline, 2 is preferred. explain the different types of fixed effects
+
+-   explain the means of weekends/weekdays
+
+# Robustness
+
+-   poisson gives me larger results - want to be more conservative
+
+-   model is not a standard TWFE model. Treatment goes in and out + non-staggered. Can only estimate weights, not use new estimators. sign reversal
+
+# Potential Mechanism:
+
+-   NIBRS does not have all reports of alcohol arrests. very few universities are consistently reporting
+
+-   how the project first started with UCR
+
+-   
+
+# 
