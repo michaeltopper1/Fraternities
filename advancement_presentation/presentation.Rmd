@@ -14,7 +14,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 <style type="text/css">
 .remark-slide-content {
@@ -35,7 +35,7 @@ opts_chunk$set(
   fig.asp = 9/16,
   out.width = "95%",
   dpi= 300,
-  cache=F, 
+  cache=T, 
   warning=FALSE, message=FALSE,
   echo=FALSE
   )
@@ -75,7 +75,6 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 # How might a moratorium affect behavior?
 .pull-left[
 ### Moratoriums may be beneficial:
-* Fraternities are a source of alcohol for underage drinking ([Armstrong, Hamilton, and Sweeney 2006](https://academic.oup.com/socpro/article-abstract/53/4/483/1711176?redirectedFrom=fulltext))
 * College partying leads to more rape and alcohol ([Lindo, Siminski and Swensen 2018](https://www.aeaweb.org/articles?id=10.1257/app.20160031))
 * Restricting alcohol + higher penalty leads to less drinking ([Liang and Huang 2008](https://onlinelibrary.wiley.com/doi/abs/10.1002/hec.1321))
 * Alcohol increases mortality, poor academics, and crime. ([Carpenter and Dobkin 2009](https://www.aeaweb.org/articles?id=10.1257/app.1.1.164); [Carrell et. al. 2011](https://www.sciencedirect.com/science/article/abs/pii/S0047272710001143); [Ha and Smith 2019](https://www.proquest.com/econlit/docview/2301876286/BCBDC18DDCE14ACCPQ/7))
@@ -105,7 +104,7 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 * First study to evaluate moratoriums. 
   * Key potential policy lever to reduce partying/sexual assaults. 
 * Novel data constructed. 
-  * Mitigates the shortcomings of other fraternity works using Campus Safety Security Data ([Raghav and Diette 2021](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3908875); [DeSimone 2007](https://www.sciencedirect.com/science/article/abs/pii/S0167629607000069); [Routon and Walker 2014](https://www.sciencedirect.com/science/article/abs/pii/S2214804314000147)).
+  * Mitigates the shortcomings of other fraternity works using Campus Safety Security Data + survey data ([Raghav and Diette 2021](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3908875); [DeSimone 2007](https://www.sciencedirect.com/science/article/abs/pii/S0167629607000069); [Routon and Walker 2014](https://www.sciencedirect.com/science/article/abs/pii/S2214804314000147)).
 * Further the college partying literature (e.g., [Lindo, Siminski and Swensen 2018](https://www.aeaweb.org/articles?id=10.1257/app.20160031)).
   * Fraternities are a major partying source at universities $\rightarrow$ provides evidence what their impact on partying is.
   * Represent decrease in partying $\rightarrow$ reason to expect asymmetries ([Cunningham and Shah 2018](file:///Users/michaeltopper/Zotero/storage/KUI5MLJN/4756165.html))
@@ -115,7 +114,7 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 
 ## Criteria:
 * Must have some media coverage (web-searchable by Google/Lexis-Nexis).
-* Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can have more).
+* Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can be more extensive).
 * Must have Daily Crime Logs in readable format.
 * Moratorium must be in sample period of <font color="blue">2014-2019</font> $\rightarrow$ Daily Crime Log archive length + avoid pandemic.
 
@@ -167,7 +166,7 @@ source(here::here("figures/closure_distribution.R"))
 ```
 
 # Distribution of Moratoriums
-```{r, fig.cap = "Distribution of Moratoriums Across the Sample Period for all Universities", fig.align = "center",fig.width= 13, fig.height= 7, out.width= "100%"}
+```{r, fig.align = "center",fig.width= 13, fig.height= 7, out.width= "90%"}
 closure_distribution
 ```
 
@@ -177,7 +176,7 @@ closure_distribution
 source(here::here(paste0("figures/triggerplot_bylength.R")))
 ```
 
-```{r, echo=FALSE, fig.align = "center",fig.width= 44, fig.height= 36, out.width= "95%"}
+```{r, echo=FALSE, fig.align = "center",fig.width= 44, fig.height= 36}
 trigger_plot
 ```
 
@@ -185,12 +184,11 @@ trigger_plot
 # Data Construction
 
 .pull-left[
-```{r, fig.align = "center" ,out.width= "80%"}
-
-knitr::include_graphics(here::here("advancement_presentation/figs/sample_crime_log.png"))
+```{r, out.width = "80%"}
+knitr::include_graphics("/Users/michaeltopper/Desktop/fraternities/advancement_presentation/libs/img/sample_crime_log.png")
 ```
-]
 
+]
 .pull-right[
 ### Construction + Benefits:
 * Incidence-level reports mandated by Federal government.
@@ -425,8 +423,7 @@ week_before_after_graph_sex
 ## Indirect Test:
 
 * Use the Campus Safety and Security Data (CSS)
-  * Downfalls: Aggregated to calendar year, not 1-1 match with Daily Crime Logs. Treatment defined as fraction of calendar-year treated.
-  * Outcome is number of offenses per calendar-day.
+  * Downfalls: Calendar year, not 1-1 match, treatment defined differently.
   * Benefits: Contains good location data: on-campus/off-campus + residence halls information.
 
 <font color="red">This is not causal, only speculative!</font> 
@@ -472,7 +469,7 @@ trigger_reg_graph
 ```
 
 ---
-```{r}
+```{r, out.width = "90%"}
 source(paste0(here::here("figures/treatment_passing.R")))
 ```
 
@@ -552,7 +549,7 @@ ifc_uni_sex
 ---
 # Example of Use of Force Report
 
-```{r, fig.align = "center" ,out.width= "450px"}
-
-knitr::include_graphics(here::here("advancement_presentation/figs/uof_2019_3.png"))
+```{r, out.width = "40%"}
+knitr::include_graphics("/Users/michaeltopper/Desktop/fraternities/advancement_presentation/libs/img/uof_2019_3.png")
 ```
+
