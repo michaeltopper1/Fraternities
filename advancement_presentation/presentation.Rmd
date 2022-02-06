@@ -46,13 +46,19 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 
 ## Benefits of Fraternities:
   - Community service, volunteering, graduation rates, and future income ([Mara, Davis, and Schmidt 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/coep.12249); [Hayek et. al. 2002](https://scholarworks.iu.edu/dspace/handle/2022/24308); [Asel, Seifert, Pascarella 2009](https://scholarworks.wm.edu/oracle/vol4/iss2/2/))
-  
+
+--
+
 ## Downsides of Fraternity Membership:
   - Risky Behavior ([Hechinger 2017](https://www.amazon.com/True-Gentlemen-Broken-America%C2%92s-Fraternities/dp/1610396820); [Seabrook 2019](https://www.tandfonline.com/doi/full/10.1080/07448481.2019.1679153); [Minow and Einolf 2009](https://journals.sagepub.com/doi/10.1177/1077801209334472))
   - Binge drinking and college partying ([DeSimone 2007](https://www.sciencedirect.com/science/article/abs/pii/S0167629607000069); [Routon and Walker 2014](https://www.sciencedirect.com/science/article/abs/pii/S2214804314000147))
   - Access to alcohol for lower classmen ([Armstrong, Hamilton, and Sweeney 2006](https://academic.oup.com/socpro/article-abstract/53/4/483/1711176?redirectedFrom=fulltext))
 
+--
+
 Recently, campus administrators began to use temporary campus-wide bans of fraternity social events with alcohol (moratoriums) to change behavior.
+
+--
 
 <font color="blue">**Question**</font>: How do these moratoriums affect alcohol offenses and sexual assaults?
 
@@ -60,11 +66,15 @@ Recently, campus administrators began to use temporary campus-wide bans of frate
 
 # Moratoriums
 
+--
+
 ## Moratorium Definition:
 
 A temporary <font color="blue">*campus-wide*</font> halt on fraternity social events with alcohol.
   - Applies to Interfraternity Council fraternities (IFC) $\rightarrow$ primary type of social fraternity.
   - Popularized in the mid-2010s.
+
+--
 
 ## Sources of Enforcement:
   - University Administration <font color="blue">(62%)</font>
@@ -73,12 +83,17 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 ---
 
 # How might a moratorium affect behavior?
+
+--
+
 .pull-left[
 ### Moratoriums may be beneficial:
 * College partying leads to more rape and alcohol ([Lindo, Siminski and Swensen 2018](https://www.aeaweb.org/articles?id=10.1257/app.20160031))
 * Restricting alcohol + higher penalty leads to less drinking ([Liang and Huang 2008](https://onlinelibrary.wiley.com/doi/abs/10.1002/hec.1321))
 * Alcohol increases mortality, poor academics, and crime. ([Carpenter and Dobkin 2009](https://www.aeaweb.org/articles?id=10.1257/app.1.1.164); [Carrell et. al. 2011](https://www.sciencedirect.com/science/article/abs/pii/S0047272710001143); [Ha and Smith 2019](https://www.proquest.com/econlit/docview/2301876286/BCBDC18DDCE14ACCPQ/7))
 ]
+
+--
 
 .pull-right[
 ### Moratoriums may be detrimental:
@@ -112,11 +127,15 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 ---
 # Sample Construction
 
+--
+
 ## Criteria:
 * Must have some media coverage (web-searchable by Google/Lexis-Nexis).
 * Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can be more extensive).
 * Must have Daily Crime Logs in readable format.
 * Moratorium must be in sample period of <font color="blue">2014-2019</font> $\rightarrow$ Daily Crime Log archive length + avoid pandemic.
+
+--
 
 ## Final Sample:
 * 38 universities with 45 moratoriums total (<font color="blue">Mean: 1.36</font>; <font color="blue">Max = 3</font>).
@@ -153,7 +172,7 @@ summary_stats_university %>%
 * Announcement/Enforcement can be from one of two sources of jurisdiction:
   * University Administration 
   * IFC council $\rightarrow$  students from fraternities at university
-  
+
 ```{r}
 moratorium_summary %>% 
   kable_styling()
@@ -183,12 +202,17 @@ trigger_plot
 ---
 # Data Construction
 
+--
+
 .pull-left[
 ```{r, out.width = "80%"}
 knitr::include_graphics("/Users/michaeltopper/Desktop/fraternities/advancement_presentation/libs/img/sample_crime_log.png")
 ```
 
 ]
+
+--
+
 .pull-right[
 ### Construction + Benefits:
 * Incidence-level reports mandated by Federal government.
@@ -227,6 +251,7 @@ matching_table %>%
 
 
 --
+
 ### Example of the Matching Process:
 * East Carolina Crime Logs:
   * Incident Report 1: "Underage Possession of Liquor (1)"
@@ -254,11 +279,17 @@ $$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \eps
 ---
 # Assumptions:
 
-### 1. Moratoriums are as-good-as-random/common trends
+--
+
+### 1. Timing of moratoriums is as-good-as-random
   * "Multiple Event" Event Study + Triggering Event Dates + Hank Nuwer Archives.
 
-### 2. Reporting does not change/Propensity to report does not change during moratorium.
+--
+
+### 2. Reporting does not change
   * Indirect test: Changes between date reported and date occurred?
+
+--
 
 ### 3. No lasting effects of the moratorium
   * Event studies + Further Analysis + Presence of Multiple Moratoriums.
@@ -426,11 +457,13 @@ week_before_after_graph_sex
   * Downfalls: Calendar year, not 1-1 match, treatment defined differently.
   * Benefits: Contains good location data: on-campus/off-campus + residence halls information.
 
+--
+
 <font color="red">This is not causal, only speculative!</font> 
 
 ---
 # Potential Mechanism: Results
-```{r}
+```{r, cache= F}
 source("advancement_presentation/tables/regressions_clery_dcl.R")
 ```
 
@@ -526,12 +559,24 @@ ifc_uni_sex
 
 ### Gunshot Violence and Birth Outcomes with Anna Jaskiewicz
 * <font color="blue">Motivation</font>: Maternal stress during gestation can have negative effects such as pre-term delivery and low birth weight ([Aizer et. al. 2015](https://www.nber.org/system/files/working_papers/w18422/w18422.pdf))
-  * Fear of victim $\rightarrow$ stress and hearing gunshots $\rightarrow$ fear ([Robinson and Keithley 2000](https://www.researchgate.net/publication/248978393_The_impacts_of_crime_on_health_and_health_services_A_literature_review))
+  * Fear of being victim $\rightarrow$ stress. Hearing gunshots $\rightarrow$ fear ([Robinson and Keithley 2000](https://www.researchgate.net/publication/248978393_The_impacts_of_crime_on_health_and_health_services_A_literature_review))
 * <font color="blue">Question</font>: How does exposure to gunshot violence affect birth outcomes?
 * <font color="blue">Data</font>: 
-  * Shotspotter: uses microphones to identify exact location of gunshots.
+  * Shotspotter: uses microphones to identify exact location of gunshots. Rollout in 2017.
   * Illinois Birth Data: Contains mother characteristics + home address
 * <font color="blue">Main Idea</font>: Match mothers to exposure of gunshot violence and compare birth outcomes from mothers on one street who received more exposure to those on a street slightly further away that did not receive as much exposure.
+
+---
+```{r}
+source(paste0(here::here("advancement_presentation/figs/rollout.R")))
+```
+
+# District Rollouts:
+
+```{r}
+rollout_map
+```
+
 
 ---
 # Police Shifts and Use of Force 
