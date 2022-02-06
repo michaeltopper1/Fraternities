@@ -157,6 +157,44 @@ Even and Smith - find that membership causes students to select into easier cour
 
 -   how the project first started with UCR
 
--   
+-   explain the mechanism of how shifting from more dangerous areas to less dangerous.
+
+# Heterogeneity:
+
+-   remind of each trigger
+
+-   reasons to expect differences, some things are more salient than others
+
+-   length is important for policy implication/advice. administrators want to know
+
+-   oversight: also necessary for policy
+
+# Triggering Event:
+
+-   Caveat: sexual assaults have extremely low power here, so these should be taken with skepticism.
+
+-   identified off of a few schools and few instances
+
+-   shock mechanism of a death. added in schools
+
+# How long until a moratorium is effective:
+
+-   number of schools identified off of
+
+-   in a perfect world it would be to randomly assign multiple lengths to schools.
+
+-   33rd - 32 days, 66th 57,
+
+# Which enforcement?
+
+-   recall the differences between these two
+
+-   coefficient estimates are similar,
+
+# Gunshot Violence
+
+-   explain what happens during shotspotter
+
+-   data starts in 2017 with the rollout of shotspotter.
 
 # 
