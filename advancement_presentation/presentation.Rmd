@@ -72,7 +72,7 @@ Recently, campus administrators began to use temporary campus-wide bans of frate
 
 A temporary <font color="blue">*campus-wide*</font> halt on fraternity social events with alcohol.
   - Applies to Interfraternity Council fraternities (IFC) $\rightarrow$ primary type of social fraternity.
-  - Popularized in the mid-2010s.
+
 
 --
 
@@ -116,8 +116,8 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 
 ---
 # Contribution
+
 * First study to evaluate moratoriums. 
-  * Key potential policy lever to reduce partying/sexual assaults. 
 * Novel data constructed. 
   * Mitigates the shortcomings of other fraternity works using Campus Safety Security Data + survey data ([Raghav and Diette 2021](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3908875); [DeSimone 2007](https://www.sciencedirect.com/science/article/abs/pii/S0167629607000069); [Routon and Walker 2014](https://www.sciencedirect.com/science/article/abs/pii/S2214804314000147)).
 * Further the college partying literature (e.g., [Lindo, Siminski and Swensen 2018](https://www.aeaweb.org/articles?id=10.1257/app.20160031)).
@@ -132,14 +132,16 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 ## Criteria:
 * Must have some media coverage (web-searchable by Google/Lexis-Nexis).
 * Must have temporary campus-wide ban of alcohol from fraternity parties for IFC fraternities (can be more extensive).
-* Must have Daily Crime Logs in readable format.
 * Moratorium must be in sample period of <font color="blue">2014-2019</font> $\rightarrow$ Daily Crime Log archive length + avoid pandemic.
 
 --
 
 ## Final Sample:
 * 38 universities with 45 moratoriums total (<font color="blue">Mean: 1.36</font>; <font color="blue">Max = 3</font>).
-  * Do not represent the universe of moratoriums as there are 4 others known in this sample period that were left out.
+  * Large universities (<font color="blue">Enrollment Mean: 28k, Min: 3k, Max: 6K</font>)
+  * Differences in selectivity (<font color="blue">Graduation Rate Mean: 70, Min: 39, Max: 95</font>)
+  * Do not represent the universe of moratoriums.
+  
 
   
 ---
@@ -155,16 +157,6 @@ map_of_schools
 ```{r}
 source(here::here("advancement_presentation/tables/summary_stats_university.R"))
 ```
-# Summary Statistics on Universities
-
-```{r}
-summary_stats_university %>% 
-  kable_styling(bootstrap_options = c("bordered")) %>% 
-  add_indent(c(2:6)) %>% 
-  add_indent(c(3:6))
-```
----
-
 # The Pathway to a Moratorium
 
 <font color="brown sand">Triggering Event</font> $\rightarrow$ <font color="darkgreen">Announcement/Implementation of Moratorium</font> $\rightarrow$ <font color="red">End Date</font>.
@@ -223,17 +215,6 @@ knitr::include_graphics("/Users/michaeltopper/Desktop/fraternities/advancement_p
 ]
 
 ---
-```{r}
-source(paste0(here::here("advancement_presentation/tables/data_comparison.R")))
-```
-
-# Comparison of Data
-
-```{r}
-data_used_table
-```
-
----
 # Matching Process:
 
 ```{r}
@@ -245,8 +226,6 @@ source(paste0(here::here("Tables/matching_word_table.R")))
 matching_table %>% 
   gt() %>% 
   tab_header(title = "Words and Phrases used to Pattern Match")
-# kable(matching_table, booktabs = T, caption = "Words and Phrases used to Pattern Match") %>%
-#   kable_styling(full_width = F) 
 ```
 
 
@@ -282,7 +261,7 @@ $$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \eps
 --
 
 ### 1. Timing of moratoriums is as-good-as-random
-  * "Multiple Event" Event Study + Triggering Event Dates + Hank Nuwer Archives.
+  * "Multiple Event" Event Study 
 
 --
 
@@ -292,7 +271,7 @@ $$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \eps
 --
 
 ### 3. No lasting effects of the moratorium
-  * Event studies + Further Analysis + Presence of Multiple Moratoriums.
+  * Event studies + Further Analysis 
 
 
 ---
@@ -311,44 +290,7 @@ es_alc_14_g
 ```{r, echo=FALSE}
 es_sex_14_g
 ```
----
-# Assumption 2: No Changes in Reporting
-```{r}
-source(here::here(paste0("advancement_presentation/tables/regressions_reporting.R")))
-```
-.left-column[
-<br>
-* <font color="blue">RHS</font>: Proportion of offenses with lag.
-* <font color="blue">Lag Definition:</font> Date reported minus the date occurred.
-]
 
-.right-column[
-```{r}
-## reporting_table
-reporting_table_alc
-```
-]
----
-# Assumption 2: No Changes in Reporting
-.left-column[
-<br>
-* <font color="blue">RHS</font>: Proportion of offenses with lag.
-* <font color="blue">Lag Definition:</font> Date reported minus the date occurred.
-]
-.right-column[
-```{r}
-reporting_table_sex
-```
-]
-
----
-# Assumption 3: No Lasting Effects
-<br>
-* Presence of multiple moratoriums within a university.
-
-* Event study gives preliminary evidence, but further evidence shown later.
-
-* Gives value to sample $\rightarrow$ universities that have been already treated are good counterfactuals. 
 
 ---
 # Main Results:
@@ -363,19 +305,13 @@ reporting_table_sex
   * Large decreases (<font color="blue">26%</font>) of 10% significance on weekends only.
   * Likely lacking power.
 
+
 ---
+# Alcohol Offenses: Weekend vs. Weekdays
 ```{r}
 source(paste0(here::here("advancement_presentation/tables/regressions_main.R")))
-```
-
-# Alcohol Offenses: Main Results
-
-```{r, fig.height=7}
-main_table_alc
-```
-
----
 # Alcohol Offenses: Weekend vs. Weekday
+```
 
 ```{r}
 weekend_table_alc
@@ -391,12 +327,6 @@ source(paste0(here::here("advancement_presentation/figs/week_before_after.R")))
 
 ```{r}
 week_before_after_graph_alc
-```
-
----
-# Sexual Assaults: Main Results
-```{r}
-main_table_sex
 ```
 
 ---
@@ -416,46 +346,30 @@ week_before_after_graph_sex
 ---
 # Robustness:
 
-### Poisson Estimation:
-
-* Suitable for count-data that is non-zero.
-* Results similar $\rightarrow$ 30 and 31 percent average reductions for alcohol offenses and sexual assaults on the weekends.
+### Poisson Estimation
+* Good for count-data with non-negative outcomes.
 
 ### Leave-one-out Estimation
-
-* Estimation by omitting each university $\rightarrow$ no one university is driving results.
-* Results consistent with each university being omitted. 
-
----
-# Robustness:
+* Makes certain not one university is driving the results.
 
 ### TWFE Literature
-
-* Several papers have shown issues with DID in TWFE models with heterogeneous effects ([Chaismartin and D’Haultfœuille 2020](https://www.aeaweb.org/articles?id=10.1257/aer.20181169); [Sun and Abraham 2021](https://www.sciencedirect.com/science/article/abs/pii/S030440762030378X); [Athey and Imbens 2022](https://www.sciencedirect.com/science/article/abs/pii/S0304407621000488)).
-* Changing model to TWFE with **group = university** and **time = day-by-month-by-year** gives 0 negative weights and consistent results.
+* Heterogeneous treatment effects likely $\rightarrow$ estimate a new model that has 0 negative weights.
 
 ### Inclusion of Never-Treated
-
-* Colleges with the Best Greek Life list on niche.com. 
-  * Selected if top 50 school. 
-  * 17 already in sample.
-  * 14 of remaining 33 universities able to provide Daily Crime Logs. 
-* Adds a true control group + increases power $\rightarrow$ consistent results.
+* Read about in the paper!
 
 ---
 # Potential Mechanism
 
 ## Is the moratorium displacing crime?
 
-* Difficult to answer $\rightarrow$ there does not exist a perfect data source.
-  * National Incident Based Reporting System (NIBRS) $\rightarrow$ only 36% coverage.
-  * Uniform Crime Reporting System (UCR) $\rightarrow$ aggregated to month + inconsistent reporting.
+* Difficult to answer with the Daily Crime Logs.
 
 ## Indirect Test:
 
 * Use the Campus Safety and Security Data (CSS)
-  * Downfalls: Calendar year, not 1-1 match, treatment defined differently.
-  * Benefits: Contains good location data: on-campus/off-campus + residence halls information.
+  * Downfall: Calendar year aggregation.
+  * Benefits: Contains good location data: delineate between where on-campus crimes occur.
 
 --
 
@@ -502,17 +416,6 @@ trigger_reg_graph
 ```
 
 ---
-```{r, out.width = "90%"}
-source(paste0(here::here("figures/treatment_passing.R")))
-```
-
-# How long until a moratorium is effective?
-
-```{r, echo=FALSE, fig.align = "center", fig.width= 10, fig.cap="How Moratoriums Effect Offenses by Each Week of the Moratorium"}
-treatment_passing
-```
-
----
 ```{r}
 source(paste0(here::here("advancement_presentation/tables/regressions_quantiles.R")))
 ```
@@ -532,12 +435,6 @@ source(paste0(here::here("advancement_presentation/tables/regressions_ifc_uni.R"
 
 ```{r}
 ifc_uni_alc
-```
-
----
-# Sexual Assaults: Which enforcement is best?
-```{r}
-ifc_uni_sex
 ```
 
 ---
