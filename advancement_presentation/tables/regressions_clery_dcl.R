@@ -28,6 +28,7 @@ alc_clery <- map(alc_offenses, ~ifc::reghdfe(clery, ., explanatory_vars, fixed_e
 sex_clery <- map(sex_offenses, ~ifc::reghdfe(clery, ., explanatory_vars, fixed_effects, cluster = "university"))
 
 clery_compare <- ifc::main_table(alc_clery, last_panel = sex_clery) %>% 
+  slice(1:6) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(clery$alcohol_offense_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(clery$clery_alcohol_per25, na.rm = T)),
