@@ -50,7 +50,7 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 --
 
 ## Downsides of Fraternity Membership:
-  - Risky Behavior ([Hechinger 2017](https://www.amazon.com/True-Gentlemen-Broken-America%C2%92s-Fraternities/dp/1610396820); [Seabrook 2019](https://www.tandfonline.com/doi/full/10.1080/07448481.2019.1679153); [Minow and Einolf 2009](https://journals.sagepub.com/doi/10.1177/1077801209334472))
+  - Risky Behavior (e.g., hazing, sexual assault) ([Hechinger 2017](https://www.amazon.com/True-Gentlemen-Broken-America%C2%92s-Fraternities/dp/1610396820); [Seabrook 2019](https://www.tandfonline.com/doi/full/10.1080/07448481.2019.1679153); [Minow and Einolf 2009](https://journals.sagepub.com/doi/10.1177/1077801209334472))
   - Binge drinking and college partying ([DeSimone 2007](https://www.sciencedirect.com/science/article/abs/pii/S0167629607000069); [Routon and Walker 2014](https://www.sciencedirect.com/science/article/abs/pii/S2214804314000147))
   - Access to alcohol for lower classmen ([Armstrong, Hamilton, and Sweeney 2006](https://academic.oup.com/socpro/article-abstract/53/4/483/1711176?redirectedFrom=fulltext))
 
@@ -138,7 +138,7 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 
 ## Final Sample:
 * 38 universities with 45 moratoriums total (<font color="blue">Mean: 1.36</font>; <font color="blue">Max = 3</font>).
-  * Large universities (<font color="blue">Enrollment Mean: 28k, Min: 3k, Max: 6K</font>)
+  * Large universities (<font color="blue">Enrollment Mean: 28k, Min: 3k, Max: 60K</font>)
   * Differences in selectivity (<font color="blue">Graduation Rate Mean: 70, Min: 39, Max: 95</font>)
   * Do not represent the universe of moratoriums.
   
@@ -171,15 +171,6 @@ moratorium_summary %>%
 ```
 
 * Academic-calendar days vs. calendar days.
----
-```{r}
-source(here::here("figures/closure_distribution.R"))
-```
-
-# Distribution of Moratoriums
-```{r, fig.align = "center",fig.width= 13, fig.height= 7, out.width= "90%"}
-closure_distribution
-```
 
 ---
 # Triggering Events
@@ -256,6 +247,42 @@ $$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \eps
 
 *Intuition*: comparing academic-calendar days with a moratorium to academic calendar-days without a moratorium, while adjusting for fixed differences in universities and times of the year.
 ---
+# Main Results:
+
+### Alcohol Offenses
+* Large decreases in reports of alcohol offenses during moratoriums (<font color="blue">27%</font>). 
+  * Driven by the weekends (Friday-Sunday).
+  * Transient effects.
+
+### Sexual Assaults
+* Weaker evidence of decreases in sexual assault
+  * Large decreases (<font color="blue">26%</font>) of 10% significance on weekends only.
+  * Likely lacking power.
+
+
+
+---
+```{r}
+source(paste0(here::here("advancement_presentation/figs/week_before_after.R")))
+```
+
+# Alcohol Offenses: Main Results
+
+```{r}
+week_before_after_graph_alc
+```
+
+---
+```{r}
+source(paste0(here::here("advancement_presentation/tables/regressions_main.R")))
+```
+# Sexual Assaults: Weekend vs. Weekday
+
+```{r}
+weekend_table_sex
+```
+
+---
 # Assumptions:
 
 --
@@ -291,57 +318,6 @@ es_alc_14_g
 es_sex_14_g
 ```
 
-
----
-# Main Results:
-
-### Alcohol Offenses
-* Large decreases in reports of alcohol offenses during moratoriums (<font color="blue">27%</font>). 
-  * Driven by the weekends (Friday-Sunday).
-  * Transient effects.
-
-### Sexual Assaults
-* Weaker evidence of decreases in sexual assault
-  * Large decreases (<font color="blue">26%</font>) of 10% significance on weekends only.
-  * Likely lacking power.
-
-
----
-# Alcohol Offenses: Weekend vs. Weekdays
-```{r}
-source(paste0(here::here("advancement_presentation/tables/regressions_main.R")))
-# Alcohol Offenses: Weekend vs. Weekday
-```
-
-```{r}
-weekend_table_alc
-```
-
-
----
-```{r}
-source(paste0(here::here("advancement_presentation/figs/week_before_after.R")))
-```
-
-# Alcohol Offenses: Transient Effects
-
-```{r}
-week_before_after_graph_alc
-```
-
----
-# Sexual Assaults: Weekend vs. Weekday
-
-```{r}
-weekend_table_sex
-```
-
----
-# Sexual Assaults: Transcient Effects
-
-```{r}
-week_before_after_graph_sex
-```
 
 ---
 # Robustness:
@@ -386,7 +362,6 @@ clery_compare
 ```
 
 
-
 ---
 # Heterogeneity:
 
@@ -394,48 +369,17 @@ clery_compare
 
 * Behavior Violation
 * Sexual Assault
-* Fraternity-related Death
+* Fraternity-related Death $\rightarrow$ shows largest effects for decreases in alcohol.
 
 ### How long until a moratorium is effective? 
 
 * Diminishing returns?
+* Split into 3 quantiles: [0, 32 days], [33, 57 days], [58, 541 days].
 
 ### What type of oversight works best?
 
 * University vs. IFC Council 
-
----
-```{r}
-source(here::here(paste0("figures/heteroeffects_trigger.R")))
-```
-
-# Triggering Event:
-
-```{r, echo=FALSE, fig.width= 10}
-trigger_reg_graph
-```
-
----
-```{r}
-source(paste0(here::here("advancement_presentation/tables/regressions_quantiles.R")))
-```
-
-# How long until a moratorium is effective?
-
-```{r}
-quantile_table
-```
-
----
-```{r}
-source(paste0(here::here("advancement_presentation/tables/regressions_ifc_uni.R")))
-```
-
-# Alcohol Offenses: Which enforcement is best?
-
-```{r}
-ifc_uni_alc
-```
+* Evidence that university oversight is best, although possibly not enough power for this heterogeneity.
 
 ---
 # Conclusion
