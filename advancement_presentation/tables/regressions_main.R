@@ -107,8 +107,7 @@ weekend_table_sex <- ifc::main_table(last_panel = sex_weeksplit) %>%
   tab_header(title = "Effect of Moratoriums on Sexual Assaults by Weekend/Weekdays (OLS)") %>% 
   cols_label(term = " ", `Model 1` = "All Days", `Model 2` = "Weekends", `Model 3` = "Weekdays") %>% 
   tab_spanner(label = "Days of the Week" , columns =c(2:4)) %>% 
-  tab_source_note(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column `All Days' represents specification (2) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
-                       "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) %>% 
+  tab_source_note(list("+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001")) %>% 
   tab_options(
     table.width = pct(100)
   )

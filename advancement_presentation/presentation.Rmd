@@ -3,7 +3,7 @@ title: "The Effects of Fraternity Moratoriums on Alcohol Offenses and Sexual Ass
 subtitle: "Advancement to Candidacy"
 author: "Michael Topper"
 institute: "University of California, Santa Barbara"
-date: "`r Sys.Date()`"
+date: "2022-02-09"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts] 
@@ -122,8 +122,8 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
   * Mitigates the shortcomings of other fraternity works using Campus Safety Security Data + survey data ([Raghav and Diette 2021](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3908875); [DeSimone 2007](https://www.sciencedirect.com/science/article/abs/pii/S0167629607000069); [Routon and Walker 2014](https://www.sciencedirect.com/science/article/abs/pii/S2214804314000147)).
 * Further the college partying literature (e.g., [Lindo, Siminski and Swensen 2018](https://www.aeaweb.org/articles?id=10.1257/app.20160031)).
   * Fraternities are a major partying source at universities $\rightarrow$ provides evidence what their impact on partying is.
-  * Represent decrease in partying $\rightarrow$ reason to expect asymmetries ([Cunningham and Shah 2018](file:///Users/michaeltopper/Zotero/storage/KUI5MLJN/4756165.html))
   * Closely links <font color="blue">student</font> behavior to partying.
+  * Represent decrease in partying $\rightarrow$ reason to expect asymmetries ([Cunningham and Shah 2018](file:///Users/michaeltopper/Zotero/storage/KUI5MLJN/4756165.html))
 ---
 # Sample Construction
 
@@ -140,7 +140,7 @@ A temporary <font color="blue">*campus-wide*</font> halt on fraternity social ev
 * 38 universities with 45 moratoriums total (<font color="blue">Mean: 1.36</font>; <font color="blue">Max = 3</font>).
   * Large universities (<font color="blue">Enrollment Mean: 28k, Min: 3k, Max: 60K</font>)
   * Differences in selectivity (<font color="blue">Graduation Rate Mean: 70, Min: 39, Max: 95</font>)
-  * Do not represent the universe of moratoriums.
+* Does not represent the universe of moratoriums (4 known missing).
   
 
   
@@ -197,10 +197,10 @@ knitr::include_graphics("/Users/michaeltopper/Desktop/fraternities/advancement_p
 --
 
 .pull-right[
-### Construction + Benefits:
+### Benefits + Construction:
+* University police departments only.
 * Incidence-level reports mandated by Federal government.
 * All reports—caveat: needs harmonization.
-* Use unique university police-department Daily Crime Logs
 * Match on specific offenses using regular expressions
 * Merge with moratorium dates (public records requests/news articles/fraternity advisers), IPEDS, and academic-calendars.
 ]
@@ -235,7 +235,7 @@ matching_table %>%
 ---
 # Empirical Strategy
 
-### Baseline specification:
+### Baseline specification (OLS):
 
 $$Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda \mathbb{X}_{t} + \epsilon_{u,t}$$
 
@@ -292,13 +292,13 @@ weekend_table_sex
 
 --
 
-### 2. Reporting does not change
-  * Indirect test: Changes between date reported and date occurred?
+### 2. Reporting behavior does not change
+  * Indirect test: Changes in proportion of crimes reported with a lag?
 
 --
 
 ### 3. No lasting effects of the moratorium
-  * Event studies + Further Analysis 
+  * Event studies + Analysis shown
 
 
 ---
@@ -346,13 +346,16 @@ es_sex_14_g
 * Use the Campus Safety and Security Data (CSS)
   * Downfall: Calendar year aggregation.
   * Benefits: Contains good location data: delineate between where on-campus crimes occur.
+* Slightly change the treatment definition: fraction of days in year that contains moratorium.
 
 --
 
 <font color="red">This is not causal, only speculative!</font> 
 
 ---
+
 # Potential Mechanism: Results
+
 ```{r, cache= F}
 source("advancement_presentation/tables/regressions_clery_dcl.R")
 ```
@@ -369,17 +372,16 @@ clery_compare
 
 * Behavior Violation
 * Sexual Assault
-* Fraternity-related Death $\rightarrow$ shows largest effects for decreases in alcohol.
+* <font color="blue">Fraternity-related Death</font> $\rightarrow$ shows largest effects for decreases in alcohol.
 
 ### How long until a moratorium is effective? 
 
-* Diminishing returns?
-* Split into 3 quantiles: [0, 32 days], [33, 57 days], [58, 541 days].
+* Split into 3 quantiles: [0, 32 days], <font color="blue">[33, 57 days]</font>, [58, 541 days].
 
 ### What type of oversight works best?
 
-* University vs. IFC Council 
-* Evidence that university oversight is best, although possibly not enough power for this heterogeneity.
+* <font color="blue">University</font> vs. IFC Council 
+
 
 ---
 # Conclusion
@@ -400,10 +402,10 @@ clery_compare
 
 ### Gunshot Violence and Birth Outcomes with Anna Jaskiewicz
 * <font color="blue">Motivation</font>: Maternal stress during gestation can have negative effects such as pre-term delivery and low birth weight ([Aizer et. al. 2015](https://www.nber.org/system/files/working_papers/w18422/w18422.pdf))
-  * Fear of being victim $\rightarrow$ stress. Hearing gunshots $\rightarrow$ fear ([Robinson and Keithley 2000](https://www.researchgate.net/publication/248978393_The_impacts_of_crime_on_health_and_health_services_A_literature_review))
 * <font color="blue">Question</font>: How does exposure to gunshot violence affect birth outcomes?
+* <font color="blue">Setting</font>: Chicago, IL
 * <font color="blue">Data</font>: 
-  * Shotspotter: uses microphones to identify exact location of gunshots. Rollout in 2017.
+  * ShotSpotter: uses microphones to identify exact location of gunshots. Rollout in 2017.
   * Illinois Birth Data: Contains mother characteristics + home address
 * <font color="blue">Main Idea</font>: Match mothers to exposure of gunshot violence and compare birth outcomes from mothers on one street who received more exposure to those on a street slightly further away that did not receive as much exposure.
 
@@ -426,10 +428,10 @@ rollout_map
 
 * <font color="blue">Motivation</font>: Previous work has shown how shift length can affect performance ([Brachet et. al 2012](https://repository.upenn.edu/hcmg_papers/67/)).
 * <font color="blue">Question</font>: How does length of police shift affect police use-of-force?
+  * Setting: Chicago Police Department + Louisville Metro Police + LAPD (pending decision)
   * Variation: 12 hour shifts vs. 8 hour shifts.
   * Variation: Multiple shifts in a row (e.g., 3 days) vs. fewer shifts in a row (2 days).
-  * Setting: Chicago Police Department + Louisville Metro Police + LAPD (pending decision)
-* <font color="blue">Data</font>: Universe of police shift lengths beginning in 2014 from 3 large police departments in addition to use-of-force reports.
+* <font color="blue">Data</font>: Universe of police shift lengths beginning in 2014 in addition to use-of-force reports.
   * Detailed use-of-force incidents allows for positional analysis.
   
 ---
