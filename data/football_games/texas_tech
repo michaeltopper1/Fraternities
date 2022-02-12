@@ -1,0 +1,75 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Texas Tech,2016-09-29,4,,Kansas,W,42,55,76.4,548,8
+2,Texas Tech,2015-10-10,6,,Iowa State,W,39,56,69.6,515,6
+3,Texas Tech,2016-11-25,12,N,Baylor,W,30,47,63.8,586,6
+4,Texas Tech,2017-09-16,2,,Arizona State,W,37,50,74.0,543,6
+5,Texas Tech,2014-11-29,12,N,Baylor,L,31,57,54.4,609,6
+6,Texas Tech,2014-09-25,4,@,Oklahoma State,L,37,60,61.7,394,5
+7,Texas Tech,2016-09-17,3,,Louisiana Tech,W,26,36,72.2,470,5
+8,Texas Tech,2016-09-10,2,@,Arizona State,L,38,53,71.7,540,5
+9,Texas Tech,2016-09-03,1,,Stephen F. Austin,W,48,71,67.6,633,5
+10,Texas Tech,2016-10-22,7,,Oklahoma,L,52,88,59.1,734,5
+11,Texas Tech,2018-09-15,3,,Houston,W,43,59,72.9,605,5
+12,Texas Tech,2019-11-16,10,,Texas Christian,L,19,33,57.6,333,4
+13,Texas Tech,2015-12-29,13,N,Louisiana State,L,28,56,50.0,370,4
+14,Texas Tech,2017-10-14,6,@,West Virginia,L,24,39,61.5,323,4
+15,Texas Tech,2017-10-28,8,@,Oklahoma,L,22,36,61.1,322,4
+16,Texas Tech,2017-11-04,9,,Kansas State,L,34,53,64.2,405,4
+17,Texas Tech,2015-10-31,9,,Oklahoma State,L,38,55,69.1,480,4
+18,Texas Tech,2019-10-05,5,,Oklahoma State,W,26,44,59.1,424,4
+19,Texas Tech,2015-10-03,5,N,Baylor,L,40,65,61.5,530,4
+20,Texas Tech,2015-09-12,2,,Texas-El Paso,W,23,42,54.8,445,4
+21,Texas Tech,2015-09-05,1,,Sam Houston State,W,34,57,59.6,437,4
+22,Texas Tech,2017-09-02,1,,Eastern Washington,W,31,35,88.6,449,4
+23,Texas Tech,2014-11-22,11,@,Iowa State,W,23,35,65.7,328,4
+24,Texas Tech,2014-11-15,10,,Oklahoma,L,27,50,54.0,393,4
+25,Texas Tech,2018-11-03,9,,Oklahoma,L,30,44,68.2,366,4
+26,Texas Tech,2018-11-10,10,,Texas,L,38,48,79.2,454,4
+27,Texas Tech,2014-08-30,1,,Central Arkansas,W,39,53,73.6,452,4
+28,Texas Tech,2017-10-07,5,@,Kansas,W,22,27,81.5,290,3
+29,Texas Tech,2017-12-23,13,@,South Florida,L,32,59,54.2,416,3
+30,Texas Tech,2018-09-08,2,,Lamar,W,30,35,85.7,419,3
+31,Texas Tech,2014-09-06,2,@,Texas-El Paso,W,17,31,54.8,278,3
+32,Texas Tech,2018-10-20,7,,Kansas,W,39,49,79.6,441,3
+33,Texas Tech,2019-10-26,8,@,Kansas,L,23,34,67.6,271,3
+34,Texas Tech,2019-09-07,2,,Texas-El Paso,W,32,48,66.7,281,3
+35,Texas Tech,2016-11-05,9,,Texas,L,36,59,61.0,367,3
+36,Texas Tech,2014-09-13,3,,Arkansas,L,27,45,60.0,252,3
+37,Texas Tech,2016-11-12,10,@,Oklahoma State,L,35,52,67.3,376,3
+38,Texas Tech,2014-10-11,6,,West Virginia,L,28,46,60.9,348,3
+39,Texas Tech,2014-10-18,7,,Kansas,W,28,44,63.6,288,3
+40,Texas Tech,2014-10-25,8,@,Texas Christian,L,20,41,48.8,345,3
+41,Texas Tech,2015-11-14,11,,Kansas State,W,33,43,76.7,384,3
+42,Texas Tech,2015-11-07,10,@,West Virginia,L,22,36,61.1,199,3
+43,Texas Tech,2019-08-31,1,,Montana State,W,40,55,72.7,436,2
+44,Texas Tech,2015-09-26,4,,Texas Christian,L,25,45,55.6,392,2
+45,Texas Tech,2018-09-22,4,@,Oklahoma State,W,35,46,76.1,397,2
+46,Texas Tech,2015-09-19,3,@,Arkansas,W,27,31,87.1,315,2
+47,Texas Tech,2018-11-24,12,,Baylor,L,21,37,56.8,247,2
+48,Texas Tech,2018-09-29,5,,West Virginia,L,25,47,53.2,295,2
+49,Texas Tech,2014-10-04,5,@,Kansas State,L,27,50,54.0,301,2
+50,Texas Tech,2019-11-23,11,,Kansas State,L,29,50,58.0,368,2
+51,Texas Tech,2019-11-29,12,@,Texas,L,36,58,62.1,399,2
+52,Texas Tech,2016-10-29,8,@,Texas Christian,W,24,40,60.0,206,2
+53,Texas Tech,2017-11-24,12,@,Texas,W,20,45,44.4,333,2
+54,Texas Tech,2016-10-15,6,,West Virginia,L,32,50,64.0,345,2
+55,Texas Tech,2017-09-23,3,@,Houston,W,29,45,64.4,321,2
+56,Texas Tech,2017-11-11,10,@,Baylor,W,24,29,82.8,246,2
+57,Texas Tech,2016-10-08,5,@,Kansas State,L,46,63,73.0,529,2
+58,Texas Tech,2015-11-26,12,@,Texas,W,22,39,56.4,372,1
+59,Texas Tech,2016-11-19,11,@,Iowa State,L,19,39,48.7,222,1
+60,Texas Tech,2019-11-09,9,@,West Virginia,W,24,34,70.6,354,1
+61,Texas Tech,2019-10-19,7,,Iowa State,L,40,52,76.9,239,1
+62,Texas Tech,2019-10-12,6,@,Baylor,L,31,42,73.8,362,1
+63,Texas Tech,2017-09-30,4,,Oklahoma State,L,29,46,63.0,330,1
+64,Texas Tech,2019-09-14,3,@,Arizona,L,30,55,54.5,307,1
+65,Texas Tech,2015-10-17,7,@,Kansas,W,29,50,58.0,354,1
+66,Texas Tech,2018-10-27,8,@,Iowa State,L,33,57,57.9,333,1
+67,Texas Tech,2018-10-11,6,@,Texas Christian,W,15,27,55.6,202,1
+68,Texas Tech,2015-10-24,8,@,Oklahoma,L,29,45,64.4,253,1
+69,Texas Tech,2018-09-01,1,N,Mississippi,L,33,56,58.9,322,1
+70,Texas Tech,2019-09-28,4,@,Oklahoma,L,12,26,46.2,122,0
+71,Texas Tech,2017-10-21,7,,Iowa State,L,31,41,75.6,207,0
+72,Texas Tech,2018-11-17,11,@,Kansas State,L,19,30,63.3,150,0
+73,Texas Tech,2014-11-01,9,,Texas,L,28,47,59.6,225,0
+74,Texas Tech,2017-11-18,11,,Texas Christian,L,18,36,50.0,153,0

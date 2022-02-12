@@ -1,0 +1,78 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Texas,2016-09-10,2,,Texas-El Paso,W,23,28,82.1,245,4
+2,Texas,2018-11-10,10,@,Texas Tech,W,22,34,64.7,312,4
+3,Texas,2019-08-31,1,,Louisiana Tech,W,31,43,72.1,301,4
+4,Texas,2019-09-07,2,,Louisiana State,L,32,48,66.7,409,4
+5,Texas,2019-10-19,7,,Kansas,W,31,45,68.9,399,4
+6,Texas,2019-09-21,4,,Oklahoma State,W,20,28,71.4,281,4
+7,Texas,2019-12-31,13,N,Utah,W,13,19,68.4,207,3
+8,Texas,2016-10-08,5,N,Oklahoma,L,19,36,52.8,245,3
+9,Texas,2018-10-06,6,N,Oklahoma,W,26,37,70.3,324,3
+10,Texas,2018-11-03,9,,West Virginia,L,25,36,69.4,354,3
+11,Texas,2019-09-14,3,N,Rice,W,28,34,82.4,338,3
+12,Texas,2019-11-16,10,@,Iowa State,L,22,40,55.0,273,3
+13,Texas,2018-09-08,2,,Tulsa,W,21,27,77.8,237,2
+14,Texas,2019-10-05,5,@,West Virginia,W,18,33,54.5,211,2
+15,Texas,2016-10-15,6,,Iowa State,W,26,38,68.4,296,2
+16,Texas,2016-10-22,7,@,Kansas State,L,17,24,70.8,222,2
+17,Texas,2016-10-29,8,,Baylor,W,12,21,57.1,291,2
+18,Texas,2016-11-05,9,@,Texas Tech,W,20,40,50.0,244,2
+19,Texas,2018-09-22,4,,Texas Christian,W,22,32,68.8,255,2
+20,Texas,2018-09-15,3,,Southern California,W,16,34,47.1,234,2
+21,Texas,2017-09-02,1,,Maryland,L,34,53,64.2,375,2
+22,Texas,2014-09-13,3,N,UCLA,L,24,34,70.6,196,2
+23,Texas,2017-09-16,3,@,Southern California,L,21,40,52.5,298,2
+24,Texas,2018-09-01,1,N,Maryland,L,21,39,53.8,263,2
+25,Texas,2017-10-07,5,,Kansas State,W,30,51,58.8,380,2
+26,Texas,2017-12-27,13,@,Missouri,W,17,29,58.6,167,2
+27,Texas,2017-11-18,11,@,West Virginia,W,17,27,63.0,187,2
+28,Texas,2017-11-11,10,,Kansas,W,24,34,70.6,258,2
+29,Texas,2018-11-17,11,,Iowa State,W,22,25,88.0,226,2
+30,Texas,2014-11-15,11,@,Oklahoma State,W,24,33,72.7,305,2
+31,Texas,2019-10-26,8,@,Texas Christian,L,22,48,45.8,321,2
+32,Texas,2015-09-12,2,,Rice,W,5,10,50.0,128,2
+33,Texas,2018-12-01,13,N,Oklahoma,L,23,37,62.2,349,2
+34,Texas,2015-10-10,6,N,Oklahoma,W,9,12,75.0,55,2
+35,Texas,2018-11-23,12,@,Kansas,W,16,28,57.1,154,2
+36,Texas,2015-11-07,9,,Kansas,W,19,30,63.3,299,2
+37,Texas,2014-10-11,6,N,Oklahoma,L,27,44,61.4,334,2
+38,Texas,2019-11-29,12,,Texas Tech,W,19,28,67.9,348,2
+39,Texas,2018-10-27,8,@,Oklahoma State,L,22,42,52.4,283,2
+40,Texas,2016-09-04,1,,Notre Dame,W,16,27,59.3,280,2
+41,Texas,2014-09-27,4,@,Kansas,W,19,34,55.9,218,2
+42,Texas,2018-10-13,7,,Baylor,W,24,39,61.5,219,1
+43,Texas,2018-09-29,5,@,Kansas State,W,30,38,78.9,228,1
+44,Texas,2019-11-09,9,,Kansas State,W,22,29,75.9,263,1
+45,Texas,2017-11-24,12,,Texas Tech,L,29,51,56.9,272,1
+46,Texas,2017-09-09,2,,San Jose State,W,16,29,55.2,217,1
+47,Texas,2017-10-28,8,@,Baylor,W,27,36,75.0,256,1
+48,Texas,2014-09-06,2,,Brigham Young,L,20,31,64.5,176,1
+49,Texas,2014-10-18,7,,Iowa State,W,24,36,66.7,321,1
+50,Texas,2014-11-01,9,@,Texas Tech,W,13,25,52.0,228,1
+51,Texas,2014-11-08,10,,West Virginia,W,11,29,37.9,124,1
+52,Texas,2014-11-27,12,,Texas Christian,L,20,34,58.8,200,1
+53,Texas,2015-10-03,5,@,Texas Christian,L,13,28,46.4,122,1
+54,Texas,2015-11-14,10,@,West Virginia,L,11,19,57.9,162,1
+55,Texas,2015-12-05,12,@,Baylor,W,12,21,57.1,151,1
+56,Texas,2016-09-17,3,@,California,L,23,39,59.0,261,1
+57,Texas,2016-11-12,10,,West Virginia,L,31,50,62.0,318,1
+58,Texas,2017-11-04,9,@,Texas Christian,L,21,44,47.7,254,1
+59,Texas,2017-10-14,6,,Oklahoma,L,21,41,51.2,289,1
+60,Texas,2017-09-28,4,@,Iowa State,W,19,26,73.1,171,1
+61,Texas,2014-08-30,1,,North Texas,W,19,34,55.9,190,1
+62,Texas,2016-11-19,11,@,Kansas,L,17,27,63.0,165,1
+63,Texas,2016-10-01,4,@,Oklahoma State,L,21,33,63.6,239,1
+64,Texas,2015-10-24,7,,Kansas State,W,10,16,62.5,99,0
+65,Texas,2016-11-25,12,,Texas Christian,L,16,39,41.0,218,0
+66,Texas,2019-01-01,14,N,Georgia,W,20,28,71.4,177,0
+67,Texas,2015-09-26,4,,Oklahoma State,L,9,17,52.9,119,0
+68,Texas,2015-09-19,3,,California,L,20,31,64.5,364,0
+69,Texas,2015-09-05,1,@,Notre Dame,L,8,23,34.8,103,0
+70,Texas,2014-12-29,13,N,Arkansas,L,13,25,52.0,57,0
+71,Texas,2015-10-31,8,@,Iowa State,L,12,22,54.5,85,0
+72,Texas,2019-10-12,6,N,Oklahoma,L,26,38,68.4,210,0
+73,Texas,2015-11-26,11,,Texas Tech,L,11,23,47.8,64,0
+74,Texas,2014-10-25,8,@,Kansas State,L,13,25,52.0,106,0
+75,Texas,2017-10-21,7,,Oklahoma State,L,22,36,61.1,241,0
+76,Texas,2019-11-23,11,@,Baylor,L,22,37,59.5,200,0
+77,Texas,2014-10-04,5,,Baylor,L,16,34,47.1,144,0
