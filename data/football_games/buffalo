@@ -1,0 +1,75 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Buffalo,2017-10-07,6,,Western Michigan,L,35,61,57.4,597,7
+2,Buffalo,2018-09-01,1,,Delaware State,W,19,29,65.5,200,6
+3,Buffalo,2014-09-06,2,@,Army,L,34,50,68.0,396,5
+4,Buffalo,2014-11-11,10,,Akron,W,17,23,73.9,226,5
+5,Buffalo,2017-11-16,11,@,Ball State,W,16,28,57.1,350,4
+6,Buffalo,2014-09-20,4,,Norfolk State,W,15,29,51.7,262,4
+7,Buffalo,2014-11-28,12,@,Massachusetts,W,20,27,74.1,255,4
+8,Buffalo,2017-11-07,10,,Bowling Green State,W,23,37,62.2,406,3
+9,Buffalo,2018-09-08,2,@,Temple,W,26,45,57.8,275,3
+10,Buffalo,2018-09-15,3,,Eastern Michigan,W,21,26,80.8,325,3
+11,Buffalo,2018-09-22,4,@,Rutgers,W,14,28,50.0,263,3
+12,Buffalo,2018-10-30,9,,Miami (OH),W,20,35,57.1,358,3
+13,Buffalo,2016-10-15,6,,Ball State,L,28,46,60.9,306,3
+14,Buffalo,2014-10-11,7,@,Eastern Michigan,L,27,45,60.0,383,3
+15,Buffalo,2014-08-30,1,,Duquesne,W,25,36,69.4,298,3
+16,Buffalo,2015-09-26,4,,Nevada,L,28,46,60.9,338,2
+17,Buffalo,2016-11-25,12,@,Bowling Green State,L,20,36,55.6,334,2
+18,Buffalo,2014-10-25,8,,Central Michigan,L,21,37,56.8,233,2
+19,Buffalo,2018-10-20,8,@,Toledo,W,25,46,54.3,326,2
+20,Buffalo,2015-09-05,1,,Albany,W,22,29,75.9,255,2
+21,Buffalo,2015-09-12,2,@,Penn State,L,24,35,68.6,205,2
+22,Buffalo,2014-09-27,5,,Miami (OH),W,29,39,74.4,302,2
+23,Buffalo,2018-11-30,13,N,Northern Illinois,L,18,35,51.4,252,2
+24,Buffalo,2017-11-24,12,,Ohio,W,19,30,63.3,294,2
+25,Buffalo,2019-08-29,1,,Robert Morris,W,5,10,50.0,69,2
+26,Buffalo,2017-10-21,8,@,Miami (OH),L,17,41,41.5,202,2
+27,Buffalo,2019-09-14,3,@,Liberty,L,15,33,45.5,167,2
+28,Buffalo,2014-09-12,3,,Baylor,L,18,31,58.1,255,2
+29,Buffalo,2015-11-11,10,,Northern Illinois,L,31,47,66.0,354,2
+30,Buffalo,2015-11-05,9,@,Kent State,W,25,39,64.1,190,2
+31,Buffalo,2015-10-29,8,@,Miami (OH),W,22,29,75.9,289,2
+32,Buffalo,2019-10-05,6,,Ohio,L,16,23,69.6,197,2
+33,Buffalo,2019-10-26,8,,Central Michigan,W,13,25,52.0,179,2
+34,Buffalo,2019-11-14,10,@,Kent State,L,9,22,40.9,134,1
+35,Buffalo,2019-12-20,13,N,Charlotte,W,8,17,47.1,77,1
+36,Buffalo,2019-11-20,11,,Toledo,W,13,20,65.0,172,1
+37,Buffalo,2018-09-29,5,,Army,L,10,24,41.7,152,1
+38,Buffalo,2018-10-06,6,@,Central Michigan,W,10,20,50.0,127,1
+39,Buffalo,2018-10-13,7,,Akron,W,16,30,53.3,212,1
+40,Buffalo,2018-11-06,10,,Kent State,W,9,21,42.9,120,1
+41,Buffalo,2018-11-23,12,@,Bowling Green State,W,12,22,54.5,151,1
+42,Buffalo,2018-12-22,14,N,Troy,L,20,35,57.1,274,1
+43,Buffalo,2019-09-07,2,@,Penn State,L,16,32,50.0,245,1
+44,Buffalo,2019-09-28,5,@,Miami (OH),L,7,20,35.0,89,1
+45,Buffalo,2019-11-02,9,@,Eastern Michigan,W,15,23,65.2,208,1
+46,Buffalo,2017-10-14,7,,Northern Illinois,L,21,34,61.8,344,1
+47,Buffalo,2014-10-04,6,@,Bowling Green State,L,16,24,66.7,134,1
+48,Buffalo,2014-11-05,9,@,Ohio,L,12,25,48.0,106,1
+49,Buffalo,2015-10-03,5,,Bowling Green State,L,35,59,59.3,348,1
+50,Buffalo,2015-10-17,6,@,Central Michigan,L,14,28,50.0,149,1
+51,Buffalo,2015-11-21,11,@,Akron,L,32,51,62.7,262,1
+52,Buffalo,2015-11-27,12,,Massachusetts,L,19,40,47.5,287,1
+53,Buffalo,2016-09-02,1,,Albany,L,17,34,50.0,177,1
+54,Buffalo,2016-09-17,2,@,Nevada,L,7,23,30.4,130,1
+55,Buffalo,2016-09-24,3,,Army,W,20,31,64.5,178,1
+56,Buffalo,2016-10-08,5,,Kent State,L,21,40,52.5,256,1
+57,Buffalo,2016-10-27,8,,Akron,W,7,21,33.3,140,1
+58,Buffalo,2016-11-03,9,@,Ohio,L,24,40,60.0,308,1
+59,Buffalo,2017-09-30,5,@,Kent State,W,11,18,61.1,142,1
+60,Buffalo,2017-08-31,1,@,Minnesota,L,22,42,52.4,211,1
+61,Buffalo,2017-09-23,4,,Florida Atlantic,W,18,27,66.7,254,1
+62,Buffalo,2017-09-09,2,@,Army,L,9,16,56.3,193,1
+63,Buffalo,2017-09-16,3,,Colgate,W,9,16,56.3,184,1
+64,Buffalo,2017-10-28,9,@,Akron,L,34,50,68.0,313,0
+65,Buffalo,2016-10-22,7,@,Northern Illinois,L,25,41,61.0,203,0
+66,Buffalo,2019-11-29,12,,Bowling Green State,W,10,15,66.7,131,0
+67,Buffalo,2015-09-19,3,@,Florida Atlantic,W,10,20,50.0,105,0
+68,Buffalo,2019-10-19,7,@,Akron,W,14,23,60.9,65,0
+69,Buffalo,2015-10-24,7,,Ohio,W,21,32,65.6,212,0
+70,Buffalo,2019-09-21,4,,Temple,W,9,15,60.0,62,0
+71,Buffalo,2016-11-19,11,@,Western Michigan,L,12,22,54.5,140,0
+72,Buffalo,2016-11-12,10,,Miami (OH),L,21,40,52.5,193,0
+73,Buffalo,2016-10-01,4,@,Boston College,L,10,23,43.5,41,0
+74,Buffalo,2018-11-14,11,@,Ohio,L,10,23,43.5,120,0

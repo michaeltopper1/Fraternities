@@ -1,0 +1,78 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Arkansas State,2018-09-01,1,,Southeast Missouri State,W,28,40,70.0,497,7
+2,Arkansas State,2017-09-16,2,,Arkansas-Pine Bluff,W,26,34,76.5,356,6
+3,Arkansas State,2017-10-14,5,,Coastal Carolina,W,24,37,64.9,286,5
+4,Arkansas State,2015-01-04,13,N,Toledo,L,23,31,74.2,403,5
+5,Arkansas State,2016-10-29,7,,Louisiana-Monroe,W,24,41,58.5,316,5
+6,Arkansas State,2015-11-14,10,@,Louisiana-Monroe,W,15,32,46.9,300,5
+7,Arkansas State,2019-12-21,13,N,Florida International,W,27,52,51.9,393,4
+8,Arkansas State,2017-10-04,4,@,Georgia Southern,W,12,26,46.2,316,4
+9,Arkansas State,2017-10-28,7,@,New Mexico State,W,25,40,62.5,297,4
+10,Arkansas State,2017-11-25,10,@,Louisiana-Monroe,W,26,38,68.4,520,4
+11,Arkansas State,2018-11-10,10,@,Coastal Carolina,W,23,29,79.3,281,4
+12,Arkansas State,2019-08-31,1,,Southern Methodist,L,32,50,64.0,324,4
+13,Arkansas State,2019-09-21,4,,Southern Illinois,W,18,33,54.5,357,4
+14,Arkansas State,2019-09-28,5,@,Troy,W,26,36,72.2,455,4
+15,Arkansas State,2019-10-05,6,@,Georgia State,L,22,34,64.7,306,4
+16,Arkansas State,2019-11-23,11,,Georgia Southern,W,19,24,79.2,354,4
+17,Arkansas State,2016-11-12,9,,New Mexico State,W,22,29,75.9,293,3
+18,Arkansas State,2017-09-02,1,@,Nebraska,L,46,68,67.6,415,3
+19,Arkansas State,2016-12-17,13,N,Central Florida,W,12,26,46.2,205,3
+20,Arkansas State,2016-09-24,4,,Central Arkansas,L,21,38,55.3,424,3
+21,Arkansas State,2017-12-16,12,,Middle Tennessee State,L,32,58,55.2,358,3
+22,Arkansas State,2018-09-22,4,,Nevada-Las Vegas,W,19,27,70.4,199,3
+23,Arkansas State,2018-10-18,7,,Georgia State,W,17,28,60.7,257,3
+24,Arkansas State,2018-11-03,9,,South Alabama,W,27,40,67.5,354,3
+25,Arkansas State,2018-11-17,11,,Louisiana-Monroe,W,21,27,77.8,246,3
+26,Arkansas State,2019-11-16,10,,Coastal Carolina,W,24,35,68.6,297,3
+27,Arkansas State,2014-11-15,10,,Appalachian State,L,14,29,48.3,147,3
+28,Arkansas State,2015-09-19,3,,Missouri State,W,23,26,88.5,280,3
+29,Arkansas State,2014-10-11,6,@,Georgia State,W,22,30,73.3,234,3
+30,Arkansas State,2014-10-21,7,@,Louisiana,L,27,39,69.2,342,3
+31,Arkansas State,2015-10-31,8,,Georgia State,W,21,29,72.4,224,3
+32,Arkansas State,2017-09-23,3,@,Southern Methodist,L,23,43,53.5,284,2
+33,Arkansas State,2014-11-29,12,,New Mexico State,W,16,22,72.7,295,2
+34,Arkansas State,2014-11-20,11,@,Texas State,L,31,57,54.4,366,2
+35,Arkansas State,2015-09-12,2,,Missouri,L,14,30,46.7,124,2
+36,Arkansas State,2017-12-02,11,,Troy,L,31,50,62.0,437,2
+37,Arkansas State,2014-11-08,9,,South Alabama,W,17,34,50.0,186,2
+38,Arkansas State,2018-11-24,12,@,Texas State,W,18,24,75.0,276,2
+39,Arkansas State,2017-11-11,8,@,South Alabama,L,28,45,62.2,299,2
+40,Arkansas State,2019-09-07,2,@,Nevada-Las Vegas,W,22,37,59.5,284,2
+41,Arkansas State,2017-10-19,6,,Louisiana,W,24,39,61.5,309,2
+42,Arkansas State,2015-10-13,6,@,South Alabama,W,10,18,55.6,119,2
+43,Arkansas State,2015-10-20,7,,Louisiana,W,9,20,45.0,129,2
+44,Arkansas State,2016-12-03,12,@,Texas State,W,13,21,61.9,179,2
+45,Arkansas State,2019-10-17,7,,Louisiana,L,23,34,67.6,303,2
+46,Arkansas State,2015-11-28,11,@,New Mexico State,W,23,43,53.5,367,2
+47,Arkansas State,2019-10-26,8,,Texas State,W,18,28,64.3,158,2
+48,Arkansas State,2015-12-05,12,,Texas State,W,12,16,75.0,192,2
+49,Arkansas State,2019-11-02,9,@,Louisiana-Monroe,W,21,28,75.0,307,2
+50,Arkansas State,2016-10-05,5,,Georgia Southern,W,16,28,57.1,182,2
+51,Arkansas State,2019-11-29,12,@,South Alabama,L,23,38,60.5,342,2
+52,Arkansas State,2014-09-06,2,@,Tennessee,L,22,36,61.1,190,1
+53,Arkansas State,2014-10-04,5,,Louisiana-Monroe,W,21,36,58.3,284,1
+54,Arkansas State,2014-09-20,4,,Utah State,W,19,33,57.6,190,1
+55,Arkansas State,2014-09-13,3,@,Miami (FL),L,23,42,54.8,236,1
+56,Arkansas State,2018-10-27,8,@,Louisiana,L,17,31,54.8,270,1
+57,Arkansas State,2018-09-29,5,@,Georgia Southern,L,38,51,74.5,376,1
+58,Arkansas State,2018-09-08,2,@,Alabama,L,22,51,43.1,218,1
+59,Arkansas State,2016-09-16,3,@,Utah State,L,20,33,60.6,287,1
+60,Arkansas State,2017-11-18,9,,Texas State,W,20,33,60.6,229,1
+61,Arkansas State,2015-10-03,5,,Idaho,W,16,25,64.0,188,1
+62,Arkansas State,2015-11-05,9,@,Appalachian State,W,14,25,56.0,208,1
+63,Arkansas State,2014-08-30,1,,Montana State,W,20,30,66.7,264,1
+64,Arkansas State,2016-11-26,11,@,Louisiana,L,35,57,61.4,393,1
+65,Arkansas State,2016-11-17,10,@,Troy,W,14,26,53.8,180,1
+66,Arkansas State,2016-09-02,1,,Toledo,L,11,25,44.0,124,0
+67,Arkansas State,2018-10-09,6,,Appalachian State,L,27,45,60.0,219,0
+68,Arkansas State,2016-09-10,2,@,Auburn,L,19,30,63.3,260,0
+69,Arkansas State,2015-12-19,13,N,Louisiana Tech,L,15,29,51.7,146,0
+70,Arkansas State,2016-10-15,6,,South Alabama,W,9,13,69.2,93,0
+71,Arkansas State,2016-11-03,8,@,Georgia State,W,15,35,42.9,212,0
+72,Arkansas State,2019-09-14,3,@,Georgia,L,23,40,57.5,177,0
+73,Arkansas State,2014-11-01,8,@,Idaho,W,21,29,72.4,244,0
+74,Arkansas State,2018-12-29,13,N,Nevada,L,26,46,56.5,275,0
+75,Arkansas State,2015-09-26,4,@,Toledo,L,18,35,51.4,223,0
+76,Arkansas State,2018-09-15,3,@,Tulsa,W,20,33,60.6,191,0
+77,Arkansas State,2015-09-05,1,@,Southern California,L,17,37,45.9,193,0

@@ -1,0 +1,76 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Florida International,2018-09-29,5,,Arkansas-Pine Bluff,W,13,19,68.4,393,4
+2,Florida International,2015-09-12,2,@,Indiana,L,24,47,51.1,283,3
+3,Florida International,2018-10-27,8,@,Western Kentucky,W,19,28,67.9,171,3
+4,Florida International,2018-11-10,10,@,Texas-San Antonio,W,20,30,66.7,304,3
+5,Florida International,2015-11-07,10,,Charlotte,W,27,42,64.3,284,3
+6,Florida International,2016-10-08,6,@,Texas-El Paso,W,21,31,67.7,241,3
+7,Florida International,2015-10-24,8,,Old Dominion,W,31,39,79.5,390,3
+8,Florida International,2015-10-10,6,,Texas-El Paso,W,15,22,68.2,368,3
+9,Florida International,2016-10-22,8,,Louisiana Tech,L,29,49,59.2,331,3
+10,Florida International,2016-10-29,9,,Middle Tennessee State,L,27,40,67.5,307,3
+11,Florida International,2015-09-19,3,,North Carolina Central,W,22,36,61.1,242,3
+12,Florida International,2014-11-15,11,,Middle Tennessee State,W,17,24,70.8,231,3
+13,Florida International,2018-09-08,2,@,Old Dominion,W,19,31,61.3,300,3
+14,Florida International,2017-12-02,12,,Massachusetts,W,20,25,80.0,295,3
+15,Florida International,2018-09-22,4,@,Miami (FL),L,13,28,46.4,170,2
+16,Florida International,2016-11-05,10,@,Western Kentucky,L,22,34,64.7,210,2
+17,Florida International,2017-11-18,10,@,Florida Atlantic,L,20,33,60.6,218,2
+18,Florida International,2016-11-26,12,@,Old Dominion,L,11,23,47.8,135,2
+19,Florida International,2018-09-15,3,,Massachusetts,W,16,23,69.6,207,2
+20,Florida International,2016-10-15,7,@,Charlotte,W,26,42,61.9,315,2
+21,Florida International,2017-09-30,4,,Charlotte,W,15,27,55.6,241,2
+22,Florida International,2017-11-24,11,,Western Kentucky,W,18,27,66.7,251,2
+23,Florida International,2017-10-28,7,@,Marshall,W,14,18,77.8,177,2
+24,Florida International,2017-11-04,8,,Texas-San Antonio,W,18,25,72.0,215,2
+25,Florida International,2018-10-13,6,,Middle Tennessee State,W,27,36,75.0,311,2
+26,Florida International,2017-11-11,9,,Old Dominion,L,35,50,70.0,323,2
+27,Florida International,2018-11-03,9,,Florida Atlantic,L,19,34,55.9,234,2
+28,Florida International,2018-11-17,11,@,Charlotte,W,25,32,78.1,294,2
+29,Florida International,2018-10-20,7,,Rice,W,20,29,69.0,229,2
+30,Florida International,2015-10-17,7,@,Middle Tennessee State,L,29,51,56.9,260,2
+31,Florida International,2014-09-06,2,,Wagner,W,23,33,69.7,229,2
+32,Florida International,2019-09-20,4,@,Louisiana Tech,L,29,41,70.7,394,2
+33,Florida International,2019-10-05,5,,Massachusetts,W,19,33,57.6,263,2
+34,Florida International,2019-10-12,6,,Charlotte,W,13,16,81.3,160,2
+35,Florida International,2014-11-08,10,@,Old Dominion,L,8,13,61.5,132,2
+36,Florida International,2014-09-13,3,,Pittsburgh,L,17,35,48.6,236,2
+37,Florida International,2019-10-26,8,@,Middle Tennessee State,L,17,33,51.5,230,2
+38,Florida International,2019-11-23,11,,Miami (FL),W,16,30,53.3,160,2
+39,Florida International,2014-09-27,5,@,Alabama-Birmingham,W,9,24,37.5,204,2
+40,Florida International,2019-12-21,13,N,Arkansas State,L,22,39,56.4,312,1
+41,Florida International,2014-08-30,1,,Bethune-Cookman,L,16,33,48.5,143,1
+42,Florida International,2019-11-30,12,@,Marshall,L,22,38,57.9,240,1
+43,Florida International,2018-09-01,1,,Indiana,L,17,28,60.7,157,1
+44,Florida International,2019-10-19,7,,Texas-El Paso,W,9,17,52.9,150,1
+45,Florida International,2019-08-29,1,@,Tulane,L,19,34,55.9,233,1
+46,Florida International,2018-12-21,13,N,Toledo,W,18,27,66.7,223,1
+47,Florida International,2016-09-09,2,,Maryland,L,14,28,50.0,170,1
+48,Florida International,2015-09-26,4,@,Louisiana Tech,L,29,44,65.9,263,1
+49,Florida International,2015-09-03,1,@,Central Florida,W,29,38,76.3,260,1
+50,Florida International,2015-10-03,5,@,Massachusetts,L,22,34,64.7,115,1
+51,Florida International,2015-10-31,9,@,Florida Atlantic,L,19,27,70.4,196,1
+52,Florida International,2014-11-01,9,,Rice,L,10,23,43.5,159,1
+53,Florida International,2014-10-18,8,,Marshall,L,18,32,56.3,208,1
+54,Florida International,2014-10-11,7,@,Texas-San Antonio,L,11,26,42.3,141,1
+55,Florida International,2016-09-24,4,,Central Florida,L,11,24,45.8,109,1
+56,Florida International,2016-10-01,5,,Florida Atlantic,W,15,30,50.0,199,1
+57,Florida International,2016-11-19,11,,Marshall,W,18,25,72.0,257,1
+58,Florida International,2017-08-31,1,@,Central Florida,L,18,31,58.1,201,1
+59,Florida International,2017-09-23,3,@,Rice,W,17,28,60.7,172,1
+60,Florida International,2017-10-14,6,,Tulane,W,17,31,54.8,220,1
+61,Florida International,2017-10-07,5,@,Middle Tennessee State,L,22,34,64.7,221,1
+62,Florida International,2014-09-20,4,,Louisville,L,13,26,50.0,117,0
+63,Florida International,2019-11-09,10,@,Florida Atlantic,L,20,38,52.6,192,0
+64,Florida International,2019-11-02,9,,Old Dominion,W,20,33,60.6,252,0
+65,Florida International,2014-10-02,6,,Florida Atlantic,W,18,29,62.1,160,0
+66,Florida International,2014-11-22,12,@,North Texas,L,11,25,44.0,56,0
+67,Florida International,2019-09-14,3,,New Hampshire,W,12,19,63.2,127,0
+68,Florida International,2019-09-07,2,,Western Kentucky,L,5,18,27.8,66,0
+69,Florida International,2018-11-24,12,,Marshall,L,25,38,65.8,201,0
+70,Florida International,2015-11-14,11,@,Marshall,L,11,27,40.7,98,0
+71,Florida International,2015-11-21,12,,Western Kentucky,L,17,33,51.5,95,0
+72,Florida International,2016-09-01,1,,Indiana,L,24,47,51.1,268,0
+73,Florida International,2016-09-17,3,@,Massachusetts,L,20,34,58.8,178,0
+74,Florida International,2017-09-08,2,,Alcorn State,W,21,33,63.6,328,0
+75,Florida International,2017-12-21,13,,Temple,L,17,34,50.0,169,0

@@ -1,0 +1,78 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Washington State,2019-09-21,4,,UCLA,L,41,61,67.2,570,9
+2,Washington State,2014-09-13,3,,Portland State,W,43,64,67.2,630,7
+3,Washington State,2018-11-17,11,,Arizona,W,44,56,78.6,482,7
+4,Washington State,2016-11-05,9,,Arizona,W,47,52,90.4,474,6
+5,Washington State,2014-10-04,6,,California,L,49,70,70.0,734,6
+6,Washington State,2019-11-23,11,,Oregon State,W,50,70,71.4,606,6
+7,Washington State,2019-08-31,1,,New Mexico State,W,39,49,79.6,507,6
+8,Washington State,2015-10-17,6,,Oregon State,W,40,52,76.9,409,6
+9,Washington State,2017-09-16,3,,Oregon State,W,42,58,72.4,431,6
+10,Washington State,2016-11-12,10,,California,W,39,55,70.9,400,5
+11,Washington State,2016-10-29,8,@,Oregon State,W,33,46,71.7,415,5
+12,Washington State,2014-08-28,1,N,Rutgers,L,40,56,71.4,532,5
+13,Washington State,2018-10-06,6,@,Oregon State,W,30,40,75.0,430,5
+14,Washington State,2015-11-07,9,,Arizona State,W,36,55,65.5,497,5
+15,Washington State,2019-09-07,2,,Northern Colorado,W,33,42,78.6,481,5
+16,Washington State,2015-10-24,7,@,Arizona,W,47,62,75.8,514,5
+17,Washington State,2015-10-10,5,@,Oregon,W,50,75,66.7,505,5
+18,Washington State,2017-09-23,4,,Nevada,W,38,50,76.0,505,5
+19,Washington State,2014-11-08,10,@,Oregon State,W,44,61,72.1,471,5
+20,Washington State,2019-11-16,10,,Stanford,W,44,60,73.3,520,5
+21,Washington State,2015-09-12,2,@,Rutgers,W,47,66,71.2,478,4
+22,Washington State,2014-09-20,4,,Oregon,L,43,63,68.3,436,4
+23,Washington State,2016-10-08,5,@,Stanford,W,30,41,73.2,357,4
+24,Washington State,2014-09-27,5,@,Utah,W,39,61,63.9,417,4
+25,Washington State,2014-10-25,8,,Arizona,L,56,79,70.9,489,4
+26,Washington State,2016-09-10,2,@,Boise State,L,55,71,77.5,480,4
+27,Washington State,2016-09-03,1,,Eastern Washington,L,41,52,78.8,418,4
+28,Washington State,2018-10-20,7,,Oregon,W,39,51,76.5,323,4
+29,Washington State,2019-10-19,7,,Colorado,W,35,53,66.0,369,4
+30,Washington State,2017-11-04,10,,Stanford,W,34,48,70.8,337,3
+31,Washington State,2017-10-28,9,@,Arizona,L,58,84,69.0,602,3
+32,Washington State,2017-11-11,11,@,Utah,W,40,69,58.0,311,3
+33,Washington State,2018-09-01,1,@,Wyoming,W,38,57,66.7,319,3
+34,Washington State,2017-09-02,1,,Montana State,W,40,48,83.3,361,3
+35,Washington State,2017-10-21,8,,Colorado,W,20,43,46.5,212,3
+36,Washington State,2018-09-08,2,,San Jose State,W,35,54,64.8,420,3
+37,Washington State,2018-09-15,3,,Eastern Washington,W,51,65,78.5,524,3
+38,Washington State,2018-09-21,4,@,Southern California,L,37,52,71.2,344,3
+39,Washington State,2018-09-29,5,,Utah,W,31,56,55.4,445,3
+40,Washington State,2018-10-27,8,@,Stanford,W,40,50,80.0,438,3
+41,Washington State,2019-09-13,3,N,Houston,W,36,48,75.0,440,3
+42,Washington State,2019-10-12,6,@,Arizona State,L,44,66,66.7,466,3
+43,Washington State,2019-10-26,8,@,Oregon,L,32,50,64.0,406,3
+44,Washington State,2019-12-27,13,N,Air Force,L,28,42,66.7,351,3
+45,Washington State,2017-10-07,6,@,Oregon,W,24,42,57.1,282,3
+46,Washington State,2015-11-14,10,@,UCLA,W,40,58,69.0,388,3
+47,Washington State,2016-09-17,3,,Idaho,W,27,44,61.4,281,3
+48,Washington State,2016-10-22,7,@,Arizona State,W,42,53,79.2,398,3
+49,Washington State,2016-11-19,11,@,Colorado,L,26,53,49.1,325,3
+50,Washington State,2014-11-22,11,@,Arizona State,L,45,76,59.2,601,3
+51,Washington State,2017-09-09,2,,Boise State,W,49,67,73.1,433,3
+52,Washington State,2019-11-09,9,@,California,L,45,58,77.6,407,2
+53,Washington State,2014-11-29,12,,Washington,L,27,49,55.1,355,2
+54,Washington State,2014-11-01,9,,Southern California,L,44,66,66.7,386,2
+55,Washington State,2015-09-05,1,,Portland State,L,28,45,62.2,307,2
+56,Washington State,2015-09-19,3,,Wyoming,W,37,45,82.2,303,2
+57,Washington State,2014-10-10,7,@,Stanford,L,42,69,60.9,292,2
+58,Washington State,2015-10-03,4,@,California,L,35,49,71.4,389,2
+59,Washington State,2015-10-31,8,,Stanford,L,35,63,55.6,354,2
+60,Washington State,2018-11-10,10,@,Colorado,W,37,61,60.7,346,2
+61,Washington State,2018-12-28,13,N,Iowa State,W,35,49,71.4,299,2
+62,Washington State,2015-11-21,11,,Colorado,W,40,57,70.2,332,2
+63,Washington State,2015-12-26,13,N,Miami (FL),W,29,53,54.7,295,2
+64,Washington State,2017-12-28,13,@,Michigan State,L,39,50,78.0,272,2
+65,Washington State,2017-09-29,5,,Southern California,W,34,51,66.7,340,2
+66,Washington State,2018-11-03,9,,California,W,35,51,68.6,334,1
+67,Washington State,2015-11-27,12,@,Washington,L,36,58,62.1,288,1
+68,Washington State,2016-10-01,4,,Oregon,W,36,48,75.0,371,1
+69,Washington State,2019-09-28,5,@,Utah,L,30,49,61.2,252,1
+70,Washington State,2016-11-25,12,,Washington,L,33,50,66.0,269,1
+71,Washington State,2017-11-25,12,@,Washington,L,37,55,67.3,369,1
+72,Washington State,2016-12-27,13,N,Minnesota,L,30,51,58.8,264,1
+73,Washington State,2014-09-05,2,@,Nevada,L,38,57,66.7,389,1
+74,Washington State,2018-11-23,12,,Washington,L,26,35,74.3,152,0
+75,Washington State,2017-10-13,7,@,California,L,32,48,66.7,314,0
+76,Washington State,2016-10-15,6,,UCLA,W,28,48,58.3,261,0
+77,Washington State,2019-11-29,12,@,Washington,L,48,62,77.4,308,0

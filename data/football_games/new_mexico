@@ -1,0 +1,75 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,New Mexico,2018-09-01,1,,Incarnate Word,W,15,25,60.0,361,5
+2,New Mexico,2018-09-29,4,,Liberty,L,21,41,51.2,369,4
+3,New Mexico,2018-10-06,5,@,Nevada-Las Vegas,W,13,21,61.9,250,4
+4,New Mexico,2019-09-21,3,,New Mexico State,W,16,28,57.1,355,3
+5,New Mexico,2018-09-08,2,@,Wisconsin,L,14,24,58.3,134,2
+6,New Mexico,2016-10-15,6,N,Air Force,W,3,8,37.5,70,2
+7,New Mexico,2016-11-19,11,@,Colorado State,L,6,16,37.5,81,2
+8,New Mexico,2016-09-01,1,,South Dakota,W,13,19,68.4,187,2
+9,New Mexico,2017-09-09,2,,New Mexico State,L,20,38,52.6,254,2
+10,New Mexico,2017-09-30,5,,Air Force,W,4,9,44.4,146,2
+11,New Mexico,2015-10-17,7,,Hawaii,W,15,26,57.7,195,2
+12,New Mexico,2018-10-13,6,@,Colorado State,L,12,20,60.0,165,2
+13,New Mexico,2019-11-30,12,,Utah State,L,10,21,47.6,107,2
+14,New Mexico,2018-11-03,9,,San Diego State,L,9,20,45.0,41,2
+15,New Mexico,2014-09-20,3,@,New Mexico State,W,8,14,57.1,67,2
+16,New Mexico,2019-10-04,5,@,San Jose State,L,11,26,42.3,161,2
+17,New Mexico,2019-11-23,11,,Air Force,L,8,18,44.4,90,2
+18,New Mexico,2019-10-26,8,,Hawaii,L,23,40,57.5,293,2
+19,New Mexico,2017-09-14,3,@,Boise State,L,8,16,50.0,79,1
+20,New Mexico,2016-10-22,7,,Louisiana-Monroe,W,7,11,63.6,146,1
+21,New Mexico,2016-11-05,9,,Nevada,W,8,12,66.7,100,1
+22,New Mexico,2016-11-26,12,,Wyoming,W,4,5,80.0,122,1
+23,New Mexico,2017-09-02,1,,Abilene Christian,W,12,18,66.7,222,1
+24,New Mexico,2018-10-20,7,,Fresno State,L,15,32,46.9,132,1
+25,New Mexico,2019-10-19,7,@,Wyoming,L,14,28,50.0,203,1
+26,New Mexico,2017-10-20,7,,Colorado State,L,7,19,36.8,132,1
+27,New Mexico,2017-11-24,12,@,San Diego State,L,16,30,53.3,167,1
+28,New Mexico,2019-09-28,4,@,Liberty,L,12,26,46.2,139,1
+29,New Mexico,2014-09-06,2,,Arizona State,L,7,11,63.6,130,1
+30,New Mexico,2018-10-27,8,@,Utah State,L,18,37,48.6,220,1
+31,New Mexico,2015-11-07,9,,Utah State,W,4,12,33.3,104,1
+32,New Mexico,2015-09-12,2,,Tulsa,L,11,21,52.4,166,1
+33,New Mexico,2014-11-29,12,,Wyoming,W,6,7,85.7,141,1
+34,New Mexico,2016-10-07,5,,Boise State,L,4,15,26.7,39,1
+35,New Mexico,2015-09-26,4,@,Wyoming,W,5,8,62.5,107,1
+36,New Mexico,2014-11-15,10,@,Utah State,L,8,18,44.4,154,1
+37,New Mexico,2014-10-10,6,,San Diego State,L,11,24,45.8,111,1
+38,New Mexico,2015-12-19,13,N,Arizona,L,10,22,45.5,189,1
+39,New Mexico,2014-09-26,4,,Fresno State,L,4,8,50.0,97,1
+40,New Mexico,2016-09-17,3,@,Rutgers,L,13,24,54.2,169,1
+41,New Mexico,2014-08-30,1,,Texas-El Paso,L,5,9,55.6,67,0
+42,New Mexico,2014-10-04,5,@,Texas-San Antonio,W,9,14,64.3,87,0
+43,New Mexico,2019-11-16,10,@,Boise State,L,14,21,66.7,175,0
+44,New Mexico,2014-11-22,11,@,Colorado State,L,3,11,27.3,55,0
+45,New Mexico,2019-11-02,9,@,Nevada,L,19,36,52.8,237,0
+46,New Mexico,2018-11-10,10,@,Air Force,L,13,18,72.2,186,0
+47,New Mexico,2018-11-16,11,,Boise State,L,8,14,57.1,103,0
+48,New Mexico,2018-11-24,12,,Wyoming,L,3,17,17.6,34,0
+49,New Mexico,2019-08-31,1,,Sam Houston State,W,18,40,45.0,340,0
+50,New Mexico,2019-09-14,2,@,Notre Dame,L,10,29,34.5,151,0
+51,New Mexico,2014-11-08,9,,Boise State,L,9,16,56.3,122,0
+52,New Mexico,2018-09-15,3,@,New Mexico State,W,12,19,63.2,127,0
+53,New Mexico,2014-11-01,8,@,Nevada-Las Vegas,W,2,7,28.6,5,0
+54,New Mexico,2014-10-18,7,@,Air Force,L,4,10,40.0,23,0
+55,New Mexico,2019-10-11,6,,Colorado State,L,8,17,47.1,89,0
+56,New Mexico,2017-10-14,6,@,Fresno State,L,15,30,50.0,213,0
+57,New Mexico,2016-10-01,4,,San Jose State,W,4,8,50.0,45,0
+58,New Mexico,2016-10-29,8,@,Hawaii,W,11,15,73.3,84,0
+59,New Mexico,2016-11-12,10,@,Utah State,W,8,17,47.1,154,0
+60,New Mexico,2016-09-10,2,@,New Mexico State,L,12,23,52.2,115,0
+61,New Mexico,2016-12-17,13,N,Texas-San Antonio,W,3,6,50.0,77,0
+62,New Mexico,2015-11-28,12,,Air Force,W,4,9,44.4,135,0
+63,New Mexico,2015-11-21,11,,Colorado State,L,4,10,40.0,58,0
+64,New Mexico,2015-11-14,10,@,Boise State,W,9,13,69.2,218,0
+65,New Mexico,2017-09-23,4,@,Tulsa,W,9,14,64.3,108,0
+66,New Mexico,2015-09-05,1,,Mississippi Valley State,W,11,18,61.1,151,0
+67,New Mexico,2015-10-24,8,@,San Jose State,L,8,20,40.0,130,0
+68,New Mexico,2017-10-28,8,@,Wyoming,L,10,25,40.0,69,0
+69,New Mexico,2017-11-04,9,,Utah State,L,12,22,54.5,75,0
+70,New Mexico,2017-11-11,10,@,Texas A&M,L,7,17,41.2,24,0
+71,New Mexico,2017-11-17,11,,Nevada-Las Vegas,L,0,4,0.0,0,0
+72,New Mexico,2015-10-10,6,@,Nevada,L,19,24,79.2,138,0
+73,New Mexico,2015-10-03,5,,New Mexico State,W,5,17,29.4,45,0
+74,New Mexico,2015-09-18,3,@,Arizona State,L,12,29,41.4,111,0

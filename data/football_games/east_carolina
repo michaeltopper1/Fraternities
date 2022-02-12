@@ -1,0 +1,74 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,East Carolina,2019-11-09,10,@,Southern Methodist,L,32,42,76.2,498,6
+2,East Carolina,2017-11-18,11,,Cincinnati,W,32,46,69.6,464,5
+3,East Carolina,2016-09-03,1,,Western Carolina,W,29,33,87.9,413,5
+4,East Carolina,2015-11-19,11,@,Central Florida,W,36,52,69.2,473,4
+5,East Carolina,2018-11-17,10,,Connecticut,W,22,33,66.7,242,4
+6,East Carolina,2016-10-29,8,,Connecticut,W,33,47,70.2,294,4
+7,East Carolina,2014-08-30,1,,North Carolina Central,W,33,46,71.7,374,4
+8,East Carolina,2014-11-28,11,@,Tulsa,W,28,42,66.7,338,4
+9,East Carolina,2019-11-02,9,,Cincinnati,L,32,52,61.5,535,4
+10,East Carolina,2014-10-04,5,,Southern Methodist,W,31,41,75.6,410,4
+11,East Carolina,2014-09-20,4,,North Carolina,W,32,51,62.7,446,4
+12,East Carolina,2018-11-03,8,,Memphis,L,34,62,54.8,449,3
+13,East Carolina,2017-09-24,4,@,Connecticut,W,30,39,76.9,426,3
+14,East Carolina,2017-10-14,7,@,Central Florida,L,15,33,45.5,160,3
+15,East Carolina,2016-11-19,11,,Navy,L,16,25,64.0,238,3
+16,East Carolina,2016-10-01,5,,Central Florida,L,38,70,54.3,488,3
+17,East Carolina,2017-11-04,9,@,Houston,L,54,74,73.0,468,3
+18,East Carolina,2018-09-29,4,,Old Dominion,W,25,45,55.6,313,3
+19,East Carolina,2014-09-13,3,@,Virginia Tech,W,23,47,48.9,427,3
+20,East Carolina,2015-10-03,5,@,Southern Methodist,W,19,26,73.1,249,3
+21,East Carolina,2019-11-30,12,,Tulsa,L,27,48,56.3,308,3
+22,East Carolina,2014-12-04,12,,Central Florida,L,36,49,73.5,397,3
+23,East Carolina,2015-09-19,3,@,Navy,L,36,49,73.5,325,3
+24,East Carolina,2015-09-12,2,@,Florida,L,37,58,63.8,346,3
+25,East Carolina,2016-10-22,7,@,Cincinnati,L,28,43,65.1,283,2
+26,East Carolina,2017-10-21,8,,Brigham Young,W,20,30,66.7,298,2
+27,East Carolina,2017-09-30,5,,South Florida,L,21,46,45.7,306,2
+28,East Carolina,2014-10-23,7,,Connecticut,W,39,65,60.0,445,2
+29,East Carolina,2017-09-16,3,,Virginia Tech,L,11,30,36.7,241,2
+30,East Carolina,2017-09-09,2,@,West Virginia,L,23,47,48.9,328,2
+31,East Carolina,2014-11-13,9,N,Cincinnati,L,35,62,56.5,425,2
+32,East Carolina,2015-01-03,13,N,Florida,L,34,68,50.0,427,2
+33,East Carolina,2018-11-10,9,@,Tulane,L,21,68,30.9,360,2
+34,East Carolina,2016-11-05,9,@,Tulsa,L,38,62,61.3,436,2
+35,East Carolina,2016-09-24,4,@,Virginia Tech,L,17,34,50.0,362,2
+36,East Carolina,2017-11-25,12,@,Memphis,L,28,54,51.9,351,2
+37,East Carolina,2015-09-26,4,,Virginia Tech,W,14,20,70.0,228,2
+38,East Carolina,2015-11-28,12,,Cincinnati,L,34,51,66.7,317,2
+39,East Carolina,2018-09-02,1,,North Carolina A&T,L,38,66,57.6,314,2
+40,East Carolina,2019-09-28,5,@,Old Dominion,W,8,21,38.1,202,2
+41,East Carolina,2019-10-03,6,,Temple,L,19,39,48.7,229,2
+42,East Carolina,2015-10-10,6,@,Brigham Young,L,30,42,71.4,385,2
+43,East Carolina,2018-10-13,6,,Houston,L,38,63,60.3,374,1
+44,East Carolina,2016-11-26,12,@,Temple,L,21,34,61.8,183,1
+45,East Carolina,2019-11-23,11,@,Connecticut,W,34,50,68.0,374,1
+46,East Carolina,2018-10-20,7,,Central Florida,L,29,56,51.8,406,1
+47,East Carolina,2019-10-26,8,,South Florida,L,19,29,65.5,222,1
+48,East Carolina,2018-11-23,11,@,Cincinnati,L,10,28,35.7,220,1
+49,East Carolina,2019-09-07,2,,Gardner-Webb,W,19,31,61.3,209,1
+50,East Carolina,2019-09-21,4,,William & Mary,W,20,34,58.8,210,1
+51,East Carolina,2019-10-19,7,@,Central Florida,L,23,37,62.2,313,1
+52,East Carolina,2016-09-10,2,,North Carolina State,W,33,43,76.7,297,1
+53,East Carolina,2014-09-06,2,@,South Carolina,L,32,46,69.6,321,1
+54,East Carolina,2014-10-11,6,@,South Florida,W,24,34,70.6,250,1
+55,East Carolina,2014-11-22,10,,Tulane,W,31,44,70.5,358,1
+56,East Carolina,2015-10-17,7,,Tulsa,W,20,29,69.0,239,1
+57,East Carolina,2015-10-22,8,,Temple,L,33,53,62.3,283,1
+58,East Carolina,2016-09-17,3,@,South Carolina,L,44,58,75.9,400,1
+59,East Carolina,2016-10-08,6,@,South Florida,L,33,56,58.9,308,1
+60,East Carolina,2016-11-12,10,,Southern Methodist,L,29,49,59.2,314,1
+61,East Carolina,2017-10-07,6,,Temple,L,20,38,52.6,253,1
+62,East Carolina,2017-11-11,10,,Tulane,L,25,53,47.2,228,1
+63,East Carolina,2018-09-08,2,,North Carolina,W,19,33,57.6,290,1
+64,East Carolina,2018-12-01,12,@,North Carolina State,L,9,25,36.0,73,0
+65,East Carolina,2019-08-31,1,@,North Carolina State,L,26,45,57.8,228,0
+66,East Carolina,2018-09-22,3,@,South Florida,L,22,50,44.0,256,0
+67,East Carolina,2019-09-14,3,@,Navy,L,11,23,47.8,138,0
+68,East Carolina,2015-11-07,10,,South Florida,L,14,23,60.9,158,0
+69,East Carolina,2015-10-30,9,@,Connecticut,L,19,33,57.6,137,0
+70,East Carolina,2017-09-02,1,,James Madison,L,28,53,52.8,292,0
+71,East Carolina,2015-09-05,1,,Towson,W,29,37,78.4,230,0
+72,East Carolina,2014-11-01,8,@,Temple,L,24,42,57.1,217,0
+73,East Carolina,2018-10-06,5,@,Temple,L,18,39,46.2,120,0

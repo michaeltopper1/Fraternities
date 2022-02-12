@@ -1,0 +1,74 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Rutgers,2014-09-06,2,,Howard,W,16,22,72.7,288,4
+2,Rutgers,2014-09-27,5,,Tulane,W,14,21,66.7,291,4
+3,Rutgers,2015-11-28,12,,Maryland,L,21,33,63.6,344,4
+4,Rutgers,2014-11-29,12,@,Maryland,W,28,42,66.7,347,4
+5,Rutgers,2015-09-05,1,,Norfolk State,W,13,15,86.7,248,4
+6,Rutgers,2016-09-10,2,,Howard,W,11,23,47.8,137,3
+7,Rutgers,2014-10-04,6,,Michigan,W,23,40,57.5,402,3
+8,Rutgers,2016-10-22,8,@,Minnesota,L,23,40,57.5,222,3
+9,Rutgers,2015-10-17,6,@,Indiana,W,28,43,65.1,386,3
+10,Rutgers,2015-10-10,5,,Michigan State,L,15,26,57.7,208,3
+11,Rutgers,2019-08-30,1,,Massachusetts,W,22,32,68.8,348,2
+12,Rutgers,2016-09-17,3,,New Mexico,W,12,30,40.0,173,2
+13,Rutgers,2017-09-01,1,,Washington,L,24,35,68.6,178,2
+14,Rutgers,2015-09-26,4,,Kansas,W,18,25,72.0,201,2
+15,Rutgers,2017-09-16,3,,Morgan State,W,13,19,68.4,152,2
+16,Rutgers,2014-12-26,13,N,North Carolina,W,9,20,45.0,184,2
+17,Rutgers,2019-10-26,8,,Liberty,W,15,21,71.4,192,2
+18,Rutgers,2014-11-15,10,,Indiana,W,16,27,59.3,217,2
+19,Rutgers,2014-08-28,1,N,Washington State,W,16,27,59.3,281,2
+20,Rutgers,2018-10-06,6,,Illinois,L,29,46,63.0,267,1
+21,Rutgers,2018-11-03,9,@,Wisconsin,L,20,39,51.3,261,1
+22,Rutgers,2017-10-21,7,,Purdue,W,9,18,50.0,87,1
+23,Rutgers,2018-11-24,12,@,Michigan State,L,9,18,50.0,109,1
+24,Rutgers,2016-11-05,9,,Indiana,L,19,36,52.8,258,1
+25,Rutgers,2018-09-29,5,,Indiana,L,19,36,52.8,193,1
+26,Rutgers,2017-11-04,9,,Maryland,W,8,18,44.4,107,1
+27,Rutgers,2016-10-15,7,,Illinois,L,17,30,56.7,182,1
+28,Rutgers,2017-11-25,12,,Michigan State,L,6,19,31.6,98,1
+29,Rutgers,2018-09-01,1,,Texas State,W,20,29,69.0,205,1
+30,Rutgers,2016-09-24,4,,Iowa,L,13,24,54.2,190,1
+31,Rutgers,2019-09-21,3,,Boston College,L,23,34,67.6,304,1
+32,Rutgers,2015-11-14,10,,Nebraska,L,14,28,50.0,170,1
+33,Rutgers,2019-11-16,10,,Ohio State,L,12,26,46.2,121,1
+34,Rutgers,2015-10-24,7,,Ohio State,L,13,27,48.1,189,1
+35,Rutgers,2014-10-25,8,@,Nebraska,L,12,26,46.2,205,1
+36,Rutgers,2019-11-02,9,@,Illinois,L,5,10,50.0,86,1
+37,Rutgers,2015-09-12,2,,Washington State,L,23,29,79.3,204,1
+38,Rutgers,2019-11-30,12,@,Penn State,L,15,27,55.6,199,0
+39,Rutgers,2019-09-07,2,@,Iowa,L,10,27,37.0,47,0
+40,Rutgers,2019-11-23,11,,Michigan State,L,8,20,40.0,57,0
+41,Rutgers,2018-09-15,3,@,Kansas,L,14,31,45.2,124,0
+42,Rutgers,2018-09-22,4,,Buffalo,L,18,37,48.6,168,0
+43,Rutgers,2018-10-13,7,@,Maryland,L,2,17,11.8,8,0
+44,Rutgers,2018-10-20,8,,Northwestern,L,15,31,48.4,81,0
+45,Rutgers,2019-10-19,7,,Minnesota,L,9,19,47.4,48,0
+46,Rutgers,2019-10-12,6,@,Indiana,L,5,13,38.5,1,0
+47,Rutgers,2018-11-10,10,,Michigan,L,9,20,45.0,59,0
+48,Rutgers,2018-11-17,11,,Penn State,L,5,16,31.3,46,0
+49,Rutgers,2019-10-05,5,,Maryland,L,13,25,52.0,163,0
+50,Rutgers,2019-09-28,4,@,Michigan,L,17,24,70.8,106,0
+51,Rutgers,2016-10-08,6,,Michigan,L,2,18,11.1,5,0
+52,Rutgers,2014-09-13,3,,Penn State,L,15,31,48.4,192,0
+53,Rutgers,2014-09-20,4,@,Navy,W,11,14,78.6,151,0
+54,Rutgers,2014-10-18,7,@,Ohio State,L,18,29,62.1,196,0
+55,Rutgers,2014-11-01,9,,Wisconsin,L,7,27,25.9,63,0
+56,Rutgers,2014-11-22,11,@,Michigan State,L,14,31,45.2,139,0
+57,Rutgers,2015-09-19,3,@,Penn State,L,27,42,64.3,251,0
+58,Rutgers,2015-10-31,8,@,Wisconsin,L,6,20,30.0,82,0
+59,Rutgers,2015-11-07,9,@,Michigan,L,11,27,40.7,97,0
+60,Rutgers,2015-11-21,11,@,Army,W,13,21,61.9,105,0
+61,Rutgers,2016-09-03,1,@,Washington,L,24,40,60.0,168,0
+62,Rutgers,2016-10-01,5,@,Ohio State,L,3,16,18.8,33,0
+63,Rutgers,2018-09-08,2,@,Ohio State,L,11,30,36.7,65,0
+64,Rutgers,2016-11-12,10,@,Michigan State,L,6,18,33.3,40,0
+65,Rutgers,2016-11-19,11,,Penn State,L,7,17,41.2,48,0
+66,Rutgers,2016-11-26,12,@,Maryland,L,22,40,55.0,203,0
+67,Rutgers,2017-09-09,2,,Eastern Michigan,L,17,38,44.7,198,0
+68,Rutgers,2017-09-23,4,@,Nebraska,L,15,29,51.7,126,0
+69,Rutgers,2017-09-30,5,,Ohio State,L,11,27,40.7,92,0
+70,Rutgers,2017-10-14,6,@,Illinois,W,6,12,50.0,102,0
+71,Rutgers,2017-10-28,8,@,Michigan,L,8,16,50.0,101,0
+72,Rutgers,2017-11-11,10,@,Penn State,L,7,20,35.0,43,0
+73,Rutgers,2017-11-18,11,@,Indiana,L,11,24,45.8,103,0

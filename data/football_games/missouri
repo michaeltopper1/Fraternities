@@ -1,0 +1,77 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Missouri,2017-09-02,1,,Missouri State,W,21,34,61.8,521,7
+2,Missouri,2017-10-21,7,,Idaho,W,24,34,70.6,475,6
+3,Missouri,2016-09-24,4,,Delaware State,W,29,39,74.4,430,6
+4,Missouri,2014-09-06,2,@,Toledo,W,21,33,63.6,325,5
+5,Missouri,2017-11-24,12,@,Arkansas,W,25,42,59.5,448,5
+6,Missouri,2017-10-28,8,@,Connecticut,W,34,43,79.1,408,5
+7,Missouri,2016-09-10,2,,Eastern Michigan,W,27,40,67.5,477,5
+8,Missouri,2017-11-11,10,,Tennessee,W,14,30,46.7,226,4
+9,Missouri,2018-09-01,1,,Tennessee-Martin,W,23,34,67.6,394,4
+10,Missouri,2018-09-08,2,,Wyoming,W,33,45,73.3,398,4
+11,Missouri,2018-10-20,7,,Memphis,W,24,32,75.0,373,4
+12,Missouri,2017-10-14,6,@,Georgia,L,15,25,60.0,253,4
+13,Missouri,2014-09-13,3,,Central Florida,W,14,24,58.3,144,4
+14,Missouri,2016-09-17,3,,Georgia,L,23,38,60.5,376,3
+15,Missouri,2017-11-04,9,,Florida,W,15,21,71.4,228,3
+16,Missouri,2017-11-18,11,@,Vanderbilt,W,10,25,40.0,235,3
+17,Missouri,2014-08-30,1,,South Dakota State,W,13,21,61.9,178,3
+18,Missouri,2018-09-15,3,@,Purdue,W,26,43,60.5,375,3
+19,Missouri,2018-11-03,9,@,Florida,W,24,32,75.0,250,3
+20,Missouri,2015-09-12,2,@,Arkansas State,W,16,37,43.2,148,3
+21,Missouri,2015-09-05,1,,Southeast Missouri State,W,18,32,56.3,319,3
+22,Missouri,2018-12-31,13,N,Oklahoma State,L,23,38,60.5,373,3
+23,Missouri,2017-10-07,5,@,Kentucky,L,22,43,51.2,355,3
+24,Missouri,2019-09-07,2,,West Virginia,W,17,28,60.7,150,3
+25,Missouri,2019-10-05,5,,Troy,W,18,27,66.7,278,3
+26,Missouri,2014-09-20,4,,Indiana,L,29,48,60.4,331,2
+27,Missouri,2017-09-23,4,,Auburn,L,23,39,59.0,216,2
+28,Missouri,2014-11-01,9,,Kentucky,W,18,33,54.5,164,2
+29,Missouri,2016-11-12,10,,Vanderbilt,W,22,37,59.5,294,2
+30,Missouri,2018-11-10,10,,Vanderbilt,W,22,33,66.7,253,2
+31,Missouri,2018-11-17,11,@,Tennessee,W,21,30,70.0,257,2
+32,Missouri,2018-11-23,12,,Arkansas,W,17,27,63.0,227,2
+33,Missouri,2019-08-31,1,@,Wyoming,L,31,48,64.6,423,2
+34,Missouri,2019-09-21,4,,South Carolina,W,19,33,57.6,227,2
+35,Missouri,2019-11-23,11,,Tennessee,L,17,29,58.6,181,2
+36,Missouri,2014-10-25,8,,Vanderbilt,W,11,23,47.8,141,2
+37,Missouri,2015-10-03,5,,South Carolina,W,21,28,75.0,136,2
+38,Missouri,2015-01-01,14,N,Minnesota,W,12,19,63.2,97,2
+39,Missouri,2016-10-29,8,,Kentucky,L,19,32,59.4,229,2
+40,Missouri,2016-10-22,7,,Middle Tennessee State,L,20,40,50.0,281,2
+41,Missouri,2014-11-22,11,@,Tennessee,W,12,25,48.0,230,2
+42,Missouri,2014-11-15,10,@,Texas A&M,W,23,40,57.5,252,1
+43,Missouri,2018-10-13,6,@,Alabama,L,13,26,50.0,142,1
+44,Missouri,2015-09-26,4,@,Kentucky,L,18,35,51.4,227,1
+45,Missouri,2014-12-06,13,N,Alabama,L,16,34,47.1,272,1
+46,Missouri,2014-11-28,12,,Arkansas,W,25,42,59.5,265,1
+47,Missouri,2019-09-14,3,,Southeast Missouri State,W,16,25,64.0,242,1
+48,Missouri,2016-11-19,11,@,Tennessee,L,21,43,48.8,320,1
+49,Missouri,2019-10-12,6,,Mississippi,W,23,35,65.7,329,1
+50,Missouri,2019-10-19,7,@,Vanderbilt,L,13,26,50.0,140,1
+51,Missouri,2019-10-26,8,@,Kentucky,L,14,29,48.3,164,1
+52,Missouri,2019-11-29,12,@,Arkansas,W,15,23,65.2,185,1
+53,Missouri,2016-09-03,1,@,West Virginia,L,24,53,45.3,282,1
+54,Missouri,2016-11-05,9,@,South Carolina,L,23,40,57.5,302,1
+55,Missouri,2016-11-25,12,,Arkansas,W,16,26,61.5,268,1
+56,Missouri,2017-09-09,2,,South Carolina,L,14,32,43.8,245,1
+57,Missouri,2016-10-01,5,@,Louisiana State,L,18,38,47.4,188,1
+58,Missouri,2017-12-27,13,,Texas,L,18,34,52.9,269,1
+59,Missouri,2015-11-14,10,N,Brigham Young,W,19,28,67.9,244,1
+60,Missouri,2015-10-24,8,@,Vanderbilt,L,14,34,41.2,108,0
+61,Missouri,2018-10-27,8,,Kentucky,L,15,27,55.6,165,0
+62,Missouri,2018-09-22,4,,Georgia,L,23,48,47.9,221,0
+63,Missouri,2019-11-16,10,,Florida,L,25,39,64.1,204,0
+64,Missouri,2019-11-09,9,@,Georgia,L,18,34,52.9,148,0
+65,Missouri,2014-09-27,5,@,South Carolina,W,12,34,35.3,132,0
+66,Missouri,2018-10-06,5,@,South Carolina,L,17,36,47.2,204,0
+67,Missouri,2017-09-16,3,,Purdue,L,12,28,42.9,133,0
+68,Missouri,2016-10-15,6,@,Florida,L,7,22,31.8,98,0
+69,Missouri,2014-10-11,6,,Georgia,L,9,21,42.9,97,0
+70,Missouri,2014-10-18,7,@,Florida,W,6,18,33.3,20,0
+71,Missouri,2015-11-05,9,,Mississippi State,L,11,26,42.3,107,0
+72,Missouri,2015-11-27,12,@,Arkansas,L,9,27,33.3,83,0
+73,Missouri,2015-09-19,3,,Connecticut,W,20,31,64.5,185,0
+74,Missouri,2015-11-21,11,,Tennessee,L,13,30,43.3,135,0
+75,Missouri,2015-10-17,7,@,Georgia,L,11,26,42.3,143,0
+76,Missouri,2015-10-10,6,,Florida,L,16,39,41.0,151,0
