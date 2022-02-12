@@ -1,0 +1,75 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Illinois,2015-09-05,1,,Kent State,W,14,29,48.3,208,5
+2,Illinois,2014-08-30,1,,Youngstown State,W,24,38,63.2,285,4
+3,Illinois,2019-09-07,2,@,Connecticut,W,24,35,68.6,227,4
+4,Illinois,2014-09-06,2,,Western Kentucky,W,35,50,70.0,456,3
+5,Illinois,2016-09-03,1,,Murray State,W,16,24,66.7,228,3
+6,Illinois,2015-11-07,9,@,Purdue,W,21,38,55.3,213,3
+7,Illinois,2019-08-31,1,,Akron,W,15,25,60.0,194,3
+8,Illinois,2014-11-29,12,@,Northwestern,W,17,28,60.7,147,3
+9,Illinois,2019-11-09,10,@,Michigan State,W,22,42,52.4,369,3
+10,Illinois,2014-11-15,10,,Iowa,L,17,31,54.8,147,2
+11,Illinois,2016-11-26,12,@,Northwestern,L,28,54,51.9,377,2
+12,Illinois,2017-10-14,6,,Rutgers,L,20,38,52.6,308,2
+13,Illinois,2016-11-05,9,,Michigan State,W,13,29,44.8,140,2
+14,Illinois,2017-11-11,10,,Indiana,L,13,26,50.0,261,2
+15,Illinois,2018-09-08,2,,Western Illinois,W,14,23,60.9,138,2
+16,Illinois,2018-09-21,4,,Penn State,L,18,31,58.1,166,2
+17,Illinois,2018-10-27,8,@,Maryland,L,14,32,43.8,261,2
+18,Illinois,2016-09-10,2,,North Carolina,L,17,35,48.6,127,2
+19,Illinois,2018-11-03,9,,Minnesota,W,18,25,72.0,216,2
+20,Illinois,2015-11-21,11,@,Minnesota,L,34,48,70.8,279,2
+21,Illinois,2014-09-13,3,@,Washington,L,20,30,66.7,279,2
+22,Illinois,2014-10-04,6,,Purdue,L,36,53,67.9,450,2
+23,Illinois,2019-09-14,3,,Eastern Michigan,L,22,37,59.5,297,2
+24,Illinois,2015-10-03,5,,Nebraska,W,23,45,51.1,251,2
+25,Illinois,2014-09-20,4,,Texas State,W,25,39,64.1,266,2
+26,Illinois,2015-09-12,2,,Western Illinois,W,38,54,70.4,353,2
+27,Illinois,2014-10-11,7,@,Wisconsin,L,14,24,58.3,135,2
+28,Illinois,2019-10-19,7,,Wisconsin,W,9,21,42.9,174,2
+29,Illinois,2019-10-12,6,,Michigan,L,16,29,55.2,192,1
+30,Illinois,2017-09-15,3,@,South Florida,L,20,40,50.0,287,1
+31,Illinois,2019-11-02,9,,Rutgers,W,6,11,54.5,120,1
+32,Illinois,2019-11-23,11,@,Iowa,L,18,34,52.9,144,1
+33,Illinois,2017-10-21,7,@,Minnesota,L,20,27,74.1,161,1
+34,Illinois,2017-11-04,9,@,Purdue,L,12,27,44.4,170,1
+35,Illinois,2018-10-06,5,@,Rutgers,W,10,19,52.6,89,1
+36,Illinois,2019-09-21,4,,Nebraska,L,9,24,37.5,78,1
+37,Illinois,2019-12-30,13,N,California,L,23,38,60.5,285,1
+38,Illinois,2018-11-24,12,@,Northwestern,L,23,39,59.0,281,1
+39,Illinois,2016-09-17,3,,Western Michigan,L,29,42,69.0,312,1
+40,Illinois,2014-09-27,5,@,Nebraska,L,17,38,44.7,261,1
+41,Illinois,2014-10-25,8,,Minnesota,W,15,23,65.2,140,1
+42,Illinois,2014-11-01,9,@,Ohio State,L,13,27,48.1,137,1
+43,Illinois,2014-11-22,11,,Penn State,W,26,42,61.9,215,1
+44,Illinois,2014-12-26,13,N,Louisiana Tech,L,28,47,59.6,329,1
+45,Illinois,2015-09-26,4,,Middle Tennessee State,W,29,49,59.2,238,1
+46,Illinois,2015-10-10,6,@,Iowa,L,25,43,58.1,317,1
+47,Illinois,2016-10-15,6,@,Rutgers,W,6,14,42.9,92,1
+48,Illinois,2017-09-02,1,,Ball State,W,10,19,52.6,145,1
+49,Illinois,2016-10-22,7,@,Michigan,L,4,15,26.7,95,1
+50,Illinois,2016-10-29,8,,Minnesota,L,16,34,47.1,156,1
+51,Illinois,2015-11-14,10,,Ohio State,L,23,47,48.9,241,0
+52,Illinois,2019-11-30,12,,Northwestern,L,11,23,47.8,146,0
+53,Illinois,2017-09-29,4,,Nebraska,L,10,16,62.5,106,0
+54,Illinois,2017-10-07,5,@,Iowa,L,22,45,48.9,246,0
+55,Illinois,2016-11-19,11,,Iowa,L,19,41,46.3,137,0
+56,Illinois,2019-10-26,8,@,Purdue,W,3,7,42.9,26,0
+57,Illinois,2016-11-12,10,@,Wisconsin,L,7,24,29.2,101,0
+58,Illinois,2015-09-19,3,@,North Carolina,L,19,38,50.0,172,0
+59,Illinois,2019-10-05,5,@,Minnesota,L,20,39,51.3,157,0
+60,Illinois,2017-10-28,8,,Wisconsin,L,9,31,29.0,152,0
+61,Illinois,2015-10-24,7,,Wisconsin,L,22,43,51.2,278,0
+62,Illinois,2015-10-31,8,@,Penn State,L,17,44,38.6,130,0
+63,Illinois,2017-11-18,11,@,Ohio State,L,4,14,28.6,16,0
+64,Illinois,2018-11-17,11,,Iowa,L,12,30,40.0,82,0
+65,Illinois,2018-11-10,10,@,Nebraska,L,11,25,44.0,126,0
+66,Illinois,2015-11-28,12,N,Northwestern,L,20,41,48.8,241,0
+67,Illinois,2017-09-09,2,,Western Kentucky,W,14,25,56.0,107,0
+68,Illinois,2018-10-20,7,@,Wisconsin,L,9,21,42.9,90,0
+69,Illinois,2018-10-13,6,,Purdue,L,15,29,51.7,181,0
+70,Illinois,2016-10-01,4,@,Nebraska,L,14,23,60.9,146,0
+71,Illinois,2016-10-08,5,,Purdue,L,14,23,60.9,184,0
+72,Illinois,2018-09-15,3,N,South Florida,L,20,31,64.5,168,0
+73,Illinois,2018-09-01,1,,Kent State,W,13,23,56.5,190,0
+74,Illinois,2017-11-25,12,,Northwestern,L,14,31,45.2,139,0

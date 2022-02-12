@@ -1,0 +1,76 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Arkansas,2015-11-21,11,,Mississippi State,L,30,43,69.8,406,7
+2,Arkansas,2015-11-07,9,@,Mississippi,W,33,45,73.3,442,6
+3,Arkansas,2014-09-06,2,,Nicholls State,W,8,14,57.1,189,4
+4,Arkansas,2018-09-01,1,,Eastern Illinois,W,21,29,72.4,353,4
+5,Arkansas,2015-09-05,1,,Texas-El Paso,W,14,20,70.0,308,4
+6,Arkansas,2016-10-01,5,,Alcorn State,W,13,18,72.2,206,3
+7,Arkansas,2016-10-08,6,,Alabama,L,25,48,52.1,400,3
+8,Arkansas,2016-09-10,2,@,Texas Christian,W,17,29,58.6,223,3
+9,Arkansas,2016-10-15,7,,Mississippi,W,19,32,59.4,229,3
+10,Arkansas,2016-11-19,11,@,Mississippi State,W,19,26,73.1,304,3
+11,Arkansas,2015-10-31,8,,Tennessee-Martin,W,15,20,75.0,300,3
+12,Arkansas,2015-10-24,7,,Auburn,W,20,32,62.5,244,3
+13,Arkansas,2017-09-23,3,,Texas A&M,L,13,27,48.1,231,3
+14,Arkansas,2017-09-30,4,,New Mexico State,W,19,26,73.1,264,3
+15,Arkansas,2017-10-28,8,@,Mississippi,W,19,30,63.3,189,3
+16,Arkansas,2018-10-06,6,,Alabama,L,26,40,65.0,233,3
+17,Arkansas,2014-10-25,8,,Alabama-Birmingham,W,16,26,61.5,211,3
+18,Arkansas,2014-10-18,7,N,Georgia,L,28,45,62.2,296,3
+19,Arkansas,2019-09-14,3,,Colorado State,W,20,35,57.1,305,3
+20,Arkansas,2019-09-21,4,,San Jose State,L,28,50,56.0,356,3
+21,Arkansas,2017-11-24,12,,Missouri,L,14,30,46.7,313,2
+22,Arkansas,2017-10-07,5,@,South Carolina,L,20,37,54.1,224,2
+23,Arkansas,2018-09-08,2,@,Colorado State,L,11,22,50.0,138,2
+24,Arkansas,2018-10-13,7,,Mississippi,L,15,22,68.2,177,2
+25,Arkansas,2018-10-27,9,,Vanderbilt,L,23,36,63.9,240,2
+26,Arkansas,2017-08-31,1,,Florida A&M,W,16,22,72.7,179,2
+27,Arkansas,2016-12-29,13,N,Virginia Tech,L,18,31,58.1,278,2
+28,Arkansas,2018-11-10,10,,Louisiana State,L,19,39,48.7,200,2
+29,Arkansas,2014-08-30,1,@,Auburn,L,18,31,58.1,175,2
+30,Arkansas,2019-11-29,12,,Missouri,L,11,31,35.5,77,2
+31,Arkansas,2016-09-17,3,,Texas State,W,16,22,72.7,241,2
+32,Arkansas,2014-09-20,4,,Northern Illinois,W,16,23,69.6,215,2
+33,Arkansas,2014-11-28,12,@,Missouri,L,13,30,43.3,133,2
+34,Arkansas,2014-12-29,13,N,Texas,W,12,23,52.2,160,2
+35,Arkansas,2015-09-19,3,,Texas Tech,L,16,21,76.2,196,2
+36,Arkansas,2015-10-10,6,@,Alabama,L,15,32,46.9,176,2
+37,Arkansas,2016-09-24,4,N,Texas A&M,L,28,42,66.7,371,2
+38,Arkansas,2016-09-03,1,,Louisiana Tech,W,20,29,69.0,191,2
+39,Arkansas,2016-11-25,12,@,Missouri,L,24,39,61.5,348,1
+40,Arkansas,2019-11-23,11,@,Louisiana State,L,13,28,46.4,190,1
+41,Arkansas,2019-11-02,9,,Mississippi State,L,9,24,37.5,101,1
+42,Arkansas,2019-10-26,8,@,Alabama,L,11,26,42.3,107,1
+43,Arkansas,2019-10-19,7,,Auburn,L,19,40,47.5,182,1
+44,Arkansas,2019-09-28,5,N,Texas A&M,L,27,44,61.4,297,1
+45,Arkansas,2014-09-27,5,N,Texas A&M,L,15,27,55.6,199,1
+46,Arkansas,2019-09-07,2,@,Mississippi,L,25,41,61.0,300,1
+47,Arkansas,2014-10-11,6,,Alabama,L,21,40,52.5,246,1
+48,Arkansas,2018-10-20,8,,Tulsa,W,11,19,57.9,131,1
+49,Arkansas,2014-11-22,11,,Mississippi,W,8,17,47.1,152,1
+50,Arkansas,2018-09-29,5,N,Texas A&M,L,14,27,51.9,193,1
+51,Arkansas,2016-01-02,13,N,Kansas State,W,20,26,76.9,315,1
+52,Arkansas,2015-11-14,10,@,Louisiana State,W,9,16,56.3,141,1
+53,Arkansas,2017-11-04,9,,Coastal Carolina,W,16,25,64.0,264,1
+54,Arkansas,2017-09-09,2,,Texas Christian,L,9,23,39.1,138,1
+55,Arkansas,2016-11-05,9,,Florida,W,15,26,57.7,243,1
+56,Arkansas,2016-11-12,10,,Louisiana State,L,15,31,48.4,210,1
+57,Arkansas,2015-10-03,5,@,Tennessee,W,11,24,45.8,219,1
+58,Arkansas,2015-09-26,4,N,Texas A&M,L,20,25,80.0,225,1
+59,Arkansas,2017-10-14,6,@,Alabama,L,23,43,53.5,200,1
+60,Arkansas,2018-11-23,12,@,Missouri,L,10,25,40.0,135,0
+61,Arkansas,2014-09-13,3,@,Texas Tech,W,6,12,50.0,61,0
+62,Arkansas,2019-11-09,10,,Western Kentucky,L,9,26,34.6,87,0
+63,Arkansas,2015-11-27,12,,Missouri,W,11,17,64.7,102,0
+64,Arkansas,2019-10-12,6,@,Kentucky,L,12,27,44.4,122,0
+65,Arkansas,2019-08-31,1,,Portland State,W,18,35,51.4,191,0
+66,Arkansas,2015-09-12,2,N,Toledo,L,32,53,60.4,412,0
+67,Arkansas,2018-11-17,11,@,Mississippi State,L,19,34,55.9,150,0
+68,Arkansas,2017-10-21,7,,Auburn,L,15,26,57.7,163,0
+69,Arkansas,2014-11-01,9,@,Mississippi State,L,22,44,50.0,238,0
+70,Arkansas,2014-11-15,10,,Louisiana State,W,16,27,59.3,169,0
+71,Arkansas,2017-11-11,10,@,Louisiana State,L,16,33,48.5,176,0
+72,Arkansas,2018-09-22,4,@,Auburn,L,13,32,40.6,141,0
+73,Arkansas,2018-09-15,3,,North Texas,L,20,45,44.4,210,0
+74,Arkansas,2017-11-18,11,,Mississippi State,L,12,18,66.7,124,0
+75,Arkansas,2016-10-22,8,@,Auburn,L,18,33,54.5,190,0

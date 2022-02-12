@@ -1,0 +1,76 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Nebraska,2016-09-10,2,,Wyoming,W,21,35,60.0,412,4
+2,Nebraska,2014-09-13,3,@,Fresno State,W,14,24,58.3,282,4
+3,Nebraska,2015-10-31,9,@,Purdue,L,29,48,60.4,407,4
+4,Nebraska,2015-09-19,3,@,Miami (FL),L,21,45,46.7,309,4
+5,Nebraska,2014-11-28,12,@,Iowa,W,12,28,42.9,202,4
+6,Nebraska,2015-09-12,2,,South Alabama,W,26,38,68.4,303,3
+7,Nebraska,2018-10-20,7,,Minnesota,W,25,30,83.3,276,3
+8,Nebraska,2016-09-17,3,,Oregon,W,17,35,48.6,200,3
+9,Nebraska,2015-11-14,11,@,Rutgers,W,14,21,66.7,188,3
+10,Nebraska,2018-11-10,10,,Illinois,W,24,34,70.6,290,3
+11,Nebraska,2015-10-17,7,@,Minnesota,W,18,26,69.2,261,3
+12,Nebraska,2015-09-05,1,,Brigham Young,L,24,41,58.5,319,3
+13,Nebraska,2014-12-27,13,N,Southern California,L,32,51,62.7,381,3
+14,Nebraska,2019-09-21,4,@,Illinois,W,22,34,64.7,328,3
+15,Nebraska,2017-09-09,2,@,Oregon,L,19,41,46.3,252,3
+16,Nebraska,2017-09-29,5,@,Illinois,W,17,24,70.8,246,3
+17,Nebraska,2017-11-18,11,@,Penn State,L,26,41,63.4,399,2
+18,Nebraska,2017-10-14,7,,Ohio State,L,27,47,57.4,349,2
+19,Nebraska,2016-11-12,10,,Minnesota,W,19,28,67.9,217,2
+20,Nebraska,2017-11-24,12,,Iowa,L,23,42,54.8,200,2
+21,Nebraska,2018-09-15,2,,Troy,L,19,27,70.4,177,2
+22,Nebraska,2016-12-30,13,N,Tennessee,L,19,42,45.2,257,2
+23,Nebraska,2017-09-02,1,,Arkansas State,W,19,32,59.4,238,2
+24,Nebraska,2018-09-29,4,,Purdue,L,25,42,59.5,323,2
+25,Nebraska,2017-11-04,9,,Northwestern,L,21,38,55.3,225,2
+26,Nebraska,2018-10-06,5,@,Wisconsin,L,26,44,59.1,407,2
+27,Nebraska,2017-09-23,4,,Rutgers,W,13,26,50.0,109,2
+28,Nebraska,2017-10-28,8,@,Purdue,W,32,50,64.0,431,2
+29,Nebraska,2014-09-06,2,,McNeese State,W,16,31,51.6,242,2
+30,Nebraska,2015-11-07,10,,Michigan State,W,19,33,57.6,320,2
+31,Nebraska,2018-11-23,12,@,Iowa,L,26,38,68.4,260,2
+32,Nebraska,2014-09-20,4,,Miami (FL),W,9,13,69.2,113,2
+33,Nebraska,2019-09-07,2,@,Colorado,L,16,26,61.5,290,2
+34,Nebraska,2015-09-26,4,,Southern Mississippi,W,23,35,65.7,368,2
+35,Nebraska,2019-09-14,3,,Northern Illinois,W,19,32,59.4,287,2
+36,Nebraska,2018-10-27,8,,Bethune-Cookman,W,17,31,54.8,242,2
+37,Nebraska,2014-08-30,1,,Florida Atlantic,W,17,35,48.6,286,2
+38,Nebraska,2014-10-25,8,,Rutgers,W,14,22,63.6,163,2
+39,Nebraska,2019-11-23,11,@,Maryland,W,19,30,63.3,226,2
+40,Nebraska,2017-11-11,10,@,Minnesota,L,25,36,69.4,311,1
+41,Nebraska,2019-11-29,12,,Iowa,L,12,23,52.2,100,1
+42,Nebraska,2019-11-16,10,,Wisconsin,L,13,23,56.5,220,1
+43,Nebraska,2019-10-26,8,,Indiana,L,20,23,87.0,294,1
+44,Nebraska,2018-09-08,1,,Colorado,L,19,29,65.5,236,1
+45,Nebraska,2018-11-03,9,@,Ohio State,L,22,33,66.7,266,1
+46,Nebraska,2018-10-13,6,@,Northwestern,L,25,35,71.4,251,1
+47,Nebraska,2015-10-24,8,,Northwestern,L,24,48,50.0,291,1
+48,Nebraska,2014-09-27,5,,Illinois,W,10,21,47.6,166,1
+49,Nebraska,2014-10-18,7,@,Northwestern,W,19,30,63.3,237,1
+50,Nebraska,2014-11-01,9,,Purdue,W,8,21,38.1,118,1
+51,Nebraska,2014-11-15,10,@,Wisconsin,L,6,18,33.3,62,1
+52,Nebraska,2014-11-22,11,,Minnesota,L,12,20,60.0,223,1
+53,Nebraska,2015-10-10,6,,Wisconsin,L,11,28,39.3,129,1
+54,Nebraska,2017-10-07,6,,Wisconsin,L,18,35,51.4,271,1
+55,Nebraska,2015-12-26,13,N,UCLA,W,12,19,63.2,174,1
+56,Nebraska,2016-09-03,1,,Fresno State,W,6,13,46.2,114,1
+57,Nebraska,2016-10-01,5,,Illinois,W,16,23,69.6,220,1
+58,Nebraska,2016-10-15,6,@,Indiana,W,10,26,38.5,208,1
+59,Nebraska,2016-09-24,4,@,Northwestern,W,18,29,62.1,246,1
+60,Nebraska,2016-11-25,12,@,Iowa,L,14,37,37.8,127,1
+61,Nebraska,2016-10-22,7,,Purdue,W,17,31,54.8,252,1
+62,Nebraska,2016-11-19,11,,Maryland,W,23,37,62.2,220,1
+63,Nebraska,2017-09-16,3,,Northern Illinois,L,25,47,53.2,299,0
+64,Nebraska,2014-10-04,6,@,Michigan State,L,21,45,46.7,282,0
+65,Nebraska,2019-11-02,9,@,Purdue,L,22,39,56.4,247,0
+66,Nebraska,2019-10-12,7,@,Minnesota,L,15,29,51.7,148,0
+67,Nebraska,2019-10-05,6,,Northwestern,W,15,25,60.0,186,0
+68,Nebraska,2019-09-28,5,,Ohio State,L,8,17,47.1,47,0
+69,Nebraska,2016-11-05,9,@,Ohio State,L,9,33,27.3,126,0
+70,Nebraska,2016-10-29,8,@,Wisconsin,L,12,31,38.7,153,0
+71,Nebraska,2015-10-03,5,@,Illinois,L,10,31,32.3,105,0
+72,Nebraska,2019-08-31,1,,South Alabama,W,13,22,59.1,178,0
+73,Nebraska,2018-11-17,11,,Michigan State,W,16,37,43.2,145,0
+74,Nebraska,2018-09-22,3,@,Michigan,L,13,24,54.2,93,0
+75,Nebraska,2015-11-27,12,,Iowa,L,25,45,55.6,296,0

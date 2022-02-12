@@ -1,0 +1,79 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Michigan State,2016-10-15,6,,Northwestern,L,27,42,64.3,424,4
+2,Michigan State,2015-11-07,9,@,Nebraska,L,24,39,61.5,348,4
+3,Michigan State,2015-10-24,8,,Indiana,W,30,52,57.7,398,4
+4,Michigan State,2017-10-28,8,@,Northwestern,L,39,57,68.4,445,4
+5,Michigan State,2015-09-19,3,,Air Force,W,15,23,65.2,247,4
+6,Michigan State,2017-12-28,13,,Washington State,W,13,22,59.1,213,3
+7,Michigan State,2016-10-01,4,@,Indiana,L,21,35,60.0,263,3
+8,Michigan State,2016-09-02,1,,Furman,W,13,18,72.2,190,3
+9,Michigan State,2015-11-28,12,,Penn State,W,19,27,70.4,248,3
+10,Michigan State,2016-11-12,10,,Rutgers,W,12,19,63.2,163,3
+11,Michigan State,2017-09-02,1,,Bowling Green State,W,22,36,61.1,250,3
+12,Michigan State,2019-09-21,4,@,Northwestern,W,18,31,58.1,228,3
+13,Michigan State,2014-08-29,1,,Jacksonville State,W,18,24,75.0,354,3
+14,Michigan State,2014-09-20,3,,Eastern Michigan,W,14,19,73.7,160,3
+15,Michigan State,2014-09-27,4,,Wyoming,W,16,20,80.0,195,3
+16,Michigan State,2019-11-23,11,@,Rutgers,W,21,30,70.0,239,3
+17,Michigan State,2014-10-11,6,@,Purdue,W,19,37,51.4,238,3
+18,Michigan State,2014-10-18,7,@,Indiana,W,24,32,75.0,332,3
+19,Michigan State,2019-09-28,5,,Indiana,W,18,36,50.0,300,3
+20,Michigan State,2019-09-07,2,,Western Michigan,W,24,33,72.7,331,3
+21,Michigan State,2017-09-23,3,,Notre Dame,L,32,53,60.4,345,2
+22,Michigan State,2018-10-13,6,@,Penn State,W,25,53,47.2,295,2
+23,Michigan State,2017-09-30,4,,Iowa,W,18,28,64.3,212,2
+24,Michigan State,2017-11-04,9,,Penn State,W,33,56,58.9,400,2
+25,Michigan State,2018-10-27,8,,Purdue,W,26,46,56.5,318,2
+26,Michigan State,2016-10-29,8,,Michigan,L,13,28,46.4,184,2
+27,Michigan State,2014-09-06,2,@,Oregon,L,29,47,61.7,343,2
+28,Michigan State,2018-08-31,1,,Utah State,W,23,33,69.7,287,2
+29,Michigan State,2018-09-22,3,@,Indiana,W,15,26,57.7,219,2
+30,Michigan State,2016-09-17,2,@,Notre Dame,W,19,26,73.1,241,2
+31,Michigan State,2015-09-12,2,,Oregon,W,20,32,62.5,192,2
+32,Michigan State,2015-09-04,1,@,Western Michigan,W,15,31,48.4,256,2
+33,Michigan State,2015-01-01,13,N,Baylor,W,24,42,57.1,314,2
+34,Michigan State,2015-10-10,6,@,Rutgers,W,24,39,61.5,367,2
+35,Michigan State,2014-11-22,11,,Rutgers,W,17,26,65.4,278,2
+36,Michigan State,2014-11-08,9,,Ohio State,L,25,45,55.6,358,2
+37,Michigan State,2014-10-25,8,,Michigan,W,12,22,54.5,227,1
+38,Michigan State,2019-08-30,1,,Tulsa,W,22,38,57.9,195,1
+39,Michigan State,2018-11-24,12,,Rutgers,W,19,44,43.2,173,1
+40,Michigan State,2019-10-05,6,@,Ohio State,L,20,38,52.6,218,1
+41,Michigan State,2018-10-20,7,,Michigan,L,7,28,25.0,79,1
+42,Michigan State,2014-11-29,12,@,Penn State,W,13,26,50.0,180,1
+43,Michigan State,2019-11-09,9,,Illinois,L,19,36,52.8,251,1
+44,Michigan State,2018-10-06,5,,Northwestern,L,31,51,60.8,329,1
+45,Michigan State,2019-11-16,10,@,Michigan,L,17,30,56.7,166,1
+46,Michigan State,2018-09-08,2,@,Arizona State,L,27,39,69.2,314,1
+47,Michigan State,2014-10-04,5,,Nebraska,W,11,29,37.9,234,1
+48,Michigan State,2019-12-27,13,N,Wake Forest,W,26,38,68.4,320,1
+49,Michigan State,2017-11-25,12,@,Rutgers,W,21,31,67.7,222,1
+50,Michigan State,2017-09-09,2,,Western Michigan,W,13,21,61.9,161,1
+51,Michigan State,2015-11-21,11,@,Ohio State,W,8,16,50.0,91,1
+52,Michigan State,2016-11-05,9,@,Illinois,L,29,47,61.7,315,1
+53,Michigan State,2016-11-19,11,,Ohio State,L,8,21,38.1,127,1
+54,Michigan State,2015-11-14,10,,Maryland,W,12,32,37.5,121,1
+55,Michigan State,2015-10-17,7,@,Michigan,W,18,39,46.2,328,1
+56,Michigan State,2017-10-07,5,@,Michigan,W,11,22,50.0,94,1
+57,Michigan State,2017-10-21,7,,Indiana,W,16,30,53.3,185,1
+58,Michigan State,2015-10-03,5,,Purdue,W,13,19,68.4,139,1
+59,Michigan State,2015-09-26,4,,Central Michigan,W,11,19,57.9,143,1
+60,Michigan State,2016-10-08,5,,Brigham Young,L,13,21,61.9,121,0
+61,Michigan State,2019-11-30,12,,Maryland,W,30,42,71.4,342,0
+62,Michigan State,2016-11-26,12,@,Penn State,L,25,46,54.3,234,0
+63,Michigan State,2015-12-31,14,N,Alabama,L,19,39,48.7,210,0
+64,Michigan State,2016-10-22,7,@,Maryland,L,11,24,45.8,156,0
+65,Michigan State,2019-10-26,8,,Penn State,L,19,43,44.2,182,0
+66,Michigan State,2019-10-12,7,@,Wisconsin,L,12,30,40.0,119,0
+67,Michigan State,2015-12-05,13,N,Iowa,W,16,33,48.5,191,0
+68,Michigan State,2016-09-24,3,,Wisconsin,L,20,43,46.5,250,0
+69,Michigan State,2019-09-14,3,,Arizona State,L,24,39,61.5,291,0
+70,Michigan State,2014-11-15,10,@,Maryland,W,14,31,45.2,240,0
+71,Michigan State,2018-12-31,13,N,Oregon,L,22,40,55.0,172,0
+72,Michigan State,2017-11-18,11,,Maryland,W,2,14,14.3,20,0
+73,Michigan State,2018-11-17,11,@,Nebraska,L,15,41,36.6,146,0
+74,Michigan State,2018-11-10,10,,Ohio State,L,18,48,37.5,220,0
+75,Michigan State,2018-11-03,9,@,Maryland,W,11,22,50.0,87,0
+76,Michigan State,2018-09-29,4,,Central Michigan,W,16,25,64.0,185,0
+77,Michigan State,2017-10-14,6,@,Minnesota,W,9,18,50.0,120,0
+78,Michigan State,2017-11-11,10,@,Ohio State,L,18,36,50.0,131,0

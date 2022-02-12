@@ -1,0 +1,77 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Arizona,2018-11-02,10,,Colorado,W,17,22,77.3,350,5
+2,Arizona,2014-09-20,4,,California,W,47,74,63.5,520,5
+3,Arizona,2019-09-07,2,,Northern Arizona,W,23,28,82.1,289,5
+4,Arizona,2014-10-25,7,@,Washington State,W,26,38,68.4,294,5
+5,Arizona,2018-09-15,3,,Southern Utah,W,15,22,68.2,358,5
+6,Arizona,2017-12-27,13,@,Purdue,L,17,26,65.4,302,5
+7,Arizona,2015-09-03,1,,Texas-San Antonio,W,22,36,61.1,229,4
+8,Arizona,2018-11-17,11,@,Washington State,L,20,34,58.8,304,4
+9,Arizona,2015-09-19,3,,Northern Arizona,W,26,39,66.7,293,4
+10,Arizona,2014-08-29,1,,Nevada-Las Vegas,W,26,46,56.5,434,4
+11,Arizona,2014-11-08,9,,Colorado,W,21,38,55.3,211,4
+12,Arizona,2019-08-24,1,@,Hawaii,L,22,39,56.4,361,3
+13,Arizona,2014-09-13,3,,Nevada,W,22,26,84.6,278,3
+14,Arizona,2018-10-27,9,,Oregon,W,19,33,57.6,189,3
+15,Arizona,2015-11-14,11,,Utah,W,18,32,56.3,302,3
+16,Arizona,2015-11-07,10,@,Southern California,L,31,47,66.0,352,3
+17,Arizona,2018-11-24,12,,Arizona State,L,21,39,53.8,282,3
+18,Arizona,2016-10-01,5,@,UCLA,L,13,31,41.9,145,3
+19,Arizona,2019-10-05,5,@,Colorado,W,31,41,75.6,404,3
+20,Arizona,2019-10-26,8,@,Stanford,L,24,40,60.0,273,3
+21,Arizona,2017-09-15,3,@,Texas-El Paso,W,20,23,87.0,175,3
+22,Arizona,2017-11-04,9,@,Southern California,L,14,31,45.2,146,2
+23,Arizona,2016-10-08,6,@,Utah,L,16,29,55.2,348,2
+24,Arizona,2018-10-20,8,@,UCLA,L,15,34,44.1,231,2
+25,Arizona,2018-09-29,5,,Southern California,L,16,33,48.5,232,2
+26,Arizona,2017-10-21,7,@,California,W,10,15,66.7,166,2
+27,Arizona,2018-09-22,4,@,Oregon State,W,9,17,52.9,152,2
+28,Arizona,2017-10-28,8,,Washington State,W,10,17,58.8,275,2
+29,Arizona,2015-11-21,12,@,Arizona State,L,20,43,46.5,340,2
+30,Arizona,2015-10-24,8,,Washington State,L,24,37,64.9,307,2
+31,Arizona,2015-10-17,7,@,Colorado,W,25,40,62.5,325,2
+32,Arizona,2015-09-26,4,,UCLA,L,10,28,35.7,115,2
+33,Arizona,2015-12-19,13,N,New Mexico,W,13,24,54.2,329,2
+34,Arizona,2019-11-30,12,@,Arizona State,L,22,38,57.9,228,2
+35,Arizona,2015-09-12,2,@,Nevada,W,25,34,73.5,269,2
+36,Arizona,2019-11-02,9,,Oregon State,L,26,41,63.4,378,2
+37,Arizona,2014-11-28,12,,Arizona State,W,15,21,71.4,208,2
+38,Arizona,2019-10-19,7,@,Southern California,L,23,38,60.5,247,2
+39,Arizona,2016-11-25,12,,Arizona State,W,3,8,37.5,77,1
+40,Arizona,2017-11-18,11,@,Oregon,L,18,35,51.4,159,1
+41,Arizona,2019-10-12,6,,Washington,L,16,33,48.5,209,1
+42,Arizona,2018-09-01,1,,Brigham Young,L,17,34,50.0,197,1
+43,Arizona,2019-09-28,4,,UCLA,W,29,44,65.9,352,1
+44,Arizona,2019-09-14,3,,Texas Tech,W,14,23,60.9,185,1
+45,Arizona,2018-10-06,6,,California,W,15,25,60.0,141,1
+46,Arizona,2018-10-12,7,@,Utah,L,24,46,52.2,246,1
+47,Arizona,2016-09-10,2,,Grambling State,W,15,30,50.0,223,1
+48,Arizona,2014-09-04,2,@,Texas-San Antonio,W,17,32,53.1,231,1
+49,Arizona,2014-10-02,5,@,Oregon,W,20,31,64.5,287,1
+50,Arizona,2014-10-11,6,,Southern California,L,43,72,59.7,395,1
+51,Arizona,2014-11-01,8,@,UCLA,L,18,48,37.5,175,1
+52,Arizona,2014-12-05,13,N,Oregon,L,9,26,34.6,113,1
+53,Arizona,2014-12-31,14,N,Boise State,L,28,50,56.0,335,1
+54,Arizona,2015-10-03,5,@,Stanford,L,17,33,51.5,196,1
+55,Arizona,2017-10-14,6,,UCLA,W,9,13,69.2,148,1
+56,Arizona,2016-09-17,3,,Hawaii,W,16,21,76.2,235,1
+57,Arizona,2016-09-24,4,,Washington,L,19,31,61.3,167,1
+58,Arizona,2016-10-15,7,,Southern California,L,11,26,42.3,142,1
+59,Arizona,2016-11-05,9,@,Washington State,L,11,23,47.8,128,1
+60,Arizona,2017-10-07,5,@,Colorado,W,12,14,85.7,154,1
+61,Arizona,2017-09-22,4,,Utah,L,24,42,57.1,248,1
+62,Arizona,2017-09-02,1,,Northern Arizona,W,7,14,50.0,89,1
+63,Arizona,2016-11-19,11,@,Oregon State,L,16,31,51.6,188,1
+64,Arizona,2016-10-29,8,,Stanford,L,5,20,25.0,116,1
+65,Arizona,2016-09-03,1,N,Brigham Young,L,20,30,66.7,213,0
+66,Arizona,2015-10-31,9,@,Washington,L,25,42,59.5,203,0
+67,Arizona,2015-10-10,6,,Oregon State,W,17,30,56.7,276,0
+68,Arizona,2018-09-08,2,@,Houston,L,28,50,56.0,381,0
+69,Arizona,2017-09-09,2,,Houston,L,22,37,59.5,219,0
+70,Arizona,2014-11-22,11,@,Utah,W,11,22,50.0,222,0
+71,Arizona,2014-11-15,10,,Washington,W,17,40,42.5,242,0
+72,Arizona,2017-11-25,12,@,Arizona State,L,15,21,71.4,194,0
+73,Arizona,2016-11-12,10,,Colorado,L,12,26,46.2,155,0
+74,Arizona,2017-11-11,10,,Oregon State,W,5,7,71.4,68,0
+75,Arizona,2019-11-16,10,@,Oregon,L,17,30,56.7,132,0
+76,Arizona,2019-11-23,11,,Utah,L,14,27,51.9,135,0

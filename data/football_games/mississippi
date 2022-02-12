@@ -1,0 +1,75 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Ole Miss,2018-09-08,2,,Southern Illinois,W,24,35,68.6,479,5
+2,Ole Miss,2017-09-09,2,,Tennessee-Martin,W,32,43,74.4,489,5
+3,Ole Miss,2018-10-06,6,,Louisiana-Monroe,W,31,34,91.2,517,5
+4,Ole Miss,2015-09-05,1,,Tennessee-Martin,W,19,28,67.9,324,5
+5,Ole Miss,2014-08-28,1,N,Boise State,W,25,36,69.4,387,4
+6,Ole Miss,2017-11-04,9,@,Kentucky,W,31,41,75.6,382,4
+7,Ole Miss,2017-10-14,6,,Vanderbilt,W,22,35,62.9,351,4
+8,Ole Miss,2017-09-02,1,,South Alabama,W,28,35,80.0,429,4
+9,Ole Miss,2016-09-10,2,,Wofford,W,22,30,73.3,242,4
+10,Ole Miss,2016-09-05,1,N,Florida State,L,21,39,53.8,313,4
+11,Ole Miss,2016-01-01,13,N,Oklahoma State,W,22,35,62.9,347,4
+12,Ole Miss,2015-09-12,2,,Fresno State,W,26,37,70.3,392,4
+13,Ole Miss,2014-09-13,3,,Louisiana,W,29,36,80.6,340,4
+14,Ole Miss,2016-10-29,8,,Auburn,L,36,59,61.0,465,3
+15,Ole Miss,2019-09-28,5,@,Alabama,L,12,30,40.0,197,3
+16,Ole Miss,2015-09-19,3,@,Alabama,W,18,33,54.5,341,3
+17,Ole Miss,2017-11-11,10,,Louisiana,W,28,36,77.8,418,3
+18,Ole Miss,2015-10-10,6,,New Mexico State,W,25,35,71.4,400,3
+19,Ole Miss,2015-10-17,7,@,Memphis,L,34,48,70.8,440,3
+20,Ole Miss,2015-11-07,10,,Arkansas,L,24,34,70.6,368,3
+21,Ole Miss,2016-09-24,4,,Georgia,W,21,30,70.0,330,3
+22,Ole Miss,2014-11-08,10,,Presbyterian,W,24,30,80.0,238,3
+23,Ole Miss,2016-09-17,3,,Alabama,L,26,40,65.0,421,3
+24,Ole Miss,2014-10-04,5,,Alabama,W,18,31,58.1,251,3
+25,Ole Miss,2014-09-27,4,,Memphis,W,22,37,59.5,248,2
+26,Ole Miss,2016-11-12,10,@,Texas A&M,W,25,42,59.5,338,2
+27,Ole Miss,2016-11-19,11,@,Vanderbilt,L,26,51,51.0,273,2
+28,Ole Miss,2016-11-26,12,,Mississippi State,L,27,48,56.3,320,2
+29,Ole Miss,2017-09-16,3,@,California,L,26,44,59.1,363,2
+30,Ole Miss,2017-10-07,5,@,Auburn,L,34,51,66.7,346,2
+31,Ole Miss,2018-10-13,7,@,Arkansas,W,26,35,74.3,387,2
+32,Ole Miss,2018-09-01,1,N,Texas Tech,W,22,32,68.8,336,2
+33,Ole Miss,2017-11-18,11,,Texas A&M,L,19,34,55.9,189,2
+34,Ole Miss,2017-11-23,12,@,Mississippi State,W,10,22,45.5,247,2
+35,Ole Miss,2018-09-22,4,,Kent State,W,28,38,73.7,442,2
+36,Ole Miss,2014-10-18,7,,Tennessee,W,14,31,45.2,203,2
+37,Ole Miss,2019-09-07,2,,Arkansas,W,16,24,66.7,246,2
+38,Ole Miss,2019-10-12,7,@,Missouri,L,18,33,54.5,236,2
+39,Ole Miss,2014-11-01,9,,Auburn,L,28,40,70.0,339,2
+40,Ole Miss,2015-11-28,12,@,Mississippi State,W,21,30,70.0,236,2
+41,Ole Miss,2015-11-21,11,,Louisiana State,W,19,34,55.9,280,2
+42,Ole Miss,2015-10-31,9,@,Auburn,W,34,52,65.4,402,2
+43,Ole Miss,2015-10-24,8,,Texas A&M,W,26,41,63.4,241,2
+44,Ole Miss,2018-11-17,11,@,Vanderbilt,L,32,52,61.5,457,2
+45,Ole Miss,2019-09-14,3,,Southeastern Louisiana,W,21,30,70.0,239,2
+46,Ole Miss,2018-10-20,8,,Auburn,L,27,47,57.4,324,1
+47,Ole Miss,2019-11-16,11,,Louisiana State,L,15,27,55.6,212,1
+48,Ole Miss,2018-09-15,3,,Alabama,L,7,22,31.8,133,1
+49,Ole Miss,2019-11-28,12,@,Mississippi State,L,15,26,57.7,245,1
+50,Ole Miss,2018-11-10,10,@,Texas A&M,L,22,35,62.9,373,1
+51,Ole Miss,2014-09-06,2,N,Vanderbilt,W,28,38,73.7,367,1
+52,Ole Miss,2014-10-11,6,@,Texas A&M,W,13,19,68.4,178,1
+53,Ole Miss,2016-11-05,9,,Georgia Southern,W,17,28,60.7,245,1
+54,Ole Miss,2016-10-22,7,@,Louisiana State,L,20,33,60.6,218,1
+55,Ole Miss,2016-10-15,6,@,Arkansas,L,18,39,46.2,253,1
+56,Ole Miss,2016-10-01,5,,Memphis,W,30,44,68.2,361,1
+57,Ole Miss,2015-10-03,5,@,Florida,L,26,40,65.0,259,1
+58,Ole Miss,2015-09-26,4,,Vanderbilt,W,24,42,57.1,321,1
+59,Ole Miss,2014-10-25,8,@,Louisiana State,L,14,34,41.2,176,1
+60,Ole Miss,2014-11-29,12,,Mississippi State,W,14,31,45.2,327,1
+61,Ole Miss,2019-08-31,1,@,Memphis,L,9,19,47.4,93,0
+62,Ole Miss,2019-11-09,10,,New Mexico State,W,13,19,68.4,159,0
+63,Ole Miss,2019-11-02,9,@,Auburn,L,14,27,51.9,99,0
+64,Ole Miss,2019-10-19,8,,Texas A&M,L,14,29,48.3,155,0
+65,Ole Miss,2019-10-05,6,,Vanderbilt,W,10,18,55.6,99,0
+66,Ole Miss,2014-11-22,11,@,Arkansas,L,18,38,47.4,253,0
+67,Ole Miss,2019-09-21,4,,California,L,29,48,60.4,348,0
+68,Ole Miss,2014-12-31,13,N,Texas Christian,L,11,27,40.7,120,0
+69,Ole Miss,2017-10-28,8,,Arkansas,L,20,30,66.7,368,0
+70,Ole Miss,2018-11-22,12,,Mississippi State,L,13,25,52.0,152,0
+71,Ole Miss,2018-11-03,9,,South Carolina,L,31,48,64.6,379,0
+72,Ole Miss,2018-09-29,5,@,Louisiana State,L,19,38,50.0,178,0
+73,Ole Miss,2017-09-30,4,@,Alabama,L,14,29,48.3,165,0
+74,Ole Miss,2017-10-21,7,,Louisiana State,L,17,34,50.0,194,0
