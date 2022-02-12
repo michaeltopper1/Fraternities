@@ -1,0 +1,81 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,San Diego State,2019-12-21,13,N,Central Michigan,W,18,31,58.1,287,3
+2,San Diego State,2016-09-17,3,@,Northern Illinois,W,11,19,57.9,126,3
+3,San Diego State,2015-11-14,10,,Wyoming,W,12,19,63.2,138,3
+4,San Diego State,2019-10-05,5,@,Colorado State,W,16,20,80.0,147,3
+5,San Diego State,2014-11-08,9,,Idaho,W,14,22,63.6,249,3
+6,San Diego State,2016-11-05,9,,Hawaii,W,8,16,50.0,97,3
+7,San Diego State,2018-10-27,8,@,Nevada,L,20,41,48.8,283,3
+8,San Diego State,2016-09-03,1,,New Hampshire,W,17,26,65.4,291,2
+9,San Diego State,2015-12-24,14,N,Cincinnati,W,9,12,75.0,129,2
+10,San Diego State,2017-09-30,5,,Northern Illinois,W,10,20,50.0,136,2
+11,San Diego State,2017-11-24,12,,New Mexico,W,14,21,66.7,198,2
+12,San Diego State,2018-09-22,4,,Eastern Michigan,W,12,22,54.5,176,2
+13,San Diego State,2015-10-03,5,,Fresno State,W,5,12,41.7,104,2
+14,San Diego State,2015-09-19,3,,South Alabama,L,13,27,48.1,165,2
+15,San Diego State,2017-09-02,1,,California-Davis,W,17,23,73.9,237,2
+16,San Diego State,2018-11-10,10,,Nevada-Las Vegas,L,22,36,61.1,279,2
+17,San Diego State,2018-11-17,11,@,Fresno State,L,8,21,38.1,218,2
+18,San Diego State,2018-11-24,12,,Hawaii,L,12,23,52.2,178,2
+19,San Diego State,2016-11-12,10,@,Nevada,W,11,17,64.7,146,2
+20,San Diego State,2019-09-21,4,,Utah State,L,20,37,54.1,281,2
+21,San Diego State,2019-10-12,6,,Wyoming,W,21,32,65.6,209,2
+22,San Diego State,2016-11-19,11,@,Wyoming,L,15,27,55.6,211,2
+23,San Diego State,2016-11-26,12,,Colorado State,L,11,19,57.9,183,2
+24,San Diego State,2017-09-09,2,@,Arizona State,W,9,18,50.0,73,1
+25,San Diego State,2017-09-16,3,,Stanford,W,21,29,72.4,187,1
+26,San Diego State,2017-09-23,4,@,Air Force,W,10,16,62.5,180,1
+27,San Diego State,2016-12-17,14,N,Houston,W,10,14,71.4,128,1
+28,San Diego State,2014-08-30,1,,Northern Arizona,W,18,29,62.1,205,1
+29,San Diego State,2017-10-14,7,,Boise State,L,12,27,44.4,240,1
+30,San Diego State,2017-10-28,9,@,Hawaii,W,5,11,45.5,83,1
+31,San Diego State,2017-11-04,10,@,San Jose State,W,6,7,85.7,94,1
+32,San Diego State,2017-11-18,11,,Nevada,W,15,23,65.2,205,1
+33,San Diego State,2018-09-15,3,,Arizona State,W,12,24,50.0,129,1
+34,San Diego State,2018-10-12,6,,Air Force,W,9,25,36.0,213,1
+35,San Diego State,2018-11-03,9,@,New Mexico,W,17,25,68.0,240,1
+36,San Diego State,2019-09-07,2,@,UCLA,W,23,31,74.2,293,1
+37,San Diego State,2019-09-14,3,@,New Mexico State,W,17,26,65.4,116,1
+38,San Diego State,2019-10-26,8,@,Nevada-Las Vegas,W,14,23,60.9,185,1
+39,San Diego State,2019-11-15,10,,Fresno State,W,33,47,70.2,323,1
+40,San Diego State,2019-11-30,12,,Brigham Young,W,19,25,76.0,172,1
+41,San Diego State,2016-10-28,8,@,Utah State,W,4,10,40.0,14,1
+42,San Diego State,2014-09-06,2,@,North Carolina,L,23,39,59.0,341,1
+43,San Diego State,2014-10-03,5,@,Fresno State,L,9,24,37.5,84,1
+44,San Diego State,2014-10-18,7,,Hawaii,W,13,24,54.2,174,1
+45,San Diego State,2014-11-01,8,@,Nevada,L,21,36,58.3,189,1
+46,San Diego State,2014-11-15,10,@,Boise State,L,18,30,60.0,188,1
+47,San Diego State,2014-11-21,11,,Air Force,W,17,31,54.8,326,1
+48,San Diego State,2015-09-12,2,@,California,L,14,32,43.8,173,1
+49,San Diego State,2015-09-26,4,@,Penn State,L,10,29,34.5,141,1
+50,San Diego State,2015-10-10,6,@,Hawaii,W,11,15,73.3,184,1
+51,San Diego State,2015-10-17,7,@,San Jose State,W,10,14,71.4,144,1
+52,San Diego State,2015-10-23,8,,Utah State,W,6,10,60.0,93,1
+53,San Diego State,2015-11-21,11,@,Nevada-Las Vegas,W,11,18,61.1,107,1
+54,San Diego State,2015-12-05,13,,Air Force,W,9,14,64.3,203,1
+55,San Diego State,2016-10-21,7,,San Jose State,W,13,18,72.2,167,1
+56,San Diego State,2016-09-10,2,,California,W,14,23,60.9,129,1
+57,San Diego State,2016-10-08,5,,Nevada-Las Vegas,W,15,20,75.0,215,1
+58,San Diego State,2015-10-31,9,@,Colorado State,W,11,14,78.6,180,1
+59,San Diego State,2016-10-01,4,@,South Alabama,L,13,22,59.1,159,1
+60,San Diego State,2018-12-19,13,N,Ohio,L,12,26,46.2,134,0
+61,San Diego State,2016-12-03,13,@,Wyoming,W,6,13,46.2,85,0
+62,San Diego State,2014-09-20,3,@,Oregon State,L,14,26,53.8,106,0
+63,San Diego State,2019-11-23,11,@,Hawaii,L,25,40,62.5,229,0
+64,San Diego State,2014-09-27,4,,Nevada-Las Vegas,W,16,28,57.1,209,0
+65,San Diego State,2019-11-09,9,,Nevada,L,18,35,51.4,196,0
+66,San Diego State,2019-10-19,7,@,San Jose State,W,13,20,65.0,88,0
+67,San Diego State,2014-10-10,6,@,New Mexico,W,5,17,29.4,73,0
+68,San Diego State,2016-10-14,6,@,Fresno State,W,7,12,58.3,72,0
+69,San Diego State,2017-10-07,6,@,Nevada-Las Vegas,W,14,24,58.3,172,0
+70,San Diego State,2019-08-31,1,,Weber State,W,16,30,53.3,108,0
+71,San Diego State,2014-11-29,12,,San Jose State,W,4,16,25.0,34,0
+72,San Diego State,2014-12-23,13,N,Navy,L,11,27,40.7,141,0
+73,San Diego State,2015-09-05,1,,San Diego,W,11,23,47.8,139,0
+74,San Diego State,2017-10-21,8,,Fresno State,L,11,23,47.8,90,0
+75,San Diego State,2018-10-20,7,,San Jose State,W,7,11,63.6,86,0
+76,San Diego State,2018-10-06,5,@,Boise State,W,8,15,53.3,113,0
+77,San Diego State,2015-11-28,12,,Nevada,W,9,12,75.0,88,0
+78,San Diego State,2018-09-08,2,,Sacramento State,W,17,28,60.7,271,0
+79,San Diego State,2018-08-31,1,@,Stanford,L,10,15,66.7,113,0
+80,San Diego State,2017-12-23,13,@,Army,L,6,10,60.0,25,0

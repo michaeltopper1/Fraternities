@@ -1,0 +1,79 @@
+Rk,School,Date,G#,,Opponent,,Cmp,Att,Pct,Yds,TD
+1,Florida State,2016-11-11,10,,Boston College,W,21,31,67.7,236,5
+2,Florida State,2015-09-05,1,,Texas State,W,25,32,78.1,370,5
+3,Florida State,2017-11-18,10,,Delaware State,W,18,24,75.0,236,4
+4,Florida State,2017-12-27,13,,Southern Mississippi,W,19,29,65.5,238,4
+5,Florida State,2014-09-27,4,@,North Carolina State,W,26,38,68.4,365,4
+6,Florida State,2018-09-29,5,@,Louisville,W,16,27,59.3,294,4
+7,Florida State,2018-11-03,9,@,North Carolina State,L,29,48,60.4,421,4
+8,Florida State,2014-12-06,13,N,Georgia Tech,W,21,30,70.0,309,3
+9,Florida State,2015-10-31,8,,Syracuse,W,25,38,65.8,354,3
+10,Florida State,2018-09-08,2,,Samford,W,31,46,67.4,320,3
+11,Florida State,2015-10-17,6,,Louisville,W,27,39,69.2,377,3
+12,Florida State,2016-09-10,2,,Charleston Southern,W,26,35,74.3,269,3
+13,Florida State,2019-08-31,1,,Boise State,L,23,34,67.6,327,3
+14,Florida State,2019-09-07,2,,Louisiana-Monroe,W,30,40,75.0,282,3
+15,Florida State,2019-09-14,3,@,Virginia,L,22,37,59.5,234,3
+16,Florida State,2014-10-30,8,@,Louisville,W,25,48,52.1,401,3
+17,Florida State,2019-09-28,5,,North Carolina State,W,29,40,72.5,316,3
+18,Florida State,2014-10-11,6,@,Syracuse,W,30,36,83.3,317,3
+19,Florida State,2019-11-16,11,,Alabama State,W,16,29,55.2,317,3
+20,Florida State,2016-10-08,6,@,Miami (FL),W,21,33,63.6,240,2
+21,Florida State,2016-12-30,13,N,Michigan,W,9,27,33.3,222,2
+22,Florida State,2016-11-19,11,@,Syracuse,W,19,31,61.3,320,2
+23,Florida State,2017-10-07,4,,Miami (FL),L,17,28,60.7,203,2
+24,Florida State,2014-09-06,2,,Citadel,W,25,32,78.1,284,2
+25,Florida State,2017-10-21,6,,Louisville,L,16,28,57.1,248,2
+26,Florida State,2017-11-25,11,@,Florida,W,10,21,47.6,128,2
+27,Florida State,2018-09-22,4,,Northern Illinois,W,23,32,71.9,352,2
+28,Florida State,2018-10-06,6,@,Miami (FL),L,16,32,50.0,130,2
+29,Florida State,2018-10-20,7,,Wake Forest,W,28,41,68.3,341,2
+30,Florida State,2019-09-21,4,,Louisville,W,26,34,76.5,382,2
+31,Florida State,2019-10-19,7,@,Wake Forest,L,27,43,62.8,280,2
+32,Florida State,2019-11-09,10,@,Boston College,W,18,26,69.2,346,2
+33,Florida State,2016-09-17,3,@,Louisville,L,8,24,33.3,113,2
+34,Florida State,2016-09-05,1,N,Mississippi,W,33,52,63.5,419,2
+35,Florida State,2015-11-14,10,,North Carolina State,W,23,37,62.2,283,2
+36,Florida State,2014-10-18,7,,Notre Dame,W,23,31,74.2,273,2
+37,Florida State,2015-11-21,11,,Chattanooga,W,17,23,73.9,235,2
+38,Florida State,2015-12-31,13,N,Houston,L,23,48,47.9,397,2
+39,Florida State,2014-11-29,12,,Florida,W,12,24,50.0,125,2
+40,Florida State,2014-11-15,10,@,Miami (FL),W,25,42,59.5,304,1
+41,Florida State,2015-10-03,4,@,Wake Forest,W,20,31,64.5,202,1
+42,Florida State,2015-09-18,3,@,Boston College,W,15,24,62.5,119,1
+43,Florida State,2015-09-12,2,,South Florida,W,14,26,53.8,163,1
+44,Florida State,2018-10-27,8,,Clemson,L,20,40,50.0,268,1
+45,Florida State,2015-01-01,14,N,Oregon,L,29,48,60.4,348,1
+46,Florida State,2018-11-17,11,,Boston College,W,19,39,48.7,322,1
+47,Florida State,2018-11-24,12,,Florida,L,14,30,46.7,154,1
+48,Florida State,2014-11-22,11,,Boston College,W,22,32,68.8,281,1
+49,Florida State,2016-10-15,7,,Wake Forest,W,22,37,59.5,319,1
+50,Florida State,2014-11-08,9,,Virginia,W,22,35,62.9,261,1
+51,Florida State,2019-10-12,6,@,Clemson,L,17,35,48.6,150,1
+52,Florida State,2014-10-04,5,,Wake Forest,W,24,41,58.5,304,1
+53,Florida State,2019-11-02,9,,Miami (FL),L,20,28,71.4,172,1
+54,Florida State,2014-09-20,3,,Clemson,W,21,39,53.8,304,1
+55,Florida State,2014-08-30,1,N,Oklahoma State,W,25,40,62.5,370,1
+56,Florida State,2019-12-31,13,N,Arizona State,L,16,29,55.2,246,1
+57,Florida State,2015-10-10,5,,Miami (FL),W,25,33,75.8,291,1
+58,Florida State,2016-10-29,8,,Clemson,L,17,35,48.6,286,1
+59,Florida State,2016-11-05,9,@,North Carolina State,W,22,39,56.4,330,1
+60,Florida State,2017-12-02,12,,Louisiana-Monroe,W,15,23,65.2,199,1
+61,Florida State,2016-09-24,4,@,South Florida,W,11,19,57.9,169,1
+62,Florida State,2017-11-11,9,@,Clemson,L,13,32,40.6,208,1
+63,Florida State,2017-11-04,8,,Syracuse,W,12,19,63.2,136,1
+64,Florida State,2015-11-28,12,@,Florida,W,14,28,50.0,160,1
+65,Florida State,2017-10-14,5,@,Duke,W,18,21,85.7,197,1
+66,Florida State,2017-09-30,3,@,Wake Forest,W,11,21,52.4,121,1
+67,Florida State,2017-09-23,2,,North Carolina State,L,22,39,56.4,278,1
+68,Florida State,2017-09-02,1,,Alabama,L,19,33,57.6,210,1
+69,Florida State,2016-11-26,12,,Florida,W,15,26,57.7,138,1
+70,Florida State,2016-10-01,5,,North Carolina,L,20,32,62.5,372,0
+71,Florida State,2019-11-30,12,@,Florida,L,16,25,64.0,181,0
+72,Florida State,2019-10-26,8,,Syracuse,W,19,32,59.4,246,0
+73,Florida State,2017-10-27,7,@,Boston College,L,12,27,44.4,149,0
+74,Florida State,2018-11-10,10,@,Notre Dame,L,23,48,47.9,216,0
+75,Florida State,2015-11-07,9,@,Clemson,L,16,29,55.2,164,0
+76,Florida State,2018-09-03,1,,Virginia Tech,L,22,35,62.9,233,0
+77,Florida State,2015-10-24,7,@,Georgia Tech,L,20,31,64.5,210,0
+78,Florida State,2018-09-15,3,@,Syracuse,L,18,37,48.6,178,0
