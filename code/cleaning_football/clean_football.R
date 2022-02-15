@@ -79,4 +79,4 @@ football_schools <- football_schools %>%
 
 
 football_schools %>% 
-  write_csv("created_data/xmaster_data/football_schools.csv")
+  write_csv("created_data/football/football_schools.csv")

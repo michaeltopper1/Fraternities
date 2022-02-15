@@ -597,15 +597,16 @@ daily_panel_allschools <- daily_panel_allschools %>%
 
 # adding in football games ------------------------------------------------
 
-football_schools <- read_csv("created_data/xmaster_data/football_schools.csv")
+football_schools <- read_csv("created_data/xmaster_data/football_final.csv")
 
 daily_panel <- daily_panel %>% 
   left_join(football_schools, by = c("university" = "school", "date" = "game_date")) %>% 
-  mutate(game_occurred = ifelse(is.na(game_occurred), 0, game_occurred))
+  mutate(across(c(game_occurred, home_game, opponent, away_game, win), ~ifelse(is.na(.), 0, .)))
+ 
 
 daily_panel_allschools <- daily_panel_allschools %>% 
   left_join(football_schools, by = c("university" = "school", "date" = "game_date")) %>% 
-  mutate(game_occurred = ifelse(is.na(game_occurred), 0, game_occurred))
+  mutate(across(c(game_occurred, home_game, opponent, away_game, win), ~ifelse(is.na(.), 0, .)))
 
 daily_panel_weekdays <- daily_panel %>% 
   filter(day_of_week == "Mon" | day_of_week == "Thu" | day_of_week == "Wed" | day_of_week == "Tue" )

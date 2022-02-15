@@ -1,0 +1,153 @@
+---
+title: "Football Appended"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(fixest)
+library(modelsummary)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Update: Football Games + NIBRS
+
+This update will focus on the addition of adding in footballs games from [sports-reference.com](sports-reference.com). Furthermore, I also add in the NIBRS data set. Footballs games are added to add controls. NIBRS data is used to figure out what is going on with spillovers outside.
+
+# Football games
+
+```{r}
+daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
+daily_crime_all <- read_csv("created_data/xmaster_data/daily_panel_allschools.csv")
+
+daily_crime <- daily_crime %>% 
+  mutate(home_game = ifelse(is.na(home_game), 0, home_game)) 
+
+daily_crime_all <- daily_crime_all %>% 
+  mutate(home_game = ifelse(is.na(home_game), 0, home_game)) 
+#   filter(game_occurred == 1) %>% 
+#   distinct(university ) %>% pull()
+```
+
+Using sports-reference.com, I was able to get data on football games for 30 of the 38 schools. I believe that this relates to Division 1 schools - the 30 schools are the only Division 1 schools/schools that have football teams. Regardless, the way I define this in the main data set when adding in the control is to have a `game_occurred` control which is equal to 1 if a football game appeared on a given day, regardless of school type. Hence, if a school does not have a football team, they will just have all zeros. I do this to include all the schools in the sample. 
+
+## Regressions
+```{r}
+fixed_effects_1 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+fixed_effects_3 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday",  "spring_semester")
+
+fixed_effects_1n <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday", "game_occurred")
+fixed_effects_2n <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+fixed_effects_3n <- c("day_of_week", "university_by_academic_year_by_semester", "holiday",  "spring_semester", "game_occurred")
+
+daily_fixed_effects = list(fixed_effects_1, fixed_effects_2, fixed_effects_3, fixed_effects_1n, fixed_effects_2n, fixed_effects_3n)
+
+explanatory_vars <- c("treatment")
+```
+
+
+```{r}
+alc <- map(daily_fixed_effects, ~ifc::reghdfe(daily_crime, c("alcohol_offense_per25"),explanatory_vars, ., "university")
+)
+
+sex <- map(daily_fixed_effects, ~ifc::reghdfe(daily_crime, c("sexual_assault_per25"),explanatory_vars, ., "university")
+)
+```
+
+
+```{r}
+main_table <- ifc::main_table(alc, last_panel = sex) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 5` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 6` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          .before = 4) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 5` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 6` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          .before = 8) %>% 
+  kbl(booktabs = T, 
+      col.names = c(" ", "(1)", "(2)", "(3)", "(1)", 
+                    "(2)", "(3)"),
+      digits = 3,
+      caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (OLS).") %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  add_header_above(c(" " = 1, "Without Football" = 3, "With Football Controls" = 3)) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>%
+  pack_rows("Panel B: Sexual Assaults", 5, 8, bold = T, italic = F) %>% 
+  pack_rows("Controls for Panels A-B:",9, 16, bold = T, italic = F ) %>% 
+  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since these holiday's are not on any university's academic calendar. A moratorium is a temporary halt on fraternity-related activities with alcohol. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates.",
+                    "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"), threeparttable = T)
+```
+
+```{r}
+main_table
+daily_crime %>% colnames()
+```
+
+## Replciating Lindo Results
+
+Including all schools gives me good consistent and significant results with the lindo paper - looks like sexual assault likely a power issue. Wondering if this means I should use a different sample in my paper. Of course, this result is identified off of more schools, whereas in my paper the moratorium results are still identified off of the same amount of schools regardless of adding in the never treated schools. 
+```{r}
+lindo_fixed_effects_1 <- c("day_of_week", "year", "university", "holiday")
+lindo_fixed_effects_2 <- c("day_of_week", "year", "university_by_month", "holiday")
+lindo_fixed_effects_3 <- c("day_of_week", "year", "university_by_week", "holiday")
+lindo_fixed_effects_4 <- c("day_of_week", "university_by_month_by_year", "holiday")
+
+lindo_fixed_effects <- list(lindo_fixed_effects_1, lindo_fixed_effects_2, lindo_fixed_effects_3, lindo_fixed_effects_4)
+alc_lindo <- map(lindo_fixed_effects, ~ifc::reghdfe_pois(daily_crime_all %>% 
+                                                      filter(university %in% ifc::moratorium_schools() | university %in% ifc::never_treated_no_death()), c("alcohol_offense_per25"),"game_occurred", ., "university")
+)
+sex_lindo <- map(lindo_fixed_effects, ~ifc::reghdfe_pois(daily_crime_all %>% 
+                                                      filter(university %in% ifc::moratorium_schools() | university %in% ifc::never_treated_no_death()), c("sexual_assault_per25"),"game_occurred", ., "university")
+)
+
+ifc::main_table(alc_lindo, last_panel = sex_lindo) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime$alcohol_offense, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime$alcohol_offense, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime$alcohol_offense, na.rm = T)),
+          .before = 4) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime$sexual_assault, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime$sexual_assault, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime$sexual_assault, na.rm = T)),
+          .before = 8) %>% 
+  kbl(booktabs = T, 
+      col.names = c(" ", "(1)", "(2)", "(3)", "(4)"),
+      digits = 3,
+      caption = "\\label{main_table}Effect of Game Days on Alcohol Offenses and Sexual Assaults (Poisson).") %>% 
+  kable_styling(latex_options = "HOLD_position") 
+```
+
+# Interaction
+
+This section looks at the interaction of these effects.
+
+```{r}
+fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+
+main_specifications <- list(fixed_effects_1, fixed_effects_2, fixed_effects_3)
+interaction <- c("treatment:game_occurred")
+map(main_specifications, ~ifc::reghdfe(daily_crime_all, "alcohol_offense_per25", interaction, ., "university"))
+
+map(main_specifications, ~ifc::reghdfe(daily_crime, "alcohol_offense_per25", "game_occurred", ., "university"))
+```
+
+
+
+
+
