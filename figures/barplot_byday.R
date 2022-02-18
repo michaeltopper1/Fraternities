@@ -6,87 +6,61 @@
 ##
 
 library(tidyverse)
+library(patchwork)
 
 if(!exists("daily_crime")) {
   daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
 }
 
+median_alc_freq <- daily_crime %>% 
+  group_by(university) %>% 
+  mutate(frequency_alc= sum(alcohol_offense_per25, na.rm = T)) %>% 
+  distinct(university, frequency_alc) %>% 
+  arrange(desc(frequency_alc)) %>% 
+  pull(frequency_alc) %>% 
+  quantile(c(0.5))
 
-by_day_sexual_assault <- daily_crime %>% 
-  mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Effect", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Effect"))) %>% 
-  mutate(day_of_week = factor(day_of_week, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
-  group_by(day_of_week, treatment) %>% 
-  summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
-            avg_alcohol = mean(alcohol_offense, na.rm = T), 
-            avg_drug = mean(drug_offense, na.rm = T)) %>% 
-  ggplot(aes(x = day_of_week, y = avg_sexual_assault, fill = as.factor(treatment))) +
-  geom_col(position = "dodge", alpha = 0.8) +
-  labs(x = "",y= "Average Reports of Sexual Assault", fill = "") +
+median_sex_freq <- daily_crime %>% 
+  group_by(university) %>% 
+  mutate(frequency_sex = sum(sexual_assault_per25, na.rm = T)) %>% 
+  distinct(university, frequency_sex) %>% 
+  pull(frequency_sex) %>% 
+  quantile(c(0.5))
+
+sex_bar <- daily_crime %>% 
+  group_by(university) %>% 
+  mutate(frequency_sex = sum(sexual_assault_per25, na.rm = T)) %>% 
+  mutate(over_median_sex = ifelse(frequency_sex > median_sex_freq, "Above Median Frequency", "Below Median Frequency")) %>% 
+  ungroup() %>% 
+  mutate(treatment = ifelse(treatment == 1, "Moratorium", "No Moratorium")) %>% 
+  mutate(weekend = ifelse(day_of_week %in% c("Fri", "Sat", "Sun"), "Weekends", "Weekdays")) %>% 
+  group_by(treatment, over_median_sex, weekend) %>% 
+  summarize(avg_sex = mean(sexual_assault_per25, na.rm = T)) %>% 
+  # mutate(day_of_week = factor(day_of_week, levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))) %>% 
+  ggplot(aes(weekend, avg_sex)) +
+  geom_col(aes(fill = as.factor(treatment)), position = "dodge")  +
+  facet_wrap(~over_median_sex, scales = "free_y") +
+  labs(x = " ", y = "Average Per 25000 Students", fill = " ", title = "Panel B: Sexual Assaults") +
   theme_minimal() +
   theme(legend.position = "bottom")
 
-by_day_alcohol <- daily_crime %>% 
-  mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Effect", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Effect"))) %>% 
-  mutate(day_of_week = factor(day_of_week, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
-  group_by(day_of_week, treatment) %>% 
-  summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
-            avg_alcohol = mean(alcohol_offense, na.rm = T), 
-            avg_drug = mean(drug_offense, na.rm = T)) %>% 
-  ggplot(aes(x = day_of_week, y = avg_alcohol, fill = as.factor(treatment))) +
-  geom_col(position = "dodge", alpha = 0.8) +
-  labs(x = "",y= "Average Number of Alcohol Offenses", fill = "") +
-  theme_minimal() + 
-  theme(legend.position = "bottom")
-
-by_day_drug_offense <- daily_crime %>%
-  mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Place", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Place"))) %>%
-  mutate(day_of_week = factor(day_of_week, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>%
-  group_by(day_of_week, treatment) %>%
-  summarize(avg_sexual_assault = mean(sexual_assault, na.rm = T),
-            avg_alcohol = mean(alcohol_offense, na.rm = T),
-            avg_drug = mean(drug_offense, na.rm = T)) %>%
-  ggplot(aes(x = day_of_week, y = avg_drug, fill = as.factor(treatment))) +
-  geom_col(position = "dodge",alpha = 0.8) +
-  labs(x = "",y= "Average Drug Offense Incidents", fill = "") +
-  theme_light() +
-  theme(legend.position = "bottom") 
-
-by_day_robbery <- daily_crime %>% 
-  mutate(treatment = factor(ifelse(treatment == 1, "Moratorium in Effect", "No Moratorium"), levels = c("No Moratorium", "Moratorium in Effect"))) %>% 
-  mutate(day_of_week = factor(day_of_week, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
-  group_by(day_of_week, treatment) %>% 
-  summarize(avg_robbery = mean(robbery_burglary,  na.rm = T)) %>% 
-  ggplot(aes(x = day_of_week, y = avg_robbery, fill = as.factor(treatment))) +
-  geom_col(position = "dodge", alpha = 0.8) +
-  labs(x = "",y= "Average Number of Robbery/Burglaries", fill = "") +
+alc_bar <- daily_crime %>% 
+  group_by(university) %>% 
+  mutate(frequency_alc= sum(alcohol_offense_per25, na.rm = T)) %>% 
+  mutate(over_median_alc = ifelse(frequency_alc > median_alc_freq, "Above Median Frequency", "Below Median Frequency")) %>%
+  ungroup() %>% 
+  mutate(treatment = ifelse(treatment == 1, "Moratorium", "No Moratorium")) %>% 
+  mutate(weekend = ifelse(day_of_week %in% c("Fri", "Sat", "Sun"), "Weekends", "Weekdays")) %>% 
+  group_by(treatment, over_median_alc, weekend) %>% 
+  summarize(avg_alc = mean(alcohol_offense_per25, na.rm = T)) %>% 
+  # mutate(day_of_week = factor(day_of_week, levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))) %>% 
+  ggplot(aes(weekend, avg_alc)) +
+  geom_col(aes(fill = as.factor(treatment)), position = "dodge")  +
+  facet_wrap(~over_median_alc, scales = "free_y") +
+  labs(x = " ", y = "Average Per 25000 Students", fill = " ", title = "Panel A: Alcohol Offenses") +
   theme_minimal() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "none")
 
-# by_day_noise <- daily_crime %>% 
-#   mutate(day_of_week = factor(day_of_week, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
-#   group_by(day_of_week, treatment) %>% 
-#   summarize(avg_noise = mean(noise_offense,  na.rm = T)) %>% 
-#   ggplot(aes(x = day_of_week, y = avg_noise, fill = as.factor(treatment))) +
-#   geom_col(position = "dodge") +
-#   labs(x = "",y= "", fill = "Fraternity Moratorium") +
-#   theme_light()
-# 
-# by_day_alcohol_strict <- daily_crime %>% 
-#   mutate(day_of_week = factor(day_of_week, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>% 
-#   group_by(day_of_week, treatment) %>% 
-#   summarize(avg_alcohol = mean(alcohol_offense_strict,  na.rm = T)) %>% 
-#   ggplot(aes(x = day_of_week, y = avg_alcohol, fill = as.factor(treatment))) +
-#   geom_col(position = "dodge") +
-#   labs(x = "",y= "", fill = "Fraternity Moratorium") +
-#   theme_light()
-# 
+raw_bar <- alc_bar + sex_bar +plot_layout(ncol = 1)
 
-by_day_theft <- daily_crime %>%
-  mutate(day_of_week = factor(day_of_week, levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", 'Sat'))) %>%
-  group_by(day_of_week, treatment) %>%
-  summarize(avg_theft = mean(theft,  na.rm = T)) %>%
-  ggplot(aes(x = day_of_week, y = avg_theft, fill = as.factor(treatment))) +
-  geom_col(position = "dodge", alpha = 0.8) +
-  labs(x = "",y= "Average Number of Theft Offenses", fill = "") +
-  theme_minimal() +
-  theme(legend.position = "bottom")
+raw_bar

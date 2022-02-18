@@ -142,11 +142,20 @@ fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holi
 
 main_specifications <- list(fixed_effects_1, fixed_effects_2, fixed_effects_3)
 interaction <- c("treatment:game_occurred")
-map(main_specifications, ~ifc::reghdfe(daily_crime_all, "alcohol_offense_per25", interaction, ., "university"))
-
+map(main_specifications, ~ifc::reghdfe(daily_crime_all %>% filter(university %in% ifc::moratorium_schools() | university %in% ifc::never_treated_no_death()), "alcohol_offense_per25", interaction, ., "university"))
 map(main_specifications, ~ifc::reghdfe(daily_crime, "alcohol_offense_per25", "game_occurred", ., "university"))
 ```
 
+```{r}
+daily_crime %>% 
+  filter(game_occurred == 1 & treatment == 1) %>% 
+  count(university, sort = T)
+```
+
+```{r}
+
+  
+```
 
 
 
