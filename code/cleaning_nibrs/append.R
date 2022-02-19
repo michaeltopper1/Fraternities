@@ -183,7 +183,13 @@ nibrs_panel_all_ori <- nibrs_panel_all_ori %>%
 
 
 
+# adding in football games ------------------------------------------------
 
+football_games <- read_csv("created_data/xmaster_data/football_final.csv") %>% 
+  filter(school %in% nibrs_panel_all_ori$university)
+
+nibrs_panel_all_ori <- nibrs_panel_all_ori %>% 
+  left_join(football_games, by = c("university" = "school", "date" = "game_date"))
 
 
 # saving data -------------------------------------------------------------
