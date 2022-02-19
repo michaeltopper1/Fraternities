@@ -63,4 +63,3 @@ alc_bar <- daily_crime %>%
 
 raw_bar <- alc_bar + sex_bar +plot_layout(ncol = 1)
 
-raw_bar
