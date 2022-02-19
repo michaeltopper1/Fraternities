@@ -1,0 +1,6 @@
+To clean the nibrs data, you must have the following ordering:
+
+1. exact_years_ori.R - appends the years necessary (takes a long time to run)
+2. aggregate.R - adds up the necessary columns and makes the desired outcome variables
+3. append.R - merges together closures/footballschools/academic calendars.
+
