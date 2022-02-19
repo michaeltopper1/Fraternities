@@ -12,81 +12,94 @@ library(lubridate)
 # loading in data ---------------------------------------------------------
 
 ## be sure to run the aggregate file first!!!!!
-nibrs <- read_csv("Created Data/nibrs/nibrs_aggregated.csv")
+nibrs <- read_csv("created_data/nibrs/nibrs_aggregated.csv")
 
-closures <- readxl::read_excel("Data/closure_spreadsheet_final_2019.xlsx") %>% 
+closures <- readxl::read_excel("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names()
 
+## pulling in the academic calendars
+academic_calendars <- readxl::read_excel("data/academic_calendars_ori.xlsx") %>% janitor::clean_names()
 
-# choosing which ORI i want - ORI lindo/ ORI is schools ORI lindo  --------
+nonschool_oris <- academic_calendars %>% 
+  filter(ori_type == "nonschool") %>% 
+  pull(ori)
 
-closures_schools_only <- closures %>% 
-  filter(!is.na(ori_9)) %>% 
-  pivot_longer(c(ori_9, ori_9_lindo), values_to = "ori", names_to = "ori_type") %>% 
-  relocate(ori_type, ori)
 
-closures_nonschools_only <- closures %>% 
-  filter(!is.na(ori_9)) %>% 
-  pivot_longer(c(ori_9_lindo2), values_to = "ori", names_to = "ori_type") %>% 
-  relocate(ori_type, ori)
+# importing the arrest data -------------------------------------------------
+group_b <- read_csv("created_data/nibrs/group_b_arrests.csv")
 
-closures_schools <- closures %>%
-  filter(!is.na(ori_9))
+group_b <- group_b %>% 
+  mutate(alcohol_arrest = ifelse(ucr_arrest_offense_code == "driving under the influence" |
+                                   ucr_arrest_offense_code == "drunkenness" |
+                                   ucr_arrest_offense_code == "liquor law violations", 1, 0)) %>% 
+  mutate(college_aged = ifelse(age_of_arrestee >=17 & age_of_arrestee <= 22, "college_aged", "not_college")) %>% 
+  group_by(arrest_date, ori, college_aged) %>% 
+  summarize(alcohol_arrest = sum(alcohol_arrest,na.rm = T)) %>% ungroup() %>% 
+  pivot_wider( names_from = college_aged, values_from = alcohol_arrest) %>% 
+  select( -`NA`) %>% 
+  rename(alcohol_arrest_college_aged = college_aged, alcohol_arrest_not_college_aged = not_college) %>% 
+  mutate(across(-c(arrest_date, ori), ~ifelse(is.na(.), 0, .)))
 
-closures_schools <- closures_schools %>% 
-  pivot_longer(c(ori_9, ori_9_lindo2), values_to = "ori", names_to = "ori_type") %>% 
-  relocate(ori_type, ori)
 
+### Note that due to this following graph that we must omit some of the following ORI due to reporting issues.
+# group_b %>% 
+#   rowwise() %>% 
+#   mutate(alcohol_offense_total = sum(alcohol_arrest_college_aged, alcohol_arrest_not_college_aged, na.rm = T)) %>% 
+#   filter(!(ori %in% c("IN0530100", "KS0230100", "MO0100200", "MS0360100", "NC0740900", "NC0921600", "TX1050100", "TX1050300", "VA0940400", "WV0060200",
+#                       "SC0390200", "TXDPD0000", "VA0940400"))) %>% ## ones to omit
+#   ggplot(aes(arrest_date, alcohol_offense_total)) +
+#   geom_path() +
+#   facet_wrap(~ori,scales = "free_y")
+
+
+
+### Omitting the following for alcohol arrests::
+## c("IN0530100", "KS0230100", "MO0100200", "MS0360100", "NC0740900", "NC0921600", "TX1050100", "TX1050300", "VA0940400", "WV0060200",
+## "SC0390200", "TXDPD0000", "VA0940400")
+  
 
 
 # matching NIBRS to the ORI chosen ----------------------------------------
 
+group_b <- group_b %>% 
+  rowwise() %>% 
+  mutate(alcohol_offense_total = sum(alcohol_arrest_college_aged, alcohol_arrest_not_college_aged, na.rm = T)) %>% 
+  filter(!(ori %in% c("IN0530100", "KS0230100", "MO0100200", "MS0360100", "NC0740900", "NC0921600", "TX1050100", "TX1050300", "VA0940400", "WV0060200",
+                      "SC0390200", "TXDPD0000", "VA0940400")))
+
+
+consistent_ori <- group_b %>% distinct(ori) %>% pull()
 
 nibrs_agg_schools <- nibrs %>% 
-  left_join(closures_schools, by= c("ori" = "ori")) %>% 
-  filter(!is.na(university)) %>% 
-  group_by(university, incident_date, .drop = F) %>% 
-  summarize(across(c(rape, sexual_assault_object, fondling, rape_statutory,
-                   theft, college_age_rape,
-                   starts_with("victim_"),college_age_sexual_assault_object, college_age_rape_statutory, 
-                   college_age_fondle) , ~sum(.,na.rm = T))) 
-
-nibrs_schools_only <- nibrs %>% 
-  left_join(closures_schools_only,  by = c("ori" = "ori")) %>% 
-  filter(!is.na(university)) %>% 
-  group_by(university, incident_date, .drop = F) %>% 
+  filter(ori %in% consistent_ori) %>% 
+  group_by(ori, incident_date, .drop = F) %>% 
   summarize(across(c(rape, sexual_assault_object, fondling, rape_statutory,
                      theft, college_age_rape,
                      starts_with("victim_"),college_age_sexual_assault_object, college_age_rape_statutory, 
-                     college_age_fondle) , ~sum(.,na.rm = T))) 
+                     college_age_fondle) , ~sum(.,na.rm = T))) %>% 
+  mutate(ori_nonschool = ifelse(ori %in% nonschool_oris, 1, 0))
 
-nibrs_nonschools_only <- nibrs %>% 
-  left_join(closures_nonschools_only,  by = c("ori" = "ori")) %>% 
-  filter(!is.na(university)) %>% 
-  group_by(university, incident_date, .drop = F) %>% 
-  summarize(across(c(rape, sexual_assault_object, fondling, rape_statutory,
-                     theft, college_age_rape,
-                     starts_with("victim_"),college_age_sexual_assault_object, college_age_rape_statutory, 
-                     college_age_fondle) , ~sum(.,na.rm = T))) 
+
+
+
+nibrs_full <- nibrs_agg_schools %>%
+  left_join(group_b, by = c("ori", "incident_date" = "arrest_date"))
+
 
 # create a full yearly panel for every school -----------------------------
 
 # Creating Academic Calendar panels by semester ---------------------------
 
-## pulling in the academic calendars
-academic_calendars <- read_csv("Data/academic_calendars.csv") %>% janitor::clean_names()
-
 ## moving all calendar dates to start in 2014
 academic_calendars <- academic_calendars %>% 
-  extract(fall_start, "fall_start", "(\\d{1,2}/\\d{1,2})") %>% 
-  mutate(fall_start = paste0(fall_start, "/", "14")) %>% 
-  extract(fall_end, "fall_end", "(\\d{1,2}/\\d{1,2})") %>% 
-  mutate(fall_end = paste0(fall_end, "/", "14")) %>% 
-  extract(spring_start, "spring_start", "(\\d{1,2}/\\d{1,2})") %>% 
-  mutate(spring_start = paste0(spring_start, "/", "14")) %>% 
-  extract(spring_end, "spring_end", "(\\d{1,2}/\\d{1,2})") %>% 
-  mutate(spring_end = paste0(spring_end, "/", "14")) %>% 
-  mutate(across(c(-university), ~mdy(.))) 
+  filter(ori %in% consistent_ori) %>% 
+  separate(fall_start, into = c("fall_start"), sep = "\\s", extra = "merge") %>% 
+  separate(fall_end, into = "fall_end", sep = "\\s") %>% 
+  separate(spring_start, into = "spring_start", sep = "\\s") %>% 
+  separate(spring_end, into = "spring_end", sep = "\\s") %>% 
+  mutate(across(matches("^f|^s"), ~str_replace(., "\\d\\d\\d\\d", "2014"))) %>% 
+  mutate(across(c(fall_start, fall_end, spring_start,spring_end), ~lubridate::ymd(.))) 
+
 
 ## adding 1 week to the fall_start of the academic calendar to account for welcome week.
 ## adding 1 week to the end of spring for conservative ness
@@ -105,7 +118,7 @@ for (i in 0:5) {
   name <- paste0("semester_", spring_semester)
   calendar <- academic_calendars %>% 
     mutate(spring_start = spring_start + years(i), spring_end = spring_end + years(i)) %>% 
-    group_by(university) %>% 
+    group_by(ori) %>% 
     do(data.frame(semester_number = spring_semester, date = seq(.$spring_start, .$spring_end , by= "day")))
   assign(name, calendar)
 }
@@ -118,7 +131,7 @@ for (i in 0:5) {
   name <- paste0("semester_", winter_semester)
   calendar <- academic_calendars %>% 
     mutate(fall_start = fall_start + years(i), fall_end = fall_end + years(i)) %>% 
-    group_by(university) %>% 
+    group_by(ori) %>% 
     do(data.frame(semester_number = winter_semester, date = seq(.$fall_start, .$fall_end , by= "day")))
   assign(name, calendar)
 }
@@ -139,116 +152,44 @@ rm(semester_1, semester_2,
    semester_9, semester_10,
    semester_11, semester_12)
 
-reporting_universities <- c("Arkansas State University-Main Campus",
-                            "California Polytechnic State University-San Luis Obispo",
-                            "Clemson University",
-                            "College of Charleston",
-                            "Marshall University",
-                            "Murray State University",
-                            "Ohio State University-Main Campus",
-                            "Ohio University-Main Campus",
-                            "University of Iowa",
-                            "University of Kansas",
-                            "Washington State University",
-                            "West Virginia University",
-                            "University of Vermont",
-                            "University of Virginia-Main Campus")
 
 
 # mergining the panel with the crime data ---------------------------------
 
 nibrs_panel_all_ori <- panel %>% 
-  left_join(nibrs_agg_schools, by = c("date" = "incident_date", "university" = "university")) %>% 
-  filter(university %in% reporting_universities) 
-
-nibrs_panel_schools_ori <- panel %>% 
-  left_join(nibrs_schools_only, by = c("date" = "incident_date", "university" = "university")) %>% 
-  filter(university %in% reporting_universities) 
-
-nibrs_panel_nonschools_ori <- panel %>% 
-  left_join(nibrs_nonschools_only, by = c("date" = "incident_date", "university" = "university")) %>% 
-  filter(university %in% reporting_universities) 
+  left_join(nibrs_full, by = c("date" = "incident_date", "ori" = "ori")) %>% 
+  ungroup() %>% 
+  mutate(across(c(4:21), ~ifelse(is.na(.), 0, .))) %>% 
+  left_join(academic_calendars, by = c("ori"))
 
 
 # creating the treatment variable and replacing NA with 0 for day --------
 
 nibrs_panel_all_ori <- nibrs_panel_all_ori %>% 
-  left_join(closures, by = c("university"="university")) %>%
-  mutate(across(c(rape, sexual_assault_object,
-                fondling, rape_statutory, theft, college_age_rape,
-                college_age_sexual_assault_object, college_age_rape_statutory, 
-                college_age_fondle), ~ifelse(is.na(.), 0, .))) %>% 
-  rename("date_of_calendar" = "date.x","date" = "date.y") %>% 
-  rename("closure_1" = date,
+  left_join(closures, by = c("university"="university")) %>% 
+  rename("closure_1" = date.y,
          "closure_1_end" = deadline,
          "closure_2" = date2,
-         "closure_2_end" = deadline2) %>% 
-  rename("date" = "date_of_calendar") %>% 
+         "closure_2_end" = deadline2,
+         "closure_3" = date3,
+         "closure_3_end" = deadline3) %>% 
+  rename("date" = "date.x") %>% 
   mutate(treatment = case_when(
     (!is.na(closure_1) & !is.na(closure_1_end)) & (date >= closure_1 & date < closure_1_end) ~ 1,
     (!is.na(closure_2) & !is.na(closure_2_end)) & (date >= closure_2 & date < closure_2_end) ~ 1,
-    TRUE ~as.double(0)
-  )) %>% 
-  mutate(university_enacted = case_when(
-    university_enacted_1 == 1 & treatment == 1 ~ 1,
-    university_enacted_2 == 1 & treatment == 1 ~ 1,
-    TRUE ~as.double(0)
-  ))
-
-nibrs_panel_schools_ori <- nibrs_panel_schools_ori %>% 
-  left_join(closures, by = c("university"="university")) %>%
-  mutate(across(c(rape, sexual_assault_object,
-                  fondling, rape_statutory, theft, college_age_rape,
-                  college_age_sexual_assault_object, college_age_rape_statutory, 
-                  college_age_fondle), ~ifelse(is.na(.), 0, .))) %>% 
-  rename("date_of_calendar" = "date.x","date" = "date.y") %>% 
-  rename("closure_1" = date,
-         "closure_1_end" = deadline,
-         "closure_2" = date2,
-         "closure_2_end" = deadline2) %>% 
-  rename("date" = "date_of_calendar") %>% 
-  mutate(treatment = case_when(
-    (!is.na(closure_1) & !is.na(closure_1_end)) & (date >= closure_1 & date < closure_1_end) ~ 1,
-    (!is.na(closure_2) & !is.na(closure_2_end)) & (date >= closure_2 & date < closure_2_end) ~ 1,
-    TRUE ~as.double(0)
-  )) %>% 
-  mutate(university_enacted = case_when(
-    university_enacted_1 == 1 & treatment == 1 ~ 1,
-    university_enacted_2 == 1 & treatment == 1 ~ 1,
+    (!is.na(closure_3) & !is.na(closure_3_end) & (date >= closure_3 & date < closure_3_end)) ~ 1,
     TRUE ~as.double(0)
   ))
 
 
-nibrs_panel_nonschools_ori <- nibrs_panel_nonschools_ori %>% 
-  left_join(closures, by = c("university"="university")) %>%
-  mutate(across(c(rape, sexual_assault_object,
-                  fondling, rape_statutory, theft, college_age_rape,
-                  college_age_sexual_assault_object, college_age_rape_statutory, 
-                  college_age_fondle), ~ifelse(is.na(.), 0, .))) %>% 
-  rename("date_of_calendar" = "date.x","date" = "date.y") %>% 
-  rename("closure_1" = date,
-         "closure_1_end" = deadline,
-         "closure_2" = date2,
-         "closure_2_end" = deadline2) %>% 
-  rename("date" = "date_of_calendar") %>% 
-  mutate(treatment = case_when(
-    (!is.na(closure_1) & !is.na(closure_1_end)) & (date >= closure_1 & date < closure_1_end) ~ 1,
-    (!is.na(closure_2) & !is.na(closure_2_end)) & (date >= closure_2 & date < closure_2_end) ~ 1,
-    TRUE ~as.double(0)
-  )) %>% 
-  mutate(university_enacted = case_when(
-    university_enacted_1 == 1 & treatment == 1 ~ 1,
-    university_enacted_2 == 1 & treatment == 1 ~ 1,
-    TRUE ~as.double(0)
-  ))
+
 
 
 
 # saving data -------------------------------------------------------------
 
-write_csv(nibrs_panel_all_ori, file = "Created Data/nibrs/final_panel_all.csv")
-write_csv(nibrs_panel_schools_ori, file = "Created Data/nibrs/final_panel_schools.csv")
-write_csv(nibrs_panel_nonschools_ori, file = "Created Data/nibrs/final_panel_nonschools.csv")
+write_csv(nibrs_panel_all_ori, file = "created_data/xmaster_data/nibrs_final.csv")
+
 
 
 

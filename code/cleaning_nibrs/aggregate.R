@@ -8,30 +8,30 @@
 library(tidyverse)
 library(lubridate)
 
-admin <- read_csv("Created Data/nibrs/admin_data.csv")
+admin <- read_csv("created_data/nibrs/admin_data.csv")
 admin <- admin %>% 
   group_by(ori, incident_number) %>% 
   distinct() %>% 
   ungroup()
 
-offenses <- read_csv("Created Data/nibrs/offense_data.csv", guess_max = 50000)
+offenses <- read_csv("created_data/nibrs/offense_data.csv", guess_max = 50000)
 
 offenses <- offenses %>% 
   group_by(ori, incident_number) %>% 
   distinct() %>% 
   ungroup()
 
-victims <- read_csv("Created Data/nibrs/victim_data.csv", guess_max = 50000)
+victims <- read_csv("created_data/nibrs/victim_data.csv", guess_max = 50000)
 
 victims <- victims %>% 
   group_by(ori, incident_number) %>% 
   distinct() %>% 
   ungroup()
 
-
 nibrs <- offenses %>% 
   left_join(admin) %>% 
   left_join(victims)
+
 
 closures <- readxl::read_excel("Data/closure_spreadsheet_final_2019.xlsx") %>% janitor::clean_names()
 
@@ -89,6 +89,8 @@ nibrs <- nibrs %>%
   select(-matches("weapon"))
 
 
+
+
 nibrs_aggregate <- nibrs %>% 
   group_by(incident_date, ori) %>% 
   summarize(across(c(rape, sexual_assault_object, fondling, rape_statutory, theft, college_age_rape,
@@ -98,4 +100,4 @@ nibrs_aggregate <- nibrs %>%
                    ~ sum(., na.rm = T))) %>% 
   ungroup()
 
-write_csv(nibrs_aggregate, file = "Created Data/nibrs/nibrs_aggregated.csv")
+write_csv(nibrs_aggregate, file = "created_data/nibrs/nibrs_aggregated.csv")

@@ -1,4 +1,4 @@
-## Purpose of script: exacts all the necessary NIBRS data.
+## Purpose of script: extracts all the necessary NIBRS data.
 ##
 ## Author: Michael Topper
 ##
@@ -9,8 +9,12 @@ library(tidyverse)
 library(lubridate)
 
 # gets the ori IDs needed -------------------------------------------------
+## These ori IDs are from the Lindo paper. I first went through and gathered those that are in NIBRS
+## Then found the ori IDs that lindo used to connect.
+## I also added in schools that are never treated and never had a university death using academic calendar file.
 
-closures <- readxl::read_excel("Data/closure_spreadsheet_final_2019.xlsx") %>% janitor::clean_names()
+closures <- readxl::read_excel("data/closure_spreadsheet_final_2019.xlsx") %>% janitor::clean_names()
+academic_calendars <- readxl::read_excel("data/academic_calendars_ori.xlsx")
 
 ori_schools_1 <- closures %>% 
   select(ori_9) %>% 
@@ -20,8 +24,8 @@ ori_schools_2 <- closures %>%
 ori_schools_3 <- closures %>% 
   select(ori_9_lindo2) %>% 
   pull()
-
-orischools <- c(ori_schools_1, ori_schools_2, ori_schools_3) %>% 
+ori_schools_ac <- academic_calendars %>% distinct(ori) %>% pull()
+orischools <- c(ori_schools_1, ori_schools_2, ori_schools_3, ori_schools_ac) %>% 
   as_tibble() %>% 
   filter(!is.na(value)) %>% 
   distinct() %>% 
@@ -49,7 +53,7 @@ for (file in files_administrative) {
 admin_data <- map(mget(ls(pattern = "^admin")), ~.x %>% mutate(city_submissions = as.character(city_submissions))) %>% 
   reduce(bind_rows)
   
-write_csv(admin_data, file = "Created Data/nibrs/admin_data.csv")
+write_csv(admin_data, file = "created_data/nibrs/admin_data.csv")
 rm(list = ls(pattern = "^admin"))
 
 
@@ -75,7 +79,7 @@ offense_data <- map(mget(ls(pattern = "^offense")), ~.x %>%
                       mutate(automatic_weapon_indicator_3 = as.character(automatic_weapon_indicator_3))) %>% 
   reduce(bind_rows)
 
-write_csv(offense_data, file = "Created Data/nibrs/offense_data.csv")
+write_csv(offense_data, file = "created_data/nibrs/offense_data.csv")
 rm(list = ls(pattern = "^offense"))
 
 
@@ -100,7 +104,7 @@ for (file in files_offender) {
 offender_data <- mget(ls(pattern = "^offender")) %>% 
   reduce(bind_rows)
 
-write_csv(offender_data, file = "Created Data/nibrs/offender_data.csv")
+write_csv(offender_data, file = "created_data/nibrs/offender_data.csv")
 
 rm(list = ls(pattern = "^off"))
 
@@ -129,6 +133,30 @@ victim_data <- map(mget(ls(pattern = "^victim_2")), ~.x %>%
                    ucr_offense_code_7 = as.character(ucr_offense_code_7))) %>% 
   reduce(bind_rows)
 
-write_csv(victim_data, file = "Created Data/nibrs/victim_data.csv")
+write_csv(victim_data, file = "created_data/nibrs/victim_data.csv")
 
 rm(list = ls(pattern = "^victim"))
+
+
+# getting group B arrest data and appending -------------------------------
+
+arrest_b <- map(list.files("data/nibrs/group_b_arrest/"), ~paste0("data/nibrs/group_b_arrest/",.)) %>% 
+  unlist()
+
+year <- 2014
+for (file in arrest_b) {
+  name <- paste0("group_b_", year)
+  admin <- read_rds(file) %>% 
+    as_tibble() %>% 
+    filter(ori %in% orischools)
+  assign(name, admin)
+  rm(admin)
+  year <-  year + 1
+}
+
+group_b_data <- map_df(mget(ls(pattern = "^group_b")), ~.x)
+
+write_csv(group_b_data, file = "created_data/nibrs/group_b_arrests.csv")
+
+rm(list = ls(pattern = "^group"))
+        
