@@ -39,7 +39,7 @@ sex_bar <- daily_crime %>%
   # mutate(day_of_week = factor(day_of_week, levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))) %>% 
   ggplot(aes(weekend, avg_sex)) +
   geom_col(aes(fill = as.factor(treatment)), position = "dodge")  +
-  facet_wrap(~over_median_sex, scales = "free_y") +
+  facet_wrap(~over_median_sex) +
   labs(x = " ", y = "Average Per 25000 Students", fill = " ", title = "Panel B: Sexual Assaults") +
   theme_minimal() +
   theme(legend.position = "bottom")
@@ -56,7 +56,7 @@ alc_bar <- daily_crime %>%
   # mutate(day_of_week = factor(day_of_week, levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))) %>% 
   ggplot(aes(weekend, avg_alc)) +
   geom_col(aes(fill = as.factor(treatment)), position = "dodge")  +
-  facet_wrap(~over_median_alc, scales = "free_y") +
+  facet_wrap(~over_median_alc) +
   labs(x = " ", y = "Average Per 25000 Students", fill = " ", title = "Panel A: Alcohol Offenses") +
   theme_minimal() +
   theme(legend.position = "none")

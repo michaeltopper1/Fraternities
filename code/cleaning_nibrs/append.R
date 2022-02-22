@@ -192,6 +192,88 @@ nibrs_panel_all_ori <- nibrs_panel_all_ori %>%
   left_join(football_games, by = c("university" = "school", "date" = "game_date"))
 
 
+
+# adding fixed effects ----------------------------------------------------
+
+library(timeDate)
+veterans <- as.character(timeDate::holiday(2014:2019, "USVeteransDay")) 
+thanksgiving <- as.character(timeDate::holiday(2014:2019, "USThanksgivingDay"))  
+labor <- as.character(timeDate::holiday(2014:2019, "USLaborDay"))
+halloween <- c("2014-10-31", "2015-10-31", "2016-10-31", "2017-10-31", "2018-10-31", "2019-10-31")
+mlk <- as.character(timeDate::holiday(2014:2019, "USMLKingsBirthday"))
+detach("package:timeDate", unload = TRUE)
+
+nibrs_panel_all_ori <- nibrs_panel_all_ori %>% 
+  mutate(labor = ifelse(date %in% lubridate::as_date(labor), 1, 0)) %>% 
+  mutate(thanksgiving = ifelse(date %in% lubridate::as_date(thanksgiving), 1, 0)) %>% 
+  mutate(halloween = ifelse(date %in% lubridate::as_date(halloween), 1, 0)) %>% 
+  mutate(mlk = ifelse(date %in% lubridate::as_date(mlk), 1, 0)) %>% 
+  mutate(veterans = ifelse(date %in% lubridate::as_date(veterans), 1, 0)) %>% 
+  mutate(holiday = ifelse(labor == 1 | thanksgiving == 1 | halloween == 1 | mlk == 1 | veterans == 1, 1, 0))
+
+nibrs_panel_all_ori <- nibrs_panel_all_ori %>% 
+  mutate(academic_year = case_when(
+    semester_number == 1 ~ 1, ## 2014 spring
+    semester_number == 2 | semester_number == 3 ~ 2, ## 2015 
+    semester_number == 4 | semester_number == 5 ~ 3,
+    semester_number == 6 | semester_number == 7 ~ 4,
+    semester_number == 8 | semester_number == 9 ~ 5,
+    semester_number == 10 | semester_number == 11 ~ 6,
+    semester_number == 12 ~7 ## 2019 fall
+  )) %>% 
+  mutate(spring_semester = ifelse(semester_number %% 2 == 0,1, 0)) %>% 
+  mutate(game_occurred = ifelse(is.na(game_occurred), 0, game_occurred)) %>% 
+  rename("alcohol_arrest_total" = "alcohol_offense_total") %>% 
+  mutate(day_of_week = lubridate::wday(date,label = T)) %>% 
+  mutate(year = lubridate::year(date), month = lubridate::month(date), week = lubridate::week(date)) %>% 
+  group_by(month, ori) %>% 
+  mutate(ori_by_month = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(ori, academic_year) %>% 
+  mutate(ori_by_academic_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(ori, year) %>% 
+  mutate(ori_by_year = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(ori, academic_year, week) %>% 
+  mutate(ori_by_academic_year_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(ori, week, month) %>% 
+  mutate(ori_by_month_by_week = cur_group_id()) %>% 
+  ungroup %>% 
+  group_by(ori, week) %>% 
+  mutate(ori_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(ori, year, week) %>% 
+  mutate(ori_by_year_by_week = cur_group_id()) %>% 
+  ungroup() %>% 
+  group_by(ori, academic_year, spring_semester) %>% 
+  mutate(ori_by_academic_year_by_semester = cur_group_id()) %>% 
+  ungroup()
+
+
+# adding IPEDS ------------------------------------------------------------
+
+ipeds <- read_csv("created_data/ipeds/ipeds_final.csv") %>% 
+  filter(year > 2013)
+
+nibrs_panel_all_ori <- nibrs_panel_all_ori %>% 
+  left_join(ipeds, by = c("university", "year"))
+
+
+# per25 enrollment and sum sexual assault ---------------------------------
+
+nibrs_panel_all_ori <- nibrs_panel_all_ori %>% 
+  rowwise() %>% 
+  mutate(college_age_sexual_assault = sum(college_age_rape, college_age_rape_statutory, college_age_fondle, college_age_sexual_assault_object, na.rm = T),
+         sexual_assault = sum(rape, rape_statutory, fondling, sexual_assault_object, na.rm = T))
+
+nibrs_panel_all_ori <- nibrs_panel_all_ori %>% 
+  mutate(across(c(college_age_sexual_assault, college_age_rape, college_age_rape_statutory, college_age_fondle, college_age_sexual_assault_object,
+                  rape, rape_statutory, fondling, sexual_assault_object, alcohol_arrest_college_aged, sexual_assault, 
+                  alcohol_arrest_not_college_aged, alcohol_arrest_total), ~ (. /total_enrollment) * 25000, .names = "{.col}_per25"))
+
+
 # saving data -------------------------------------------------------------
 
 write_csv(nibrs_panel_all_ori, file = "created_data/xmaster_data/nibrs_final.csv")
