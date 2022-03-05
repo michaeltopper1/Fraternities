@@ -27,7 +27,8 @@ football_moratorium_table <- daily_crime %>%
   select(type, n) %>% 
   add_row(type = "Number of Schools with Football Games", n = 34) %>% 
   kbl(col.names = c("Day Type", n = "Number of Days"),
-      caption = "\\label{football_moratorium_table}Distribution of Game Days and Moratoriums Over Sample Period") %>% 
+      caption = "\\label{football_moratorium_table}Distribution of Game Days and Moratoriums Over Sample Period",
+      booktabs = T) %>% 
   kable_styling() %>% 
   row_spec(4, hline_after = T) %>% 
   row_spec(5, bold = T) %>% 

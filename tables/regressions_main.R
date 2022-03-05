@@ -20,9 +20,9 @@ explanatory_vars <- c("treatment")
 
 
 # fixed effects for daily_level -------------------------------------------
-fixed_effects_1 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday")
-fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
-fixed_effects_3 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday",  "spring_semester")
+fixed_effects_1 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday", "game_occurred")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+fixed_effects_3 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday",  "spring_semester", "game_occurred")
 
 
 daily_fixed_effects = list(fixed_effects_1, fixed_effects_2, fixed_effects_3)
@@ -59,7 +59,7 @@ main_table <- ifc::main_table(alc, last_panel = sex) %>%
 
 # table 2: weekends vs. full sample ---------------------------------------
 
-fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
 # fixed_effects_preferred_l <-  c("day_of_week", "university_by_academic_year_by_semester", "holiday")
 data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
 
