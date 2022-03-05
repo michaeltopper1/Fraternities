@@ -23,7 +23,7 @@ explanatory_vars_14 <- c("beta_lead_binned", "beta_lead_4", "beta_lead_3", "beta
 explanatory_vars_46 <- c("beta_lead_binned", "beta_lead_2", "treatment",
                          "beta_lag_1", "beta_lag_2", "beta_lag_binned")
 
-fixed_effects <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+fixed_effects <- c("day_of_week", "university","academic_year", "holiday", "spring_semester", "game_occurred")
 
 
 # regs 14-day -------------------------------------------------------------

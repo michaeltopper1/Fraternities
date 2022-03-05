@@ -3,6 +3,8 @@ title: "Football Appended"
 output: pdf_document
 editor_options: 
   chunk_output_type: console
+link-citations: yes
+linkcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -99,6 +101,19 @@ effect_game_day_interaction
 
 ```{r}
 effect_game_day_moratorium_table
+```
+
+
+```{r}
+source(here::here(paste0("tables/regressions_lindo_replicate.R")))
+```
+
+```{r}
+lindo_rep_nibrs
+```
+
+```{r}
+lindo_rep_nibrs_college_age
 ```
 
 ```{r}
