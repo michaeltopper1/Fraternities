@@ -1,0 +1,75 @@
+---
+title: "Football Games Continued"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+link-citations: yes
+linkcolor: blue
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(fixest)
+library(modelsummary)
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+## The Raw Data Graph
+
+Figure \ref{diff_average_offenses} shows the average difference in moratorium days vs. non moratorium days for each school. Toshio suggested maybe adding in a vertical line showing the effect that I have in each of these graphs, I'm not sure I necessarily want to do this, but it could be interesting. Thoughts on that?
+
+```{r}
+source(paste0(here::here("figures/difference_average_offenses.R")))
+```
+
+```{r, fig.cap="\\label{diff_average_offenses}Average difference of alcohol and sexual assault offenses between moratorium days and non moratorium days."}
+diff_average_offenses
+```
+
+
+## The Football Game Graph
+
+Figure \ref{game_moratorium_plot} shows the results of estimating the model based on home + away games/only home/only away games. I break this down into the effect of game days, and then the effect of game days + moratoriums. 
+
+```{r}
+source(paste0(here::here("figures/game_day_moratorium.R")))
+```
+
+
+```{r, fig.cap="\\label{game_moratorium_plot}Effect of Game Days and Game Day + Moratorium using preferred specification."}
+game_moratorium_plot
+```
+
+
+## Comparison of spillovers
+
+Table \ref{spillover_table} shows the spillover comparison. I compare the 9 schools that have "close" police departments (e.g. using Lindo paper) to the 9 schools in my own Daily Crime Log sample. The results here show that there doesn't appear to be kids moving to someplace outside of campus grounds to go party which makes sense since a lot of these universities actually want to fraternities to cancel third party events.
+
+```{r}
+source(paste0(here::here("tables/regressions_spillovers_compare.R")))
+```
+
+```{r}
+spillover_table
+```
+
+## Party Schools
+
+Table \ref{party_school_table} table shows the party school comparison. I used niche.com party schools to 1) keep consistent with my use of this website previously, and 2) because princeton review no longer has their top party schools. 16 of the 38 universities are considered top 50 party schools according to niche.com. The results looks consistent with theory here. 
+
+```{r}
+source(paste0(here::here("tables/regressions_party_schools.R")))
+```
+
+```{r}
+party_school_table
+```
+
+
+## Final questions/thoughts:
+
+* I want to keep the 38 schools as the main sample. I think it makes more sense this way instead of arbitrarily adding in never treated groups. I think people would think there is some funny business going on, plus it helps me with the goodman bacon critique and further robustness appendices.
+
+* Should I even include the table on the "fraction of IFC members". I personally don't thinkt he results are enlightening and further subsetting the sample is just going to confuse readers.

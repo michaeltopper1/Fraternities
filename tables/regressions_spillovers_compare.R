@@ -15,7 +15,7 @@ if (!exists("daily_crime")){
 }
 
 if (!exists("nibrs_treated_nonschool")) {
-  nibrs_treated_nonschool <- nibrs %>% 
+  nibrs_treated_nonschool <- read_csv("created_data/xmaster_data/nibrs_final.csv") %>% 
     filter(university %in% ifc::moratorium_schools()) %>% 
     filter(ori_type == "nonschool")
 }
@@ -78,7 +78,7 @@ dcl_half <- ifc::main_table(last_panel = dcl_spillovers) %>%
   rename("model_1" = `Model 1`, "model_2" = `Model 2`, "model_3" = `Model 3` ) %>% 
   select(-term)
 
-nibrs_half %>% 
+spillover_table <- nibrs_half %>% 
   bind_cols(dcl_half) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(nibrs_treated_nonschool$alcohol_arrest_total_per25, na.rm = T)), 
@@ -88,7 +88,10 @@ nibrs_half %>%
           model_2 = sprintf("%.3f",mean(daily_crime_spillover_schools_weekends$alcohol_offense_per25, na.rm = T)),
           model_3 = sprintf("%.3f",mean(daily_crime_spillover_schools_weekdays$alcohol_offense_per25, na.rm = T)),
           .before = 4) %>% 
-  kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays", "All Days", "Weekends", "Weekdays")) %>% 
+  kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays", "All Days", "Weekends", "Weekdays"),
+      caption = "\\label{spillover_table} Effect of Moratoriums in Local Police Departments Compared to University Police Departments (OLS)") %>% 
   kable_styling() %>% 
-  add_header_above(c(" " = 1, "Local Police Departments" = 3, "University Police Departments" = 3))
-
+  add_header_above(c(" " = 1, "Local Police Departments" = 3, "University Police Departments" = 3)) %>% 
+  footnote(list("Offenses are per-25000 enrolled students. The local police departments were matched using the files from Lindo et. al 2018 paper. These police departments represent police departments that are nearby the universities where students/police may report crimes. Only 9 local police departments consistently reported data to the NIBRS, hence only 9 are included here. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
+                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
+           threeparttable = T)
