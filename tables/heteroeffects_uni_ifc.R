@@ -30,17 +30,17 @@ datas <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
 
 # ifc enacted regressions -------------------------------------------------
 
-ifc_regs_alc <- map(datas, ~ifc::reghdfe(.,  "alcohol_offense_per25", "treatment:ifc_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
+ifc_regs_alc <- map(datas, ~ifc::reghdfe(.,  "alcohol_offense_per25", "treatment:ifc_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester","game_occurred"), "university"))
 
-ifc_regs_sex <- map(datas, ~ifc::reghdfe(.,  "sexual_assault_per25", "treatment:ifc_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
+ifc_regs_sex <- map(datas, ~ifc::reghdfe(.,  "sexual_assault_per25", "treatment:ifc_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester","game_occurred"), "university"))
 
 
 
 # university enacted regressions ------------------------------------------
 
-uni_regs_alc <- map(datas, ~ifc::reghdfe(.,  "alcohol_offense_per25", "treatment:university_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
+uni_regs_alc <- map(datas, ~ifc::reghdfe(.,  "alcohol_offense_per25", "treatment:university_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred"), "university"))
 
-uni_regs_sex <- map(datas, ~ifc::reghdfe(.,  "sexual_assault_per25", "treatment:university_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), "university"))
+uni_regs_sex <- map(datas, ~ifc::reghdfe(.,  "sexual_assault_per25", "treatment:university_enacted", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester","game_occurred"), "university"))
 
 
 

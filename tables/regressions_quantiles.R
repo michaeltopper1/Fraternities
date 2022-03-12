@@ -73,7 +73,7 @@ gm <- tribble(~raw, ~clean, ~fmt,
 outcomes <- c("alcohol_offense_per25",
                       "sexual_assault_per25")
 
-fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
 
 
 explanatory_vars <- list("treatment:below_q33",
