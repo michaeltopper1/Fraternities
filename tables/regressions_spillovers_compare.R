@@ -69,17 +69,39 @@ dcl_spillovers <- map(daily_crime_list, ~ifc::reghdfe(., c("alcohol_offense_per2
 
 nibrs_spillovers <- map(nibrs_list, ~ifc::reghdfe(., c("alcohol_arrest_total_per25"), "treatment", fixed_effects_preferred_nibrs, "university"))
 
+dcl_spillovers_sex <- map(daily_crime_list, ~ifc::reghdfe(., c("sexual_assault_per25"), "treatment", fixed_effects_preferred, "university"))
+
+nibrs_spillovers_sex <- map(nibrs_list, ~ifc::reghdfe(., c("sexual_assault_per25"), "treatment", fixed_effects_preferred_nibrs, "university"))
 
 
-nibrs_half <- ifc::main_table(last_panel = nibrs_spillovers) %>% 
+# combining nibrs to table ------------------------------------------------
+
+nibrs_half_alc <- ifc::main_table(last_panel = nibrs_spillovers) %>% 
+  add_row(term = "FE: University by Academic Year", `Model 1` = " ", `Model 2` = " ", `Model 3` = " ") %>% 
+  slice(1:3)
+
+nibrs_half_sex <- ifc::main_table(last_panel = nibrs_spillovers_sex) %>% 
   add_row(term = "FE: University by Academic Year", `Model 1` = " ", `Model 2` = " ", `Model 3` = " ")
-dcl_half <- ifc::main_table(last_panel = dcl_spillovers) %>% 
+
+nibrs_half_both <- bind_rows(nibrs_half_alc, nibrs_half_sex)
+
+# combining dcl to table --------------------------------------------------
+
+dcl_half_alc <- ifc::main_table(last_panel = dcl_spillovers) %>% 
+  add_row(term = "FE: Agency by Academic Year", `Model 1` = " ", `Model 2` = " ", `Model 3` = " ", .before = 8) %>% 
+  rename("model_1" = `Model 1`, "model_2" = `Model 2`, "model_3" = `Model 3` ) %>% 
+  select(-term) %>% 
+  slice(1:3)
+
+dcl_half_sex <- ifc::main_table(last_panel = dcl_spillovers_sex) %>% 
   add_row(term = "FE: Agency by Academic Year", `Model 1` = " ", `Model 2` = " ", `Model 3` = " ", .before = 8) %>% 
   rename("model_1" = `Model 1`, "model_2" = `Model 2`, "model_3" = `Model 3` ) %>% 
   select(-term)
 
-spillover_table <- nibrs_half %>% 
-  bind_cols(dcl_half) %>% 
+dcl_half_both <- bind_rows(dcl_half_alc, dcl_half_sex)
+
+spillover_table <- nibrs_half_both %>% 
+  bind_cols(dcl_half_both) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(nibrs_treated_nonschool$alcohol_arrest_total_per25, na.rm = T)), 
           `Model 2` = sprintf("%.3f",mean(nibrs_treated_nonschool_weekends$alcohol_arrest_total_per25, na.rm = T)), 
@@ -88,10 +110,21 @@ spillover_table <- nibrs_half %>%
           model_2 = sprintf("%.3f",mean(daily_crime_spillover_schools_weekends$alcohol_offense_per25, na.rm = T)),
           model_3 = sprintf("%.3f",mean(daily_crime_spillover_schools_weekdays$alcohol_offense_per25, na.rm = T)),
           .before = 4) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(nibrs_treated_nonschool$sexual_assault_per25, na.rm = T)), 
+          `Model 2` = sprintf("%.3f",mean(nibrs_treated_nonschool_weekends$sexual_assault_per25, na.rm = T)), 
+          `Model 3` = sprintf("%.3f",mean(nibrs_treated_nonschool_weekdays$sexual_assault_per25, na.rm = T)), 
+          model_1 = sprintf("%.3f",mean(daily_crime_spillover_schools$sexual_assault_per25, na.rm = T)),
+          model_2 = sprintf("%.3f",mean(daily_crime_spillover_schools_weekends$sexual_assault_per25, na.rm = T)),
+          model_3 = sprintf("%.3f",mean(daily_crime_spillover_schools_weekdays$sexual_assault_per25, na.rm = T)),
+          .before = 8) %>% 
   kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays", "All Days", "Weekends", "Weekdays"),
       caption = "\\label{spillover_table} Effect of Moratoriums in Local Police Departments Compared to University Police Departments (OLS)") %>% 
   kable_styling() %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>% 
+  pack_rows("Panel B: Sexual Assaults", 5, 8, bold = T, italic = F) %>% 
+  pack_rows("Controls for Panels A-B:", 9, 14) %>% 
   add_header_above(c(" " = 1, "Local Police Departments" = 3, "University Police Departments" = 3)) %>% 
-  footnote(list("Offenses are per-25000 enrolled students. The local police departments were matched using the files from Lindo et. al 2018 paper. These police departments represent police departments that are nearby the universities where students/police may report crimes. Only 9 local police departments consistently reported data to the NIBRS, hence only 9 are included here. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
+  footnote(list("Local Police Departments uses the NIBRS data which pertains to police departments that are closest to the university. University Police Departments uses the Daily Crime Log data set in which contains only university-specific police departments. Only nine local police departments in the NIBRS data consistently report in the sample period. This table represents the comparison of alcohol offenses and sexual assaults per 25000 enrolled students at the nine local police departments and the corresponding nine universities. Standard errors are clustered by agency for NIBRS data and by university for Daily Crime Log data.",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T)

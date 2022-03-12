@@ -24,8 +24,10 @@ Figure \ref{diff_average_offenses} shows the average difference in moratorium da
 source(paste0(here::here("figures/difference_average_offenses.R")))
 ```
 
-```{r, fig.cap="\\label{diff_average_offenses}Average difference of alcohol and sexual assault offenses between moratorium days and non moratorium days."}
-diff_average_offenses
+```{r, fig.cap="\\label{diff_average_offenses}Average difference of alcohol and sexual assault offenses between moratorium days and non moratorium days.", fig.height = 7}
+
+gridExtra::grid.arrange(diff_average_offenses, left = textGrob("Average Difference in Moratorium Days and Non-Moratorium Days", 
+                                                               rot = 90, gp = gpar(fontsize = 10)), bottom = textGrob("University", gp = gpar(fontsize = 10)))
 ```
 
 

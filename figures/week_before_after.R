@@ -2,6 +2,7 @@ library(tidyverse)
 library(modelsummary)
 library(fixest)
 library(kableExtra)
+library(patchwork)
 
 if (!exists("daily_crime")){
   daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
@@ -43,24 +44,49 @@ sex_weeksplit_controls <- map_df(data_subsets, ~ifc::reghdfe(., c("sexual_assaul
 
 weeksplit_controls <- bind_rows(alc_weeksplit_controls, sex_weeksplit_controls)
 
-week_before_after_graph <- weeksplit_controls %>%
+
+  
+  
+alc_weeksplit_g <- weeksplit_controls %>%
   mutate(time_grid = case_when(
     time == "Week Before" ~-1,
     time == "In\nMoratorium" ~0,
     time == "Week After" ~ 1
   )) %>% 
+  filter(offense == "Alcohol Offense") %>% 
   mutate(in_moratorium = ifelse(time == "In\nMoratorium", 1, 0)) %>% 
   mutate(time = factor(time, levels = c("Week Before", "In\nMoratorium", "Week After"), labels = c("-1 Week", "In\nMoratorium","+1 Week"))) %>% 
   mutate(week_type = factor(week_type, levels = c("All Days", "Weekends", "Weekdays"))) %>% 
   ggplot(aes(estimate, time, color = in_moratorium)) +
   geom_point() +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high)) +
-  facet_wrap(~offense + week_type, scales = "free") +
+  facet_wrap(~week_type) +
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
-  theme(legend.position = "none") +
-  labs(x = "Coefficient Estimate and 95% Confidence Interval", y = " ") +
+  labs(x = "", y = " ", title = "Panel A: Alcohol Offenses") +
+  theme(legend.position = "none", plot.title = element_text(size=10)) +
   coord_flip() 
 
+sex_weeksplit_g <- weeksplit_controls %>%
+  mutate(time_grid = case_when(
+    time == "Week Before" ~-1,
+    time == "In\nMoratorium" ~0,
+    time == "Week After" ~ 1
+  )) %>% 
+  filter(offense == "Sexual Assault") %>% 
+  mutate(in_moratorium = ifelse(time == "In\nMoratorium", 1, 0)) %>% 
+  mutate(time = factor(time, levels = c("Week Before", "In\nMoratorium", "Week After"), labels = c("-1 Week", "In\nMoratorium","+1 Week"))) %>% 
+  mutate(week_type = factor(week_type, levels = c("All Days", "Weekends", "Weekdays"))) %>% 
+  ggplot(aes(estimate, time, color = in_moratorium)) +
+  geom_point() +
+  geom_errorbar(aes(xmin = conf.low, xmax = conf.high)) +
+  facet_wrap(~week_type) +
+  geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
+  theme_minimal() +
+  labs(x = "", y = " ", title = "Panel B: Sexual Assaults") +
+  theme(legend.position = "none", plot.title = element_text(size=10)) +
+  coord_flip() 
 
+result <- alc_weeksplit_g + sex_weeksplit_g + plot_layout(ncol = 1)
 
+week_before_after_graph <- patchwork::patchworkGrob(result)
