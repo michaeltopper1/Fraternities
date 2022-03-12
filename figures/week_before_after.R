@@ -16,7 +16,7 @@ if (!exists("daily_crime_weekdays")){
 }
 
 
-fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
 explanatory_vars_week_before <- c("week_before", "treatment", "week_after")
 
 data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)

@@ -35,12 +35,12 @@ loo_function <- function(dependent_var, data){
   for (uni in distinct_universities) {
     if (count == 1) {
       model <- ifc::reghdfe(data %>% filter(university != uni) , 
-                     dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"), 'university')
+                     dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred"), 'university')
       final_results<- broom::tidy(model, conf.int = T)[1,]
     }
     else {
       model <- ifc::reghdfe(data %>% filter(university != uni),
-                            dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester"),cluster = 'university')
+                            dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester","game_occurred"),cluster = 'university')
       final_results_append <- broom::tidy(model, conf.int = T)[1,]
       final_results<- final_results %>% 
         bind_rows(final_results_append)

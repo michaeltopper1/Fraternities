@@ -25,9 +25,9 @@ daily_crime <- daily_crime %>%
 
 # fixed effects for daily_level -------------------------------------------
 
-fixed_effects_1 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday")
-fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
-fixed_effects_3 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday",  "spring_semester")
+fixed_effects_1 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday", "game_occurred")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+fixed_effects_3 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday",  "spring_semester", "game_occurred")
 
 
 daily_fixed_effects = list(fixed_effects_1, fixed_effects_2, fixed_effects_3)
@@ -59,14 +59,14 @@ main_table_p <- ifc::main_table(alc, last_panel =sex) %>%
   kable_styling(latex_options = "HOLD_position") %>% 
   pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>%
   pack_rows("Panel B: Sexual Assaults", 5, 8, bold = T, italic = F) %>% 
-  pack_rows("Controls for Panels A-B", 9,15, bold = T, itali = F) %>% 
+  pack_rows("Controls for Panels A-B", 9,16, bold = T, itali = F) %>% 
   footnote(list("Standard errors are clustered by university and each offense is defined as a count. Observation values may vary between estimations due to no variation with particular fixed effects specifications. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since not in panel. A moratorium is a temporary halt on fraternity-related activities with alcohol. ",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"), threeparttable = T) 
 
 
 # table 2: weekends vs. full sample ---------------------------------------
 
-fixed_effects_preferred <-  c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+fixed_effects_preferred <-  c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
 
 data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
 
@@ -92,7 +92,7 @@ weekend_table_p <- ifc::main_table(alc_weeksplit, last_panel = sex_weeksplit) %>
       caption = "\\label{weekend_table_p}Effect of Moratoriums on Alcohol Offenses and Sexual Assault by Weekend/Weekdays (Poisson Estimation).") %>% 
   pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>% 
   pack_rows("Panel B: Sexual Assaults", 5, 8, bold = T, italic = F) %>% 
-  pack_rows("Controls for Panels A-B:", 9, 12, bold = T, italic = F) %>% 
+  pack_rows("Controls for Panels A-B:", 9, 13, bold = T, italic = F) %>% 
   add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
   footnote(list("Standard errors are clustered by university and each offense is defined as a count. Observation values may vary between estimations due to no variation with particular fixed effects specifications. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since not in panel. A moratorium is a temporary halt on fraternity-related activities with alcohol. ",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"), threeparttable = T) %>% 

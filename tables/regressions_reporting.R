@@ -367,11 +367,20 @@ date_occurred_panel_weekends <- lag_datas[[2]]
 date_occurred_panel_weekdays <- lag_datas[[3]]
 
 
+
+# mergining in game days --------------------------------------------------
+
+football_schools <- read_csv("created_data/xmaster_data/football_final.csv")
+
+date_occurred_panel <- date_occurred_panel %>% 
+  left_join(football_schools, by = c("university" = "school", "date" = "game_date"))
+
 lag_regression <- date_occurred_panel %>% 
   feols(c(proportion_sex_lag_7, proportion_alc_lag_7) ~ treatment |
           date + university, cluster = ~university, data = .) 
 
-fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester")
+
+fe <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
 explanatory_vars <- c("treatment")
 
 lag_variables_alc <- c("proportion_alc_lag_1", "proportion_alc_lag_3","proportion_alc_lag_7","proportion_alc_lag_14")
@@ -405,7 +414,7 @@ reporting_table <- ifc::main_table(lag_alc, last_panel = lag_sex) %>%
   kable_styling(latex_options = "HOLD_position") %>% 
   pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = F, bold = T) %>%
   pack_rows("Panel B: Proportion of Sexual Assaults Reported with Lag", 5, 8, italic = F, bold = T) %>%
-  pack_rows("Controls for Panels A and B:", 9, 12, italic = F, bold = T) %>% 
+  pack_rows("Controls for Panels A and B:", 9, 13, italic = F, bold = T) %>% 
   add_header_above(c(" " = 1, "Reporting Lag" = 4)) %>% 
   footnote(list("Standard errors clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses, and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. 33 of the 38 universities have information on date occurred.",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
