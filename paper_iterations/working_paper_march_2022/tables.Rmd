@@ -1,0 +1,93 @@
+---
+title: "Tables"
+output: pdf_document
+---
+
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- library(kableExtra) -->
+<!-- ``` -->
+
+# Tables
+
+```{r}
+source(paste0(here::here("Tables/matching_word_table.R")))
+```
+
+```{r}
+kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words and Phrases used to Pattern Match on Offenses of Interest") %>%
+  kable_styling(full_width = F) %>%
+  # column_spec(1, bold = T, color = "blue") %>%
+  column_spec(2, width = "30em") %>% kable_styling(latex_options = "HOLD_position") %>% 
+  footnote(list("Each word to match represents a portion of a word to match on. For example, the word `sex' will match on `sexual assault' and `sex offense' since `sex' appears in each of these descriptions.",
+                    "`dwi' is an abbreviation for `driving while intoxicated'.",
+                    "`dip' is an abbrevation for `drunk in public'.",
+                    "`abcc' is an abbreviation for `alcohol beverage control comission'.",
+                    "`pula' is an abbrevation for `person under legal age'.",
+                    "`owi' is an abbreviation for `operating while intoxicated'.",
+                    "`mip' is an abbreviation for `minor in possesion'.",
+                    "`ovi' is an abbreivation for `operating vehicle intoxicated'."), threeparttable = T)
+```
+
+
+```{r university_characteristics}
+source(paste0(here::here("tables/summary_stats_university.R")))
+```
+
+```{r}
+## summary_stats
+university_characteristics
+```
+
+```{r}
+source(here::here(paste0("tables/regressions_reporting.R")))
+```
+
+\begin{landscape}
+```{r}
+## reporting_table
+reporting_table
+```
+\end{landscape}
+
+```{r}
+source(here::here(paste0("tables/regressions_main.R")))
+```
+
+```{r}
+main_table 
+```
+
+```{r}
+weekend_table
+```
+
+```{r}
+source(here::here(paste0("tables/regressions_quantiles.R")))
+```
+
+```{r}
+## quantile_table
+quantile_table
+```
+
+```{r}
+source(here::here(paste0("tables/heteroeffects_uni_ifc.R")))
+```
+
+
+```{r}
+ifc_uni_table
+```
+
+
+
+<!-- ```{r} -->
+<!-- source(here::here(paste0("tables/regressions_clery_dcl.R"))) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- clery_compare -->
+<!-- ``` -->
+
