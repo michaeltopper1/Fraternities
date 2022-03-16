@@ -1,0 +1,87 @@
+---
+title: "Appendix"
+output: pdf_document
+---
+
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- library(kableExtra) -->
+<!-- ``` -->
+
+# Appendix Tables \label{section:appendixt}
+
+```{r}
+source(here::here(paste0("tables/trigger_event_description.R")))
+```
+
+```{r}
+reasons_table %>% 
+  column_spec(1, width = "3cm") %>% 
+  column_spec(2, width = "8cm") %>% 
+  column_spec(3, width = "1.5cm") %>% 
+  column_spec(4, width = "1.5cm") %>% 
+  kable_styling(font_size = 7, latex_options = "HOLD_position")
+```
+
+
+
+```{r}
+source(paste0(here::here("tables/closure_table.R")))
+```
+
+
+```{r,options(knitr.kable.NA = '')}
+## closure_table
+closure_table
+```
+
+```{r}
+source(paste0(here::here("tables/data_comparison.R")))
+```
+
+
+```{r}
+## data_used
+data_used
+```
+
+
+```{r}
+source(paste0(here::here("Tables/matching_word_table.R")))
+```
+
+\begin{landscape}
+```{r top_categories}
+kable(top_categories, booktabs = T, caption = "\\label{top_categories}The Top 30 Most Frequently Reported Incidents") %>%
+  kable_styling(latex_options = c("scale_down", "HOLD_position")) %>%
+  footnote(list("Numbers in parenthesis denote the frequency of offense in the data. These offenses represent the  30 most frequent crimes in each category after the pattern-matching algorithm is applied."),
+               threeparttable = T)
+```
+\end{landscape}
+
+```{r}
+source(paste0(here::here('tables/regressions_main_nevertreated.R')))
+```
+
+```{r}
+weekend_table_allschools
+```
+
+
+
+```{r}
+source(paste0(here::here("tables/regressions_main_poisson.R")))
+```
+
+```{r}
+## main_table_p
+main_table_p
+```
+
+```{r}
+## weekend_table_p
+weekend_table_p
+```
+
+

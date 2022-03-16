@@ -67,11 +67,11 @@ dcl_spillovers <- map(daily_crime_list, ~ifc::reghdfe(., c("alcohol_offense_per2
 
 
 
-nibrs_spillovers <- map(nibrs_list, ~ifc::reghdfe(., c("alcohol_arrest_total_per25"), "treatment", fixed_effects_preferred_nibrs, "university"))
+nibrs_spillovers <- map(nibrs_list, ~ifc::reghdfe(., c("alcohol_arrest_college_aged_per25"), "treatment", fixed_effects_preferred_nibrs, "university"))
 
 dcl_spillovers_sex <- map(daily_crime_list, ~ifc::reghdfe(., c("sexual_assault_per25"), "treatment", fixed_effects_preferred, "university"))
 
-nibrs_spillovers_sex <- map(nibrs_list, ~ifc::reghdfe(., c("sexual_assault_per25"), "treatment", fixed_effects_preferred_nibrs, "university"))
+nibrs_spillovers_sex <- map(nibrs_list, ~ifc::reghdfe(., c("college_age_sexual_assault_per25"), "treatment", fixed_effects_preferred_nibrs, "university"))
 
 
 # combining nibrs to table ------------------------------------------------
@@ -124,7 +124,7 @@ spillover_table <- nibrs_half_both %>%
   pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>% 
   pack_rows("Panel B: Sexual Assaults", 5, 8, bold = T, italic = F) %>% 
   pack_rows("Controls for Panels A-B:", 9, 14) %>% 
-  add_header_above(c(" " = 1, "Local Police Departments" = 3, "University Police Departments" = 3)) %>% 
-  footnote(list("Local Police Departments uses the NIBRS data which pertains to police departments that are closest to the university. University Police Departments uses the Daily Crime Log data set in which contains only university-specific police departments. Only nine local police departments in the NIBRS data consistently report in the sample period. This table represents the comparison of alcohol offenses and sexual assaults per 25000 enrolled students at the nine local police departments and the corresponding nine universities. Standard errors are clustered by agency for NIBRS data and by university for Daily Crime Log data.",
+  add_header_above(c(" " = 1, "Nearby Police Departments" = 3, "University Police Departments" = 3)) %>% 
+  footnote(list("Neighboring Police Departments uses the NIBRS data which pertains to police departments that are closest to the university. University Police Departments uses the Daily Crime Log data set in which contains only university-specific police departments. Only nine local police departments in the NIBRS data consistently report in the sample period. This table represents the comparison of alcohol offenses and sexual assaults per 25000 enrolled students at the nine local police departments and the corresponding nine universities. Standard errors are clustered by agency for NIBRS data and by university for Daily Crime Log data.",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T)

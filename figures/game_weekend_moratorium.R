@@ -19,8 +19,7 @@ if (!exists("daily_crime")) {
   daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
 }
 
-daily_crime %>% 
-  count(away_game_weekend)
+
 # adding in indicators for 2 and 1 weeks before and after -----------------
 
 leead <- function(x, v){
@@ -123,7 +122,7 @@ alc_game <- alc %>%
   geom_errorbar(aes(ymin = conf.low, ymax= conf.high)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
   facet_wrap(~moratorium) +
-  scale_x_continuous(breaks = c(1:6), labels = c("All Weekend\nGames", "Home Game\nWeekends","Away Game\nWeekends", "All Games\nx\nIn Moratorium",
+  scale_x_continuous(breaks = c(1:6), labels = c("All Game\nWeekends", "Home Game\nWeekends","Away Game\nWeekends", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel A: Alcohol Offenses") +
   theme_minimal() +
@@ -171,10 +170,10 @@ sex_game <- sex %>%
   geom_errorbar(aes(ymin = conf.low, ymax= conf.high)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
   facet_wrap(~moratorium) +
-  scale_x_continuous(breaks = c(1:6), labels = c("All Weekend\n Games", "Home Game\n Weekends","Away Game\nWeekends", "All Games\nx\nIn Moratorium",
+  scale_x_continuous(breaks = c(1:6), labels = c("All Game\n Weekends", "Home Game\n Weekends","Away Game\nWeekends", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel B: Sexual Assaults") +
   theme_minimal() +
   theme(plot.title = element_text(size=10))
 
-alc_game + sex_game + plot_layout(nrow = 2)
+game_weekend_plot <- alc_game + sex_game + plot_layout(nrow = 2)
