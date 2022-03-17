@@ -63,8 +63,7 @@ alc_bar <- averages %>%
   geom_hline(yintercept = 0, color = "black") +
   labs(x = "",y = "", fill = " ", title = "Panel A: Alcohol Offenses") +
   theme_minimal() +
-  theme(legend.position = "none", axis.text.x = element_blank(),
-        plot.title = element_text(size=10)) +
+  theme(legend.position = "none", axis.text.x = element_blank()) +
   ggsci::scale_fill_npg()
 
 
@@ -74,14 +73,13 @@ sex_bar <- averages %>%
   ggplot(aes(university, sex_difference, fill = positive)) +
   geom_col() +
   geom_hline(aes(yintercept = avg_avg_difference_sex), linetype = "dashed") +
-  scale_y_continuous(breaks = round(c(-0.1,sex_weekend,0,.1,.2), 2)) +
+  scale_y_continuous(breaks = round(c(-0.1,sex_weekend,.1,.2), 2)) +
   facet_wrap(~weekend, scales = "free_x") +
   scale_x_reordered() +
   geom_hline(yintercept = 0, color = "black") +
   labs(x = "",y = " ", fill = " ", title = "Panel B: Sexual Assaults") +
   theme_minimal() +
-  theme(legend.position = "bottom", axis.text.x = element_blank(),
-        plot.title = element_text(size=10)) +
+  theme(legend.position = "bottom", axis.text.x = element_blank()) +
   ggsci::scale_fill_npg()
 
 result <- alc_bar + sex_bar + plot_layout(nrow = 2) 

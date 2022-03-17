@@ -97,12 +97,11 @@ alc_trigger_reg <- tibble(trigger_regs, type, week_type) %>%
   ggplot(aes(week_type, estimate)) +
   geom_point(aes(shape = type)) +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
-  geom_hline(yintercept = 0, linetype = "solid", color = "dark red", alpha = 0.8) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "dark red", alpha = 0.8) +
   facet_wrap(~model, ncol = 4) +
   theme_minimal() +
   labs(x = " ", y = "", linetype = " ", shape = " ", title = "Panel A: Alcohol Offenses") +
-  theme(legend.position = "none", strip.background.x = element_rect(fill = "grey"),
-        plot.title = element_text(size=10))
+  theme(legend.position = "none")
 
 sex_trigger_reg <- tibble(trigger_regs, type, week_type) %>% 
   mutate(model = case_when(
@@ -116,13 +115,13 @@ sex_trigger_reg <- tibble(trigger_regs, type, week_type) %>%
   ggplot(aes(week_type, estimate)) +
   geom_point(aes(shape = type)) +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
-  geom_hline(yintercept = 0, linetype = "solid", color = "dark red", alpha = 0.8) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "dark red", alpha = 0.8) +
   facet_wrap(~model, ncol = 4) +
   theme_minimal() +
   labs(x = " ", y = "", linetype = " ", shape = " ", title = "Panel B: Sexual Assaults") +
-  theme(legend.position = "none", strip.background.x = element_rect(fill = "grey"),
-        plot.title = element_text(size=10)) 
+  theme(legend.position = "none") 
 
 result <- alc_trigger_reg + sex_trigger_reg + plot_layout(ncol = 1)
 
 trigger_reg_graph <- patchwork::patchworkGrob(result)
+

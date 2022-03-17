@@ -64,7 +64,7 @@ alc_weeksplit_g <- weeksplit_controls %>%
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
   labs(x = "", y = " ", title = "Panel A: Alcohol Offenses") +
-  theme(legend.position = "none", plot.title = element_text(size=10)) +
+  theme(legend.position = "none") +
   coord_flip() 
 
 sex_weeksplit_g <- weeksplit_controls %>%
@@ -84,7 +84,7 @@ sex_weeksplit_g <- weeksplit_controls %>%
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
   labs(x = "", y = " ", title = "Panel B: Sexual Assaults") +
-  theme(legend.position = "none", plot.title = element_text(size=10)) +
+  theme(legend.position = "none") +
   coord_flip() 
 
 result <- alc_weeksplit_g + sex_weeksplit_g + plot_layout(ncol = 1)
