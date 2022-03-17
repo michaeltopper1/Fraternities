@@ -70,8 +70,7 @@ alc_game <- alc %>%
   scale_x_continuous(breaks = c(1:6), labels = c("All Games", "Home Game","Away Game", "All Games\nx\nIn Moratorium",
                               "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel A: Alcohol Offenses") +
-  theme_minimal() +
-  theme(plot.title = element_text(size=10))
+  theme_minimal() 
 
 
 
@@ -116,15 +115,16 @@ sex_game <- sex %>%
   ggplot(aes(row_number, estimate)) +
   geom_point() +
   geom_errorbar(aes(ymin = conf.low, ymax= conf.high)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "dark red") +
   facet_wrap(~moratorium) +
   scale_x_continuous(breaks = c(1:6), labels = c("All Games", "Home Game","Away Game", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel B: Sexual Assaults") +
-  theme_minimal() +
-  theme(plot.title = element_text(size=10))
+  theme_minimal() 
 
-game_moratorium_plot <- alc_game + sex_game + plot_layout(ncol = 1) 
+result <- alc_game + sex_game + plot_layout(ncol = 1) 
+
+game_moratorium_plot <- patchwork::patchworkGrob(result)
 
                   
                   

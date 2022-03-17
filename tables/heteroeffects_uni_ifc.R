@@ -49,8 +49,8 @@ ifc_uni_table <- ifc::main_table(uni_regs_alc, uni_regs_sex,
   slice(1:12) %>% 
   kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays"), caption = "\\label{ifc_uni_table}Effect of Moratoriums Imposed by the University vs. the IFC") %>% 
 kable_paper() %>% 
-  pack_rows("Panel A: University-Imposed Moratoriums", 1, 6, hline_after = T) %>% 
-  pack_rows("Panel B: IFC-Imposed Moratoriums", 7, 12, hline_after = T) %>% 
+  pack_rows("Panel A: University-Enacted Moratoriums", 1, 6, hline_after = T) %>% 
+  pack_rows("Panel B: IFC-Enacted Moratoriums", 7, 12, hline_after = T) %>% 
   pack_rows("Alcohol Offense", 1, 3, italic = T, bold = F) %>% 
   pack_rows("Sexual Assault", 4,6, italic = T, bold = F) %>% 
   pack_rows("Alcohol Offense", 7, 9, italic = T, bold = F) %>% 

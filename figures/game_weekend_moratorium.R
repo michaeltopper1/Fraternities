@@ -120,13 +120,12 @@ alc_game <- alc %>%
   ggplot(aes(row_number, estimate)) +
   geom_point() +
   geom_errorbar(aes(ymin = conf.low, ymax= conf.high)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "dark red") +
   facet_wrap(~moratorium) +
   scale_x_continuous(breaks = c(1:6), labels = c("All Game\nWeekends", "Home Game\nWeekends","Away Game\nWeekends", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel A: Alcohol Offenses") +
-  theme_minimal() +
-  theme(plot.title = element_text(size=10))
+  theme_minimal() 
 
 
 
@@ -168,12 +167,13 @@ sex_game <- sex %>%
   ggplot(aes(row_number, estimate)) +
   geom_point() +
   geom_errorbar(aes(ymin = conf.low, ymax= conf.high)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "dark red") +
   facet_wrap(~moratorium) +
   scale_x_continuous(breaks = c(1:6), labels = c("All Game\n Weekends", "Home Game\n Weekends","Away Game\nWeekends", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel B: Sexual Assaults") +
-  theme_minimal() +
-  theme(plot.title = element_text(size=10))
+  theme_minimal() 
 
-game_weekend_plot <- alc_game + sex_game + plot_layout(nrow = 2)
+result <- alc_game + sex_game + plot_layout(nrow = 2)
+
+game_weekend_plot <- patchwork::patchworkGrob(result)

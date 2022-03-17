@@ -12,6 +12,9 @@ library(tidyverse)
 library(kableExtra)
 library(fixest)
 library(modelsummary)
+library(grid)
+library(gridExtra)
+library(patchwork)
 knitr::opts_chunk$set(echo = F, message = F, warning = F)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 ```
@@ -20,46 +23,89 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 
 Figure \ref{diff_average_offenses} shows the average difference in moratorium days vs. non moratorium days for each school. Toshio suggested maybe adding in a vertical line showing the effect that I have in each of these graphs, I'm not sure I necessarily want to do this, but it could be interesting. Thoughts on that?
 
-```{r}
-source(paste0(here::here("figures/difference_average_offenses.R")))
-```
+<!-- ```{r} -->
+<!-- source(paste0(here::here("figures/difference_average_offenses.R"))) -->
+<!-- ``` -->
 
-```{r, fig.cap="\\label{diff_average_offenses}Average difference of alcohol and sexual assault offenses between moratorium days and non moratorium days.", fig.height = 7}
+<!-- ```{=latex} -->
+<!-- \begin{figure}[t] -->
+<!-- ``` -->
+<!-- ```{r, fig.height = 10, fig.width = 10} -->
 
-gridExtra::grid.arrange(diff_average_offenses, left = textGrob("Average Difference in Moratorium Days and Non-Moratorium Days", 
-                                                               rot = 90, gp = gpar(fontsize = 10)), bottom = textGrob("University", gp = gpar(fontsize = 10)))
-```
+<!-- gridExtra::grid.arrange(diff_average_offenses, left = textGrob("Average Difference in Moratorium Days and Non-Moratorium Days", -->
+<!--                                                                rot = 90), bottom = textGrob("University")) -->
+<!-- ``` -->
+<!-- ```{=latex} -->
+<!-- \caption{Distribution of Difference in Average Offenses on Moratorium Days and Non-Moratorium Days \label{diff_average_offenses}} -->
+<!-- \textit{Notes:} The y-axis represents the average difference in offenses per-25000 enrolled students on moratorium days and non moratorium days. Negative y-axis values indicate that average offenses were lower on moratorium days than non-moratorium days. The x-axis denotes a unique university. The solid black line on the y-axis is 0, while the dashed black line denotes the average of the distribution. -->
+<!-- \end{figure} -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- source(paste0(here::here("figures/game_day_moratorium.R"))) -->
+<!-- ``` -->
+
+<!-- ```{=latex} -->
+<!-- \begin{figure}[t] -->
+<!-- ``` -->
+<!-- ```{r, fig.height = 10, fig.width = 10} -->
+
+<!-- gridExtra::grid.arrange(game_moratorium_plot, left = textGrob("Coefficient Estimate and 95% Confidence Interval", -->
+<!--                                                                rot = 90), bottom = textGrob("")) -->
+<!-- ``` -->
+<!-- ```{=latex} -->
+<!-- \caption{The Effect of Football Game-days and Football Game-days + Moratoriums \label{game_moratorium_plot}} -->
+<!-- \textit{Notes:} Game days include all football games occurring in the sample period. 34 of the 38 universities have football teams and corresponding game days. The y-axis represents coefficient estimates. Errorbars represent 95% confidence intervals. Each panel is split into two effects: the first effect being the effect of only football game days on the outcome per-25000 enrolled students, and the second being the effect of a football game that occurs within a moratorium. "All Games" includes both home and away games. The effects of game days + moratorium is identified by 89 football games that coincide with moratoriums. Controls include holiday, spring semester, day of the week, and university by academic year. Standard errors are clustered by university.  -->
+<!-- \end{figure} -->
+<!-- ``` -->
 
 
-## The Football Game Graph
-
-Figure \ref{game_moratorium_plot} shows the results of estimating the model based on home + away games/only home/only away games. I break this down into the effect of game days, and then the effect of game days + moratoriums. 
-
-```{r}
-source(paste0(here::here("figures/game_day_moratorium.R")))
-```
+<!-- ```{r} -->
+<!-- source(here::here(paste0("figures/week_before_after.R"))) -->
+<!-- ``` -->
 
 
-```{r, fig.cap="\\label{game_moratorium_plot}Effect of Game Days and Game Day + Moratorium using preferred specification."}
-game_moratorium_plot
-```
+<!-- ```{=latex} -->
+<!-- \begin{figure}[t] -->
+<!-- ``` -->
+<!-- ```{r, echo=FALSE, fig.height= 10, fig.width = 10} -->
+<!-- gridExtra::grid.arrange(week_before_after_graph, left = textGrob("Coefficient Estimate and 95% Confidence Interval", -->
+<!--                                                                rot = 90), bottom = textGrob("")) -->
+<!-- ``` -->
+<!-- ```{=latex} -->
+<!-- \caption{Coefficient Estimates Including a Week Before and Week After Indicator \label{week_before_after}} -->
+<!-- \textit{Notes:} The x-axis represents three periods: the week before a moratorium, the moratorium itself, and the week after the moratorium. Indicators for week before and week after are added to specification (3) from Table \ref{main_table}. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. Weekends represent Fridays, Saturdays, and Sundays. Weekdays represent Mondays-Thursdays. Errorbars represent 95\% confidence intervals. -->
+<!-- \end{figure} -->
+<!-- ``` -->
+<!-- ## The Football Game Graph -->
+
+<!-- Figure \ref{game_moratorium_plot} shows the results of estimating the model based on home + away games/only home/only away games. I break this down into the effect of game days, and then the effect of game days + moratoriums.  -->
+
+<!-- ```{r} -->
+<!-- source(paste0(here::here("figures/game_day_moratorium.R"))) -->
+<!-- ``` -->
 
 
-## Comparison of spillovers
+<!-- ```{r, fig.cap="\\label{game_moratorium_plot}Effect of Game Days and Game Day + Moratorium using preferred specification."} -->
+<!-- game_moratorium_plot -->
+<!-- ``` -->
 
-Table \ref{spillover_table} shows the spillover comparison. I compare the 9 schools that have "close" police departments (e.g. using Lindo paper) to the 9 schools in my own Daily Crime Log sample. The results here show that there doesn't appear to be kids moving to someplace outside of campus grounds to go party which makes sense since a lot of these universities actually want to fraternities to cancel third party events.
 
-```{r}
-source(paste0(here::here("tables/regressions_spillovers_compare.R")))
-```
+<!-- ## Comparison of spillovers -->
 
-```{r}
-spillover_table
-```
+<!-- Table \ref{spillover_table} shows the spillover comparison. I compare the 9 schools that have "close" police departments (e.g. using Lindo paper) to the 9 schools in my own Daily Crime Log sample. The results here show that there doesn't appear to be kids moving to someplace outside of campus grounds to go party which makes sense since a lot of these universities actually want to fraternities to cancel third party events. -->
 
-## Party Schools
+<!-- ```{r} -->
+<!-- source(paste0(here::here("tables/regressions_spillovers_compare.R"))) -->
+<!-- ``` -->
 
-Table \ref{party_school_table} table shows the party school comparison. I used niche.com party schools to 1) keep consistent with my use of this website previously, and 2) because princeton review no longer has their top party schools. 16 of the 38 universities are considered top 50 party schools according to niche.com. The results looks consistent with theory here. 
+<!-- ```{r} -->
+<!-- spillover_table -->
+<!-- ``` -->
+
+<!-- ## Party Schools -->
+
+<!-- Table \ref{party_school_table} table shows the party school comparison. I used niche.com party schools to 1) keep consistent with my use of this website previously, and 2) because princeton review no longer has their top party schools. 16 of the 38 universities are considered top 50 party schools according to niche.com. The results looks consistent with theory here.  -->
 
 ```{r}
 source(paste0(here::here("tables/regressions_party_schools.R")))
@@ -75,3 +121,15 @@ party_school_table
 * I want to keep the 38 schools as the main sample. I think it makes more sense this way instead of arbitrarily adding in never treated groups. I think people would think there is some funny business going on, plus it helps me with the goodman bacon critique and further robustness appendices.
 
 * Should I even include the table on the "fraction of IFC members". I personally don't thinkt he results are enlightening and further subsetting the sample is just going to confuse readers.
+
+
+<!-- ```{r} -->
+<!-- source(here::here(paste0("figures/heteroeffects_trigger.R"))) -->
+<!-- ``` -->
+
+
+<!-- ```{r, fig.height = 12, fig.width  = 11} -->
+<!-- gridExtra::grid.arrange(trigger_reg_graph, left = textGrob("Coefficient Estimate and 95% Confidence Interval",  -->
+<!--                                                                rot = 90), bottom = textGrob("", gp = gpar(fontsize = 10))) -->
+<!-- ``` -->
+

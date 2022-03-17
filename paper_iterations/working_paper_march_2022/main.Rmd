@@ -25,11 +25,12 @@ header-includes:
 - \usepackage[round,authoryear]{natbib}
 - \usepackage{setspace}\doublespacing
 - \usepackage{subfig}
+- \usepackage{placeins}
 - \floatplacement{figure}{H}
 linkcolor: blue
 bibliography: "references.bib"
 link-citations: yes
-abstract: \singlespacing Fraternities maintain a presence at over 800 universities in the United States. While there are positive effects of membership such as increased graduation rates and future income, fraternities are also a reliable source of alcohol and partying for underage students in addition to their members exhibiting more binge drinking behavior than their non-member peers. In this paper, I exploit the variation in timing from 45 temporary university-wide halts on all fraternity activity with alcohol (moratoriums) across 38 universities over a six-year period (2014-2019). I construct a novel data set, merging unique incidence-level crime logs from university police departments to provide the first causal estimates of the effect of moratoriums on campus-wide reports of alcohol and sexual assault offenses. In particular, I find strong and robust evidence that fraternity moratoriums decrease alcohol violations campus-wide by 27%. This effect is driven by decreases in weekend reports, consistent with the timing of most college partying.  Additionally, I find weaker evidence that moratoriums decrease reports of sexual assault on the weekends. However, both of these effects are transient, with moratoriums showing no evidence of long-run changes in student behavior.
+abstract: \singlespacing Fraternities maintain a presence at over 800 universities in the United States. While there are positive effects of membership such as increased graduation rates and future income, fraternities are also a reliable source of alcohol and partying for underage students. In this paper, I exploit the variation in timing from 45 temporary university-wide halts on all fraternity activity with alcohol (moratoriums) across 38 universities over a six-year period (2014-2019). I construct a novel data set, merging unique incidence-level crime logs from university police departments to provide the first causal estimates of the effect of moratoriums on campus-wide reports of alcohol and sexual assault offenses. In particular, I find strong and robust evidence that fraternity moratoriums decrease alcohol violations campus-wide by 24%. This effect is driven by decreases in weekend reports, consistent with the timing of most college partying.  Additionally, I find weaker evidence that moratoriums decrease reports of sexual assault on the weekends. However, both of these effects are transient, with moratoriums showing no evidence of long-run changes in student behavior.
 ---
 
 ```{r setup, include=FALSE}
@@ -40,33 +41,36 @@ library(kableExtra)
 library(bookdown)
 library(modelsummary)
 library(fixest)
+library(grid)
+library(gridExtra)
+library(patchwork)
 ```
 
 
 
 \newpage
 \pagenumbering{arabic}
-```{r, child = "paper_iterations/working_paper_january_2022/introduction.Rmd"}
+```{r, child = "paper_iterations/working_paper_march_2022/introduction.Rmd"}
 
 ```
 
-```{r, child="paper_iterations/working_paper_january_2022/data.Rmd"}
+```{r, child="paper_iterations/working_paper_march_2022/data.Rmd"}
 
 ```
 
-```{r, child="paper_iterations/working_paper_january_2022/empirical_strategy.Rmd"}
+```{r, child="paper_iterations/working_paper_march_2022/empirical_strategy.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_january_2022/results.Rmd"}
+```{r, child = "paper_iterations/working_paper_march_2022/results.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_january_2022/heterogeneity.Rmd"}
+```{r, child = "paper_iterations/working_paper_march_2022/heterogeneity.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_january_2022/conclusion.Rmd"}
+```{r, child = "paper_iterations/working_paper_march_2022/conclusion.Rmd"}
 
 ```
 
@@ -77,13 +81,13 @@ library(fixest)
 
 
 \newpage
-```{r, child = "paper_iterations/working_paper_january_2022/figures.Rmd"}
+```{r, child = "paper_iterations/working_paper_march_2022/figures.Rmd", fig.pos="H"}
 
 ```
 
 
 \newpage
-```{r, child = "paper_iterations/working_paper_january_2022/tables.Rmd"}
+```{r, child = "paper_iterations/working_paper_march_2022/tables.Rmd", fig.pos = "H"}
 
 ```
 
@@ -99,7 +103,7 @@ library(fixest)
 \setcounter{page}{1}
 ```
 
-```{r, child = "paper_iterations/working_paper_january_2022/appendix_twfe.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_march_2022/appendix_twfe.Rmd", fig.pos='H' }
 
 ```
 
@@ -112,7 +116,7 @@ library(fixest)
 \setcounter{page}{1}
 ```
 
-```{r, child = "paper_iterations/working_paper_january_2022/appendix_spillover.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_march_2022/appendix_spillover.Rmd", fig.pos='H' }
 
 ```
 
@@ -125,7 +129,7 @@ library(fixest)
 
 
 \newpage
-```{r, child = "paper_iterations/working_paper_january_2022/appendix_figures.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_march_2022/appendix_figures.Rmd", fig.pos='H' }
 
 ```
 

@@ -36,7 +36,7 @@ es_alc_46_g
 ```
 ```{=latex}
 \caption{Event Study for Alcohol Offenses \label{es_alc_46_g}}
-\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Alcohol offenses are defined as alcohol offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
+\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Alcohol offenses are defined as alcohol offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week, football game-days, and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
 \end{figure}
 ```
 
@@ -50,7 +50,7 @@ es_sex_46_g
 ```
 ```{=latex}
 \caption{Event Study for Sexual Assault Offenses \label{es_sex_46_g}}
-\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Sexual assault offenses are defined as sexual assault offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
+\textit{Notes:} The shaded area point estimate represents an entire moratorium period for each university. Hence, the shaded area point estimate has varying amounts of days within based on the university. For instance, Arkansas State University had a 39 day moratorium and therefore their shaded area point estimate would be identified by the 39 moratorium days. Point estimates not within the shaded region are 46 day periods. Number of days within a period was chosen to give approximately two median-length (46 days) moratorium on each side of the shaded area. All periods are normalized by the 46-day period before the moratorium. Sexual assault offenses are defined as sexual assault offenses per-25000 enrolled students. Controls include holiday, spring semester, day of the week, football game-days, and university by academic year. Standard errors clustered by university. All errorbars represent 95\% confidence intervals.
 \end{figure}
 ```
 
@@ -69,7 +69,7 @@ loo_alc_ols
 ```
 ```{=latex}
 \caption{Leave-one-out OLS Regressions of Alcohol Offenses \label{loo_alc_ols}}
-\textit{Notes:} Each point represents specification (3) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
+\textit{Notes:} Each point represents specification (2) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
 \end{figure}
 ```
 
@@ -82,10 +82,29 @@ loo_sex_ols
 ```
 ```{=latex}
 \caption{Leave-one-out OLS Regressions of Sexual Assaults \label{loo_sex_ols}}
-\textit{Notes:} Each point represents specification (3) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
+\textit{Notes:} Each point represents specification (2) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
 \end{figure}
 ```
 
+
+```{r}
+source(paste0(here::here("figures/game_weekend_moratorium.R")))
+```
+
+
+```{=latex}
+\begin{figure}[t]
+```
+```{r, fig.height = 10, fig.width = 10}
+
+gridExtra::grid.arrange(game_weekend_plot, left = textGrob("Coefficient Estimate and 95% Confidence Interval",
+                                                               rot = 90), bottom = textGrob(""))
+```
+```{=latex}
+\caption{The Effect of Football Game-day Weekends and Football Game-day Weekends + Moratoriums \label{game_weekend_plot}}
+\textit{Notes:} Game weekends include all football games occurring in the sample period. 34 of the 38 universities have football teams and corresponding game days. The y-axis represents coefficient estimates. Errorbars represent 95\% confidence intervals. Each panel is split into two effects: the first effect being the effect of only football game-day weekends on the outcome per-25000 enrolled students, and the second being the effect of a football game-day weekend that occurs within a moratorium. A game-day weekend is defined as a weekend in which a football game occurs. For example, if a game occurs on a Friday, then Saturday and Sunday will be included in the game weekend. Note that weekends are defined as Friday/Saturday/Sunday. "All Game Weekends" includes both home and away games. The effects of game-day weekends + moratorium is identified by 245 football game days that coincide with moratoriums. Controls include holiday, spring semester, day of the week, and university by academic year. Standard errors are clustered by university. 
+\end{figure}
+```
 
 ```{r}
 source(here::here(paste0("tables/trigger_event_description.R")))
