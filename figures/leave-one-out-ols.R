@@ -34,14 +34,22 @@ loo_function <- function(dependent_var, data){
   count <- 1
   for (uni in distinct_universities) {
     if (count == 1) {
+      model_original <- ifc::reghdfe(data, 
+                            dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred"), 'university') %>% 
+        broom::tidy(conf.int = T) %>% 
+        mutate(original_regression = "All Universities")
       model <- ifc::reghdfe(data %>% filter(university != uni) , 
-                     dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred"), 'university')
-      final_results<- broom::tidy(model, conf.int = T)[1,]
+                     dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred"), 'university') %>% 
+        broom::tidy(conf.int = T) %>% 
+        mutate(original_regression = "Leave-One-Out")
+      final_results<- model_original %>% 
+        bind_rows(model)
     }
     else {
       model <- ifc::reghdfe(data %>% filter(university != uni),
                             dependent_var, "treatment", c("day_of_week", "university_by_academic_year", "holiday", "spring_semester","game_occurred"),cluster = 'university')
-      final_results_append <- broom::tidy(model, conf.int = T)[1,]
+      final_results_append <- broom::tidy(model, conf.int = T)[1,] %>% 
+        mutate(original_regression = "Leave-One-Out")
       final_results<- final_results %>% 
         bind_rows(final_results_append)
     }
@@ -53,8 +61,8 @@ loo_function <- function(dependent_var, data){
 
 # putting together data for looping ---------------------------------------
 datas <- list(daily_crime, daily_crime_weekends ,daily_crime_weekdays)
-week_type <- tibble(week_type = c(rep("All Days", 38), rep("Weekends", 38), rep("Weekdays", 38)),
-                    row_number = c(1:38, 1:38, 1:38))
+week_type <- tibble(week_type = c(rep("All Days", 39), rep("Weekends", 39), rep("Weekdays", 39)),
+                    row_number = c(1:39, 1:39, 1:39))
 
 
 
@@ -71,20 +79,21 @@ sex_loo <- map_df(datas, ~loo_function("sexual_assault_per25", .x)) %>%
 
 leave_one_out_plot <- function(data) {
   plot <- data %>% 
-    ggplot(aes(row_number, estimate)) +
+    ggplot(aes(row_number, estimate, color = factor(original_regression))) +
     geom_point() +
     geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
     facet_wrap(~week_type) +
     theme_minimal() +
     geom_hline(aes(yintercept = 0), color = "dark red") +
-    theme(axis.title.x = element_blank(), axis.text.x = element_blank()) +
-    labs(y = "Coefficient Estimate and 95% Confidence Interval")
+    theme(axis.title.x = element_blank(), axis.text.x = element_blank(),
+          legend.position = "bottom") +
+    labs(y = "Coefficient Estimate and 95% Confidence Interval", color = " ")
   return(plot)
 }
 
 # loo plot function -------------------------------------------------------
 
 
-loo_sex_ols <- leave_one_out_plot(sex_loo) 
-loo_alc_ols <- leave_one_out_plot(alc_loo) 
+loo_sex_ols <- leave_one_out_plot(sex_loo)  + scale_color_manual(values =c("4DBBD5B2", "black"))
+loo_alc_ols <- leave_one_out_plot(alc_loo) + scale_color_manual(values =c("4DBBD5B2", "black"))
 
