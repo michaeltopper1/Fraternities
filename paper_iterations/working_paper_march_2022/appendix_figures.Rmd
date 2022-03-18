@@ -69,7 +69,7 @@ loo_alc_ols
 ```
 ```{=latex}
 \caption{Leave-one-out OLS Regressions of Alcohol Offenses \label{loo_alc_ols}}
-\textit{Notes:} Each point represents specification (2) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
+\textit{Notes:} Each blue point represents the preferred specification (2) from Table \ref{main_table}. Each black point represents specification (2) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
 \end{figure}
 ```
 
@@ -82,7 +82,7 @@ loo_sex_ols
 ```
 ```{=latex}
 \caption{Leave-one-out OLS Regressions of Sexual Assaults \label{loo_sex_ols}}
-\textit{Notes:} Each point represents specification (2) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
+\textit{Notes:} Each blue point represents the preferred specification (2) from Table \ref{main_table}. Each black point represents specification (2) from Table \ref{main_table} with one university omitted from the sample. Offenses are per-25000 enrolled students. Errorbars represent 95\% confidence intervals. Weekends includes only Friday, Saturday, Sunday, while weekdays includes Monday through Thursday.
 \end{figure}
 ```
 
@@ -148,7 +148,7 @@ source(paste0(here::here("Tables/matching_word_table.R")))
 
 \begin{landscape}
 ```{r top_categories}
-kable(top_categories, booktabs = T, caption = "\\label{top_categories}The Top 30 Most Frequently Reported Incidents") %>%
+kable(top_categories, booktabs = T, caption = "\\label{top_categories}The Top 30 Most Frequently Reported Incident Descriptions") %>%
   kable_styling(latex_options = c("scale_down", "HOLD_position")) %>%
   footnote(list("Numbers in parenthesis denote the frequency of offense in the data. These offenses represent the  30 most frequent crimes in each category after the pattern-matching algorithm is applied."),
                threeparttable = T)
