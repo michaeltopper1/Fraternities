@@ -416,7 +416,7 @@ reporting_table <- ifc::main_table(lag_alc, last_panel = lag_sex) %>%
   pack_rows("Panel B: Proportion of Sexual Assaults Reported with Lag", 5, 8, italic = F, bold = T) %>%
   pack_rows("Controls for Panels A and B:", 9, 13, italic = F, bold = T) %>% 
   add_header_above(c(" " = 1, "Reporting Lag" = 4)) %>% 
-  footnote(list("Standard errors clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses, and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. 33 of the 38 universities have information on date occurred.",
+  footnote(list("Standard errors clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. 32 of the 37 universities have information on date occurred.",
                 "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T)
 

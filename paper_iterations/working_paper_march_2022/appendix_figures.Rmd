@@ -4,7 +4,8 @@ output: pdf_document
 ---
 
 <!-- ```{r setup, include=FALSE} -->
-<!-- knitr::opts_chunk$set(echo = TRUE) -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
 <!-- ``` -->
 
 # Appendix Figures and Tables \label{section:appendixf}
@@ -18,7 +19,7 @@ knitr::include_graphics(paste0(here::here("paper_iterations/working_paper_decemb
 ```
 ```{=latex}
 \caption{An Example of a Daily Crime Log \label{crime_log}}
-\textit{Notes:} The main analysis uses data from 38 universities' Daily Crime Logs - each unique in their own respect. All Daily Crime Logs had to be requested from each university and harmonized using pattern matching.
+\textit{Notes:} The main analysis uses data from 37 universities' Daily Crime Logs - each unique in their own respect. All Daily Crime Logs had to be requested from each university and harmonized using pattern matching.
 \end{figure}
 ```
 
@@ -102,7 +103,7 @@ gridExtra::grid.arrange(game_weekend_plot, left = textGrob("Coefficient Estimate
 ```
 ```{=latex}
 \caption{The Effect of Football Game-day Weekends and Football Game-day Weekends + Moratoriums \label{game_weekend_plot}}
-\textit{Notes:} Game weekends include all football games occurring in the sample period. 34 of the 38 universities have football teams and corresponding game days. The y-axis represents coefficient estimates. Errorbars represent 95\% confidence intervals. Each panel is split into two effects: the first effect being the effect of only football game-day weekends on the outcome per-25000 enrolled students, and the second being the effect of a football game-day weekend that occurs within a moratorium. A game-day weekend is defined as a weekend in which a football game occurs. For example, if a game occurs on a Friday, then Saturday and Sunday will be included in the game weekend. Note that weekends are defined as Friday/Saturday/Sunday. "All Game Weekends" includes both home and away games. The effects of game-day weekends + moratorium is identified by 245 football game days that coincide with moratoriums. Controls include holiday, spring semester, day of the week, and university by academic year. Standard errors are clustered by university. 
+\textit{Notes:} Game weekends include all football games occurring in the sample period. 34 of the 37 universities have football teams and corresponding game days. The y-axis represents coefficient estimates. Errorbars represent 95\% confidence intervals. Each panel is split into two effects: the first effect being the effect of only football game-day weekends on the outcome per-25000 enrolled students, and the second being the effect of a football game-day weekend that occurs within a moratorium. A game-day weekend is defined as a weekend in which a football game occurs. For example, if a game occurs on a Friday, then Saturday and Sunday will be included in the game weekend. Note that weekends are defined as Friday/Saturday/Sunday. "All Game Weekends" includes both home and away games. The effects of game-day weekends + moratorium is identified by 245 football game days that coincide with moratoriums. Controls include holiday, spring semester, day of the week, and university by academic year. Standard errors are clustered by university. 
 \end{figure}
 ```
 
@@ -143,7 +144,7 @@ data_used
 
 
 ```{r}
-source(paste0(here::here("Tables/matching_word_table.R")))
+source(paste0(here::here("tables/matching_word_table.R")))
 ```
 
 \begin{landscape}

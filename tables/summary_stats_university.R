@@ -26,7 +26,7 @@ moratorium_summary <- moratoriums %>%
   datasummary((`Number of Moratoriums per-University` = moratorium_id) +(`Length of Moratoriums` = length_moratorium) ~ (Mean + SD + Median + Min + Max ), data = .,
               output = "data.frame") 
 moratorium_rows <- moratorium_summary %>%
-  add_row(` ` = "Total Number of Universities",`Mean` =  "38",`SD` = " ",`Median` =  " ", `Min` = " ", `Max` =" ")
+  add_row(` ` = "Total Number of Universities",`Mean` =  "37",`SD` = " ",`Median` =  " ", `Min` = " ", `Max` =" ")
 
 
 university_characteristics <- daily_crime %>%
@@ -53,7 +53,7 @@ university_characteristics <- daily_crime %>%
   pack_rows("Panel A: University Characteristics", 1, 11, bold = T, italic = F) %>% 
   pack_rows("Panel B: Daily Crime Log Offenses", 12, 13, bold = T, italic = F) %>% 
   pack_rows("Panel C: Moratorium Characteristics", 14, 15, bold = T, italic = F) %>% 
-  footnote("Offenses are per-25000 students enrolled per-academic calendar day. Length of moratorium statistics are in academic calendar days. Number of moratoriums refers to number of moratoriums only within the 2014-2019 time period. Some schools may or may not have had moratoriums in periods before or after the time period of analysis. Only a subset of races were chosen, and hence, the sum of the fractions do not sum to 1 in the table. SAT Math 75th Percentile and SAT Reading 75th Percentile correspond to the 75th perctile SAT score for an admitted student. A perfect score is 800, while an average score is approximately 500. Fraction Private refers to the fractin of universities that are private universities.",
+  footnote("Offenses are per-25000 students enrolled per-academic calendar day. Length of moratorium statistics are in academic calendar days. Number of moratoriums refers to number of moratoriums only within the 2014-2019 time period. Some schools may or may not have had moratoriums in periods before or after the time period of analysis. Only a subset of races were chosen, and hence, the sum of the fractions do not sum to 1 in the table. SAT Math 75th Percentile and SAT Reading 75th Percentile correspond to the 75th perctile SAT score for an admitted student. A perfect score is 800, while an average score is approximately 500. Fraction Private refers to the fraction of universities that are private universities.",
            threeparttable = T) %>% 
   kable_styling(latex_options = "HOLD_position")
 

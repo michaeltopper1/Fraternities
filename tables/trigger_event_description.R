@@ -20,5 +20,5 @@ reasons_table <- reasons %>%
   kbl(col.names = c("University", "Description of Triggering Event", "Triggering Event Date", "Moratorium Start Date", "Classification"
   ), booktabs = T, longtable = T,
   caption = "\\label{reasons_table}Description of the Triggering Events that lead to a Moratorium") %>% 
-  footnote(list("Description of the triggering event is summarized based on newsarticles or conversations with Fraternity and Sorority Life staff. The date of the triggering event is shown if provided. The classification of each event is based off of the description and aligns with Figure \ref{triggerplot}.")
+  footnote(list("Description of the triggering event is summarized based on newsarticles or conversations with Fraternity and Sorority Life staff. The date of the triggering event is shown if provided. The classification of each event is based off of the description and aligns with Figure 2.")
                ,threeparttable = T)
