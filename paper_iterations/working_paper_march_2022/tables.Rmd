@@ -101,11 +101,3 @@ spillover_table
 ```
 \end{landscape}
 
-<!-- ```{r} -->
-<!-- source(here::here(paste0("tables/regressions_clery_dcl.R"))) -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- clery_compare -->
-<!-- ``` -->
-
