@@ -85,10 +85,10 @@ weekend_table <- ifc::main_table(alc_weeksplit, last_panel = sex_weeksplit) %>%
       caption = "\\label{weekend_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assault by Weekend/Weekdays (OLS).") %>% 
   pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>% 
   pack_rows("Panel B: Sexual Assaults", 5, 8, bold = T, italic = F) %>% 
-  pack_rows("Controls for Panels A-B:", 9, 14, bold = T, italic = F) %>% 
+  pack_rows("Controls for Panels A-B:", 9, 13, bold = T, italic = F) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
-  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column All Days represents specification (2) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
+  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column All Days represents specification (2) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans' Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic-calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
                     "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
            threeparttable = T) 
 
