@@ -29,23 +29,25 @@ moratorium_rows <- moratorium_summary %>%
   add_row(` ` = "Total Number of Universities",`Mean` =  "37",`SD` = " ",`Median` =  " ", `Min` = " ", `Max` =" ")
 
 
+
 university_characteristics <- daily_crime %>%
   mutate(private = ifelse(control_of_institution != "Public", 1, 0)) %>% 
   datasummary((`Total Enrollment` = total_enrollment) + 
-                (`Total Undergrad Enrollment`=undergraduate_enrollment) + 
+                (`Total Undergraduate Enrollment`=undergraduate_enrollment) + 
                 (`Fraction Asian` = frac_undergrad_asian) +
-                 (`Fraction Black`= frac_undergrad_black) + 
+                (`Fraction Black`= frac_undergrad_black) + 
                 (`Fraction Hispanic` = frac_undergrad_hispanic_latino) +
                 (`Fraction White` = frac_undergrad_white) +
-                 (`Graduation Rate` = graduation_rate_total_cohort) + 
+                (`Graduation Rate` = graduation_rate_total_cohort) + 
                 (`SAT Math 75th Percentile` = sat_math_75) +
                 ( `SAT Reading 75th Percentile` = sat_reading_75) +
                 (`Fraction Admitted` = frac_admitted_total) +
                 (`Fraction Private`=private) +
                 (`Alcohol Offense` = alcohol_offense_per25) +
                 (`Sexual Assault` = sexual_assault_per25)  ~ (Mean + SD + Median + Min + Max ), data = .,
-              title = "\\label{summary_stats}Summary Statistics of the Universities in the Sample.",
-              add_rows = moratorium_rows) %>% 
+              add_rows = moratorium_rows , output = "data.frame") %>% 
+  kbl(digits = 2, booktabs = T, 
+      caption = "\\label{summary_stats}Summary Statistics of the Universities in the Sample.") %>% 
   row_spec(15, hline_after = T) %>% 
   row_spec(16, bold = F, italic = T) %>% 
   add_indent(c(2:6)) %>% 

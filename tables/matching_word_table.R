@@ -8,6 +8,7 @@
 library(tidyverse)
 library(glue)
 library(ifc)
+library(tidytext)
 
 ## getting in the data that I matched with 
 # source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
@@ -40,48 +41,57 @@ theft_words <- theft_identifiers %>%
   str_replace_all("\\|", ", ")
 words <- list(alcohol_words,sexual_assault_words)  %>% 
   unlist()
-categories <- c("Alcohol Violations","Sexual Assault")
+categories <- c("Alcohol Offense","Sexual Assault")
 matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
 
+matching_table <- kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words and Phrases used to Pattern Match on Offenses of Interest") %>%
+  # column_spec(1, bold = T, color = "blue") %>%
+  kable_styling(latex_options = "HOLD_position") %>% 
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(2, width = "30em") %>% 
+  # column_spec(1, width = "8cm") %>% 
+  # column_spec(2, width = "4cm") %>% 
+  footnote(list("Words to Match represent a portion of an incident's description to pattern match on. Alcohol violation and sexual assault words were found by reading each individual university's datasets for common words within incident descriptions. For example, the word `sex' will match on `sexual assault' and `sex offense' since `sex' appears in each of these descriptions. Notably, this method likely undercounts the true number of violations in each police department's Daily Crime Log due to spelling errors. As a demonstration, the word `alcohol' may be written as `aclohol' which this matching process will not include. Some notable abbreviations include the following:",
+                "`dwi' is an abbreviation for `driving while intoxicated'.",
+                "`dip' is an abbrevation for `drunk in public'.",
+                "`abcc' is an abbreviation for `alcohol beverage control comission'.",
+                "`pula' is an abbrevation for `person under legal age'.",
+                "`owi' is an abbreviation for `operating while intoxicated'.",
+                "`mip' is an abbreviation for `minor in possesion'.",
+                "`ovi' is an abbreivation for `operating vehicle intoxicated'."), threeparttable = T)
 
-top_drug_alcohol <- appended_crime_logs %>% 
-  filter(drug_offense == 1 & alcohol_offense == 1) %>% 
-  count(incident, sort = T)  %>% 
-  head(30) %>% 
-  mutate(incident = glue("{incident} ({n})")) %>% 
-  select(incident) %>% rename("Drug and Alcohol" = incident)
+
+
 
 top_sexual_assault <- appended_crime_logs %>% 
   filter(sexual_assault == 1) %>% 
-  count(incident, sort = T) %>% 
-  head(30) %>% 
-  mutate(incident = glue("{incident} ({n})")) %>% 
-  select(incident) %>% rename("Sexual Assault" = incident)
+  mutate(total = n(), .before = 1) %>% 
+  count(incident,total,  sort = T) %>% 
+  head(15) %>% 
+  rowwise() %>% 
+  mutate(fraction = n/total, offense = "Sexual Assault") %>% 
+  select(incident, fraction, offense)
 
 top_alcohol_offense <- appended_crime_logs %>% 
   filter(alcohol_offense == 1) %>% 
-  count(incident, sort = T) %>% 
-  mutate(incident = glue("{incident} ({n})")) %>% 
-  head(30) %>% select(incident) %>% rename("Alcohol Offense" = incident)
-
-top_drug_offense <- appended_crime_logs %>% 
-  filter(drug_offense == 1) %>% 
-  count(incident, sort = T) %>% 
-  mutate(incident = glue("({n}) {incident}")) %>% 
-  head(30) %>%  select(incident) %>% rename("Drug Offense" = incident)
+  mutate(total = n(), .before = 1) %>% 
+  count(incident,total,  sort = T) %>% 
+  head(15) %>% 
+  rowwise() %>% 
+  mutate(fraction = n/total, offense = "Alcohol Offense") %>% 
+  select(incident, fraction, offense) 
 
 
-top_theft <- appended_crime_logs %>% 
-  filter(theft == 1) %>% 
-  count(incident, sort = T) %>% 
-  mutate(incident = glue("({n}) {incident}")) %>% 
-  head(15) %>%  select(incident) %>% rename("Theft/Larceny Offense" = incident)
+top_categories <- bind_rows(top_alcohol_offense,top_sexual_assault) 
 
-top_burglary <- appended_crime_logs %>% 
-  filter(robbery_burglary == 1) %>% 
-  count(incident, sort = T) %>% 
-  mutate(incident = glue("({n}) {incident}")) %>% 
-  head(30) %>%  select(incident) %>% rename("Robbery/Burglary Offense" = incident)
-
-top_categories <- bind_cols(top_alcohol_offense,top_sexual_assault)
-
+top_categories <- top_categories %>% 
+  extract(incident, "incident", regex = "(.{1,47})") %>% 
+  ggplot(aes(reorder(incident, fraction), fraction)) +
+  geom_col()  +
+  coord_flip() +
+  labs(x = "Incident Description", y = "Fraction of Total Offense") +
+  facet_wrap(~offense, scales = "free_y") +
+  theme_minimal() +
+  theme(legend.position ="bottom",
+        text = element_text(size = 45)) +
+  ggsci::scale_fill_npg()

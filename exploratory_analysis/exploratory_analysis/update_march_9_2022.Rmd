@@ -5,6 +5,21 @@ editor_options:
   chunk_output_type: console
 link-citations: yes
 linkcolor: blue
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{xcolor}
 ---
 
 ```{r setup, include=FALSE}
@@ -24,18 +39,127 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 Figure \ref{diff_average_offenses} shows the average difference in moratorium days vs. non moratorium days for each school. Toshio suggested maybe adding in a vertical line showing the effect that I have in each of these graphs, I'm not sure I necessarily want to do this, but it could be interesting. Thoughts on that?
 
 
+<!-- ```{r} -->
+<!-- source(paste0(here::here("tables/matching_word_table.R"))) -->
+<!-- ``` -->
+
+
+<!-- ```{r top_categories} -->
+<!-- kable(top_categories, booktabs = T, caption = "\\label{top_categories}The Top 30 Most Frequently Reported Incidents") %>% -->
+<!--   kable_styling(latex_options = c("scale_down", "HOLD_position")) %>% -->
+<!--   footnote(list("Numbers in parenthesis denote the frequency of offense in the data. These offenses represent the  30 most frequent crimes in each category after the pattern-matching algorithm is applied."), -->
+<!--                threeparttable = T) %>% -->
+<!--   landscape() -->
+<!-- ``` -->
+
+
 ```{r}
-source(paste0(here::here("tables/matching_word_table.R")))
+library(tidyverse)
+library(glue)
+library(ifc)
+
+## getting in the data that I matched with 
+# source("Code/Cleaning_crime_log_files/append_daily_crime_logs_1.R")
+
+
+# identifier - pull from append_daily_crime_logs_1 ------------------------
+
+appended_crime_logs <-  read_csv("created_data/xmaster_data/appended_crime_logs.csv") %>% 
+  filter(university %in% ifc::moratorium_schools())
+
+alcohol_identifiers <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|dwi|underage|pula|owi|mip|under age|beer|wine|booze|minor in possession|ovi" ## got rid of disorderly conduct.
+sexual_assault_identifiers <- "sex|rape|fondling|fondle" 
+drug_identifiers <- "drug|narcotic|marijuana|heroin|overdose|cocaine|controlled substance"
+theft_identifiers <- "larceny|theft|shoplifting|pocket-picking|steal|shop lifting" ##using nibrs
+robbery_burglary_identifiers <- "robbery|burglary|unlawful entry|breaking and entering"
+alcohol_identifiers_strict <- "alcohol|dwi|intox|drink|dui|drunk|liquor|driving under the influence|dip|abcc|underage|beverage|dwi|underage|container|pula|owi|mip|under age|minor in possession|ovi" ## getting rid of possesion
+noise_violation_identifier <- "noise|loud"
+rape_identifier <- "rape"
+
+## table of words to match on
+alcohol_words <- alcohol_identifiers %>% 
+  str_replace_all("\\|", ", ")
+sexual_assault_words <-  sexual_assault_identifiers %>% 
+  str_replace_all("\\|", ", ")
+drug_offense_words <-  drug_identifiers %>% 
+  str_replace_all("\\|", ", ")
+robbery_burglary_words <- robbery_burglary_identifiers %>% 
+  str_replace_all("\\|", ", ")
+theft_words <- theft_identifiers %>% 
+  str_replace_all("\\|", ", ")
+words <- list(alcohol_words,sexual_assault_words)  %>% 
+  unlist()
+categories <- c("Alcohol Violations","Sexual Assault")
+matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
+
+matching_table <- kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words and Phrases used to Pattern Match on Offenses of Interest") %>%
+  # column_spec(1, bold = T, color = "blue") %>%
+  kable_styling(latex_options = "HOLD_position") %>% 
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(2, width = "30em") %>% 
+  # column_spec(1, width = "8cm") %>% 
+  # column_spec(2, width = "4cm") %>% 
+  footnote(list("Words to Match represent a portion of an incident's description to pattern match on. Alcohol violation and sexual assault words were found by reading each individual university's datasets for common words within incident descriptions. For example, the word `sex' will match on `sexual assault' and `sex offense' since `sex' appears in each of these descriptions. Notably, this method likely undercounts the true number of violations in each police department's Daily Crime Log due to spelling errors. As a demonstration, the word `alcohol' may be written as `aclohol' which this matching process will not include. Some notable abbreviations include the following:",
+                "`dwi' is an abbreviation for `driving while intoxicated'.",
+                "`dip' is an abbrevation for `drunk in public'.",
+                "`abcc' is an abbreviation for `alcohol beverage control comission'.",
+                "`pula' is an abbrevation for `person under legal age'.",
+                "`owi' is an abbreviation for `operating while intoxicated'.",
+                "`mip' is an abbreviation for `minor in possesion'.",
+                "`ovi' is an abbreivation for `operating vehicle intoxicated'."), threeparttable = T)
+
+
+
+
+
+top_sexual_assault <- appended_crime_logs %>% 
+  filter(sexual_assault == 1) %>% 
+  mutate(total = n(), .before = 1) %>% 
+  count(incident,total,  sort = T) %>% 
+  head(15) %>% 
+  rowwise() %>% 
+  mutate(fraction = n/total, offense = "Sexual Assault") %>% 
+  select(incident, fraction, offense)
+
+top_alcohol_offense <- appended_crime_logs %>% 
+  filter(alcohol_offense == 1) %>% 
+  mutate(total = n(), .before = 1) %>% 
+  count(incident,total,  sort = T) %>% 
+  head(15) %>% 
+  rowwise() %>% 
+  mutate(fraction = n/total, offense = "Alcohol Offense") %>% 
+  select(incident, fraction, offense) 
+
+
+top_categories <- bind_rows(top_alcohol_offense,top_sexual_assault) 
+
+top_categories_figure <- top_categories %>% 
+  extract(incident, "incident", regex = "(.{1,47})") %>% 
+  ggplot(aes(reorder(incident, fraction), fraction)) +
+  geom_col()  +
+  coord_flip() +
+  labs(x = "Incident Description", y = "Fraction of Total Offense") +
+  facet_wrap(~offense, scales = "free_y") +
+  theme_minimal() +
+  theme(legend.position ="bottom",
+        text = element_text(size = 45)) +
+  ggsci::scale_fill_npg()
 ```
 
-
-```{r top_categories}
-kable(top_categories, booktabs = T, caption = "\\label{top_categories}The Top 30 Most Frequently Reported Incidents") %>%
-  kable_styling(latex_options = c("scale_down", "HOLD_position")) %>%
-  footnote(list("Numbers in parenthesis denote the frequency of offense in the data. These offenses represent the  30 most frequent crimes in each category after the pattern-matching algorithm is applied."),
-               threeparttable = T) %>% 
-  landscape()
+```{r}
+matching_table
 ```
-
+```{=latex}
+\begin{landscape}
+\begin{figure}[t]
+```
+```{r, echo=FALSE, fig.align = "center",fig.width= 44, fig.height= 36, out.width= "90%"}
+top_categories_figure
+```
+```{=latex}
+\caption{Top 15 Most Frequent Offense Matches\label{top_categories_figure}}
+\footnotesize{\textit{Notes:} The top 15 most frequent offense matches represent the 15 most frequent incidents after the pattern matching exercise. The x-axis represents the fraction of the total number of offenses in each category.}
+\end{figure}
+\end{landscape}
 ```
 

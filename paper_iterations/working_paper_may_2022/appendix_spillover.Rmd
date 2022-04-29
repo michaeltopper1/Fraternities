@@ -1,0 +1,43 @@
+---
+title: "Appendix  C"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Substitution Effect Using CSS Data \label{section:spillovers}
+
+As discussed previously, while the main results show a significant decrease in daily reports of alcohol offenses and sexual assaults on the weekends, there is concern that these offenses are being substituted to more risky places. In this appendix, I use the CSS Data to indirectly estimate this substitution effect. I compare an aggregation of the Daily Crime Logs to the CSS Data using a model that is less suited for a causal analysis. Hence, the estimates in this appendix should be taken as speculative only. 
+
+## CSS Data and Empirical Strategy
+
+I utilize the Campus Safety and Security (CSS) data from the US Department of Education. This data is mandated by the federal government to be updated each calendar year with the yearly totals of liquor and sexual assault violations that are reported *to any entity* at a university. Hence, this data will not match one-to-one with the Daily Crime Logs as the Daily Crime Logs contain only incidences *reported to or by the university police*. For instance, a residence hall administrator may issue liquor violations to underage students, but handle the issue internally without involving the police. This incident would be counted in the CSS data, but not the Daily Crime Logs. However, one advantage of the CSS data is that it contains counts of offenses that occur on-campus, not-on-campus,^[As defined by the Department of Education, this is "(1) Any building or property owned or controlled by a student organization that is officially recognized by the institution; or (2) Any building or property owned or controlled by an institution that is used in direct support of, or in relation to, the institution's educational purposes, is frequently used by students, and is not within the same reasonably contiguous geographic area of the institution."] and  on public property.^[Per the Department of Education, this is defined as "All public property, including thoroughfares, streets, sidewalks, and parking facilities, that is within the campus, or immediately adjacent to and accessible from the campus."] Specifically, I am able to delineate whether offenses occur in student residence halls.  
+
+The main issue with the CSS data is that it is aggregated by calendar-year. Given that moratoriums are, on average, short-lived policy, the CSS data is not a preferred source for analysis. For instance, consider Indiana University, a university that experienced a moratorium in November of 2017 that lasted until February of 2018. Since the CSS is aggregated by calendar-year, it is difficult to delineate these effects; 2017 and 2018 only experienced approximately two months worth of moratorium days. To mitigate this issue, I estimate the following difference-in-differences specification:
+
+\begin{equation} \label{equation:appendix}
+Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda_{t} + \epsilon_{u,t}
+\end{equation}
+
+\noindent where $Y_{u,t}$ is the offense of interest defined as offense per-25000 enrolled students per-calendar-day, $Moratorium_{u,t}$ is the *fraction* of calendar-days treated within a year (e.g., a 30-day moratorium would result in 30/365), $\gamma_u$ are university fixed effects, $\lambda_{t}$ are calendar-year fixed effects, and $\epsilon_{u,t}$ is the error term. Intuitively, Equation \ref{equation:appendix} is comparing fractions of calendar-years with a moratorium to calendars years without moratoriums while accounting for systematic differences between universities and calendar-years. Standard errors are clustered at the university level. 
+
+Unlike the main analysis in the paper, I am unable to estimate long-run effects in this setting for two reasons. First, including a year lag results in year 2020, the beginning of the COVID-19 pandemic. COVID-19 drastically changed university activity due to online instruction, and thus, this would not be a good counterfactual. Second, including a year lead (2013) results in possible level-changes in sexual assaults due to the CSS failing to include rapes prior to 2014. Given these limitations, there is no reliable way to estimate long-run effects of moratoriums in this setting.
+
+Equation \ref{equation:appendix} is also less flexible than Equation \ref{main_model}, as it does not account for differences in days of the week, football game-days, academic years, semesters, nor does it restrict to academic-calendar days. Therefore, as mentioned, the estimates from this specification should be taken as speculative, not causal. 
+
+## Results
+
+Table \ref{clery_compare} shows the comparison of estimating Equation \ref{equation:appendix} with the Daily Crime Logs aggregated to the calendar-year level^[This aggregation includes all calendar-year days rather than only academic-calendar days that were used in the main analysis.] with the CSS data. The Daily Crime Logs show somewhat consistent results with those found in Table \ref{main_table} column (2);^[I consider this specification to have the most similar interpretation to the specification in this Appendix.] daily averages of alcohol offenses decrease by approximately 38% in calendar years with a moratorium and sexual assaults decrease by approximately 30%, although the level of statistical significance is lower for alcohol—likely due to the imprecision of aggregation.  
+
+Although the results using aggregated Daily Crime Logs are relatively similar, the CSS data shows that residence halls experience a 28% *increase* in daily alcohol violations when a calendar year experiences a moratorium. Interestingly, this coincides with the 26% *decrease* found in the main results in Table \ref{main_table}, suggesting that students substitute their partying away from fraternity houses to their own residence halls. This may be a net-benefit—residence halls are more regulated than fraternity houses and can prevent partying behavior from becoming too risky. This is shown in Panel B with the significant *decrease* in sexual assaults (82%). Hence, this is speculative evidence that moratoriums are pushing risky behaviors into *safer* areas that can regulate partying more efficiently. Residence halls are staffed with student employees that patrol the premises for underage drinking or extreme partying behavior. Additionally, residence halls contain an abundance of bystanders. These bystanders likely differ from those at a fraternity house party—some of these bystanders may not be intoxicated (e.g., students that are studying in their homes), and can intervene if they hear/see a potentially risky situation between individuals beginning to coalesce. While there is evidence that moratoriums are pushing risky behavior to less risky areas, it is necessary to point out once more that these estimates are speculative, not causal.
+
+```{r, echo = F, message = F, warning = F}
+source(paste0(here::here("tables/regressions_clery_dcl.R")))
+```
+
+```{r, echo = F, message = F, warning = F,fig.pos='H' }
+clery_compare %>% 
+  kable_styling(latex_options = "HOLD_position")
+```
+
