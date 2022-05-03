@@ -57,10 +57,12 @@ alc_weeksplit_g <- weeksplit_controls %>%
   mutate(in_moratorium = ifelse(time == "In\nMoratorium", 1, 0)) %>% 
   mutate(time = factor(time, levels = c("Week Before", "In\nMoratorium", "Week After"), labels = c("-1 Week", "In\nMoratorium","+1 Week"))) %>% 
   mutate(week_type = factor(week_type, levels = c("All Days", "Weekends", "Weekdays"))) %>% 
-  ggplot(aes(estimate, time, color = in_moratorium)) +
+  ggplot(aes(estimate, time)) +
   geom_point() +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high)) +
   facet_wrap(~week_type) +
+  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 2- 0.5,
+                ymax = 2+ 0.5),fill = "cornsilk2", alpha = 0.1) +
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
   labs(x = "", y = " ", title = "Panel A: Alcohol Offenses") +
@@ -77,9 +79,11 @@ sex_weeksplit_g <- weeksplit_controls %>%
   mutate(in_moratorium = ifelse(time == "In\nMoratorium", 1, 0)) %>% 
   mutate(time = factor(time, levels = c("Week Before", "In\nMoratorium", "Week After"), labels = c("-1 Week", "In\nMoratorium","+1 Week"))) %>% 
   mutate(week_type = factor(week_type, levels = c("All Days", "Weekends", "Weekdays"))) %>% 
-  ggplot(aes(estimate, time, color = in_moratorium)) +
+  ggplot(aes(estimate, time)) +
   geom_point() +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high)) +
+  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 2- 0.5,
+                ymax = 2+ 0.5),fill = "cornsilk2", alpha = 0.1) +
   facet_wrap(~week_type) +
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
