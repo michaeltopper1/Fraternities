@@ -336,9 +336,6 @@ date_occurred_panel_weekdays <- date_occurred_panel %>%
 lag_datas <- list(date_occurred_panel, date_occurred_panel_weekends, date_occurred_panel_weekdays)
 
 ## now finally creating the columns for "proportion of crimes with reporting lag"
-date_occurred_panel %>% 
-  select(alcohol_offense, report_lag_alc) %>% 
-  modelsummary::datasummary_skim()
 
 lag_datas <- map(lag_datas, ~.x %>% 
       mutate(proportion_alc_lag_1 = ifelse(alcohol_offense == 0, 0, report_lag_alc_1/alcohol_offense),
@@ -396,6 +393,7 @@ lag_sex <- map(lag_variables_sex, ~ifc::reghdfe(date_occurred_panel, ., explanat
 
 
 reporting_table <- ifc::main_table(lag_alc, last_panel = lag_sex) %>% 
+  slice(1:6) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_1, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_3, na.rm = T)),
@@ -410,14 +408,13 @@ reporting_table <- ifc::main_table(lag_alc, last_panel = lag_sex) %>%
           .before = 8) %>% 
   kbl(booktabs = T,
       col.names = c(" ","More than 1-Day Lag","More than 3-Day Lag", "More than 7-Day Lag", "More than 14-day Lag"),
-      caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting.") %>% 
+      caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
-  pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = F, bold = T) %>%
-  pack_rows("Panel B: Proportion of Sexual Assaults Reported with Lag", 5, 8, italic = F, bold = T) %>%
-  pack_rows("Controls for Panels A and B:", 9, 13, italic = F, bold = T) %>% 
+  pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = T, bold = F) %>%
+  pack_rows("Panel B: Proportion of Sexual Assaults Reported with Lag", 5, 8, italic = T, bold = F,  latex_gap_space = "0.5cm") %>%
   add_header_above(c(" " = 1, "Reporting Lag" = 4)) %>% 
-  footnote(list("Standard errors clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than 1 (Column 1), 3 (Column 2), 7 (Column 3), or 14 (Column 4) days after it occurred. 32 of the 37 universities have information on date occurred.",
-                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
+  footnote(list("Standard errors are clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than one (Column 1), three (Column 2), seven (Column 3), or 14 (Column 4) days after it occurred. 32 of the 37 universities have information on date occurred. Specification is the preferred specification which includes day of week, holiday, football game-day, semester, and university-by-academic-year fixed effects. See Table \ref{main_table} column (2) for more details on the preferred specification.",
+                "* p < 0.1, ** p < 0.05, *** p < 0.01"),
            threeparttable = T)
 
 

@@ -37,6 +37,7 @@ sex_party <- map(party_school_data, ~ifc::reghdfe(., c("sexual_assault_per25"),e
 )
 
 party_school_table <- ifc::main_table(alc_party, last_panel = sex_party) %>% 
+  slice(1:6) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(party_school_data[[2]]$alcohol_offense_per25, na.rm = T)),
@@ -49,11 +50,11 @@ party_school_table <- ifc::main_table(alc_party, last_panel = sex_party) %>%
           .before = 8) %>% 
   kbl(booktabs = T, col.names = c(" ", "All Schools", "Party Schools", "Non-Party Schools"),
       caption = "\\label{party_school_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assault by Party School (OLS).") %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = T, italic = F) %>% 
-  pack_rows("Panel B: Sexual Assaults", 5, 8, bold = T, italic = F) %>% 
-  pack_rows("Controls for Panels A-B:", 9, 13, bold = T, italic = F) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>% 
+  pack_rows("Panel B: Sexual Assaults", 5, 8, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   add_header_above(c(" " = 1, "School Type" = 3)) %>% 
-  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column All Schools represents specification (2) from the main results table. A party school classification is determined from niche.com's list of top partying schools. A university in the top 50 is considered a party school which amounts to 16 of the 37 universities. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
-                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
+  column_spec(1, width = "8cm") %>% 
+  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column All Schools represents specification (2) from the main results table which includes day of the week, football game-day, semester number, and university-by-academic-year fixed effects. A party school classification is determined from Niche.com's list of top partying schools. A university in the top 50 is considered a party school which amounts to 16 of the 37 universities. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
+                "* p < 0.1, ** p < 0.05, *** p < 0.01"),
            threeparttable = T) 

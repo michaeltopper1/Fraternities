@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.27)  28 APR 2022 09:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.4)  5 MAY 2022 10:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **update_march_9_2022.tex
 (./update_march_9_2022.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-04-20> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-04-29> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -556,22 +556,8 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.142 \begin{landscape}
-                       ]
-<update_march_9_2022_files/figure-latex/unnamed-chunk-3-1.pdf, id=20, 3179.88pt x 2601.72pt>
-File: update_march_9_2022_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
-<use update_march_9_2022_files/figure-latex/unnamed-chunk-3-1.pdf>
-Package pdftex.def Info: update_march_9_2022_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 145.
-(pdftex.def)             Requested size: 574.14899pt x 469.75827pt.
-
-LaTeX Warning: Float too large for page by 43.0588pt on input line 149.
-
-[2
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.150 \end{landscape}
-                      <./update_march_9_2022_files/figure-latex/unnamed-chunk-3-1.pdf>] (./update_march_9_2022.aux)
+l.150 \end{document}
+                    ] (./update_march_9_2022.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -579,18 +565,18 @@ Package rerunfilecheck Info: File `update_march_9_2022.out' has not changed.
 (rerunfilecheck)             Checksum: 037568EB4AF86E280C11ECCF1D2694C6;143.
  ) 
 Here is how much of TeX's memory you used:
- 12277 strings out of 480193
- 195878 string characters out of 5891725
- 501622 words of memory out of 5000000
- 30018 multiletter control sequences out of 15000+600000
- 523164 words of font info for 69 fonts, out of 8000000 for 9000
+ 12259 strings out of 480265
+ 195206 string characters out of 5893136
+ 506479 words of memory out of 5000000
+ 29934 multiletter control sequences out of 15000+600000
+ 515908 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,13n,63p,714b,357s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
-Output written on update_march_9_2022.pdf (2 pages, 164410 bytes).
+ 60i,13n,63p,838b,339s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
+Output written on update_march_9_2022.pdf (1 page, 123395 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 14 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 PDF objects out of 1000 (max. 8388607)
+ 32 compressed objects within 1 object stream
+ 5 named destinations out of 1000 (max. 500000)
+ 9 words of extra memory for PDF output out of 10000 (max. 10000000)
 

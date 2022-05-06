@@ -94,12 +94,13 @@ quantile_table <- ifc::main_table(quantile_estimates_panel_a,quantile_estimates_
   kbl(booktabs = T, col.names = c(" ", "Alcohol Offenses", "Sexual Assaults"),
       caption = "\\label{quantile_table}Effect of Moratoriums by Moratorium Length") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
-  pack_rows("Panel A: Below 33rd Percentile in Length", 1, 3) %>% 
-  pack_rows("Panel B: Between 33rd and 66th Percentile in Length", 4, 6) %>% 
-  pack_rows("Panel C: Above 66th Percentile in Length", 7, 9) %>% 
+  pack_rows("Panel A: Below 33rd Percentile in Length", 1, 3, bold = F, italic = T) %>% 
+  pack_rows("Panel B: Between 33rd and 66th Percentile in Length", 4, 6, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
+  pack_rows("Panel C: Above 66th Percentile in Length", 7, 9, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
   add_header_above(c(" " = 1, "Type of Offense" = 2)) %>% 
+  column_spec(1, width = "8cm") %>% 
   footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Each panel represents a subset of moratoriums that were split by three quantiles based on moratorium length: below the 33rd percentile, between the 33rd and 66th percentile, and above the 66th percentile. Controls include day of week, spring semester, holiday, football game-day, and university by academic year. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
-                "+ p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"),
+                "* p < 0.1, ** p < 0.05, *** p < 0.01"),
            threeparttable = T) 
 
 
