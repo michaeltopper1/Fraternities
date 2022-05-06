@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.27)  2 MAY 2022 13:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.4)  5 MAY 2022 22:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **introduction.tex
 (./introduction.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-04-20> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-04-29> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -432,49 +432,52 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-Package hyperref Warning: Suppressing empty link on input line 232.
+LaTeX Warning: Reference `section:discussion' on page 2 undefined on input line 212.
 
 
-LaTeX Warning: Reference `section:data' on page 2 undefined on input line 234.
+Package hyperref Warning: Suppressing empty link on input line 238.
 
 
-LaTeX Warning: Reference `section:strategy' on page 2 undefined on input line 235.
+LaTeX Warning: Reference `section:data' on page 2 undefined on input line 240.
 
 
-LaTeX Warning: Reference `section:results' on page 2 undefined on input line 236.
+LaTeX Warning: Reference `section:strategy' on page 2 undefined on input line 241.
 
 
-LaTeX Warning: Reference `section:heterogeneity' on page 2 undefined on input line 237.
+LaTeX Warning: Reference `section:results' on page 2 undefined on input line 242.
 
 
-LaTeX Warning: Reference `section:discussion' on page 2 undefined on input line 239.
+LaTeX Warning: Reference `section:heterogeneity' on page 2 undefined on input line 243.
 
 
-LaTeX Warning: Reference `section:conclusion' on page 2 undefined on input line 240.
+LaTeX Warning: Reference `section:discussion' on page 2 undefined on input line 245.
+
+
+LaTeX Warning: Reference `section:conclusion' on page 2 undefined on input line 246.
 
 [2]
 
-LaTeX Warning: Reference `closure_distribution' on page 3 undefined on input line 315.
+LaTeX Warning: Reference `closure_distribution' on page 3 undefined on input line 321.
 
 
-LaTeX Warning: Reference `reasons_table' on page 3 undefined on input line 323.
+LaTeX Warning: Reference `reasons_table' on page 3 undefined on input line 329.
 
 
-LaTeX Warning: Reference `trigger_plot' on page 3 undefined on input line 328.
+LaTeX Warning: Reference `trigger_plot' on page 3 undefined on input line 334.
 
 
-LaTeX Warning: Reference `map_of_schools' on page 3 undefined on input line 332.
+LaTeX Warning: Reference `map_of_schools' on page 3 undefined on input line 338.
 
 
-LaTeX Warning: Reference `section:data' on page 3 undefined on input line 333.
+LaTeX Warning: Reference `section:data' on page 3 undefined on input line 339.
 
 
-LaTeX Warning: Reference `trigger_plot' on page 3 undefined on input line 346.
+LaTeX Warning: Reference `trigger_plot' on page 3 undefined on input line 356.
 
 
-LaTeX Warning: Reference `section:heterogeneity' on page 3 undefined on input line 348.
+LaTeX Warning: Reference `section:heterogeneity' on page 3 undefined on input line 358.
 
-[3] [4] (./introduction.aux)
+[3] [4] [5] (./introduction.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -482,18 +485,18 @@ Package rerunfilecheck Info: File `introduction.out' has not changed.
 (rerunfilecheck)             Checksum: 6EA25B4CD733FB748BC2B605496C9A7C;640.
  ) 
 Here is how much of TeX's memory you used:
- 10672 strings out of 480193
- 168118 string characters out of 5891725
- 476794 words of memory out of 5000000
- 28443 multiletter control sequences out of 15000+600000
- 527779 words of font info for 70 fonts, out of 8000000 for 9000
+ 10675 strings out of 480265
+ 168145 string characters out of 5893136
+ 476651 words of memory out of 5000000
+ 28372 multiletter control sequences out of 15000+600000
+ 532043 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,8n,63p,296b,357s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on introduction.pdf (4 pages, 225360 bytes).
+{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
+Output written on introduction.pdf (5 pages, 235544 bytes).
 PDF statistics:
- 202 PDF objects out of 1000 (max. 8388607)
- 178 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
+ 214 PDF objects out of 1000 (max. 8388607)
+ 187 compressed objects within 2 object streams
+ 41 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

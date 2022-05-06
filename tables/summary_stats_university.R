@@ -28,8 +28,6 @@ moratorium_summary <- moratoriums %>%
 moratorium_rows <- moratorium_summary %>%
   add_row(` ` = "Total Number of Universities",`Mean` =  "37",`SD` = " ",`Median` =  " ", `Min` = " ", `Max` =" ")
 
-frac_ifc %>% 
-  summarize(mean(ifc_frac, na.rm = T), min)
 
 university_characteristics <- daily_crime %>%
   mutate(private = ifelse(control_of_institution != "Public", 1, 0)) %>% 

@@ -44,6 +44,7 @@ sex <- map(daily_fixed_effects, ~ifc::reghdfe(daily_crime, c("sexual_assault_per
 sex_boot <- map(sex, ~boottest(., param = "treatment", clustid = "university", B = 1000))
 
 
+
 main_table <- ifc::main_table(alc, last_panel = sex) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
@@ -71,12 +72,13 @@ main_table <- ifc::main_table(alc, last_panel = sex) %>%
       caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (OLS).") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>%
-  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T) %>% 
-  pack_rows("Controls for Panels A-B:",11, 18, bold = F, italic = T ) %>% 
+  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
+  row_spec(c(10),hline_after=TRUE) %>% 
+  # pack_rows("",11, 18, bold = F, italic = T, hline_before = T ) %>% 
   # row_spec(5, italic = T) %>% 
+  column_spec(1, width = "8cm") %>% 
   footnote(list("Estimates are obtained using OLS. Standard errors shown in paranthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by @cameron_bootstrap-based_2008 in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since these holiday's are not on any university's academic calendar. Game Day controls consist of university football games within each university. A moratorium is a temporary halt on fraternity-related activities with alcohol. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
-
 
 # table 2: weekends vs. full sample ---------------------------------------
 
@@ -148,7 +150,7 @@ weekend_table <- ifc::main_table(alc_weeksplit, last_panel = sex_weeksplit) %>%
   kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays"),
       caption = "\\label{weekend_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assault by Weekend/Weekdays (OLS).") %>% 
   pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = T, italic = F) %>% 
-  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = T, italic = F) %>% 
+  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = T, italic = F, latex_gap_space = "0.5cm") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
   column_spec(1, width = "8cm") %>% 
