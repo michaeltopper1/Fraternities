@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.27)  3 MAY 2022 16:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.4)  7 MAY 2022 15:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **results.tex
 (./results.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-04-20> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-04-29> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -435,28 +435,28 @@ LaTeX Warning: Reference `main_model' on page 1 undefined on input line 116.
 LaTeX Warning: Reference `section:strategy' on page 1 undefined on input line 120.
 
 
-LaTeX Warning: Reference `weekend_table' on page 1 undefined on input line 137.
+LaTeX Warning: Reference `weekend_table' on page 1 undefined on input line 138.
 
 
-LaTeX Warning: Reference `main_table' on page 1 undefined on input line 138.
+LaTeX Warning: Reference `main_table' on page 1 undefined on input line 139.
 
 
-LaTeX Warning: Reference `main_table' on page 1 undefined on input line 140.
+LaTeX Warning: Reference `main_table' on page 1 undefined on input line 141.
 
 
-LaTeX Warning: Reference `main_table_p' on page 1 undefined on input line 151.
+LaTeX Warning: Reference `main_table_p' on page 1 undefined on input line 152.
 
 
-LaTeX Warning: Reference `weekend_table_p' on page 1 undefined on input line 151.
+LaTeX Warning: Reference `weekend_table_p' on page 1 undefined on input line 152.
 
 
-LaTeX Warning: Reference `main_table' on page 1 undefined on input line 152.
+LaTeX Warning: Reference `main_table' on page 1 undefined on input line 153.
 
 
-LaTeX Warning: Reference `weekend_table' on page 1 undefined on input line 152.
+LaTeX Warning: Reference `weekend_table' on page 1 undefined on input line 153.
 
 
-LaTeX Warning: Reference `loo_alc_ols' on page 1 undefined on input line 157.
+LaTeX Warning: Reference `loo_alc_ols' on page 1 undefined on input line 158.
 
 
 LaTeX Warning: Reference `loo_sex_ols' on page 1 undefined on input line 158.
@@ -471,11 +471,18 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 170.
 
-LaTeX Warning: Reference `weekend_table_allschools' on page 1 undefined on input line 182.
+LaTeX Warning: Reference `weekend_table_allschools' on page 1 undefined on input line 184.
 
 [1
 
-{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] (./results.aux)
+{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `spillover_table' on page 2 undefined on input line 236.
+
+
+LaTeX Warning: Reference `section:spillovers' on page 2 undefined on input line 264.
+
+[2] [3] (./results.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -483,18 +490,18 @@ Package rerunfilecheck Info: File `results.out' has not changed.
 (rerunfilecheck)             Checksum: 9BD6EA7424B58AD8A9DD8EA954FF3182;498.
  ) 
 Here is how much of TeX's memory you used:
- 10646 strings out of 480193
- 167446 string characters out of 5891725
- 476739 words of memory out of 5000000
- 28442 multiletter control sequences out of 15000+600000
+ 10651 strings out of 480265
+ 167511 string characters out of 5893136
+ 476596 words of memory out of 5000000
+ 28372 multiletter control sequences out of 15000+600000
  527779 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,8n,63p,241b,323s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on results.pdf (2 pages, 192355 bytes).
+Output written on results.pdf (3 pages, 203702 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
+ 104 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
+ 18 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
