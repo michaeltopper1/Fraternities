@@ -8,6 +8,7 @@
 library(tidyverse)
 library(glue)
 library(ifc)
+library(kableExtra)
 library(tidytext)
 
 ## getting in the data that I matched with 
@@ -87,11 +88,20 @@ top_categories <- bind_rows(top_alcohol_offense,top_sexual_assault)
 top_categories <- top_categories %>% 
   extract(incident, "incident", regex = "(.{1,47})") %>% 
   ggplot(aes(reorder(incident, fraction), fraction)) +
-  geom_col()  +
+  geom_segment(aes(x = reorder(incident, fraction), xend = incident, y = 0,  yend = fraction), color = "black")  +
+  geom_point() +
   coord_flip() +
-  labs(x = "Incident Description", y = "Fraction of Total Offense") +
   facet_wrap(~offense, scales = "free_y") +
+  labs(x = "Incident Description", y = "Fraction of Corresponding Offense") +
+  geom_text(aes(label = round(fraction, 2)), nudge_y = 0.005) +
   theme_minimal() +
   theme(legend.position ="bottom",
         text = element_text(size = 45)) +
   ggsci::scale_fill_npg()
+
+
+
+
+
+
+

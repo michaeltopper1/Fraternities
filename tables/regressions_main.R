@@ -149,8 +149,8 @@ weekend_table <- ifc::main_table(alc_weeksplit, last_panel = sex_weeksplit) %>%
           .before = 10) %>% 
   kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays"),
       caption = "\\label{weekend_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assault by Weekend/Weekdays (OLS).") %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = T, italic = F) %>% 
-  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = T, italic = F, latex_gap_space = "0.5cm") %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>% 
+  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
   column_spec(1, width = "8cm") %>% 

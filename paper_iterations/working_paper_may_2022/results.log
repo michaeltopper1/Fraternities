@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.4)  7 MAY 2022 15:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.4)  9 MAY 2022 16:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -477,31 +477,56 @@ LaTeX Warning: Reference `weekend_table_allschools' on page 1 undefined on input
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `spillover_table' on page 2 undefined on input line 236.
+LaTeX Warning: Reference `spillover_table' on page 2 undefined on input line 237.
 
 
-LaTeX Warning: Reference `section:spillovers' on page 2 undefined on input line 264.
+LaTeX Warning: Reference `section:spillovers' on page 2 undefined on input line 265.
 
-[2] [3] (./results.aux)
+[2]
+
+LaTeX Warning: Reference `section:strategy' on page 3 undefined on input line 294.
+
+
+LaTeX Warning: Reference `main_table' on page 3 undefined on input line 295.
+
+
+LaTeX Warning: Reference `long_run_effects' on page 3 undefined on input line 298.
+
+
+LaTeX Warning: Reference `es_alc' on page 3 undefined on input line 301.
+
+
+LaTeX Warning: Reference `es_sex' on page 3 undefined on input line 301.
+
+
+LaTeX Warning: Reference `long_run_effects' on page 3 undefined on input line 320.
+
+
+LaTeX Warning: Reference `week_before_after' on page 3 undefined on input line 328.
+
+
+LaTeX Warning: Reference `main_table' on page 3 undefined on input line 329.
+
+[3] (./results.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `results.out' has not changed.
-(rerunfilecheck)             Checksum: 9BD6EA7424B58AD8A9DD8EA954FF3182;498.
+(rerunfilecheck)             Checksum: 77D68059CAEF0C2A7EE9EA7C75C3AB9E;709.
  ) 
 Here is how much of TeX's memory you used:
- 10651 strings out of 480265
- 167511 string characters out of 5893136
+ 10656 strings out of 480265
+ 167647 string characters out of 5893136
  476596 words of memory out of 5000000
- 28372 multiletter control sequences out of 15000+600000
+ 28376 multiletter control sequences out of 15000+600000
  527779 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,8n,63p,241b,323s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,8n,63p,297b,323s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on results.pdf (3 pages, 203702 bytes).
+Output written on results.pdf (3 pages, 210264 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
+ 107 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
+ 19 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
