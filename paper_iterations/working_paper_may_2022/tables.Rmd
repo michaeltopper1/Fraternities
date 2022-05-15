@@ -13,22 +13,11 @@ output: pdf_document
 # Tables
 
 ```{r}
-source(paste0(here::here("Tables/matching_word_table.R")))
+source(paste0(here::here("tables/matching_word_table.R")))
 ```
 
 ```{r}
-kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words and Phrases used to Pattern Match on Offenses of Interest") %>%
-  kable_styling(full_width = F) %>%
-  # column_spec(1, bold = T, color = "blue") %>%
-  column_spec(2, width = "30em") %>% kable_styling(latex_options = "HOLD_position") %>% 
-  footnote(list("Each word to match represents a portion of a word to match on. For example, the word `sex' will match on `sexual assault' and `sex offense' since `sex' appears in each of these descriptions.",
-                    "`dwi' is an abbreviation for `driving while intoxicated'.",
-                    "`dip' is an abbrevation for `drunk in public'.",
-                    "`abcc' is an abbreviation for `alcohol beverage control comission'.",
-                    "`pula' is an abbrevation for `person under legal age'.",
-                    "`owi' is an abbreviation for `operating while intoxicated'.",
-                    "`mip' is an abbreviation for `minor in possesion'.",
-                    "`ovi' is an abbreivation for `operating vehicle intoxicated'."), threeparttable = T)
+matching_table
 ```
 
 \newpage
@@ -62,7 +51,24 @@ main_table
 ```
 
 ```{r}
-weekend_table
+source(paste0(here::here("tables/regressions_spillovers_compare.R")))
+```
+
+\begin{landscape}
+```{r}
+## reporting_table
+spillover_table
+```
+\end{landscape}
+
+
+```{r}
+source(here::here(paste0("figures/event_study_final_dec13.R")))
+```
+
+```{r}
+## WARNING!! THIS WILL NOT RUN UNLESS THE FIGURES FILE IS RAN FIRST!!! B/C THIS IS IN EVENT STUDY
+long_run_effects
 ```
 
 ```{r}
@@ -73,32 +79,12 @@ source(paste0(here::here("tables/regressions_party_schools.R")))
 party_school_table
 ```
 
-```{r}
-source(here::here(paste0("tables/regressions_quantiles.R")))
-```
-
-```{r}
-## quantile_table
-quantile_table
-```
 
 ```{r}
 source(here::here(paste0("tables/heteroeffects_uni_ifc.R")))
 ```
 
-
 ```{r}
 ifc_uni_table
 ```
-
-```{r}
-source(paste0(here::here("tables/regressions_spillovers_compare.R")))
-```
-
-\begin{landscape}
-```{r}
-## reporting_table
-spillover_table
-```
-\end{landscape}
 

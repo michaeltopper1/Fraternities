@@ -8,6 +8,7 @@
 library(tidyverse)
 library(glue)
 library(ifc)
+library(kableExtra)
 library(tidytext)
 
 ## getting in the data that I matched with 
@@ -44,14 +45,15 @@ words <- list(alcohol_words,sexual_assault_words)  %>%
 categories <- c("Alcohol Offense","Sexual Assault")
 matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
 
-matching_table <- kable(matching_table, booktabs = T, caption = "\\label{matching_table}Words and Phrases used to Pattern Match on Offenses of Interest") %>%
+matching_table <- kable(matching_table, booktabs = T,
+                        caption = "\\label{matching_table}Words and Phrases used to Pattern Match on Offenses of Interest") %>%
   # column_spec(1, bold = T, color = "blue") %>%
   kable_styling(latex_options = "HOLD_position") %>% 
   column_spec(1, bold = T, border_right = T) %>%
   column_spec(2, width = "30em") %>% 
   # column_spec(1, width = "8cm") %>% 
   # column_spec(2, width = "4cm") %>% 
-  footnote(list("Words to Match represent a portion of an incident's description to pattern match on. Alcohol violation and sexual assault words were found by reading each individual university's datasets for common words within incident descriptions. For example, the word `sex' will match on `sexual assault' and `sex offense' since `sex' appears in each of these descriptions. Notably, this method likely undercounts the true number of violations in each police department's Daily Crime Log due to spelling errors. As a demonstration, the word `alcohol' may be written as `aclohol' which this matching process will not include. Some notable abbreviations include the following:",
+  footnote(list("The second column represents a portion of an incident's description to pattern match on. Words for alcohol violations and sexual assaults are found by reading each university's dataset for common words within incident descriptions. For example, the word `sex' will match on `sexual assault' and `sex offense' since `sex' appears in each of these descriptions. Notably, this method likely undercounts the true number of violations in each police department's Daily Crime Log due to spelling errors. As a demonstration, the word `alcohol' may be written as `aclohol' which this matching process will not include. Some notable abbreviations include the following:",
                 "`dwi' is an abbreviation for `driving while intoxicated'.",
                 "`dip' is an abbrevation for `drunk in public'.",
                 "`abcc' is an abbreviation for `alcohol beverage control comission'.",
@@ -87,11 +89,20 @@ top_categories <- bind_rows(top_alcohol_offense,top_sexual_assault)
 top_categories <- top_categories %>% 
   extract(incident, "incident", regex = "(.{1,47})") %>% 
   ggplot(aes(reorder(incident, fraction), fraction)) +
-  geom_col()  +
+  geom_segment(aes(x = reorder(incident, fraction), xend = incident, y = 0,  yend = fraction), color = "black")  +
+  geom_point() +
   coord_flip() +
-  labs(x = "Incident Description", y = "Fraction of Total Offense") +
   facet_wrap(~offense, scales = "free_y") +
+  labs(x = "Incident Description", y = "Fraction of Corresponding Offense") +
+  geom_text(aes(label = round(fraction, 2)), nudge_y = 0.005) +
   theme_minimal() +
   theme(legend.position ="bottom",
         text = element_text(size = 45)) +
   ggsci::scale_fill_npg()
+
+
+
+
+
+
+

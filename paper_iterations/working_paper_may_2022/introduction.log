@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.4)  5 MAY 2022 22:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.4)  10 MAY 2022 11:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -432,50 +432,50 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `section:discussion' on page 2 undefined on input line 212.
+LaTeX Warning: Reference `section:discussion' on page 2 undefined on input line 213.
 
 
-Package hyperref Warning: Suppressing empty link on input line 238.
+Package hyperref Warning: Suppressing empty link on input line 239.
 
 
-LaTeX Warning: Reference `section:data' on page 2 undefined on input line 240.
+LaTeX Warning: Reference `section:data' on page 2 undefined on input line 241.
 
 
-LaTeX Warning: Reference `section:strategy' on page 2 undefined on input line 241.
+LaTeX Warning: Reference `section:strategy' on page 2 undefined on input line 242.
 
 
-LaTeX Warning: Reference `section:results' on page 2 undefined on input line 242.
+LaTeX Warning: Reference `section:results' on page 2 undefined on input line 243.
 
 
-LaTeX Warning: Reference `section:heterogeneity' on page 2 undefined on input line 243.
+LaTeX Warning: Reference `section:heterogeneity' on page 2 undefined on input line 244.
 
 
-LaTeX Warning: Reference `section:discussion' on page 2 undefined on input line 245.
+LaTeX Warning: Reference `section:discussion' on page 2 undefined on input line 246.
 
 
-LaTeX Warning: Reference `section:conclusion' on page 2 undefined on input line 246.
+LaTeX Warning: Reference `section:conclusion' on page 2 undefined on input line 247.
 
 [2]
 
-LaTeX Warning: Reference `closure_distribution' on page 3 undefined on input line 321.
+LaTeX Warning: Reference `closure_distribution' on page 3 undefined on input line 322.
 
 
-LaTeX Warning: Reference `reasons_table' on page 3 undefined on input line 329.
+LaTeX Warning: Reference `reasons_table' on page 3 undefined on input line 330.
 
 
-LaTeX Warning: Reference `trigger_plot' on page 3 undefined on input line 334.
+LaTeX Warning: Reference `trigger_plot' on page 3 undefined on input line 335.
 
 
-LaTeX Warning: Reference `map_of_schools' on page 3 undefined on input line 338.
+LaTeX Warning: Reference `map_of_schools' on page 3 undefined on input line 339.
 
 
-LaTeX Warning: Reference `section:data' on page 3 undefined on input line 339.
+LaTeX Warning: Reference `section:data' on page 3 undefined on input line 340.
 
 
-LaTeX Warning: Reference `trigger_plot' on page 3 undefined on input line 356.
+LaTeX Warning: Reference `trigger_plot' on page 3 undefined on input line 357.
 
 
-LaTeX Warning: Reference `section:heterogeneity' on page 3 undefined on input line 358.
+LaTeX Warning: Reference `section:discussion' on page 3 undefined on input line 359.
 
 [3] [4] [5] (./introduction.aux)
 
@@ -493,7 +493,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  60i,8n,63p,296b,357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
-Output written on introduction.pdf (5 pages, 235544 bytes).
+Output written on introduction.pdf (5 pages, 235583 bytes).
 PDF statistics:
  214 PDF objects out of 1000 (max. 8388607)
  187 compressed objects within 2 object streams
