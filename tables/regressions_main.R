@@ -45,41 +45,6 @@ sex_boot <- map(sex, ~boottest(., param = "treatment", clustid = "university", B
 
 
 
-main_table <- ifc::main_table(alc, last_panel = sex) %>% 
-  add_row(term = "Mean of Dependent Variable", 
-          `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
-          .before = 4) %>% 
-  add_row(term = "Wild Bootstrap P-Value", 
-          `Model 1` = sprintf("%.3f",alc_boot[[1]]$p_val),
-          `Model 2` = sprintf("%.3f",alc_boot[[2]]$p_val),
-          `Model 3` = sprintf("%.3f",alc_boot[[3]]$p_val),
-          .before = 5) %>% 
-  add_row(term = "Mean of Dependent Variable", 
-          `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
-          .before = 9) %>% 
-  add_row(term = "Wild Bootstrap P-Value", 
-          `Model 1` = sprintf("%.3f",sex_boot[[1]]$p_val),
-          `Model 2` = sprintf("%.3f",sex_boot[[2]]$p_val),
-          `Model 3` = sprintf("%.3f",sex_boot[[3]]$p_val),
-          .before = 10) %>% 
-  kbl(booktabs = T, 
-      col.names = c(" ", "(1)", "(2)", "(3)"),
-      digits = 3,
-      caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (OLS).") %>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>%
-  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
-  row_spec(c(10),hline_after=TRUE) %>% 
-  # pack_rows("",11, 18, bold = F, italic = T, hline_before = T ) %>% 
-  # row_spec(5, italic = T) %>% 
-  column_spec(1, width = "8cm") %>% 
-  footnote(list("Estimates are obtained using OLS. Standard errors shown in paranthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by @cameron_bootstrap-based_2008 in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since these holiday's are not on any university's academic calendar. Game Day controls consist of university football games within each university. A moratorium is a temporary halt on fraternity-related activities with alcohol. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates.",
-                "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
-
 # table 2: weekends vs. full sample ---------------------------------------
 
 fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
@@ -122,39 +87,57 @@ wboot_sex_3 <- boottest(w_sex_3, clustid = "university", param = "treatment", B 
 
 
 
+alc_t2 <- c(alc, alc_weeksplit)[-4]
+sex_t2 <- c(sex, sex_weeksplit)[-4]
 
 
-
-weekend_table <- ifc::main_table(alc_weeksplit, last_panel = sex_weeksplit) %>% 
-  slice(1:6) %>% 
+main_table <- ifc::main_table(alc_t2, last_panel = sex_t2) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$alcohol_offense_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
+          `Model 5` = sprintf("%.3f",mean(daily_crime_weekdays$alcohol_offense_per25, na.rm = T)),
           .before = 4) %>% 
   add_row(term = "Wild Bootstrap P-Value", 
-          `Model 1` = sprintf("%.3f",alc_boot[[2]]$p_val),
-          `Model 2` = sprintf("%.3f",wboot_alc_2$p_val),
-          `Model 3` = sprintf("%.3f",wboot_alc_3$p_val),
+          `Model 1` = sprintf("%.3f",alc_boot[[1]]$p_val),
+          `Model 2` = sprintf("%.3f",alc_boot[[2]]$p_val),
+          `Model 3` = sprintf("%.3f",alc_boot[[3]]$p_val),
+          `Model 4` = sprintf("%.3f",wboot_alc_2$p_val),
+          `Model 5` = sprintf("%.3f",wboot_alc_3$p_val),
           .before = 5) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
-          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
-          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
+          `Model 5` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
           .before = 9) %>% 
   add_row(term = "Wild Bootstrap P-Value", 
-          `Model 1` = sprintf("%.3f",sex_boot[[2]]$p_val),
-          `Model 2` = sprintf("%.3f",wboot_sex_2$p_val),
-          `Model 3` = sprintf("%.3f",wboot_sex_3$p_val),
+          `Model 1` = sprintf("%.3f",sex_boot[[1]]$p_val),
+          `Model 2` = sprintf("%.3f",sex_boot[[2]]$p_val),
+          `Model 3` = sprintf("%.3f",sex_boot[[3]]$p_val),
+          `Model 4` = sprintf("%.3f",wboot_sex_2$p_val),
+          `Model 5` = sprintf("%.3f",wboot_sex_3$p_val),
           .before = 10) %>% 
-  kbl(booktabs = T, col.names = c(" ", "All Days", "Weekends", "Weekdays"),
-      caption = "\\label{weekend_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assault by Weekend/Weekdays (OLS).") %>% 
-  pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>% 
-  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
+  kbl(booktabs = T, 
+      col.names = c(" ", "(1)", "(2)", "(3)", "(4)", "(5)"),
+      digits = 3,
+      caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (OLS).", align = 'lccccc') %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
-  add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>%
+  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
+  add_header_above(c(" " = 4, "Weekends" = 1, "Weekdays" = 1), line = F) %>% 
+  add_header_above(c(" " = 4, "Specification (2)" = 2)) %>% 
+  row_spec(c(10),hline_after=TRUE) %>% 
+  # pack_rows("",11, 18, bold = F, italic = T, hline_before = T ) %>% 
+  # row_spec(5, italic = T) %>% 
   column_spec(1, width = "8cm") %>% 
-  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. The column All Days represents specification (2) from the main results table. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. Holiday controls include controls for Veterans' Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since no university's academic-calendar contains them. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
-                    "* p < 0.1, ** p < 0.05, *** p < 0.01"),
-           threeparttable = T) 
+  row_spec(c(18), hline_after =T) %>% 
+  footnote(list("Estimates are obtained using OLS. Standard errors shown in paranthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by @cameron_bootstrap-based_2008 in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since these holiday's are not on any university's academic calendar. Game Day controls consist of university football games within each university. Weekends include Friday-Sunday while Weekdays include Monday-Thursday. A moratorium is a temporary halt on fraternity-related activities with alcohol. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates.",
+                "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
+
+
+
+
 

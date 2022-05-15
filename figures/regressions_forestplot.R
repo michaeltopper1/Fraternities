@@ -1,43 +1,3 @@
----
-title: "Football Games Continued"
-output: pdf_document
-editor_options: 
-  chunk_output_type: console
-link-citations: yes
-linkcolor: blue
-header-includes:
-- \usepackage{booktabs}
-- \usepackage{longtable}
-- \usepackage{array}
-- \usepackage{multirow}
-- \usepackage{wrapfig}
-- \usepackage{float}
-- \usepackage{colortbl}
-- \usepackage{pdflscape}
-- \usepackage{tabu}
-- \usepackage{threeparttable}
-- \usepackage{threeparttablex}
-- \usepackage[normalem]{ulem}
-- \usepackage{makecell}
-- \usepackage{xcolor}
-- \usepackage{subfig}
----
-
-```{r setup, include=FALSE}
-library(tidyverse)
-library(kableExtra)
-library(fixest)
-library(modelsummary)
-library(grid)
-library(gridExtra)
-library(patchwork)
-knitr::opts_chunk$set(echo = F, message = F, warning = F)
-knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-```
-
-## The Raw Data Graph
-
-```{r}
 library(tidyverse)
 library(modelsummary)
 library(fixest)
@@ -135,7 +95,7 @@ alc_forest <- alc_estimates %>%
                      sec.axis = sec_axis(~., breaks = 1:length(model_labs),
                                          labels = model_labs2, 
                                          name = expression(paste("Estimate (", hat(beta), ")")))) +
-  labs(y = "Sample", x = "") +
+  labs(y = "Sample", x = "", title = "Panel A: Alcohol Offenses") +
   theme_classic() +
   theme(axis.line.y = element_blank(),
         axis.text.y = element_text(hjust = 1),
@@ -160,7 +120,7 @@ sex_forest <- sex_estimates %>%
                      sec.axis = sec_axis(~., breaks = 1:length(model_labs),
                                          labels = model_labs2_sex, 
                                          name = expression(paste("Estimate (", hat(beta), ")")))) +
-  labs(y = "Sample", x = " ") +
+  labs(y = "Sample", x = " ", title = "Panel B: Sexual Assaults") +
   theme_classic() +
   theme(axis.line.y = element_blank(),
         axis.ticks.y = element_blank(),
@@ -168,28 +128,6 @@ sex_forest <- sex_estimates %>%
         plot.caption = element_text(hjust = 1))
 
   
-forest_plot <- alc_forest + sex_forest + plot_layout(ncol = 1)
 
-forest_plot_grob <- patchwork::patchworkGrob(forest_plot)
-
-```
-
-
-```{=latex}
-\begin{figure}[t]
-```
-```{r, echo=FALSE, fig.height= 10, fig.width = 10}
-gridExtra::grid.arrange(forest_plot_grob, left = textGrob("Sample Selection",
-                                                               rot = 90), bottom = textGrob(""))
-```
-```{=latex}
-\caption{Robustness Across Samples \label{week_before_after}}
-\textit{Notes:} The x-axis represents three periods: the week before a moratorium, the moratorium itself, and the week after the moratorium. Indicators for week before and week after are added to specification (2) from Table \ref{main_table}. Controls include holiday, spring semester, day of the week, football game-days, and university-by-academic-year. Standard errors clustered by university. Standard errors are clustered by university. Weekends represent Fridays, Saturdays, and Sundays. Weekdays represent Mondays-Thursdays. Errorbars represent 95\% confidence intervals.
-\end{figure}
-```
-```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Histograms", fig.ncol = 2, fig.subcap= c("Alcohol Offenses", "Sexual Assaults")}
-
-alc_forest
-sex_forest
-```
+alc_forest + sex_forest + plot_layout(ncol = 1)
 

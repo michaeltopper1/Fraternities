@@ -179,10 +179,7 @@ source(paste0(here::here("tables/regressions_main_poisson.R")))
 main_table_p
 ```
 
-```{r}
-## weekend_table_p
-weekend_table_p
-```
+
 
 
 

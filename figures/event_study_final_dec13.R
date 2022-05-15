@@ -222,16 +222,17 @@ long_run_effects <- ifc::main_table(list(es_alc_14,es_sex_14),
           `Model 1` = sprintf("%.3f",alc_lag_f$p.value[[4]]),
           `Model 2` = sprintf("%.3f",sex_lag_f$p.value[[4]]),
           .before = 16) %>% 
-  kbl(col.names = c(" ", "Alcohol Offenses", "Sexual Assaults"),
-      booktabs = T,
+  kbl(col.names = c(" ", "(1)", "(2)"),
+      booktabs = T, align = "lcc",
       caption = "\\label{long_run_effects}Absence of Long-Run Effects of Moratoriums Split by Moratorium Length") %>% 
-  kable_styling() %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
   group_rows("Panel A: Full Sample", 1,4, bold = F, italic = T) %>% 
   group_rows("Panel B: Quantiles by Moratorium Length", 5,16, bold = F, italic = T) %>% 
   pack_rows("Estimates from Figures 4 and 5", 1, 4, bold = F, italic = T) %>% 
   pack_rows("Moratorium Length: 1st Quantile", 5, 8, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
   pack_rows("Moratorium Length: 2nd Quantile", 9, 12, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
   pack_rows("Moratorium Length: 3rd Quantile", 13, 16, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
+  add_header_above(c(" " = 1, "Alcohol Offenses" = 1, "Sexual Assaults" = 1), line = F) %>% 
   add_header_above(c(" ", "Dependent Variable" = 2)) %>% 
   column_spec(1, width = "8cm") %>% 
   row_spec(0, hline_after = T) %>% 
