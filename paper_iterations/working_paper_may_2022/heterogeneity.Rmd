@@ -9,13 +9,13 @@ output: pdf_document
 
 # Heterogeneity \label{section:heterogeneity}
 
-## Do Party Schools Exhibit the Strongest Effects?
+## Do Party Schools Exhibit the Strongest Effects? \label{subsection:party_schools}
 
 Universities that have a reputation for partying may be more impacted by the restrictions of moratoriums than universities that party less. For example, @lindo_college_2018 find that party schools exhibit two times the increase in reports of rape on football game days than non-party schools. To examine this possibility, I use Niche.com's Top Party Schools in America list.^[I use Niche.com over the Princeton Review since the Princeton Review no longer posts their party school rankings. For more details on the methodology see: https://www.niche.com/about/methodology/top-party-schools/.] The list assigns "party scene" scores based on criteria such as athletic department revenue, fraternity and sorority life statistics, access to bars, and student surveys. Using this list, a university is defined as a party school if it appears in the top 50 rankings. This amounts to 16 of the 37 universities in the sample being classified as a party school. 
 
 Table \ref{party_school_table} shows that party schools exhibit larger decreases in alcohol offenses than non-party schools. The point estimates in Panel A indicate that moratoriums decrease alcohol offenses on academic-calendar days by approximately 33% from the mean for party schools and 16% for non-party schools. Importantly, only the point estimates for party schools are statistically significant, therefore suggesting that the effects of the moratorium are driven by schools that have a stronger party culture. 
 
-## Does the Triggering Event for a Moratorium Matter?
+## Does the Triggering Event for a Moratorium Matter? \label{subsection:trigger}
 
 As described in Section \ref{section:background}, moratoriums can be the result of a fraternity-related death, a prominent sexual assault, or a behavior violation. Given the differing salience of these events, it is possible that a triggering event affects a moratorium's effectiveness. As an illustration, a death may be more salient than a behavior violation,^[Recall that a behavior violation includes hazing, offensive behavior, rule violations, and other disorderly conduct.] resulting in a behavior shock to the college campus. Moreover, both deaths and sexual assaults are more objectively undesirable results of risky behavior—a moratorium may seem more justified under these outcomes rather than an instance of hazing. 
 

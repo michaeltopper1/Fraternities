@@ -37,10 +37,10 @@ explanatory_vars <- c("treatment")
 subsamples_1 <- list(daily_crime, daily_crime_weekends)
 
 subsamples_2 <- list( daily_crime_nevertreated, daily_crime_nevertreated_weekends,
-                   daily_crime_deaths)
+                      daily_crime_deaths)
 
 subsample_ols_alc <-  map_df(subsamples_1, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                            broom::tidy(conf.int = T)) 
+                               broom::tidy(conf.int = T)) 
 subsample_pois_alc <- map_df(subsamples_1, ~ifc::reghdfe_pois(., c("alcohol_offense"),explanatory_vars, fixed_effects_preferred, "university") %>% 
                                broom::tidy(conf.int = T))
 subsample_2_ols_alc <- map_df(subsamples_2, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
@@ -79,7 +79,7 @@ sex_estimates <- sex_estimates %>%
 
 
 
-model_labs <- rev(c("Main Sample", "Main Sample (Weekends) ", "Main Sample + Never Treated","Main Sample + Never Treated (Weekends)", "Death Universities + \nDeath Never Treated Universities"))
+model_labs <- rev(c("Main Sample", "Main Sample \n(Weekends) ", "Main Sample +\nNever Treated  ","Main Sample +\nNever Treated (Weekends)", "Death Trigger Only +\nDeath Trigger No Moratorium"))
 model_labs2 <- rev(sprintf("%.3f",alc_estimates$estimate))
 
 alc_forest <- alc_estimates %>% 
@@ -95,14 +95,15 @@ alc_forest <- alc_estimates %>%
                      sec.axis = sec_axis(~., breaks = 1:length(model_labs),
                                          labels = model_labs2, 
                                          name = expression(paste("Estimate (", hat(beta), ")")))) +
-  labs(y = "Sample", x = "", title = "Panel A: Alcohol Offenses") +
+  labs(y = "Sample", x = "") +
   theme_classic() +
   theme(axis.line.y = element_blank(),
         axis.text.y = element_text(hjust = 1),
         axis.ticks.y = element_blank(),
-        axis.text.y.right = element_text(hjust = -10),
+        axis.text.y.right = element_text(hjust = -10, size = 10),
         plot.caption.position = "plot",
-        plot.caption = element_text(hjust = 1))
+        plot.caption = element_text(hjust = 1), 
+        axis.text.y.left =element_text(size = 10))
 
 model_labs2_sex <- rev(sprintf("%.3f",sex_estimates$estimate))
 
@@ -120,14 +121,11 @@ sex_forest <- sex_estimates %>%
                      sec.axis = sec_axis(~., breaks = 1:length(model_labs),
                                          labels = model_labs2_sex, 
                                          name = expression(paste("Estimate (", hat(beta), ")")))) +
-  labs(y = "Sample", x = " ", title = "Panel B: Sexual Assaults") +
+  labs(y = "Sample", x = " ") +
   theme_classic() +
   theme(axis.line.y = element_blank(),
         axis.ticks.y = element_blank(),
         plot.caption.position = "plot",
-        plot.caption = element_text(hjust = 1))
-
-  
-
-alc_forest + sex_forest + plot_layout(ncol = 1)
-
+        plot.caption = element_text(hjust = 1),
+        axis.text.y.left =element_text(size = 10),
+        axis.text.y.right = element_text(size = 10))

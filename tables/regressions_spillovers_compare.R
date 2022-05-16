@@ -127,6 +127,7 @@ spillover_table <- nibrs_half_both %>%
   add_header_above(c(" " = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1), line = F) %>% 
   add_header_above(c(" " = 1, "Nearby Police Departments" = 3, "University Police Departments" = 3)) %>% 
   column_spec(1, width = "8cm") %>% 
+  row_spec(8, hline_after = T) %>% 
   footnote(list("Nearby Police Departments uses the NIBRS data which pertains to police departments that are closest to the university. University Police Departments uses the Daily Crime Log data set in which contains only university-specific police departments. Only 9 local police departments in the NIBRS data consistently report in the sample period. This table represents the comparison of alcohol offenses and sexual assaults per-25000 enrolled students at the nine local police departments and the corresponding nine universities. Standard errors are clustered by agency for NIBRS data and by university for Daily Crime Log data.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"),
            threeparttable = T)

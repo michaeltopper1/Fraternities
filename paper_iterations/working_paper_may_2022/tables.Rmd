@@ -3,13 +3,13 @@ title: "Tables"
 output: pdf_document
 ---
 
-<!-- ```{r setup, include=FALSE} -->
-<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
-<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
-<!-- library(kableExtra) -->
-<!-- ``` -->
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(kableExtra)
+```
 
-\FloatBarrier
+<!-- \FloatBarrier -->
 # Tables
 
 ```{r}
