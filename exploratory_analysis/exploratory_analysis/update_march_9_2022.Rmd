@@ -119,7 +119,7 @@ sex_estimates <- sex_estimates %>%
 
 
 
-model_labs <- rev(c("Main Sample", "Main Sample (Weekends) ", "Main Sample + Never Treated","Main Sample + Never Treated (Weekends)", "Death Universities + \nDeath Never Treated Universities"))
+model_labs <- rev(c("Main Sample", "Main Sample \n(Weekends) ", "Main Sample +\nNever Treated  ","Main Sample +\nNever Treated (Weekends)", "Death Trigger Only +\nDeath Trigger No Moratorium"))
 model_labs2 <- rev(sprintf("%.3f",alc_estimates$estimate))
 
 alc_forest <- alc_estimates %>% 
@@ -140,9 +140,10 @@ alc_forest <- alc_estimates %>%
   theme(axis.line.y = element_blank(),
         axis.text.y = element_text(hjust = 1),
         axis.ticks.y = element_blank(),
-        axis.text.y.right = element_text(hjust = -10),
+        axis.text.y.right = element_text(hjust = -10, size = 10),
         plot.caption.position = "plot",
-        plot.caption = element_text(hjust = 1))
+        plot.caption = element_text(hjust = 1), 
+        axis.text.y.left =element_text(size = 10))
 
 model_labs2_sex <- rev(sprintf("%.3f",sex_estimates$estimate))
 
@@ -165,12 +166,13 @@ sex_forest <- sex_estimates %>%
   theme(axis.line.y = element_blank(),
         axis.ticks.y = element_blank(),
         plot.caption.position = "plot",
-        plot.caption = element_text(hjust = 1))
+        plot.caption = element_text(hjust = 1),
+        axis.text.y.left =element_text(size = 10),
+        axis.text.y.right = element_text(size = 10))
 
-  
-forest_plot <- alc_forest + sex_forest + plot_layout(ncol = 1)
 
-forest_plot_grob <- patchwork::patchworkGrob(forest_plot)
+
+
 
 ```
 
@@ -178,18 +180,18 @@ forest_plot_grob <- patchwork::patchworkGrob(forest_plot)
 ```{=latex}
 \begin{figure}[t]
 ```
-```{r, echo=FALSE, fig.height= 10, fig.width = 10}
-gridExtra::grid.arrange(forest_plot_grob, left = textGrob("Sample Selection",
-                                                               rot = 90), bottom = textGrob(""))
+
+```{r}
+alc_forest
 ```
+
 ```{=latex}
-\caption{Robustness Across Samples \label{week_before_after}}
-\textit{Notes:} The x-axis represents three periods: the week before a moratorium, the moratorium itself, and the week after the moratorium. Indicators for week before and week after are added to specification (2) from Table \ref{main_table}. Controls include holiday, spring semester, day of the week, football game-days, and university-by-academic-year. Standard errors clustered by university. Standard errors are clustered by university. Weekends represent Fridays, Saturdays, and Sundays. Weekdays represent Mondays-Thursdays. Errorbars represent 95\% confidence intervals.
+\caption{Robustness Across Samples \label{alc_forest}}
+\textit{Notes:} This graph depicts the coefficient estimates and 95\% confidence intervals for different subsets of the sample. The y-axis on the left is the sample selection used, while the y-axis on the left is the point estimate. The x-axis is a number line. All estimates use the preferred specification from Table \ref{main_table} column (2), and all outcomes are in terms of per-25000 enrolled students. Standard errors are clustered at the university level. The ``Main Sample'' refers to the sample used in the main results in Table \ref{main_table} column (2), while the ``Main Sample (Weekends)'' refers to the sample used in the main results restricting to only Friday-Sunday (i.e. Table \ref{main_table} column (4)). The sample ``Main Sample + Never Treated'' is the entire main sample with the inclusion of never-treated universities that were selected from the Niche.com Top 50 Greek Life Schools. Similarly, ``Main Sample + Never Treated (Weekends)'' denotes this sample, but restricted to only Friday-Sunday. Finally, ``Death Trigger + Death Trigger No Moratorium''  denotes the nine universities that experienced a fraternity death as a triggering event for their moratorium in addition to the fifteen universities that also experienced a fraternity death, but no moratorium during the sample period. See Section \ref{subsection:trigger} for more details. 
 \end{figure}
 ```
-```{r, echo = F,out.width='.49\\linewidth', fig.cap= "\\label{two_sided_plot}Histograms", fig.ncol = 2, fig.subcap= c("Alcohol Offenses", "Sexual Assaults")}
 
-alc_forest
+```{r}
 sex_forest
 ```
 

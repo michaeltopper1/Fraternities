@@ -226,8 +226,8 @@ long_run_effects <- ifc::main_table(list(es_alc_14,es_sex_14),
       booktabs = T, align = "lcc",
       caption = "\\label{long_run_effects}Absence of Long-Run Effects of Moratoriums Split by Moratorium Length") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
-  group_rows("Panel A: Full Sample", 1,4, bold = F, italic = T) %>% 
-  group_rows("Panel B: Quantiles by Moratorium Length", 5,16, bold = F, italic = T) %>% 
+  kableExtra::group_rows("Panel A: Full Sample", 1,4, bold = F, italic = T) %>% 
+  kableExtra::group_rows("Panel B: Quantiles by Moratorium Length", 5,16, bold = F, italic = T) %>% 
   pack_rows("Estimates from Figures 4 and 5", 1, 4, bold = F, italic = T) %>% 
   pack_rows("Moratorium Length: 1st Quantile", 5, 8, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
   pack_rows("Moratorium Length: 2nd Quantile", 9, 12, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
@@ -235,9 +235,8 @@ long_run_effects <- ifc::main_table(list(es_alc_14,es_sex_14),
   add_header_above(c(" " = 1, "Alcohol Offenses" = 1, "Sexual Assaults" = 1), line = F) %>% 
   add_header_above(c(" ", "Dependent Variable" = 2)) %>% 
   column_spec(1, width = "8cm") %>% 
-  row_spec(0, hline_after = T) %>% 
   row_spec(4, hline_after = T) %>% 
-  row_spec(4, hline_after = T) %>% 
+  row_spec(16, hline_after = T) %>% 
   footnote(list("Point estimates of In Motratorium reflect the time 0 for `multiple event' event studies similar to Figures 4 and 5 with four leads and four lags of 14-day bins. Each offense is defined as per-25,000 enrolled students. Standard errors are clustered at the university level. All periods are normalized by the 14-day period before the moratorium. Panel A represents the same coefficient estimates as Figures 4 and 5, while Panels B,C, and D represent subsets of the sample split by three quantiles. The three quantiles represent the 33rd, 66th, and 100th percentile of a moratorium length which correspond to [0-32], [33-59], and [60-541] academic calendar days of a moratorium respectively. Hence, if a university has a moratorium that lasts 30 academic calendar days, then it is included in Panel B. P-values are reported from joint F-test of the four lags. Fixed effects include day of the week, holiday, semester number, football game-day, and university-by-academic-year.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
 
