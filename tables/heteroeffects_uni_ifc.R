@@ -49,7 +49,7 @@ ifc_uni_table <- ifc::main_table(uni_regs_alc, uni_regs_sex,
   slice(1:12) %>% 
   kbl(booktabs = T, col.names = c(" ", "(1)", "(2)", "(3)"), align = "lccc",
       caption = "\\label{ifc_uni_table}Effect of Moratoriums Imposed by the University vs. the IFC") %>% 
-kable_paper() %>% 
+kable_styling(font_size = 11) %>% 
   pack_rows("Panel A: University-Enacted Moratoriums", 1, 6, hline_after = F, italic = T, bold  =F) %>% 
   pack_rows("Panel B: IFC-Enacted Moratoriums", 7, 12, hline_after = F, italic  = T, latex_gap_space = "0.5cm", bold = F) %>% 
   pack_rows("Alcohol Offense", 1, 3, italic = T, bold = F) %>% 
@@ -61,7 +61,7 @@ kable_paper() %>%
   column_spec(1, width = "8cm") %>%
   row_spec(6, hline_after = T) %>% 
   row_spec(12, hline_after = T) %>% 
-  footnote(list("Standard errors clustered by university. Controls follow specification (2) in the main results table with day of week, holiday, semester, football game-day, and universitiy by academic year fixed effects. Panel A shows the effects of a moratorium when a moratorium is imposed by the university. University-imposed moratoriums represent 27/44 (61%) of the moratoriums. Panel B shows the effects of a moratorium when the IFC council imposes the moratorium. This is a student-lead initiative. IFC-imposed moratoriums represent 17/44 (39%) of the moratoriums in the sample. Weekends represent Fridays through Sundays while Weekdays represent Mondays through Thursdays.",
+  footnote(list("Standard errors clustered by university. Controls follow the preferred specification (i.e. column(2)) in the main results table with day of week, holiday, semester, football game-day, and universitiy by academic year fixed effects. Panel A shows the effects of a moratorium when a moratorium is imposed by the university. University-imposed moratoriums represent 27/44 (61%) of the moratoriums. Panel B shows the effects of a moratorium when the IFC council imposes the moratorium. This is a student-lead initiative. IFC-imposed moratoriums represent 17/44 (39%) of the moratoriums in the sample. Weekends represent Fridays through Sundays while Weekdays represent Mondays through Thursdays.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"),
            threeparttable = T)
 

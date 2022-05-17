@@ -1,15 +1,16 @@
 ---
 title: "Tables"
 output: pdf_document
+fontsize: 11pt
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = F, message = F, warning = F)
-knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-library(kableExtra)
-```
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- library(kableExtra) -->
+<!-- ``` -->
 
-<!-- \FloatBarrier -->
+\FloatBarrier
 # Tables
 
 ```{r}
@@ -17,7 +18,7 @@ source(paste0(here::here("tables/matching_word_table.R")))
 ```
 
 ```{r}
-matching_table
+matching_table 
 ```
 
 \newpage
@@ -47,7 +48,7 @@ source(here::here(paste0("tables/regressions_main.R")))
 ```
 
 ```{r}
-main_table 
+main_table
 ```
 
 ```{r}

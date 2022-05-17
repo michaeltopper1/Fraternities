@@ -21,6 +21,7 @@ header-includes:
 - \usepackage{makecell}
 - \usepackage{xcolor}
 - \usepackage{subfig}
+bibliography: "references.bib"
 ---
 
 ```{r setup, include=FALSE}
@@ -42,8 +43,7 @@ library(tidyverse)
 library(modelsummary)
 library(fixest)
 library(kableExtra)
-library(patchwork)
-
+library(fwildclusterboot)
 
 if (!exists("daily_crime")){
   daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
@@ -56,142 +56,139 @@ if (!exists("daily_crime_weekdays")){
   daily_crime_weekdays <- read_csv("created_data/xmaster_data/daily_panel_weekdays.csv") 
 }
 
-daily_crime_allschools<- read_csv("created_data/xmaster_data/daily_panel_allschools.csv") 
-
-daily_crime_nevertreated <- read_csv("created_data/xmaster_data/daily_panel_allschools.csv") %>% 
-  filter((university %in% ifc::moratorium_schools()) | (university %in% ifc::never_treated_no_death()))
-
-daily_crime_nevertreated_weekends <- daily_crime_nevertreated %>% 
-  filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun")
-
-## schools with moratorium and also schools with death and no moratorium
-daily_crime_deaths <- daily_crime_allschools %>% 
-  filter(university %in% ifc::death_universities()) 
-
-
-fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+## for bootstrapping
+# set seed via dqset.seed for boot_algo = "R" & Rademacher, Webb & Normal weights
+dqrng::dqset.seed(2352342)
+# set 'familiar' seed for all other algorithms and weight types 
+set.seed(23325)
 
 explanatory_vars <- c("treatment")
 
 
-subsamples_1 <- list(daily_crime, daily_crime_weekends)
-
-subsamples_2 <- list( daily_crime_nevertreated, daily_crime_nevertreated_weekends,
-                   daily_crime_deaths)
-
-subsample_ols_alc <-  map_df(subsamples_1, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                            broom::tidy(conf.int = T)) 
-subsample_pois_alc <- map_df(subsamples_1, ~ifc::reghdfe_pois(., c("alcohol_offense"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                               broom::tidy(conf.int = T))
-subsample_2_ols_alc <- map_df(subsamples_2, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                                broom::tidy(conf.int = T))
-
-alc_estimates <- bind_rows(subsample_ols_alc, subsample_2_ols_alc)
+# fixed effects for daily_level -------------------------------------------
+fixed_effects_1 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday", "game_occurred")
+fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+fixed_effects_3 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday", "game_occurred")
 
 
-subsample_ols_sex <-  map_df(subsamples_1, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                               broom::tidy(conf.int = T))
-subsample_pois_sex <- map_df(subsamples_1, ~ifc::reghdfe_pois(., c("sexual_assault"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                               broom::tidy(conf.int = T))
-subsample_2_ols_sex <- map_df(subsamples_2, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                                broom::tidy(conf.int = T))
+daily_fixed_effects = list(fixed_effects_1, fixed_effects_2, fixed_effects_3)
+
+alc <- map(daily_fixed_effects, ~ifc::reghdfe(daily_crime, c("alcohol_offense_per25"),explanatory_vars, ., "university")
+)
+
+alc_boot <- map(alc, ~boottest(., param = "treatment", clustid = "university", B = 1000))
 
 
-sex_estimates <- bind_rows(subsample_ols_sex, subsample_2_ols_sex)
+sex <- map(daily_fixed_effects, ~ifc::reghdfe(daily_crime, c("sexual_assault_per25"),explanatory_vars, ., "university")
+)
+
+sex_boot <- map(sex, ~boottest(., param = "treatment", clustid = "university", B = 1000))
 
 
 
+# table 2: weekends vs. full sample ---------------------------------------
 
-model_data <- c("Main", "Main (Weekends)", "Never Treated","Never Treated (Weekends)", "Deaths Never Treated") %>% 
-  as_tibble() %>% 
-  rename(model = value)
+fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+# fixed_effects_preferred_l <-  c("day_of_week", "university_by_academic_year_by_semester", "holiday")
+data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
 
+alc_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university")
+)
 
-alc_estimates <- alc_estimates %>% 
-  bind_cols(model_data) %>% 
-  mutate(offense = "alcohol_offense")
-
-sex_estimates <- sex_estimates %>% 
-  bind_cols(model_data) %>% 
-  mutate(offense = "sexual_assault")
+sex_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university")
+)
 
 
 
+# getting bootstrapped regressions ----------------------------------------
+
+w_alc_2 <- feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_academic_year + game_occurred + holiday + spring_semester,
+                 data = daily_crime_weekends, cluster = "university")
+
+wboot_alc_2 <- boottest(w_alc_2, clustid = "university", param = "treatment", B = 1000)
+
+w_alc_3 <- feols(alcohol_offense_per25 ~ treatment | day_of_week + university_by_academic_year + game_occurred + holiday + spring_semester,
+                 data = daily_crime_weekdays, cluster = "university")
+
+wboot_alc_3 <- boottest(w_alc_3, clustid = "university", param = "treatment", B = 1000)
 
 
-model_labs <- rev(c("Main Sample", "Main Sample \n(Weekends) ", "Main Sample +\nNever Treated  ","Main Sample +\nNever Treated (Weekends)", "Death Trigger Only +\nDeath Trigger No Moratorium"))
-model_labs2 <- rev(sprintf("%.3f",alc_estimates$estimate))
-
-alc_forest <- alc_estimates %>% 
-  mutate(estimate = round(estimate, 3)) %>%
-  mutate(estimate_label = sprintf("%.3f", estimate)) %>% 
-  mutate(offense = rev(c(1:5))) %>% 
-  ggplot(aes(estimate, offense)) +
-  geom_point() +
-  geom_errorbar(aes(xmin = conf.low, xmax = conf.high), width = 0.1) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "dark red") +
-  scale_y_continuous(breaks = 1:length(model_labs),
-                     labels = model_labs,
-                     sec.axis = sec_axis(~., breaks = 1:length(model_labs),
-                                         labels = model_labs2, 
-                                         name = expression(paste("Estimate (", hat(beta), ")")))) +
-  labs(y = "Sample", x = "") +
-  theme_classic() +
-  theme(axis.line.y = element_blank(),
-        axis.text.y = element_text(hjust = 1),
-        axis.ticks.y = element_blank(),
-        axis.text.y.right = element_text(hjust = -10, size = 10),
-        plot.caption.position = "plot",
-        plot.caption = element_text(hjust = 1), 
-        axis.text.y.left =element_text(size = 10))
-
-model_labs2_sex <- rev(sprintf("%.3f",sex_estimates$estimate))
+# bootstrapped regressions for alcohol ------------------------------------
 
 
-sex_forest <- sex_estimates %>% 
-  mutate(estimate = round(estimate, 3)) %>%
-  mutate(estimate_label = sprintf("%.3f", estimate)) %>% 
-  mutate(offense = rev(c(1:5))) %>% 
-  ggplot(aes(estimate, offense)) +
-  geom_point() +
-  geom_errorbar(aes(xmin = conf.low, xmax = conf.high), width = 0.1) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "dark red") +
-  scale_y_continuous(breaks = 1:length(model_labs),
-                     labels = model_labs,
-                     sec.axis = sec_axis(~., breaks = 1:length(model_labs),
-                                         labels = model_labs2_sex, 
-                                         name = expression(paste("Estimate (", hat(beta), ")")))) +
-  labs(y = "Sample", x = " ") +
-  theme_classic() +
-  theme(axis.line.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        plot.caption.position = "plot",
-        plot.caption = element_text(hjust = 1),
-        axis.text.y.left =element_text(size = 10),
-        axis.text.y.right = element_text(size = 10))
+w_sex_2 <- feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_academic_year + game_occurred + holiday + spring_semester,
+                 data = daily_crime_weekends, cluster = "university")
+
+wboot_sex_2 <- boottest(w_sex_2, clustid = "university", param = "treatment", B = 1000)
+
+w_sex_3 <- feols(sexual_assault_per25 ~ treatment | day_of_week + university_by_academic_year + game_occurred + holiday + spring_semester,
+                 data = daily_crime_weekdays, cluster = "university")
+
+wboot_sex_3 <- boottest(w_sex_3, clustid = "university", param = "treatment", B = 1000)
 
 
 
+alc_t2 <- c(alc, alc_weeksplit)[-4]
+sex_t2 <- c(sex, sex_weeksplit)[-4]
 
 
-```
-
-
-```{=latex}
-\begin{figure}[t]
-```
-
-```{r}
-alc_forest
-```
-
-```{=latex}
-\caption{Robustness Across Samples \label{alc_forest}}
-\textit{Notes:} This graph depicts the coefficient estimates and 95\% confidence intervals for different subsets of the sample. The y-axis on the left is the sample selection used, while the y-axis on the left is the point estimate. The x-axis is a number line. All estimates use the preferred specification from Table \ref{main_table} column (2), and all outcomes are in terms of per-25000 enrolled students. Standard errors are clustered at the university level. The ``Main Sample'' refers to the sample used in the main results in Table \ref{main_table} column (2), while the ``Main Sample (Weekends)'' refers to the sample used in the main results restricting to only Friday-Sunday (i.e. Table \ref{main_table} column (4)). The sample ``Main Sample + Never Treated'' is the entire main sample with the inclusion of never-treated universities that were selected from the Niche.com Top 50 Greek Life Schools. Similarly, ``Main Sample + Never Treated (Weekends)'' denotes this sample, but restricted to only Friday-Sunday. Finally, ``Death Trigger + Death Trigger No Moratorium''  denotes the nine universities that experienced a fraternity death as a triggering event for their moratorium in addition to the fifteen universities that also experienced a fraternity death, but no moratorium during the sample period. See Section \ref{subsection:trigger} for more details. 
-\end{figure}
+main_table <- ifc::main_table(alc_t2, last_panel = sex_t2) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
+          `Model 5` = sprintf("%.3f",mean(daily_crime_weekdays$alcohol_offense_per25, na.rm = T)),
+          .before = 4) %>% 
+  add_row(term = "Wild Bootstrap P-Value", 
+          `Model 1` = sprintf("%.3f",alc_boot[[1]]$p_val),
+          `Model 2` = sprintf("%.3f",alc_boot[[2]]$p_val),
+          `Model 3` = sprintf("%.3f",alc_boot[[3]]$p_val),
+          `Model 4` = sprintf("%.3f",wboot_alc_2$p_val),
+          `Model 5` = sprintf("%.3f",wboot_alc_3$p_val),
+          .before = 5) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
+          `Model 5` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
+          .before = 9) %>% 
+  add_row(term = "Wild Bootstrap P-Value", 
+          `Model 1` = sprintf("%.3f",sex_boot[[1]]$p_val),
+          `Model 2` = sprintf("%.3f",sex_boot[[2]]$p_val),
+          `Model 3` = sprintf("%.3f",sex_boot[[3]]$p_val),
+          `Model 4` = sprintf("%.3f",wboot_sex_2$p_val),
+          `Model 5` = sprintf("%.3f",wboot_sex_3$p_val),
+          .before = 10) %>% 
+  kbl(booktabs = T, 
+      col.names = c(" ", "(1)", "(2)", "(3)", "(4)", "(5)"),
+      digits = 3,
+      caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (OLS).", align = 'lccccc', escape = T) %>% 
+  kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>%
+  pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
+  add_header_above(c(" " = 4, "Weekends" = 1, "Weekdays" = 1), line = F) %>% 
+  add_header_above(c(" " = 4, "Specification (2)" = 2)) %>% 
+  row_spec(c(10),hline_after=TRUE) %>% 
+  # pack_rows("",11, 18, bold = F, italic = T, hline_before = T ) %>% 
+  # row_spec(5, italic = T) %>% 
+  column_spec(1, width = "8cm") %>% 
+  row_spec(c(18), hline_after =T) %>% 
+  footnote(list("Estimates are obtained using OLS. Standard errors shown in paranthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by @cameron_bootstrap-based_2008 in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since these holidays are not on any university's academic calendar. Game Day controls consist of university football games within each university. Weekends include Friday-Sunday while Weekdays include Monday-Thursday. A moratorium is a temporary halt on fraternity-related activities with alcohol. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates. Significance stars correspond to clustered standard erorrs.",
+                "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
 ```
 
 ```{r}
-sex_forest
+main_table
 ```
 
+(ref:abel-citation) @cameron_bootstrap-based_2008
+
+```{r}
+library("kableExtra")
+
+kable(mtcars) %>%
+    footnote(general = paste0("A footnote in which I would like to cite ",
+                              "(ref:abel-citation)"))
+```
