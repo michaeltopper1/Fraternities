@@ -48,7 +48,7 @@ matching_table <- tibble("Outcome" = categories, "Words to Match" = words)
 matching_table <- kable(matching_table, booktabs = T,
                         caption = "\\label{matching_table}Words and Phrases used to Pattern Match on Offenses of Interest") %>%
   # column_spec(1, bold = T, color = "blue") %>%
-  kable_styling(latex_options = "HOLD_position") %>% 
+  kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
   column_spec(1, bold = T, border_right = T) %>%
   column_spec(2, width = "30em") %>% 
   # column_spec(1, width = "8cm") %>% 

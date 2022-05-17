@@ -80,6 +80,6 @@ twfe_table <- ifc::main_table(alc_weeksplit, last_panel = sex_weeksplit) %>%
 
 ```{r, echo = F, warning = F, message = F, fig.pos='H'}
 twfe_table %>% 
-  kable_styling(latex_options = "HOLD_position")
+  kable_styling(latex_options = "HOLD_position", font_size = 11)
 ```
 

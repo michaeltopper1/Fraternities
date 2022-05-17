@@ -38,6 +38,6 @@ source(paste0(here::here("tables/regressions_clery_dcl.R")))
 
 ```{r, echo = F, message = F, warning = F,fig.pos='H' }
 clery_compare %>% 
-  kable_styling(latex_options = "HOLD_position")
+  kable_styling(latex_options = "HOLD_position", font_size = 11)
 ```
 

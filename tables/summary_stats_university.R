@@ -59,11 +59,11 @@ university_characteristics <- daily_crime %>%
   row_spec(17, bold = F, italic = T) %>% 
   add_indent(c(2:6)) %>% 
   add_indent(c(3:6)) %>% 
-  pack_rows("Panel A: University Characteristics", 1, 12, bold = F, italic = T) %>% 
-  pack_rows("Panel B: Daily Crime Log Offenses", 13, 14, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
-  pack_rows("Panel C: Moratorium Characteristics", 15, 16, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
-  footnote("Offenses are per-25000 students enrolled per-academic calendar day. Length of moratorium statistics are in academic-calendar days. Number of moratoriums refers to number of moratoriums only within the 2014-2019 time period. Some schools may or may not have had moratoriums in periods before or after the time period of analysis. Only a subset of races were chosen, and hence, the sum of the fractions do not sum to 1 in the table. SAT Math 75th Percentile and SAT Reading 75th Percentile correspond to the 75th perctile SAT score for an admitted student. A perfect score is 800, while an average score is approximately 500. Fraction Private refers to the fraction of universities that are private universities.",
+  pack_rows("Panel A: University Characteristics", 1, 12, bold = T, italic = F) %>% 
+  pack_rows("Panel B: Daily Crime Log Offenses", 13, 14, bold = T, italic = F, latex_gap_space = "0.5cm") %>% 
+  pack_rows("Panel C: Moratorium Characteristics", 15, 16, bold = T, italic = F, latex_gap_space = "0.5cm") %>% 
+  footnote("Offenses are per-25000 students enrolled per-academic calendar day. Length of moratorium statistics are in academic-calendar days. Number of moratoriums refers to number of moratoriums only within the 2014-2019 time period. Some schools may or may not have had moratoriums in periods before or after the time period of analysis. Only a subset of races were chosen, and hence, the sum of the fractions do not sum to 1 in the table. SAT Math 75th Percentile and SAT Reading 75th Percentile correspond to the 75th percentile SAT score for an admitted student. A perfect score is 800, while an average score is approximately 500. Fraction Private refers to the fraction of universities that are private universities.",
            threeparttable = T,
            alphabet = "Fraction of students enrolled in IFC fraternity is based on 33 of 37 universities information due to availability of the data.") %>% 
-  kable_styling(latex_options = "HOLD_position")
+  kable_styling(latex_options = "HOLD_position", font_size = 11)
 

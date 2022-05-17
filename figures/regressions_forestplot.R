@@ -33,53 +33,61 @@ fixed_effects_preferred <- c("day_of_week", "university_by_academic_year", "holi
 
 explanatory_vars <- c("treatment")
 
-
+## getting lists of data sets to map over
 subsamples_1 <- list(daily_crime, daily_crime_weekends)
 
 subsamples_2 <- list( daily_crime_nevertreated, daily_crime_nevertreated_weekends,
                       daily_crime_deaths)
 
+## for computing the means across all samples for labeling purposes
+subsamples_all <- c(subsamples_1, subsamples_2)
+
+means <- map_df(subsamples_all, ~ .x %>% summarize(avg_alc = mean(alcohol_offense_per25, na.rm = T),
+                                                  avg_sex = mean(sexual_assault_per25, na.rm = T)))
+
+
+
+# estimating regressions --------------------------------------------------
 subsample_ols_alc <-  map_df(subsamples_1, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
                                broom::tidy(conf.int = T)) 
-subsample_pois_alc <- map_df(subsamples_1, ~ifc::reghdfe_pois(., c("alcohol_offense"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                               broom::tidy(conf.int = T))
 subsample_2_ols_alc <- map_df(subsamples_2, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
                                 broom::tidy(conf.int = T))
 
-alc_estimates <- bind_rows(subsample_ols_alc, subsample_2_ols_alc)
+alc_estimates <- bind_rows(subsample_ols_alc, subsample_2_ols_alc) %>% 
+  bind_cols(means)
 
 
 subsample_ols_sex <-  map_df(subsamples_1, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
-                               broom::tidy(conf.int = T))
-subsample_pois_sex <- map_df(subsamples_1, ~ifc::reghdfe_pois(., c("sexual_assault"),explanatory_vars, fixed_effects_preferred, "university") %>% 
                                broom::tidy(conf.int = T))
 subsample_2_ols_sex <- map_df(subsamples_2, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
                                 broom::tidy(conf.int = T))
 
 
-sex_estimates <- bind_rows(subsample_ols_sex, subsample_2_ols_sex)
+sex_estimates <- bind_rows(subsample_ols_sex, subsample_2_ols_sex) %>% 
+  bind_cols(means)
 
 
+# creating labels for the left y axis -------------------------------------
 
+model_labs <- c("Main Sample", "Main Sample (Weekends) ", "Main Sample + Never Treated","Main Sample + Never Treated (Weekends)", "Death Trigger Only + Death Trigger No Moratorium")
 
-model_data <- c("Main", "Main (Weekends)", "Never Treated","Never Treated (Weekends)", "Deaths Never Treated") %>% 
+alc_labs <- model_labs %>% 
   as_tibble() %>% 
-  rename(model = value)
+  bind_cols(means) %>% 
+  mutate(across(starts_with("avg"), ~sprintf("%.3f", .))) %>% 
+  mutate(alc_labels = glue::glue("{value}\nMean of Dependent Variable: {avg_alc}"), .before = 1) %>% 
+  pull(alc_labels) %>% 
+  rev()
 
+sex_labs <- model_labs %>% 
+  as_tibble() %>% 
+  bind_cols(means) %>% 
+  mutate(across(starts_with("avg"), ~sprintf("%.3f", .))) %>% 
+  mutate(sex_labels = glue::glue("{value}\nMean of Dependent Variable: {avg_sex}"), .before = 1) %>% 
+  pull(sex_labels) %>% 
+  rev()
 
-alc_estimates <- alc_estimates %>% 
-  bind_cols(model_data) %>% 
-  mutate(offense = "alcohol_offense")
-
-sex_estimates <- sex_estimates %>% 
-  bind_cols(model_data) %>% 
-  mutate(offense = "sexual_assault")
-
-
-
-
-
-model_labs <- rev(c("Main Sample", "Main Sample \n(Weekends) ", "Main Sample +\nNever Treated  ","Main Sample +\nNever Treated (Weekends)", "Death Trigger Only +\nDeath Trigger No Moratorium"))
+## creates right y axis labels
 model_labs2 <- rev(sprintf("%.3f",alc_estimates$estimate))
 
 alc_forest <- alc_estimates %>% 
@@ -91,7 +99,7 @@ alc_forest <- alc_estimates %>%
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), width = 0.1) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "dark red") +
   scale_y_continuous(breaks = 1:length(model_labs),
-                     labels = model_labs,
+                     labels = alc_labs,
                      sec.axis = sec_axis(~., breaks = 1:length(model_labs),
                                          labels = model_labs2, 
                                          name = expression(paste("Estimate (", hat(beta), ")")))) +
@@ -117,7 +125,7 @@ sex_forest <- sex_estimates %>%
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), width = 0.1) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "dark red") +
   scale_y_continuous(breaks = 1:length(model_labs),
-                     labels = model_labs,
+                     labels = sex_labs,
                      sec.axis = sec_axis(~., breaks = 1:length(model_labs),
                                          labels = model_labs2_sex, 
                                          name = expression(paste("Estimate (", hat(beta), ")")))) +

@@ -410,13 +410,13 @@ reporting_table <- ifc::main_table(lag_alc, last_panel = lag_sex) %>%
       col.names = c(" ","(1)","(2)", "(3)", "(4)"),
       caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting",
       align = "lcccc") %>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
+  kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
   pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = T, bold = F) %>%
   pack_rows("Panel B: Proportion of Sexual Assaults Reported with Lag", 5, 8, italic = T, bold = F,  latex_gap_space = "0.5cm") %>%
   add_header_above(c(" ", "More than 1-Day Lag","More than 3-Day Lag", "More than 7-Day Lag", "More than 14-day Lag"), line = F) %>% 
   add_header_above(c(" " = 1, "Reporting Lag" = 4)) %>% 
   row_spec(8,hline_after = T) %>% 
-  footnote(list("Standard errors are clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than one (Column 1), three (Column 2), seven (Column 3), or 14 (Column 4) days after it occurred. 32 of the 37 universities have information on date occurred. Specification is the preferred specification which includes day of week, holiday, football game-day, semester, and university-by-academic-year fixed effects. See Table \ref{main_table} column (2) for more details on the preferred specification.",
+  footnote(list("Standard errors are clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than one (Column 1), three (Column 2), seven (Column 3), or 14 (Column 4) days after it occurred. 32 of the 37 universities have information on date occurred. Specification is the preferred specification which includes day of week, holiday, football game-day, semester, and university-by-academic-year fixed effects. See Table 4 column (2) for more details on the preferred specification.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"),
            threeparttable = T)
 

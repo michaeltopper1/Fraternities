@@ -124,7 +124,7 @@ main_table <- ifc::main_table(alc_t2, last_panel = sex_t2) %>%
       col.names = c(" ", "(1)", "(2)", "(3)", "(4)", "(5)"),
       digits = 3,
       caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (OLS).", align = 'lccccc') %>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
+  kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
   pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>%
   pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
   add_header_above(c(" " = 4, "Weekends" = 1, "Weekdays" = 1), line = F) %>% 
@@ -134,7 +134,7 @@ main_table <- ifc::main_table(alc_t2, last_panel = sex_t2) %>%
   # row_spec(5, italic = T) %>% 
   column_spec(1, width = "8cm") %>% 
   row_spec(c(18), hline_after =T) %>% 
-  footnote(list("Estimates are obtained using OLS. Standard errors shown in paranthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by @cameron_bootstrap-based_2008 in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since these holiday's are not on any university's academic calendar. Game Day controls consist of university football games within each university. Weekends include Friday-Sunday while Weekdays include Monday-Thursday. A moratorium is a temporary halt on fraternity-related activities with alcohol. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates.",
+  footnote(list("Estimates are obtained using OLS. Standard errors shown in paranthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by Cameron, Gelbach, and Miller (2008) in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since these holidays are not on any university's academic calendar. Game Day controls consist of university football games within each university. Weekends include Friday-Sunday while Weekdays include Monday-Thursday. A moratorium is a temporary halt on fraternity-related activities with alcohol. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates. Significance stars correspond to clustered standard erorrs.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
 
 

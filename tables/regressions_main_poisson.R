@@ -77,7 +77,7 @@ main_table_p <- ifc::main_table(alc_total_p, last_panel = sex_total_p) %>%
       col.names = c(" ", "(1)", "(2)", "(3)", "(4)", "(5)"),
       digits = 3,
       caption = "\\label{main_table_p}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (Poisson)", align = 'lccccc') %>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
+  kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
   pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>%
   pack_rows("Panel B: Sexual Assaults", 5, 8, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
   add_header_above(c(" " = 4, "Weekends" = 1, "Weekdays" = 1), line = F) %>% 

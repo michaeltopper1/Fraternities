@@ -22,7 +22,7 @@ data_used <- tibble(attributes = c("Source of Data:","Reporting Mandate:", "Leve
 data_used <-  kbl(data_used, booktabs = T, digits = 3,
                   col.names = c(" ", "Daily Crime Logs", "CSS", "NIBRS", "UCR"),
                   caption = "\\label{data_used}Comparison of All Relevant Data Sources") %>%
-  kable_styling(latex_options = c("HOLD_position")) %>%
+  kable_styling(latex_options = c("HOLD_position"), font_size = 11) %>%
   # add_header_above(c(" " = 1, "Main Analysis" = 1, "Secondary Analysis" = 1, "Unused" = 2)) %>% 
   add_header_above(c(" " = 1, "Data Source" = 4)) %>% 
   footnote(list("Appreviations of the data sources are as follows: Campus Safety Security (CSS), National Incidence-based Reporting System (NIBRS), Uniform Crime Report (UCR). The Daily Crime Logs are used for the main analysis due to the advantages it has over the other sources. The fraction reporting consistently refers row corresponds to the fraction of the sample university police departments. For the NIBRS however, the fraction reported consistently refers to the number of university-specific and corresponding nearby police departments that report consistently. The hierarchy rule is a classification rule by the UCR where only the most serious crime in an incident is reported. While over 50 percent of UCR data is recorded to be reported consistently, the true percentage is difficult to know since NAs and 0s are treated as equivalent in the data."),
