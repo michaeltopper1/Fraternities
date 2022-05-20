@@ -408,7 +408,7 @@ reporting_table <- ifc::main_table(lag_alc, last_panel = lag_sex) %>%
           .before = 8) %>% 
   kbl(booktabs = T,
       col.names = c(" ","(1)","(2)", "(3)", "(4)"),
-      caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting",
+      caption = "\\label{reporting_table}Effect of Moratoriums on Changes in Reporting (OLS)",
       align = "lcccc") %>% 
   kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
   pack_rows("Panel A: Proportion of Alcohol Offenses Reported with Lag", 1, 4, italic = T, bold = F) %>%

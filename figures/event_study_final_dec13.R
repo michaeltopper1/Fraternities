@@ -224,7 +224,7 @@ long_run_effects <- ifc::main_table(list(es_alc_14,es_sex_14),
           .before = 16) %>% 
   kbl(col.names = c(" ", "(1)", "(2)"),
       booktabs = T, align = "lcc",
-      caption = "\\label{long_run_effects}Absence of Long-Run Effects of Moratoriums Split by Moratorium Length") %>% 
+      caption = "\\label{long_run_effects}Absence of Long-Run Effects of Moratoriums Split by Moratorium Length (OLS)") %>% 
   kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
   kableExtra::group_rows("Panel A: Full Sample", 1,4, bold = F, italic = T) %>% 
   kableExtra::group_rows("Panel B: Quantiles by Moratorium Length", 5,16, bold = F, italic = T) %>% 

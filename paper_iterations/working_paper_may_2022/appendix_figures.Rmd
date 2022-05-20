@@ -10,7 +10,7 @@ fontsize: 11pt
 <!-- ``` -->
 \FloatBarrier
 # Appendix Figures and Tables \label{section:appendixf}
-
+This page is intentionally blank.
 
 ```{=latex}
 \begin{figure}[t]
@@ -22,6 +22,25 @@ knitr::include_graphics("sample_crime_log.png")
 \caption{An Example of a Daily Crime Log \label{crime_log}}
 \textit{Note:} The main analysis uses data from 37 universities' Daily Crime Logs - each unique in their own respect. All Daily Crime Logs had to be requested from each university and harmonized using pattern matching.
 \end{figure}
+```
+
+```{r}
+source(paste0(here::here("tables/matching_word_table.R")))
+```
+
+```{=latex}
+\begin{landscape}
+\begin{figure}[t]
+```
+```{r, echo=FALSE, fig.align = "center",fig.width= 40, fig.height= 28, out.width= "90%"}
+top_categories
+```
+```{=latex}
+\caption{Top 15 Most Frequent Offense Matches\label{top_categories}}
+\footnotesize{\textit{Note:} The top 15 most frequent offense matches represent the 15 most frequent incidents after the pattern matching exercise. The x-axis represents the fraction of the total number of offenses in each category.}
+\end{figure}
+\end{landscape}
+
 ```
 
 
@@ -175,26 +194,6 @@ source(paste0(here::here("tables/data_comparison.R")))
 ```{r}
 ## data_used
 data_used
-```
-
-
-```{r}
-source(paste0(here::here("tables/matching_word_table.R")))
-```
-
-```{=latex}
-\begin{landscape}
-\begin{figure}[t]
-```
-```{r, echo=FALSE, fig.align = "center",fig.width= 40, fig.height= 28, out.width= "90%"}
-top_categories
-```
-```{=latex}
-\caption{Top 15 Most Frequent Offense Matches\label{top_categories}}
-\footnotesize{\textit{Note:} The top 15 most frequent offense matches represent the 15 most frequent incidents after the pattern matching exercise. The x-axis represents the fraction of the total number of offenses in each category.}
-\end{figure}
-\end{landscape}
-
 ```
 
 

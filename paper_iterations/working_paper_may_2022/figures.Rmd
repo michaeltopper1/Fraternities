@@ -27,7 +27,7 @@ closure_distribution
 ```
 ```{=latex}
 \caption{Distribution of Moratoriums Across the Sample Period for all Universities \label{closure_distribution}}
-\textit{Note:} The sample period starts in 2014 and ends on the last day of 2019. The lengths of the moratoriums in this graph represent calendar-day lengths, not academic-calendar day lengths. Universities experience between 1 to 3 moratoriums in the sample period.
+\textit{Note:} The sample period starts in 2014 and ends on the last day of 2019. The lengths of the moratoriums in this graph represent calendar-day lengths, not academic-calendar day lengths. Universities experience one to three moratoriums in the sample period.
 \end{figure}
 \end{landscape}
 ```
@@ -46,7 +46,7 @@ source(here::here(paste0("figures/triggerplot_bylength.R")))
 trigger_plot
 ```
 ```{=latex}
-\caption{Number of Academic Calendar Days in a Moratorium by Triggering Event\label{trigger_plot}}
+\caption{Number of Academic Calendar Days in Each Moratorium by Triggering Event\label{trigger_plot}}
 \footnotesize{\textit{Note:} Lengths of moratoriums represent academic calendar days. Therefore, the lengths of moratoriums differ from Figure \ref{closure_distribution}. Blue shaded regions represent a moratorium that was imposed by the university, while red shaded moratoriums represent moratoriums that were imposed by the IFC. Each of the four categories represents the event that triggered a moratorium. Behavior violations is a catchall term for hazing, rule violations, offensive behavior, and other disorderly conduct. Death relates to a fraternity-related death that triggered a moratorium. Sexual assaults relate to a sexual assault case that triggered a moratorium. Lastly, the Unspecified category represents all moratoriums in which the moratorium triggering event is unknown or unclearly defined.}
 \end{figure}
 \end{landscape}

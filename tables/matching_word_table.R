@@ -55,12 +55,12 @@ matching_table <- kable(matching_table, booktabs = T,
   # column_spec(2, width = "4cm") %>% 
   footnote(list("The second column represents a portion of an incident's description to pattern match on. Words for alcohol violations and sexual assaults are found by reading each university's dataset for common words within incident descriptions. For example, the word `sex' will match on `sexual assault' and `sex offense' since `sex' appears in each of these descriptions. Notably, this method likely undercounts the true number of violations in each police department's Daily Crime Log due to spelling errors. As a demonstration, the word `alcohol' may be written as `aclohol' which this matching process will not include. Some notable abbreviations include the following:",
                 "`dwi' is an abbreviation for `driving while intoxicated'.",
-                "`dip' is an abbrevation for `drunk in public'.",
+                "`dip' is an abbreviation for `drunk in public'.",
                 "`abcc' is an abbreviation for `alcohol beverage control comission'.",
-                "`pula' is an abbrevation for `person under legal age'.",
+                "`pula' is an abbreviation for `possession under legal age'.",
                 "`owi' is an abbreviation for `operating while intoxicated'.",
                 "`mip' is an abbreviation for `minor in possesion'.",
-                "`ovi' is an abbreivation for `operating vehicle intoxicated'."), threeparttable = T)
+                "`ovi' is an abbreviation for `operating vehicle intoxicated'."), threeparttable = T)
 
 
 

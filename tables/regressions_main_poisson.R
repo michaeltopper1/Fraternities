@@ -87,7 +87,7 @@ main_table_p <- ifc::main_table(alc_total_p, last_panel = sex_total_p) %>%
   # row_spec(5, italic = T) %>% 
   column_spec(1, width = "8cm") %>% 
   row_spec(c(16), hline_after =T) %>% 
-  footnote(list("Standard errors are clustered by university and each offense is defined as a count. Observation values may vary between specifications due to no variation with particular fixed effects. Holiday controls include controls for Veterans Day, Thanksgiving, Labor Day, Halloween, and MLK Day. Christmas/New Years/July 4th are not included since not in panel. A weekend is defined as Friday-Sunday while a weekday is defined as Monday-Thursday. A moratorium is a temporary halt on fraternity-related activities with alcohol.",
+  footnote(list("Standard errors are clustered by university and each offense is defined as a count. Observation values may vary between specifications due to no variation with particular fixed effects. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates in the main results.  A weekend is defined as Friday-Sunday while a weekday is defined as Monday-Thursday.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
 
 
