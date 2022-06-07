@@ -188,8 +188,9 @@ yearly_panel <- daily_panel %>%
             robbery_burglary = sum(robbery_burglary),
             alcohol_offense_strict = sum(alcohol_offense_strict),
             noise_offense = sum(noise_offense),
+            treatment_day = sum(treatment),
             treatment = mean(treatment),
-            rape = sum(rape)) %>%
+            rape = sum(rape)) %>% 
   ungroup() %>% arrange(university, year) 
 
 
@@ -224,7 +225,7 @@ daily_panel <-  daily_panel %>%
   ungroup() %>% 
   filter(year > 2013)
 
-daily_panel %>% colnames()
+
 ## yearly panel:
 yearly_panel <- daily_panel %>% 
   group_by(year, university) %>% 
@@ -235,6 +236,7 @@ yearly_panel <- daily_panel %>%
             robbery_burglary = sum(robbery_burglary),
             alcohol_offense_strict = sum(alcohol_offense_strict),
             noise_offense = sum(noise_offense),
+            treatment_day = sum(treatment),
             treatment = mean(treatment),
             rape = sum(rape)) %>%
   ungroup() %>% arrange(university, year) 
