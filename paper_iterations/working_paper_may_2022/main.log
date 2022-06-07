@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.14)  19 MAY 2022 22:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.14)  7 JUN 2022 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -21,40 +21,6 @@ File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
-Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2021/10/15 v2.17l AMS math features
 \@mathmargin=\skip49
@@ -108,12 +74,51 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
-) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
-Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
-(/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
-)) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
-Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 112.
@@ -125,16 +130,7 @@ Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@posthook=\toks22
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-(/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -272,7 +268,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip52
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 38.
+Package hyperref Info: Option `colorlinks' set `true' on input line 37.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -303,6 +299,22 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 )
 \Gin@req@height=\dimen160
 \Gin@req@width=\dimen161
+)
+\cslhangindent=\skip53
+\csllabelwidth=\skip54
+\cslentryspacingunit=\skip55
+(/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count285
+\calc@Bcount=\count286
+\calc@Adimen=\dimen162
+\calc@Bdimen=\dimen163
+\calc@Askip=\skip56
+\calc@Bskip=\skip57
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count287
+\calc@Cskip=\skip58
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks25
@@ -310,9 +322,9 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headfont=\toks27
 \thm@notefont=\toks28
 \thm@headpunct=\toks29
-\thm@preskip=\skip53
-\thm@postskip=\skip54
-\thm@headsep=\skip55
+\thm@preskip=\skip59
+\thm@postskip=\skip60
+\thm@headsep=\skip61
 \dth@everypar=\toks30
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/bbm-macros/bbm.sty
 Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
@@ -322,12 +334,12 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 (Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2022/04/30 3.74 The Babel package
-\babel@savecnt=\count285
-\U@D=\dimen162
+\babel@savecnt=\count288
+\U@D=\dimen164
 \l@unhyphenated=\language3
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count286
+\bbl@dirlevel=\count289
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'british' set to \l@english
@@ -351,7 +363,7 @@ Package bm Info: No bold for \U/msb/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count287
+\c@float@type=\count290
 \float@exts=\toks31
 \float@box=\box52
 \@float@everytoks=\toks32
@@ -379,25 +391,13 @@ LaTeX Warning: Command \@footnotemark  has changed.
                Check if current package is valid.
 
 )
-Package scrextend Info: File `scrsize12pt.clo' used to setup font sizes on input line 67.
+Package scrextend Info: File `scrsize12pt.clo' used to setup font sizes on input line 89.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
 File: scrsize12pt.clo 2022/05/01 v3.36 KOMA-Script font size class option (12pt)
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/pdfpages/pdfpages.sty
 Package: pdfpages 2022/01/29 v0.5u Insert pages of external PDF documents (AM)
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
-) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count288
-\calc@Bcount=\count289
-\calc@Adimen=\dimen163
-\calc@Bdimen=\dimen164
-\calc@Askip=\skip56
-\calc@Bskip=\skip57
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count290
-\calc@Cskip=\skip58
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
 \ESO@tempdima=\dimen165
@@ -418,8 +418,8 @@ File: pppdftex.def 2022/01/29 v0.5u Pdfpages driver for pdfTeX (AM)
 \AM@templatesizebox=\box55
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip59
-\bibsep=\skip60
+\bibhang=\skip62
+\bibsep=\skip63
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count294
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
@@ -446,18 +446,18 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 )
 \c@KVtest=\count297
-\sf@farskip=\skip61
+\sf@farskip=\skip64
 \sf@captopadj=\dimen178
-\sf@capskip=\skip62
-\sf@nearskip=\skip63
+\sf@capskip=\skip65
+\sf@nearskip=\skip66
 \c@subfigure=\count298
 \c@subfigure@save=\count299
 \c@lofdepth=\count300
 \c@subtable=\count301
 \c@subtable@save=\count302
 \c@lotdepth=\count303
-\sf@top=\skip64
-\sf@bottom=\skip65
+\sf@top=\skip67
+\sf@bottom=\skip68
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/flafter.sty
@@ -485,10 +485,10 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisrulewidth=\dimen191
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
-\LTleft=\skip66
-\LTright=\skip67
-\LTpre=\skip68
-\LTpost=\skip69
+\LTleft=\skip69
+\LTright=\skip70
+\LTpre=\skip71
+\LTpost=\skip72
 \LTchunksize=\count308
 \LTcapwidth=\dimen192
 \LT@head=\box56
@@ -507,14 +507,14 @@ Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 \ar@mcellbox=\box61
 \extrarowheight=\dimen194
 \NC@list=\toks36
-\extratabsurround=\skip70
-\backup@length=\skip71
+\extratabsurround=\skip73
+\backup@length=\skip74
 \ar@cellbox=\box62
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip72
+\multirow@colwidth=\skip75
 \multirow@cntb=\count313
-\multirow@dima=\skip73
+\multirow@dima=\skip76
 \bigstrutjot=\dimen195
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen196
@@ -526,7 +526,7 @@ Package: wrapfig 2003/01/31  v 3.6
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
 \everycr=\toks38
-\minrowclearance=\skip74
+\minrowclearance=\skip77
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/graphics/lscape.sty
@@ -563,7 +563,7 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabu@arstrutbox=\box66
 \tabu@hleads=\box67
 \tabu@vleads=\box68
-\tabu@cellskip=\skip75
+\tabu@cellskip=\skip78
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/threeparttable/threeparttable.sty
 Package: threeparttable 2003/06/13  v 3.0
 \@tempboxb=\box69
@@ -574,11 +574,11 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\TPTL@width=\skip76
+\TPTL@width=\skip79
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box70
 \UL@hyphenbox=\box71
-\UL@skip=\skip77
+\UL@skip=\skip80
 \UL@hook=\toks41
 \UL@height=\dimen265
 \UL@pe=\count322
@@ -591,41 +591,38 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen268
 \c@nlinenum=\count323
 \TeXr@lab=\toks42
-)
-\cslhangindent=\skip78
-\csllabelwidth=\skip79
-(/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count324
 \l__pdf_internal_box=\box73
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 127.
+Package hyperref Info: Link coloring ON on input line 129.
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -673,138 +670,138 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 129.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 131.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 129.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 131.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 129.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 131.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 129.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 131.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 129.
+(Font)              <14.4> on input line 131.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 129.
+(Font)              <10> on input line 131.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 129.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 129.
+(Font)              <7> on input line 131.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 131.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 129.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 131.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 129.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 131.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 129.
+(Font)              <5> on input line 131.
 [1
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 171.
+(Font)              <12> on input line 173.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 171.
+(Font)              <8> on input line 173.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 171.
+(Font)              <6> on input line 173.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.218 
-       [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
-Underfull \hbox (badness 5711) in paragraph at lines 984--984
-[][]\T1/lmr/m/n/10 The neigh-bor-ing po-lice de-part-ments were iden-ti-fied us-ing [][]Lindo, Simin-ski, and Swensen[][]
+l.219 I
+       n this paper, I estimate the causal effect of 44 fraternity moratoriums [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
+Underfull \hbox (badness 5711) in paragraph at lines 978--978
+[][]\T1/lmr/m/n/10 The neigh-bor-ing po-lice de-part-ments were iden-ti-fied us-ing Lindo, Simin-ski, and Swensen
  []
 
 
-Underfull \hbox (badness 6559) in paragraph at lines 984--984
+Underfull \hbox (badness 6559) in paragraph at lines 978--978
 \T1/lmr/m/n/10 ([][]2018[][]) pub-lic ac-cess data files in ad-di-tion to Ja-cob Ka-plan's NI-BRS data tool avail-able
  []
 
 [15] [16] [17] [18] [19] [20] [21]
-Overfull \hbox (56.86908pt too wide) in paragraph at lines 1384--1390
-[][]\T1/lmr/m/n/12 Chaisemartin, Clé-ment de, Xavier D'Haultfoeuille, and An-toine Deeb. 2020. ``TWOWAYFEWEIGHTS:
+Overfull \hbox (56.86908pt too wide) in paragraph at lines 1375--1381
+[]\T1/lmr/m/n/12 Chaisemartin, Clé-ment de, Xavier D'Haultfoeuille, and An-toine Deeb. 2020. ``TWOWAYFEWEIGHTS:
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 1384--1390
-\T1/lmr/m/n/12 Ef-fect Het-ero-gene-ity At-tached to Two-Way Fixed Ef-fects Re-gres-sions.'' [][]$https :
+Underfull \hbox (badness 2277) in paragraph at lines 1375--1381
+\T1/lmr/m/n/12 Stata Mod-ule to Es-ti-mate the Weights and Mea-sure of Ro-bust-ness to Treat-
  []
 
 [22] [23] [24] [25]
-<main_files/figure-latex/unnamed-chunk-13-1.pdf, id=610, 939.51pt x 505.89pt>
+<main_files/figure-latex/unnamed-chunk-13-1.pdf, id=596, 939.51pt x 505.89pt>
 File: main_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 1528.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 1519.
 (pdftex.def)             Requested size: 650.4273pt x 350.23007pt.
 [26 <./main_files/figure-latex/unnamed-chunk-13-1.pdf>]
-<main_files/figure-latex/unnamed-chunk-15-1.pdf, id=623, 3179.88pt x 2601.72pt>
+<main_files/figure-latex/unnamed-chunk-15-1.pdf, id=609, 3179.88pt x 2601.72pt>
 File: main_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 1538.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 1529.
 (pdftex.def)             Requested size: 520.3392pt x 425.73207pt.
 
-LaTeX Warning: Float too large for page by 63.07143pt on input line 1542.
+LaTeX Warning: Float too large for page by 63.07143pt on input line 1533.
 
 [27 <./main_files/figure-latex/unnamed-chunk-15-1.pdf>]
-<main_files/figure-latex/unnamed-chunk-17-1.pdf, id=634, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-17-1.pdf, id=620, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-17-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 1547.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 1538.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-19-1.pdf, id=635, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-19-1.pdf, id=621, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-19-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 1555.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 1546.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-20-1.pdf, id=636, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-20-1.pdf, id=622, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-20-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-20-1.pdf  used on input line 1563.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-20-1.pdf  used on input line 1554.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-22-1.pdf, id=637, 722.7pt x 722.7pt>
+<main_files/figure-latex/unnamed-chunk-22-1.pdf, id=623, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-22-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 1571.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 1562.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
-<main_files/figure-latex/unnamed-chunk-24-1.pdf, id=638, 722.7pt x 722.7pt>
+<main_files/figure-latex/unnamed-chunk-24-1.pdf, id=624, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-24-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-24-1.pdf  used on input line 1579.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-24-1.pdf  used on input line 1570.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
-<main_files/figure-latex/unnamed-chunk-26-1.pdf, id=640, 794.97pt x 867.24pt>
+<main_files/figure-latex/unnamed-chunk-26-1.pdf, id=626, 794.97pt x 867.24pt>
 File: main_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-26-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-26-1.pdf  used on input line 1587.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-26-1.pdf  used on input line 1578.
 (pdftex.def)             Requested size: 469.76819pt x 512.4744pt.
 
-LaTeX Warning: Float too large for page by 0.52765pt on input line 1591.
+LaTeX Warning: Float too large for page by 0.52765pt on input line 1582.
 
-<main_files/figure-latex/unnamed-chunk-28-1.pdf, id=642, 722.7pt x 722.7pt>
+<main_files/figure-latex/unnamed-chunk-28-1.pdf, id=628, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-28-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-28-1.pdf  used on input line 1595.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-28-1.pdf  used on input line 1586.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 [28 <./main_files/figure-latex/unnamed-chunk-17-1.pdf>] [29 <./main_files/figure-latex/unnamed-chunk-19-1.pdf>] [30 <./main_files/figure-latex/unnamed-chunk-20-1.pdf>] [31 <./main_files/figure-latex/unnamed-chunk-22-1.pdf>] [32 <./main_files/figure-latex/unnamed-chunk-24-1.pdf>] [33 <./main_files/figure-latex/unnamed-chunk-26-1.pdf>] [34 <./main_files/figure-latex/unnamed-chunk-28-1.pdf>]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 1614.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 1605.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11> on input line 1614.
+(Font)              <11> on input line 1605.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.69997> on input line 1614.
+(Font)              <7.69997> on input line 1605.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 1614.
+(Font)              <5.5> on input line 1605.
 [35
 
 
@@ -814,14 +811,14 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ] [36] [37
 
 ]
-Overfull \hbox (44.49745pt too wide) in paragraph at lines 1728--1767
+Overfull \hbox (44.49745pt too wide) in paragraph at lines 1719--1758
  [] 
  []
 
 [38
 
 ] [39]
-Overfull \hbox (10.38162pt too wide) in paragraph at lines 1873--1901
+Overfull \hbox (10.38162pt too wide) in paragraph at lines 1864--1892
  [] 
  []
 
@@ -832,19 +829,19 @@ Overfull \hbox (10.38162pt too wide) in paragraph at lines 1873--1901
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2040 
+l.2031 
         [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2041 \newpage
+l.2032 \newpage
                 [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2111 
+l.2108 
         [1]
-Overfull \hbox (18.16084pt too wide) in paragraph at lines 2156--2189
+Overfull \hbox (18.16084pt too wide) in paragraph at lines 2124--2157
  [] 
  []
 
@@ -852,80 +849,80 @@ Overfull \hbox (18.16084pt too wide) in paragraph at lines 2156--2189
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2190 
+l.2158 
         [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2196 \newpage
+l.2164 \newpage
                 [1]
-<sample_crime_log.png, id=813, 725.71124pt x 976.64874pt>
+<sample_crime_log.png, id=795, 725.71124pt x 976.64874pt>
 File: sample_crime_log.png Graphic file (type png)
 <use sample_crime_log.png>
-Package pdftex.def Info: sample_crime_log.png  used on input line 2208.
+Package pdftex.def Info: sample_crime_log.png  used on input line 2176.
 (pdftex.def)             Requested size: 375.81067pt x 505.75903pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2214 \begin{landscape}
+l.2182 \begin{landscape}
                          [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2214 \begin{landscape}
+l.2182 \begin{landscape}
                          [3 <./sample_crime_log.png>]
-<main_files/figure-latex/unnamed-chunk-50-1.pdf, id=824, 2890.8pt x 2023.56pt>
+<main_files/figure-latex/unnamed-chunk-50-1.pdf, id=806, 2890.8pt x 2023.56pt>
 File: main_files/figure-latex/unnamed-chunk-50-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-50-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-50-1.pdf  used on input line 2217.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-50-1.pdf  used on input line 2185.
 (pdftex.def)             Requested size: 585.3838pt x 409.76866pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2222 \end{landscape}
+l.2190 \end{landscape}
                        [4 <./main_files/figure-latex/unnamed-chunk-50-1.pdf>]
-<main_files/figure-latex/unnamed-chunk-52-1.pdf, id=833, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-52-1.pdf, id=815, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-52-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-52-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-52-1.pdf  used on input line 2226.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-52-1.pdf  used on input line 2194.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-53-1.pdf, id=834, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-53-1.pdf, id=816, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-53-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-53-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-53-1.pdf  used on input line 2234.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-53-1.pdf  used on input line 2202.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-55-1.pdf, id=835, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-55-1.pdf, id=817, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-55-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-55-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-55-1.pdf  used on input line 2242.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-55-1.pdf  used on input line 2210.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-56-1.pdf, id=838, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-56-1.pdf, id=820, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-56-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-56-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-56-1.pdf  used on input line 2250.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-56-1.pdf  used on input line 2218.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-58-1.pdf, id=841, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-58-1.pdf, id=823, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-58-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-58-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-58-1.pdf  used on input line 2258.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-58-1.pdf  used on input line 2226.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-59-1.pdf, id=846, 469.755pt x 325.215pt>
+<main_files/figure-latex/unnamed-chunk-59-1.pdf, id=828, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-59-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-59-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-59-1.pdf  used on input line 2266.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-59-1.pdf  used on input line 2234.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<main_files/figure-latex/unnamed-chunk-61-1.pdf, id=851, 722.7pt x 722.7pt>
+<main_files/figure-latex/unnamed-chunk-61-1.pdf, id=833, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-61-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-61-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-61-1.pdf  used on input line 2274.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-61-1.pdf  used on input line 2242.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 
-LaTeX Warning: Float too large for page by 30.3137pt on input line 2278.
+LaTeX Warning: Float too large for page by 30.3137pt on input line 2246.
 
 
-Overfull \hbox (40.14886pt too wide) in alignment at lines 2287--2345
+Overfull \hbox (40.14886pt too wide) in alignment at lines 2255--2313
  [] [] [] [] [] 
  []
 
@@ -933,7 +930,7 @@ Overfull \hbox (40.14886pt too wide) in alignment at lines 2287--2345
 pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2345 \end{longtable}
+l.2313 \end{longtable}
                        [5
 
 
@@ -941,49 +938,49 @@ l.2345 \end{longtable}
 pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [6]
 pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [7]
 pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [8 <./main_files/figure-latex/unnamed-chunk-52-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.9}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [9 <./main_files/figure-latex/unnamed-chunk-53-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.10}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [10 <./main_files/figure-latex/unnamed-chunk-55-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [11 <./main_files/figure-latex/unnamed-chunk-56-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [12 <./main_files/figure-latex/unnamed-chunk-58-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [13 <./main_files/figure-latex/unnamed-chunk-59-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.14}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2413 \begin{landscape}
+l.2381 \begin{landscape}
                         \begin{table}[H] [14 <./main_files/figure-latex/unnamed-chunk-61-1.pdf>]
-Overfull \hbox (34.74161pt too wide) in paragraph at lines 2419--2447
+Overfull \hbox (34.74161pt too wide) in paragraph at lines 2387--2415
  [] 
  []
 
@@ -991,11 +988,11 @@ Overfull \hbox (34.74161pt too wide) in paragraph at lines 2419--2447
 pdfTeX warning (ext4): destination with the same identifier (name{page.15}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2448 \end{landscape}
+l.2416 \end{landscape}
                        [15
 
 ]
-Overfull \hbox (49.88286pt too wide) in paragraph at lines 2456--2493
+Overfull \hbox (49.88286pt too wide) in paragraph at lines 2424--2461
  [] 
  []
 
@@ -1003,7 +1000,7 @@ Overfull \hbox (49.88286pt too wide) in paragraph at lines 2456--2493
 pdfTeX warning (ext4): destination with the same identifier (name{page.16}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2495 \end{document}
+l.2463 \end{document}
                       [16
 
 ] (./main.aux)
@@ -1011,10 +1008,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 2B47581746804DA260800843E2AE7CC5;5682.
  ) 
 Here is how much of TeX's memory you used:
- 17564 strings out of 480260
- 296910 string characters out of 5893012
- 686245 words of memory out of 5000000
- 34896 multiletter control sequences out of 15000+600000
+ 17953 strings out of 480260
+ 302623 string characters out of 5893012
+ 699562 words of memory out of 5000000
+ 35290 multiletter control sequences out of 15000+600000
  616090 words of font info for 134 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  108i,15n,106p,1397b,499s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1112,10 +1109,10 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (63 pages, 1237198 bytes).
+Output written on main.pdf (63 pages, 1235782 bytes).
 PDF statistics:
- 1060 PDF objects out of 1200 (max. 8388607)
- 919 compressed objects within 10 object streams
+ 1042 PDF objects out of 1200 (max. 8388607)
+ 901 compressed objects within 10 object streams
  218 named destinations out of 1000 (max. 500000)
  347 words of extra memory for PDF output out of 10000 (max. 10000000)
 
