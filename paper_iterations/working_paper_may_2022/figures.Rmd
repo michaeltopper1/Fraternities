@@ -130,7 +130,7 @@ gridExtra::grid.arrange(week_before_after_graph, left = textGrob("Coefficient Es
 ```
 ```{=latex}
 \caption{Coefficient Estimates Including a Week Before and Week After Indicator \label{week_before_after}}
-\textit{Note:} The x-axis represents three periods: the week before a moratorium, the moratorium itself, and the week after the moratorium. Indicators for week before and week after are added to specification (2) from Table \ref{main_table}. Controls include holiday, spring semester, day of the week, football game-days, and university-by-academic-year. Standard errors clustered by university. Standard errors are clustered by university. Weekends represent Fridays, Saturdays, and Sundays. Weekdays represent Mondays-Thursdays. Errorbars represent 95\% confidence intervals.
+\textit{Note:} The x-axis represents three periods: the week before a moratorium, the moratorium itself, and the week after the moratorium. Indicators for week before and week after are added to specification (2) from Table \ref{main_table}. Controls include holiday, spring semester, day of the week, football game-days, and university-by-academic-year. Standard errors are clustered by university. Weekends represent Fridays, Saturdays, and Sundays. Weekdays represent Mondays-Thursdays. Errorbars represent 95\% confidence intervals.
 \end{figure}
 ```
 
