@@ -2,7 +2,7 @@
 title: "Journal Submission Fee Request: The Effect of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults"
 author: "Michael Topper"
 output: pdf_document
-date: '2022-06-17'
+date: "`r Sys.Date()`"
 linkcolor: 'blue'
 ---
 
@@ -16,11 +16,11 @@ I exploit variation in timing from 44 temporary university-wide halts on all fra
 
 # Project Objective
 
-The objective of this project is to be a published journal article. It will useful to have a journal article on my resume for when I am applying to academic jobs in Fall 2023. Moreover, this will be a chapter in my disseration.
+The objective of this project is to be a published journal article. It will useful to have a journal article on my resume for when I am applying to academic jobs in Fall 2023. Moreover, this will be a chapter in my dissertation.
 
 # Proposal Narrative
 
-Please see the most recent draft of the working paper which can be found [here](https://github.com/michaeltopper1/Fraternities/blob/master/paper_iterations/working_paper_may_2022/main.pdf) for all details on the methodolgy.
+Please see the most recent draft of the working paper which can be found [here](https://github.com/michaeltopper1/Fraternities/blob/master/paper_iterations/working_paper_may_2022/main.pdf) for all details on the methodology.
 
 # Schedule of Project
 
@@ -28,7 +28,7 @@ This project has been completed and is now awaiting journal submission.
 
 # Detailed Budget
 
-The budget for this proposal is **$100.00.** It is a one-time payment for the journal submission fee at the Review of Economics and Statistics. It will be paid at soonest convenience to the Economics Department, although a proposed date is **Tuesday, June 21, 2022.**
+The budget for this proposal is **$150.00.** It is a one-time payment for the journal submission fee at the Journal of Human Resources. It will be paid at soonest convenience to the Economics Department, although a proposed date is **Tuesday, July 5, 2022.**
 
 
 
