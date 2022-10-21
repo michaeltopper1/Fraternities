@@ -40,14 +40,14 @@ es_sex_14 <- ifc::reghdfe(es_14, "sexual_assault_per25", explanatory_vars_14, fi
 alc_14_prepvalue <- car::linearHypothesis(es_alc_14,
                       c("beta_lead_2 =0",
                         "beta_lead_3 =0",
-                        "beta_lead_4 =0")) %>% broom::tidy() %>% 
+                        "beta_lead_4 =0")) %>% broom::tidy() %>%
   slice(2) %>% pull(3)
 
 
 sex_14_prepvalue <- car::linearHypothesis(es_sex_14,
                       c("beta_lead_2 =0",
                         "beta_lead_3 =0",
-                        "beta_lead_4 =0")) %>% broom::tidy() %>% 
+                        "beta_lead_4 =0")) %>% broom::tidy() %>%
   slice(2) %>% pull(3)
 
 # car::linearHypothesis(es_alc_14,
