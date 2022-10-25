@@ -15,6 +15,12 @@ if (!exists("daily_crime_weekdays")){
   daily_crime_weekdays <- read_csv("created_data/xmaster_data/daily_panel_weekdays.csv") 
 }
 
+daily_crime <- daily_crime %>% 
+  mutate(day_of_week_fe = lubridate::wday(date)) 
+daily_crime_weekends <- daily_crime_weekends %>% 
+  mutate(day_of_week_fe = lubridate::wday(date)) 
+daily_crime_weekdays <- daily_crime_weekdays %>% 
+  mutate(day_of_week_fe = lubridate::wday(date)) 
 ## for bootstrapping
 # set seed via dqset.seed for boot_algo = "R" & Rademacher, Webb & Normal weights
 dqrng::dqset.seed(2352342)
@@ -25,9 +31,9 @@ explanatory_vars <- c("treatment")
 
 
 # fixed effects for daily_level -------------------------------------------
-fixed_effects_1 <- c("day_of_week", "academic_year", "spring_semester", "university", "holiday", "game_occurred")
-fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
-fixed_effects_3 <- c("day_of_week", "university_by_academic_year_by_semester", "holiday", "game_occurred")
+fixed_effects_1 <- c("day_of_week_fe", "academic_year", "spring_semester", "university", "holiday", "game_occurred")
+fixed_effects_2 <- c("day_of_week_fe", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
+fixed_effects_3 <- c("day_of_week_fe", "university_by_academic_year_by_semester", "holiday", "game_occurred")
 
 
 daily_fixed_effects = list(fixed_effects_1, fixed_effects_2, fixed_effects_3)
