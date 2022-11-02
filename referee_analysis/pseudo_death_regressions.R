@@ -97,10 +97,17 @@ gof_mapping <- ifc::gof_mapping() %>%
   select(-fmt) %>% 
   mutate(fmt = ifelse(raw == "nobs", 0, 3)) %>% 
   add_row(raw = "mean", clean = "Mean of Dependent Variable", fmt = 3, .after = 1)
-panelsummary(list(alc_pseudo, alc_pseudo_weekdays, alc_pseudo_weekends),
+
+
+pseudo_death <- panelsummary(list(alc_pseudo, alc_pseudo_weekdays, alc_pseudo_weekends),
              list(sex_pseudo, sex_pseudo_weekdays, sex_pseudo_weekends),
              collapse_fe = T, stars = T, 
              panel_labels = c("Panel A: Alcohol Offenses", "Panel B: Sexual Assaults"),
              coef_map = c("treatment" = "64-Day Death Period"),
              gof_map = gof_mapping,
-             mean_dependent = T)
+             caption = "\\label{pseudo_death}The Effect of a Fraternity Death on Never-treated Universities",
+             mean_dependent = T,
+             italic = T,
+             bold = F) %>% 
+  kableExtra::  footnote(list("Estimates are obtained using OLS. The 64-Day Death Period treatment variable is an indicator equal to 1 when there is a fraternity-related death in a university, but no moratorium. There are 15 of these universtities.",
+                              "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
