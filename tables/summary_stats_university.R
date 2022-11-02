@@ -47,11 +47,11 @@ university_characteristics <- daily_crime %>%
               add_rows = moratorium_rows , output = "data.frame") %>%
   mutate(across(-c(1), ~ifelse(row_number() == 1 | row_number() == 2, scales::comma(as.numeric(.)), .))) %>% 
   add_row(` ` = paste0("Fraction IFC Fraternity", footnote_marker_alphabet(1)),
-          `Mean` =  sprintf("%.3f",mean(frac_ifc$ifc_frac, na.rm = T)),
-          `SD` = sprintf("%.3f",sd(frac_ifc$ifc_frac, na.rm = T)),
-          `Median` =  sprintf("%.3f",median(frac_ifc$ifc_frac, na.rm = T)), 
-          `Min` = sprintf("%.3f",min(frac_ifc$ifc_frac, na.rm = T)), 
-          `Max` =sprintf("%.3f",max(frac_ifc$ifc_frac, na.rm = T)),
+          `Mean` =  sprintf("%.3f",mean(frac_ifc$ifc_frac_updated, na.rm = T)),
+          `SD` = sprintf("%.3f",sd(frac_ifc$ifc_frac_updated, na.rm = T)),
+          `Median` =  sprintf("%.3f",median(frac_ifc$ifc_frac_updated, na.rm = T)), 
+          `Min` = sprintf("%.3f",min(frac_ifc$ifc_frac_updated, na.rm = T)), 
+          `Max` =sprintf("%.3f",max(frac_ifc$ifc_frac_updated, na.rm = T)),
           .before = 12) %>% 
   mutate(across(-c(1), ~ifelse(row_number() == 1 | row_number() == 2, str_replace(., ".\\d\\d$", ""), .))) %>% 
   kbl(digits = 2, booktabs = T, 
@@ -66,5 +66,5 @@ university_characteristics <- daily_crime %>%
   pack_rows("Panel C: Moratorium Characteristics", 15, 16, bold = T, italic = F, latex_gap_space = "0.5cm") %>% 
   footnote("Offenses are per-25000 students enrolled per-academic calendar day. Length of moratorium statistics are in academic-calendar days. Number of moratoriums refers to number of moratoriums only within the 2014-2019 time period. Some schools may or may not have had moratoriums in periods before or after the time period of analysis. Only a subset of races were chosen, and hence, the fractions do not sum to 1 in the table. SAT Math 75th Percentile and SAT Reading 75th Percentile correspond to the 75th percentile SAT score for an admitted student. A perfect score is 800, while an average score is approximately 500. Fraction Private refers to the fraction of universities that are private universities.",
            threeparttable = T,
-           alphabet = "Fraction of students enrolled in IFC fraternity is based on 33 of 37 universities information due to availability of the data.") %>% 
+           alphabet = "The number of students in an IFC fraternity is based on the most recent number from 2014-2019. However, in the case of 4 univerisities, counts had to be obtained from year 2022 due to lack of data availability within departments. Note that IFC fraternity populations do not change substantially year-to-year.") %>% 
   kable_styling(latex_options = "HOLD_position", font_size = 11)

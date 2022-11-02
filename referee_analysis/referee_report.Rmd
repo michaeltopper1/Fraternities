@@ -1,0 +1,146 @@
+---
+title: "Referee Notes"
+output: pdf_document
+date: "2022-10-31"
+linkcolor: blue
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{xcolor}
+- \usepackage{subfig}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+# Referee Report
+
+## Referee #1
+
+
+To-do:
+
+*	Specify whether the CSS data for liquor law violations is arrests or disciplinary actions.
+
+*	Wants regressions on both liquor law violations and disciplinary actions for “additional insights” only. 
+
+In the CSS data, I am using liquor law disciplinary actions. To touch on this point, here is arrests in Table \ref{css_arrests}. There does not appear to be any effect for arrests.
+
+
+```{r, echo = F}
+source("referee_analysis/css_arrests.R")
+```
+
+
+## Referee #2
+
+To-do:
+
+*	This referee is particularly concerned about whether the results are strong enough to warrant publication in a good journal.
+    + Bring up good point that the CI are very large, and therefore, we cannot actually say whether or not these effects are large, since we can only rule out very small effects.
+* Referee believes that the question seems a little obvious. Imposing restrictions on events with alcohol will lead to less alcohol. I think this is a stupid comment and I motivated this in the beginning….but maybe need to really push the fact that kids can still just drink whenever they want..as long as they don’t get caught. 
+*	Wants a couple of new wants to improve precision:
+    + Weight by total enrollment or undergraduate enrollment (can do both).
+    + To interact the treatment variable with the share of students who are in IFC fraternities. 
+    
+    
+To improve precision, I have weighted the regressions by total enrollment. I have also done undergraduate enrollment, but the results are almost identical. **I personally do not like this**. While the main regressions look nice and a the effects marginally sharper, I don't think the trade-off here is worth it. The event studies end up looking less effective (see Figures \ref{es_alc_14_g} and \ref{es_sex_14_g}). While they still pass the joint-F test, I think this can muddy the results and people's overall view of the paper. However, as shown in Table \ref{main_table}, the results for sexual assaults get a little stronger, but they still really don't hold up with the event study. Not really sure what to do here. 
+
+Moreover, this referee also wanted me to break down the results by share of IFC in the university. In particular, they wanted me to put an interaction term (IFCShare * Moratorium) in my main specification. I cannot do this because I do not have a panel of all IFC fraternities. I should have specified this in the paper, but I really only have the most recent estimate. Hence, because I only have a cross section of this data, this would lead to multicollinearity in the regressions. 
+
+As an alternative, in Tables \ref{alc_ifc_quantile} and \ref{sex_ifc_quantile}, I used quantiles of shares of IFC population as I did in the paper with university size. There does not appear to be anything worth writing about here. I think the main problem is that there are so few schools to really identify off of. I can split into halves or thirds...thirds didn't do anything and halves seems "too large" for hetero analysis. Leaving it up for Kevin.
+
+## Referee #3
+
+To-do:
+
+*	Touch upon the death factor misconstruing the actual effect of the moratorium earlier.
+*	Clarify what is going on in Appendix Figure C7 in regards to the death/moratorium. Referee #4 had a good suggestion on how to go about this.
+    + Create a greater spotlight on this issue, even if it weakens the results.
+*	To better Table 7, the mean of the dependent variable would be helpful for the reader. 
+*	Wanted some sort of progression over time of the moratorium…similar to what I did before per-Kevin’s request which Heather called “reading tea-leaves”.
+    +	This is probably the most difficult thing to get at. How can we see how the moratorium progresses over time?
+    +	They want to know some way to inform the optimal length and whether we would expect any benefit from a permanent ban on alcohol at these events.
+
+
+
+## Referee #4
+
+*	Interacting the treatment with the share of IFC fraternities.
+*	Wants to know whether a death causes an effect absent treatment. Using a 64 average pseudo treatment with the never-treated-but-death group. 
+*	Representativeness of sample in context of Fraternity/Sorority life universe – what is a typical share and what is my share?
+    +	This is extremely tough to get at…might be some statistics online or maybe the IFC has some? The IFC would never give me their data…or so I think.
+*	Condense 3.1 and 3.2 by moving some of the material to the appendix.
+
+Given that two referees wanted to see the treatment and share of IFC fraternities, I reckon this is an important point that I should maybe find something else to do rather than just the shitty quantile stuff (perhaps interpolation? Although interpolation is hard when there is only 1 observation).
+
+Table \ref{pseudo_death} shows the effect of a death in the pseudo-universities. I like this recommendation quite a lot, and luckily, there doesn't appear to be any effect of death in the university, even when giving a pseudo-64 treatment.
+
+I can't really speak to the representativeness of the sample for the IFC chapters. Any idea on how to do this? There is no database. I've asked the NIC for this information and they claim that they do not have it. 
+
+```{r event_study}
+source("referee_analysis/event_study_weighted.R")
+```
+
+```{r main_regressions}
+source("referee_analysis/regressions_main_table_weighted.R")
+```
+
+```{r}
+source("referee_analysis/regressions_ifc_fraction.R")
+```
+
+```{r}
+source("referee_analysis/pseudo_death_regressions.R")
+```
+
+
+\newpage
+
+## Figures
+
+```{r, fig.cap="\\label{es_alc_14_g}Event study for alcohol offenses weighted by total enrollment."}
+es_alc_14_g
+```
+
+```{r, fig.cap="\\label{es_sex_14_g}Event study for sexual assault offenses weighted by total enrollment."}
+es_sex_14_g
+```
+
+
+## Tables
+
+```{r}
+css_arrests %>% 
+  landscape()
+```
+
+```{r}
+main_table
+```
+
+```{r}
+alc_ifc_quantile
+```
+
+```{r}
+sex_ifc_quantile
+```
+
+```{r}
+pseudo_death
+```
+

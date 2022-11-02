@@ -20,6 +20,8 @@ clery_discipline <- read_csv("created_data/clery_act/discipline.csv")
 
 clery_crime <- read_csv("created_data/clery_act/crime.csv")
 
+clery_arrests <- read_csv("created_data/clery_act/arrests_liquor.csv")
+
 closure_spreadsheet <- readxl::read_excel("data/closure_spreadsheet_final_2019.xlsx") %>% 
   janitor::clean_names() %>% 
   select(university, starts_with("reason"), starts_with("university_enacted"))
@@ -29,9 +31,11 @@ closure_spreadsheet <- readxl::read_excel("data/closure_spreadsheet_final_2019.x
 all_crime <- yearly_crime %>% 
   left_join(clery_discipline) %>% 
   left_join(clery_crime) %>% 
-  left_join(closure_spreadsheet)
+  left_join(closure_spreadsheet) %>% 
+  left_join(clery_arrests)
 
-
+all_crime %>% 
+  colnames()
 
 # creating totals for clery act crimes so that i can compare with  --------
 
@@ -49,12 +53,12 @@ all_crime <- all_crime %>%
   mutate(clery_oncampus_liquor = oncampus_liquor) %>% 
   mutate(residencehall_sexual_assault = residencehall_rape + residencehall_fondl) %>% 
   mutate(across(starts_with("clery_"), ~ (./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
+  mutate(across(starts_with("liquor"), ~ (./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
   mutate(across(c(residencehall_sexual_assault, residencehall_drug, residencehall_liquor), ~ (./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
   mutate(across(c(sexual_assault, alcohol_offense, robbery_burglary, drug_offense), ~ (./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
   mutate(across(c(noncampus_liquor, noncampus_drug, noncampus_rape), ~(./total_enrollment) * 25000, .names = "{.col}_per25")) %>% 
   mutate(across(clery_offcampus_sexual_assault, ~(./total_enrollment) * 25000, .names = "{.col}_per25"))
   
-
 
 
 # changing to groupings of reasons ----------------------------------------
