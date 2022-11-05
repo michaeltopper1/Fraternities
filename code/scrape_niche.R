@@ -93,7 +93,7 @@ link <- "https://www.niche.com/colleges/search/best-greek-life-colleges/?page="
 for (i in 1:pages){
   print(i)
   Sys.sleep(10)
-  page <- read_html(paste0(link,1))
+  page <- read_html(paste0(link,i))
   if (i == 1) {
     top_universities <- page %>% 
       html_elements(".search-result__title-wrapper") %>% 
@@ -113,9 +113,7 @@ for (i in 1:pages){
       bind_rows(top_universities_add)
   }
 }
-httr::GET("https://www.niche.com/colleges/search/best-greek-life-colleges/?page=1") %>% 
-  read_html()
-polite::bow("https://www.niche.com/colleges/search/best-greek-life-colleges/?page=1")
-write_csv(top_100_2022, "data/top_100_niche_frat.csv")
+
+write_csv(top_universities, "data/top_100_niche_frat_update.csv")
 moratorium_schools <- ifc::moratorium_schools()
   
