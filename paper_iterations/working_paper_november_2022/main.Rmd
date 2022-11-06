@@ -1,0 +1,142 @@
+---
+title: "The Effect of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults"
+subtitle: ""
+author: Michael Topper^[Department of Economics, University of California Santa Barbara, 2017 North Hall, Santa Barbara, CA (michaeltopper@ucsb.edu). I would like to thank Heather Royer, Kevin Schnepel, Dick Startz, Kelly Bedard, Clément de Chaisemartin, Toshio Ferrazares, Anna Jaskiewicz, and the members of the UCSB 290 Applied Research Group for their advice and feedback on various drafts of this paper. Special thanks to Terry Cheng, all public records officials, fraternity and sorority life advisors, and police department officials who assisted me in collecting the data used in this paper. All errors are my own.]
+date: "Last Updated: `r Sys.Date()`"
+output: 
+  pdf_document:
+    number_sections: true
+    extra_dependencies: ["flafter"]
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage{bbm} ##for indicator
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage{indentfirst}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \usepackage{placeins}
+- \floatplacement{figure}{H}
+linkcolor: blue
+bibliography: "references.bib"
+link-citations: yes
+nocite: |
+  @kaplandata, @ucrbook, @cameron_bootstrap-based_2008
+abstract: I exploit variation in timing from 44 temporary university-wide halts on all fraternity activity with alcohol (*moratoriums*) across 37 universities over 2014-2019. I construct a novel data set, merging incident-level crime logs from university police departments to provide the first causal estimates of the effect of moratoriums on reports of alcohol offenses and sexual assaults. In particular, I find robust evidence that moratoriums decrease alcohol offenses by 26%. Additionally, I find suggestive evidence that moratoriums decrease reports of sexual assault on the weekends by 29%. However, I do not find evidence of long-term changes once the moratorium is lifted. 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(kableExtra)
+library(bookdown)
+library(modelsummary)
+library(fixest)
+library(grid)
+library(gridExtra)
+library(patchwork)
+```
+
+<center>
+
+**JEL Codes:** I12, I28, K42
+
+</center>
+
+
+\newpage
+\pagenumbering{arabic}
+```{r, child = "paper_iterations/working_paper_may_2022/introduction.Rmd"}
+
+```
+
+```{r, child="paper_iterations/working_paper_may_2022/data.Rmd"}
+
+```
+
+```{r, child="paper_iterations/working_paper_may_2022/empirical_strategy.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/working_paper_may_2022/results.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/working_paper_may_2022/heterogeneity.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/working_paper_may_2022/conclusion.Rmd"}
+
+```
+
+\newpage
+# References
+
+<div id="refs"></div>
+
+
+\newpage
+```{r, child = "paper_iterations/working_paper_may_2022/figures.Rmd", fig.pos="H"}
+
+```
+
+
+\newpage
+```{r, child = "paper_iterations/working_paper_may_2022/tables.Rmd", fig.pos = "H"}
+
+```
+
+
+
+\newpage
+# Appendix {-}
+```{=tex}
+\appendix
+\renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{A\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+```{r, child = "paper_iterations/working_paper_may_2022/appendix_twfe.Rmd", fig.pos='H' }
+
+```
+
+
+\newpage
+```{=tex}
+\renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+```{r, child = "paper_iterations/working_paper_may_2022/appendix_spillover.Rmd", fig.pos='H' }
+
+```
+
+```{=tex}
+\renewcommand{\thefigure}{C\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{C\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{C\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+
+\newpage
+```{r, child = "paper_iterations/working_paper_may_2022/appendix_figures.Rmd", fig.pos='H' }
+
+```
+
+
