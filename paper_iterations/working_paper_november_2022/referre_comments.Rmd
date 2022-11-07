@@ -1,0 +1,142 @@
+---
+title: "Referee Comments"
+output: 
+  pdf_document:
+    number_sections: true
+    extra_dependencies: ["flafter"]
+indent: true
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage{bbm} ##for indicator
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage{framed}
+- \usepackage{afterpage}
+- \usepackage{geometry}
+- \usepackage{indentfirst}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage{rotating}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \usepackage{placeins}
+- \floatplacement{figure}{H}
+linkcolor: blue
+bibliography: "references.bib"
+link-citations: yes
+nocite: |
+  @kaplandata, @ucrbook, @cameron_bootstrap-based_2008
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(kableExtra)
+library(bookdown)
+library(modelsummary)
+library(fixest)
+library(grid)
+library(gridExtra)
+library(patchwork)
+```
+
+# Response to comments from Referee #1
+
+## Suggestion for Improvement
+\begin{framed}
+
+\noindent In the section about spillover analysis using Campus Safety and Security (CSS) data, the author has not specified if they used arrests for liquor law violations, disciplinary actions for liquor law violations, or some (weighted) average of both. Under Clery Act 1990, both the number of arrests and the number of disciplinary actions in residence halls (and elsewhere) are collected and reported by colleges and universities. However, the author has failed to specify which of the two they have used in this section of the paper. Not only should the author clearly specify which of these two variables is being used for the analysis in this section, but I would suggest that the author run separate analyses using each of the two variables (the number of arrests and disciplinary actions due to liquor law violations in residence halls) so that the reader can get some additional insights.
+\end{framed}
+
+This is an excellent suggestion as the delineation between disciplinary actions and arrests is important for interpretation, clarity, and replication purposes. In the reviewed draft, the Campus Safety and Security (CSS) analysis uses disciplinary actions for liquor law violations and excludes arrests. As suggested, I have extended the analysis to include both disciplinary actions and arrests for liquor law violations in Appendix B and updated the final two paragraphs of Section 5.2 with additional commentary. Both of these extensions are further explained in the following paragraphs.
+
+In Table \ref{css_arrests} (Appendix B: Table B1 in the paper), I delineate between disciplinary actions and arrests in the CSS data for alcohol offenses by adding Columns 4 and 5 which splits all reports and residence hall incidents respectively. Columns 4 and 5 show that there is little evidence of arrests changing at universities, regardless of the location. In particular, for each additional moratorium day in a calendar year, alcohol arrests per-25000 enrolled students do not exhibit any statistically significant decrease and the point estimates are relatively small when compared to disciplinary actions.
+
+Given the lack of significance and small point estimates in the arrest columns, I update the final two paragraphs of Section 5.2 to address the delineation between arrests and disciplinary actions and save the additional analysis of arrests for Appendix B. However, I am happy to move the analysis to the main paper upon editor's request. The following is an excerpt from the updated Section 5.2 in the main paper:
+
+> As the second set of analysis, I analyze the CSS data to examine if students substitute partying at fraternity houses to different on-campus locations during moratoriums. The CSS data contains all disciplinary actions and arrests corresponding to liquor law violations in addition to reports of sexual assaults that occur in a calendar-year...
+
+\noindent The extension continues in the final paragraph where I more directly assert the findings:
+
+> Using the CSS data, there is evidence that moratoriums move drinking from fraternity houses to residence halls. Residence halls show a 0.270 *increase* in yearly disciplinary actions of alcohol offenses for each additional moratorium day in a calendar-year. Interestingly, this is accompanied by a 0.033 *decrease* in yearly residence hall sexual assault reports.
+
+\noindent Note that I also update the percentages in the sentence "on average, the Daily Crime Logs contain approximately 30% and 50% of the yearly alcohol offenses and sexual assaults reported in the CSS data respectively" to account for the addition of arrests in the CSS data analysis. 
+
+Finally, the text of Appendix B more closely describes the CSS data used and the corresponding results.
+
+\newpage
+
+# Response to comments from Referee #2
+
+## Strength of Results
+
+## Suggestion #1: Weighting 
+
+\begin{framed}
+To weight by total enrollment (or perhaps undergraduate enrollment if you feel that is more appropriate). Larger schools should have less residual variation, so weighting by size should reduce standard errors. The variance in school size should be large enough for this to make a difference.
+\end{framed}
+
+Thank you for the thoughtful suggestion on how to tighten/strengthen the main results of the paper. In Table \ref{main_table} (Table BLANK in the main paper) I have included a column for the main specification weighted by total enrollment (Column 3). As recommended, I have also explored weighting by undergraduate enrollment which gives similar results to total enrollment. However, I hesitate to include weights as the default for two main reasons.
+
+First, the weights, unfortunately, do not tighten the results to a significant degree. Columns 2 and 3 of Table \ref{main_table} show the preferred specification, with the latter weighted by total enrollment. As displayed in Panel A, the standard errors and point estimates are nearly identical for alcohol offenses, exhibiting a 26.5% and 27.8% decrease from the mean respectively. Similarly in Panel B, sexual assaults exhibit a 20% decrease (statistically insignificant) and a 16% decrease (10% significance) in unweighted and weighted estimations. While the weighting enhances the sexual assault results to a small degree, I would prefer to be as conservative as possible, especially when discussing the effect alcohol offenses, which is the strongest and most robust result of the paper.
+
+Second, while I am pleased that the results are consistent, and therefore the model likely specified well, I am apprehensive that weighting all specifications will invite skepticism of the results. Hence, I believe that including the main specification, weighted and unweighted as shown in Columns 2 and 3, is a great solution to convince readers of the results and, in addition, follows the empirical suggestion of reporting both estimates as outlined in @solon_what_2015. However, upon request, I am more than happy to report the main results (weighted) from Table \ref{main_table} in an online appendix table. 
+
+## Suggestion #2: Leverage IFC Variation
+
+\begin{framed}
+To interact the treatment variable with the share of students who are in IFC fraternities. Perhaps I'm missing something, but I would expect the effect size to be essentially proportional to the proportion in IFC fraternities. To be clear, I'm suggesting replacing Moratorium (in equation 1) with Moratorium * Fraction\_IFC
+\end{framed}
+
+\newpage
+
+# Response to comments from Referee #4
+
+## Major Suggestion 1: Leverage IFC Variation
+\begin{framed}
+Currently, the main specification treats all moratoriums the same. However, presumably a moratorium at a school with 1.3\% of the body in IFC fraternities is less impacted by a moratorium than one with 10.2\% IFC membership. Can you provide heterogeneity analysis that probes this difference in intensity of treatment? This could be accomplished by interacting moratorium with share IFC or looking at quartiles of share IFC etc. 
+\end{framed}
+
+## Major Suggestion 2: Separating Effect of Triggering Event
+
+\begin{framed}
+One interesting result is that impacts of moratoriums seem larger 
+following a student death (Figure 8). This begs the question of whether the incident (death) 
+changes behavior for a short time, or whether the moratorium changes behavior. I would like to 
+see whether a death without a moratorium causes a change in alcohol and sexual assault 
+violations. Can you test this hypothesis by considering the 64 days (avg moratorium length) after 
+these deaths as treated? 
+Note – this suggestion is distinct from the test conducted in Appendix C7. I want to know 
+whether a death causes a treatment effect absent a moratorium. Your test in C7 shows a related 
+but separate idea—that moratoriums still cause a treatment effect when compared to colleges that 
+have deaths but no moratoriums. Given that a large portion of the observations for a school with 
+only a death would still be considered “untreated” (days prior to the event or days after the 
+treatment period ended) even if it had a moratorium, the test in C7 may be a weak test, and I 
+would encourage you to use more conservative language in describing the results. 
+\end{framed}
+
+## Major Suggestion 3: Representativeness
+
+\begin{framed}
+It would be helpful to place the sample in context relative to the Greek-life ecosystem to comment about generalizability. For instance, what is a typical share IFC across all 4-year US colleges and universities and how does this differ from the sample? Some small private colleges have very large Greek presence in percentage terms (e.g. Depauw University is ~ 70% Greek), but these schools are largely unrepresented in the sample. Would we expect results to generalize etc.? 
+\end{framed}
+
+
+\newpage
+# References
+
+<div id="refs"></div>
+
+
+\newpage
+```{r, child = "paper_iterations/working_paper_november_2022/referee_tables.Rmd", fig.pos='H' }
+
+```
+
