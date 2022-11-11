@@ -60,6 +60,13 @@ alc_2 <- feols(alcohol_offense_per25 ~ treatment |
   cluster = "university", 
   data = daily_crime)
 
+alc_2_weighted <- feols(alcohol_offense_per25 ~ treatment | 
+                          day_of_week_fe + university_by_academic_year + 
+                          holiday + spring_semester + game_occurred,
+                        cluster = "university", 
+                        data = daily_crime,
+                        weights = daily_crime$total_enrollment)
+
 alc_3 <- feols(alcohol_offense_per25 ~ treatment | 
                  day_of_week_fe + university_by_academic_year_by_semester + 
                  holiday + game_occurred,
@@ -79,25 +86,11 @@ alc_5_weekday <- feols(alcohol_offense_per25 ~ treatment |
                          holiday + spring_semester + game_occurred,
                        cluster = "university", 
                        data = daily_crime_weekdays)
-## column 6 weekends preferred
-alc_6_weekend_weighted <- feols(alcohol_offense_per25 ~ treatment | 
-                         day_of_week_fe + university_by_academic_year + 
-                         holiday + spring_semester + game_occurred,
-                       cluster = "university", 
-                       data = daily_crime_weekends,
-                       weights = daily_crime_weekends$total_enrollment)
-
-## column 7 weekdays preferred
-alc_7_weekday_weighted <- feols(alcohol_offense_per25 ~ treatment | 
-                         day_of_week_fe + university_by_academic_year + 
-                         holiday + spring_semester + game_occurred,
-                       cluster = "university", 
-                       data = daily_crime_weekdays,
-                       weights = daily_crime_weekdays$total_enrollment)
 
 
-alc_main <- list(alc_1, alc_2, alc_3, alc_4_weekend, 
-                 alc_5_weekday, alc_6_weekend_weighted, alc_7_weekday_weighted)
+
+alc_main <- list(alc_1, alc_2, alc_2_weighted, alc_3, alc_4_weekend, 
+                 alc_5_weekday)
 
 alc_boot <- map(alc_main, ~boottest(., param = "treatment", clustid = "university", B = 1000))
 
@@ -116,6 +109,13 @@ sex_2 <- feols(sexual_assault_per25 ~ treatment |
                  holiday + spring_semester + game_occurred,
                cluster = "university", 
                data = daily_crime)
+
+sex_2_weighted<- feols(sexual_assault_per25 ~ treatment | 
+                 day_of_week_fe + university_by_academic_year + 
+                 holiday + spring_semester + game_occurred,
+               cluster = "university", 
+               data = daily_crime,
+               weights = daily_crime$total_enrollment)
 
 sex_3 <- feols(sexual_assault_per25 ~ treatment | 
                  day_of_week_fe + university_by_academic_year_by_semester + 
@@ -137,24 +137,8 @@ sex_5_weekday <- feols(sexual_assault_per25 ~ treatment |
                        cluster = "university", 
                        data = daily_crime_weekdays)
 
-## column 4 weekends preferred
-sex_6_weekend_weighted <- feols(sexual_assault_per25 ~ treatment | 
-                         day_of_week_fe + university_by_academic_year + 
-                         holiday + spring_semester + game_occurred,
-                       cluster = "university", 
-                       data = daily_crime_weekends,
-                       weights = daily_crime_weekends$total_enrollment)
 
-## column 5 weekdays preferred
-sex_7_weekday_weighted <- feols(sexual_assault_per25 ~ treatment | 
-                         day_of_week_fe + university_by_academic_year + 
-                         holiday + spring_semester + game_occurred,
-                       cluster = "university", 
-                       data = daily_crime_weekdays,
-                       weights = daily_crime_weekdays$total_enrollment)
-
-sex_main <- list(sex_1, sex_2, sex_3, sex_4_weekend, sex_5_weekday,
-                 sex_6_weekend_weighted, sex_7_weekday_weighted)
+sex_main <- list(sex_1, sex_2, sex_2_weighted, sex_3, sex_4_weekend, sex_5_weekday)
 
 sex_boot <- map(sex_main, 
                 ~boottest(., param = "treatment", clustid = "university", B = 1000))
@@ -172,10 +156,9 @@ main_table <- ifc::main_table(alc_main, last_panel = sex_main) %>%
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
-          `Model 4` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
-          `Model 5` = sprintf("%.3f",mean(daily_crime_weekdays$alcohol_offense_per25, na.rm = T)),
-          `Model 6` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
-          `Model 7` = sprintf("%.3f",mean(daily_crime_weekdays$alcohol_offense_per25, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 5` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
+          `Model 6` = sprintf("%.3f",mean(daily_crime_weekdays$alcohol_offense_per25, na.rm = T)),
           .before = 4) %>%
   add_row(term = "Wild Bootstrap P-Value",
           `Model 1` = sprintf("%.3f",alc_boot_pvalues[[1]]),
@@ -184,16 +167,14 @@ main_table <- ifc::main_table(alc_main, last_panel = sex_main) %>%
           `Model 4` = sprintf("%.3f",alc_boot_pvalues[[4]]),
           `Model 5` = sprintf("%.3f",alc_boot_pvalues[[5]]),
           `Model 6` = sprintf("%.3f",alc_boot_pvalues[[6]]),
-          `Model 7` = sprintf("%.3f",alc_boot_pvalues[[7]]),
           .before = 5) %>%
   add_row(term = "Mean of Dependent Variable",
           `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
           `Model 3` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
-          `Model 4` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
-          `Model 5` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
-          `Model 6` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
-          `Model 7` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
+          `Model 4` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 5` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
+          `Model 6` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
           .before = 9) %>%
   add_row(term = "Wild Bootstrap P-Value",
           `Model 1` = sprintf("%.3f",sex_boot_pvalues[[1]]),
@@ -202,24 +183,22 @@ main_table <- ifc::main_table(alc_main, last_panel = sex_main) %>%
           `Model 4` = sprintf("%.3f",sex_boot_pvalues[[4]]),
           `Model 5` = sprintf("%.3f",sex_boot_pvalues[[5]]),
           `Model 6` = sprintf("%.3f",sex_boot_pvalues[[6]]),
-          `Model 7` = sprintf("%.3f",sex_boot_pvalues[[7]]),
           .before = 10) %>%
   kbl(booktabs = T,
-      col.names = c(" ", "(1)", "(2)", "(3)", "(4)", "(5)", "(6)", "(7)"),
+      col.names = c(" ", "(1)", "(2)", "(3)", "(4)", "(5)", "(6)"),
       digits = 3,
       caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (OLS)", align = 'lccccc') %>%
   kable_styling(latex_options = "HOLD_position", font_size = 11) %>%
   pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>%
   pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>%
-  add_header_above(c(" " = 4, "Weekends" = 1, "Weekdays" = 1, "Weekends" = 1, "Weekdays" = 1), line = F) %>%
-  add_header_above(c(" " = 4, "Unweighted" = 2, "Weighted" = 2)) %>% 
-  add_header_above(c(" " = 4, "Specification (2)" = 4)) %>%
+  add_header_above(c(" " = 5, "Weekends" = 1, "Weekdays" = 1), line = F) %>%
+  add_header_above(c(" " = 5, "Specification (2)" = 2)) %>%
   row_spec(c(10),hline_after=TRUE) %>%
   # pack_rows("",11, 18, bold = F, italic = T, hline_before = T ) %>%
   # row_spec(5, italic = T) %>%
   column_spec(1, width = "8cm") %>%
   row_spec(c(18), hline_after =T) %>%
-  footnote(list("Estimates are obtained using OLS. Standard errors shown in parenthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by Cameron, Gelbach, and Miller (2008) in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Game Day controls consist of university football games within each university. Weekends include Friday-Sunday while Weekdays include Monday-Thursday. Specification (2) is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates. Significance stars correspond to clustered standard errors.",
+  footnote(list("Estimates are obtained using OLS. Standard errors shown in parenthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by Cameron, Gelbach, and Miller (2008) in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Game Day controls consist of university football games within each university. Weekends include Friday-Sunday while Weekdays include Monday-Thursday. Column 2 is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates. Column 3 is specification 2 weighted by total enrollment. Column 3 represents the only weighted specification. Significance stars correspond to clustered standard errors.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
 
 

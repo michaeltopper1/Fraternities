@@ -1,0 +1,42 @@
+---
+title: "Referee Tables"
+output: pdf_document
+fontsize: 11pt
+---
+
+<!-- ```{r, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- ``` -->
+
+\FloatBarrier
+
+# Tables
+
+```{r}
+source(here::here("referee_analysis/css_arrests.R"))
+```
+
+```{r}
+css_arrests %>% 
+  kableExtra::landscape()
+```
+
+```{r, cache = TRUE}
+source(here::here("referee_analysis/regressions_main_table_weighted.R"))
+```
+
+\begin{sidewaystable}
+```{r}
+main_table 
+```
+\end{sidewaystable}
+
+```{r}
+source(here::here("referee_analysis/regressions_ifc_fraction.R"))
+```
+
+```{r}
+ifc_share
+```
+

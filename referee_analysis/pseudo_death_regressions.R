@@ -55,24 +55,15 @@ explanatory_vars <- c("treatment")
 
 fixed_effects_2 <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
 
-daily_crime_nevertreated_pseudo %>% 
-  feols(alcohol_offense_per25 ~ treatment |
-          day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
-        cluster = ~university,
-        weights = NULL,
-        data = .)
 
 alc_pseudo <- ifc::reghdfe(daily_crime_nevertreated_pseudo, c("alcohol_offense_per25"),
-                           explanatory_vars, fixed_effects_2, "university",
-                           weights = daily_crime_nevertreated_pseudo$total_enrollment)
+                           explanatory_vars, fixed_effects_2, "university")
 
 alc_pseudo_weekends <- ifc::reghdfe(daily_crime_nevertreated_pseudo_weekends, c("alcohol_offense_per25"),
-             explanatory_vars, fixed_effects_2, "university",
-             weights = daily_crime_nevertreated_pseudo_weekends$total_enrollment)
+             explanatory_vars, fixed_effects_2, "university")
 
 alc_pseudo_weekdays <- ifc::reghdfe(daily_crime_nevertreated_pseudo_weekdays, c("alcohol_offense_per25"),
-             explanatory_vars, fixed_effects_2, "university",
-             weights = daily_crime_nevertreated_pseudo_weekdays$total_enrollment)
+             explanatory_vars, fixed_effects_2, "university")
 
 
 sex_pseudo <- ifc::reghdfe(daily_crime_nevertreated_pseudo, 
@@ -84,15 +75,13 @@ sex_pseudo_weekends <- ifc::reghdfe(daily_crime_nevertreated_pseudo_weekends,
              c("sexual_assault_per25"),
              explanatory_vars, 
              fixed_effects_2, 
-             "university",
-             weights = daily_crime_nevertreated_pseudo_weekends$total_enrollment)
+             "university")
 
 sex_pseudo_weekdays <- ifc::reghdfe(daily_crime_nevertreated_pseudo_weekdays, 
              c("sexual_assault_per25"),
              explanatory_vars, 
              fixed_effects_2, 
-             "university",
-             weights = daily_crime_nevertreated_pseudo_weekdays$total_enrollment)
+             "university")
 gof_mapping <- ifc::gof_mapping() %>% 
   select(-fmt) %>% 
   mutate(fmt = ifelse(raw == "nobs", 0, 3)) %>% 
@@ -109,5 +98,6 @@ pseudo_death <- panelsummary(list(alc_pseudo, alc_pseudo_weekdays, alc_pseudo_we
              mean_dependent = T,
              italic = T,
              bold = F) %>% 
-  kableExtra::  footnote(list("Estimates are obtained using OLS. The 64-Day Death Period treatment variable is an indicator equal to 1 when there is a fraternity-related death in a university, but no moratorium. There are 15 of these universtities.",
+  add_header_above(c(" " = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1)) %>% 
+  kableExtra::  footnote(list("Estimates are obtained using OLS. The dependent variable is measured as counts per-25000 enrolled students. Standard errors are clustered that the university leve. The 64-Day Death Period treatment variable is an indicator equal to 1 when there is a fraternity-related death in a university, but no moratorium. This analysis is exclusively for the 15 universities that underwent a fraternity-related death, but did not undergo a fraternity moratorium.",
                               "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)

@@ -44,13 +44,13 @@ reporting_table
 \end{landscape}
 
 ```{r}
-source(here::here(paste0("tables/regressions_main.R")))
+source(here::here("referee_analysis/regressions_main_table_weighted.R"))
 ```
-
+\begin{sidewaystable}
 ```{r}
 main_table
 ```
-
+\end{sidewaystable}
 ```{r}
 source(paste0(here::here("tables/regressions_spillovers_compare.R")))
 ```
@@ -89,3 +89,10 @@ source(here::here(paste0("tables/heteroeffects_uni_ifc.R")))
 ifc_uni_table
 ```
 
+```{r}
+source(here::here("referee_analysis/regressions_ifc_fraction.R"))
+```
+
+```{r}
+ifc_share
+```
