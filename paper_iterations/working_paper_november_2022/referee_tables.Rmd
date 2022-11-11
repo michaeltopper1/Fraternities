@@ -4,10 +4,11 @@ output: pdf_document
 fontsize: 11pt
 ---
 
-<!-- ```{r setup, include=FALSE} -->
+<!-- ```{r, include=FALSE} -->
 <!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
 <!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
 <!-- ``` -->
+
 \FloatBarrier
 
 # Tables
@@ -21,7 +22,7 @@ css_arrests %>%
   kableExtra::landscape()
 ```
 
-```{r}
+```{r, cache = TRUE}
 source(here::here("referee_analysis/regressions_main_table_weighted.R"))
 ```
 
@@ -30,3 +31,12 @@ source(here::here("referee_analysis/regressions_main_table_weighted.R"))
 main_table 
 ```
 \end{sidewaystable}
+
+```{r}
+source(here::here("referee_analysis/regressions_ifc_fraction.R"))
+```
+
+```{r}
+ifc_share
+```
+

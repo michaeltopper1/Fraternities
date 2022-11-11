@@ -5,7 +5,10 @@ editor_options:
   chunk_output_type: console
 ---
 
-
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
 # Spillover Analysis Using CSS Data \label{asection:spillovers}
 
 In this appendix, I use the Campus Safety and Security (CSS) data to indirectly analyze whether alcohol offenses and sexual assaults are being displaced to riskier areas during a moratorium. I compare the yearly aggregation of the Daily Crime Logs to the CSS data using a model that is less suited for a causal analysis due to the yearly aggregation of the CSS data. Therefore, the estimates in this appendix should be taken as speculative only. 
@@ -24,17 +27,18 @@ Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda_{t} + \epsilon_{u,t}
 
 ## Results
 
-Table \ref{clery_compare} shows the comparison of estimating Equation \ref{equation:appendix} with the Daily Crime Logs aggregated to the calendar-year level with the CSS data.^[This aggregation includes all calendar-year days rather than only academic-calendar days that were used in the main analysis.] The Daily Crime Logs show relatively consistent results with those found in Table \ref{main_table}; yearly averages of alcohol offenses per-25,000 enrolled students decrease by approximately 0.134 per additional calendar day with a moratorium and sexual assaults decrease by approximately 0.013.
+Table \ref{css_arrests} shows the comparison of estimating Equation \ref{equation:appendix} with the Daily Crime Logs aggregated to the calendar-year level with the CSS data.^[This aggregation includes all calendar-year days rather than only academic-calendar days that were used in the main analysis.] The Daily Crime Logs show relatively consistent results with those found in Table \ref{main_table}; yearly averages of alcohol offenses per-25,000 enrolled students decrease by approximately 0.134 per additional calendar day with a moratorium and sexual assaults decrease by approximately 0.013.
 
 Although the results using aggregated Daily Crime Logs are consistent with the findings in Table \ref{main_table}, the CSS data shows that residence halls experience a 0.270 *increase* in yearly liquor law disciplinary violations per-25,000 enrolled students and a 0.033 *decrease* in reports of sexual assault for each additional calendar-year-day with a moratorium (Column 3). Each of these estimates are significant at the 5% level. However, there is little evidence of an effect on liquor law arrests as shown in Columns 4 and 5. As discussed in Section \ref{section:spillover}, this supports the notion that if moratoriums displace dangerous alcohol-fueled behavior, they displace it to *less* risky areas.
 
 ```{r, echo = F, message = F, warning = F}
-source(paste0(here::here("tables/regressions_clery_dcl.R")))
+source(here::here("referee_analysis/css_arrests.R"))
 ```
-
+\newpage
 ```{r, echo = F, message = F, warning = F,fig.pos='H' }
-clery_compare %>% 
-  kable_styling(latex_options = "HOLD_position", font_size = 11)
+css_arrests %>% 
+  kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
+  kableExtra::landscape()
 ```
 
 

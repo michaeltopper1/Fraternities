@@ -40,14 +40,14 @@ es_sex_14 <- ifc::reghdfe(es_14, "sexual_assault_per25", explanatory_vars_14, fi
 alc_14_prepvalue <- car::linearHypothesis(es_alc_14,
                       c("beta_lead_2 =0",
                         "beta_lead_3 =0",
-                        "beta_lead_4 =0")) %>% broom::tidy() %>%
+                        "beta_lead_4 =0")) %>% 
   slice(2) %>% pull(3)
 
 
 sex_14_prepvalue <- car::linearHypothesis(es_sex_14,
                       c("beta_lead_2 =0",
                         "beta_lead_3 =0",
-                        "beta_lead_4 =0")) %>% broom::tidy() %>%
+                        "beta_lead_4 =0")) %>%
   slice(2) %>% pull(3)
 
 # car::linearHypothesis(es_alc_14,
@@ -184,17 +184,17 @@ alc_lag_f <- map_df(alc_es, ~car::linearHypothesis(.,
                                                    c("beta_lag_1 = 0",
                                                      "beta_lag_2 =0",
                                                      "beta_lag_3 =0",
-                                                     "beta_lag_4 =0")) %>% 
-                      broom::tidy()) %>% 
-  filter(if_all(everything(), ~!is.na(.)))
+                                                     "beta_lag_4 =0"))) %>% 
+  filter(if_all(everything(), ~!is.na(.))) %>% 
+  rename(p.value = `Pr(>Chisq)`)
 
 sex_lag_f <- map_df(sex_es, ~car::linearHypothesis(.,
                                                    c("beta_lag_1 = 0",
                                                      "beta_lag_2 =0",
                                                      "beta_lag_3 =0",
-                                                     "beta_lag_4 =0")) %>% 
-                      broom::tidy()) %>% 
-  filter(if_all(everything(), ~!is.na(.)))
+                                                     "beta_lag_4 =0")) ) %>% 
+  filter(if_all(everything(), ~!is.na(.))) %>% 
+  rename(p.value = `Pr(>Chisq)`)
 
 
 
@@ -237,6 +237,6 @@ long_run_effects <- ifc::main_table(list(es_alc_14,es_sex_14),
   column_spec(1, width = "8cm") %>% 
   row_spec(4, hline_after = T) %>% 
   row_spec(16, hline_after = T) %>% 
-  footnote(list("Point estimates of In Motratorium reflect the time 0 for the `multiple event' event studies similar to Figures 4 and 5 with four leads and four lags of 14-day bins. Each offense is defined as per-25,000 enrolled students. Standard errors are clustered at the university level. All periods are normalized by the 14-day period before the moratorium. Panel A represents the same coefficient estimates as Figures 4 and 5, while Panels B, C, and D represent subsets of the sample split by three quantiles. The three quantiles represent the 33rd, 66th, and 100th percentile of a moratorium length which correspond to [0-32], [33-59], and [60-541] academic calendar days of a moratorium respectively. Hence, if a university has a moratorium that lasts 30 academic calendar days, then it is included in Panel A. P-values are reported from joint F-test of the four lags. Fixed effects include day of the week, holiday, semester number, football game-day, and university-by-academic-year.",
+  footnote(list("Point estimates of In Moratorium reflect the time 0 for the `multiple event' event studies similar to Figures 4 and 5 with four leads and four lags of 14-day bins. Each offense is defined as per-25,000 enrolled students. Standard errors are clustered at the university level. All periods are normalized by the 14-day period before the moratorium. Panel A represents the same coefficient estimates as Figures 4 and 5, while Panels B, C, and D represent subsets of the sample split by three quantiles. The three quantiles represent the 33rd, 66th, and 100th percentile of a moratorium length which correspond to [0-32], [33-59], and [60-541] academic calendar days of a moratorium respectively. Hence, if a university has a moratorium that lasts 30 academic calendar days, then it is included in Panel A. P-values are reported from joint F-test of the four lags. Fixed effects include day of the week, holiday, semester number, football game-day, and university-by-academic-year.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
 

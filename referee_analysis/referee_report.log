@@ -1,14 +1,14 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.26)  31 OCT 2022 10:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.6)  11 NOV 2022 00:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **referee_report.tex
 (./referee_report.tex
-LaTeX2e <2022-06-01> patch level 5
-L3 programming layer <2022-09-28> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+LaTeX2e <2022-11-01>
+L3 programming layer <2022-11-02> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
 \c@section=\count186
@@ -20,7 +20,7 @@ File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \c@table=\count192
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
-\bibindent=\dimen138
+\bibindent=\dimen140
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2022/04/08 v2.17n AMS math features
 \@mathmargin=\skip49
@@ -30,10 +30,10 @@ Package: amstext 2021/08/26 v2.01 AMS text
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
-\ex@=\dimen139
+\ex@=\dimen141
 )) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen140
+\pmbraise@=\dimen142
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
@@ -54,7 +54,7 @@ LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
 LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen141
+\big@size=\dimen143
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \macc@depth=\count198
@@ -72,12 +72,12 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \column@=\count269
 \maxfields@=\count270
 \andhelp@=\toks18
-\eqnshift@=\dimen142
-\alignsep@=\dimen143
-\tagshift@=\dimen144
-\tagwidth@=\dimen145
-\totwidth@=\dimen146
-\lineht@=\dimen147
+\eqnshift@=\dimen144
+\alignsep@=\dimen145
+\tagshift@=\dimen146
+\tagwidth@=\dimen147
+\totwidth@=\dimen148
+\lineht@=\dimen149
 \@envbody=\toks19
 \multlinegap=\skip50
 \multlinetaggap=\skip51
@@ -148,8 +148,6 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 Package xcolor Info: Driver file: pdftex.def on input line 227.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
-\stockwidth=\dimen148
-\stockheight=\dimen149
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
@@ -237,7 +235,7 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \c@LT@chunks=\count282
 \LT@p@ftn=\toks25
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2022/03/10 v2.5f Tabular extension package (FMi)
+Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen174
 \ar@mcellbox=\box58
 \extrarowheight=\dimen175
@@ -271,12 +269,14 @@ Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
 \minrowclearance=\skip60
 \rownum=\count286
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
-Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+(/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tabu/tabu.sty
+)) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tabu/tabu.sty
 Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
@@ -484,14 +484,10 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 97.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-09-28 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count316
 \l__pdf_internal_box=\box72
-) (./referee_report.aux
-
-LaTeX Warning: Label `tab:unnamed-chunk-2' multiply defined.
-
-)
+) (./referee_report.aux)
 \openout1 = `referee_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 103.
@@ -594,62 +590,65 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 116.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [1
+)
 
-{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<referee_report_files/figure-latex/unnamed-chunk-4-1.pdf, id=66, 469.755pt x 325.215pt>
-File: referee_report_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use referee_report_files/figure-latex/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: referee_report_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 281.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<referee_report_files/figure-latex/unnamed-chunk-5-1.pdf, id=67, 469.755pt x 325.215pt>
-File: referee_report_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
-<use referee_report_files/figure-latex/unnamed-chunk-5-1.pdf>
-Package pdftex.def Info: referee_report_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 288.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[3 <./referee_report_files/figure-latex/unnamed-chunk-4-1.pdf>] [4 <./referee_report_files/figure-latex/unnamed-chunk-5-1.pdf>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 300.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 300.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 300.
-[5]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 337.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11> on input line 337.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.69997> on input line 337.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 337.
-
-Overfull \hbox (44.49745pt too wide) in paragraph at lines 337--374
- [] 
- []
-
-[6
+LaTeX Warning: Reference `css_arrests' on page 1 undefined on input line 124.
 
 
-] [7] [8] [9] (./referee_report.aux)
+LaTeX Warning: Reference `es_alc_14_g' on page 1 undefined on input line 170.
 
-LaTeX Warning: There were multiply-defined labels.
+
+LaTeX Warning: Reference `es_sex_14_g' on page 1 undefined on input line 170.
+
+
+LaTeX Warning: Reference `main_table' on page 1 undefined on input line 173.
+
+
+LaTeX Warning: Reference `alc_ifc_quantile' on page 1 undefined on input line 185.
+
+
+LaTeX Warning: Reference `sex_ifc_quantile' on page 1 undefined on input line 186.
+
+[1
+
+{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `pseudo_death' on page 2 undefined on input line 265.
+
+<referee_report_files/figure-latex/unnamed-chunk-2-1.pdf, id=38, 686.565pt x 433.62pt>
+File: referee_report_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+<use referee_report_files/figure-latex/unnamed-chunk-2-1.pdf>
+Package pdftex.def Info: referee_report_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 276.
+(pdftex.def)             Requested size: 469.74944pt x 296.68385pt.
+
+LaTeX Warning: Reference `main_table' on page 2 undefined on input line 279.
+
+
+LaTeX Warning: Reference `section:mainresults' on page 2 undefined on input line 279.
+
+
+LaTeX Warning: Reference `section:trigger' on page 2 undefined on input line 279.
+
+[2] [3 <./referee_report_files/figure-latex/unnamed-chunk-2-1.pdf>] (./referee_report.aux)
+
+LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `referee_report.out' has not changed.
-(rerunfilecheck)             Checksum: B74693385E6A492415BF95F0248017FA;730.
+(rerunfilecheck)             Checksum: C96984DC761AC350E92FDD24538C6D6F;557.
  ) 
 Here is how much of TeX's memory you used:
- 14306 strings out of 477085
- 234180 string characters out of 5827756
- 622571 words of memory out of 5000000
- 35118 multiletter control sequences out of 15000+600000
- 544569 words of font info for 88 fonts, out of 8000000 for 9000
+ 14229 strings out of 476985
+ 233461 string characters out of 5824970
+ 599094 words of memory out of 5000000
+ 35170 multiletter control sequences out of 15000+600000
+ 507247 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,13n,79p,834b,466s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on referee_report.pdf (9 pages, 202362 bytes).
+ 72i,6n,79p,1081b,432s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
+Output written on referee_report.pdf (3 pages, 154379 bytes).
 PDF statistics:
- 166 PDF objects out of 1000 (max. 8388607)
- 134 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
- 67 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 93 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

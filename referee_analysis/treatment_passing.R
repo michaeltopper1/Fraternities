@@ -75,7 +75,7 @@ for (i in 1:length(explanatory_vars)){
 timeline <- c("Moratorium Days 0-32", "Moratorium Days 33-59", "Moratorium Days 60+")
 timing <- tibble(number_identified_by, timeline, time = c(1:3))  %>% 
   mutate(timeline = glue::glue("{timeline} 
-                               ({number_identified_by})"))
+                               ({number_identified_by} Universities)"))
 
 ## pulling the timeline for ggplot labeling
 timeline <- timing %>% 
@@ -89,7 +89,7 @@ daily_crime_within_identify_list <- map(universities_identified_by, ~daily_crime
       filter(university %in% .x))
 
 
-map(daily_crime_within_identify_list, ~.x %>% distinct(university) %>% nrow())
+
 alc_progression <- map_df(daily_crime_within_identify_list, 
                           ~ifc::reghdfe((.x), "alcohol_offense_per25", explanatory_vars, fe, "university") %>% 
                             broom::tidy(conf.int = T) %>% 
@@ -98,79 +98,96 @@ alc_progression <- map_df(daily_crime_within_identify_list,
                             mutate(offense = "Alcohol Offense"),
                           .id ="var" )
 
-map_df(daily_crime_within_identify_list, 
-       ~ifc::reghdfe((.x), "alcohol_offense_per25", "treatment", fe, "university") %>% 
-         broom::tidy(conf.int = T) %>% 
-         bind_cols(timing) %>% 
-         mutate(day_type = "Full Sample") %>% 
-         mutate(offense = "Alcohol Offense"),
-       .id ="var" ) %>% View()
-alc_progression %>% 
-  mutate(var = factor(var, levels = c("1", "2", "3"))) %>% 
+main_alc_result <- ifc::reghdfe(daily_crime, "alcohol_offense_per25", "treatment", fe, "university") %>% 
+  broom::tidy(conf.int = T) %>% 
+  mutate(var = "0",
+         offense = "Alcohol Offense",
+         day_type = "Full Sample") %>% 
+  bind_cols(timing) %>% 
+  mutate(timeline = "Entire Moratorium",
+         time = 0)
+
+alc_progression_graph <- alc_progression %>% 
+  bind_rows(main_alc_result) %>%
+  mutate(var = factor(var, levels = c("0","1", "2", "3"))) %>% 
   mutate(var = case_when(
-    var == "1" ~ "37 Universities",
-    var == "2" ~ "24 Universities",
-    var == "3" ~"14 Universities"
+    var == "0" ~ "Main Result",
+    var == "1" ~ "37 ",
+    var == "2" ~ "24 ",
+    var == "3" ~"14 "
   )) %>% 
   mutate(timeline = fct_reorder(timeline, time)) %>% 
   mutate(var = fct_reorder(var, desc(var))) %>% 
-  ggplot(aes(x = var, y = estimate, color = var)) +
-  geom_point(aes(shape = var)) +
+  ggplot(aes(x = var, y = estimate)) +
+  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf),
+            data = ~ subset(., timeline %in% c("Entire Moratorium")), 
+            fill = "light grey", inherit.aes = FALSE, alpha = 0.3) +
+  facet_wrap(~timeline, ncol = 4, scales = "free_x") +
+  geom_point(aes(shape = var), size = 2) +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
   geom_hline(yintercept = 0, color = "dark red") +
-  facet_wrap(~timeline, ncol = 7) +
+  annotate("segment",x=Inf,xend=-Inf,y=-Inf,yend=-Inf,color="black",lwd=1) +
   labs(x = " ", y = "Coefficient Estimate and 95% Confidence Interval",
        color = "Point Estimate Identified By:", shape = "Point Estimate Identified By:") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 35),
-        legend.position = "bottom") +
-  ggthemes::scale_color_stata()
+  theme(legend.position = "none") 
 
-  ggplot(aes(x = time, y = estimate, group = var, color = var)) +
-  geom_point(na.rm=TRUE, position=position_dodge(width=0.3)) +
-  # geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = offense), alpha =0.2) +
-  geom_errorbar(aes(ymin= conf.low, ymax = conf.high, color = var, group = var), na.rm = T,position = "dodge") +
-  scale_x_continuous(breaks = c(1:7), labels = timeline) +
-  geom_hline(yintercept = 0, color = "dark red") +
-  theme_minimal() +
-  facet_wrap(~within_one)
-  ggthemes::scale_color_stata()
-
-universities_identified_by
-
-
-
-sex_progression <- ifc::reghdfe(daily_crime_within, "sexual_assault_per25", explanatory_vars, fe, "university") %>% 
-  broom::tidy(conf.int = T) %>% 
-  bind_cols(timing) %>% 
-  mutate(day_type = "Full Sample") %>% 
-  mutate(offense = "Sexual Assault")
-
-sex_progression_weekend <- ifc::reghdfe(daily_crime_within %>% 
-                                          filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") ,
-                                        "sexual_assault_per25", explanatory_vars, fe, "university") %>% 
-  broom::tidy(conf.int = T) %>% 
-  bind_cols(timing) %>% 
-  mutate(day_type = "Weekends (Fri-Sun)")
-
-
-
-# figures -----------------------------------------------------------------
-
-universities_identified_by[[4]]
-cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-
-treatment_passing <- alc_progression %>% 
-  bind_rows(sex_progression) %>% 
-  ggplot(aes(x = time, y = estimate, group = offense)) +
-  geom_path(aes(linetype = offense)) +
-  geom_point(aes(shape = offense)) +
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = offense), alpha =0.2) +
-  scale_x_continuous(breaks = c(1:7), labels = timeline) +
-  geom_hline(yintercept = 0, color = "dark red")  +
-  labs(x = "", y = "Coefficient Estimate and 95% Confidence Interval", group = " ", linetype = " ", shape = " ", fill = " ", color = " ") +
-  scale_fill_manual(values=cbbPalette) +
-  scale_color_manual(values = cbbPalette) +
-  theme_minimal() +
-  theme(legend.position = "bottom") +
-  facet_wrap(~offense, scales = "free", nrow = 3)
+rm(daily_crime_within)
+# 
+# alc_progression %>% 
+#   mutate(var = factor(var, levels = c("1", "2", "3"))) %>% 
+#   mutate(var = case_when(
+#     var == "1" ~ "37\n Universities",
+#     var == "2" ~ "24\n Universities",
+#     var == "3" ~"14\n Universities"
+#   )) %>% 
+#   mutate(timeline = fct_reorder(timeline, time)) %>% 
+#   mutate(var = fct_reorder(var, desc(var))) %>% 
+#   ggplot(aes(x = var, y = estimate)) +
+#   geom_point(aes(shape = var)) +
+#   geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
+#   geom_hline(yintercept = 0, color = "dark red") +
+#   labs(x = " ", y = "Coefficient Estimate and 95% Confidence Interval",
+#        color = "Point Estimate Identified By:", shape = "Point Estimate Identified By:") +
+#   theme_minimal() +
+#   theme(axis.text.x = element_text(angle = 35),
+#         legend.position = "bottom") 
+# 
+# 
+# 
+# 
+# 
+# sex_progression <- ifc::reghdfe(daily_crime_within, "sexual_assault_per25", explanatory_vars, fe, "university") %>% 
+#   broom::tidy(conf.int = T) %>% 
+#   bind_cols(timing) %>% 
+#   mutate(day_type = "Full Sample") %>% 
+#   mutate(offense = "Sexual Assault")
+# 
+# sex_progression_weekend <- ifc::reghdfe(daily_crime_within %>% 
+#                                           filter(day_of_week == "Fri" | day_of_week == "Sat" | day_of_week == "Sun") ,
+#                                         "sexual_assault_per25", explanatory_vars, fe, "university") %>% 
+#   broom::tidy(conf.int = T) %>% 
+#   bind_cols(timing) %>% 
+#   mutate(day_type = "Weekends (Fri-Sun)")
+# 
+# 
+# 
+# # figures -----------------------------------------------------------------
+# 
+# universities_identified_by[[4]]
+# cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+# 
+# treatment_passing <- sex_progression %>% 
+#   bind_rows(sex_progression) %>% 
+#   ggplot(aes(x = time, y = estimate, group = offense)) +
+#   geom_path(aes(linetype = offense)) +
+#   geom_point(aes(shape = offense)) +
+#   geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = offense), alpha =0.2) +
+#   scale_x_continuous(breaks = c(1:7), labels = timeline) +
+#   geom_hline(yintercept = 0, color = "dark red")  +
+#   labs(x = "", y = "Coefficient Estimate and 95% Confidence Interval", group = " ", linetype = " ", shape = " ", fill = " ", color = " ") +
+#   scale_fill_manual(values=cbbPalette) +
+#   scale_color_manual(values = cbbPalette) +
+#   theme_minimal() +
+#   theme(legend.position = "bottom") +
+#   facet_wrap(~offense, scales = "free", nrow = 3)

@@ -103,7 +103,17 @@ gof_mapping <- ifc::gof_mapping() %>%
   mutate(fmt = ifelse(raw == "nobs", 0, 3)) %>%
   add_row(raw = "mean", clean = "Mean of Dependent Variable", fmt = 3, .after = 1)
 
-panelsummary::panelsummary(alc_intensity, sex_intensity,
+footnote_ifc <- list("Fraction IFC is the most recent number of IFC members at a university divided by the average total enrollment over 2014-2019. 
+                     Note that not every university keeps record of their IFC numbers over time, and therefore,
+                     the most recent number of IFC members was used in this calculation. However, based on the few universities that provided year-to-year data on their IFC populations, the total number does not substantially change over time. 
+                     Standard errors shown in parenthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students.
+                     The interaction of In Moratorium and Fraction IFC gives a measure of moratorium intensity based on the fraction of IFC members.
+                     ",
+                     "* p < 0.1, ** p < 0.05, *** p < 0.01") %>% 
+  map(~str_replace_all(.x, "\n", ""))
+
+
+ifc_share <- panelsummary::panelsummary(alc_intensity, sex_intensity,
                            panel_labels = c("Panel A: Alcohol Offenses",
                                             "Panel B: Sexual Assaults"),
                            italic = T,
@@ -112,8 +122,11 @@ panelsummary::panelsummary(alc_intensity, sex_intensity,
                            mean_dependent = T,
                            stars =c('*' = .1, '**' = .05, '***' = .01),
                            gof_map = gof_mapping,
-                           coef_map = c("treatment_ifc" = "In Moratorium x Fraction IFC")) %>% 
-  add_header_above(c(" " = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1))
+                           coef_map = c("treatment_ifc" = "In Moratorium x Fraction IFC"),
+                           caption = "\\label{ifc_share}The Effect of Moratoriums Interacted with IFC Share") %>% 
+  add_header_above(c(" " = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1)) %>% 
+  footnote(footnote_ifc,
+           threeparttable = T)
 
 
 
