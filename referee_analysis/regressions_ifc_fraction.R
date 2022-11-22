@@ -26,54 +26,45 @@ frac_ifc <- read_csv("data/fraction_ifc.csv") %>%
 
 ifc_quantiles <- quantile(frac_ifc$ifc_frac_updated) 
 ifc_quantiles_3 <- quantile(frac_ifc$ifc_frac_updated, probs = c(0,.33,.66,1))
+ifc_quantiles_6 <- quantile(frac_ifc$ifc_frac_updated, probs = c(0,.1,.2,.3, .4, .5, 1))
 
+
+# feols(alcohol_offense_per25 ~
+#         treatment| university + game_occurred + university_by_academic_year +
+#         holiday + day_of_week +spring_semester,
+#       cluster = ~university, data = daily_crime%>% 
+#         filter(ifc_frac_updated< 0.0179))
+# # 
 # adding in the ifc fractions ---------------------------------------------
 
+create_treciles <- . %>% 
+  mutate(ifc_trecile_1 = ifelse(ifc_frac_updated <= ifc_quantiles_3[[2]], 1, 0),
+         ifc_trecile_2 = ifelse(ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles_3[[2]], 1, 0),
+         ifc_trecile_3 = ifelse(ifc_frac_updated > ifc_quantiles[[3]], 1, 0))
+
+create_quantiles <- . %>% 
+  mutate(ifc_quantile_1 = ifelse(ifc_frac_updated <= ifc_quantiles[[2]], 1, 0),
+         ifc_quantile_2 = ifelse(ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles[[2]], 1, 0),
+         ifc_quantile_3 = ifelse(ifc_frac_updated <= ifc_quantiles[[4]] & ifc_frac_updated > ifc_quantiles[[3]], 1, 0),
+         ifc_quantile_4 = ifelse(ifc_frac_updated > ifc_quantiles[[4]], 1, 0))
 
 daily_crime <- daily_crime %>% 
   left_join(frac_ifc) %>% 
-  mutate(ifc_quantile = case_when(
-    ifc_frac_updated <= ifc_quantiles[[2]] ~ 0.25,
-    ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles[[2]] ~0.5,
-    ifc_frac_updated <= ifc_quantiles[[4]] & ifc_frac_updated > ifc_quantiles[[3]] ~ 0.75,
-    ifc_frac_updated > ifc_quantiles[[4]] ~ 1
-  )) %>% 
-  mutate(ifc_quantile_3 = case_when(
-    ifc_frac_updated <= ifc_quantiles[[2]] ~ 0.33,
-    ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles[[2]] ~0.66,
-    ifc_frac_updated <= ifc_quantiles[[4]] & ifc_frac_updated > ifc_quantiles[[3]] ~ 1
-  )) %>% 
+  create_quantiles() %>% 
+  create_treciles() %>% 
   mutate(treatment_ifc = treatment * ifc_frac_updated)
 
 daily_crime_weekends <- daily_crime_weekends %>% 
   left_join(frac_ifc) %>% 
-  mutate(ifc_quantile = case_when(
-    ifc_frac_updated <= ifc_quantiles[[2]] ~ 0.25,
-    ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles[[2]] ~0.5,
-    ifc_frac_updated <= ifc_quantiles[[4]] & ifc_frac_updated > ifc_quantiles[[3]] ~ 0.75,
-    ifc_frac_updated > ifc_quantiles[[4]] ~ 1
-  )) %>% 
-  mutate(ifc_quantile_3 = case_when(
-    ifc_frac_updated <= ifc_quantiles[[2]] ~ 0.33,
-    ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles[[2]] ~0.66,
-    ifc_frac_updated <= ifc_quantiles[[4]] & ifc_frac_updated > ifc_quantiles[[3]] ~ 1
-  )) %>% 
+  create_quantiles() %>%
+  create_treciles() %>% 
   mutate(treatment_ifc = treatment * ifc_frac_updated)
 
 
 daily_crime_weekdays <- daily_crime_weekdays %>% 
   left_join(frac_ifc) %>% 
-  mutate(ifc_quantile = case_when(
-    ifc_frac_updated <= ifc_quantiles[[2]] ~ 0.25,
-    ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles[[2]] ~0.5,
-    ifc_frac_updated <= ifc_quantiles[[4]] & ifc_frac_updated > ifc_quantiles[[3]] ~ 0.75,
-    ifc_frac_updated > ifc_quantiles[[4]] ~ 1
-  )) %>% 
-  mutate(ifc_quantile_3 = case_when(
-    ifc_frac_updated <= ifc_quantiles[[2]] ~ 0.33,
-    ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles[[2]] ~0.66,
-    ifc_frac_updated <= ifc_quantiles[[4]] & ifc_frac_updated > ifc_quantiles[[3]] ~ 1
-  )) %>% 
+  create_quantiles() %>%
+  create_treciles() %>% 
   mutate(treatment_ifc = treatment * ifc_frac_updated)
 
 
@@ -130,21 +121,32 @@ ifc_share <- panelsummary::panelsummary(alc_intensity, sex_intensity,
 
 
 
-
-# quantiles ---------------------------------------------------------------
+#quantiles ---------------------------------------------------------------
 # 
 # 
-# alc_q1 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                       filter(ifc_quantile == 0.25), c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# alc_q2 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                       filter(ifc_quantile == 0.50), c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
+# alc_q1 <- map(data_list, ~ifc::reghdfe(.x %>%
+#                                       filter(ifc_quantile == 0.25), c("alcohol_offense_per25"),"treatment", fixed_effects = fixed_effects, "university"))
+# alc_q2 <- map(data_list, ~ifc::reghdfe(.x %>%
+#                                       filter(ifc_quantile == 0.50) %>% 
+#                                       filter(!university %in% multiple_treatment_uni), c("alcohol_offense_per25"),"treatment", fixed_effects = fixed_effects, "university"))
 # 
-# alc_q3 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                       filter(ifc_quantile == 0.75), c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
+# alc_q3 <- map(data_list, ~ifc::reghdfe(.x %>%
+#                                       filter(ifc_quantile == 0.75) %>% 
+#                                       filter(!university %in% multiple_treatment_uni), c("alcohol_offense_per25"),"treatment", fixed_effects = fixed_effects, "university"))
 # 
-# alc_q4 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                       filter(ifc_quantile == 1), c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
+# alc_q4 <- map(data_list, ~ifc::reghdfe(.x %>%
+#                                       filter(ifc_quantile == 1) , c("alcohol_offense_per25"),"treatment", fixed_effects = fixed_effects, "university"))
 # 
+# feols(alcohol_offense_per25 ~
+#         treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
+#         treatment:ifc_quantile_4| university + game_occurred + university_by_academic_year +
+#         holiday + day_of_week +spring_semester,
+#       cluster = ~university, data = daily_crime)
+# 
+# feols(alcohol_offense_per25 ~
+# #         treatment:ifc_trecile_1 +treatment:ifc_trecile_2 + treatment:ifc_trecile_3 |university + game_occurred + university_by_academic_year +
+# #         holiday + day_of_week +spring_semester,
+#       cluster = ~university, data = daily_crime )
 # 
 # sex_q1 <- map(data_list, ~ifc::reghdfe(.x %>% 
 #                                          filter(ifc_quantile == 0.25), c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
@@ -222,3 +224,6 @@ ifc_share <- panelsummary::panelsummary(alc_intensity, sex_intensity,
 # 
 # 
 # 
+
+
+

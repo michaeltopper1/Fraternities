@@ -52,38 +52,33 @@ alc_1 <- feols(alcohol_offense_per25 ~ treatment |
                  day_of_week_fe + academic_year + university + 
                  holiday + spring_semester + game_occurred,
                cluster = "university", 
-               data = daily_crime,
-               weights = daily_crime$total_enrollment)
+               data = daily_crime)
 
 alc_2 <- feols(alcohol_offense_per25 ~ treatment | 
                  day_of_week_fe + university_by_academic_year + 
                  holiday + spring_semester + game_occurred,
                cluster = "university", 
-               data = daily_crime,
-               weights = daily_crime$total_enrollment)
+               data = daily_crime)
 
 alc_3 <- feols(alcohol_offense_per25 ~ treatment | 
                  day_of_week_fe + university_by_academic_year_by_semester + 
                  holiday + game_occurred,
                cluster = "university", 
-               data = daily_crime,
-               weights = daily_crime$total_enrollment)
+               data = daily_crime)
 
 ## column 4 weekends preferred
 alc_4_weekend <- feols(alcohol_offense_per25 ~ treatment | 
                          day_of_week_fe + university_by_academic_year + 
                          holiday + spring_semester + game_occurred,
                        cluster = "university", 
-                       data = daily_crime_weekends,
-                       weights = daily_crime_weekends$total_enrollment)
+                       data = daily_crime_weekends)
 
 ## column 5 weekdays preferred
 alc_5_weekday <- feols(alcohol_offense_per25 ~ treatment | 
                          day_of_week_fe + university_by_academic_year + 
                          holiday + spring_semester + game_occurred,
                        cluster = "university", 
-                       data = daily_crime_weekdays,
-                       weights = daily_crime_weekdays$total_enrollment)
+                       data = daily_crime_weekdays)
 
 
 
@@ -100,39 +95,34 @@ sex_1 <- feols(sexual_assault_per25 ~ treatment |
                  day_of_week_fe + academic_year + university + 
                  holiday + spring_semester + game_occurred,
                cluster = "university", 
-               data = daily_crime,
-               weights = daily_crime$total_enrollment)
+               data = daily_crime)
 
 sex_2 <- feols(sexual_assault_per25 ~ treatment | 
                  day_of_week_fe + university_by_academic_year + 
                  holiday + spring_semester + game_occurred,
                cluster = "university", 
-               data = daily_crime,
-               weights = daily_crime$total_enrollment)
+               data = daily_crime)
 
 
 sex_3 <- feols(sexual_assault_per25 ~ treatment | 
                  day_of_week_fe + university_by_academic_year_by_semester + 
                  holiday + game_occurred,
                cluster = "university", 
-               data = daily_crime,
-               weights = daily_crime$total_enrollment)
+               data = daily_crime)
 
 ## column 4 weekends preferred
 sex_4_weekend <- feols(sexual_assault_per25 ~ treatment | 
                          day_of_week_fe + university_by_academic_year + 
                          holiday + spring_semester + game_occurred,
                        cluster = "university", 
-                       data = daily_crime_weekends,
-                       weights = daily_crime_weekends$total_enrollment)
+                       data = daily_crime_weekends)
 
 ## column 5 weekdays preferred
 sex_5_weekday <- feols(sexual_assault_per25 ~ treatment | 
                          day_of_week_fe + university_by_academic_year + 
                          holiday + spring_semester + game_occurred,
                        cluster = "university", 
-                       data = daily_crime_weekdays,
-                       weights = daily_crime_weekdays$total_enrollment)
+                       data = daily_crime_weekdays)
 
 
 sex_main <- list(sex_1, sex_2, sex_3, sex_4_weekend, sex_5_weekday)
@@ -147,7 +137,7 @@ sex_boot_pvalues <- map(sex_boot,
 # table 2: weekends vs. full sample ---------------------------------------
 
 
-main_table_weighted <- ifc::main_table(alc_main, last_panel = sex_main) %>%
+main_table<- ifc::main_table(alc_main, last_panel = sex_main) %>%
   mutate(term = ifelse(row_number() == 2 | row_number() == 5, "", term)) %>% 
   add_row(term = "Mean of Dependent Variable",
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
@@ -180,7 +170,7 @@ main_table_weighted <- ifc::main_table(alc_main, last_panel = sex_main) %>%
   kbl(booktabs = T,
       col.names = c(" ", "(1)", "(2)", "(3)", "(4)", "(5)"),
       digits = 3,
-      caption = "\\label{main_table_weighted}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (WLS)", align = 'lccccc') %>%
+      caption = "\\label{main_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assaults (OLS)", align = 'lccccc') %>%
   kable_styling(latex_options = "HOLD_position", font_size = 11) %>%
   pack_rows("Panel A: Alcohol Offenses", 1, 5, bold = F, italic = T) %>%
   pack_rows("Panel B: Sexual Assaults", 6, 10, bold = F, italic = T, latex_gap_space = "0.5cm") %>%
@@ -191,7 +181,7 @@ main_table_weighted <- ifc::main_table(alc_main, last_panel = sex_main) %>%
   # row_spec(5, italic = T) %>%
   column_spec(1, width = "8cm") %>%
   row_spec(c(18), hline_after =T) %>%
-  footnote(list("Estimates are obtained using WLS. All regressions are weighted by total enrollment. Standard errors shown in parenthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by Cameron, Gelbach, and Miller (2008) in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Game Day controls consist of university football games within each university. Weekends include Friday-Sunday while Weekdays include Monday-Thursday. Column 2 is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates. Significance stars correspond to clustered standard errors.",
+  footnote(list("Estimates are obtained using OLS. Standard errors shown in parenthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students. P-values from 1000 wild cluster bootstrap iterations are shown for the In Moratorium coefficient as suggested by Cameron, Gelbach, and Miller (2008) in cases with a small number of clusters (typically lower than 30). This analysis is near, but not below this threshold. Game Day controls consist of university football games within each university. Weekends include Friday-Sunday while Weekdays include Monday-Thursday. Column 2 is the preferred specification due to the flexibility of the fixed effects and the conservativeness of the estimates. Significance stars correspond to clustered standard errors.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
 
 
