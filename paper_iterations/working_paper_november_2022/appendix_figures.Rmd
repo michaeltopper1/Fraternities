@@ -212,6 +212,12 @@ source(paste0(here::here("tables/data_comparison.R")))
 data_used
 ```
 
+```{r}
+source(here::here("referee_analysis/regressions_main_table_weighted.R"))
+```
+```{r}
+main_table_weighted
+```
 
 ```{r}
 source(paste0(here::here("tables/regressions_main_poisson.R")))
@@ -223,27 +229,33 @@ main_table_p
 ```
 
 
-
 ```{r}
-source(paste0(here::here("referee_analysis/treatment_passing.R")))
+
+source(here::here("referee_analysis/treatment_passing_2.R"))
 ```
 
 
 ```{=latex}
-\begin{figure}[t]
+\begin{figure}[t!]
 ```
-
-```{r}
-alc_progression_graph
+```{r, fig.height = 6}
+alc_passing_g
 ```
-
 ```{=latex}
-\caption{Moratorium Over Time (Alcohol Offenses) \label{alc_progression_graph}}
-\textit{Note:} This graph depicts how the moratorium progresses over time for three groups: universities who experience moratoriums 0-32, 33-59, and 60+ day length. The Entire Moratorium panel gives the main result. The Moratorium Days 0-32 panel gives the effect of the first 0-32 days of a moratorium, while the Moratorium Days 33-59 and 60+ panels give the effect of the 33-59 and 60+ days respectively. Note that since different schools have different length moratoriums, each panel only contains a certain number of universities that exhibit such length (number of schools given in parenthesis). The three point estimates show the effect for each of these subsets of schools. 
+\caption{The Effect of a Moratorium Over Time \label{alc_passing_g}}
+\textit{Note:} This figure shows how a moratorium progresses over time. The x-axis represents the number of weeks that have elapsed within a moratorium while the y-axis shows the point estimate and 95% confidence interval. For instance, in Moratorium Weeks 3 & 4, the point estimate shows the effect of the 3rd and 4th week of a moratorium. Since moratoriums have varying lengths across schools, each panel shows the number of school that each point estimate is identified by. For instance, in the top panel (labeled 37 Schools), there are 37 universities that have moratoriums under 2 weeks of length. Therefore, the point estimate is identified by 37 universities. The second panel from the top (labeled 33 Schools), shows that there are 33 universities with under 4 weeks of length. Therefore, each point estimate is identified by 33 universities only. All point estimates represent moratorium days only.
 \end{figure}
 ```
 
-
-
-
+```{=latex}
+\begin{figure}[t!]
+```
+```{r, fig.height = 6}
+sex_passing_g
+```
+```{=latex}
+\caption{The Effect of a Moratorium Over Time \label{sex_passing_g}}
+\textit{Note:} This figure shows how a moratorium progresses over time. The x-axis represents the number of weeks that have elapsed within a moratorium while the y-axis shows the point estimate and 95% confidence interval. For instance, in Moratorium Weeks 3 & 4, the point estimate shows the effect of the 3rd and 4th week of a moratorium. Since moratoriums have varying lengths across schools, each panel shows the number of school that each point estimate is identified by. For instance, in the top panel (labeled 37 Schools), there are 37 universities that have moratoriums under 2 weeks of length. Therefore, the point estimate is identified by 37 universities. The second panel from the top (labeled 33 Schools), shows that there are 33 universities with under 4 weeks of length. Therefore, each point estimate is identified by 33 universities only. All point estimates represent moratorium days only.
+\end{figure}
+```
 
