@@ -137,7 +137,7 @@ sex_boot_pvalues <- map(sex_boot,
 # table 2: weekends vs. full sample ---------------------------------------
 
 
-main_table<- ifc::main_table(alc_main, last_panel = sex_main) %>%
+main_table <- ifc::main_table(alc_main, last_panel = sex_main) %>%
   mutate(term = ifelse(row_number() == 2 | row_number() == 5, "", term)) %>% 
   add_row(term = "Mean of Dependent Variable",
           `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
