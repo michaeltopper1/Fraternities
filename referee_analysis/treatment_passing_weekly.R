@@ -170,7 +170,7 @@ alc_passing_1 <- ifc::reghdfe(daily_crime_passing ,
          university_count = week_counts) %>% 
   mutate(week_labels = glue::glue("Moratorium\nWeek {week}\n({university_count})")) %>% 
   mutate(week_labels = ifelse(row_number() ==10, glue::glue("Moratorium\nWeeks 10+\n({university_count})"),week_labels)) %>%
-  mutate(model = "Universities With Moratorius Over 2-months")
+  mutate(model = "Panel B: Universities With Moratorius Over 2-months")
 
 alc_passing_graph <- ifc::reghdfe(daily_crime_passing %>% 
                filter(university %in% two_month), 
@@ -181,7 +181,7 @@ alc_passing_graph <- ifc::reghdfe(daily_crime_passing %>%
          university_count = week_counts_over_two_months) %>% 
   mutate(week_labels = glue::glue("Moratorium\nWeek {week}\n({university_count})")) %>%
   mutate(week_labels = ifelse(row_number() ==10, glue::glue("Moratorium\nWeeks 10+\n({university_count})"),week_labels)) %>%
-  mutate(model = "All Universities") %>% 
+  mutate(model = "Panel A: All Universities") %>% 
   bind_rows(alc_passing_1) %>% 
   ggplot(aes(week_labels, estimate)) +
   geom_point() +
@@ -205,7 +205,7 @@ sex_passing_1 <- ifc::reghdfe(daily_crime_passing ,
          university_count = week_counts) %>% 
   mutate(week_labels = glue::glue("Moratorium\nWeek {week}\n({university_count})")) %>% 
   mutate(week_labels = ifelse(row_number() ==10, glue::glue("Moratorium\nWeeks 10+\n({university_count})"),week_labels)) %>%
-  mutate(model = "Universities With Moratorius Over 2-months")
+  mutate(model = "Panel B: Universities With Moratorius Over 2-months")
 
 
 sex_passing_graph <- ifc::reghdfe(daily_crime_passing %>% 
@@ -217,7 +217,7 @@ sex_passing_graph <- ifc::reghdfe(daily_crime_passing %>%
          university_count = week_counts_over_two_months) %>% 
   mutate(week_labels = glue::glue("Moratorium\nWeek {week}\n({university_count})")) %>%
   mutate(week_labels = ifelse(row_number() ==10, glue::glue("Moratorium\nWeeks 10+\n({university_count})"),week_labels)) %>%
-  mutate(model = "All Universities") %>% 
+  mutate(model = "Panel A: All Universities") %>% 
   bind_rows(sex_passing_1) %>% 
   ggplot(aes(week_labels, estimate)) +
   geom_point() +

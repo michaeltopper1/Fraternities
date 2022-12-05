@@ -63,7 +63,8 @@ alc_bar <- averages %>%
   geom_hline(yintercept = 0, color = "black") +
   labs(x = "",y = "", fill = " ", title = "Panel A: Alcohol Offenses") +
   theme_minimal() +
-  theme(legend.position = "none", axis.text.x = element_blank()) +
+  theme(legend.position = "none", axis.text.x = element_blank(),
+        strip.text = element_text(size = 12)) +
   ggsci::scale_fill_npg()
 
 
@@ -79,7 +80,8 @@ sex_bar <- averages %>%
   geom_hline(yintercept = 0, color = "black") +
   labs(x = "",y = " ", fill = " ", title = "Panel B: Sexual Assaults") +
   theme_minimal() +
-  theme(legend.position = "bottom", axis.text.x = element_blank()) +
+  theme(legend.position = "bottom", axis.text.x = element_blank(),
+        strip.text = element_text(size = 12)) +
   ggsci::scale_fill_npg()
 
 result <- alc_bar + sex_bar + plot_layout(nrow = 2) 

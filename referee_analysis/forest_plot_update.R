@@ -109,7 +109,7 @@ alc_estimates <- map_df(subsamples_all, ~ifc::reghdfe(., c("alcohol_offense_per2
     var == "1" |var == "2" | var == "3" ~ "Panel A:\n Main Sample",
     var == "4" | var == "5" | var == "6"~ "Panel B:\n Main Sample + Never Treated",
     var == "7" | var == "8" | var == "9" ~ "Panel C:\n Death Only Schools, 64-day Treatment",
-    var == "10" | var == "11" | var == "12" ~ "Panel D:\n Death Only Schools, 64-day Treatment + Never Treated"
+    var == "10" | var == "11" | var == "12" ~ "Panel D:\n Death Only Schools, 64-day Treatment +\nNever Treated"
   )) %>% 
   mutate(day = rep(c("All Days", "Weekends", "Weekdays"), 4)) %>% 
   bind_cols(means)
@@ -127,7 +127,7 @@ alc_forest <- alc_estimates %>%
   mutate(estimate_label = sprintf("%.3f", estimate)) %>% 
   mutate(offense = rev(c(1:12))) %>% 
   mutate(var = factor(var, levels = c("Panel A:\n Main Sample", "Panel B:\n Main Sample + Never Treated", "Panel C:\n Death Only Schools, 64-day Treatment",
-                                      "Panel D:\n Death Only Schools, 64-day Treatment + Never Treated"))) %>% 
+                                      "Panel D:\n Death Only Schools, 64-day Treatment +\nNever Treated"))) %>% 
   ggplot(aes(estimate, offense)) +
   geom_point(aes(shape = day), size = 3) +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), width = 0.1) +
@@ -150,7 +150,8 @@ alc_forest <- alc_estimates %>%
         legend.position = "none",
         axis.line.x = element_line(color = "black"),
         panel.border = element_blank(),
-        panel.background = element_rect(color = NA))
+        panel.background = element_rect(color = NA),
+        strip.text = element_text(size = 12))
 
 
 sex_estimates <- map_df(subsamples_all, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university") %>% 
@@ -159,7 +160,7 @@ sex_estimates <- map_df(subsamples_all, ~ifc::reghdfe(., c("sexual_assault_per25
     var == "1" |var == "2" | var == "3" ~ "Panel A:\n Main Sample",
     var == "4" | var == "5" | var == "6"~ "Panel B:\n Main Sample + Never Treated",
     var == "7" | var == "8" | var == "9" ~ "Panel C:\n Death Only Schools, 64-day Treatment",
-    var == "10" | var == "11" | var == "12" ~ "Panel D:\n Death Only Schools, 64-day Treatment + Never Treated"
+    var == "10" | var == "11" | var == "12" ~ "Panel D:\n Death Only Schools, 64-day Treatment +\nNever Treated"
   )) %>% 
   mutate(day = rep(c("All Days", "Weekends", "Weekdays"), 4)) %>% 
   bind_cols(means)
@@ -177,7 +178,7 @@ sex_forest <- sex_estimates %>%
   mutate(offense = rev(c(1:12))) %>% 
   mutate(var = factor(var, levels = c("Panel A:\n Main Sample", "Panel B:\n Main Sample + Never Treated",
                                       "Panel C:\n Death Only Schools, 64-day Treatment",
-                                      "Panel D:\n Death Only Schools, 64-day Treatment + Never Treated"))) %>% 
+                                      "Panel D:\n Death Only Schools, 64-day Treatment +\nNever Treated"))) %>% 
   ggplot(aes(estimate, offense)) +
   geom_point(aes(shape = day), size = 3) +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), width = 0.1) +
@@ -200,7 +201,8 @@ sex_forest <- sex_estimates %>%
         legend.position = "none",
         axis.line.x = element_line(color = "black"),
         panel.border = element_blank(),
-        panel.background = element_rect(color = NA))
+        panel.background = element_rect(color = NA),
+        strip.text = element_text(size = 12))
 
 rm(subsamples_all)
 rm(sex_pseudo, sex_pseudo_weekdays, sex_pseudo_weekends, daily_crime_deaths_weekdays, daily_crime_deaths_weekends,

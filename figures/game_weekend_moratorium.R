@@ -125,7 +125,8 @@ alc_game <- alc %>%
   scale_x_continuous(breaks = c(1:6), labels = c("All Game\nWeekends", "Home Game\nWeekends","Away Game\nWeekends", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel A: Alcohol Offenses") +
-  theme_minimal() 
+  theme_minimal() +
+  theme(strip.text = element_text(size = 12))
 
 
 
@@ -172,7 +173,8 @@ sex_game <- sex %>%
   scale_x_continuous(breaks = c(1:6), labels = c("All Game\n Weekends", "Home Game\n Weekends","Away Game\nWeekends", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel B: Sexual Assaults") +
-  theme_minimal() 
+  theme_minimal()  +
+  theme(strip.text = element_text(size = 12))
 
 result <- alc_game + sex_game + plot_layout(nrow = 2)
 

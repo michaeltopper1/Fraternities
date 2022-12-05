@@ -12,6 +12,8 @@ library(lubridate)
 library(kableExtra)
 library(ggrepel)
 library(patchwork)
+library(grid)
+library(gridExtra)
 
 if(!exists("daily_crime")) {
   daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv") 
@@ -96,12 +98,13 @@ alc_trigger_reg <- tibble(trigger_regs, type, week_type) %>%
   filter(type == "Alcohol Offense") %>% 
   ggplot(aes(week_type, estimate)) +
   geom_point(aes(shape = type)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.4) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "dark red", alpha = 0.8) +
   facet_wrap(~model, ncol = 4) +
   theme_minimal() +
   labs(x = " ", y = "", linetype = " ", shape = " ", title = "Panel A: Alcohol Offenses") +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        strip.text = element_text(size = 12))
 
 sex_trigger_reg <- tibble(trigger_regs, type, week_type) %>% 
   mutate(model = case_when(
@@ -114,12 +117,13 @@ sex_trigger_reg <- tibble(trigger_regs, type, week_type) %>%
   filter(type == "Sexual Assault") %>% 
   ggplot(aes(week_type, estimate)) +
   geom_point(aes(shape = type)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.4) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "dark red", alpha = 0.8) +
   facet_wrap(~model, ncol = 4) +
   theme_minimal() +
   labs(x = " ", y = "", linetype = " ", shape = " ", title = "Panel B: Sexual Assaults") +
-  theme(legend.position = "none") 
+  theme(legend.position = "none",
+        strip.text = element_text(size = 12)) 
 
 result <- alc_trigger_reg + sex_trigger_reg + plot_layout(ncol = 1)
 
