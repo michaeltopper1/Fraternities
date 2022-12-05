@@ -65,14 +65,12 @@ trigger_plot <- length_graph %>%
   filter(!is.na(length)) %>% 
   ggplot(aes(university, length, fill = factor(university_enacted))) +
   geom_col() + coord_flip() +
-  geom_text(aes(label = length), color = "black", size = 10, hjust = -.1) +
+  geom_text(aes(label = length), color = "black",hjust = -.1) +
   facet_wrap(~reason, scales = "free_y") +
   scale_x_reordered() +
-  theme_light() +
   labs(y = "Length of Moratorium in Days", x= "", fill = "") +
   theme_minimal() +
-  theme(legend.position ="bottom",
-        text = element_text(size = 45)) +
+  theme(legend.position ="bottom") +
   ggsci::scale_fill_npg()
 
 

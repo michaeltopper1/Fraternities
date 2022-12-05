@@ -1,0 +1,34 @@
+---
+title: "Referee Figures"
+output: pdf_document
+fontsize: 11pt
+---
+
+<!-- ```{r, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = F, message = F, warning = F) -->
+<!-- knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file()) -->
+<!-- ``` -->
+
+\FloatBarrier
+
+# Referee Figures
+
+```{r}
+source(here::here("referee_analysis/regressions_weight_vs_main_figure.R"))
+```
+
+```{=latex}
+
+\begin{figure}[t]
+```
+```{r, echo=FALSE, fig.align = "center",fig.width= 10}
+main_table_graphic_weighted +
+  theme(strip.text.x = element_text(size = 12))
+```
+```{=latex}
+\caption{The Effect of Moratoriums: OLS vs. WLS \label{main_table_graphic_weighted}}
+\textit{Note:} The x-axis represents the columns from Tables \ref{main_table} and \ref{main_table_weighted}. The y-axis represents the point estimates and 95\% confidence intervals. Unweighted regressions represent estimates from Table \ref{main_table} while weighted regressions represent estimates from Table \ref{main_table_weighted}. Weighted regressions are weighted by total enrollment. Controls include holiday, spring semester, day of the week, football game-days, and university-by-academic-year. Standard errors are clustered by university.
+\end{figure}
+
+```
+

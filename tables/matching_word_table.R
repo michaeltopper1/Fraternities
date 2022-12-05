@@ -93,11 +93,12 @@ top_categories <- top_categories %>%
   coord_flip() +
   facet_wrap(~offense, scales = "free_y") +
   labs(x = "Incident Description", y = "Fraction of Corresponding Offense") +
-  geom_text(aes(label = round(fraction, 2)), nudge_y = 0.009, size = 10) +
+  geom_text(aes(label = round(fraction, 2)), nudge_y = 0.009) +
   theme_minimal() +
-  theme(legend.position ="bottom",
-        text = element_text(size = 45)) +
+  theme(legend.position ="bottom") +
   ggsci::scale_fill_npg()
+
+
 
 
 

@@ -46,11 +46,11 @@ reporting_table
 ```{r}
 source(here::here("referee_analysis/regressions_main.R"))
 ```
-
+\begin{sidewaystable}
 ```{r}
-main_table %>% landscape()
+main_table
 ```
-
+\end{sidewaystable}
 ```{r}
 source(paste0(here::here("tables/regressions_spillovers_compare.R")))
 ```

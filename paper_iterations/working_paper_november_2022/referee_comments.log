@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.6)  22 NOV 2022 00:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.4)  4 DEC 2022 16:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **referee_comments.tex
 (./referee_comments.tex
-LaTeX2e <2022-11-01>
+LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2022-11-02> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -18,12 +18,12 @@ File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 \c@subparagraph=\count190
 \c@figure=\count191
 \c@table=\count192
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
 \bibindent=\dimen140
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2022/04/08 v2.17n AMS math features
-\@mathmargin=\skip49
+\@mathmargin=\skip50
 For additional information on amsmath, use the `?' option.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
@@ -79,8 +79,8 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \totwidth@=\dimen148
 \lineht@=\dimen149
 \@envbody=\toks19
-\multlinegap=\skip50
-\multlinetaggap=\skip51
+\multlinegap=\skip51
+\multlinetaggap=\skip52
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
@@ -198,21 +198,21 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 \Gin@req@height=\dimen158
 \Gin@req@width=\dimen159
 )
-\cslhangindent=\skip52
-\csllabelwidth=\skip53
-\cslentryspacingunit=\skip54
+\cslhangindent=\skip53
+\csllabelwidth=\skip54
+\cslentryspacingunit=\skip55
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count274
 \calc@Bcount=\count275
 \calc@Adimen=\dimen160
 \calc@Bdimen=\dimen161
-\calc@Askip=\skip55
-\calc@Bskip=\skip56
+\calc@Askip=\skip56
+\calc@Bskip=\skip57
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count276
-\calc@Cskip=\skip57
+\calc@Cskip=\skip58
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks25
@@ -220,9 +220,9 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headfont=\toks27
 \thm@notefont=\toks28
 \thm@headpunct=\toks29
-\thm@preskip=\skip58
-\thm@postskip=\skip59
-\thm@headsep=\skip60
+\thm@preskip=\skip59
+\thm@postskip=\skip60
+\thm@headsep=\skip61
 \dth@everypar=\toks30
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/bbm-macros/bbm.sty
 Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
@@ -231,16 +231,25 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 (Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2022/10/23 3.82 The Babel package
-(/Users/michaeltopper/Library/TinyTeX/texmf-var/tex/generic/config/language.def)
+Package: babel 2022/11/30 3.83 The Babel package
 \babel@savecnt=\count277
 \U@D=\dimen162
-\l@unhyphenated=\language2
+\l@unhyphenated=\language3
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count278
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'british' set to \l@english
+(babel)             (\language0). Reported on input line 82.
+Package babel Info: Hyphen rules for 'UKenglish' set to \l@english
+(babel)             (\language0). Reported on input line 83.
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@english
+(babel)             (\language0). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@english
+(babel)             (\language0). Reported on input line 108.
 )) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
 Package babel Info: Importing font and identification data for english
 (babel)             from babel-en.ini. Reported on input line 11.
@@ -262,7 +271,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@floatcapt=\box54
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip61
+\OuterFrameSep=\skip62
 \fb@frw=\dimen163
 \fb@frh=\dimen164
 \FrameRule=\dimen165
@@ -318,14 +327,14 @@ File: pppdftex.def 2022/10/09 v0.5w Pdfpages driver for pdfTeX (AM)
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 \c@r@tfl@t=\count283
-\rotFPtop=\skip62
-\rotFPbot=\skip63
+\rotFPtop=\skip63
+\rotFPbot=\skip64
 \rot@float@box=\box59
 \rot@mess@toks=\toks36
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip64
-\bibsep=\skip65
+\bibhang=\skip65
+\bibsep=\skip66
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count284
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
@@ -352,18 +361,18 @@ Package caption Info: float package is loaded.
 Package caption Info: rotating package is loaded.
 )
 \c@KVtest=\count287
-\sf@farskip=\skip66
+\sf@farskip=\skip67
 \sf@captopadj=\dimen180
-\sf@capskip=\skip67
-\sf@nearskip=\skip68
+\sf@capskip=\skip68
+\sf@nearskip=\skip69
 \c@subfigure=\count288
 \c@subfigure@save=\count289
 \c@lofdepth=\count290
 \c@subtable=\count291
 \c@subtable@save=\count292
 \c@lotdepth=\count293
-\sf@top=\skip69
-\sf@bottom=\skip70
+\sf@top=\skip70
+\sf@bottom=\skip71
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/flafter.sty
@@ -391,10 +400,10 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisrulewidth=\dimen193
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
-\LTleft=\skip71
-\LTright=\skip72
-\LTpre=\skip73
-\LTpost=\skip74
+\LTleft=\skip72
+\LTright=\skip73
+\LTpre=\skip74
+\LTpost=\skip75
 \LTchunksize=\count298
 \LTcapwidth=\dimen194
 \LT@head=\box60
@@ -413,14 +422,14 @@ Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 \ar@mcellbox=\box65
 \extrarowheight=\dimen196
 \NC@list=\toks38
-\extratabsurround=\skip75
-\backup@length=\skip76
+\extratabsurround=\skip76
+\backup@length=\skip77
 \ar@cellbox=\box66
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip77
+\multirow@colwidth=\skip78
 \multirow@cntb=\count303
-\multirow@dima=\skip78
+\multirow@dima=\skip79
 \bigstrutjot=\dimen197
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen198
@@ -432,7 +441,7 @@ Package: wrapfig 2003/01/31  v 3.6
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
 \everycr=\toks40
-\minrowclearance=\skip79
+\minrowclearance=\skip80
 \rownum=\count305
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
@@ -472,7 +481,7 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabu@arstrutbox=\box70
 \tabu@hleads=\box71
 \tabu@vleads=\box72
-\tabu@cellskip=\skip80
+\tabu@cellskip=\skip81
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/threeparttable/threeparttable.sty
 Package: threeparttable 2003/06/13  v 3.0
 \@tempboxb=\box73
@@ -483,11 +492,11 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\TPTL@width=\skip81
+\TPTL@width=\skip82
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box74
 \UL@hyphenbox=\box75
-\UL@skip=\skip82
+\UL@skip=\skip83
 \UL@hook=\toks43
 \UL@height=\dimen267
 \UL@pe=\count313
@@ -501,7 +510,7 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \c@nlinenum=\count314
 \TeXr@lab=\toks44
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2022-09-22 v7.00t Hypertext links for LaTeX
+Package: hyperref 2022-11-13 v7.00u Hypertext links for LaTeX
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -539,7 +548,7 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 \Hy@linkcounter=\count316
 \Hy@pagecounter=\count317
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2022-09-22 v7.00t Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2022-11-13 v7.00u Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -549,7 +558,7 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count318
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2022-09-22 v7.00t Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2022-11-13 v7.00u Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -593,7 +602,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2022-09-22 v7.00t Hyperref driver for pdfTeX
+File: hpdftex.def 2022-11-13 v7.00u Hyperref driver for pdfTeX
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
@@ -607,14 +616,18 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip83
+\Hy@SectionHShift=\skip84
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 116.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count326
 \l__pdf_internal_box=\box77
-) (./referee_comments.aux)
+) (./referee_comments.aux
+
+LaTeX Warning: Label `alc_passing_graph' multiply defined.
+
+)
 \openout1 = `referee_comments.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
@@ -690,279 +703,301 @@ Package hyperref Info: Link coloring ON on input line 121.
 \@outlinefile=\write3
 \openout3 = `referee_comments.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 139.
+[1
+
+{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `section:spillover' on page 2 undefined on input line 195.
+
+[2] [3] [4] [5]
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 328.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 139.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 328.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 139.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 328.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 139.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 328.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 139.
+(Font)              <12> on input line 328.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 139.
+(Font)              <8> on input line 328.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 139.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 139.
+(Font)              <6> on input line 328.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 328.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 139.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 328.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+) [6] [7]
 
-{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Reference `section:spillover' on page 2 undefined on input line 202.
-
-[2] [3] [4] [5] [6] [7]
-
-LaTeX Warning: Reference `section:trigger' on page 8 undefined on input line 385.
+LaTeX Warning: Reference `section:trigger' on page 8 undefined on input line 388.
 
 
-LaTeX Warning: Reference `section:trigger' on page 8 undefined on input line 386.
+LaTeX Warning: Reference `section:trigger' on page 8 undefined on input line 389.
 
-[8]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 431.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 431.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 431.
-[9]
+[8] [9]
 
-LaTeX Warning: Reference `alc_progression_g' on page 10 undefined on input line 474.
+LaTeX Warning: Reference `sex_passing_graph' on page 10 undefined on input line 485.
 
 
-LaTeX Warning: Reference `sex_progression_g' on page 10 undefined on input line 474.
+LaTeX Warning: Reference `sex_passing_graph' on page 10 undefined on input line 499.
 
-[10] [11] [12] [13] [14] [15] [16]
-Overfull \hbox (56.86908pt too wide) in paragraph at lines 754--760
+
+LaTeX Warning: Reference `sex_passing_graph' on page 10 undefined on input line 507.
+
+[10]
+
+LaTeX Warning: Reference `sex_passing_graph' on page 11 undefined on input line 517.
+
+[11] [12] [13] [14] [15] [16] [17]
+Overfull \hbox (56.86908pt too wide) in paragraph at lines 757--763
 []\T1/lmr/m/n/12 Chaisemartin, Clé-ment de, Xavier D'Haultfoeuille, and An-toine Deeb. 2020. ``TWOWAYFEWEIGHTS:
  []
 
 
-Underfull \hbox (badness 2277) in paragraph at lines 754--760
+Underfull \hbox (badness 2277) in paragraph at lines 757--763
 \T1/lmr/m/n/12 Stata Mod-ule to Es-ti-mate the Weights and Mea-sure of Ro-bust-ness to Treat-
  []
 
-[17] [18]
-<referee_comments_files/figure-latex/unnamed-chunk-7-1.pdf, id=275, 939.51pt x 505.89pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-7-1.pdf  used on input line 780.
+[18] [19]
+<referee_comments_files/figure-latex/unnamed-chunk-8-1.pdf, id=304, 939.51pt x 505.89pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-8-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-8-1.pdf  used on input line 778.
 (pdftex.def)             Requested size: 650.4273pt x 350.23007pt.
-[19 <./referee_comments_files/figure-latex/unnamed-chunk-7-1.pdf>]
-<referee_comments_files/figure-latex/unnamed-chunk-9-1.pdf, id=290, 3179.88pt x 2601.72pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 790.
-(pdftex.def)             Requested size: 520.3392pt x 425.73207pt.
+[20 <./referee_comments_files/figure-latex/unnamed-chunk-8-1.pdf>]
+<referee_comments_files/figure-latex/unnamed-chunk-10-1.pdf, id=318, 1156.32pt x 650.43pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 788.
+(pdftex.def)             Requested size: 650.4284pt x 365.86597pt.
 
-LaTeX Warning: Float too large for page by 63.07143pt on input line 794.
+LaTeX Warning: Float too large for page by 3.20532pt on input line 792.
 
-[20 <./referee_comments_files/figure-latex/unnamed-chunk-9-1.pdf>]
-<referee_comments_files/figure-latex/unnamed-chunk-11-1.pdf, id=303, 469.755pt x 325.215pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-11-1.pdf  used on input line 799.
+[21 <./referee_comments_files/figure-latex/unnamed-chunk-10-1.pdf>]
+<referee_comments_files/figure-latex/unnamed-chunk-12-1.pdf, id=331, 469.755pt x 325.215pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-12-1.pdf  used on input line 797.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<referee_comments_files/figure-latex/unnamed-chunk-13-1.pdf, id=304, 469.755pt x 325.215pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 807.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<referee_comments_files/figure-latex/unnamed-chunk-14-1.pdf, id=305, 469.755pt x 325.215pt>
+<referee_comments_files/figure-latex/unnamed-chunk-14-1.pdf, id=332, 469.755pt x 325.215pt>
 File: referee_comments_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
 <use referee_comments_files/figure-latex/unnamed-chunk-14-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-14-1.pdf  used on input line 815.
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-14-1.pdf  used on input line 805.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<referee_comments_files/figure-latex/unnamed-chunk-16-1.pdf, id=306, 722.7pt x 722.7pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-16-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-16-1.pdf  used on input line 823.
+<referee_comments_files/figure-latex/unnamed-chunk-15-1.pdf, id=333, 469.755pt x 325.215pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 813.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<referee_comments_files/figure-latex/unnamed-chunk-17-1.pdf, id=334, 722.7pt x 722.7pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-17-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 821.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
-<referee_comments_files/figure-latex/unnamed-chunk-18-1.pdf, id=307, 722.7pt x 722.7pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-18-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-18-1.pdf  used on input line 831.
+<referee_comments_files/figure-latex/unnamed-chunk-19-1.pdf, id=335, 722.7pt x 722.7pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-19-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 829.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
-<referee_comments_files/figure-latex/unnamed-chunk-20-1.pdf, id=309, 794.97pt x 867.24pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-20-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-20-1.pdf  used on input line 839.
-(pdftex.def)             Requested size: 469.76819pt x 512.4744pt.
+<referee_comments_files/figure-latex/unnamed-chunk-21-1.pdf, id=337, 722.7pt x 722.7pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-21-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-21-1.pdf  used on input line 837.
+(pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 
-LaTeX Warning: Float too large for page by 0.52765pt on input line 843.
+LaTeX Warning: Float too large for page by 1.3137pt on input line 841.
 
-<referee_comments_files/figure-latex/unnamed-chunk-22-1.pdf, id=311, 722.7pt x 722.7pt>
+<referee_comments_files/figure-latex/unnamed-chunk-22-1.pdf, id=338, 722.7pt x 722.7pt>
 File: referee_comments_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
 <use referee_comments_files/figure-latex/unnamed-chunk-22-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 847.
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 845.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
-[21 <./referee_comments_files/figure-latex/unnamed-chunk-11-1.pdf>] [22 <./referee_comments_files/figure-latex/unnamed-chunk-13-1.pdf>] [23 <./referee_comments_files/figure-latex/unnamed-chunk-14-1.pdf>] [24 <./referee_comments_files/figure-latex/unnamed-chunk-16-1.pdf>] [25 <./referee_comments_files/figure-latex/unnamed-chunk-18-1.pdf>] [26 <./referee_comments_files/figure-latex/unnamed-chunk-20-1.pdf>] [27 <./referee_comments_files/figure-latex/unnamed-chunk-22-1.pdf>]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 866.
+
+LaTeX Warning: Float too large for page by 1.3137pt on input line 849.
+
+<referee_comments_files/figure-latex/unnamed-chunk-24-1.pdf, id=339, 794.97pt x 867.24pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-24-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-24-1.pdf  used on input line 853.
+(pdftex.def)             Requested size: 469.76819pt x 512.4744pt.
+
+LaTeX Warning: Float too large for page by 0.52765pt on input line 857.
+
+<referee_comments_files/figure-latex/unnamed-chunk-26-1.pdf, id=341, 722.7pt x 722.7pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-26-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-26-1.pdf  used on input line 861.
+(pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
+[22 <./referee_comments_files/figure-latex/unnamed-chunk-12-1.pdf>] [23 <./referee_comments_files/figure-latex/unnamed-chunk-14-1.pdf>] [24 <./referee_comments_files/figure-latex/unnamed-chunk-15-1.pdf>] [25 <./referee_comments_files/figure-latex/unnamed-chunk-17-1.pdf>] [26 <./referee_comments_files/figure-latex/unnamed-chunk-19-1.pdf>] [27 <./referee_comments_files/figure-latex/unnamed-chunk-21-1.pdf>] [28 <./referee_comments_files/figure-latex/unnamed-chunk-22-1.pdf>] [29 <./referee_comments_files/figure-latex/unnamed-chunk-24-1.pdf>] [30 <./referee_comments_files/figure-latex/unnamed-chunk-26-1.pdf>]
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 880.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11> on input line 866.
+(Font)              <11> on input line 880.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.69997> on input line 866.
+(Font)              <7.69997> on input line 880.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 866.
-[28
+(Font)              <5.5> on input line 880.
+[31
 
 
 
 
 
-] [29] [30
+] [32] [33
 
-] [31
-
-
-]
-Overfull \vbox (12.09038pt too high) has occurred while \output is active []
-
-[32] [33]
-Overfull \hbox (10.38162pt too wide) in paragraph at lines 1124--1152
+] [34] [35]
+Overfull \hbox (10.38162pt too wide) in paragraph at lines 1139--1169
  [] 
  []
 
-[34
+[36
 
 
 
-] [35] [36] [37]
+] [37] [38] [39]
 
-LaTeX Warning: Reference `section:did' on page 1 undefined on input line 1261.
+LaTeX Warning: Reference `section:did' on page 1 undefined on input line 1278.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1331 
+l.1348 
         [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1332 \newpage
+l.1349 \newpage
                 [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1409 
+l.1426 
         [1]
 
-LaTeX Warning: Reference `section:spillover' on page 2 undefined on input line 1422.
+LaTeX Warning: Reference `section:spillover' on page 2 undefined on input line 1439.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1427 \newpage
+l.1444 \newpage
                 [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1470 \end{landscape}
+l.1487 \end{landscape}
                        [3
 
 ]
-<sample_crime_log.png, id=495, 725.71124pt x 976.64874pt>
+<sample_crime_log.png, id=549, 725.71124pt x 976.64874pt>
 File: sample_crime_log.png Graphic file (type png)
 <use sample_crime_log.png>
-Package pdftex.def Info: sample_crime_log.png  used on input line 1489.
+Package pdftex.def Info: sample_crime_log.png  used on input line 1506.
 (pdftex.def)             Requested size: 375.81067pt x 505.75903pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1495 \begin{landscape}
+l.1512 \begin{landscape}
                          [1
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1495 \begin{landscape}
+l.1512 \begin{landscape}
                          [2 <./sample_crime_log.png>]
-<referee_comments_files/figure-latex/unnamed-chunk-47-1.pdf, id=507, 2890.8pt x 2023.56pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-47-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-47-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-47-1.pdf  used on input line 1498.
-(pdftex.def)             Requested size: 585.3838pt x 409.76866pt.
+<referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf, id=560, 1011.78pt x 578.16pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf  used on input line 1515.
+(pdftex.def)             Requested size: 715.48183pt x 408.84676pt.
+
+Overfull \hbox (65.05182pt too wide) in paragraph at lines 1515--1515
+ [] 
+ []
+
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1503 \end{landscape}
-                       [3 <./referee_comments_files/figure-latex/unnamed-chunk-47-1.pdf>]
-<referee_comments_files/figure-latex/unnamed-chunk-49-1.pdf, id=517, 469.755pt x 469.755pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-49-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-49-1.pdf  used on input line 1507.
+l.1520 \end{landscape}
+                       [3 <./referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf>]
+<referee_comments_files/figure-latex/unnamed-chunk-53-1.pdf, id=570, 469.755pt x 469.755pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-53-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-53-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-53-1.pdf  used on input line 1524.
 (pdftex.def)             Requested size: 469.75386pt x 469.75386pt.
-<referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf, id=518, 469.755pt x 325.215pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf  used on input line 1515.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<referee_comments_files/figure-latex/unnamed-chunk-52-1.pdf, id=519, 469.755pt x 325.215pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-52-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-52-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-52-1.pdf  used on input line 1523.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<referee_comments_files/figure-latex/unnamed-chunk-54-1.pdf, id=520, 469.755pt x 325.215pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-54-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-54-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-54-1.pdf  used on input line 1531.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<referee_comments_files/figure-latex/unnamed-chunk-55-1.pdf, id=523, 469.755pt x 325.215pt>
+<referee_comments_files/figure-latex/unnamed-chunk-55-1.pdf, id=571, 469.755pt x 325.215pt>
 File: referee_comments_files/figure-latex/unnamed-chunk-55-1.pdf Graphic file (type pdf)
 <use referee_comments_files/figure-latex/unnamed-chunk-55-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-55-1.pdf  used on input line 1539.
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-55-1.pdf  used on input line 1532.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<referee_comments_files/figure-latex/unnamed-chunk-57-1.pdf, id=526, 686.565pt x 433.62pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-57-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-57-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-57-1.pdf  used on input line 1547.
-(pdftex.def)             Requested size: 469.74944pt x 296.68385pt.
-
-LaTeX Warning: Reference `section:mainresults' on page 4 undefined on input line 1550.
-
-
-LaTeX Warning: Reference `section:trigger' on page 4 undefined on input line 1550.
-
-<referee_comments_files/figure-latex/unnamed-chunk-58-1.pdf, id=528, 686.565pt x 433.62pt>
+<referee_comments_files/figure-latex/unnamed-chunk-56-1.pdf, id=572, 469.755pt x 325.215pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-56-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-56-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-56-1.pdf  used on input line 1540.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<referee_comments_files/figure-latex/unnamed-chunk-58-1.pdf, id=573, 469.755pt x 325.215pt>
 File: referee_comments_files/figure-latex/unnamed-chunk-58-1.pdf Graphic file (type pdf)
 <use referee_comments_files/figure-latex/unnamed-chunk-58-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-58-1.pdf  used on input line 1555.
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-58-1.pdf  used on input line 1548.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<referee_comments_files/figure-latex/unnamed-chunk-59-1.pdf, id=576, 469.755pt x 325.215pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-59-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-59-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-59-1.pdf  used on input line 1556.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<referee_comments_files/figure-latex/unnamed-chunk-61-1.pdf, id=579, 686.565pt x 433.62pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-61-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-61-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-61-1.pdf  used on input line 1564.
 (pdftex.def)             Requested size: 469.74944pt x 296.68385pt.
 
-LaTeX Warning: Reference `section:mainresults' on page 4 undefined on input line 1558.
+LaTeX Warning: Reference `section:mainresults' on page 4 undefined on input line 1567.
 
 
-LaTeX Warning: Reference `section:trigger' on page 4 undefined on input line 1558.
+LaTeX Warning: Reference `section:trigger' on page 4 undefined on input line 1567.
 
-<referee_comments_files/figure-latex/unnamed-chunk-60-1.pdf, id=530, 722.7pt x 722.7pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-60-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-60-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-60-1.pdf  used on input line 1563.
+<referee_comments_files/figure-latex/unnamed-chunk-62-1.pdf, id=581, 686.565pt x 433.62pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-62-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-62-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-62-1.pdf  used on input line 1572.
+(pdftex.def)             Requested size: 469.74944pt x 296.68385pt.
+
+LaTeX Warning: Reference `section:mainresults' on page 4 undefined on input line 1575.
+
+
+LaTeX Warning: Reference `section:trigger' on page 4 undefined on input line 1575.
+
+<referee_comments_files/figure-latex/unnamed-chunk-64-1.pdf, id=583, 722.7pt x 722.7pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-64-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-64-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-64-1.pdf  used on input line 1580.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 
-LaTeX Warning: Float too large for page by 30.3137pt on input line 1567.
+LaTeX Warning: Float too large for page by 30.3137pt on input line 1584.
 
 
-Overfull \hbox (40.14886pt too wide) in alignment at lines 1576--1634
+Overfull \hbox (40.14886pt too wide) in alignment at lines 1593--1651
  [] [] [] [] [] 
  []
 
@@ -970,7 +1005,7 @@ Overfull \hbox (40.14886pt too wide) in alignment at lines 1576--1634
 pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1634 \end{longtable}
+l.1651 \end{longtable}
                        [4
 
 
@@ -978,54 +1013,54 @@ l.1634 \end{longtable}
 pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
+l.1719 \begin{landscape}
                         \begin{table}[H] [5]
 pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
+l.1719 \begin{landscape}
                         \begin{table}[H] [6]
 pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
-                        \begin{table}[H] [7 <./referee_comments_files/figure-latex/unnamed-chunk-49-1.pdf>]
+l.1719 \begin{landscape}
+                        \begin{table}[H] [7 <./referee_comments_files/figure-latex/unnamed-chunk-53-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
-                        \begin{table}[H] [8 <./referee_comments_files/figure-latex/unnamed-chunk-51-1.pdf>]
+l.1719 \begin{landscape}
+                        \begin{table}[H] [8 <./referee_comments_files/figure-latex/unnamed-chunk-55-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.9}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
-                        \begin{table}[H] [9 <./referee_comments_files/figure-latex/unnamed-chunk-52-1.pdf>]
+l.1719 \begin{landscape}
+                        \begin{table}[H] [9 <./referee_comments_files/figure-latex/unnamed-chunk-56-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.10}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
-                        \begin{table}[H] [10 <./referee_comments_files/figure-latex/unnamed-chunk-54-1.pdf>]
+l.1719 \begin{landscape}
+                        \begin{table}[H] [10 <./referee_comments_files/figure-latex/unnamed-chunk-58-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
-                        \begin{table}[H] [11 <./referee_comments_files/figure-latex/unnamed-chunk-55-1.pdf>]
+l.1719 \begin{landscape}
+                        \begin{table}[H] [11 <./referee_comments_files/figure-latex/unnamed-chunk-59-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
-                        \begin{table}[H] [12 <./referee_comments_files/figure-latex/unnamed-chunk-57-1.pdf>]
+l.1719 \begin{landscape}
+                        \begin{table}[H] [12 <./referee_comments_files/figure-latex/unnamed-chunk-61-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
-                        \begin{table}[H] [13 <./referee_comments_files/figure-latex/unnamed-chunk-58-1.pdf>]
+l.1719 \begin{landscape}
+                        \begin{table}[H] [13 <./referee_comments_files/figure-latex/unnamed-chunk-62-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.14}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1702 \begin{landscape}
-                        \begin{table}[H] [14 <./referee_comments_files/figure-latex/unnamed-chunk-60-1.pdf>]
-Overfull \hbox (34.74161pt too wide) in paragraph at lines 1708--1736
+l.1719 \begin{landscape}
+                        \begin{table}[H] [14 <./referee_comments_files/figure-latex/unnamed-chunk-64-1.pdf>]
+Overfull \hbox (34.74161pt too wide) in paragraph at lines 1725--1753
  [] 
  []
 
@@ -1033,16 +1068,16 @@ Overfull \hbox (34.74161pt too wide) in paragraph at lines 1708--1736
 pdfTeX warning (ext4): destination with the same identifier (name{page.15}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1737 \end{landscape}
+l.1754 \end{landscape}
                        [15
 
 ]
-Overfull \hbox (44.49745pt too wide) in paragraph at lines 1745--1782
+Overfull \hbox (49.88286pt too wide) in paragraph at lines 1762--1799
  [] 
  []
 
 
-Overfull \hbox (49.88286pt too wide) in paragraph at lines 1790--1827
+Overfull \hbox (44.49745pt too wide) in paragraph at lines 1807--1844
  [] 
  []
 
@@ -1050,55 +1085,53 @@ Overfull \hbox (49.88286pt too wide) in paragraph at lines 1790--1827
 pdfTeX warning (ext4): destination with the same identifier (name{page.16}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1828 
+l.1845 
         [16
 
 ]
-<referee_comments_files/figure-latex/unnamed-chunk-71-1.pdf, id=636, 469.755pt x 433.62pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-71-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-71-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-71-1.pdf  used on input line 1831.
-(pdftex.def)             Requested size: 469.75386pt x 433.61894pt.
-<referee_comments_files/figure-latex/unnamed-chunk-72-1.pdf, id=637, 469.755pt x 433.62pt>
-File: referee_comments_files/figure-latex/unnamed-chunk-72-1.pdf Graphic file (type pdf)
-<use referee_comments_files/figure-latex/unnamed-chunk-72-1.pdf>
-Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-72-1.pdf  used on input line 1839.
-(pdftex.def)             Requested size: 469.75386pt x 433.61894pt.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1851 \newpage
+                [1]
+<referee_comments_files/figure-latex/unnamed-chunk-75-1.pdf, id=694, 722.7pt x 325.215pt>
+File: referee_comments_files/figure-latex/unnamed-chunk-75-1.pdf Graphic file (type pdf)
+<use referee_comments_files/figure-latex/unnamed-chunk-75-1.pdf>
+Package pdftex.def Info: referee_comments_files/figure-latex/unnamed-chunk-75-1.pdf  used on input line 1860.
+(pdftex.def)             Requested size: 469.76045pt x 211.3922pt.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.17}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1845 \end{document}
-                      [17]
-pdfTeX warning (ext4): destination with the same identifier (name{page.18}) has been already used, duplicate ignored
+l.1866 \end{document}
+                      [2]
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1845 \end{document}
-                      [18 <./referee_comments_files/figure-latex/unnamed-chunk-71-1.pdf>]
-pdfTeX warning (ext4): destination with the same identifier (name{page.19}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1845 \end{document}
-                      [19 <./referee_comments_files/figure-latex/unnamed-chunk-72-1.pdf>] (./referee_comments.aux)
+l.1866 \end{document}
+                      [3 <./referee_comments_files/figure-latex/unnamed-chunk-75-1.pdf>] (./referee_comments.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `referee_comments.out' has not changed.
-(rerunfilecheck)             Checksum: 5013DC53FF420E6152F7955FBA63FEBC;4747.
+(rerunfilecheck)             Checksum: F554BC894F8633C5D77D7C926D42E6F0;5540.
  ) 
 Here is how much of TeX's memory you used:
- 18167 strings out of 476985
- 310354 string characters out of 5824970
- 756248 words of memory out of 5000000
- 38834 multiletter control sequences out of 15000+600000
+ 18164 strings out of 476928
+ 310717 string characters out of 5823970
+ 756888 words of memory out of 5000000
+ 38870 multiletter control sequences out of 15000+600000
  594095 words of font info for 119 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,15n,106p,2714b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,17n,106p,2714b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on referee_comments.pdf (61 pages, 1163277 bytes).
+Output written on referee_comments.pdf (63 pages, 1171656 bytes).
 PDF statistics:
- 757 PDF objects out of 1000 (max. 8388607)
- 622 compressed objects within 7 object streams
- 148 named destinations out of 1000 (max. 500000)
- 290 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 801 PDF objects out of 1000 (max. 8388607)
+ 662 compressed objects within 7 object streams
+ 160 named destinations out of 1000 (max. 500000)
+ 327 words of extra memory for PDF output out of 10000 (max. 10000000)
 

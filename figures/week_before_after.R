@@ -3,6 +3,8 @@ library(modelsummary)
 library(fixest)
 library(kableExtra)
 library(patchwork)
+library(grid)
+library(gridExtra)
 
 if (!exists("daily_crime")){
   daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv")
@@ -59,14 +61,15 @@ alc_weeksplit_g <- weeksplit_controls %>%
   mutate(week_type = factor(week_type, levels = c("All Days", "Weekends", "Weekdays"))) %>% 
   ggplot(aes(estimate, time)) +
   geom_point() +
-  geom_errorbar(aes(xmin = conf.low, xmax = conf.high)) +
+  geom_errorbar(aes(xmin = conf.low, xmax = conf.high), width = 0.4) +
   facet_wrap(~week_type) +
   geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 2- 0.5,
                 ymax = 2+ 0.5),fill = "cornsilk2", alpha = 0.1) +
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
   labs(x = "", y = " ", title = "Panel A: Alcohol Offenses") +
-  theme(legend.position = "none") +
+  theme(legend.position = "none",
+        strip.text = element_text(size = 12)) +
   coord_flip() 
 
 sex_weeksplit_g <- weeksplit_controls %>%
@@ -81,14 +84,15 @@ sex_weeksplit_g <- weeksplit_controls %>%
   mutate(week_type = factor(week_type, levels = c("All Days", "Weekends", "Weekdays"))) %>% 
   ggplot(aes(estimate, time)) +
   geom_point() +
-  geom_errorbar(aes(xmin = conf.low, xmax = conf.high)) +
+  geom_errorbar(aes(xmin = conf.low, xmax = conf.high), width = 0.4) +
   geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 2- 0.5,
                 ymax = 2+ 0.5),fill = "cornsilk2", alpha = 0.1) +
   facet_wrap(~week_type) +
   geom_vline(xintercept = 0, color = "dark red", linetype = "dashed") +
   theme_minimal() +
   labs(x = "", y = " ", title = "Panel B: Sexual Assaults") +
-  theme(legend.position = "none") +
+  theme(legend.position = "none",
+        strip.text = element_text(size = 12)) +
   coord_flip() 
 
 result <- alc_weeksplit_g + sex_weeksplit_g + plot_layout(ncol = 1)

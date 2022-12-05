@@ -10,6 +10,8 @@ library(modelsummary)
 library(fixest)
 library(kableExtra)
 library(patchwork)
+library(grid)
+library(gridExtra)
 
 if (!exists("daily_crime")){
   daily_crime <- read_csv("created_data/xmaster_data/daily_panel.csv") 
@@ -64,13 +66,14 @@ alc_game <- alc %>%
                                         "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium"))) %>% 
   ggplot(aes(row_number, estimate)) +
   geom_point() +
-  geom_errorbar(aes(ymin = conf.low, ymax= conf.high)) +
+  geom_errorbar(aes(ymin = conf.low, ymax= conf.high), width = 0.4) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
   facet_wrap(~moratorium) +
   scale_x_continuous(breaks = c(1:6), labels = c("All Games", "Home Game","Away Game", "All Games\nx\nIn Moratorium",
                               "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel A: Alcohol Offenses") +
-  theme_minimal() 
+  theme_minimal()  +
+  theme(strip.text = element_text(size =12))
 
 
 
@@ -114,13 +117,14 @@ sex_game <- sex %>%
                                         "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium"))) %>% 
   ggplot(aes(row_number, estimate)) +
   geom_point() +
-  geom_errorbar(aes(ymin = conf.low, ymax= conf.high)) +
+  geom_errorbar(aes(ymin = conf.low, ymax= conf.high), width = 0.4) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "dark red") +
   facet_wrap(~moratorium) +
   scale_x_continuous(breaks = c(1:6), labels = c("All Games", "Home Game","Away Game", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
   labs(x = " ", y = "", title = "Panel B: Sexual Assaults") +
-  theme_minimal() 
+  theme_minimal() +
+  theme(strip.text = element_text(size =12))
 
 result <- alc_game + sex_game + plot_layout(ncol = 1) 
 
