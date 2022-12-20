@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.4)  20 DEC 2022 14:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.4)  20 DEC 2022 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**data.tex
-(./data.tex
+**appendix_data.tex
+(./appendix_data.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2022-11-02> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -303,8 +303,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count285
 \l__pdf_internal_box=\box53
-) (./data.aux)
-\openout1 = `data.aux'.
+) (./appendix_data.aux)
+\openout1 = `appendix_data.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
 LaTeX Font Info:    ... okay on input line 69.
@@ -365,9 +365,9 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 69.
-(./data.out) (./data.out)
+(./appendix_data.out) (./appendix_data.out)
 \@outlinefile=\write3
-\openout3 = `data.out'.
+\openout3 = `appendix_data.out'.
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 71.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
@@ -400,65 +400,33 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Reference `closure_table' on page 1 undefined on input line 89.
-
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 94.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 94.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 94.
-
-LaTeX Warning: Reference `asection:datasample' on page 1 undefined on input line 96.
+LaTeX Warning: Reference `section:construction' on page 1 undefined on input line 85.
 
 
-LaTeX Warning: Reference `crime_log' on page 1 undefined on input line 115.
-
-
-LaTeX Warning: Reference `asection:datadcl' on page 1 undefined on input line 132.
-
-
-LaTeX Warning: Reference `data_used' on page 1 undefined on input line 142.
+LaTeX Warning: Reference `section:construction' on page 1 undefined on input line 113.
 
 [1
 
-{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 177.
-(/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-
-LaTeX Warning: Reference `matching_table' on page 2 undefined on input line 191.
-
-
-LaTeX Warning: Reference `top_categories' on page 2 undefined on input line 194.
-
-
-LaTeX Warning: Reference `summary_stats' on page 2 undefined on input line 200.
-
-
-LaTeX Warning: Reference `niche_ranking_graph' on page 2 undefined on input line 214.
-
-[2] [3] (./data.aux)
+{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./appendix_data.aux)
 
 LaTeX Warning: There were undefined references.
 
-Package rerunfilecheck Info: File `data.out' has not changed.
-(rerunfilecheck)             Checksum: 72905FF052D49419BEE1570176FC9F4F;597.
+Package rerunfilecheck Info: File `appendix_data.out' has not changed.
+(rerunfilecheck)             Checksum: A3B4926A1A47485F25436B5BC9ECDEC1;565.
  ) 
 Here is how much of TeX's memory you used:
- 10513 strings out of 476928
- 165103 string characters out of 5823970
- 515065 words of memory out of 5000000
- 31580 multiletter control sequences out of 15000+600000
- 526876 words of font info for 71 fonts, out of 8000000 for 9000
+ 10426 strings out of 476928
+ 163792 string characters out of 5823970
+ 509196 words of memory out of 5000000
+ 31519 multiletter control sequences out of 15000+600000
+ 502513 words of font info for 51 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,8n,77p,309b,435s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb>
-Output written on data.pdf (3 pages, 207375 bytes).
+ 72i,5n,77p,318b,434s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb>
+Output written on appendix_data.pdf (1 page, 105262 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
- 16 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 52 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
+ 8 named destinations out of 1000 (max. 500000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 
