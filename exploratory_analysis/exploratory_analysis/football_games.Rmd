@@ -1,10 +1,23 @@
 ---
-title: "Football Appended"
-output: pdf_document
+title: "Exploratory Analysis"
+output: 
+  pdf_document:
+    number_sections: true
+author: 
+  - Michael Topper
+date: "Last Updated: `r Sys.Date()`"
+citation_package: natbib
 editor_options: 
   chunk_output_type: console
+header-includes:
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{subfig}
+  - \usepackage{natbib}
+  - \setcounter{section}{-1}
+#bibliography: "references.bib"
 link-citations: yes
-linkcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -76,72 +89,72 @@ I tried to make a few raw data graphs, although it was difficult given that the 
 
 \newpage
 
-# Tables and Figures
+<!-- # Tables and Figures -->
 
-```{r}
-source(here::here(paste0("tables/football_moratorium_table.R")))
-```
+<!-- ```{r} -->
+<!-- source(here::here(paste0("tables/football_moratorium_table.R"))) -->
+<!-- ``` -->
 
-```{r}
-football_moratorium_table
-```
+<!-- ```{r} -->
+<!-- football_moratorium_table -->
+<!-- ``` -->
 
-```{r}
-source(here::here(paste0("tables/regressions_main_football_controls.R")))
-```
+<!-- ```{r} -->
+<!-- source(here::here(paste0("tables/regressions_main_football_controls.R"))) -->
+<!-- ``` -->
 
-```{r}
-main_table_adjusted
-```
+<!-- ```{r} -->
+<!-- main_table_adjusted -->
+<!-- ``` -->
 
-```{r}
-effect_game_day_interaction
-```
-
-
-```{r}
-effect_game_day_moratorium_table
-```
+<!-- ```{r} -->
+<!-- effect_game_day_interaction -->
+<!-- ``` -->
 
 
-```{r}
-source(here::here(paste0("tables/regressions_lindo_replicate.R")))
-```
-
-```{r}
-lindo_rep_nibrs
-```
-
-```{r}
-lindo_rep_nibrs_college_age
-```
-
-```{r}
-source(here::here(paste0("tables/regressions_nibrs.R")))
-```
-```{r}
-nibrs_table
-```
-
-```{r}
-spillovers
-```
+<!-- ```{r} -->
+<!-- effect_game_day_moratorium_table -->
+<!-- ``` -->
 
 
+<!-- ```{r} -->
+<!-- source(here::here(paste0("tables/regressions_lindo_replicate.R"))) -->
+<!-- ``` -->
 
-```{r}
-source(here::here(paste0("tables/regressions_ifc_fraction.R")))
-```
+<!-- ```{r} -->
+<!-- lindo_rep_nibrs -->
+<!-- ``` -->
 
-```{r}
-ifc_table
-```
+<!-- ```{r} -->
+<!-- lindo_rep_nibrs_college_age -->
+<!-- ``` -->
 
-```{r}
-source(here::here(paste0("figures/barplot_byday.R")))
-```
+<!-- ```{r} -->
+<!-- source(here::here(paste0("tables/regressions_nibrs.R"))) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- nibrs_table -->
+<!-- ``` -->
 
-```{r, fig.cap = "\\label{barplot}Distribution of alcohol offenses and sexual assaults by weekends (Fri-Sun) and weekdays (Mon-Thurs)."}
-raw_bar
-```
+<!-- ```{r} -->
+<!-- spillovers -->
+<!-- ``` -->
+
+
+
+<!-- ```{r} -->
+<!-- source(here::here(paste0("tables/regressions_ifc_fraction.R"))) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- ifc_table -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- source(here::here(paste0("figures/barplot_byday.R"))) -->
+<!-- ``` -->
+
+<!-- ```{r, fig.cap = "\\label{barplot}Distribution of alcohol offenses and sexual assaults by weekends (Fri-Sun) and weekdays (Mon-Thurs)."} -->
+<!-- raw_bar -->
+<!-- ``` -->
 
