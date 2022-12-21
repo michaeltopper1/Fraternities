@@ -1,10 +1,11 @@
 ---
 title: "Exploratory Analysis"
-output: pdf_document
+output: 
+  pdf_document:
+    number_sections: true
 author: 
   - Michael Topper
 date: "Last Updated: `r Sys.Date()`"
-number_sections: true
 citation_package: natbib
 editor_options: 
   chunk_output_type: console
@@ -29,9 +30,7 @@ theme_set(theme_light())
 
 # Data
 
-```{r, echo = F, include = F}
-daily_crime <- read_csv("/Users/michaeltopper/Desktop/Fraternities and Sexual Assault/Created Data/xMaster_data_2021/daily_panel.csv", guess_max = 50000)
-```
+
 
 # Alcohol and Sexual Assault Offenses
 
