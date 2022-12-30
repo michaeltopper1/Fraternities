@@ -24,23 +24,20 @@ if (!exists("daily_crime_weekdays")){
 frac_ifc <- read_csv("data/fraction_ifc.csv") %>% 
   select(university, ifc_frac_updated)
 
+frac_ifc <- frac_ifc %>% 
+  mutate(avg = mean(ifc_frac_updated),
+         deviation_from_avg = ifc_frac_updated - avg)
+
 ifc_quantiles <- quantile(frac_ifc$ifc_frac_updated) 
 ifc_quantiles_3 <- quantile(frac_ifc$ifc_frac_updated, probs = c(0,.33,.66,1))
 ifc_quantiles_6 <- quantile(frac_ifc$ifc_frac_updated, probs = c(0,.1,.2,.3, .4, .5, 1))
 
 
-# feols(alcohol_offense_per25 ~
-#         treatment| university + game_occurred + university_by_academic_year +
-#         holiday + day_of_week +spring_semester,
-#       cluster = ~university, data = daily_crime%>% 
-#         filter(ifc_frac_updated< 0.0179))
-# # 
-# adding in the ifc fractions ---------------------------------------------
 
-create_treciles <- . %>% 
-  mutate(ifc_trecile_1 = ifelse(ifc_frac_updated <= ifc_quantiles_3[[2]], 1, 0),
-         ifc_trecile_2 = ifelse(ifc_frac_updated <= ifc_quantiles[[3]] & ifc_frac_updated > ifc_quantiles_3[[2]], 1, 0),
-         ifc_trecile_3 = ifelse(ifc_frac_updated > ifc_quantiles[[3]], 1, 0))
+
+
+
+# adding in the ifc fractions ---------------------------------------------
 
 create_quantiles <- . %>% 
   mutate(ifc_quantile_1 = ifelse(ifc_frac_updated <= ifc_quantiles[[2]], 1, 0),
@@ -51,35 +48,30 @@ create_quantiles <- . %>%
 daily_crime <- daily_crime %>% 
   left_join(frac_ifc) %>% 
   create_quantiles() %>% 
-  create_treciles() %>% 
-  mutate(treatment_ifc = treatment * ifc_frac_updated)
+  mutate(treatment_ifc = treatment * ifc_frac_updated,
+         treatment_ifc_dev = treatment * deviation_from_avg)
 
 daily_crime_weekends <- daily_crime_weekends %>% 
   left_join(frac_ifc) %>% 
   create_quantiles() %>%
-  create_treciles() %>% 
-  mutate(treatment_ifc = treatment * ifc_frac_updated)
+  mutate(treatment_ifc = treatment * ifc_frac_updated,
+         treatment_ifc_dev = treatment * deviation_from_avg)
 
 
 daily_crime_weekdays <- daily_crime_weekdays %>% 
   left_join(frac_ifc) %>% 
   create_quantiles() %>%
-  create_treciles() %>% 
-  mutate(treatment_ifc = treatment * ifc_frac_updated)
+  mutate(treatment_ifc = treatment * ifc_frac_updated,
+         treatment_ifc_dev = treatment * deviation_from_avg)
 
 
-data_list <-  list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
-
-
-## using this gives collinearity because it is being absorbed by the fixed effects
-## we do not have dynamic estimates for this for each university. only one number
-# explanatory_vars_bad <- c("treatment * ifc_frac_updated")
+data_list <-  list( daily_crime, daily_crime_weekends,daily_crime_weekdays)
 
 
 ## new solution: use quartiles as referee #4 suggested.
 
 ## the treatment variable gives you the effect on the outcome that results from an increase in the treatment intensity. 
-explanatory_vars <-  c("treatment_ifc")
+explanatory_vars <-  c("treatment_ifc_dev", "treatment")
 
 fixed_effects <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
 alc_intensity <- map(data_list, ~ifc::reghdfe(.x, c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
@@ -94,7 +86,7 @@ gof_mapping <- ifc::gof_mapping() %>%
   mutate(fmt = ifelse(raw == "nobs", 0, 3)) %>%
   add_row(raw = "mean", clean = "Mean of Dependent Variable", fmt = 3, .after = 1)
 
-footnote_ifc <- list("Fraction IFC is the most recent number of IFC members at a university divided by the average total enrollment over 2014-2019. 
+footnote_ifc <- list("Fraction IFC is the most recent number of IFC members at a university divided by the average total enrollment over 2014-2019, centered at the mean. 
                      Note that not every university keeps record of their IFC numbers over time, and therefore,
                      the most recent number of IFC members was used in this calculation. However, based on the few universities that provided year-to-year data on their IFC populations, the total number does not substantially change over time. 
                      Standard errors shown in parenthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students.
@@ -113,7 +105,8 @@ ifc_share <- panelsummary::panelsummary(alc_intensity, sex_intensity,
                            mean_dependent = T,
                            stars =c('*' = .1, '**' = .05, '***' = .01),
                            gof_map = gof_mapping,
-                           coef_map = c("treatment_ifc" = "In Moratorium x Fraction IFC"),
+                           coef_map = c("treatment" = "In Moratorium",
+                                        "treatment_ifc_dev" = "In Moratorium x Fraction IFC"),
                            caption = "\\label{ifc_share}The Effect of Moratoriums Interacted with IFC Share") %>% 
   add_header_above(c(" " = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1)) %>% 
   footnote(footnote_ifc,
@@ -122,108 +115,59 @@ ifc_share <- panelsummary::panelsummary(alc_intensity, sex_intensity,
 
 
 #quantiles ---------------------------------------------------------------
-# 
-# 
-# alc_q1 <- map(data_list, ~ifc::reghdfe(.x %>%
-#                                       filter(ifc_quantile == 0.25), c("alcohol_offense_per25"),"treatment", fixed_effects = fixed_effects, "university"))
-# alc_q2 <- map(data_list, ~ifc::reghdfe(.x %>%
-#                                       filter(ifc_quantile == 0.50) %>% 
-#                                       filter(!university %in% multiple_treatment_uni), c("alcohol_offense_per25"),"treatment", fixed_effects = fixed_effects, "university"))
-# 
-# alc_q3 <- map(data_list, ~ifc::reghdfe(.x %>%
-#                                       filter(ifc_quantile == 0.75) %>% 
-#                                       filter(!university %in% multiple_treatment_uni), c("alcohol_offense_per25"),"treatment", fixed_effects = fixed_effects, "university"))
-# 
-# alc_q4 <- map(data_list, ~ifc::reghdfe(.x %>%
-#                                       filter(ifc_quantile == 1) , c("alcohol_offense_per25"),"treatment", fixed_effects = fixed_effects, "university"))
-# 
-# feols(alcohol_offense_per25 ~
-#         treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
-#         treatment:ifc_quantile_4| university + game_occurred + university_by_academic_year +
-#         holiday + day_of_week +spring_semester,
-#       cluster = ~university, data = daily_crime)
-# 
-# feols(alcohol_offense_per25 ~
-# #         treatment:ifc_trecile_1 +treatment:ifc_trecile_2 + treatment:ifc_trecile_3 |university + game_occurred + university_by_academic_year +
-# #         holiday + day_of_week +spring_semester,
-#       cluster = ~university, data = daily_crime )
-# 
-# sex_q1 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                          filter(ifc_quantile == 0.25), c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# sex_q2 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                          filter(ifc_quantile == 0.50), c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# 
-# sex_q3 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                          filter(ifc_quantile == 0.75), c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# 
-# sex_q4 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                          filter(ifc_quantile == 1), c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# 
-# 
-# # threcetiles -------------------------------------------------------------
-# 
-# 
-# alc_1 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                          filter(ifc_quantile_3 == 0.33), c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# alc_2 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                          filter(ifc_quantile_3 == 0.66), c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# 
-# alc_3 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                          filter(ifc_quantile_3 == 1), c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# 
-# sex_1 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                         filter(ifc_quantile_3 == 0.33), c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# sex_2 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                         filter(ifc_quantile_3 == 0.66), c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# 
-# sex_3 <- map(data_list, ~ifc::reghdfe(.x %>% 
-#                                         filter(ifc_quantile_3 == 1), c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
-# 
-# 
-# 
-# # tables ------------------------------------------------------------------
-# gof_mapping <- ifc::gof_mapping() %>% 
-#   select(-fmt) %>% 
-#   mutate(fmt = ifelse(raw == "nobs", 0, 3)) %>% 
-#   add_row(raw = "mean", clean = "Mean of Dependent Variable", fmt = 3, .after = 1)
-# 
-# alc_ifc_quantile <- panelsummary::panelsummary(alc_q1, 
-#                            alc_q2,
-#                            alc_q3,
-#                            alc_q4,
-#                            panel_labels = c("Quantile 1",
-#                                             "Quantile 2",
-#                                             "Quantile 3",
-#                                             "Quantile 4"),
-#                            stars = T,
-#                            italic = T,
-#                            bold = F,
-#                            collapse_fe = T,
-#       
-#                            coef_map = c("treatment" = "In Moratorium"),
-#                            gof_map = gof_mapping,
-#                            caption = "\\label{alc_ifc_quantile}The Effect of Moratoriums on Alcohol Offenses by Quantile of IFC Population") %>% 
-#   add_header_above(c(" " = 1, "All Days", "Weekends", "Weekdays"))
-# 
-# sex_ifc_quantile <- panelsummary::panelsummary(sex_q1, 
-#                            sex_q2,
-#                            sex_q3,
-#                            sex_q4,
-#                            panel_labels = c("Quantile 1",
-#                                             "Quantile 2",
-#                                             "Quantile 3",
-#                                             "Quantile 4"),
-#                            stars = T,
-#                            italic = T,
-#                            bold = F,
-#                            collapse_fe = T,
-#                            coef_map = c("treatment" = "In Moratorium"),
-#                            gof_map = gof_mapping,
-#                            caption = "\\label{sex_ifc_quantile}The Effect of Moratoriums on  Reports of Sexual Assaults by Quantile of IFC Population") %>% 
-#   add_header_above(c(" " = 1, "All Days", "Weekends", "Weekdays"))
-# 
-# 
-# 
+
+data_list <-  list("All Days" = daily_crime, "Weekends" = daily_crime_weekends, "Weekdays" = daily_crime_weekdays)
+
+
+alc_ifc <- map_df(data_list, ~feols(alcohol_offense_per25 ~
+                           treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
+                           treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
+                         cluster = ~university, data = .x) %>% 
+         broom::tidy(conf.int = T), .id = "var") %>% 
+  mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
+  ggplot(aes(term, estimate, group = var)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
+  geom_point() +
+  geom_hline(yintercept = 0, color = "dark red") +
+  geom_line(linetype = "dashed") +
+  scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
+  facet_wrap(~var) +
+  labs(x = "Quantile", y = "Point Estimate and 95% Confidence Interval") +
+  theme_minimal()
+
+alc_ifc_2 <- map_df(data_list, ~feols(alcohol_offense_per25 ~
+                                      treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
+                                      treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
+                                    cluster = ~university, data = .x %>% 
+                                      filter(university != "West Virginia University")) %>% 
+                    broom::tidy(conf.int = T), .id = "var") %>% 
+  mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
+  ggplot(aes(term, estimate, group = var)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
+  geom_point() +
+  geom_hline(yintercept = 0, color = "dark red") +
+  geom_line(linetype = "dashed") +
+  scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
+  facet_wrap(~var) +
+  labs(x = "Quantile", y = "Point Estimate and 95% Confidence Interval") +
+  theme_minimal()
+
+sex_ifc <- map_df(data_list, ~feols(sexual_assault_per25 ~
+                           treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
+                           treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
+                         cluster = ~university, data = .x) %>% 
+         broom::tidy(conf.int = T),
+       .id = "var") %>% 
+  mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
+  ggplot(aes(term, estimate, group = var)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
+  geom_point() +
+  geom_hline(yintercept = 0, color = "dark red") +
+  geom_line(linetype = "dashed") +
+  scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
+  facet_wrap(~var) +
+  labs(x = "Quantile", y = "Point Estimate on In Moratorium and 95% Confidence Interval") +
+  theme_minimal()
 
 
 

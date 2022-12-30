@@ -26,22 +26,47 @@ knitr::opts_chunk$set(echo = F, message = F, warning = F)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 ```
 
-# Main Regressions
+# IFC Fraction
+
+
+## Analysis 1:
+
+The first analysis includes an interaction effect on the preferred specification:
+
+$$Y_{u,t}  = \beta_1InMoratorium_{u,t} + \beta_2InMoratorium_{u,t} \times FracIFC_{u} + 
+\gamma_{u} \times AcademicYear_{t} + \lambda \mathbb{X}_{t} +  \epsilon_{u,t}$$
+
+\noindent where $FracIFC_{u}$ is the difference of the fraction of IFC members at university $u$ from the mean of all fractions of IFC members at all universities. Hence, this is the Fraction of IFC members at university $u$, but centered at the average across all universities. 
+
+
+## Analysis 2: Quantiles
+
+The second is interacts indicators for each quartile of the fraction of IFC members with the $InMoratorium_{u,t}$ treatment variable:
+
+$$Y_{u,t}  = \sum_{i=1}^{4}\beta_iInMoratorium_{u,t} \times QuartileIFC_{u,i} + 
+\gamma_{u} \times AcademicYear_{t} + \lambda \mathbb{X}_{t} +  \epsilon_{u,t}$$
+
+
+Figure \ref{alc_ifc} shows a possible inverse relationship *on the weekends* between IFC membership and moratorium effects, although the initial point estimate in quartile 1 is much lower than the others. Aside from this point estimate, there appears to be a negative relationship: as IFC membership is higher, the effect of moratoriums is stronger (more negative). The strange blip in the first quartile is caused by West Virginia University. Observe Figure \ref{alc_ifc_2} which shows the the results excluding this university. 
+
+On the other hand, this relationship is much more clear when viewing sexual assaults in Figure \ref{sex_ifc}. Note that I am not exluding any universities here as the relationship looks rather clear.
 
 ```{r}
-source(paste0(here::here("referee_analysis/forest_plot_update.R")))
+source("referee_analysis/regressions_ifc_fraction.R")
 ```
 
-```{=latex}
-\begin{figure}[t]
+
+\newpage
+
+```{r}
+ifc_share
 ```
 
-```{r, fig.width = 9.5, fig.height = 6}
-alc_forest
+```{r, fig.cap="\\label{alc_ifc}The Effect of Moratoriums on Alcohol Offenses by Quartile of IFC Membership"}
+alc_ifc
 ```
 
-```{=latex}
-\caption{Robustness Across Samples (Alcohol Offenses) \label{alc_forest}}
-\textit{Note:} This graph depicts the coefficient estimates and 95\% confidence intervals for different subsets of the sample. The y-axis on the left is the sample selection used, while the y-axis on the right is the point estimate. All estimates use the preferred specification from Table \ref{main_table} Column 2, and all outcomes are in terms of per-25000 enrolled students. Standard errors are clustered at the university level. Panel A uses the main sample as shown in the main results, while Panel B uses the main sample in addition to 14 never-treated schools (see Section \ref{section:mainresults} for more details). Panel C analyzes 15 universities which undergo a fraternity death, but do not undergo a moratorium. A 64-day binary treatment period is given to each of these universities, beginning on the date of the death. Panel D extends the analysis in Panel C by adding in the 15 never-treated universities as controls, analogous to Panel B in reference to Panel A. See Section \ref{section:trigger} for more details.
-\end{figure}
+```{r, fig.cap="\\label{sex_ifc}The Effect of Moratoriums on Alcohol Offenses by Quartile of IFC Membership"}
+sex_ifc
 ```
+

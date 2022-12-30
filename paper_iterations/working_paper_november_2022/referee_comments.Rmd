@@ -95,11 +95,12 @@ I'm not sure the results are strong enough. Qualitatively, the results are unsur
 Two suggestions which may improve precision: To weight by total enrollment (or perhaps undergraduate enrollment if you feel that is more appropriate). Larger schools should have less residual variation, so weighting by size should reduce standard errors. The variance in school size should be large enough for this to make a difference.
 \end{framed}
 
-Thank you for the thoughtful suggestion on how to tighten/strengthen the main results of the paper. As recommended, I have explored weighting by total enrollment. Unfortunately, the weights do not tighten the results to a significant degree. However, the results remain extremely consistent with their unweighted counterpart.
+
+Thank you for the thoughtful suggestion on how to tighten/strengthen the main results of the paper. First, I agree that despite the large point estimates, the standard errors do not rule out small effects. To reconcile this, I have deleted all language where I describe the effects as large. However, as pointed out, these estimates are not unfeasible. Although the data cannot delineate whether an incident is associated with fraternities, non-members are also likely affected by moratoriums as fraternity parties are a substantial source of partying for all undergraduates [@harford_attendance_2002]. Moreover, the magnitude (29% on weekends) for the decreases in sexual assaults are in-line with the increases (28%) found due to intensifying partying in @lindo_college_2018. Second, as recommended, I have explored weighting by total enrollment to tighten the main results. Unfortunately, the weights do not tighten the results to a significant degree. However, the results remain extremely consistent with their unweighted counterpart. I elaborate more in the following paragraphs.
 
 Table \ref{main_table_weighted} shows the estimations of Table \ref{main_table} (the main results table) with total enrollment weights. The preferred specification reported in Column 2 of Panel A shows that the point estimates are nearly identical to the unweighted estimation for alcohol offenses, exhibiting a 26.5% decrease from the mean rather than a 27.8% decrease. Furthermore, the standard errors are reduced minimally, ruling out decreases smaller than 5.6% (weighted) rather than 4.3% (unweighted) with 95% confidence. Similarly, in Column 2 of Panel B, sexual assaults exhibit a 16% decrease—a four percentage point drop from the 20% decrease shown in the unweighted estimation. While this result is now significant at the 10% level, the change in p-value from unweighted to weighted is very small with a difference of 0.04. Moreover, the weekend analysis in Column 4 also remains consistent across both weighted and unweighted regressions for each offense. In particular, alcohol offenses show a 29.3% decrease from the mean (weighted) rather than a 28.7% decrease (unweighted) and the standard errors rule out decreases smaller than 4.1% (weighted) rather than 2.6% (unweighted). For sexual assaults, weekends with moratoriums show a 32.7% decrease from the mean (weighted) rather than a 29.3% decrease (unweighted). Note that the p-value decreases slightly as well, with the unweighted weekend estimation showing a p-value of 0.217 (5% significance) instead of 0.091 (10% significance). 
 
-To maintain transparency, I have included the weighted regressions in Appendix C. In addition, I have also alluded to these estimations when discussing the main results in paragraph three of Section 5.1 which reads: 
+To maintain transparency, I have included the weighted regressions in Appendix \ref{section:appendixf}. In addition, I have also alluded to these estimations when discussing the main results in paragraph three of Section 5.1 which reads: 
 
 > Third, due to the large variation in university size, I weight the models in Table \ref{main_table} by total enrollment in Appendix Table \ref{main_table_weighted}. The weighted estimations exhibit similar results to the unweighted models—alcohol offenses and sexual assaults decrease by 29 and 32 percent on the weekends respectively, while the standard errors remain similar in magnitude.
 
@@ -219,7 +220,8 @@ Figure \ref{niche_ranking_graph} shows that the 37 universities in the sample ar
 Sections 3.1 and 3.2 could be condensed with some of the material moved to the online appendix.
 \end{framed}
 
-**I don't think I can condense this effectively**.
+Thank you for this suggestion to add conciseness to the paper. As recommended, I have shortened Sections 3.1 and 3.2 by approximately 500 words and moved extraneous details to a newly created Appendix \ref{asection:data}.
+
 \newpage
 
 # Nomenclature Refinement
