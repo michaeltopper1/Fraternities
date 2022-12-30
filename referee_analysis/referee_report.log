@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.4)  4 DEC 2022 16:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.29)  29 DEC 2022 16:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **referee_report.tex
 (./referee_report.tex
 LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2022-11-02> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-12-17> (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
@@ -587,42 +587,48 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 105.
 (/Users/michaeltopper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<referee_report_files/figure-latex/unnamed-chunk-2-1.pdf, id=8, 686.565pt x 433.62pt>
-File: referee_report_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
-<use referee_report_files/figure-latex/unnamed-chunk-2-1.pdf>
-Package pdftex.def Info: referee_report_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 111.
-(pdftex.def)             Requested size: 469.74944pt x 296.68385pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 115.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 115.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 115.
 
-LaTeX Warning: Reference `main_table' on page 1 undefined on input line 114.
-
-
-LaTeX Warning: Reference `section:mainresults' on page 1 undefined on input line 114.
-
-
-LaTeX Warning: Reference `section:trigger' on page 1 undefined on input line 114.
+LaTeX Warning: Reference `alc_ifc_2' on page 1 undefined on input line 139.
 
 [1
 
-{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2 <./referee_report_files/figure-latex/unnamed-chunk-2-1.pdf>] (./referee_report.aux)
+{/Users/michaeltopper/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<referee_report_files/figure-latex/unnamed-chunk-3-1.pdf, id=41, 469.755pt x 325.215pt>
+File: referee_report_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+<use referee_report_files/figure-latex/unnamed-chunk-3-1.pdf>
+Package pdftex.def Info: referee_report_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 194.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<referee_report_files/figure-latex/unnamed-chunk-4-1.pdf, id=42, 469.755pt x 325.215pt>
+File: referee_report_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use referee_report_files/figure-latex/unnamed-chunk-4-1.pdf>
+Package pdftex.def Info: referee_report_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 201.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+[2 <./referee_report_files/figure-latex/unnamed-chunk-3-1.pdf>] [3] [4 <./referee_report_files/figure-latex/unnamed-chunk-4-1.pdf>] (./referee_report.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `referee_report.out' has not changed.
-(rerunfilecheck)             Checksum: DE341B7DD7EDEB72BA8F9C5E739692D5;127.
+(rerunfilecheck)             Checksum: 7944AEA2A1DA9F6E2E782C6033FF431A;384.
  ) 
 Here is how much of TeX's memory you used:
- 14171 strings out of 476928
- 232295 string characters out of 5823970
- 588414 words of memory out of 5000000
- 35173 multiletter control sequences out of 15000+600000
- 503884 words of font info for 52 fonts, out of 8000000 for 9000
+ 14231 strings out of 478053
+ 233316 string characters out of 5839471
+ 1864793 words of memory out of 5000000
+ 34087 multiletter control sequences out of 15000+600000
+ 564933 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,6n,79p,1081b,433s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on referee_report.pdf (2 pages, 140899 bytes).
+ 72i,12n,79p,858b,439s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on referee_report.pdf (4 pages, 202027 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
- 6 named destinations out of 1000 (max. 500000)
- 14 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 130 PDF objects out of 1000 (max. 8388607)
+ 94 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 35 words of extra memory for PDF output out of 10000 (max. 10000000)
 
