@@ -1,5 +1,5 @@
 ---
-title: "Appendix: Bowing down to TWFE"
+title: "Appendix B"
 output: pdf_document
 editor_options: 
   chunk_output_type: console

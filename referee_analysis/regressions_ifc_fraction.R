@@ -20,6 +20,15 @@ if (!exists("daily_crime_weekends")){
 if (!exists("daily_crime_weekdays")){
   daily_crime_weekdays <- read_csv("created_data/xmaster_data/daily_panel_weekdays.csv") 
 }
+#  for other definition
+# frac_ifc <- read_csv("data/fraction_ifc.csv") 
+# 
+# frac_ifc <- frac_ifc %>% 
+#   select(university, matches("\\d$"), avg_enrollment, most_recent, -ends_with("2020")) %>% 
+#   mutate(fall_ifc_2019 = ifelse(is.na(fall_ifc_2019), most_recent, fall_ifc_2019)) %>% 
+#   mutate(avg_ifc = rowMeans(select(.,matches("\\d$")), na.rm = T),
+#          ifc_frac_updated = avg_ifc/avg_enrollment)
+
 
 frac_ifc <- read_csv("data/fraction_ifc.csv") %>% 
   select(university, ifc_frac_updated)
