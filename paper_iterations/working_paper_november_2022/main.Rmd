@@ -45,6 +45,7 @@ library(fixest)
 library(grid)
 library(gridExtra)
 library(patchwork)
+options(modelsummary_model_labels="model")
 ```
 
 <center>

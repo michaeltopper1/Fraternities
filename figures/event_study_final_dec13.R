@@ -200,12 +200,18 @@ sex_lag_f <- map_df(sex_es, ~car::linearHypothesis(.,
 
 # table -------------------------------------------------------------------
 
+gof_mapping <- ifc::gof_mapping() %>%
+  select(-fmt) %>%
+  mutate(fmt = ifelse(raw == "nobs", 0, 3))
 
-long_run_effects <- ifc::main_table(list(es_alc_14,es_sex_14),
+long_run_effects <- panelsummary::panelsummary_raw(list(es_alc_14,es_sex_14),
                                     list(es_alc_14_lower, es_sex_14_lower),
                                     list(es_alc_14_middle, es_sex_14_middle), 
-                                    last_panel =list(es_alc_14_last, es_sex_14_last)) %>% 
-  slice(1:12) %>% 
+                                     list(es_alc_14_last, es_sex_14_last),
+                                    gof_map = gof_mapping,
+                                    stars = "econ",
+                                    coef_map = c("treatment" = "In Moratorium")) %>%
+  filter(!str_detect(term, "^FE")) %>% 
   add_row(term = "F-test P-value of Lags", 
           `Model 1` = sprintf("%.3f",alc_lag_f$p.value[[1]]),
           `Model 2` = sprintf("%.3f",sex_lag_f$p.value[[1]]),

@@ -370,7 +370,8 @@ date_occurred_panel_weekdays <- lag_datas[[3]]
 football_schools <- read_csv("created_data/xmaster_data/football_final.csv")
 
 date_occurred_panel <- date_occurred_panel %>% 
-  left_join(football_schools, by = c("university" = "school", "date" = "game_date"))
+  left_join(football_schools, by = c("university" = "school", "date" = "game_date")) %>% 
+  mutate(game_occurred = ifelse(is.na(game_occurred), 0, game_occurred))
 
 lag_regression <- date_occurred_panel %>% 
   feols(c(proportion_sex_lag_7, proportion_alc_lag_7) ~ treatment |
@@ -386,14 +387,17 @@ lag_alc <- map(lag_variables_alc, ~ifc::reghdfe(date_occurred_panel, ., explanat
 lag_sex <- map(lag_variables_sex, ~ifc::reghdfe(date_occurred_panel, ., explanatory_vars = explanatory_vars, fe, "university"))
 
 
-
-
 # final table -------------------------------------------------------------
 
+gof_mapping <- ifc::gof_mapping() %>%
+  select(-fmt) %>%
+  mutate(fmt = ifelse(raw == "nobs", 0, 3))
 
-
-reporting_table <- ifc::main_table(lag_alc, last_panel = lag_sex) %>% 
-  slice(1:6) %>% 
+reporting_table <- panelsummary::panelsummary_raw(lag_alc, lag_sex,
+                                                  gof_map = gof_mapping,
+                                                  stars = "econ",
+                                                  coef_map = c("treatment" = "In Moratorium")) %>% 
+  filter(!str_detect(term, "^FE")) %>% 
   add_row(term = "Mean of Dependent Variable", 
           `Model 1` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_1, na.rm = T)),
           `Model 2` = sprintf("%.3f",mean(date_occurred_panel$proportion_alc_lag_3, na.rm = T)),

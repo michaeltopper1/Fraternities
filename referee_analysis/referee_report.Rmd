@@ -1,7 +1,6 @@
 ---
-title: "Referee Notes"
+title: "Fraction IFC Analysis"
 output: pdf_document
-date: "2022-10-31"
 linkcolor: blue
 header-includes:
 - \usepackage{booktabs}
@@ -28,6 +27,9 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 
 # IFC Fraction
 
+This is analysis that has been redone from the last update I sent you before NYE. The big update here is that I have gathered some more data that I could find based on my FOIA requests for IFC numbers. Hence, the numbers here are more updated. In addition, I also calculated the share more accurately—before I was taking the average IFC share and dividing by the average enrollment. Now, I simply have the average IFC share which is defined as the number of IFC members divided by *undergraduate* enrollment. 
+
+At this point, I don't think there is too much more I can do with this. To me, it looks like the results are just noisey and I can't say much. My hope is that I can throw this into an appendix after discussing it thoroughly in the referee report—but wanted to know your thoughts on this. 
 
 ## Analysis 1:
 
@@ -36,23 +38,21 @@ The first analysis includes an interaction effect on the preferred specification
 $$Y_{u,t}  = \beta_1InMoratorium_{u,t} + \beta_2InMoratorium_{u,t} \times FracIFC_{u} + 
 \gamma_{u} \times AcademicYear_{t} + \lambda \mathbb{X}_{t} +  \epsilon_{u,t}$$
 
-\noindent where $FracIFC_{u}$ is the difference of the fraction of IFC members at university $u$ from the mean of all fractions of IFC members at all universities. Hence, this is the Fraction of IFC members at university $u$, but centered at the average across all universities. 
+\noindent where $FracIFC_{u}$ is the difference of the fraction of IFC members at university $u$ from the mean of all fractions of IFC members at all universities. Hence, this is the Fraction of IFC members at university $u$, but centered at the average across all universities. The results are shown in Table \ref{ifc_share}.
 
 
-## Analysis 2: Quantiles
+## Analysis 2: Quartiles
 
-The second is interacts indicators for each quartile of the fraction of IFC members with the $InMoratorium_{u,t}$ treatment variable:
+The second analysis interacts indicators for each quartile of the fraction of IFC members with the $InMoratorium_{u,t}$ treatment variable:
 
 $$Y_{u,t}  = \sum_{i=1}^{4}\beta_iInMoratorium_{u,t} \times QuartileIFC_{u,i} + 
 \gamma_{u} \times AcademicYear_{t} + \lambda \mathbb{X}_{t} +  \epsilon_{u,t}$$
 
 
-Figure \ref{alc_ifc} shows a possible inverse relationship *on the weekends* between IFC membership and moratorium effects, although the initial point estimate in quartile 1 is much lower than the others. Aside from this point estimate, there appears to be a negative relationship: as IFC membership is higher, the effect of moratoriums is stronger (more negative). The strange blip in the first quartile is caused by West Virginia University. Observe Figure \ref{alc_ifc_2} which shows the the results excluding this university. 
-
-On the other hand, this relationship is much more clear when viewing sexual assaults in Figure \ref{sex_ifc}. Note that I am not exluding any universities here as the relationship looks rather clear.
+There does not appear to be much of a relationship between IFC share and moratorium effects as shown in Figures \ref{alc_ifc} and \ref{sex_ifc}. I could keep on splitting them in to different size bins, but at that point it feels as though I am searching for a result to verify a hypothesis.
 
 ```{r}
-source("referee_analysis/regressions_ifc_fraction.R")
+source("referee_analysis/ifc_frac_analysis.R")
 ```
 
 
@@ -66,7 +66,8 @@ ifc_share
 alc_ifc
 ```
 
-```{r, fig.cap="\\label{sex_ifc}The Effect of Moratoriums on Alcohol Offenses by Quartile of IFC Membership"}
+
+```{r, fig.cap="\\label{sex_ifc}The Effect of Moratoriums on Sexual Assault Offenses by Quartile of IFC Membership"}
 sex_ifc
 ```
 

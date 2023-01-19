@@ -5,7 +5,7 @@
 ## Date Last Edited: 2022-10-24
 ##
 ## Note: this table needs to be done brute-force due to the shittiness of fwildclusterboot v0.7
-
+options(modelsummary_model_labels="model")
 library(tidyverse)
 library(modelsummary)
 library(fixest)
@@ -135,7 +135,6 @@ sex_boot_pvalues <- map(sex_boot,
   unlist()
 
 # table 2: weekends vs. full sample ---------------------------------------
-
 
 main_table <- ifc::main_table(alc_main, last_panel = sex_main) %>%
   mutate(term = ifelse(row_number() == 2 | row_number() == 5, "", term)) %>% 
