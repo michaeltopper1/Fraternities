@@ -12,7 +12,7 @@ In this appendix, I estimate a model that contains no negative weights to acknow
 $$ 
 Y_{ut} = \beta Moratorium_{ut} + \gamma_u + \alpha_t + \epsilon_{ut}
 $$
-where $Y_{ut}$ is the outcome for university $u$ at time $t$ measured by per-25000 enrolled students per academic-calendar day, $Moratorium_{ut}$ is an indicator equal to one if university $u$ is in a moratorium at time $t$, $\gamma_u$ are university fixed effects, $\alpha_t$ are day by month by year fixed effects, and $\epsilon_{ut}$ is the error term. Hence, this model compares academic-calendar days within a moratorium to the same calendar days without a moratorium while controlling for systematic differences between universities. As mentioned above, there are no negative weights in this specification and therefore sign reversal is impossible. With this advantage, I re-estimate the results in columns (2), (3), and (5) in Table \ref{main_table}.
+where $Y_{ut}$ is the outcome for university $u$ at time $t$ measured by per-25000 enrolled students per academic-calendar day, $Moratorium_{ut}$ is an indicator equal to one if university $u$ is in a moratorium at time $t$, $\gamma_u$ are university fixed effects, $\alpha_t$ are day by month by year fixed effects, and $\epsilon_{ut}$ is the error term. Hence, this model compares academic-calendar days within a moratorium to the same calendar days without a moratorium while controlling for systematic differences between universities. As mentioned above, there are no negative weights in this specification and therefore sign reversal is impossible. With this advantage, I re-estimate the results in Columns 2, 3, and 5 in Table \ref{main_table}.
 
 Table \ref{twfe_table} shows that the results of the TWFE specification with no negative weights are mostly consistent with the results in Table \ref{main_table}. In Panel A, alcohol offenses exhibit a 19% decrease from the mean during a moratorium, with a 25% decrease on the weekends. Although sexual assaults do not exhibit statistically significant decreases on the weekends, this is potentially due to the loss of identifying variation from the data-intensive controls. However, it is important to note that the coefficient sign remains the same on all of the estimates. Hence, under the identifying assumptions of the model, moratoriums decrease alcohol offenses.
 
@@ -72,7 +72,7 @@ twfe_table <- ifc::main_table(alc_weeksplit, last_panel = sex_weeksplit) %>%
   add_header_above(c(" " = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1), line = F) %>% 
   add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
   column_spec(1, width = "8cm") %>% 
-  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Column (1) represents the preferred specification from the main results table, column (2). Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. The specification used in this table has no negative weights and thus, sign reversal is impossible.",
+  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Column 1 represents the preferred specification from the main results table, Column 2. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. The specification used in this table has no negative weights and thus, sign reversal is impossible.",
                     "* p < 0.1, ** p < 0.05, *** p < 0.01"),
            threeparttable = T) 
 

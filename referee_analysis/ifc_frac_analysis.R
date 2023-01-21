@@ -139,7 +139,7 @@ footnote_ifc <- list("Fraction IFC is the average share of undergraduates that a
                      the most recent number of IFC members is used in this calculation when sample-period data is missing. However, based on the few universities that provided year-to-year data on their IFC populations, the total number does not substantially change over time. 
                      Standard errors shown in parenthesis are clustered by university (37 clusters) and each offense is defined as per-25000 enrolled students.
                      The interaction of In Moratorium and Fraction IFC gives a measure of moratorium intensity based on the fraction of IFC members.
-                     ",
+                     The regression specification is the preferred specification which includes day of week, holiday, football game-day, semester, and university-by-acacdemic-year fixed effects.",
                      "* p < 0.1, ** p < 0.05, *** p < 0.01") %>% 
   map(~str_replace_all(.x, "\n", ""))
 

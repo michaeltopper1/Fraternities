@@ -420,7 +420,7 @@ reporting_table <- panelsummary::panelsummary_raw(lag_alc, lag_sex,
   add_header_above(c(" ", "More than 1-Day Lag","More than 3-Day Lag", "More than 7-Day Lag", "More than 14-day Lag"), line = F) %>% 
   add_header_above(c(" " = 1, "Reporting Lag" = 4)) %>% 
   row_spec(8,hline_after = T) %>% 
-  footnote(list("Standard errors are clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than one (Column 1), three (Column 2), seven (Column 3), or 14 (Column 4) days after it occurred. 32 of the 37 universities have information on date occurred. Specification is the preferred specification which includes day of week, holiday, football game-day, semester, and university-by-academic-year fixed effects. See Table 4 column (2) for more details on the preferred specification.",
+  footnote(list("Standard errors are clustered by university.  Panels A and B are OLS regressions of proportions of alcohol offenses and sexual assaults reported with a reporting lag. A reporting lag is defined as an offense that was reported more than one (Column 1), three (Column 2), seven (Column 3), or 14 (Column 4) days after it occurred. 32 of the 37 universities have information on date occurred. Specification is the preferred specification which includes day of week, holiday, football game-day, semester, and university-by-academic-year fixed effects. See Table 4 Column 2 for more details on the preferred specification.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"),
            threeparttable = T)
 

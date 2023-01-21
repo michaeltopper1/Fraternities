@@ -21,7 +21,7 @@ knitr::include_graphics("sample_crime_log.png")
 ```
 ```{=latex}
 \caption{An Example of a Daily Crime Log \label{crime_log}}
-\textit{Note:} The main analysis uses data from 37 universities' Daily Crime Logs - each unique in their own respect. All Daily Crime Logs had to be requested from each university and harmonized using pattern matching.
+\textit{Note:} The main analysis uses data from 37 universities' Daily Crime Logs—each unique in their own respect. All Daily Crime Logs are collected from each university and harmonized using the pattern matching technique outlined in Section 3.
 \end{figure}
 ```
 
@@ -33,7 +33,7 @@ source(paste0(here::here("tables/matching_word_table.R")))
 \begin{landscape}
 \begin{figure}[t]
 ```
-```{r, echo=FALSE, fig.align = "center",fig.width= 14, fig.height = 8, out.width = "110%"}
+```{r, echo=FALSE, fig.align = "center",fig.width= 14, fig.height = 8, out.width = "80%"}
 top_categories +
   theme(axis.text.y = element_text(size = 12),
         strip.text = element_text(size = 12))

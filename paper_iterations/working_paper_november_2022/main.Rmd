@@ -25,6 +25,7 @@ header-includes:
 - \usepackage{setspace}\doublespacing
 - \usepackage{subfig}
 - \usepackage{placeins}
+- \usepackage{rotating}
 - \floatplacement{figure}{H}
 linkcolor: blue
 bibliography: "references.bib"
@@ -57,27 +58,27 @@ options(modelsummary_model_labels="model")
 
 \newpage
 \pagenumbering{arabic}
-```{r, child = "paper_iterations/working_paper_may_2022/introduction.Rmd"}
+```{r, child = "paper_iterations/working_paper_november_2022/introduction.Rmd"}
 
 ```
 
-```{r, child="paper_iterations/working_paper_may_2022/data.Rmd"}
+```{r, child="paper_iterations/working_paper_november_2022/data.Rmd"}
 
 ```
 
-```{r, child="paper_iterations/working_paper_may_2022/empirical_strategy.Rmd"}
+```{r, child="paper_iterations/working_paper_november_2022/empirical_strategy.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_may_2022/results.Rmd"}
+```{r, child = "paper_iterations/working_paper_november_2022/results.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_may_2022/heterogeneity.Rmd"}
+```{r, child = "paper_iterations/working_paper_november_2022/heterogeneity.Rmd"}
 
 ```
 
-```{r, child = "paper_iterations/working_paper_may_2022/conclusion.Rmd"}
+```{r, child = "paper_iterations/working_paper_november_2022/conclusion.Rmd"}
 
 ```
 
@@ -88,20 +89,20 @@ options(modelsummary_model_labels="model")
 
 
 \newpage
-```{r, child = "paper_iterations/working_paper_may_2022/figures.Rmd", fig.pos="H"}
+```{r, child = "paper_iterations/working_paper_november_2022/figures.Rmd", fig.pos="H"}
 
 ```
 
 
 \newpage
-```{r, child = "paper_iterations/working_paper_may_2022/tables.Rmd", fig.pos = "H"}
+```{r, child = "paper_iterations/working_paper_november_2022/tables.Rmd", fig.pos = "H"}
 
 ```
-
 
 
 \newpage
 # Appendix {-}
+
 ```{=tex}
 \appendix
 \renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0}
@@ -110,23 +111,26 @@ options(modelsummary_model_labels="model")
 \setcounter{page}{1}
 ```
 
-```{r, child = "paper_iterations/working_paper_may_2022/appendix_twfe.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_november_2022/appendix_data.Rmd", fig.pos='H' }
 
 ```
 
-
 \newpage
+
 ```{=tex}
+
 \renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0}
 \renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0}
 \renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0}
 \setcounter{page}{1}
 ```
 
-```{r, child = "paper_iterations/working_paper_may_2022/appendix_spillover.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_november_2022/appendix_twfe.Rmd", fig.pos='H' }
 
 ```
 
+
+\newpage
 ```{=tex}
 \renewcommand{\thefigure}{C\arabic{figure}} \setcounter{figure}{0}
 \renewcommand{\thetable}{C\arabic{table}} \setcounter{table}{0}
@@ -134,10 +138,34 @@ options(modelsummary_model_labels="model")
 \setcounter{page}{1}
 ```
 
-
-\newpage
-```{r, child = "paper_iterations/working_paper_may_2022/appendix_figures.Rmd", fig.pos='H' }
+```{r, child = "paper_iterations/working_paper_november_2022/appendix_spillover.Rmd", fig.pos='H' }
 
 ```
 
+
+\newpage
+```{=tex}
+\renewcommand{\thefigure}{D\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{D\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{D\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+```{r, child = "paper_iterations/working_paper_november_2022/appendix_fraction_ifc.Rmd", fig.pos='H' }
+
+```
+
+
+
+
+\newpage
+```{=tex}
+\renewcommand{\thefigure}{E\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{E\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{E\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+```{r, child = "paper_iterations/working_paper_november_2022/appendix_figures.Rmd", fig.pos='H' }
+
+```
 

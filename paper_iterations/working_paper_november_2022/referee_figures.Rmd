@@ -13,6 +13,7 @@ fontsize: 11pt
 
 # Referee Figures
 
+This page is intentionally left blank.
 ```{r}
 source(here::here("referee_analysis/regressions_weight_vs_main_figure.R"))
 ```
