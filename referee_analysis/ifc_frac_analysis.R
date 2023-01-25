@@ -78,13 +78,14 @@ frac_ifc <- frac_ifc %>%
 
 ifc_quartiles_undergrad <- quantile(frac_ifc$ifc_undergrad_frac) 
 ifc_quartiles <- quantile(frac_ifc$ifc_frac) 
-
+ifc_median <- median(frac_ifc$ifc_undergrad_frac)
 
 create_quantiles_undergrad <- . %>% 
   mutate(ifc_quantile_1 = ifelse(ifc_undergrad_frac <= ifc_quartiles_undergrad[[2]], 1, 0),
          ifc_quantile_2 = ifelse(ifc_undergrad_frac <= ifc_quartiles_undergrad[[3]] & ifc_undergrad_frac > ifc_quartiles_undergrad[[2]], 1, 0),
          ifc_quantile_3 = ifelse(ifc_undergrad_frac <= ifc_quartiles_undergrad[[4]] & ifc_undergrad_frac > ifc_quartiles_undergrad[[3]], 1, 0),
-         ifc_quantile_4 = ifelse(ifc_undergrad_frac > ifc_quartiles_undergrad[[4]], 1, 0))
+         ifc_quantile_4 = ifelse(ifc_undergrad_frac > ifc_quartiles_undergrad[[4]], 1, 0),
+         ifc_median_over = ifelse(ifc_undergrad_frac > ifc_median, 1, 0))
 
 create_quantiles <- . %>% 
   mutate(ifc_quantile_1 = ifelse(ifc_frac <= ifc_quartiles[[2]], 1, 0),
@@ -122,8 +123,9 @@ data_list <-  list(daily_crime, daily_crime_weekends,daily_crime_weekdays)
 ## the treatment variable gives you the effect on the outcome that results from an increase in the treatment intensity. 
 explanatory_vars <-  c("treatment_ifc_dev_undergrad", "treatment")
 
+
 fixed_effects <- c("day_of_week", "university_by_academic_year", "holiday", "spring_semester", "game_occurred")
-alc_intensity <- map(data_list, ~ifc::reghdfe(.x, c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
+alc_intensity <- map(data_list, ~ifc::reghdfe(.x , c("alcohol_offense_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
 sex_intensity <- map(data_list, ~ifc::reghdfe(.x, c("sexual_assault_per25"),explanatory_vars, fixed_effects = fixed_effects, "university"))
 
 # table -------------------------------------------------------------------
