@@ -80,13 +80,6 @@ source(paste0(here::here("tables/regressions_party_schools.R")))
 party_school_table
 ```
 
-```{r}
-source(here::here("referee_analysis/regressions_ifc_fraction.R"))
-```
-
-```{r}
-ifc_share
-```
 
 ```{r}
 source(here::here(paste0("tables/heteroeffects_uni_ifc.R")))

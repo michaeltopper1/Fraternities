@@ -33,3 +33,22 @@ main_table_graphic_weighted +
 
 ```
 
+
+```{r}
+source(here::here("referee_analysis/regressions_alc_quartiles.R"))
+```
+```{=latex}
+
+\begin{figure}[t]
+```
+
+```{r}
+scatter_rank_ifc
+```
+
+```{=latex}
+\caption{Scatterplot of Best Greek Life Ranking and IFC Fraction \label{scatter_rank_ifc}}
+\textit{Note:} The x-axis represents the ranking from Niche.com's Colleges with the Best Greek Life list. There are 300 rankings within this list. Of the four universities that are not ranked, a random ranking between 301 and 305 has been assigned. The y-axis represents the share of undergraduate students that are a member of an IFC fraternity. The dashed red line denotes the average share of undergraduate students that are in an IFC fraternity. 
+\end{figure}
+
+```

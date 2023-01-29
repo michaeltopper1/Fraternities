@@ -170,7 +170,7 @@ alc_passing_1 <- ifc::reghdfe(daily_crime_passing ,
          university_count = week_counts) %>% 
   mutate(week_labels = glue::glue("Moratorium\nWeek {week}\n({university_count})")) %>% 
   mutate(week_labels = ifelse(row_number() ==10, glue::glue("Moratorium\nWeeks 10+\n({university_count})"),week_labels)) %>%
-  mutate(model = "Panel B: Universities With Moratoriums Over 2-months")
+  mutate(model = "Panel B: Universities With Moratoriums Over Two Months")
 
 alc_passing_graph <- ifc::reghdfe(daily_crime_passing %>% 
                filter(university %in% two_month), 
@@ -205,7 +205,7 @@ sex_passing_1 <- ifc::reghdfe(daily_crime_passing ,
          university_count = week_counts) %>% 
   mutate(week_labels = glue::glue("Moratorium\nWeek {week}\n({university_count})")) %>% 
   mutate(week_labels = ifelse(row_number() ==10, glue::glue("Moratorium\nWeeks 10+\n({university_count})"),week_labels)) %>%
-  mutate(model = "Panel B: Universities With Moratoriums Over 2-months")
+  mutate(model = "Panel B: Universities With Moratoriums Over Two Months")
 
 
 sex_passing_graph <- ifc::reghdfe(daily_crime_passing %>% 
