@@ -33,7 +33,7 @@ niche_ranking_graph <- rankings %>%
   ggplot(aes(x = university, y = rank_adjust)) +
   geom_point(aes(shape = rank_placement), size = 2) +
   geom_hline(aes(yintercept = median_rank), linetype = "dashed", color = "dark red") +
-  labs(x = " ", y = "Best Greek Life College Ranking")  +
+  labs(x = " ", y = "Greek Life College Ranking")  +
   facet_grid(.~rank_placement, scales = "free", switch = "x", space = "free_x") +
   annotate("segment",x=Inf,xend=-Inf,y=-Inf,yend=-Inf,color="black",lwd=1) +
   scale_y_continuous(breaks = c(0, 50, 64, 100, 150, 200, 250)) +

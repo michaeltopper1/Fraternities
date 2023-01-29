@@ -57,7 +57,7 @@ niche_ranking_graph
 ```
 ```{=latex}
 \caption{Greek-life Rankings of Universities Included in the Sample \label{niche_ranking_graph}}
-\textit{Note:} Greek-life rankings are based on Niche.com's 2023 list of Best Greek Life Colleges in America. Rankings are based on survey responses from Niche.com users on the quality of Greek Life at their school. The dashed red line represents the median ranking of the 37 universities in the sample. Three-hundred universities are ranked in the list. Of the universities in the sample, 14 of the 37 universities (38\%) are ranked in the top 50, while only 5 of 37 (13\%) are not ranked. 
+\textit{Note:} Greek-life rankings are based on Niche.com's 2023 list of Colleges with the Best Greek Life. Rankings are based on survey responses from Niche.com users on the quality of Greek Life at their school. The dashed red line represents the median ranking of the 37 universities in the sample. Three-hundred universities are ranked in the list. Of the universities in the sample, 14 of the 37 universities (38\%) are ranked in the top 50, while only 5 of 37 (13\%) are not ranked. 
 \end{figure}
 ```
 
