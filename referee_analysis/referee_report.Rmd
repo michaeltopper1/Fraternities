@@ -41,14 +41,13 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 
 # IFC Fraction
 ```{r}
-source("tables/data_comparison.R")
+source("tables/closure_table.R")
 ```
 
 
 
 ```{r}
-data_used
+closure_table 
 ```
 
-```
 

@@ -157,61 +157,61 @@ ifc_share <- panelsummary::panelsummary(alc_intensity, sex_intensity,
                                         gof_map = gof_mapping,
                                         coef_map = c("treatment" = "In Moratorium",
                                                      "treatment_ifc_dev_undergrad" = "In Moratorium x Fraction IFC"),
-                                        caption = "\\label{ifc_share}The Effect of Moratoriums Interacted with IFC Share") %>% 
+                                        caption = "\\label{ifc_share}The Effect of Moratoriums Interacted with the Centered IFC Share (OLS)") %>% 
   add_header_above(c(" " = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1)) %>% 
   footnote(footnote_ifc,
            threeparttable = T)
 
 data_list <-  list("All Days" = daily_crime, "Weekends" = daily_crime_weekends, "Weekdays" = daily_crime_weekdays)
 
-
-alc_ifc <- map_df(data_list, ~feols(alcohol_offense_per25 ~
-                                      treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
-                                      treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
-                                    cluster = ~university, data = .x ) %>% 
-                    broom::tidy(conf.int = T), .id = "var") %>% 
-  mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
-  ggplot(aes(term, estimate, group = var)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
-  geom_point() +
-  geom_hline(yintercept = 0, color = "dark red") +
-  geom_line(linetype = "dashed") +
-  scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
-  facet_wrap(~var) +
-  labs(x = "Quantile", y = "Point Estimate and 95% Confidence Interval") +
-  theme_minimal()
-
-
-alc_ifc_2 <- map_df(data_list, ~feols(alcohol_offense_per25 ~
-                                        treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
-                                        treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
-                                      cluster = ~university, data = .x %>% 
-                                        filter(university != "West Virginia University")) %>% 
-                      broom::tidy(conf.int = T), .id = "var") %>% 
-  mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
-  ggplot(aes(term, estimate, group = var)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
-  geom_point() +
-  geom_hline(yintercept = 0, color = "dark red") +
-  geom_line(linetype = "dashed") +
-  scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
-  facet_wrap(~var) +
-  labs(x = "Quantile", y = "Point Estimate and 95% Confidence Interval") +
-  theme_minimal()
-
-sex_ifc <- map_df(data_list, ~feols(sexual_assault_per25 ~
-                                      treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
-                                      treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
-                                    cluster = ~university, data = .x) %>% 
-                    broom::tidy(conf.int = T),
-                  .id = "var") %>% 
-  mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
-  ggplot(aes(term, estimate, group = var)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
-  geom_point() +
-  geom_hline(yintercept = 0, color = "dark red") +
-  geom_line(linetype = "dashed") +
-  scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
-  facet_wrap(~var) +
-  labs(x = "Quantile", y = "Point Estimate on In Moratorium and 95% Confidence Interval") +
-  theme_minimal()
+# 
+# alc_ifc <- map_df(data_list, ~feols(alcohol_offense_per25 ~
+#                                       treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
+#                                       treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
+#                                     cluster = ~university, data = .x ) %>% 
+#                     broom::tidy(conf.int = T), .id = "var") %>% 
+#   mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
+#   ggplot(aes(term, estimate, group = var)) +
+#   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
+#   geom_point() +
+#   geom_hline(yintercept = 0, color = "dark red") +
+#   geom_line(linetype = "dashed") +
+#   scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
+#   facet_wrap(~var) +
+#   labs(x = "Quantile", y = "Point Estimate and 95% Confidence Interval") +
+#   theme_minimal()
+# 
+# 
+# alc_ifc_2 <- map_df(data_list, ~feols(alcohol_offense_per25 ~
+#                                         treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
+#                                         treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
+#                                       cluster = ~university, data = .x %>% 
+#                                         filter(university != "West Virginia University")) %>% 
+#                       broom::tidy(conf.int = T), .id = "var") %>% 
+#   mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
+#   ggplot(aes(term, estimate, group = var)) +
+#   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
+#   geom_point() +
+#   geom_hline(yintercept = 0, color = "dark red") +
+#   geom_line(linetype = "dashed") +
+#   scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
+#   facet_wrap(~var) +
+#   labs(x = "Quantile", y = "Point Estimate and 95% Confidence Interval") +
+#   theme_minimal()
+# 
+# sex_ifc <- map_df(data_list, ~feols(sexual_assault_per25 ~
+#                                       treatment:ifc_quantile_1 + treatment:ifc_quantile_2 + treatment:ifc_quantile_3 +
+#                                       treatment:ifc_quantile_4| day_of_week + university_by_academic_year + holiday + spring_semester + game_occurred,
+#                                     cluster = ~university, data = .x) %>% 
+#                     broom::tidy(conf.int = T),
+#                   .id = "var") %>% 
+#   mutate(var = factor(var, c("All Days", "Weekends", "Weekdays"))) %>% 
+#   ggplot(aes(term, estimate, group = var)) +
+#   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.3) +
+#   geom_point() +
+#   geom_hline(yintercept = 0, color = "dark red") +
+#   geom_line(linetype = "dashed") +
+#   scale_x_discrete(labels = c("Q1", "Q2", "Q3", "Q4")) +
+#   facet_wrap(~var) +
+#   labs(x = "Quantile", y = "Point Estimate on In Moratorium and 95% Confidence Interval") +
+#   theme_minimal()

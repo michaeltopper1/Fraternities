@@ -70,9 +70,6 @@ frac_ifc <- frac_ifc %>%
 rankings <- read_csv("data/rankings_2023_niche.csv") %>% 
   select(-rank)
 
-## binning the last ones together
-rankings <- rankings %>% 
-  mutate(rank_adjust = ifelse(is.na(rank_adjust), 301, rank_adjust))
 
 ## getting the pre-moratorium average of alcohol offenses per 25 by university
 avg_alc_pre <- daily_crime %>% 
@@ -174,11 +171,17 @@ data_list <-  list("All Days" = daily_crime, "Weekends" = daily_crime_weekends, 
 #        y = "Point Estimate and 95% Confidence Interval") +
 #   theme_minimal()
 
+daily_crime <- daily_crime %>% 
+  left_join(frac_ifc)
 
 
+# daily_crime %>% 
+#   distinct(rank_adjust, university, ifc_undergrad_frac) %>% 
+#   feols(rank_adjust ~ ifc_undergrad_frac, data = .)
 scatter_rank_ifc <- daily_crime %>% 
   ggplot(aes(rank_adjust, ifc_undergrad_frac)) +
   geom_point() + 
+  geom_smooth(method = "lm", se = T) +
   geom_hline(aes(yintercept = avg_ifc_undergrad_frac),
              linetype = "dashed",
              color = "dark red") +
