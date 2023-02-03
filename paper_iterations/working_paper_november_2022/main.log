@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.19)  2 FEB 2023 15:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.19)  3 FEB 2023 01:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -749,17 +749,17 @@ Underfull \hbox (badness 6559) in paragraph at lines 970--970
  []
 
 [19] [20] [21] [22]
-Overfull \hbox (2.04932pt too wide) in paragraph at lines 1101--1116
+Overfull \hbox (2.04932pt too wide) in paragraph at lines 1102--1117
 []\T1/lmr/m/n/12 To un-der-stand the pro-gres-sion of a mora-to-rium's ef-fec-tive-ness, I split the $\OML/lmm/m/it/12 InMoratorium[]$
  []
 
 [23] [24] [25] [26] [27] [28] [29] [30] [31]
-Overfull \hbox (56.86908pt too wide) in paragraph at lines 1466--1472
+Overfull \hbox (56.86908pt too wide) in paragraph at lines 1467--1473
 []\T1/lmr/m/n/12 Chaisemartin, Clé-ment de, Xavier D'Haultfoeuille, and An-toine Deeb. 2020. ``TWOWAYFEWEIGHTS:
  []
 
 
-Underfull \hbox (badness 2277) in paragraph at lines 1466--1472
+Underfull \hbox (badness 2277) in paragraph at lines 1467--1473
 \T1/lmr/m/n/12 Stata Mod-ule to Es-ti-mate the Weights and Mea-sure of Ro-bust-ness to Treat-
  []
 
@@ -767,80 +767,80 @@ Underfull \hbox (badness 2277) in paragraph at lines 1466--1472
 <main_files/figure-latex/unnamed-chunk-15-1.pdf, id=713, 903.375pt x 433.62pt>
 File: main_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 1635.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 1636.
 (pdftex.def)             Requested size: 650.47087pt x 312.22601pt.
 [37 <./main_files/figure-latex/unnamed-chunk-15-1.pdf>]
 <main_files/figure-latex/unnamed-chunk-17-1.pdf, id=726, 1156.32pt x 650.43pt>
 File: main_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-17-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 1645.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 1646.
 (pdftex.def)             Requested size: 650.4284pt x 365.86597pt.
 
-LaTeX Warning: Float too large for page by 18.59421pt on input line 1649.
+LaTeX Warning: Float too large for page by 18.59421pt on input line 1650.
 
 [38 <./main_files/figure-latex/unnamed-chunk-17-1.pdf>]
 <main_files/figure-latex/unnamed-chunk-19-1.pdf, id=737, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-19-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 1654.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 1655.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <main_files/figure-latex/unnamed-chunk-21-1.pdf, id=738, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-21-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-21-1.pdf  used on input line 1662.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-21-1.pdf  used on input line 1663.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <main_files/figure-latex/unnamed-chunk-22-1.pdf, id=739, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-22-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 1670.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 1671.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <main_files/figure-latex/unnamed-chunk-24-1.pdf, id=740, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-24-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-24-1.pdf  used on input line 1678.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-24-1.pdf  used on input line 1679.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 <main_files/figure-latex/unnamed-chunk-26-1.pdf, id=741, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-26-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-26-1.pdf  used on input line 1686.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-26-1.pdf  used on input line 1687.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 <main_files/figure-latex/unnamed-chunk-28-1.pdf, id=743, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-28-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-28-1.pdf  used on input line 1694.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-28-1.pdf  used on input line 1695.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 
-LaTeX Warning: Float too large for page by 1.3137pt on input line 1698.
+LaTeX Warning: Float too large for page by 1.3137pt on input line 1699.
 
 <main_files/figure-latex/unnamed-chunk-29-1.pdf, id=744, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-29-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-29-1.pdf  used on input line 1702.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-29-1.pdf  used on input line 1703.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 
-LaTeX Warning: Float too large for page by 1.3137pt on input line 1706.
+LaTeX Warning: Float too large for page by 1.3137pt on input line 1707.
 
 <main_files/figure-latex/unnamed-chunk-31-1.pdf, id=745, 794.97pt x 867.24pt>
 File: main_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-31-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-31-1.pdf  used on input line 1710.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-31-1.pdf  used on input line 1711.
 (pdftex.def)             Requested size: 469.76819pt x 512.4744pt.
 
-LaTeX Warning: Float too large for page by 0.52765pt on input line 1714.
+LaTeX Warning: Float too large for page by 0.52765pt on input line 1715.
 
 <main_files/figure-latex/unnamed-chunk-33-1.pdf, id=747, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-33-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-33-1.pdf  used on input line 1718.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-33-1.pdf  used on input line 1719.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 [39 <./main_files/figure-latex/unnamed-chunk-19-1.pdf>] [40 <./main_files/figure-latex/unnamed-chunk-21-1.pdf>] [41 <./main_files/figure-latex/unnamed-chunk-22-1.pdf>] [42 <./main_files/figure-latex/unnamed-chunk-24-1.pdf>] [43 <./main_files/figure-latex/unnamed-chunk-26-1.pdf>] [44 <./main_files/figure-latex/unnamed-chunk-28-1.pdf>] [45 <./main_files/figure-latex/unnamed-chunk-29-1.pdf>] [46 <./main_files/figure-latex/unnamed-chunk-31-1.pdf>] [47 <./main_files/figure-latex/unnamed-chunk-33-1.pdf>]
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 1737.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 1738.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11> on input line 1737.
+(Font)              <11> on input line 1738.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.69997> on input line 1737.
+(Font)              <7.69997> on input line 1738.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 1737.
+(Font)              <5.5> on input line 1738.
 [48
 
 
@@ -850,7 +850,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ] [49] [50
 
 ] [51] [52]
-Overfull \hbox (10.38162pt too wide) in paragraph at lines 1996--2026
+Overfull \hbox (10.38162pt too wide) in paragraph at lines 1997--2027
  [] 
  []
 
@@ -862,142 +862,142 @@ Overfull \hbox (10.38162pt too wide) in paragraph at lines 1996--2026
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2144 
+l.2145 
         [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2145 \newpage
+l.2146 \newpage
                 [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2228 
+l.2229 
         [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2229 \newpage
+l.2230 \newpage
                 [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2283 \end{equation}
+l.2284 \end{equation}
                       [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2323 \newpage
+l.2324 \newpage
                 [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2366 \end{landscape}
+l.2367 \end{landscape}
                        [3
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2422 
+l.2423 
         [1
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2443 \newpage
+l.2444 \newpage
                 [2]
 <main_files/figure-latex/unnamed-chunk-59-1.pdf, id=967, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-59-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-59-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-59-1.pdf  used on input line 2490.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-59-1.pdf  used on input line 2491.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2503 \FloatBarrier
+l.2504 \FloatBarrier
                      [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2503 \FloatBarrier
+l.2504 \FloatBarrier
                      [2 <./main_files/figure-latex/unnamed-chunk-59-1.pdf>]
 <sample_crime_log.png, id=985, 725.71124pt x 976.64874pt>
 File: sample_crime_log.png Graphic file (type png)
 <use sample_crime_log.png>
-Package pdftex.def Info: sample_crime_log.png  used on input line 2513.
+Package pdftex.def Info: sample_crime_log.png  used on input line 2514.
 (pdftex.def)             Requested size: 375.81067pt x 505.75903pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2519 \begin{landscape}
+l.2520 \begin{landscape}
                          [3
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2519 \begin{landscape}
+l.2520 \begin{landscape}
                          [4 <./sample_crime_log.png>]
 <main_files/figure-latex/unnamed-chunk-62-1.pdf, id=995, 1011.78pt x 578.16pt>
 File: main_files/figure-latex/unnamed-chunk-62-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-62-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-62-1.pdf  used on input line 2522.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-62-1.pdf  used on input line 2523.
 (pdftex.def)             Requested size: 520.35463pt x 297.3455pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2527 \end{landscape}
+l.2528 \end{landscape}
                        [5 <./main_files/figure-latex/unnamed-chunk-62-1.pdf>]
 <main_files/figure-latex/unnamed-chunk-64-1.pdf, id=1004, 469.755pt x 469.755pt>
 File: main_files/figure-latex/unnamed-chunk-64-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-64-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-64-1.pdf  used on input line 2531.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-64-1.pdf  used on input line 2532.
 (pdftex.def)             Requested size: 469.75386pt x 469.75386pt.
 <main_files/figure-latex/unnamed-chunk-66-1.pdf, id=1005, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-66-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-66-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-66-1.pdf  used on input line 2539.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-66-1.pdf  used on input line 2540.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <main_files/figure-latex/unnamed-chunk-67-1.pdf, id=1006, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-67-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-67-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-67-1.pdf  used on input line 2547.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-67-1.pdf  used on input line 2548.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <main_files/figure-latex/unnamed-chunk-69-1.pdf, id=1007, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-69-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-69-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-69-1.pdf  used on input line 2555.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-69-1.pdf  used on input line 2556.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <main_files/figure-latex/unnamed-chunk-70-1.pdf, id=1010, 469.755pt x 325.215pt>
 File: main_files/figure-latex/unnamed-chunk-70-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-70-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-70-1.pdf  used on input line 2563.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-70-1.pdf  used on input line 2564.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <main_files/figure-latex/unnamed-chunk-72-1.pdf, id=1013, 686.565pt x 433.62pt>
 File: main_files/figure-latex/unnamed-chunk-72-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-72-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-72-1.pdf  used on input line 2571.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-72-1.pdf  used on input line 2572.
 (pdftex.def)             Requested size: 469.74944pt x 296.68385pt.
 <main_files/figure-latex/unnamed-chunk-73-1.pdf, id=1017, 686.565pt x 433.62pt>
 File: main_files/figure-latex/unnamed-chunk-73-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-73-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-73-1.pdf  used on input line 2579.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-73-1.pdf  used on input line 2580.
 (pdftex.def)             Requested size: 469.74944pt x 296.68385pt.
 <main_files/figure-latex/unnamed-chunk-75-1.pdf, id=1021, 722.7pt x 722.7pt>
 File: main_files/figure-latex/unnamed-chunk-75-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-75-1.pdf>
-Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-75-1.pdf  used on input line 2587.
+Package pdftex.def Info: main_files/figure-latex/unnamed-chunk-75-1.pdf  used on input line 2588.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 
-LaTeX Warning: Float too large for page by 30.3137pt on input line 2591.
+LaTeX Warning: Float too large for page by 30.3137pt on input line 2592.
 
 
-Overfull \hbox (40.14886pt too wide) in alignment at lines 2600--2658
+Overfull \hbox (40.14886pt too wide) in alignment at lines 2601--2659
  [] [] [] [] [] 
  []
 
@@ -1005,7 +1005,7 @@ Overfull \hbox (40.14886pt too wide) in alignment at lines 2600--2658
 pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2658 \end{longtable}
+l.2659 \end{longtable}
                        [6
 
 
@@ -1013,59 +1013,59 @@ l.2658 \end{longtable}
 pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2658 \end{longtable}
+l.2659 \end{longtable}
                        [7]
 pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [8]
 pdfTeX warning (ext4): destination with the same identifier (name{page.9}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [9]
 pdfTeX warning (ext4): destination with the same identifier (name{page.10}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [10 <./main_files/figure-latex/unnamed-chunk-64-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [11 <./main_files/figure-latex/unnamed-chunk-66-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [12 <./main_files/figure-latex/unnamed-chunk-67-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [13 <./main_files/figure-latex/unnamed-chunk-69-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.14}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [14 <./main_files/figure-latex/unnamed-chunk-70-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.15}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [15 <./main_files/figure-latex/unnamed-chunk-72-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.16}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [16 <./main_files/figure-latex/unnamed-chunk-73-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.17}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2726 \begin{landscape}
+l.2727 \begin{landscape}
                         \begin{table}[H] [17 <./main_files/figure-latex/unnamed-chunk-75-1.pdf>]
-Overfull \hbox (10.57053pt too wide) in paragraph at lines 2732--2760
+Overfull \hbox (10.57053pt too wide) in paragraph at lines 2733--2761
  [] 
  []
 
@@ -1073,16 +1073,16 @@ Overfull \hbox (10.57053pt too wide) in paragraph at lines 2732--2760
 pdfTeX warning (ext4): destination with the same identifier (name{page.18}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2761 \end{landscape}
+l.2762 \end{landscape}
                        [18
 
 ]
-Overfull \hbox (49.88286pt too wide) in paragraph at lines 2769--2806
+Overfull \hbox (49.88286pt too wide) in paragraph at lines 2770--2807
  [] 
  []
 
 
-Overfull \hbox (44.49745pt too wide) in paragraph at lines 2814--2851
+Overfull \hbox (44.49745pt too wide) in paragraph at lines 2815--2852
  [] 
  []
 
@@ -1090,28 +1090,28 @@ Overfull \hbox (44.49745pt too wide) in paragraph at lines 2814--2851
 pdfTeX warning (ext4): destination with the same identifier (name{page.19}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2852 
+l.2853 
         [19
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.20}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2853 \end{document}
+l.2854 \end{document}
                       [20] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 16459F546D655EEB4E0C7A7852B8BC48;7043.
  ) 
 Here is how much of TeX's memory you used:
- 18246 strings out of 478051
- 310185 string characters out of 5839429
+ 18242 strings out of 478051
+ 310139 string characters out of 5839429
  1914330 words of memory out of 5000000
- 37735 multiletter control sequences out of 15000+600000
+ 37731 multiletter control sequences out of 15000+600000
  659118 words of font info for 138 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  108i,17n,106p,1086b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></Users/michaeltopper/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (85 pages, 1389472 bytes).
+Output written on main.pdf (85 pages, 1389484 bytes).
 PDF statistics:
  1253 PDF objects out of 1440 (max. 8388607)
  1081 compressed objects within 11 object streams
