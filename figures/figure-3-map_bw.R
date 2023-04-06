@@ -47,12 +47,13 @@ map_of_schools <- us_states %>%
   geom_polygon(fill = "white") +
   borders("state") +
   geom_point(data = universities %>% filter(!is.na(ifc_frac)), aes(longitude, latitude, group = university, shape = control_of_institution),
-             alpha = 0.7, size = 6) +
+             alpha = 0.7, size = 3) +
   geom_point(data = universities %>% filter(is.na(ifc_frac)), aes(longitude, latitude, group = university, shape = control_of_institution),
-             alpha =0.7, size = 6) +
+             alpha =.7, size = 3) +
   labs(color = "University Type:",
        shape = "University Type:") +
   ggthemes::theme_map() +
   theme(legend.position = "bottom") +
   scale_color_grey()
 
+ggsave("figures/michael-topper-figure-3.pdf", width = 6, height = 4)

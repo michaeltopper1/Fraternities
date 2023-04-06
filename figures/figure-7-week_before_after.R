@@ -69,7 +69,9 @@ alc_weeksplit_g <- weeksplit_controls %>%
   theme_minimal() +
   labs(x = "", y = " ", title = "Panel A: Alcohol Offenses") +
   theme(legend.position = "none",
-        strip.text = element_text(size = 11)) +
+        strip.text = element_text(size = 7),
+        plot.title = element_text(size = 10),
+        axis.text.x = element_text(size = 7)) +
   coord_flip() 
 
 sex_weeksplit_g <- weeksplit_controls %>%
@@ -92,16 +94,18 @@ sex_weeksplit_g <- weeksplit_controls %>%
   theme_minimal() +
   labs(x = "", y = " ", title = "Panel B: Sexual Assaults") +
   theme(legend.position = "none",
-        strip.text = element_text(size = 11)) +
+        strip.text = element_text(size = 7),
+        plot.title = element_text(size = 10),
+        axis.text.x = element_text(size = 7)) +
   coord_flip() 
 
 result <- alc_weeksplit_g + sex_weeksplit_g + plot_layout(ncol = 1)
 
 week_before_after_graph <- patchwork::patchworkGrob(result)
-# 
-# figure_7 <- gridExtra::grid.arrange(week_before_after_graph, left = textGrob("Coefficient Estimate and 95% Confidence Interval",
-#                                                                  rot = 90, gp = gpar(fontsize = 11)), bottom = textGrob(""))
-# 
-# 
-# ggsave(filename = "figures/michael-topper-figure-7.pdf", plot = figure_7,
-#        width = 6, height = 4.5)
+
+figure_7 <- gridExtra::grid.arrange(week_before_after_graph, left = textGrob("Coefficient Estimate and 95% Confidence Interval",
+                                                                 rot = 90, gp = gpar(fontsize = 10)), bottom = textGrob(""))
+
+
+ggsave(filename = "figures/michael-topper-figure-7.pdf", plot = figure_7,
+       width = 6, height = 4.5)

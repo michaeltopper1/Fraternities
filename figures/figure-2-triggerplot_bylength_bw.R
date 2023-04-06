@@ -59,18 +59,25 @@ trigger_plot <- length_graph %>%
   mutate(university = ifelse(university == "Louisiana State University and Agricultural & Mechanical College", "Louisiana State University", university)) %>% 
   mutate(university = ifelse(university == "California Polytechnic State University-San Luis Obispo", "Cal Poly San Luis Obispo", university)) %>%
   mutate(university = ifelse(university == "University of Pittsburgh-Pittsburgh Campus", "University of Pittsburgh", university)) %>%
-  mutate(university = gsub("-Main Campus", "", university)) %>% 
+  mutate(university = gsub("-.{1,}", "", university)) %>% 
+  mutate(university = ifelse(university == "University of California",
+                             "UC Berkeley", university)) %>% 
   mutate(university = ifelse(university == "North Carolina State University at Raleigh", "North Carolina State", university)) %>% 
   mutate(university = reorder_within(university, length, reason)) %>% 
   filter(!is.na(length)) %>% 
   ggplot(aes(university, length, fill = factor(university_enacted))) +
   geom_col() + coord_flip() +
-  geom_text(aes(label = length), color = "black",hjust = ifelse(length_graph$length > 500, 1, -.1)) +
+  geom_text(aes(label = length), color = "black",
+            hjust = ifelse(length_graph$length > 500, 1, -.1), size = 2) +
   facet_wrap(~reason, scales = "free_y") +
   scale_x_reordered() +
-  labs(y = "Length of Moratorium in Days", x= "", fill = "") +
+  labs(y = "Length of Moratorium (Days)", x= "", fill = "") +
   theme_minimal() +
-  theme(legend.position ="bottom") +
+  theme(legend.position ="none",
+        axis.text.y = element_text(size = 7),
+        strip.text = element_text(size = 8)) +
   scale_fill_grey()
 
+ggsave(filename = "figures/michael-topper-figure-2.pdf",
+       width = 7.5, height = 4.5)
 

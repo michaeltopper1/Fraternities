@@ -104,7 +104,9 @@ alc_trigger_reg <- tibble(trigger_regs, type, week_type) %>%
   theme_minimal() +
   labs(x = " ", y = "", linetype = " ", shape = " ", title = "Panel A: Alcohol Offenses") +
   theme(legend.position = "none",
-        strip.text = element_text(size = 12))
+        strip.text = element_text(size = 7),
+        axis.text.x = element_text(size = 7),
+        plot.title = element_text(size = 10))
 
 sex_trigger_reg <- tibble(trigger_regs, type, week_type) %>% 
   mutate(model = case_when(
@@ -123,11 +125,18 @@ sex_trigger_reg <- tibble(trigger_regs, type, week_type) %>%
   theme_minimal() +
   labs(x = " ", y = "", linetype = " ", shape = " ", title = "Panel B: Sexual Assaults") +
   theme(legend.position = "none",
-        strip.text = element_text(size = 12)) 
+        strip.text = element_text(size = 7),
+        axis.text.x = element_text(size = 7),
+        plot.title = element_text(size = 10)) 
 
 result <- alc_trigger_reg + sex_trigger_reg + plot_layout(ncol = 1)
 
 trigger_reg_graph <- patchwork::patchworkGrob(result)
 
+figure_10 <- gridExtra::grid.arrange(trigger_reg_graph, left = textGrob("Coefficient Estimate and 95% Confidence Interval", 
+                                                                        rot = 90), bottom = textGrob("", gp = gpar(fontsize = 10)))
 
+ggsave(filename =  "figures/michael-topper-figure-10.pdf",
+       plot  = figure_10,
+       width = 7.5, height = 4.5)
 

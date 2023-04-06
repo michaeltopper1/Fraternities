@@ -190,7 +190,8 @@ alc_passing_graph <- ifc::reghdfe(daily_crime_passing %>%
   geom_hline(yintercept = 0, color = "black") +
   facet_wrap(~rev(model), ncol = 1, scales = "free_x") +
   labs(x = "", y = "Point Estimate and 95% Confidence Interval") +
-  theme_minimal()
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 7))
 
 
 
@@ -226,10 +227,11 @@ sex_passing_graph <- ifc::reghdfe(daily_crime_passing %>%
   geom_hline(yintercept = 0, color = "black") +
   facet_wrap(~rev(model), ncol = 1, scales = "free_x") +
   labs(x = "", y = "Point Estimate and 95% Confidence Interval") +
-  theme_minimal()
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 7))
 
-# ggsave(filename = "figures/michael-topper-figure-8.pdf",plot = alc_passing_graph,
-#        width = 7.5, height = 4.5)
-# 
-# ggsave(filename = "figures/michael-topper-figure-9.pdf", plot = sex_passing_graph,
-#        width = 7.5, height = 4.5)
+ggsave(filename = "figures/michael-topper-figure-8.pdf",plot = alc_passing_graph,
+       width = 7.5, height = 4.5)
+
+ggsave(filename = "figures/michael-topper-figure-9.pdf", plot = sex_passing_graph,
+       width = 7.5, height = 4.5)
