@@ -57,14 +57,16 @@ alc_bar <- averages %>%
   ggplot(aes(university, alc_difference, fill = positive)) +
   geom_col() +
   geom_hline(aes(yintercept = avg_avg_difference_alc), linetype = "dashed") +
-  scale_y_continuous(breaks = round(c(-2,-1,alc_weekend,0,1,1), 2)) +
+  scale_y_continuous(breaks = round(c(-2,-1,alc_weekend,1,1), 2)) +
   facet_wrap(~weekend, scales = "free_x") +
   scale_x_reordered() +
   geom_hline(yintercept = 0, color = "black") +
   labs(x = "",y = "", fill = " ", title = "Panel A: Alcohol Offenses") +
   theme_minimal() +
   theme(legend.position = "none", axis.text.x = element_blank(),
-        strip.text = element_text(size = 12)) +
+        strip.text = element_text(size = 10),
+        plot.title = element_text(size = 10),
+        axis.text.y = element_text(size = 7)) +
   scale_fill_grey()
 
 
@@ -81,13 +83,16 @@ sex_bar <- averages %>%
   labs(x = "",y = "", fill = " ", title = "Panel B: Sexual Assaults") +
   theme_minimal() +
   theme(legend.position = "bottom", axis.text.x = element_blank(),
-        strip.text = element_text(size = 12)) +
+        strip.text = element_text(size = 10),
+        plot.title = element_text(size = 10),
+        axis.text.y = element_text(size = 7)) +
   scale_fill_grey()
 
 result <- alc_bar + sex_bar + plot_layout(nrow = 2) 
 
 diff_average_offenses <- patchwork::patchworkGrob(result) 
-# 
-# x <- gridExtra::grid.arrange(diff_average_offenses, left = textGrob("Average Difference in Moratorium/Non-Moratorium Days", 
-#                                                                rot = 90, gp = gpar(fontsize = 12)), bottom = textGrob("University", gp = gpar(fontsize = 11)))
-# ggsave(filename = "figures/michael-topper-figure-6.pdf",plot = x)
+
+x <- gridExtra::grid.arrange(diff_average_offenses, left = textGrob("Average Difference in Moratorium/Non-Moratorium Days",
+                                                               rot = 90, gp = gpar(fontsize = 10)), bottom = textGrob("University", gp = gpar(fontsize = 10)))
+ggsave(filename = "figures/michael-topper-figure-6.pdf",plot = x,
+       width = 7, height = 4.5)
