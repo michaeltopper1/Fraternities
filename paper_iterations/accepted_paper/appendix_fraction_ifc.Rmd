@@ -1,0 +1,49 @@
+---
+title: "Appendix  C"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+# Is the Share of Students in a Fraternity Important for Effectiveness? \label{asection:fraction}
+
+In this appendix, I analyze whether universities with a higher fraction of undergraduates belonging to IFC fraternities exhibit larger effects during a moratorium. Each university in the sample has a different share of its student population belonging to IFC fraternities. Recall from Table \ref{summary_stats} that the fraction of undergraduate students with IFC membership can range from 1% to as high as 11%. Presumably, a moratorium has a greater effect on student behavior when the restrictions apply to a greater share of students.
+
+To conduct this analysis, I supplement the preferred specification with an interaction of $InMoratorium_{u,t}$ and $FractionIFC_u$, where $FractionIFC_u$ is the earliest recorded count of IFC fraternity members over 2014-2019 at university $u$, divided by the undergraduate enrollment, and centered at its mean. I use the earliest count of IFC members for two reasons; first, to avoid the potential issue of declines in IFC membership after a moratorium due to permanent suspensions of specific IFC chapters, and second, many universities do not maintain records of IFC numbers for every year in the sample period. However, in the universities that do supply complete records, I do not find substantial semester-to-semester changes in IFC populations.^[West Virginia University is an exception to this. Their official IFC count decreased by over 60 percent in years following the moratorium.] Therefore, an early one-year measure of the IFC population is a good approximation for the other corresponding years. In effect, the interaction of $InMoratorium_{u,t}$ and $FractionIFC_u$ creates a measure of moratorium intensity—universities with a higher fraction of IFC members receive a more intense treatment than universities with lower shares.
+
+Table \ref{ifc_share} provides suggestive evidence that moratoriums with a higher fraction of student enrollment belonging to an IFC fraternity result in larger decreases in alcohol offenses and sexual assaults during a moratorium period. In Panel A, the point estimates for the interaction term show patterns consistent with the main findings in the paper—the effects are negative with the strongest effects are observed on the weekends when partying is more frequent. Similarly, in Column 1 of Panel B, the interaction term coefficient shows suggestive evidence that moratoriums in universities with a higher share of IFC members exhibit larger decreases of sexual assaults. However, none of the interaction coefficients presented in either panel are significant, indicating only a suggestive relationship between the share of IFC members and the impact of moratoriums. 
+
+The results of Table \ref{ifc_share} may appear surprisingly inconclusive given the expectation that universities with a higher share of fraternity members exhibit larger effects. One possible reason for these inconclusive results is that the share of fraternity members is a noisy indicator for a fraternity-related activity—schools with a small share of fraternity life may have chapters that are particularly active, or vice-versa. To demonstrate this, I plot each university’s undergraduate IFC fraction against its Niche.com Colleges with the Best Greek Life ranking. The ranking, based on survey responses from Niche.com users, ranges from 1-300, and 32 out of the 37 universities in the sample are ranked in the top 300. For the remaining five schools, I assign a ranking between 301-305. Figure \ref{scatter_rank_ifc} shows the inverse relationship between these two measures: as the Greek Life ranking increases, the fraction of undergraduates in an IFC fraternity generally decreases. This likely contributes to the negative point estimates in the previous analysis. However, this relationship is noisy, and the slope is not statistically different from zero at the 5% level. This may explain why the previous analysis only provided suggestive rather than clear evidence. 
+
+```{r, echo = F, message = F, warning = F}
+source(here::here("referee_analysis/ifc_frac_analysis.R"))
+```
+\newpage
+```{r, echo = F, message = F, warning = F,fig.pos='H' }
+ifc_share
+```
+
+
+```{r}
+source(here::here("referee_analysis/regressions_alc_quartiles.R"))
+```
+```{=latex}
+
+\begin{figure}[t]
+```
+
+```{r}
+scatter_rank_ifc
+```
+
+```{=latex}
+\caption{Scatterplot of Best Greek Life Ranking and IFC Fraction \label{scatter_rank_ifc}}
+\textit{Note:} The x-axis represents the ranking from Niche.com's Colleges with the Best Greek Life list. There are 300 rankings within this list. Of the four universities that are not ranked, a  ranking between 301 and 305 is assigned. The y-axis represents the share of undergraduate students that are a member of an IFC fraternity. The dashed red line denotes the average share of undergraduate students that are in an IFC fraternity, while the blue line represents the regression estimation of the share of undergraduate students on the Colleges with the Best Greek Life ranking. Note that, at the five percent level, the slope of the regression line is not statistically different from zero. 
+\end{figure}
+
+```
+

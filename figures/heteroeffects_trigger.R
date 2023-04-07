@@ -90,7 +90,7 @@ week_type <- c(rep("All Days", 8), rep("Weekends", 8),rep("Weekdays", 8))
 alc_trigger_reg <- tibble(trigger_regs, type, week_type) %>% 
   mutate(model = case_when(
     str_detect(term, "sexual_assault") ~ "Trigger: Sexual Assault",
-    str_detect(term, "death") ~"Trigger: Fraternity-related Death",
+    str_detect(term, "death") ~"Trigger: Fraternity-Related Death",
     str_detect(term, "unknown") ~"Trigger: Unspecified",
     str_detect(term, "behavior") ~"Trigger: Behavior")) %>% 
   mutate(estimate = round(estimate, 3)) %>% 
@@ -104,12 +104,12 @@ alc_trigger_reg <- tibble(trigger_regs, type, week_type) %>%
   theme_minimal() +
   labs(x = " ", y = "", linetype = " ", shape = " ", title = "Panel A: Alcohol Offenses") +
   theme(legend.position = "none",
-        strip.text = element_text(size = 12))
+        strip.text = element_text(size = 11))
 
 sex_trigger_reg <- tibble(trigger_regs, type, week_type) %>% 
   mutate(model = case_when(
     str_detect(term, "sexual_assault") ~ "Trigger: Sexual Assault",
-    str_detect(term, "death") ~"Trigger: Fraternity-related Death",
+    str_detect(term, "death") ~"Trigger: Fraternity-Related Death",
     str_detect(term, "unknown") ~"Trigger: Unspecified",
     str_detect(term, "behavior") ~"Trigger: Behavior")) %>% 
   mutate(estimate = round(estimate, 3)) %>% 
@@ -123,7 +123,7 @@ sex_trigger_reg <- tibble(trigger_regs, type, week_type) %>%
   theme_minimal() +
   labs(x = " ", y = "", linetype = " ", shape = " ", title = "Panel B: Sexual Assaults") +
   theme(legend.position = "none",
-        strip.text = element_text(size = 12)) 
+        strip.text = element_text(size = 11)) 
 
 result <- alc_trigger_reg + sex_trigger_reg + plot_layout(ncol = 1)
 

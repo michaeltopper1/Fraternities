@@ -1,0 +1,46 @@
+---
+title: "Appendix  C"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+# Spillover Analysis Using CSS Data \label{asection:spillovers}
+
+In this appendix, I use the Campus Safety and Security (CSS) data to indirectly analyze whether alcohol offenses and sexual assaults are being displaced to riskier areas during a moratorium. I compare the yearly aggregation of the Daily Crime Logs to the CSS data using a model that is less suited for a causal analysis due to the yearly aggregation of the CSS data. Therefore, the estimates in this appendix should be taken as speculative only. 
+
+## CSS Data and Empirical Strategy
+
+The CSS data is maintained by the US Department of Education. This data is mandated by the federal government to be updated each calendar year with the yearly totals of liquor law disciplinary actions and arrests, and sexual assault violations that are reported *to any entity* at a university. Hence, this data will not match one-to-one with the Daily Crime Logs as the Daily Crime Logs contain only incidents *reported to or by the university police*. For instance, if a residence hall administrator issues a liquor violation to an underage student, but handles the issue internally without involving the police, then this would be included in the CSS data as a liquor law disciplinary action, but not the Daily Crime Logs. However, the advantage of the CSS data is that it contains counts of offenses that occur on-campus, not-on-campus, and on public property.^[Not-on-campus is defined by the Department of Education as "(1) Any building or property owned or controlled by a student organization that is officially recognized by the institution; or (2) Any building or property owned or controlled by an institution that is used in direct support of, or in relation to, the institution's educational purposes, is frequently used by students, and is not within the same reasonably contiguous geographic area of the institution." Furthermore, public property is defined as "All public property, including thoroughfares, streets, sidewalks, and parking facilities, that is within the campus, or immediately adjacent to and accessible from the campus."] Most importantly, I am able to delineate whether incidents occur in student residence halls.  
+
+Since the CSS data is aggregated by calendar-year, the CSS data is not a preferred data source for causal analysis. In spite of this shortcoming, I estimate the following difference-in-differences specification:
+
+\begin{equation} \label{equation:appendix}
+Y_{u,t} = \beta Moratorium_{u,t}  + \gamma_{u} + \lambda_{t} + \epsilon_{u,t}
+\end{equation}
+
+\noindent where $Y_{u,t}$ is the offense of interest defined as per-25000 enrolled students per-calendar-year, $Moratorium_{u,t}$ is the *number* of calendar-days with a moratorium within a year, $\gamma_u$ are university fixed effects, $\lambda_{t}$ are calendar-year fixed effects, and $\epsilon_{u,t}$ is the error term. Standard errors are clustered at the university level to account for serial correlation within universities. 
+
+## Results
+
+Table \ref{css_arrests} shows the comparison of estimating Equation \ref{equation:appendix} with the Daily Crime Logs aggregated to the calendar-year level with the CSS data.^[This aggregation includes all calendar-year days rather than only academic-calendar days that were used in the main analysis.] The Daily Crime Logs show relatively consistent results with those found in Table \ref{main_table}; yearly averages of alcohol offenses per-25,000 enrolled students decrease by approximately 0.134 per additional calendar day with a moratorium and sexual assaults decrease by approximately 0.013.
+
+Although the results using aggregated Daily Crime Logs are consistent with the findings in Table \ref{main_table}, the CSS data shows that residence halls experience a 0.270 *increase* in yearly liquor law disciplinary violations per-25,000 enrolled students and a 0.033 *decrease* in reports of sexual assault for each additional calendar-year-day with a moratorium (Column 3). Each of these estimates are significant at the 5% level. However, there is little evidence of an effect on liquor law arrests as shown in Columns 4 and 5—consistent with the literature that campus police do not typically arrest students for alcohol violations [@bernat_college_2014]. As discussed in Section \ref{section:results}.\ref{section:spillover}, this supports the notion that if moratoriums displace alcohol-fueled behavior, they displace it to *less* risky areas whereby behavior can more easily be intervened before it becomes dangerous.
+
+```{r, echo = F, message = F, warning = F}
+source(here::here("referee_analysis/css_arrests.R"))
+```
+\newpage
+```{r, echo = F, message = F, warning = F,fig.pos='H' }
+css_arrests %>% 
+  kable_styling(latex_options = "HOLD_position", font_size = 11) %>% 
+  kableExtra::landscape()
+```
+
+
+
+

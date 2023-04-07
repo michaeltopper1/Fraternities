@@ -67,7 +67,7 @@ alc_game <- alc %>%
   ggplot(aes(row_number, estimate)) +
   geom_point() +
   geom_errorbar(aes(ymin = conf.low, ymax= conf.high), width = 0.4) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
   facet_wrap(~moratorium) +
   scale_x_continuous(breaks = c(1:6), labels = c("All Games", "Home Game","Away Game", "All Games\nx\nIn Moratorium",
                               "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
@@ -118,7 +118,7 @@ sex_game <- sex %>%
   ggplot(aes(row_number, estimate)) +
   geom_point() +
   geom_errorbar(aes(ymin = conf.low, ymax= conf.high), width = 0.4) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "dark red") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
   facet_wrap(~moratorium) +
   scale_x_continuous(breaks = c(1:6), labels = c("All Games", "Home Game","Away Game", "All Games\nx\nIn Moratorium",
                                                  "Home Game\nx\nIn Moratorium", "Away Game\nx\nIn Moratorium")) +
