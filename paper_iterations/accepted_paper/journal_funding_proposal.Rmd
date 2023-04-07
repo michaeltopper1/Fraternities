@@ -1,0 +1,35 @@
+---
+title: "Journal Submission Fee Request: The Effect of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults"
+author: "Michael Topper"
+output: pdf_document
+date: "`r Sys.Date()`"
+linkcolor: 'blue'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Research Overview
+
+I exploit variation in timing from 44 temporary university-wide halts on all fraternity activity with alcohol (*moratoriums*) across 37 universities over 2014-2019. I construct a novel data set, merging incident-level crime logs from university police departments to provide the first causal estimates of the effect of moratoriums on reports of alcohol offenses and sexual assaults. In particular, I find robust evidence that moratoriums decrease alcohol offenses by 26%. Additionally, I find suggestive evidence that moratoriums decrease reports of sexual assault on the weekends by 29%. However, I do not find evidence of long-term changes once the moratorium is lifted. 
+
+# Project Objective
+
+The objective of this project is to be a published journal article. It will useful to have a journal article on my resume for when I am applying to academic jobs in Fall 2023. Moreover, this will be a chapter in my dissertation.
+
+# Proposal Narrative
+
+Please see the most recent draft of the working paper which can be found [here](https://github.com/michaeltopper1/Fraternities/blob/master/paper_iterations/working_paper_may_2022/main.pdf) for all details on the methodology.
+
+# Schedule of Project
+
+This project has been completed and is now awaiting journal submission.
+
+# Detailed Budget
+
+The budget for this proposal is **$150.00.** It is a one-time payment for the journal submission fee at the Journal of Human Resources. It will be paid at soonest convenience to the Economics Department, although a proposed date is **Tuesday, July 5, 2022.**
+
+
+
+

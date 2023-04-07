@@ -1,0 +1,225 @@
+---
+title: "The Effect of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults"
+author: Michael Topper^[PhD Candidate in the Economics Department at the University
+  of California, Santa Barbara (michaeltopper@ucsb.edu). I would like to thank Heather
+  Royer, Kevin Schnepel, Dick Startz, Kelly Bedard, Clément de Chaisemartin, Toshio
+  Ferrazares, Anna Jaskiewicz, Elizabeth Tucker, and the members of the UCSB 290 Applied
+  Research Group for their advice and feedback on various drafts of this paper. Special
+  thanks to Terry Cheng, all public records officials, Fraternity and Sorority Life
+  advisors, and police department officials who assisted me in collecting the data
+  used in this paper. All errors are my own. \vspace{\baselineskip}]
+subtitle: ''
+output:
+  word_document: default
+  pdf_document:
+    number_sections: yes
+    extra_dependencies: flafter
+indent: yes
+header-includes:
+- \usepackage{amsfonts}
+- \usepackage{amsthm}
+- \usepackage{amsmath}
+- \usepackage{bbm}
+- \usepackage[english]{babel}
+- \usepackage{bm}
+- \usepackage{float}
+- \usepackage{indentfirst}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{graphicx}
+- \usepackage[utf8]{inputenc}
+- \usepackage{pdfpages}
+- \usepackage[round,authoryear]{natbib}
+- \usepackage{setspace}\doublespacing
+- \usepackage{subfig}
+- \usepackage{placeins}
+- \usepackage{rotating}
+- \usepackage{fancyhdr}
+- \usepackage{times}
+- \usepackage{endnotes}
+- \floatplacement{figure}{H}
+linkcolor: blue
+bibliography: references.bib
+link-citations: yes
+nocite: "@cameron_bootstrap-based_2008\n"
+abstract: "\\singlespacing I exploit variation in timing from 44 temporary university-wide
+  halts on all fraternity activity with alcohol (*moratoriums*) across 37 universities
+  over 2014-2019. I construct a novel data set, merging incident-level crime logs
+  from university police departments to provide the first causal estimates of the
+  effect of moratoriums on reports of alcohol offenses and sexual assaults. In particular,
+  I find robust evidence that moratoriums decrease alcohol offenses by 26%. Additionally,
+  I find suggestive evidence that moratoriums decrease reports of sexual assault on
+  the weekends by 29%. However, I do not find evidence of long-term changes once the
+  moratorium is lifted."
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(kableExtra)
+library(bookdown)
+library(modelsummary)
+library(fixest)
+library(grid)
+library(gridExtra)
+library(patchwork)
+options(modelsummary_model_labels="model")
+```
+
+<center>
+\singlespacing
+\thispagestyle{empty}
+\noindent \textbf{JEL Codes:} I12, I28, K42 \vspace{\baselineskip}
+
+\noindent Please note that an Online Appendix is included. \vspace{\baselineskip}
+
+\noindent \textbf{Disclosure Statement:} I, Michael Topper, declare that I have no relevant or material financial interests that relate to the research described in this paper. \vspace{\baselineskip}
+
+\noindent \textbf{Data Replication Statement:}  This paper uses a combination of publicly available data from multiple sources. The raw data can be obtained through Clery Act/Freedom of Information requests at each unique university. Additionally, I am willing to assist in data requests for replication (michaeltopper@ucsb.edu). All replication files, including the master data, are available at github.com/michaeltopper1/Fraternities. 
+
+
+</center>
+```{=tex}
+\renewcommand{\thesubsection}{\Alph{subsection}} 
+```
+
+
+\newpage
+```{=tex}
+\doublespacing
+\let\oldfootnote\footnote % Save the original definition of \footnote
+\let\footnote\endnote % Redefine \footnote to \endnote
+```
+
+\pagenumbering{arabic}
+```{r, child = "paper_iterations/accepted_paper/introduction.Rmd"}
+
+```
+
+```{r, child="paper_iterations/accepted_paper/data.Rmd"}
+
+```
+
+```{r, child="paper_iterations/accepted_paper/empirical_strategy.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/accepted_paper/results.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/accepted_paper/heterogeneity.Rmd"}
+
+```
+
+```{r, child = "paper_iterations/accepted_paper/conclusion.Rmd"}
+
+```
+
+\newpage
+# References
+
+<div id="refs"></div>
+
+\newpage
+\FloatBarrier
+\theendnotes
+
+
+<!-- \newpage -->
+<!-- ```{=tex} -->
+<!-- \let\footnote\oldfootnote % Restore the original definition of \footnote -->
+<!-- ``` -->
+
+<!-- ```{r, child = "paper_iterations/accepted_paper/tables.Rmd", fig.pos = "H", cache=TRUE} -->
+
+<!-- ``` -->
+
+<!-- \newpage -->
+<!-- ```{r, child = "paper_iterations/accepted_paper/figures.Rmd", fig.pos="H", cache=TRUE} -->
+
+<!-- ``` -->
+
+<!-- \newpage -->
+
+
+<!-- ```{=tex} -->
+<!-- \FloatBarrier -->
+<!-- \vspace{1in} -->
+<!-- \begin{center} -->
+<!-- {\LARGE The Effect of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults}\\ -->
+<!-- {Michael Topper} \\ -->
+<!-- \vspace{2in} -->
+<!-- {\LARGE \textbf{Online Appendix}}\\ -->
+<!-- \thispagestyle{empty} -->
+<!-- \end{center} -->
+<!-- ``` -->
+
+<!-- \newpage -->
+<!-- ```{=tex} -->
+<!-- \appendix -->
+<!-- \renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0} -->
+<!-- \renewcommand{\thetable}{A\arabic{table}} \setcounter{table}{0} -->
+<!-- \renewcommand{\theequation}{A\arabic{table}} \setcounter{equation}{0} -->
+<!-- \setcounter{footnote}{0}  -->
+<!-- \setcounter{page}{1} -->
+<!-- ``` -->
+
+<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_data.Rmd", fig.pos='H' } -->
+
+<!-- ``` -->
+
+<!-- \newpage -->
+
+<!-- ```{=tex} -->
+
+<!-- \renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0} -->
+<!-- \renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0} -->
+<!-- \renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0} -->
+<!-- \setcounter{page}{1} -->
+<!-- ``` -->
+
+<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_twfe.Rmd", fig.pos='H' } -->
+
+<!-- ``` -->
+
+
+<!-- \newpage -->
+<!-- ```{=tex} -->
+<!-- \renewcommand{\thefigure}{C\arabic{figure}} \setcounter{figure}{0} -->
+<!-- \renewcommand{\thetable}{C\arabic{table}} \setcounter{table}{0} -->
+<!-- \renewcommand{\theequation}{C\arabic{table}} \setcounter{equation}{0} -->
+<!-- \setcounter{page}{1} -->
+<!-- ``` -->
+
+<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_spillover.Rmd", fig.pos='H' } -->
+
+<!-- ``` -->
+
+
+<!-- \newpage -->
+<!-- ```{=tex} -->
+<!-- \renewcommand{\thefigure}{D\arabic{figure}} \setcounter{figure}{0} -->
+<!-- \renewcommand{\thetable}{D\arabic{table}} \setcounter{table}{0} -->
+<!-- \renewcommand{\theequation}{D\arabic{table}} \setcounter{equation}{0} -->
+<!-- \setcounter{page}{1} -->
+<!-- ``` -->
+
+<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_fraction_ifc.Rmd", fig.pos='H' } -->
+
+<!-- ``` -->
+
+
+
+
+<!-- \newpage -->
+<!-- ```{=tex} -->
+<!-- \renewcommand{\thefigure}{E\arabic{figure}} \setcounter{figure}{0} -->
+<!-- \renewcommand{\thetable}{E\arabic{table}} \setcounter{table}{0} -->
+<!-- \renewcommand{\theequation}{E\arabic{table}} \setcounter{equation}{0} -->
+<!-- \setcounter{page}{1} -->
+<!-- ``` -->
+<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_figures.Rmd", fig.pos='H', cache=TRUE } -->
+
+<!-- ``` -->
+

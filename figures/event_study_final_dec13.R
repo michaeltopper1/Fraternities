@@ -99,17 +99,17 @@ es_sex_46 <- ifc::reghdfe(es_46, "sexual_assault_per25", explanatory_vars_46, fi
 
 
 es_alc_14_g <- event_study_graph(es_alc_14, 5) +
-  labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
+  labs(x = "14-Day Periods Before and After Moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 es_sex_14_g <- event_study_graph(es_sex_14, 5) +
-  labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
+  labs(x = "14-Day Periods Before and After Moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 es_alc_46_g <- event_study_graph(es_alc_46, 3) +
-  labs(x = "46 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
+  labs(x = "46-Day Periods Before and After Moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 
 es_sex_46_g <- event_study_graph(es_sex_46, 3) +
-  labs(x = "46 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
+  labs(x = "46-Day Periods Before and After Moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 
 
@@ -264,7 +264,7 @@ long_run_effects <- panelsummary::panelsummary_raw(list(es_alc_14,es_sex_14),
   add_header_above(c(" ", "Dependent Variable" = 2)) %>% 
   column_spec(1, width = "8cm") %>% 
   row_spec(4, hline_after = T) %>% 
-  row_spec(16, hline_after = T) %>% 
+  row_spec(16, hline_after = F) %>% 
   footnote(list("Point estimates of In Moratorium reflect the time 0 for the `multiple event' event studies similar to Figures 4 and 5 with four leads and four lags of 14-day bins. Each offense is defined as per-25,000 enrolled students. Standard errors are clustered at the university level. All periods are normalized by the 14-day period before the moratorium. Panel A represents the same coefficient estimates as Figures 4 and 5, while Panels B, C, and D represent subsets of the sample split by three quantiles. The three quantiles represent the 33rd, 66th, and 100th percentile of a moratorium length which correspond to [0-32], [33-59], and [60-541] academic calendar days of a moratorium respectively. Hence, if a university has a moratorium that lasts 30 academic calendar days, then it is included in Panel A. P-values are reported from joint F-test of the four lags. Fixed effects include day of the week, holiday, semester number, football game-day, and university-by-academic-year.",
                 "* p < 0.1, ** p < 0.05, *** p < 0.01"), threeparttable = T)
 

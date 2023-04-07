@@ -1,0 +1,24 @@
+---
+title: "Appendix A"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+# Details on Data Collection  \label{asection:data}
+
+In this appendix, I cover minute details of the data collection. First, a list of universities that underwent moratoriums but are not included in the sample are explained. Second, the small portion of missing data in the Daily Crime Logs is discussed.
+
+## Sample Selection Details \label{asection:datasample}
+
+Recall from Section \ref{section:data}.\ref{section:construction} that the main sample includes 37 universities which experienced moratoriums between 2014 and 2019. However, these do not represent the universe of fraternity moratoriums that occur in this time period. In particular, there are six schools that are known to have experienced a moratorium in this time frame, but are excluded due to data issues or their definition of a moratorium. First, Miami University is excluded since the end-date of their moratorium could not be verified. Second, Pennsylvania State University is excluded because they did not digitally release their Daily Crime Logs. Third, the University of Texas at Arlington is excluded because the crime logs are scanned images that cannot be read reliably by any computer software. Fourth, Cal State Northridge is excluded because it is unclear whether the moratorium includes a ban on alcohol. Fifth, the University of North Florida is excluded because of a discrepancy between public records information and newspaper articles—newspaper articles claim there is a moratorium beginning 12/4/17, but the public records department claims this is untrue. Last, the University of Vermont is excluded due to issues with the reliably of the data—crimes often are reported to have occurred in large intervals of days (or months) for nearly 40% of the data provided which is not suitable for the daily-level analysis in this paper. There may exist other universities that experienced a moratorium without news coverage—these are also excluded from the sample.
+
+## Daily Crime Log Details \label{asection:datadcl}
+
+As outlined in Section \ref{section:data}.\ref{section:construction}, the Daily Crime Logs are mandated under the Clery Act to include a set of characteristics for each crime and to be maintained for seven years. Despite these mandates, there are exceptions to each of these. First, while the date occurred is mandated to be included in the Daily Crime Logs, only 32 of the 37 universities' crime logs contain the date occurred. However, these five schools contain the date reported, and therefore, I use the date reported in lieu of the date occurred when the date occurred is missing. Second, the seven-year record mandate is not interpreted uniformly across universities. In particular, if Daily Crime Logs from 2014 are requested in year 2021, the police departments of Rollins College and North Carolina State University consider seven-years to be inclusive of their current year, and hence, only retain records from 2015-2021 or have only partially completed records in 2014 respectively. 
+
+

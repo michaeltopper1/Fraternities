@@ -1,0 +1,85 @@
+---
+title: "Appendix B"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Robustness Under TWFE \label{section:twfe}
+
+In this appendix, I estimate a model that contains no negative weights to acknowledge the potential issues with the difference-in-differences estimator as discussed in Section 4.C. These weights are calculated using the TwoWayFEWeights package [@de_chaisemartin_twowayfeweights_2020]. The estimated model is the following TWFE specification:
+
+$$ 
+Y_{ut} = \beta Moratorium_{ut} + \gamma_u + \alpha_t + \epsilon_{ut}
+$$
+where $Y_{ut}$ is the outcome for university $u$ at time $t$ measured by per-25000 enrolled students per academic-calendar day, $Moratorium_{ut}$ is an indicator equal to one if university $u$ is in a moratorium at time $t$, $\gamma_u$ are university fixed effects, $\alpha_t$ are day by month by year fixed effects, and $\epsilon_{ut}$ is the error term. Hence, this model compares academic-calendar days within a moratorium to the same calendar days without a moratorium while controlling for systematic differences between universities. As mentioned above, there are no negative weights in this specification and therefore sign reversal is impossible. With this advantage, I re-estimate the results in Columns 2, 3, and 5 in Table 4.
+
+Table \ref{twfe_table} shows that the results of the TWFE specification with no negative weights are mostly consistent with the results in Table 4. In Panel A, alcohol offenses exhibit a 19% decrease from the mean during a moratorium, with a 25% decrease on the weekends. Although sexual assaults do not exhibit statistically significant decreases on the weekends, this is potentially due to the loss of identifying variation from the data-intensive controls. However, it is important to note that the coefficient sign remains the same on all of the estimates. Hence, under the identifying assumptions of the model, moratoriums decrease alcohol offenses.
+
+
+```{r, echo = F, warning = F, message = F}
+library(tidyverse)
+library(modelsummary)
+library(fixest)
+library(kableExtra)
+
+if (!exists("daily_crime")){
+  daily_crime <- read_csv(paste0(here::here("created_data/xmaster_data/daily_panel.csv")))
+}
+if (!exists("daily_crime_weekends")){
+  daily_crime_weekends <- read_csv(paste0(here::here("created_data/xmaster_data/daily_panel_weekends.csv")))
+}
+
+if (!exists("daily_crime_weekdays")){
+  daily_crime_weekdays <- read_csv(paste0(here::here("created_data/xmaster_data/daily_panel_weekdays.csv")))
+}
+
+
+
+explanatory_vars <- c("treatment")
+
+
+# table 2: weekends vs. full sample ---------------------------------------
+
+fixed_effects_preferred <- c("university", "date")
+# fixed_effects_preferred_l <-  c("day_of_week", "university_by_academic_year_by_semester", "holiday")
+data_subsets <- list(daily_crime, daily_crime_weekends, daily_crime_weekdays)
+
+alc_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("alcohol_offense_per25"),explanatory_vars, fixed_effects_preferred, "university")
+)
+
+
+sex_weeksplit <- map(data_subsets, ~ifc::reghdfe(., c("sexual_assault_per25"),explanatory_vars, fixed_effects_preferred, "university")
+)
+
+twfe_table <- ifc::main_table(alc_weeksplit, last_panel = sex_weeksplit) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$alcohol_offense_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$alcohol_offense_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$alcohol_offense_per25, na.rm = T)),
+          .before = 4) %>% 
+  add_row(term = "Mean of Dependent Variable", 
+          `Model 1` = sprintf("%.3f",mean(daily_crime$sexual_assault_per25, na.rm = T)),
+          `Model 2` = sprintf("%.3f",mean(daily_crime_weekends$sexual_assault_per25, na.rm = T)),
+          `Model 3` = sprintf("%.3f",mean(daily_crime_weekdays$sexual_assault_per25, na.rm = T)),
+          .before = 8) %>% 
+  kbl(booktabs = T, col.names = c(" ", "(1)", "(2)", "(3)"), align = "lccc",
+      caption = "\\label{twfe_table}Effect of Moratoriums on Alcohol Offenses and Sexual Assault by Weekend/Weekdays  (No Negative Weights-OLS)") %>% 
+  pack_rows("Panel A: Alcohol Offenses", 1, 4, bold = F, italic = T) %>% 
+  pack_rows("Panel B: Sexual Assaults", 5, 8, bold = F, italic = T, latex_gap_space = "0.5cm") %>% 
+  row_spec(c(8),hline_after=TRUE) %>% 
+  row_spec(10, hline_after = T) %>% 
+  add_header_above(c(" " = 1, "All Days" = 1, "Weekends" = 1, "Weekdays" = 1), line = F) %>% 
+  add_header_above(c(" " = 1, "Days of the Week" = 3)) %>% 
+  column_spec(1, width = "8cm") %>% 
+  footnote(list("Standard errors are clustered by university and each offense is defined as per-25000 enrolled students. Column 1 represents the preferred specification from the main results table, Column 2. Weekends consist of Fridays, Saturdays, and Sundays. Weekdays consist of Monday through Thursday. The specification used in this table has no negative weights and thus, sign reversal is ruled out.",
+                    "* p < 0.1, ** p < 0.05, *** p < 0.01"),
+           threeparttable = T) 
+
+```
+
+```{r, echo = F, warning = F, message = F, fig.pos='H'}
+twfe_table %>% 
+  kable_styling(latex_options = "HOLD_position", font_size = 11)
+```
+

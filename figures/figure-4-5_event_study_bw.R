@@ -99,23 +99,23 @@ es_sex_46 <- ifc::reghdfe(es_46, "sexual_assault_per25", explanatory_vars_46, fi
 
 
 es_alc_14_g <- event_study_graph(es_alc_14, 5) +
-  labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
+  labs(x = "14-Day Periods Before and After Moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 ggsave(filename = "figures/michael-topper-figure-4.pdf",plot = es_alc_14_g,
        width = 6, height = 4)
 
 es_sex_14_g <- event_study_graph(es_sex_14, 5) +
-  labs(x = "14 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
+  labs(x = "14-Day Periods Before and After Moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 ggsave(filename = "figures/michael-topper-figure-5.pdf",plot = es_sex_14_g,
        width = 6, height = 4)
 
 es_alc_46_g <- event_study_graph(es_alc_46, 3) +
-  labs(x = "46 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
+  labs(x = "46-Day Periods Before and After Moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 
 es_sex_46_g <- event_study_graph(es_sex_46, 3) +
-  labs(x = "46 day periods before and after moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
+  labs(x = "46-Day Periods Before and After Moratorium", y = "Coefficient Estimate and 95% Confidence Interval")
 
 
 

@@ -14,3 +14,4 @@ data/clery_act_data
 data/nibrs
 created_data/nibrs/victim_data.csv
 created_data/nibrs/offense_data.csv
+paper_iterations/accepted_paper/main_cache/
