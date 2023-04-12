@@ -134,7 +134,7 @@ result <- alc_trigger_reg + sex_trigger_reg + plot_layout(ncol = 1)
 trigger_reg_graph <- patchwork::patchworkGrob(result)
 
 figure_10 <- gridExtra::grid.arrange(trigger_reg_graph, left = textGrob("Coefficient Estimate and 95% Confidence Interval", 
-                                                                        rot = 90), bottom = textGrob("", gp = gpar(fontsize = 10)))
+                                                                        rot = 90, gp = gpar(fontsize = 10)), bottom = textGrob("", gp = gpar(fontsize = 10)))
 
 ggsave(filename =  "figures/michael-topper-figure-10.pdf",
        plot  = figure_10,

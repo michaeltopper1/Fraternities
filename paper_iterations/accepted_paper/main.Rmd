@@ -10,7 +10,6 @@ author: Michael Topper^[PhD Candidate in the Economics Department at the Univers
   used in this paper. All errors are my own. \vspace{\baselineskip}]
 subtitle: ''
 output:
-  word_document: default
   pdf_document:
     number_sections: yes
     extra_dependencies: flafter
@@ -126,100 +125,100 @@ options(modelsummary_model_labels="model")
 \theendnotes
 
 
-<!-- \newpage -->
-<!-- ```{=tex} -->
-<!-- \let\footnote\oldfootnote % Restore the original definition of \footnote -->
-<!-- ``` -->
+\newpage
+```{=tex}
+\let\footnote\oldfootnote % Restore the original definition of \footnote
+```
 
-<!-- ```{r, child = "paper_iterations/accepted_paper/tables.Rmd", fig.pos = "H", cache=TRUE} -->
+```{r, child = "paper_iterations/accepted_paper/tables.Rmd", fig.pos = "H", cache=TRUE}
 
-<!-- ``` -->
+```
 
-<!-- \newpage -->
-<!-- ```{r, child = "paper_iterations/accepted_paper/figures.Rmd", fig.pos="H", cache=TRUE} -->
+\newpage
+```{r, child = "paper_iterations/accepted_paper/figures.Rmd", fig.pos="H", cache=TRUE}
 
-<!-- ``` -->
+```
 
-<!-- \newpage -->
-
-
-<!-- ```{=tex} -->
-<!-- \FloatBarrier -->
-<!-- \vspace{1in} -->
-<!-- \begin{center} -->
-<!-- {\LARGE The Effect of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults}\\ -->
-<!-- {Michael Topper} \\ -->
-<!-- \vspace{2in} -->
-<!-- {\LARGE \textbf{Online Appendix}}\\ -->
-<!-- \thispagestyle{empty} -->
-<!-- \end{center} -->
-<!-- ``` -->
-
-<!-- \newpage -->
-<!-- ```{=tex} -->
-<!-- \appendix -->
-<!-- \renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0} -->
-<!-- \renewcommand{\thetable}{A\arabic{table}} \setcounter{table}{0} -->
-<!-- \renewcommand{\theequation}{A\arabic{table}} \setcounter{equation}{0} -->
-<!-- \setcounter{footnote}{0}  -->
-<!-- \setcounter{page}{1} -->
-<!-- ``` -->
-
-<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_data.Rmd", fig.pos='H' } -->
-
-<!-- ``` -->
-
-<!-- \newpage -->
-
-<!-- ```{=tex} -->
-
-<!-- \renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0} -->
-<!-- \renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0} -->
-<!-- \renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0} -->
-<!-- \setcounter{page}{1} -->
-<!-- ``` -->
-
-<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_twfe.Rmd", fig.pos='H' } -->
-
-<!-- ``` -->
+\newpage
 
 
-<!-- \newpage -->
-<!-- ```{=tex} -->
-<!-- \renewcommand{\thefigure}{C\arabic{figure}} \setcounter{figure}{0} -->
-<!-- \renewcommand{\thetable}{C\arabic{table}} \setcounter{table}{0} -->
-<!-- \renewcommand{\theequation}{C\arabic{table}} \setcounter{equation}{0} -->
-<!-- \setcounter{page}{1} -->
-<!-- ``` -->
+```{=tex}
+\FloatBarrier
+\vspace{1in}
+\begin{center}
+{\LARGE The Effect of Fraternity Moratoriums on Alcohol Offenses and Sexual Assaults}\\
+{Michael Topper} \\
+\vspace{2in}
+{\LARGE \textbf{Online Appendix}}\\
+\thispagestyle{empty}
+\end{center}
+```
 
-<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_spillover.Rmd", fig.pos='H' } -->
+\newpage
+```{=tex}
+\appendix
+\renewcommand{\thefigure}{A\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{A\arabic{table}} \setcounter{equation}{0}
+\setcounter{footnote}{0}
+\setcounter{page}{1}
+```
 
-<!-- ``` -->
+```{r, child = "paper_iterations/accepted_paper/appendix_data.Rmd", fig.pos='H' }
+
+```
+
+\newpage
+
+```{=tex}
+
+\renewcommand{\thefigure}{B\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{B\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{B\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+
+```{r, child = "paper_iterations/accepted_paper/appendix_twfe.Rmd", fig.pos='H' }
+
+```
 
 
-<!-- \newpage -->
-<!-- ```{=tex} -->
-<!-- \renewcommand{\thefigure}{D\arabic{figure}} \setcounter{figure}{0} -->
-<!-- \renewcommand{\thetable}{D\arabic{table}} \setcounter{table}{0} -->
-<!-- \renewcommand{\theequation}{D\arabic{table}} \setcounter{equation}{0} -->
-<!-- \setcounter{page}{1} -->
-<!-- ``` -->
+\newpage
+```{=tex}
+\renewcommand{\thefigure}{C\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{C\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{C\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
 
-<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_fraction_ifc.Rmd", fig.pos='H' } -->
+```{r, child = "paper_iterations/accepted_paper/appendix_spillover.Rmd", fig.pos='H' }
 
-<!-- ``` -->
-
-
+```
 
 
-<!-- \newpage -->
-<!-- ```{=tex} -->
-<!-- \renewcommand{\thefigure}{E\arabic{figure}} \setcounter{figure}{0} -->
-<!-- \renewcommand{\thetable}{E\arabic{table}} \setcounter{table}{0} -->
-<!-- \renewcommand{\theequation}{E\arabic{table}} \setcounter{equation}{0} -->
-<!-- \setcounter{page}{1} -->
-<!-- ``` -->
-<!-- ```{r, child = "paper_iterations/accepted_paper/appendix_figures.Rmd", fig.pos='H', cache=TRUE } -->
+\newpage
+```{=tex}
+\renewcommand{\thefigure}{D\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{D\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{D\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
 
-<!-- ``` -->
+```{r, child = "paper_iterations/accepted_paper/appendix_fraction_ifc.Rmd", fig.pos='H' }
+
+```
+
+
+
+
+\newpage
+```{=tex}
+\renewcommand{\thefigure}{E\arabic{figure}} \setcounter{figure}{0}
+\renewcommand{\thetable}{E\arabic{table}} \setcounter{table}{0}
+\renewcommand{\theequation}{E\arabic{table}} \setcounter{equation}{0}
+\setcounter{page}{1}
+```
+```{r, child = "paper_iterations/accepted_paper/appendix_figures.Rmd", fig.pos='H', cache=TRUE }
+
+```
 
